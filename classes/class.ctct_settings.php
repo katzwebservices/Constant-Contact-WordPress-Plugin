@@ -623,7 +623,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 	}
 	 	?>
 	 	</div>
-	 	<p class="submit"><input name="Submit" class="submit button-primary button-large" type="submit" value="<?php _e('Save Settings', 'constant-contact-api'); ?>" /></p>
+	 	<p class="submit"><input name="Submit" id="ctct-save-settings" class="submit button-primary button-large" type="submit" value="<?php _e('Save Settings', 'constant-contact-api'); ?>" /></p>
 	 	<?php
 	 }
 

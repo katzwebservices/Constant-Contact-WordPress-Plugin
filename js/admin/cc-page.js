@@ -120,9 +120,9 @@ jQuery(document).ready(function($) {
 
 	function ctct_hide_save() {
 		if($('#ctct-settings-tabs #setup').is(':visible')) {
-			$('p.submit .button-primary').hide();
+			$('#ctct-save-settings').hide();
 		} else {
-			$('p.submit .button-primary').show();
+			$('#ctct-save-settings').show();
 		}
 	}
 
