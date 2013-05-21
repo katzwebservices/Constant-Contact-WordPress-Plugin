@@ -1,0 +1,211 @@
+<?php
+
+add_action('widgets_init', array('constant_contact_events_widget', 'register'));
+
+class constant_contact_events_widget extends WP_Widget {
+
+	static function register() {
+		register_widget( 'constant_contact_events_widget' );
+
+		// Check if form designer has called it yet...
+		if(!function_exists('constant_contact_admin_widget_scripts')) {
+			function constant_contact_admin_widget_scripts_events() {
+				global $pagenow;
+				if($pagenow == 'widgets.php') {
+					wp_enqueue_script( 'admin-cc-widget', plugin_dir_url(__FILE__).'js/admin-cc-widget.js' );
+				}
+			}
+			constant_contact_admin_widget_scripts_events();
+		} else {
+			constant_contact_admin_widget_scripts();
+		}
+	}
+
+    /** constructor */
+    function __construct() {
+		$widget_options = array(
+			'description' => 'Displays a Constant Contact events widget listing upcoming events',
+			'classname' => 'constant-contact-events',
+		);
+		$control_options = array('width'=>690); // Min-width of widgets config with expanded sidebar
+        parent::WP_Widget(false, $name = 'Constant Contact Events', $widget_options, $control_options);
+		if (is_active_widget(false, false, $this->id_base, true) ) {
+        	add_action('wp_print_styles', array(&$this, 'styles'));
+        }
+    }
+
+	function styles() {
+		if(isset($this->number) && is_integer($this->number)) {
+			$settings = $this->get_settings();
+			if((!empty($settings["{$this->number}"]['style']) && isset($settings["{$this->number}"]['widgethasbeensaved'])) || !isset($settings["{$this->number}"]['widgethasbeensaved'])) {
+				wp_register_style( 'cc_events', plugin_dir_url(__FILE__).'css/events.css');
+				wp_enqueue_style('cc_events');
+			}
+		}
+	}
+
+
+   /** @see WP_Widget::widget */
+    function widget($args = array(), $instance = array())
+	{
+		$output = '';
+
+		extract($instance);
+		$widget_title = $title;
+		$widget_description = $description;
+        extract( $args );
+
+		$output .= (isset($before_widget)) ? $before_widget : '';
+		if(!empty($widget_title)) {
+			$output .= (isset($before_title, $after_title)) ? $before_title : '<h2>';
+			$output .= (isset($widget_title)) ? $widget_title : '';
+			$output .= (isset($after_title, $before_title)) ? $after_title : '</h2>';
+		}
+		$output .= (!empty($widget_description)) ? "\n\t".'<div class="cc_event_description">'."\n\t\t".wpautop(wptexturize($widget_description)).'</div>' : '';
+
+		ob_start();
+		$instance['sidebar'] = true;
+		do_action('eventspot_output', $instance, NULL, true);
+		$output .= ob_get_clean();
+
+		$output .= (isset($after_widget)) ? $after_widget : '';
+
+		// Modify the output by calling add_filter('constant_contact_event_widget', 'your_function');
+		// Passes the output to the function, needs return $output coming from the function.
+		$output = apply_filters('constant_contact_event_widget_ouput', $output);
+
+		echo $output;
+
+		return;
+    }
+
+	function update($new, $old) {
+		$new['widgethasbeensaved'] = true;
+		return $new;
+	}
+
+	function r($print = null, $die = false) {
+		echo '<pre>';
+		print_r($print);
+		echo '</pre>';
+		if($die) { die(); }
+		return;
+	}
+
+	function get_value($field, $instance) {
+		if (isset ( $instance[$field])) { return esc_attr( $instance[$field] );}
+		return '';
+	}
+
+    /** @see WP_Widget::form */
+  /** @see WP_Widget::form */
+    function form($instance)
+	{
+
+		extract($instance);
+
+		$title = isset( $instance['title'] ) ? $instance['title'] : '';
+		$description = isset( $instance['description'] ) ? $instance['description'] : '';
+	?>
+	<h3><?php _e('Constant Contact Event Widget Settings', 'constant-contact-api'); ?></h3>
+	<p class="howto"><?php _e('Note: only active events will be displayed. Completed or cancelled events will not be shown.', 'constant-contact-api'); ?></p>
+	<a name="widget"></a>
+	<table class="form-table">
+		<tr valign="top">
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Widget Title', 'constant-contact-api'); ?></span></label></p></th>
+			<td>
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo $title; ?>" size="50" />
+			<p class="description"><?php _e('The title text for the this widget.', 'constant-contact-api'); ?></p>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Widget Description', 'constant-contact-api'); ?></span></label></p></th>
+			<td>
+			<textarea class="widefat" name="<?php echo $this->get_field_name('description');?>" id="<?php echo $this->get_field_id('description');?>" cols="50" rows="4"><?php echo $description; ?></textarea>
+			<p class="description"><?php _e('The description text displayed in the sidebar widget before the events. HTML allowed. Paragraphs will be added automatically like in posts.', 'constant-contact-api'); ?></p>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('limit');?>"><span><?php _e('<span title="Number">#</span> of Events Shown', 'consatant-contact-api'); ?></span></label></p></th>
+			<td>
+				<?php $limit = isset($limit) ? $limit : null; ?>
+				<select class="select" name="<?php echo $this->get_field_name('limit');?>" id="<?php echo $this->get_field_id('limit');?>">
+					<option value="1"<?php selected($limit, 1); ?>>1</option>
+					<option value="2"<?php selected($limit, 2); ?>>2</option>
+					<option value="3"<?php selected($limit, 3); selected($limit, null) ?>>3</option>
+					<option value="4"<?php selected($limit, 4); ?>>4</option>
+					<option value="5"<?php selected($limit, 5); ?>>5</option>
+					<option value="6"<?php selected($limit, 6); ?>>6</option>
+					<option value="7"<?php selected($limit, 7); ?>>7</option>
+					<option value="8"<?php selected($limit, 8); ?>>8</option>
+					<option value="9"<?php selected($limit, 9); ?>>9</option>
+					<option value="10"<?php selected($limit, 10); ?>>10</option>
+				</select>
+				<p class="description"><?php _e('The number of events to show at once.', 'constant-contact-api'); ?></p>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row"><p><label><span><?php _e('Display Options', 'constant-contact-api'); ?></span></label></p></th>
+			<td>
+			<?php
+				$fields = array(
+					array(
+						'id' => 'showdescription',
+						'label' => 'Show event Description',
+						'default' => true
+					),
+					array(
+						'id' => 'datetime',
+						'label' => 'Show event Date & Time',
+						'default' => true
+					),
+					array(
+						'id' => 'location',
+						'label' => 'Show event Location',
+						'default' => false
+					),
+					array(
+						'id' => 'map',
+						'label' => 'Show map link for Location (if Location is shown)',
+						'default' => false
+					),
+					array(
+						'id' => 'calendar',
+						'label' => 'Show "Add to Calendar" link',
+						'default' => false
+					),
+					array(
+						'id' => 'directtoregistration',
+						'label' => 'Link directly to registration page, rather than event homepage',
+						'default' => false
+					),
+					array(
+						'id' => 'newwindow',
+						'label' => 'Open event links in a new window',
+						'default' => false
+					),
+					array(
+						'id' => 'style',
+						'label' => '<strong>Use plugin styles</strong>. Disable if you want to use your own styles (CSS)',
+						'default' => true
+					)
+				);
+				foreach($fields as $field) {
+					if(!isset(${$field['id']}) && !isset($instance['widgethasbeensaved'])) {
+						${$field['id']} = $field['default'];
+					} elseif(!isset(${$field['id']}) && isset($instance['widgethasbeensaved'])) {
+						${$field['id']} = false;
+					}
+				?>
+				<p>
+					<input type="hidden" name="<?php echo $this->get_field_name($field['id']);?>" value="0" />
+					<label class="howto" for="<?php echo $this->get_field_id($field['id']);?>"><input <?php checked(${$field['id']}, 1); ?> type="checkbox" class="checkbox" name="<?php echo $this->get_field_name($field['id']);?>" value="1" id="<?php echo $this->get_field_id($field['id']);?>" /> <span><?php echo wptexturize($field['label'], false); ?></span></label>
+				</p>
+				<?php } ?>
+			</td>
+		</tr>
+	</table>
+	<?php
+    }
+
+} // class constant_contact_api_widget

@@ -1,0 +1,23 @@
+<h2>Form Shortcode</h2>
+
+<p>If you would like to add a form to your page's content, the best way to do that is by adding a "shortcode" to the content. Shortcodes are configurable placeholders that get replaced with other content when the page is loaded. In this case, the content will be a form. <a href='http://codex.wordpress.org/Shortcode_API' rel='external'>Learn more about shortcodes</a>.</p>
+
+<h2>Using the Form Shortcode</h2>
+
+<p>There is shortcode support for the Form Designer forms: <code>[constantcontactapi]</code> with the following options:</p>
+
+<pre>
+'formid' // REQUIRED  Number representing the form ID. In the Form Designer, you can find the ID in the 'Form Name' box
+'before' // Content to show before the form
+'after' // Content to show after the form
+'redirect_url' // When the form is successfully submitted, redirect to this URL
+'lists' // A comma-separated string of list IDs. The contact will be added to these lists.
+'title' // The title of the form, displayed above the inputs
+'description' // Additional form text, displayed below the title and above the inputs
+'show_list_selection' => 'true' or 'false',
+'list_selection_title' // (default: 'Add me to these lists:')
+'list_selection_format' // (default: checkbox) How to display the lists. Options include: 'checkbox', 'select' (choose multiple lists), and 'dropdown' (choose one list)
+'exclude_lists' // A comma-separated string of list IDs. If showing the list selection, hide these list IDs from being displayed.
+</pre>
+
+<p>So to add a form, you would add the following in your content: <code>[constantcontactapi formid=\"3\"]</code></p>

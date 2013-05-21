@@ -1,0 +1,606 @@
+/* @override http://local/dev/devwordpress/wp-content/plugins/constant-contact-form-generator/css/style.css?ver=3.0 */
+
+#paint-bucket {
+	background: url(../images/paint-sprite.png) left top;
+	width:80px;
+	height:80px;
+	margin-left:10px;
+}
+
+.nav-tabs-arrow, .tabs-panel { display: none; }
+.tabs-panel-active { display: none; }
+#menu-edit #form-fields ul.menu li.hide { display: none!important; }
+textarea#defaultformtext {
+	font-size: 1.1em;
+	border: 1px solid #e5e5e5;
+	padding: 3px;
+	width: 100%;
+	display: block;
+}
+
+.postbox div.inside {
+	padding-bottom: 10px;
+	margin-top: 10px;
+}
+.wp-editor-container { border: 0!important; }
+#formname div.inside {padding-bottom: 0;}
+.menu-item-settings .labelStyle .mceIcon {
+	display: block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	float: left;
+	text-indent: -9999px;
+	overflow: hidden;
+	background:blue;
+	background: white url('../../../../../../wp-includes/images/wpicons.png?ver=20120720');
+	/* background: url(images/icons.gif) no-repeat 20px 20px; */
+}
+
+#publishing-action .button {
+	height:40px!important;
+	line-height: 38px!important;
+	font-size: 1.2em!important;
+}
+
+.item-controls .move a {
+	cursor: pointer;
+	padding: 4px 5px;
+	float: right;
+	font-size: 1.2em;
+}
+.item-controls .move a:hover {
+	color: black; font-weight: bold;
+	background: #F0F0EE;
+	padding: 3px 4px;
+	border:1px solid #B2BBD0;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+#formname .howto code {
+	display:block;
+	padding: .6em 1em;
+}
+
+/* li.menu-item .item-edit, */
+
+body .lists-meta-box .tabs-panel { max-height: none;}
+
+li.menu-item .hide { display: none!important; }
+
+.menu-item-settings .mceIcon {
+	border-radius:3px;
+	outline: 0;
+}
+.menu-item-settings .mce_bold .mceIcon {background-position:0 -20px; }
+.menu-item-settings .mce_bold.checked .mceIcon,
+.menu-item-settings .mce_bold .mceIcon:hover {background-position:0 0; }
+.menu-item-settings .mce_italic .mceIcon {background-position:-20px -20px;}
+.menu-item-settings .mce_italic.checked .mceIcon,
+.menu-item-settings .mce_italic .mceIcon:hover {background-position:-20px 0; }
+
+.menu-item-settings .labelStyle a {display:block; border:1px solid #F0F0EE; }
+
+.menu-item-settings .labelStyle a { width:20px; height:20px }
+
+.menu-item-settings label.checked a:hover,
+.menu-item-settings label.checked a { border:1px solid #888; }
+
+.labelStyle a:hover { border:1px solid #bbb; }
+
+.labelStyle a:active { border:1px solid #444; }
+
+ /*{border:1px solid #0A246A; background-color:#C2CBE0!important}*/
+
+.formfield .item-controls {
+	display:none;
+}
+
+body .wpcolor-selected {
+ border: 1px solid #000;
+ outline: none;
+ font-weight: bold;
+}
+
+label.inline { display: inline!important; }
+.w50 { float:left; width:25%;}
+
+div.input {
+	margin-bottom: .75em;
+}
+
+
+#post-body-content {
+	position: relative;
+}
+.wp-editor-wrap {
+	float:left;
+	clear:left;
+	width: 400px;
+}
+.wp-editor-textarea {
+	display:none;
+}
+#menu-to-edit {
+	float:left;
+	clear:left;
+}
+#examplewrapper {
+	position: fixed;
+	right:0;
+	text-align: center;
+	margin: 10px auto 0;
+	padding: 10px;
+	z-index: 10000;
+	background: rgb(250,250,250);
+	background: rgba(240,240,240,.7);
+	border: 1px dotted rgb(230,230,230);
+}
+#examplewrapper h3.legend {
+	color:#888;
+	font-weight: 300;
+	text-transform: uppercase;
+	top: -30px;
+	position:relative;
+}
+
+#togglePreview { text-align: right; white-space: nowrap; font-size: .95em; margin: .75em 0; display: block; clear:both;}
+
+.major-publishing-actions .delete-action {
+	clear: left;
+}
+
+.delete-action span {
+	float: left;
+	display: block;
+	float: left;
+	font-size: 11px;
+	margin: 4px 0 4px 10px;
+	line-height: 15px;
+}
+
+#color4text {
+	padding: 5px;
+	border: 1px solid #000;
+	background-color: white;
+	text-align: left;
+	display: none;
+}
+
+#color4text small, .borderradius .asterix,.asterix {
+	display: block;
+}
+.asterix {
+	display: none;
+	clear: left;
+	float: left;
+	margin: .5em 5px 1em 5px;
+}
+div.textdirections,#signupdiv {
+	display: none;
+}
+#signupdiv {
+	text-align: left;
+	 padding: 10px;
+}
+#settings ul {
+	margin: 0;
+	padding: 0;
+}
+#settings .ui-tabs-nav {
+	font-size: .8em;
+}
+#nav-menu-header {
+	border-top: 0;
+}
+body .nav-tab-wrapper {
+	border-bottom: 0;
+}
+body .nav-tab-wrapper a {
+	font-size: .8em;
+}
+#settings fieldset ul li {
+	list-style: none;
+	width: 100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+#settings fieldset ul li li {
+	margin-left: 10px;
+	width: auto;
+	color: #333;
+}
+#settings ul.ui-sortable li li {
+	border: none;
+	padding: 0;
+}
+#settings ul.ui-sortable li {
+	padding: 5px;
+	margin: 2px 0;
+	position: relative;
+}
+#settings ul.ui-sortable li input.checkbox {
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+#settings li .slider {
+	width: 50%;
+	height: 10px;
+	position: relative;
+	display: inline-block;
+	margin-left: 40px;
+}
+#settings li .slider input {
+	background: transparent;
+	position: absolute;
+	left: -40px;
+	bottom: -.5em;
+	font-size: .8em;
+	line-height: 1em;
+}
+.ui-slider-handle {
+	height: 15px!important;
+}
+#settings li .slider * {
+	outline: none;
+}
+input.labelSize {
+	border: none;
+	display: inline;
+	width: 2em;
+	outline:none;
+	float: none;
+	clear: none;
+}
+#settings ul li li.checked {
+	/*border-top: 5px solid #ccc;*/
+}
+#settings ul li li .handle {
+	position: absolute;
+	top: 5px;
+	right: 0;
+}
+
+#uid { color: #666;}
+.notdefault { color: #000000;}
+
+#side-sortables label.block {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin: .5em 0 .25em 0;
+}
+#side-sortables label.checkbox {
+	width: 100%;
+	margin: 0!important;
+}
+#side-sortables label.howto {
+	display: block;
+	clear: both;
+}
+#side-sortables fieldset {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin: .5em 0;
+}
+#side-sortables label.checkbox span {
+	margin-top: 0;
+}
+#side-sortables label.checkbox input {
+	width: auto;
+	float: left;
+	margin-top: .25em;
+	margin-right: .5em;
+	line-height: 1.5;
+}
+.block {
+	display: block;
+	width: 100%;
+}
+
+.wrap #examplewrapper h2 {
+	text-shadow: none;
+	font-style: normal;
+}
+
+#side-sortables div.block,
+#side-sortables p {
+	float: left;
+	margin: 0.25em 0;
+	clear: both;
+	width: 100%;
+}
+#side-sortables div.block label.howto {
+	padding-bottom: .25em;
+}
+#side-sortables select#tfont {
+	clear: none;
+	display: inline;
+}
+#side-sortables select#tfont,
+#side-sortables select#tsize {
+	 float: left;
+	 margin-left: 0;
+}
+/*fieldset {
+	margin: 0; padding: 0; border: none;
+	padding: 10px 0;
+	display: inline;
+	width: 100%;
+	float: left;
+	margin-right: 2%;
+	overflow: hidden;
+}*/
+#settings legend {
+	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1, h2, h3, p, #instructions {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0.5em 0;
+}
+
+#settings input, #settings select, #settings textarea {
+	margin-left: 10px;
+}
+
+#settings fieldset li li li input,
+#settings fieldset li li li textarea {
+	width: 53%;
+}
+
+.nomargin {
+	margin: 0!important;
+}
+#settings
+#settings input.nomargin {margin-left: 0px;}
+.inline {display: inline!important;}
+
+#extras,#background,#bgoptions,#useroptions {
+
+}
+
+ul.width50 {
+	float: left; clear: none; width:48%; display: block; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 2%;
+}
+
+fieldset ul.width50 {
+	width: 95%;
+	padding-left: 2%!important;
+}
+.width100,
+.width100 ul,
+.width100 li {
+	width:98%!important;
+}
+#settings div.libreak ul li {
+	display: block!important;
+	width: 100%;
+	float: left!important;
+	clear: right!important;
+}
+.formfields li ul.fieldOptions {
+	margin-left: 2em!important;
+}
+span.width30,
+.formfields li .menu-item-settings label.labelValue {
+	width: 30%;
+	display: inline-block;
+}
+.formfields li .menu-item-settings label.labelStyle {
+	width: auto;
+	display: inline;
+	clear: none;
+}
+div.labelStyle { clear: both; }
+.formfields li .menu-item-settings label.labelStyle input {
+	width: auto!important;
+}
+fieldset#extras ul.width50,fieldset#background ul.width50 {
+	width: 48%;
+}
+legend {
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	display: block;
+	float: left;
+}
+
+#uid {
+	color: black;
+	background: #bfebbc;
+}
+#uid.warning {
+	background: #ffffcc!important;
+	color: black;
+}
+#uid.error {
+	background: #f1c6c6!important;
+	color: #555;
+}
+
+.large { font-size: 120%;}
+.smallmarginbottom { margin-bottom: .25em!important; }
+.nomarginbottom { margin-bottom: 0!important; }
+
+input#toggledesign {
+	margin-left: 0;
+}
+input#form-name {
+	width: 100%;
+	font-size: 1.3em;
+	margin-left: 0;
+}
+
+
+/* Patternlist */
+ul#patternList li {
+	width: 25px; height: 25px; float:left; list-style: none; margin: 2px; padding: 0;
+	background-position: left top;
+	background-repeat: repeat;
+}
+
+.cc_lists li {
+	text-indent: -1.4em;
+	padding-left: 1.4em;
+}
+
+/**
+ *	Switch Style
+ *	http://tympanus.net/Tutorials/CSS3ButtonSwitches/index3.html
+ */
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.switch {
+  margin: 20px 10px;
+  position: relative;
+  z-index: 100;
+  width: 170px;
+  height: 35px;
+}
+
+.switch input {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.switch label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #a5a39d;
+  border-radius: 10px;
+  box-shadow:
+      inset 0 3px 8px 1px rgba(0,0,0,0.2),
+      0 1px 0 rgba(255,255,255,0.5);
+}
+
+.switch label:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -8px; right: -8px; bottom: -8px; left: -8px;
+  border-radius: inherit;
+  background: #ababab;
+  background: -moz-linear-gradient(#f2f2f2, #ababab);
+  background: -ms-linear-gradient(#f2f2f2, #ababab);
+  background: -o-linear-gradient(#f2f2f2, #ababab);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#ababab));
+  background: -webkit-linear-gradient(#f2f2f2, #ababab);
+  background: linear-gradient(#f2f2f2, #ababab);
+  box-shadow: 0 0 3px rgba(0,0,0,0.2),
+        0 1px 1px rgba(0,0,0,0.25);
+}
+
+.switch label i {
+  display: block;
+  height: 100%;
+  width: 40%;
+  border-radius: inherit;
+  background: silver;
+  position: absolute;
+  z-index: 2;
+  right: 60%;
+  top: 0;
+  background: #b2ac9e;
+  background: -moz-linear-gradient(#f7f2f6, #b2ac9e);
+  background: -ms-linear-gradient(#f7f2f6, #b2ac9e);
+  background: -o-linear-gradient(#f7f2f6, #b2ac9e);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f2f6), to(#b2ac9e));
+  background: -webkit-linear-gradient(#f7f2f6, #b2ac9e);
+  background: linear-gradient(#f7f2f6, #b2ac9e);
+  box-shadow:
+      inset 0 1px 0 white,
+      0 0 8px rgba(0,0,0,0.3),
+      0 5px 5px rgba(0,0,0,0.2);
+}
+
+.switch label i:after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  top: 25%;
+  width: 70%;
+  height: 50%;
+  background: #d2cbc3;
+  background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
+  background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
+  background: -o-linear-gradient(#cbc7bc, #d2cbc3);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
+  background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
+  background: linear-gradient(#cbc7bc, #d2cbc3);
+  border-radius: inherit;
+}
+
+.switch label i:before {
+  content: "off";
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: bold;
+  color: rgba(0,0,0,0.6);
+  text-shadow: 0 1px 0 #bcb8ae, 0 -1px 0 #97958e;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  margin-top: -.25em;
+  right: -100%;
+}
+
+.switch input:checked ~ label {
+  background: #84ba5d;
+}
+
+.switch input:checked ~ label i {
+  right: -1%;
+}
+
+.switch input:checked ~ label i:before {
+  content: "on";
+  right: 135%;
+  color: #bbdda2p;
+  text-shadow:
+    0 1px 0 #afcb9b,
+    0 -1px 0 #6b8659;
+}
+
+.ctct_help {
+	display: inline-block;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
+	font-size: 10px;
+	line-height: 17px;
+	font-weight: bold;
+	margin-top: 1px;
+	margin-left: 7px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px;
+	z-index: 26;
+	background-color: #aaa;
+	cursor: help;
+	color: white;
+	width: 17px;
+	text-indent: -1px;
+	text-align: center;
+}

@@ -1,0 +1,41 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "admin"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "images"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "inc"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "js"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "lib"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "classes"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "css"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "lib/Ctct"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "views"
+		}
+	]
+}

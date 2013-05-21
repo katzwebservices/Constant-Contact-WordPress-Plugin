@@ -1,0 +1,50 @@
+.ccStats-stats-container {
+	width:48%;
+}
+
+#ccStats-box-site-traffic ul.ccStats-tabs {
+	width:400px;
+}
+#ccStats-box-site-traffic ul.ccStats-tab-contents {
+	margin-top:0px;
+}
+#ccStats-apply-date-range {
+	width: 100px;
+}
+
+#ccStats-current-date-range input {
+	width:90px;
+}
+#ccStats-header-credit {
+	margin-top:4px;
+	position:relative;
+}
+
+#ccStats-header-credit a.ccStats-mailchimp-link {
+	position:absolute;
+	top:-4px;
+}
+
+.ccStats-box {
+	zoom:1;
+}
+
+#ccStats-box-traffic-by-region .ccStats-box-content {
+	height:350px;
+}
+#ccStats-box-site-traffic .ccStats-box-content {
+	height:493px;
+}
+#ccStats-box-site-traffic .ccStats-box-content {
+	height:493px;
+}
+#ccStats-box-list-growth .ccStats-box-content, #ccStats-box-referring-traffic-overview .ccStats-box-content {
+	height:350px;
+}
+#ccStats-box-top-referrers .ccStats-box-content, #ccStats-box-top-content .ccStats-box-content {
+	height:333px;
+}
+
+.ccStats-table-row td, .ccStats-table-row-hover td, .ccStats-table-row-odd td, .ccStats-table-row-selected td {
+	line-height:1em;
+}

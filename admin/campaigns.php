@@ -1,0 +1,116 @@
+<?php
+use \KWSContactList;
+use Ctct\ConstantContact;
+use Ctct\Components\Contacts\Contact;
+use Ctct\Components\Contacts\Address;
+use Ctct\Components\Contacts\CustomField;
+use Ctct\Components\Contacts\Note;
+use Ctct\Components\Contacts\ContactList;
+use Ctct\Components\Contacts\EmailAddress;
+use Ctct\Exceptions\CtctException;
+
+class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
+
+    var $errors;
+    var $id;
+    var $can_edit = false;
+    var $can_add = false;
+
+    protected function getKey() {
+        return "constant-contact-campaigns";
+    }
+
+    protected function getNavTitle() {
+    	return $this->getTitle('views');
+    }
+    protected function getTitle($value = '') {
+        if(empty($value) && $this->isEdit() || $value == 'edit')
+            return "Edit Campaign";
+        if(empty($value) && $this->isSingle() || $value == 'single')
+            return 'Campaign';
+
+        return 'Campaigns';
+    }
+
+    /**
+     * @todo Implement adding campaigns.
+     */
+	protected function add() {
+
+		#$template = file_get_contents(CTCT_FILE_PATH.'/inc/email-template.html');
+        #$css = ''; //file_get_contents(CTCT_FILE_PATH.'/inc/email-template.css');
+
+        #$allposts = get_posts(array('numberposts' => 1000000));
+
+        #include(CTCT_DIR_PATH.'views/admin/view.campaign-add.php');
+	}
+
+    protected function processForms() {}
+
+    protected function edit() {
+
+        $id = intval(@$_GET['edit']);
+
+        /**
+         * @todo Specify no contact ID error
+         */
+        if(!isset($id) || empty($id)) {
+            echo 'no contact is specified.';
+            return;
+        }
+
+        $CC_Campaign = $this->cc->getEmailCampaign(CTCT_ACCESS_TOKEN, $id);
+
+        $Campaign = new KWSCampaign($CC_Campaign);
+
+        if($Campaign->status === 'DRAFT') {
+        	foreach(array('last_run_date', 'next_run_date', 'tracking_summary', 'sent_to_contact_lists', 'click_through_details') as $key) {
+        		unset($Campaign->{$key});
+        	}
+        }
+
+        include(CTCT_DIR_PATH.'views/admin/view.campaign-edit.php');
+    }
+
+    protected function single() {
+
+        $id = intval(@$_GET['view']);
+
+        /**
+         * @todo Specify no contact ID error
+         */
+        if(!isset($id) || empty($id)) {
+            echo 'no list is specified.';
+            return;
+        }
+
+        $CC_Campaign = $this->cc->getEmailCampaign(CTCT_ACCESS_TOKEN, $id);
+        $Campaign = new KWSCampaign($CC_Campaign);
+
+        include(CTCT_DIR_PATH.'views/admin/view.campaign-view.php');
+
+    }
+
+    protected function view() {
+
+    	$status = isset($_GET['status']) ? $_GET['status'] : null;
+
+        add_filter('ctct_cachekey', function() {
+            return isset($_GET['status']) ? false : 'ctct_all_campaigns';
+        });
+
+    	$Campaigns = $this->cc->getAllEmailCampaigns($status);
+
+        kws_print_subsub('status', array(
+            array('val' => '', 'text' => 'All'),
+            array('val' => 'DRAFT', 'text' => 'Draft'),
+            array('val' => 'RUNNING', 'text' => 'Running'),
+            array('val' => 'SCHEDULED', 'text' => 'Scheduled'),
+            array('val' => 'SENT', 'text' => 'Sent'),
+        ));
+
+        include(CTCT_DIR_PATH.'views/admin/view.campaigns-view.php');
+    }
+}
+
+$CTCT_Admin_Campaigns = new CTCT_Admin_Campaigns;

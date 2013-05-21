@@ -1,0 +1,38 @@
+dl.cc_event {
+	margin:1em 0 .5em;
+	padding-bottom:.5em;
+	border-bottom: 1px solid #eee;
+	font-size: 1em;
+}
+.cc_event dt, .cc_event dd, .cc_event dd p {
+	margin: 0.25em 0;
+}
+
+.cc_event_shortcode dt {
+	margin-top: .75em;
+}
+
+dl.cc_event dt {
+	font-weight: bold;
+}
+dl.cc_event .cc_event_title {
+	font-size: 1.2em;
+	display: block;
+}
+dl.cc_event .cc_event_calendar,
+dl.cc_event .cc_event_description,
+dl.cc_event .cc_event_location_dt,
+dl.cc_event .cc_event_location_dd {
+	display: block;
+}
+dl.cc_event .cc_event_location_dd {
+	margin-top: 0;
+}
+
+.cc_event_calendar a {
+	background: url(../images/calendar_add.png) left top no-repeat;
+	padding-left:20px;
+	min-height:20px;
+	display: block;
+	display:inline-block;
+}
