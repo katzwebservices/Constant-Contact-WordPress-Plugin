@@ -225,6 +225,9 @@ jQuery(document).ready(function($) {
 
 	$('.constant-contact_page_constant-contact-contacts .ctct-lists').on('change', function() {
 
+		// If we're on add/edit, don't run this AJAX stuff.
+		if($('.edit-new-h2').length === 0) { return; }
+
 		var data = {
 			value : $('input', $(this)).serialize(),
 			field : 'lists'
