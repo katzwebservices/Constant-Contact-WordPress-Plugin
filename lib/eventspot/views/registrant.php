@@ -24,7 +24,7 @@
 			foreach((array)$customfield->answers as $li) {
 				// if it's a date, treat it as such
 				if(preg_match('/^20[0-9]{2}\-/', $li)) {
-					$li = date('jS F Y \- H:i', strtotime($li));
+					$li = constant_contact_event_date($li);
 				}
 				$answer .= '<li>'.$li.'</li>';
 			}
@@ -38,7 +38,7 @@
 	$data = array(
 		'Registration Information' => array(
 			'Registration Status'=> $v->registrationStatus,
-			'Registration Date' => date('jS F Y \- H:i', strtotime($v->registrationDate)),
+			'Registration Date' => constant_contact_event_date($v->registrationDate),
 			'Guest Count'=> get_if_not_empty($v->guestCount,1),
 			'Payment Status'=> $v->paymentStatus,
 			'Order Amount'=> $v->orderAmount,
@@ -69,4 +69,4 @@
 		echo constant_contact_generate_table($data);
 ?>
 
-<p class="submit"><a href="<?php echo remove_query_arg(array('registrant', 'refresh')); ?>" class="button-primary"><?php _e('Return to Event', 'constant-contact-api'); ?></a> <a href="<?php echo add_query_arg('refresh', 'registrant'); ?>" class="button-secondary alignright" title="Registrant data is stored for 1 hour. Refresh data now."><?php _e('Refresh Registrant', 'constant-contact-api'); ?></a></p>
+<p class="submit"><a href="<?php echo remove_query_arg(array('registrant', 'refresh')); ?>" class="button-primary"><?php _e('Return to Event', 'constant-contact-api'); ?></a> <a href="<?php echo add_query_arg('refresh', 'registrant'); ?>" class="button-secondary alignright" title="<?php _e('Registrant data is stored for 1 hour. Refresh data now.', 'constant-contact-api'); ?>"><?php _e('Refresh Registrant', 'constant-contact-api'); ?></a></p>

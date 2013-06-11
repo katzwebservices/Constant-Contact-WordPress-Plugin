@@ -33,17 +33,9 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
     }
 
     /**
-     * @todo Implement adding campaigns.
+     * @todo Implement adding campaigns. Needs better CTCT support.
      */
-	protected function add() {
-
-		#$template = file_get_contents(CTCT_FILE_PATH.'/inc/email-template.html');
-        #$css = ''; //file_get_contents(CTCT_FILE_PATH.'/inc/email-template.css');
-
-        #$allposts = get_posts(array('numberposts' => 1000000));
-
-        #include(CTCT_DIR_PATH.'views/admin/view.campaign-add.php');
-	}
+	protected function add() {}
 
     protected function processForms() {}
 

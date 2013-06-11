@@ -4,21 +4,19 @@
 	$output = $oddeven = '';
 
 	$settings = shortcode_atts(array(
-		'title' => '',
-		'description' => '',
 		'limit' => 3,
 		'showtitle' => true,
 		'showdescription' => true,
 		'datetime' => true,
 		'location' => false,
 		'calendar' => false,
-		'directtoregistration' => false,
 		'style' => true,
 		'id' => false,
 		'newwindow' => false,
 		'map' => false,
 		'onlyactive' => true,
-		'sidebar' => false
+		'sidebar' => false,
+		'mobile' => true,
 	), $args);
 
 	foreach($settings as $key => $arg) {
@@ -34,7 +32,7 @@
 		@wp_enqueue_style('cc-events', plugin_dir_url(__FILE__).'css/events.css');
 	}
 
-	if($id === false) {
+	if(empty($id)) {
 		$events = constant_contact_old_api_get_all('Events', $this->old_api);
 		$class .= ' multiple_events';
 	} else {
@@ -60,11 +58,11 @@
 				if(empty($event) || (empty($id) && $event->status !== 'ACTIVE')) { continue; }
 
 				extract((array)$event);
+				
+				$link = $event->registrationUrl;
 
-				if(!empty($directtoregistration)) {
-					$link = str_replace('/register/event?', '/register/eventReg?', $event->registrationUrl);
-				} else {
-					$link = str_replace('https://', 'http://', $event->registrationUrl);
+				if(!empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile()) {
+					$link = str_replace('/register/eventReg?', '/register/m?', $link);
 				}
 
 				$linkTitle = apply_filters('cc_event_linktitle', sprintf( __('View event details for "%s"','constant-contact-api'), $event->title));
@@ -132,6 +130,7 @@
 		} else {
 			$output = apply_filters('cc_event_no_events_text', '<p>'.__('There are currently no events.','constant-contact-api').'</p>');
 		}
+
 	$output = apply_filters('cc_event_output', $output);
 
 	if($echo) {

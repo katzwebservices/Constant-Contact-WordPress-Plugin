@@ -183,6 +183,7 @@ class KWSContactList extends ContactList {
 					$before_item = '<li>';
 					$after_item = '</li>';
 				$after = '</ul>';
+				break;
 			case 'dropdown':
 			case 'select':
 			case 'multiselect':

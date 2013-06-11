@@ -172,12 +172,11 @@ class KWSConstantContact extends ConstantContact {
 
     /**
      * Get contacts with a specified email eaddress
-     * @param string $accessToken - Constant Contact OAuth2 access token
      * @param string $email - contact email address to search for
-     * @return array
+     * @param string $null - placeholder for PHP 5.4 Strict standards
+     * @return KWSContact|boolean If contact, KWSContact object; if none, false
      */
-    public function getContactByEmail($email)
-    {
+    public function getContactByEmail($email, $null = null ) {
         $contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
         if(!empty($contact->results)) {
         	return new KWSContact($contact->results[0]);

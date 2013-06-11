@@ -33,18 +33,16 @@ if($v->status !== 'DRAFT') { ?>
 	}
 	$html = '';
 
-	$dateformat = 'jS F Y \- H:i:s';
-
 	?>
 	<tbody>
 		<tr><th scope="row" id="name" class="manage-column column-name" style=""><?php _e('Name', 'constant-contact-api'); ?></th><td><?php echo $v->name; ?></td></tr>
 		<tr class="alt"><th scope="row" id="description" class="manage-column column-name" style=""><?php _e('Description', 'constant-contact-api'); ?></th><td><?php echo_if_not_empty($v->description); ?></td></tr>
 		<tr><th scope="row" id="title" class="manage-column column-name" style=""><?php _e('Title', 'constant-contact-api'); ?></th><td><?php echo $v->title; ?></td></tr>
-		<tr class="alt"><th scope="row" id="created" class="manage-column column-name" style=""><?php _e('Created', 'constant-contact-api'); ?></th><td><?php echo date('jS F Y \- H:i', strtotime($v->createdDate)); ?></td></tr>
+		<tr class="alt"><th scope="row" id="created" class="manage-column column-name" style=""><?php _e('Created', 'constant-contact-api'); ?></th><td><?php echo constant_contact_event_date($v->createdDate); ?></td></tr>
 		<tr><th scope="row" id="status" class="manage-column column-name" style=""><?php _e('Status', 'constant-contact-api'); ?></th><td><?php echo $v->status; ?></td></tr>
 		<tr class="alt"><th scope="row" id="type" class="manage-column column-name" style=""><?php _e('Type', 'constant-contact-api'); ?></th><td><?php echo $v->eventType; ?></td></tr>
-		<tr><th scope="row" id="start" class="manage-column column-name" style=""><?php _e('Start', 'constant-contact-api'); ?></th><td><?php echo (!empty($v->startDate) ? date('jS F Y \- H:i', strtotime($v->startDate)) : 'None'); ?></td></tr>
-		<tr><th scope="row" id="end" class="manage-column column-name" style=""><?php _e('End', 'constant-contact-api'); ?></th><td><?php echo (!empty($v->endDate) ? date('jS F Y \- H:i', strtotime($v->endDate)) : 'None'); ?></td></tr>
+		<tr><th scope="row" id="start" class="manage-column column-name" style=""><?php _e('Start', 'constant-contact-api'); ?></th><td><?php echo (!empty($v->startDate) ? constant_contact_event_date($v->startDate) : __('None', 'constant-contact-api')); ?></td></tr>
+		<tr><th scope="row" id="end" class="manage-column column-name" style=""><?php _e('End', 'constant-contact-api'); ?></th><td><?php echo (!empty($v->endDate) ? constant_contact_event_date($v->endDate) : __('None', 'constant-contact-api')); ?></td></tr>
 		<tr><th scope="row" id="registrationurl" class="manage-column column-name" style=""><?php _e('Registration URL', 'constant-contact-api'); ?></th><td><?php echo_if_not_empty($v->registrationUrl, '', '<a href="'.$v->registrationUrl.'">'.$v->registrationUrl.'</a>'); ?></td></tr>
 		<tr class="alt"><th scope="row" id="location" class="manage-column column-name" style=""><?php _e('Location', 'constant-contact-api'); ?></th><td><?php echo constant_contact_create_location($v->eventLocation); ?></td></tr>
 	</tbody>

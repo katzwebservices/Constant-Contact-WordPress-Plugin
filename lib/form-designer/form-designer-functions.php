@@ -85,7 +85,15 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
     extract($settings, EXTR_SKIP);
 
-    $form = wp_get_cc_form($settings['formid']);
+    $form = wp_get_cc_form($formid);
+
+    // The form does not exist.
+    if(!$form) { 
+    	if(current_user_can('manage_options')) {
+    		return '<!-- Constant Contact API Error: Form #'.$formid.' does not exist. -->';
+    	}
+    	return false; 
+    }
 
     if(empty($lists)) {
         $lists = $form['lists'];
@@ -129,7 +137,8 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
     #$form_status = get_site_transient($unique_id);
 
-    $form_status = CTCT_Process_Form::getInstance()->getResults($unique_id);
+    $ProcessForm = CTCT_Process_Form::getInstance();
+    $form_status = $ProcessForm->getResults($unique_id);
 
     /**
      * Success message: If no errors AND signup was successful show the success message
@@ -142,15 +151,19 @@ function constant_contact_public_signup_form($args, $echo = true) {
         $form = preg_replace('/\%\%(.*?)\%\%/ism', '', $form);
 
         return $form;
-    }
-     // Display errors if they exist in the cc_errors global
-    else if(is_wp_error($form_status)) {
-
+    } else if(!$form_status) {
+    	die();
+    	r($ProcessForm->getResults());
         $haserror = ' has_errors';
-
+      	$email = $ProcessForm->getResults('email_validation');
+      	r($email, true);
         $error_output = constant_contact_generate_error_output($form_status);
 
     } // end if(isset($GLOBALS['cc_errors_'.$unique_id]))
+    var_dump($form_status);
+    r($unique_id);
+    r($ProcessForm, true);
+    die('asdasdasdasd');
 
     $form = str_replace('<!-- %%SUCCESS%% -->', '', $form);
     $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
@@ -163,7 +176,6 @@ function constant_contact_public_signup_form($args, $echo = true) {
     $current_page_url = remove_query_arg('success', ctct_current_page_url());
     $form = str_replace('%%ACTION%%', $current_page_url, $form);
 
-    timer_start();
     // Remove the cache for this whole joint
     $listsOutput = KWSContactList::outputHTML($lists, array(
         'fill' => true,
@@ -171,8 +183,7 @@ function constant_contact_public_signup_form($args, $echo = true) {
         'checked' => $selected,
         'type' => $show_list_selection ? $list_selection_format : 'hidden',
     ));
-    timer_stop(1);
-
+    
     // If you're showing list selection, show the label and wrap it in a container.
     if($show_list_selection && !$widget) {
         $listsOutput .= '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
@@ -251,9 +262,16 @@ function wp_get_cc_form( $form, $type = 'array', $forms = array()) {
 	if(empty($forms)) {	$forms = wp_get_cc_forms(); }
 
 	if ( !isset($forms[$form]) ) {
+
+		// If the form isn't in the all forms array as a key, 
+		// make sure it's not missing the correct key assignment
+		// by checking it against the cc-form-id
 		foreach($forms as $key => $f) {
-			if($f['cc-form-id'] == $form) { wp_get_cc_form($key, $type, $forms); }
+			if((isset($f['cc-form-id']) && intval($f['cc-form-id']) === $form) || (isset($f['form']) && intval($f['form']) === $form)) { 
+				wp_get_cc_form($key, $type, $forms); 
+			}
 		}
+
 		return false;
 	} else {
 		if(strtolower($type) != 'array') {
@@ -483,7 +501,7 @@ function make_formfield($_form_object = array(), $class, $id, $value, $checked, 
 		$labelLabel = 'Headline';
 		$default = $labeldefault;
 		$inputValue = ctct_check_default($_form_object,$name, $id, $value);
-		$defaultLabel = __('The Form Text content will be placed where this item is.', 'constant-contact-api');
+		$defaultLabel = __('The Form Text content will be placed where this item is. Edit the Form Text above &uarr;', 'constant-contact-api');
 	} elseif($type == 'lists') {
         $t = 'lists';
         $hidevalue = true;

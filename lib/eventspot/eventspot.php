@@ -30,7 +30,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	function add() {}
 	function edit() {}
 
-	function getInstance() {
+	static function getInstance() {
 
 		if(empty(self::$instance)) {
 			self::$instance = new CTCT_EventSpot;
@@ -121,6 +121,9 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		include(EVENTSPOT_FILE_PATH.'views/event.php');
 	}
 
+	/**
+	 * Show the details of a single registrant
+	 */
 	function singleRegistrant() {
 
 		$v = $this->old_api->getRegistrantDetails(new Registrant(array('link' => sprintf('/ws/customers/%s/events/%s/registrants/%s', CTCT_USERNAME, $_GET['view'], $_GET['registrant']))));
@@ -189,11 +192,11 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 	function events_dashboard() {
 
-		$_events = $this->old_api->getEvents();
+		$_events = constant_contact_old_api_get_all('Events', $this->old_api);
 
-		if(!empty($_events) && is_array($_events) && !empty($_events['events'])) {
+		if(!empty($_events) && is_array($_events)) {
 			$draft = $active = array();
-			foreach($_events['events'] as $k => $v) {
+			foreach($_events as $k => $v) {
 				if($v->status === 'ACTIVE') {
 					$active[$v->id] = $v;
 				} elseif($v->status === 'DRAFT') {
@@ -204,7 +207,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			if(!empty($draft)) { $this->dashboard_make_table(__('Draft Events','constant-contact-api'), $draft); }
 		?>
 			<p class="textright">
-				<a class="button" href="<?php echo admin_url('admin.php?page=constant-contact-events'); ?>">View All Events</a>
+				<a class="button" href="<?php echo admin_url('admin.php?page=constant-contact-events'); ?>"><?php _e('View All Events', 'constant-contact-api'); ?></a>
 			</p>
 	<?php
 		} else {
@@ -216,6 +219,6 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	}
 
 	function make_table($events = array(), $title = '') {
-		include(EVENTSPOT_FILE_PATH.'views/table.php');
+		include(EVENTSPOT_FILE_PATH.'views/events.php');
 	}
 }

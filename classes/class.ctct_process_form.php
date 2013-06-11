@@ -16,7 +16,7 @@ class CTCT_Process_Form {
 		self::$instance = &$this;
 	}
 
-	function getInstance() {
+	static function getInstance() {
 
 		if(empty(self::$instance)) {
 			self::$instance = new CTCT_Process_Form;
@@ -49,7 +49,7 @@ class CTCT_Process_Form {
 		$this->setResults('email_validation', $email_validation);
 
 		// If validation failed, stop processing
-		if(is_wp_error($email_validation)) { return; }
+		if(is_wp_error($email_validation)) { return $email_validation; }
 
 		// Otherwise, let's Add/Update
 		KWSConstantContact::getInstance()->addUpdateContact($KWSContact);
@@ -61,11 +61,11 @@ class CTCT_Process_Form {
 
 	public function getResults($key = '') {
 
-		if(!empty($this->id)) { return false; }
+		if(empty($this->id)) { return false; }
 
 		if(empty($key)) { return $this->results[$this->id]; }
-
-		return isset($this->results[$key]) ? $this->results[$this->id][$key] : false;
+		
+		return isset($this->results[$this->id][$key]) ? $this->results[$this->id][$key] : false;
 	}
 
 	private function sanitizePost() {

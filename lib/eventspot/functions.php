@@ -33,8 +33,12 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 
 	// Otherwise, add items
 	foreach($items[strtolower($type)] as $item) {
-		$all[] = $item;
+		$allkey = isset($item->startDate) ? strtotime($item->startDate) : null;
+		$all[$allkey] = $item;
 	}
+
+	// Sort by event date
+	krsort($all);
 
 	if(!empty($items['nextLink'])) {
 		constant_contact_old_api_get_all($type, $api, $passed, $all, $items['nextLink']);
@@ -45,9 +49,31 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 	return $all;
 }
 
-function constant_contact_event_date($value = null) {
-	$string = sprintf(__('%1$s at %2$s','constant-contact-api'), date_i18n(get_option('date_format'), strtotime($value), true), date_i18n(get_option('time_format'), strtotime($value), true));
+function constant_contact_get_timezone($value='') {
+	
+	$timezone = null;
 
+	if (date_default_timezone_get()) { $timezone = date_default_timezone_get(); }
+
+	if (ini_get('date.timezone')) { $timezone = ini_get('date.timezone'); }
+
+	return $timezone;
+}
+
+function constant_contact_event_date($value = null) {
+	
+	// We get the current server timezone
+	$timezone = constant_contact_get_timezone();
+
+	// We set the timezone to the blog timezone
+	date_default_timezone_set(get_option('timezone_string'));
+
+	// We convert the date to "Date at Time"
+	$string = sprintf(__('%1$s at %2$s','constant-contact-api'), date_i18n(get_option('date_format'), strtotime($value), false), date_i18n(get_option('time_format'), strtotime($value), false));
+	
+	// We restore the timezone to what it was
+	date_default_timezone_set($timezone);
+	
     return $string;
 }
 

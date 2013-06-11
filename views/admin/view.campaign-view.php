@@ -30,7 +30,7 @@
                 case 'sent_to_contact_lists':
                 case 'lists':
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
-                        <td>%s</td>', $Campaign->getLabel($key), KWSContactList::outputHTML($Campaign->get($key)));
+                        <td>%s</td>', $Campaign->getLabel($key), KWSContactList::outputHTML($Campaign->get($key), array('type' => 'ul')));
                     break;
                 default:
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>

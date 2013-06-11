@@ -20,7 +20,7 @@ function constant_contact_add_help() {
 	$tabs[] = array(
 		'id'	=> 'ctct-insert-event',
 		'title'	=> __('Constant Contact: Add an Event', 'constant-contact-api'),
-		'content'	=> kws_ob_include( CTCT_DIR_PATH.'views/help/insert-form.html')
+		'content'	=> kws_ob_include( CTCT_DIR_PATH.'views/help/insert-event.html')
 	);
 	$tabs[] = array(
 	    'id'    => 'ctct-insert-settings-setup',

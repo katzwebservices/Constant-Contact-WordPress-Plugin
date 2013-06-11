@@ -64,15 +64,17 @@ class WP_CTCT {
 			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
 			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
 
-			$token = KWSOAuth2::getToken();
 			define("CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t");
 			define("CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF");
+			$this->oauth = new KWSOAuth2();
+			$token = $this->oauth->getToken();
 			define("CTCT_ACCESS_TOKEN", $token);
-			define("CTCT_USERNAME", KWSOAuth2::getToken('username'));
+			define("CTCT_USERNAME", $this->oauth->getToken('username'));
 		}
+		
+		if(is_null($this->oauth)) { $this->oauth = new KWSOAuth2(); }
 
 		$this->cc = new KWSConstantContact();
-		$this->oauth = new KWSOAuth2();
 	}
 
 	static function getInstance() {

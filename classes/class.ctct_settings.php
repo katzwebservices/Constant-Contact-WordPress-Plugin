@@ -302,11 +302,16 @@ class CTCT_Settings extends CTCT_Admin_Page {
 						'id' => 'spam_methods',
 						'toggle' => 'spam_methods',
 						'options' => array(
-							'datavalidation' => '<a href="http://katz.si/datavalidation" rel="external">'.__('DataValidation.com', 'constant-contact-api').'</a>'.constant_contact_tip('DataValidation.com is <strong>the best way</strong> to verify that when users submit a form, the submitted email address is valid.', false),
+							'datavalidation' => 'Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">'.__('DataValidation.com', 'constant-contact-api').'</a>'.constant_contact_tip('DataValidation.com is <strong>the best way</strong> to verify that when users submit a form, the submitted email address is valid.', false),
 							'akismet' => __('Akismet', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install Akismet" href="%s">Install Akismet</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=akismet&TB_iframe=true&width=640&height=808')),
 							'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install WangGuard" href="%s">Install WangGuard</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=wangguard&TB_iframe=true&width=640&height=808')), // TODO: Check if wangguard exists
 						),
 						'desc' => __('What services do you want to use to prevent spam submissions of your forms?', 'constant-contact-api')
+					),
+					array(
+						'type' => 'heading',
+						'togglegroup' => 'spam_methods_datavalidation',
+						'desc' => __('DataValidation.com Settings', 'constant-contact-api'),
 					),
 					array(
 						'type' => 'text',
@@ -422,7 +427,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 * @param  array $settings Array of settings
 	 * @todo Add a "reset to default" link for most field types
 	 */
-	function setting_input_generator($settings) {
+	static function setting_input_generator($settings) {
 		global $pagenow;
 		$output = '';
 
@@ -627,7 +632,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 	<?php
 	 }
 
-	 function do_settings_fields($page, $section) {
+	 static function do_settings_fields($page, $section) {
 	 	 global $wp_settings_fields;
 
 	 	 if ( !isset($wp_settings_fields) || !isset($wp_settings_fields[$page]) || !isset($wp_settings_fields[$page][$section]) )

@@ -1,0 +1,24 @@
+<h2>EventSpot Shortcode</h2>
+
+<p>If you would like to add an EventSpot event to your post or page, the best way to do that is by adding a "shortcode" to the content. Shortcodes are configurable placeholders that get replaced with other content when the page is loaded. In this case, the content will be a form. <a href='http://codex.wordpress.org/Shortcode_API' rel='external'>Learn more about shortcodes</a>.</p>
+
+<h2>Using the Event Shortcode</h2>
+
+<p>There is shortcode support for the EventSpot events: <code>[eventspot]</code> with the following options:</p>
+
+<pre>
+'id' // REQUIRED if you want to show a single event! The ID is the ID of the event. Looks like a18g4v1b611561nn40b
+'limit' // If you want to embed a list of events, limit the list to this number. Default: 3; Type: number
+'showtitle' // Show the title of the event. Default: true
+'showdescription' // Show the description of the event. Default: true
+'datetime' // Show the date and time of the event. Default: true
+'location' // Show the location of the event. Default: false
+'map' // Show a link to the map. Default: false
+'calendar' // Show a link to add the event to calendar. Default: false
+'style' // Style the event listing with some basic styles? Default: true
+'newwindow' // Open the links in a new window? Default: false
+'onlyactive' // Only show active events? Default: true
+'mobile' // If users are on mobile devices, link to a mobile-friendly registration page? Default: true,
+</pre>
+
+<p>So to add an event with a link to add the event to the user's calendar, you would add the following in your content: <code>[eventspot id="a18g4v1b611561nn40b" calendar="true" /]</code></p>
