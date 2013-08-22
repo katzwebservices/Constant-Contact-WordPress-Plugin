@@ -1,3 +1,15 @@
+### NOT PRODUCTION READY
+
+This is a beta version of the new major release of the <a href="http://wordpress.org/extend/plugins/constant-contact-api/">Constant Contact API</a> plugin. Everything has been re-written from the ground up, so there are going to be bugs.
+
+The list of new features is huge. The list of dropped "features" is long, as well.
+
+### Requirements
+* Requires WordPress 3.3 or Higher
+* Requires PHP 5.3 or Higher
+
+----------
+
 # Constant Contact for Wordpress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 
