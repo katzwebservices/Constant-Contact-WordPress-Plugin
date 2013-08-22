@@ -1,0 +1,5 @@
+<map id="CTCT_Admin_Table\render" name="CTCT_Admin_Table\render">
+<area shape="rect" id="node2" href="$class_c_t_c_t___admin___table.html#adeaebbd18a2a51c37385fb7f50a0b44b" title="Builds the table and returns HTML ready to echo to the browser. " alt="" coords="238,47,434,75"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___admin___table.html#a61a715d446b1cd95d79a20766c91df6b" title="Prevent escaping of the table cells. " alt="" coords="483,5,643,49"/>
+<area shape="rect" id="node4" href="$class_c_t_c_t___admin___table.html#a32aa63a41a5015015911ab676eba6136" title="Prevent escaping of the table headings. " alt="" coords="483,73,643,117"/>
+</map>

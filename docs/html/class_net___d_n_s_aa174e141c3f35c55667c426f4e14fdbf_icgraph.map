@@ -1,0 +1,5 @@
+<map id="Net_DNS\classesbyval" name="Net_DNS\classesbyval">
+<area shape="rect" id="node2" href="$class_net___d_n_s___packet.html#a91c880534c4ed4f43098627b5c829ef2" title="Parses the question section of a packet. " alt="" coords="219,5,381,49"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___packet.html#a8684f7ece05b01f65ec45160cca1852d" title="Parses a resource record section of a packet. " alt="" coords="210,73,390,101"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___packet.html#a108461c26b058bf6aed5e4bcae9da3e6" title="Parses a DNS packet returned by a DNS server. " alt="" coords="437,43,600,71"/>
+</map>

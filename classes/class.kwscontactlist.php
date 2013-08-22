@@ -161,13 +161,28 @@ class KWSContactList extends ContactList {
 		extract($settings);
 
 		$items = array();
+
+		// Tell the cache that if the current requests are forced to be
+		// refreshed, the cache should also reset this key.
+		// See Cache_WP_HTTP
+		add_filter('flush_key', function() { return 'ctct_all_lists'; });
+
 		if($passed_items === 'all') {
 			$items = WP_CTCT::getInstance()->cc->getAllLists();
 		} elseif(!empty($passed_items) && is_array($passed_items)) {
 			foreach($passed_items as $item) {
+				global $list_id;
+
 				if($fill) {
-					$id = is_object($item) ? $item->id : $item;
-					$item = WP_CTCT::getInstance()->cc->getList(CTCT_ACCESS_TOKEN, $id);
+					$list_id = is_object($item) ? $item->id : $item;
+
+					// Tell Cache_WP_HTTP to use the following key
+					// as the transient name
+					add_filter('ctct_cachekey', function() {
+						global $list_id;
+						return 'ctct_list_'.$list_id;
+					});
+					$item = WP_CTCT::getInstance()->cc->getList(CTCT_ACCESS_TOKEN, $list_id);
 				}
 				$items[] = $item;
 			}
@@ -213,7 +228,7 @@ class KWSContactList extends ContactList {
 
 		$items_output = '';
 		foreach($items as &$item) {
-			
+
 			// If include was specified, then we need to skip lists not included
 			if(is_array($passed_items) && (!empty($include) && !in_array($item->id, $include)) || ($item->status === 'HIDDEN' && !$showhidden)) {
 				#continue;
@@ -232,7 +247,6 @@ class KWSContactList extends ContactList {
 			$item_output = str_replace('%%contact_count%%', $item->get('contact_count', true), $item_output);
 
 			$item_output = str_replace('%%checked%%', checked((in_array($item->get('id'), (array)$checked) || (is_null($checked) && $item->get('status') === 'ACTIVE')), true, false), $item_output);
-
 			$items_output .= $item_output;
 		}
 

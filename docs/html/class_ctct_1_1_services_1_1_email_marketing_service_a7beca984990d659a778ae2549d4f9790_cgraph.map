@@ -1,0 +1,5 @@
+<map id="Ctct\Services\EmailMarketingService\getCampaigns" name="Ctct\Services\EmailMarketingService\getCampaigns">
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. " alt="" coords="272,5,451,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd" title="Factory method to create a Campaign object from an array. " alt="" coords="251,73,471,117"/>
+<area shape="rect" id="node4" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="295,141,428,169"/>
+</map>

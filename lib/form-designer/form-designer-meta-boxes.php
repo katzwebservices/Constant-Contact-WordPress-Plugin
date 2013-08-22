@@ -318,16 +318,16 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 
 				<div class="block" id="bgtop">
 						<label for="color6" class="howto inline"><span><?php _e('Top Color:', 'constant-contact-api'); ?></span></label>
-						<input type="hidden" id="color6" name="color6" class="wpcolor" value="<?php input_value($form, 'color6', '#ad0c0c'); ?>" />
+						<input type="hidden" id="color6" name="color6" class="wpcolor" value="<?php ctct_input_value($form, 'color6', '#ad0c0c'); ?>" />
 				</div>
 				<div class="block" id="bgbottom">
 						<label class="howto inline"><span><?php _e('Bottom Color:', 'constant-contact-api'); ?></span></label>
-						<input type="hidden" id="color2" name="color2" class="wpcolor" value="<?php input_value($form, 'color2', '#000001'); ?>" />
+						<input type="hidden" id="color2" name="color2" class="wpcolor" value="<?php ctct_input_value($form, 'color2', '#000001'); ?>" />
 				</div>
 				<div class="form-item" id="bgurl">
 						<p class="link-to-original">For inspiration, check out <a href="http://www.colourlovers.com/patterns/most-loved/all-time/meta">Colourlovers Patterns</a>.</p>
 						<p><label for="bgimage"><span class="howto">Background Image:</span>
-						<input type="text" class="code widefat" id="bgimage" name="bgimage" value="<?php input_value($form, 'bgimage', 'http://colourlovers.com.s3.amazonaws.com/images/patterns/90/90096.png'); ?>" />
+						<input type="text" class="code widefat" id="bgimage" name="bgimage" value="<?php ctct_input_value($form, 'bgimage', 'http://colourlovers.com.s3.amazonaws.com/images/patterns/90/90096.png'); ?>" />
 						</label></p>
 
 						<p><label class="howto" for="bgrepeat"><span><?php _e('Background Repeat:', 'constant-contact-api'); ?></span>
@@ -356,7 +356,7 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 					<div class="form-item block" id="bgpattern">
 						<label class="howto">Background Image Pattern:</label>
 						<p class="description">Click a pattern to apply. Patterns by <a href="http://www.squidfingers.com/patterns/" rel="nofollow external">Squidfingers</a>.</p>
-						<input type="hidden" id="patternurl" name="patternurl" value="<?php input_value($form, 'patternurl', '');?>" />
+						<input type="hidden" id="patternurl" name="patternurl" value="<?php ctct_input_value($form, 'patternurl', '');?>" />
 						<ul id="patternList">
 							<?php
 							$i = 1;
@@ -395,7 +395,7 @@ function cc_form_meta_box_border($post, $metabox=array()) {
 	<div id="bordercoloritem">
 		<label for="bordercolor" class="howto inline"><span><?php _e('Border Color:', 'constant-contact-api'); ?></span></label>
 		<div class="input">
-			<input type="hidden" id="bordercolor" name="bordercolor" class="wpcolor" value="<?php input_value($form, 'bordercolor', '#000000'); ?>" />
+			<input type="hidden" id="bordercolor" name="bordercolor" class="wpcolor" value="<?php ctct_input_value($form, 'bordercolor', '#000000'); ?>" />
 		</div>
 	</div>
 
@@ -480,7 +480,7 @@ function cc_form_meta_box_formdesign($post, $metabox=array()) {
 			</div>
 			<div class="alignleft">
 				<label for="width" class="howto block"><span><?php _e('Form Width', 'constant-contact-api'); ?></span> <?php constant_contact_tip(''); ?></label>
-				<input type="text" class="" id="width" name="width" value="<?php input_value($form, 'width', '300'); ?>" size="12" />
+				<input type="text" class="" id="width" name="width" value="<?php ctct_input_value($form, 'width', '300'); ?>" size="12" />
 				<label for="widthtypeper" style="display:inline;" title="<?php _e('percent of container width', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypeper" <?php ctct_check_radio($form,'widthtype', 'per'); ?>/>%</label>
 				<label for="widthtypepx" style="display:inline;" title="<?php _e('pixels', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypepx" <?php ctct_check_radio($form,'widthtype', 'px', true); ?> />px</label>
 			</div>
@@ -513,7 +513,7 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 				<p class="description"><?php _e('These settings are for the Form Text field. If the checkboxes are checked, the settings also apply to the input labels.', 'constant-contact-api'); ?></p>
 				<div class="block">
 					<label for="tcolor" class="howto inline"><span><?php _e('Text Color:', 'constant-contact-api'); ?></span></label>
-					<div class="input"><input type="hidden" id="tcolor" name="tcolor" class="wpcolor" value="<?php input_value($form, 'tcolor', '#accbf7'); ?>" /></div>
+					<div class="input"><input type="hidden" id="tcolor" name="tcolor" class="wpcolor" value="<?php ctct_input_value($form, 'tcolor', '#accbf7'); ?>" /></div>
 
 					<label for="lusc" class="howto checkbox block"><input type="checkbox" class="checkbox" name="lusc" id="lusc" <?php ctct_check_checkbox($form, 'lusc', 'yes', true); ?> /> <span><?php _e('Use Same Color for Labels', 'constant-contact-api'); ?></span></label>
 				</div>
@@ -561,7 +561,7 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 				<p class="description"><?php _e('These settings apply to the label text above the inputs.', 'constant-contact-api'); ?></p>
 				<div id="labelcolorli" class="block">
 					<label for="tcolor" class="howto inline"><span><?php _e('Label Color:', 'constant-contact-api'); ?></span></label>
-					<div class="input"><input type="hidden" id="lcolor" name="lcolor" class="wpcolor" value="<?php input_value($form, 'lcolor', '#accbf7'); ?>" /></div>
+					<div class="input"><input type="hidden" id="lcolor" name="lcolor" class="wpcolor" value="<?php ctct_input_value($form, 'lcolor', '#accbf7'); ?>" /></div>
 				</div>
 
 				<label for="lpad" class="howto block"><span>Label Padding</span>

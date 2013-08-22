@@ -1,0 +1,7 @@
+<map id="PhpException" name="PhpException">
+<area shape="rect" id="node3" href="$class_php_error.html" title="PhpError" alt="" coords="5,161,80,189"/>
+<area shape="rect" id="node4" href="$class_php_notice.html" title="PhpNotice" alt="" coords="104,161,187,189"/>
+<area shape="rect" id="node5" href="$class_php_parse.html" title="PhpParse" alt="" coords="211,161,289,189"/>
+<area shape="rect" id="node6" href="$class_php_strict.html" title="PhpStrict" alt="" coords="314,161,389,189"/>
+<area shape="rect" id="node7" href="$class_php_warning.html" title="PhpWarning" alt="" coords="414,161,508,189"/>
+</map>

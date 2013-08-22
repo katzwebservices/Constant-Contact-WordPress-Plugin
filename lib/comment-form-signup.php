@@ -1,8 +1,15 @@
 <?php
 
 if (!class_exists( 'CTCT_Comment_Form_Signup' )) {
+
+/**
+ * Add a checkbox to the comment form to sign up users
+ */
 class CTCT_Comment_Form_Signup {
 
+	/**
+	 * Add the actions to add the checkbox
+	 */
 	function __construct() {
 		if(CTCT_Settings::get('comment_form_signup')) {
 			add_action( 'comment_form', array( &$this, 'comment_form' ) );
@@ -16,13 +23,12 @@ class CTCT_Comment_Form_Signup {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @global array $tgm_mc_options Array of plugin options
-	 * @global array $tgm_mc_comment_data Array of submitted comment data
+	 * @global WP_User $current_user WP User object
 	 */
 	public function comment_post($posted_data) {
 		global $current_user;
 
-		$data = $_POST;
+		$data = array_map('esc_attr', $_POST);
 
 		if(is_user_logged_in()) {
 			$data['name'] = empty($data['name']) ? $current_user->data->display_name : $data['name'];
@@ -32,14 +38,19 @@ class CTCT_Comment_Form_Signup {
 		$data['email'] = rand(0,10000000).$data['email'];
 		$data['lists'] = self::get_lists();
 
+		// Is the checkbox set? If so, add/update user
 		if (isset($data['ctct-subscribe']) && $data['ctct-subscribe'] === 'subscribe') {
 			$returnContact = WP_CTCT::getInstance()->cc->addUpdateContact($data);
-			do_action('ctct_log', $returnContact);
 		}
 
 		return $posted_data;
 	}
 
+	/**
+	 * Get the setting for what lists the contact
+	 * should be added to when they check the comment box
+	 * @return array CTCT array of list IDs
+	 */
 	private function get_lists() {
 		return (array)CTCT_Settings::get('comment_form_lists');
 	}
@@ -50,7 +61,7 @@ class CTCT_Comment_Form_Signup {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @global array $tgm_mc_options Array of plugin options
+	 * @todo  Add checks as to whether someone's already subscribed. The logic's there, just not the check.
 	 * @return null Return early if in the admin or the email list hasn't been set
 	 */
 	public function comment_form() {
@@ -58,31 +69,26 @@ class CTCT_Comment_Form_Signup {
 		/** Don't do anything if we are in the admin */
 		if ( is_admin() )
 			return;
-
-		/** Don't do anything unless the user has already logged in and selected a list */
-/*		if ( empty( $tgm_mc_options['current_list_id'] ) )
-			return;
-*/
+		$checked = $status = '';
 		$clear = CTCT_Settings::get('comment_form_clear') ? 'style="clear: both;"' : '';
-		$checked_status = ( ! empty( $_COOKIE['tgm_mc_checkbox_' . COOKIEHASH] ) && 'checked' == $_COOKIE['tgm_mc_checkbox_' . COOKIEHASH] ) ? true : false;
-		$checked = $checked_status ? 'checked="checked"' : '';
-		$status = ''; //$this->get_viewer_status();
 
-		if ( 'admin' == $status ) {
-			echo '<p class="ctct-subscribe" ' . $clear . '>' . CTCT_Settings::get('comment_form_admin_text') . '</p>';
+		if ( current_user_can( 'administrator' ) && !isset($_GET['debug_comment_form'])) {
+			$output = '<p class="ctct-subscribe" ' . $clear . '><label>' . CTCT_Settings::get('comment_form_admin_text') . '</label></p>';
 		}
 		elseif ( 'subscribed' == $status ) {
-			echo '<p class="ctct-subscribe" ' . $clear . '>' . CTCT_Settings::get('comment_form_subscribed_text') . '</p>';
+			$output = '<p class="ctct-subscribe" ' . $clear . '>' . CTCT_Settings::get('comment_form_subscribed_text') . '</p>';
 		}
 		elseif ( 'pending' == $status ) {
-			echo '<p class="ctct-subscribe" ' . $clear . '>' . CTCT_Settings::get('comment_form_pending_text') . '</p>';
+			$output = '<p class="ctct-subscribe" ' . $clear . '>' . CTCT_Settings::get('comment_form_pending_text') . '</p>';
 		}
 		else {
-			echo '<p class="ctct-subscribe" ' . $clear . '>';
+			$output = '<p class="ctct-subscribe" ' . $clear . '>';
 
-				echo sprintf('<label for="ctct-comment-subscribe"><input type="checkbox" name="ctct-subscribe" id="ctct-comment-subscribe" value="subscribe" style="width: auto;" %s /> %s</label>', $checked, CTCT_Settings::get('comment_form_check_text'));
-			echo '</p>';
+				$output .= sprintf('<label for="ctct-comment-subscribe"><input type="checkbox" name="ctct-subscribe" id="ctct-comment-subscribe" value="subscribe" style="width: auto;" %s /> %s</label>', $checked, CTCT_Settings::get('comment_form_check_text'));
+			$output .= '</p>';
 		}
+
+		echo apply_filters( 'ctct_comment_form_checkbox_output', $output );
 
 	}
 

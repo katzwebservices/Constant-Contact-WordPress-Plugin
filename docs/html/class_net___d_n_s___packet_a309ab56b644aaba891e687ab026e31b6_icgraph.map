@@ -1,0 +1,5 @@
+<map id="Net_DNS_Packet\label_extract" name="Net_DNS_Packet\label_extract">
+<area shape="rect" id="node2" href="$class_net___d_n_s___r_r___h_i_n_f_o.html#aafd311cd5e67b4227ace59a2d3d2511e" title="Net_DNS_RR_HINFO\\Net\l_DNS_RR_HINFO" alt="" coords="212,5,390,49"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___r_r___n_a_p_t_r.html#aef963fabca0af3b3b10d881552cd9835" title="Net_DNS_RR_NAPTR\\Net\l_DNS_RR_NAPTR" alt="" coords="211,73,392,117"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___r_r___t_x_t.html#a557c2b7a227b3a9d04f1f821798d816f" title="Net_DNS_RR_TXT\\Net\l_DNS_RR_TXT" alt="" coords="221,141,382,185"/>
+</map>

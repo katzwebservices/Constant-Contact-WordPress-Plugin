@@ -1,0 +1,4 @@
+<map id="Ctct\Components\Tracking\BounceActivity\create" name="Ctct\Components\Tracking\BounceActivity\create">
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#a5a839d70fd23d4f6723f12b361ad9a8d" title="Get a result set of bounces for a given campaign. " alt="" coords="233,5,447,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a9a549d6870b28ae70684f8fb55993a59" title="Get bounces for a given contact. " alt="" coords="240,73,440,117"/>
+</map>

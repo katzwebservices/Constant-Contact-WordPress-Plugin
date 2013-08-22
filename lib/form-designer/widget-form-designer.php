@@ -1,7 +1,7 @@
 <?php // $Id$
 /**
  * constant_contact_form_widget Class
- * 
+ *
  * @package CTCT\Form Designer
  */
 
@@ -36,8 +36,8 @@ class constant_contact_form_widget extends WP_Widget {
     }
 
 	function update( $new_instance, $old_instance ) {
-		delete_site_transient("cc_form_{$old_instance['formid']}");
-		delete_site_transient("cc_form_{$new_instance['formid']}");
+		delete_transient("cc_form_{$old_instance['formid']}");
+		delete_transient("cc_form_{$new_instance['formid']}");
 		return $new_instance;
 	}
 

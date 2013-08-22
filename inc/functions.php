@@ -36,15 +36,18 @@ function kws_ob_include($path, &$CTCT = NULL) {
 }
 
 function constant_contact_tip($tip, $echo = true) {
-	$tip = '<span class="ctct_qtip ctct_help" title="'.str_replace('"', '&quot;', $tip).'">?</span>';
+	$tip = '<span class="ctct_tip ctct_help" title="'.str_replace('"', '&quot;', $tip).'">?</span>';
 	if($echo) { echo $tip; } return $tip;
 }
 
 function constant_contact_prepare_value($value) {
-	if(is_string($value)) {
+	if(empty($value) || is_numeric($value)) {
+		return $value;
+	} else if(is_string($value)) {
 	    $value = stripslashes($value);
 	} else {
 		if(!empty($value)) {
+
 		foreach($value as $k => $v) {
 			if(is_array($value)) {
 				$value[$k] = constant_contact_prepare_value($v);

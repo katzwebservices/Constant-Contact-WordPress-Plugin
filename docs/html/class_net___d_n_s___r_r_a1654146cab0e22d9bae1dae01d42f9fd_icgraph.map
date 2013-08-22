@@ -1,0 +1,5 @@
+<map id="Net_DNS_RR\new_from_string" name="Net_DNS_RR\new_from_string">
+<area shape="rect" id="node2" href="$class_net___d_n_s___r_r.html#a135785ee6a8c1f0a5e0597d7f61465b5" title="Net_DNS_RR\\factory" alt="" coords="222,13,370,41"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___packet.html#a8684f7ece05b01f65ec45160cca1852d" title="Parses a resource record section of a packet. " alt="" coords="418,13,598,41"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___packet.html#a108461c26b058bf6aed5e4bcae9da3e6" title="Parses a DNS packet returned by a DNS server. " alt="" coords="645,13,808,41"/>
+</map>

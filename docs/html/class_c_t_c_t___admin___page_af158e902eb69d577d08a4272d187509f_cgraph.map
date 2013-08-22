@@ -1,0 +1,8 @@
+<map id="CTCT_Admin_Page\__construct" name="CTCT_Admin_Page\__construct">
+<area shape="rect" id="node2" href="$class_c_t_c_t___admin___page.html#ae9d8df468eb4b9fd7b33e5295df261a9" title="CTCT_Admin_Page\\addActions" alt="" coords="276,5,486,33"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___admin___page.html#a0f0cd8a2a0f3084b67a5981a9c6b869d" title="CTCT_Admin_Page\\addIncludes" alt="" coords="273,57,489,85"/>
+<area shape="rect" id="node4" href="$class_w_p___c_t_c_t.html#a485eac1e69d12c9e2ecac70bf3295c3f" title="WP_CTCT\\getInstance" alt="" coords="302,109,461,137"/>
+<area shape="rect" id="node5" href="$class_c_t_c_t___admin___page.html#af75e5afacc1fcfff476e13e5de52eefe" title="CTCT_Admin_Page\\getKey" alt="" coords="288,161,474,189"/>
+<area shape="rect" id="node6" href="$class_c_t_c_t___admin___page.html#a96eaf870d8a4a93746149a495de929e0" title="CTCT_Admin_Page\\getTitle" alt="" coords="288,213,475,241"/>
+<area shape="rect" id="node7" href="$class_c_t_c_t___admin___page.html#a68f9b3e2f89158fe636f431b160455d4" title="CTCT_Admin_Page\\processForms" alt="" coords="267,265,496,293"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="OAuthServer\check_signature" name="OAuthServer\check_signature">
+<area shape="rect" id="node2" href="$class_o_auth_server.html#a4485cb3ffa98de6c0dc513519017dcfb" title="check that the nonce is not repeated " alt="" coords="266,5,446,33"/>
+<area shape="rect" id="node3" href="$class_o_auth_server.html#a46aafda0ef87fbb52e32958c33714a6d" title="check that the timestamp is new enough " alt="" coords="253,57,459,85"/>
+<area shape="rect" id="node4" href="$class_o_auth_server.html#ab3b0e3026dea9faacb8d56cbb2274103" title="figure out the signature with some defaults " alt="" coords="265,109,447,153"/>
+</map>

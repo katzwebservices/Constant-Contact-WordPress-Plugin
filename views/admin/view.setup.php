@@ -92,7 +92,7 @@
         	<h3>Your plugin is configured for the username <span title="%s">%s</span>.</h3>
         	<p>The plugin was configured on %s.</p>
         	<p class="submit">
-        		<a href="%s" class="button button-primary">%s</a> <span class="button-group alignright"><a href="%s" class="button button-warning confirm" data-confirm="%s">%s</a><a href="%s" class="button button-danger confirm" data-confirm="%s" data-confirm-again="%s">%s</a></span>
+        		<a href="%s" class="button button-primary button-large">%s</a> <span class="button-group alignright"><a href="%s" class="button button-warning confirm" data-confirm="%s">%s</a><a href="%s" class="button button-danger confirm" data-confirm="%s" data-confirm-again="%s">%s</a></span>
         	</p>
         ', 'constant-contact-api'), 
         	sprintf(__('Your token is %s', 'constant-contact-api'), $token), 

@@ -50,7 +50,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 		add_action('admin_head', array(&$this, 'admin_head'));
 		add_filter('plugin_action_links', array(&$this, 'plugin_action_links'), 10, 2);
-		
+
 		add_action('admin_enqueue_scripts', array(&$this, 'enqueue_scripts'));
 
 		if($pagenow == 'admin.php') {
@@ -241,7 +241,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 							'https://www.google.com/accounts/AuthSubSessionToken',
 							$request_args
 						);
-						
+
 						$error_messages = array();
 						if (is_wp_error($response)) {
 							// couldn't connect
@@ -287,7 +287,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 					$end = (preg_match('/^\\d{4}-\\d{2}-\\d{2}$/', $_REQUEST['end_date']) ? $_REQUEST['end_date'] : '0000-00-00');
 
 					$transient_title = 'gwppo'.sha1($this->ga_profile_id.$start.$end.implode('_',$_REQUEST));
-					$results = get_site_transient($transient_title);
+					$results = get_transient($transient_title);
 					if($results && (!isset($_REQUEST['refresh']))) {
 						die(cf_json_encode(array(
 							'success' => true,
@@ -302,7 +302,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 					));
 					$results = query_posts('post_status=publish&posts_per_page=999');
 
-					set_site_transient($transient_title, $results, 60*60);
+					set_transient($transient_title, $results, 60*60);
 
 					die(cf_json_encode(array(
 						'success' => true,
@@ -389,7 +389,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 						foreach ($requests as $filter => $request) {
 							$transient_title = 'ggad'.sha1($this->ga_profile_id.$filter.implode('_', $parameters).implode('_',$_REQUEST));
-							$results = get_site_transient($transient_title);
+							$results = get_transient($transient_title);
 							if($results && (!isset($_REQUEST['refresh']))) { $all_results[$filter] = maybe_unserialize($results); continue; }
 
 							$p = ($filter == '*' ? array('max-results' => 200) : array('filters' => 'ga:medium=='.$filter, 'max-results' => 200));
@@ -405,7 +405,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 									'sslverify' => false
 								)
 							);
-							set_site_transient($transient_title, maybe_serialize($results), 60*60*6);
+							set_transient($transient_title, maybe_serialize($results), 60*60*6);
 							$all_results[$filter] = $results;
 						}
 
@@ -495,7 +495,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 						}
 
 						$transient_title = 'ggad'.sha1($this->ga_profile_id.implode('_',$parameters).implode('_',$_REQUEST));
-						$results = get_site_transient($transient_title);
+						$results = get_transient($transient_title);
 						if($results && (!isset($_REQUEST['refresh']))) {
 							$result = maybe_unserialize($results);
 						} else {
@@ -524,7 +524,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 					if (substr($result['response']['code'], 0, 1) == '2') {
 
-						set_site_transient($transient_title, maybe_serialize($result), 60*60*6);
+						set_transient($transient_title, maybe_serialize($result), 60*60*6);
 
 						$result = $this->reportObjectMapper($result['body']);
 

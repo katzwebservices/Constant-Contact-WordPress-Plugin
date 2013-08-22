@@ -1,0 +1,7 @@
+<map id="KWSContactList\outputHTML" name="KWSContactList\outputHTML">
+<area shape="rect" id="node2" href="$class_c_t_c_t___admin___user___profile.html#a257812f6c2ea2df7247d28e50264316e" title="Hook into show_user_profile action to display our user subscription settings if necessary. " alt="" coords="253,5,435,49"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___registration.html#a753ff3c5cdd35809e3de5a513f50ae4d" title="Hook into &#39;register_form&#39; action to show our subscription form to users while they are registering th..." alt="" coords="261,73,427,101"/>
+<area shape="rect" id="node4" href="$class_c_t_c_t___widget___simple.html#ab6851d66b2918d51cb3c16ae8f8da36e" title="CTCT_Widget_Simple\\form" alt="" coords="252,125,436,153"/>
+<area shape="rect" id="node6" href="$class_c_t_c_t___settings.html#a5d48dfd60dd8af82e9dd1f4eb837c3b7" title="Generate the settings page layout and settings fields. " alt="" coords="251,177,437,205"/>
+<area shape="rect" id="node5" href="$class_c_t_c_t___widget___simple.html#ae5b10a325a41312983bf9567e992f92c" title="CTCT_Widget_Simple\l\\widget" alt="" coords="486,117,640,161"/>
+</map>

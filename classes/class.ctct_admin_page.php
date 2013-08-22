@@ -34,7 +34,7 @@ abstract class CTCT_Admin_Page {
         }
 
         add_filter( 'ctct_admin_pointers-'.$this->getKey(), array(&$this, 'pointer_content'));
-        
+
         add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
 
         $this->addActions();
@@ -44,8 +44,6 @@ abstract class CTCT_Admin_Page {
 
     // TODO: Only load on CTCT pages.
     public function print_styles() {
-        wp_enqueue_style('qtip', CTCT_FILE_URL.'css/admin/jquery.qtip.min.css');
-
         wp_enqueue_style('constant-contact-api-admin', CTCT_FILE_URL.'css/admin/constant-contact-admin-css.css', array('thickbox'));
         wp_enqueue_style('alertify-core', CTCT_FILE_URL.'js/alertify.js/themes/alertify.core.css');
         wp_enqueue_style('alertify-default', CTCT_FILE_URL.'js/alertify.js/themes/alertify.default.css');
@@ -60,9 +58,8 @@ abstract class CTCT_Admin_Page {
         wp_enqueue_script('jquery-cookie', CTCT_FILE_URL.'js/admin/jquery.cookie.js', array('jquery'));
         wp_enqueue_script('select2', CTCT_FILE_URL.'js/select2/select2.min.js', array('jquery'));
 
-        wp_enqueue_script('ctct-admin-page', CTCT_FILE_URL.'js/admin/cc-page.js', array('jquery', 'jquery-effects-highlight', 'jquery-ui-tabs', 'select2', 'thickbox', 'wp-pointer'));
+        wp_enqueue_script('ctct-admin-page', CTCT_FILE_URL.'js/admin/cc-page.js', array('jquery', 'jquery-effects-highlight', 'jquery-ui-tooltip', 'jquery-ui-tabs', 'select2', 'thickbox', 'wp-pointer'));
 
-        wp_enqueue_script('qtip', CTCT_FILE_URL.'js/admin/jquery.qtip.pack.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-fittext', CTCT_FILE_URL.'js/admin/jquery.fittext.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-equalize', CTCT_FILE_URL.'js/admin/jquery.equalize.min.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-inlineedit', CTCT_FILE_URL.'js/admin/jquery.inlineedit.js', array('ctct-admin-page'));
@@ -123,7 +120,7 @@ abstract class CTCT_Admin_Page {
     	foreach($tabs as &$tab) {
     		$tab['title'] = str_replace('Constant Contact: ', '', $tab['title']);
     	}
-    	return $tabs; 
+    	return $tabs;
     }
 
     public function pointer_content() {
@@ -150,7 +147,7 @@ abstract class CTCT_Admin_Page {
 
        // Get pointers for this screen
         $pointers = apply_filters( 'ctct_admin_pointers-' . $this->getKey(), $this->pointers );
-        
+
         if ( ! $pointers || ! is_array( $pointers ) )
             return;
 
@@ -171,7 +168,7 @@ abstract class CTCT_Admin_Page {
             $valid_pointers['pointers'][] =  $pointer;
         }
         #r($valid_pointers, true);
-        
+
         return (array)$valid_pointers;
     }
 
@@ -214,6 +211,8 @@ abstract class CTCT_Admin_Page {
             <h2 class="cc_logo"><a class="cc_logo" href="<?php echo admin_url('admin.php?page=constant-contact-api'); ?>"><?php _e('Constant Contact', 'constant-contact-api'); ?></a></h2>
 	<?php
 
+        include(CTCT_DIR_PATH.'views/admin/view.page-menu.php');
+
         if(!$this->isView()) {
             $breadcrumb[] = '<a href="'.remove_query_arg(array('view', 'edit', 'add')).'">'.$this->getNavTitle().'</a>';
         }
@@ -240,6 +239,5 @@ abstract class CTCT_Admin_Page {
  	?>
  		</div>
  	<?php
-        include(CTCT_DIR_PATH.'views/admin/view.page-menu.php');
     }
 }

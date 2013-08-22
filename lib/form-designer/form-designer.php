@@ -4,7 +4,7 @@
  */
 
 class CTCT_Form_Designer extends CTCT_Admin_Page {
-	
+
 	var $key = 'constant-contact-forms';
 	var $title = 'Form Designer';
 	var $messages = array();
@@ -12,9 +12,9 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 
 	protected function addIncludes() {
 		global $pagenow, $plugin_page;
-		
-		if(is_admin() && !empty($plugin_page) && ($plugin_page !== $this->getKey() || empty($plugin_page) && @$_GET['page'] !== $this->getKey())) { 
-			return; 
+
+		if(is_admin() && !empty($plugin_page) && ($plugin_page !== $this->getKey() || empty($plugin_page) && @$_GET['page'] !== $this->getKey())) {
+			return;
 		}
 
 		define('CC_FORM_GEN_URL', plugin_dir_url(__FILE__));
@@ -58,7 +58,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 	}
 	protected function add() {}
 	protected function edit() {}
-	
+
 	protected function view() {
 
 			$compat = check_ccfg_compatibility();
@@ -92,9 +92,9 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		wp_cc_form_setup($_form);
 
 		include(CC_FORM_GEN_PATH.'views/form-designer.php');
-		
+
 	}
-	
+
 	protected function single() {}
 
 	protected function processForms() {
@@ -109,7 +109,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 			$cc_form_selected_id = cc_form_get_selected_id();
 
 			if($action === 'edit') { return; }
-			
+
 			$messages = array();
 
 			switch ( $action ) {
@@ -252,14 +252,15 @@ function constant_contact_retrieve_form($formid, $force_update=false, $unique_id
 
 	$formid = (int)$formid;
 
-	$success = get_site_transient($unique_id);
+	$success = get_transient($unique_id);
 	$success = !empty($success);
 
-	$form = get_site_transient("cc_form_$formid");
+	$form = get_transient("cc_form_$formid");
 
 	// If it is an array and we are not forcing an update, return the data
 	if(!empty($form) && !$success && !$force_update && !isset($_GET['asdasdas'])) {
 		do_action('ctct_debug', 'Returning Cached Form #'.$formid, $form);
+
 		// Basic form validation - make sure it's got basic
 		if(preg_match('/kws_form/m', $form)) {
 			return $form;
@@ -308,7 +309,7 @@ function constant_contact_retrieve_form($formid, $force_update=false, $unique_id
 		$form = $response['body'];
 		if(empty($_POST) && !$success) {
 			// Save the array into the cc_form_id transient with a 30 day expiration
-			$set = set_site_transient("cc_form_$formid", $form, 60*60*24*30);
+			$set = set_transient("cc_form_$formid", $form, 60*60*24*30);
 			if(!$set) {
 				do_action('ctct_log', 'Setting cc_form_'.$formid.' Transient failed', $form);
 			}

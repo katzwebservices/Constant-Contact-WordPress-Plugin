@@ -848,7 +848,7 @@ class CTCTOauth2 {
 	public $consumer_secret;
 	public $url;
 	public $code;
-	
+
 	function __construct($apikey, $consumersecret, $redirect, $thecode)
 	{
 		$this->api_key = $apikey;
@@ -856,29 +856,29 @@ class CTCTOauth2 {
 		$this->url = urlencode($redirect);
 		$this->code = $thecode;
 	}
-	
+
 	function getAccessToken()
 	{
-		$request = $this->base_uri . $this->api_key . 
-		"&client_secret=" . $this->consumer_secret . 
+		$request = $this->base_uri . $this->api_key .
+		"&client_secret=" . $this->consumer_secret .
 		"&code=" . $this->code.
  		"&redirect_uri=" . $this->url;
-		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $request);
-		
+
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-		
+
 		$result = curl_exec($ch);
 		curl_close($ch);
-		
-		
+
+
 		$obj = json_decode($result);
-		
+
 		return $access_token = $obj->access_token;
 	}
 }
@@ -1003,7 +1003,7 @@ class CTCTDataStore {
     }
 
     function lookup_token($username) {
-    	
+
     }
 
     function lookup_nonce($consumer, $token, $nonce, $timestamp) {
@@ -1039,7 +1039,7 @@ class CTCTRequest{
     public $consumer;
     public $accessToken;
     public $signatureMethod;
-    
+
     # OAuth2 Info
     public $access_token;
 
@@ -1065,10 +1065,10 @@ class CTCTRequest{
         } elseif($authType == 'oauth2') {
             $this->authType = 'oauth2';
             $this->oauth2_construct($apiKey, $authParam);
-           
+
         }
 
-        
+
     }
 
     private function oAuth_construct($apiKey, $consumerSecret){
@@ -1082,7 +1082,7 @@ class CTCTRequest{
     	$this->access_token = $consumerSecret;
 
     }
-    
+
     private function basic_construct($apiKey, $username, $password){
         $this->requestLogin = $apiKey.'%'.$username.':'.$password;
         $this->authType = 'basic';
@@ -1106,7 +1106,7 @@ class CTCTRequest{
            curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         } else if($this->authType == 'oAuth2') {
         	//curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        	
+
         }
         curl_setopt($curl, CURLOPT_URL, $url);
         //curl_setopt($curl, CURLOPT_FAILONERROR, 0);
@@ -1114,12 +1114,12 @@ class CTCTRequest{
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        
+
         if($this->authType == 'oauth2')
         {
         	curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer " . $this->access_token, "Content-Type: ".$contentType, "Content-Length: ". strlen($body), "Accept: application/atom+xml"));
         }
-        else { 
+        else {
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: ".$contentType, "Content-Length: ". strlen($body), "Accept: application/atom+xml"));
         }
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);

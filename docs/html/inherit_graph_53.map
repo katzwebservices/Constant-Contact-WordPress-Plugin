@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_php_exception.html" title="PhpException" alt="" coords="163,109,266,137"/>
+<area shape="rect" id="node3" href="$class_php_error.html" title="PhpError" alt="" coords="325,5,400,33"/>
+<area shape="rect" id="node4" href="$class_php_notice.html" title="PhpNotice" alt="" coords="321,57,404,85"/>
+<area shape="rect" id="node5" href="$class_php_parse.html" title="PhpParse" alt="" coords="323,109,403,137"/>
+<area shape="rect" id="node6" href="$class_php_strict.html" title="PhpStrict" alt="" coords="325,161,400,189"/>
+<area shape="rect" id="node7" href="$class_php_warning.html" title="PhpWarning" alt="" coords="316,213,410,241"/>
+</map>

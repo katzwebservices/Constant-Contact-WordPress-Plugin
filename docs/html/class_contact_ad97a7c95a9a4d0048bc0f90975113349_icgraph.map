@@ -1,0 +1,7 @@
+<map id="Contact\createStruct" name="Contact\createStruct">
+<area shape="rect" id="node2" href="$class_contacts_collection.html#a58610b21a633bfe30cc66a5f54a107a7" title="Add a contact to account. " alt="" coords="215,5,348,49"/>
+<area shape="rect" id="node3" href="$class_contacts_collection.html#a55c54d5be74863ecc8dfa0f53a4f430f" title="Get detailed Contact object for a given contact. " alt="" coords="215,73,348,117"/>
+<area shape="rect" id="node4" href="$class_contacts_collection.html#a9dcfa1067f115ee7ba5f231b5433e912" title="ContactsCollection\l\\getContacts" alt="" coords="215,141,348,185"/>
+<area shape="rect" id="node6" href="$class_contacts_collection.html#a607e64e75eef78c7e3d22362d6400541" title="Search for Contacts by email addresses. " alt="" coords="198,209,365,253"/>
+<area shape="rect" id="node5" href="$class_contacts_collection.html#a5b3e93e3981dcec723292446f678f053" title="Search for contacts that have been updated since a specific date. " alt="" coords="414,141,615,185"/>
+</map>

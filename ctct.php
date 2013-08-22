@@ -4,7 +4,7 @@ Plugin Name: Official Constant Contact Plugin
 Plugin URI: http://www.katzwebservices.com
 Description: Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: Katz Web Services, Inc.
-Version: 3.0
+Version: 3.0.1
 Author URI: http://www.katzwebservices.com
 */
 
@@ -19,7 +19,7 @@ class WP_CTCT {
 
 		if(!defined('CTCT_VERSION')) {
 
-			define('CTCT_VERSION', '3.0');
+			define('CTCT_VERSION', '3.0.1');
 			define('CTCT_FILE', __FILE__); // The full path to this file
 			define('CTCT_FILE_PATH', dirname(__FILE__) . '/'); // The full path to this file
 			define('CTCT_FILE_URL', plugin_dir_url(__FILE__)); // @ Added 2.0 The full URL to this file
@@ -71,7 +71,7 @@ class WP_CTCT {
 			define("CTCT_ACCESS_TOKEN", $token);
 			define("CTCT_USERNAME", $this->oauth->getToken('username'));
 		}
-		
+
 		if(is_null($this->oauth)) { $this->oauth = new KWSOAuth2(); }
 
 		$this->cc = new KWSConstantContact();

@@ -4,9 +4,14 @@
  */
 
 if(!function_exists('tempty')) {
+	/**
+	 * Is the value empty when trimmed of whitespace and is it not zero?
+	 * @param  mixed $val The content to check
+	 * @return boolean   True: empty; False: not empty
+	 */
 	function tempty($val) {
-		$val = trim($val);
-    	return empty($val) && $val !== 0;
+		$val = rtrim(trim($val));
+    	return empty($val) && $val !== 0  && $val !== '0';
 	}
 }
 
@@ -52,8 +57,11 @@ function constant_contact_signup_form_shortcode($atts, $content=null) {
  * Based on original widget code but broken out to be used in shortcode and
  * any other place where non-logged-in users will be signing up.
  *
+ * Modify the output by calling `add_filter('constant_contact_form', 'your_function');`
+ *
  * @param array|string $args Settings for generating the signup form
  * @param boolean $echo True: Echo the form; False: return form output.
+ * @return string Form HTML output
  */
 function constant_contact_public_signup_form($args, $echo = true) {
     do_action('ctct_debug', 'constant_contact_public_signup_form', $args, @$_POST);
@@ -85,19 +93,26 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
     extract($settings, EXTR_SKIP);
 
+
     $form = wp_get_cc_form($formid);
 
+
     // The form does not exist.
-    if(!$form) { 
+    if(!$form) {
+
+    	do_action('ctct_log', sprintf('Form #%s does not exist. Called on %s', $formid, add_query_arg(array())));
+
     	if(current_user_can('manage_options')) {
     		return '<!-- Constant Contact API Error: Form #'.$formid.' does not exist. -->';
     	}
-    	return false; 
+
+    	return false;
     }
 
-    if(empty($lists)) {
-        $lists = $form['lists'];
-    }
+    // If other lists aren't passed to the function,
+    // use the default lists defined in the form designer.
+    if(empty($lists)) { $lists = $form['lists']; }
+
     $selected = $lists;
     if($widget) {
         $lists = @$form['lists'];
@@ -135,11 +150,12 @@ function constant_contact_public_signup_form($args, $echo = true) {
      * Display errors or Success message if the form was submitted.
      */
 
-    #$form_status = get_site_transient($unique_id);
+    #$form_status = get_transient($unique_id);
 
     $ProcessForm = CTCT_Process_Form::getInstance();
     $form_status = $ProcessForm->getResults($unique_id);
 
+    #die(var_dump($form_status));
     /**
      * Success message: If no errors AND signup was successful show the success message
      */
@@ -151,19 +167,18 @@ function constant_contact_public_signup_form($args, $echo = true) {
         $form = preg_replace('/\%\%(.*?)\%\%/ism', '', $form);
 
         return $form;
-    } else if(!$form_status) {
-    	die();
+    } else if(is_wp_error( $form_status )) {
     	r($ProcessForm->getResults());
         $haserror = ' has_errors';
       	$email = $ProcessForm->getResults('email_validation');
-      	r($email, true);
+  	r($email);
         $error_output = constant_contact_generate_error_output($form_status);
 
     } // end if(isset($GLOBALS['cc_errors_'.$unique_id]))
-    var_dump($form_status);
+
     r($unique_id);
-    r($ProcessForm, true);
-    die('asdasdasdasd');
+    r($ProcessForm);
+    #die('asdasdasdasd');
 
     $form = str_replace('<!-- %%SUCCESS%% -->', '', $form);
     $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
@@ -183,10 +198,10 @@ function constant_contact_public_signup_form($args, $echo = true) {
         'checked' => $selected,
         'type' => $show_list_selection ? $list_selection_format : 'hidden',
     ));
-    
+
     // If you're showing list selection, show the label and wrap it in a container.
     if($show_list_selection && !$widget) {
-        $listsOutput .= '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
+        $listsOutput = '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
         <div class="cc_newsletter kws_input_container input-text-wrap">
             '.$listsOutput.'
         </div>';
@@ -207,20 +222,17 @@ function constant_contact_public_signup_form($args, $echo = true) {
         </div>';
     $form = str_replace('<!-- %%HIDDEN%% -->', $hiddenoutput, $form);
 
-    // Modify the output by calling add_filter('constant_contact_form', 'your_function');
-    $output = apply_filters('constant_contact_form', $form);
+    $output = apply_filters('constant_contact_form', apply_filters( 'constant_contact_form_'.$formid, $form));
 
     do_action('ctct_debug', 'form output', $output);
 
     /**
      * Echo the output if $settings['echo'] is true
      */
-    if ($echo) {
-        echo $output;
-    }
+    if ($echo) { echo $output; }
 
     /**
-     * Otherwise return the $output
+     * And always return the $output
      */
     return $output;
 }
@@ -263,12 +275,12 @@ function wp_get_cc_form( $form, $type = 'array', $forms = array()) {
 
 	if ( !isset($forms[$form]) ) {
 
-		// If the form isn't in the all forms array as a key, 
+		// If the form isn't in the all forms array as a key,
 		// make sure it's not missing the correct key assignment
 		// by checking it against the cc-form-id
 		foreach($forms as $key => $f) {
-			if((isset($f['cc-form-id']) && intval($f['cc-form-id']) === $form) || (isset($f['form']) && intval($f['form']) === $form)) { 
-				wp_get_cc_form($key, $type, $forms); 
+			if((isset($f['cc-form-id']) && intval($f['cc-form-id']) === $form) || (isset($f['form']) && intval($f['form']) === $form)) {
+				wp_get_cc_form($key, $type, $forms);
 			}
 		}
 
@@ -370,7 +382,7 @@ function wp_update_cc_form_object( $form_id = -1, $data = array()) {
 	}
 
 	// That cached version's gotta go.
-	delete_site_transient("cc_form_$form_id");
+	delete_transient("cc_form_$form_id");
 
 	// Update forms array to DB
 	wp_set_cc_forms($forms);
@@ -577,10 +589,23 @@ function make_formfield($_form_object = array(), $class, $id, $value, $checked, 
 	return $out;
 }
 
-function input_value($form, $name, $default) {
+/**
+ * Print the form setting value (value="") for form generator admin screen
+ * @param  array $form    Form settings array
+ * @param  string $name    Key of the field
+ * @param  string $default Default value for the field
+ */
+function ctct_input_value($form, $name, $default) {
 	echo ctct_check_default($form, $name, '', $default);
 }
 
+
+/**
+ * Print value="" and/or selected="selected" for `<select>`s on the form generator admin screen
+ * @param  array $form    Form settings array
+ * @param  string $name    Key of the field
+ * @param string $value Value of the `<select>` `<option>`
+ */
 function ctct_check_select($form, $name, $value, $default = false) {
 	echo " value='$value'";
 	$check = (isset($form[$name]) && !empty($form[$name]) && $form[$name] == $value);
@@ -589,6 +614,13 @@ function ctct_check_select($form, $name, $value, $default = false) {
 	}
 }
 
+/**
+ * Print value="" and/or selected="selected" for `<input type="radio">`s on the form generator admin screen
+ * @param  array $form    Form settings array
+ * @param  string $name    Key of the field
+ * @param string $value Value of the radio
+ * @param boolean $default Is this radio selected by default
+ */
 function ctct_check_radio($form, $name, $value, $default = false) {
 	echo " value='$value'";
 	$check = (isset($form[$name]) && $form[$name] !== '' && $form[$name] === $value);
@@ -597,6 +629,14 @@ function ctct_check_radio($form, $name, $value, $default = false) {
 	}
 }
 
+/**
+ * Print value="" and/or selected="selected" for `<input type="checkbox">`s on the form generator admin screen. Alias of `ctct_check_radio()`
+ * @param  array $form    Form settings array
+ * @param  string $name    Key of the field
+ * @param string $value Value of the checkbox
+ * @param boolean $default Is this checkbox selected by default
+ * @see  ctct_check_radio()
+ */
 function ctct_check_checkbox($form, $name = '', $value = '', $default = false) {
 	ctct_check_radio($form, $name, $value, $default);
 }

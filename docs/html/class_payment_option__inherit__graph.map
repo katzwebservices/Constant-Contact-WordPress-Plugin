@@ -1,0 +1,5 @@
+<map id="PaymentOption" name="PaymentOption">
+<area shape="rect" id="node2" href="$class_check_payment.html" title="CheckPayment" alt="" coords="4,83,115,111"/>
+<area shape="rect" id="node3" href="$class_door_payment.html" title="DoorPayment" alt="" coords="139,83,241,111"/>
+<area shape="rect" id="node4" href="$class_pay_pal_payment.html" title="PayPalPayment" alt="" coords="266,83,381,111"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Ctct\Components\Tracking\SendActivity\create" name="Ctct\Components\Tracking\SendActivity\create">
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#a2cfb4782dd12ac6b950c89b3e12af44f" title="Get sends for a given campaign. " alt="" coords="233,5,447,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a973ca05b6cf27e6456e3afe501415df4" title="Get sends for a given contact. " alt="" coords="240,73,440,117"/>
+</map>

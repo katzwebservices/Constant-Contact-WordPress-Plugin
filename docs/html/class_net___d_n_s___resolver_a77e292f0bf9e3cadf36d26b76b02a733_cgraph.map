@@ -1,0 +1,10 @@
+<map id="Net_DNS_Resolver\send_udp" name="Net_DNS_Resolver\send_udp">
+<area shape="rect" id="node2" href="$class_net___d_n_s___resolver.html#a31d4b4651960d0fb08aa07990d21ce39" title="Sends a packet via UDP to the list of name servers. " alt="" coords="254,45,424,89"/>
+<area shape="rect" id="node9" href="$class_net___d_n_s___resolver.html#a6f7a0d5aaecc4824d9e59c9eb2597a62" title="Sends a packet via UDP to the list of name servers. " alt="" coords="254,113,424,157"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___resolver.html#a3bf22a7a58480dd7a6fd0dd17807fc70" title="Gets or sets the nameservers to be queried. " alt="" coords="472,87,691,115"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___resolver.html#ae1bb14089519fe774d025156114aae4f" title="Net_DNS_Resolver\\cname_addr" alt="" coords="739,5,954,33"/>
+<area shape="rect" id="node5" href="$class_net___d_n_s___resolver.html#a4358663ec326e406c398f6cb09bd5544" title="Initializes the Resolver Object. " alt="" coords="766,109,928,153"/>
+<area shape="rect" id="node6" href="$class_net___d_n_s___resolver.html#aa2e8d58074354b1f9292500119470431" title="Initalizes the resolver library. " alt="" coords="1002,117,1187,145"/>
+<area shape="rect" id="node7" href="$class_net___d_n_s___resolver.html#ae4def11574ad6e93176670c726541bed" title="Reads and parses a resolver configuration file. " alt="" coords="1249,65,1417,109"/>
+<area shape="rect" id="node8" href="$class_net___d_n_s___resolver.html#a2a3d25c5dd2b1810b60ad05b84787855" title="Examines the environment for resolver config information. " alt="" coords="1235,147,1432,175"/>
+</map>

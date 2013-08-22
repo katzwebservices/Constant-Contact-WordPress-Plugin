@@ -254,9 +254,7 @@ class KWSLog {
 			redirect_post();
 
 		$logdata = $this->get_log_messages(0,40);
-
 	?>
-
 		<div class="wrap">
 			<h2><?php _e(sprintf('%s Log', self::$name), 'kwslog'); ?></h2>
 

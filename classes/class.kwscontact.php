@@ -42,7 +42,7 @@ class KWSContact extends Contact {
         return $contact;
     }
 
-    public function update(array $new_contact_array) {
+    public function update($new_contact_array) {
 
     	$existing_contact = wp_clone($this);
 
@@ -61,10 +61,50 @@ class KWSContact extends Contact {
     	return wp_parse_args($address, array('line1' => '', 'line2' => '', 'line3' => '', 'city' => '', 'address_type' => '', 'state_code' => '', 'state_name' => '', 'country_code' => '', 'country_name' => '', 'postal_code' => '', 'sub_postal_code' => ''));
     }
 
+    /**
+     * Split a full name into pieces. Used for comment form submissions.
+     * @param  array $contact_array Array of contact data
+     * @return array                Array with a better name structure
+     */
+    private function prepareName($contact_array, $key = 'name') {
+        if(!function_exists('ctct_parse_name')) {
+            include_once(CTCT_DIR_PATH.'lib/nameparse.php');
+        }
+
+        if(!isset($contact_array[$key])) { return $contact_array; }
+
+        $name = ctct_parse_name($contact_array[$key]);
+
+        if(isset($name['first']) && empty($contact_array['first_name'])) {
+            $contact_array['first_name'] = $name['first'];
+        }
+
+        if(isset($name['middle']) && empty($contact_array['middle_name'])) { $contact_array['middle_name'] = $name['middle']; }
+
+        if(isset($name['last']) && empty($contact_array['last_name'])) { $contact_array['last_name'] = $name['last']; }
+
+        return $contact_array;
+    }
+
+    /**
+     * Clean and parse an array of contact details to be in CTCT format
+     *
+     * The method filters out any data not allowed by Constant Contact, so you don't
+     * need to worry about having just the right details.
+     *
+     * It converts `email`, `email_address` and `user_email` into the
+     * proper `email_addresses` array so you don't have to.
+     *
+     * @param  array   $contact_array Contact information.
+     * @param  boolean $add           [description]
+     * @return [type]                 [description]
+     */
 	private function prepare(array $contact_array, $add = false) {
-		$defaults = array(
+
+        $defaults = array(
             'id' => NULL,
             'status' => NULL,
+            'name' => NULL,
             'first_name' => NULL,
             'middle_name' => NULL,
             'last_name' => NULL,
@@ -99,19 +139,28 @@ class KWSContact extends Contact {
 
         $Contact = wp_parse_args( $contact_array, $defaults );
 
+       # r($contact_array);
+       # r($Contact);
 
-
-        /** Only allow permitted data in the Contact array */
         foreach($Contact as $k => $v) {
+
+            /** Only allow permitted data in the Contact array */
             if(!array_key_exists($k, $defaults)) {
-                // TODO: Add logging notice.
+
+                // @todo: Add logging notice.
                 unset($Contact[$k]);
             }
 
             switch($k) {
                 case 'user_email':
-                    $Contact['email'] = $Contact['user_email'];
+                    if(!empty($v)) {
+                        $Contact['email'] = $Contact['user_email'];
+                    }
                     unset($Contact['user_email']);
+                    break;
+                case 'name':
+                    $Contact = $this->prepareName($Contact);
+                    unset($Contact['name']);
                     break;
                 case 'CustomField1':
                 case 'CustomField2':
@@ -226,7 +275,7 @@ class KWSContact extends Contact {
             $Contact['lists'] = (array)$Contact['lists'];
             foreach ($Contact['lists'] as &$contact_list) {
             	if(is_numeric( $contact_list )) {
-            		$contact_list = array('id' => $contact_list);
+            		$contact_list = array('id' => (string)$contact_list);
             	}
                 $contact_list = ContactList::create($contact_list);
             }
@@ -356,7 +405,7 @@ class KWSContact extends Contact {
 				return $this->getEmail();
 				break;
 			case 'full_name':
-				return $format ? '<span data-name="prefix_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('prefix_name') .'</span> <span data-name="first_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('first_name') .'</span> <span data-name="middle_name" class="editable" data-id="'.$this->get('id').'">'. $this->get('middle_name') .'</span> <span data-name="last_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('last_name').'</span>' : $this->get('first_name') .' ' . $this->get('middle_name') .' '.$this->get('last_name');
+				return $format ? '<span data-name="prefix_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('prefix_name') .'</span> <span data-name="first_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('first_name') .'</span> <span data-name="middle_name" class="editable" data-id="middle_name">'. $this->get('middle_name') .'</span> <span data-name="last_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('last_name').'</span>' : $this->get('first_name') .' ' . $this->get('middle_name') .' '.$this->get('last_name');
 				break;
 			case 'name':
                     return $format ? '<span data-name="first_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('first_name') .'</span> <span data-name="last_name" class="editable" data-id="'.$this->get('id').'">'.$this->get('last_name').'</span>' : $this->get('first_name') .' ' .$this->get('last_name');

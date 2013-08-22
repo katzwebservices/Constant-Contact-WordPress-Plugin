@@ -1,7 +1,13 @@
 <?php
-require_once('Authentication.php'); // OAuth & Basic Authentication classes (CTCTDataStore, CTCTRequest, OAuthToken...)
-require_once('Collections.php'); // Constant Contact collection resource classes (ContactsCollection, ListsCollection..)
-require_once('Components.php'); // Constant Contact object classes (Contact, List, Campaign, Event...)
+if(!class_exists('CTCTRequest') && !class_exists('OAuthSignatureMethod_HMAC_SHA1')) {
+    require_once('Authentication.php'); // OAuth & Basic Authentication classes (CTCTDataStore, CTCTRequest, OAuthToken...)
+}
+if(!class_exists('ActivitiesCollection')) {
+    require_once('Collections.php'); // Constant Contact collection resource classes (ContactsCollection, ListsCollection..)
+}
+if(!class_exists('ContactList')) {
+    require_once('Components.php'); // Constant Contact object classes (Contact, List, Campaign, Event...)
+}
 
 class ConstantContact{
     public $apiKey;
@@ -20,17 +26,17 @@ class ConstantContact{
      * @return void
      */
     public function __construct($authType, $apiKey, $username, $param){
-    	
+
     	// Set username to the instance so we can use it if neccessary
     	$this->username = $username;
-    	
+
         try{
         $this->authType = strtolower($authType);
         if($this->authType != 'basic' && $this->authType != 'oauth' && $this->authType != 'oauth2'){
             throw new CTCTException('Authentication Error: type '.$this->authType.' is not valid');
         };
         $this->CTCTRequest = new CTCTRequest($this->authType, $apiKey, $username, $param);
- 
+
         } catch (CTCTException $e){
             $e->generateError();
         }
@@ -116,7 +122,7 @@ class ConstantContact{
      */
     public function getContacts($page=null){
         $ContactsCollection = new ContactsCollection($this->CTCTRequest);
-        return $ContactsCollection->getContacts($page);                
+        return $ContactsCollection->getContacts($page);
     }
 
     /**
@@ -260,13 +266,13 @@ class ConstantContact{
         $CampaignsCollection = new CampaignsCollection($this->CTCTRequest);
         return $CampaignsCollection->getCampaigns($page);
     }
-    
+
        /**
      * Get a Campaign from an ID
      * @param string $ID - Must be an ID of a campaign
      * @return Campaign Object of Campaign of given ID
      */
-    
+
     public function getCampaignByID($ID){
     	$CampaignsCollection = new CampaignsCollection($this->CTCTRequest);
     	return $CampaignsCollection->getCampaignDetails($this->CTCTRequest->baseUri."/ws/customers/". $this->CTCTRequest->username . "/campaigns/" . $ID);
@@ -355,7 +361,7 @@ class ConstantContact{
     /**
      * Get a page of campaigns in a particular status
      * @param string $status - status of campaign to search for (sent, draft, running, scheduled)
-     * @return array - Up to 50 Campaigns and a link to the next page if one exists 
+     * @return array - Up to 50 Campaigns and a link to the next page if one exists
      */
     public function getCampaignsByStatus($status, $page=null){
         $CampaignsCollection = new CampaignsCollection($this->CTCTRequest);

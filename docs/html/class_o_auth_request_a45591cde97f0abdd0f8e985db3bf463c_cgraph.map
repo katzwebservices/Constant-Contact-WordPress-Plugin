@@ -1,0 +1,4 @@
+<map id="OAuthRequest\to_postdata" name="OAuthRequest\to_postdata">
+<area shape="rect" id="node2" href="$class_o_auth_util.html#afa225b04225a3b8abe804ee294e0d631" title="OAuthUtil\\build_http\l_query" alt="" coords="238,5,378,49"/>
+<area shape="rect" id="node3" href="$class_o_auth_util.html#adcb789bfefc729678d5188f05d19b5ba" title="OAuthUtil\\urlencode\l_rfc3986" alt="" coords="427,5,568,49"/>
+</map>

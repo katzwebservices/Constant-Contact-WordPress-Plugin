@@ -1,0 +1,5 @@
+<map id="BusinessInformation\createStruct" name="BusinessInformation\createStruct">
+<area shape="rect" id="node2" href="$class_registrant.html#ad4b8e691543ae4ed0516bf34e0fe399a" title="Create an associative array of object properties from XML. " alt="" coords="197,35,355,63"/>
+<area shape="rect" id="node3" href="$class_events_collection.html#a6baab87fc0a58669c4b88cb2625c4b8a" title="Get a page of Registrants for an Event. " alt="" coords="403,5,613,33"/>
+<area shape="rect" id="node4" href="$class_events_collection.html#a7ab04dcbb2dd3baed275acf7cf658055" title="Get details for an Event Registrant. " alt="" coords="406,57,610,101"/>
+</map>

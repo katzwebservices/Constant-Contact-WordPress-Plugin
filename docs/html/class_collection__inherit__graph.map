@@ -1,0 +1,9 @@
+<map id="Collection" name="Collection">
+<area shape="rect" id="node2" href="$class_activities_collection.html" title="ActivitiesCollection" alt="" coords="140,5,273,33"/>
+<area shape="rect" id="node3" href="$class_campaigns_collection.html" title="CampaignsCollection" alt="" coords="133,57,280,85"/>
+<area shape="rect" id="node4" href="$class_contacts_collection.html" title="ContactsCollection" alt="" coords="140,109,273,137"/>
+<area shape="rect" id="node5" href="$class_events_collection.html" title="EventsCollection" alt="" coords="146,161,267,189"/>
+<area shape="rect" id="node6" href="$class_library_collection.html" title="LibraryCollection" alt="" coords="146,213,267,241"/>
+<area shape="rect" id="node7" href="$class_lists_collection.html" title="ListsCollection" alt="" coords="153,265,260,293"/>
+<area shape="rect" id="node8" href="$class_settings_collection.html" title="SettingsCollection" alt="" coords="143,317,271,345"/>
+</map>

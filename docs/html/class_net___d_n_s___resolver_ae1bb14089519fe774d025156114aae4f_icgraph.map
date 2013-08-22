@@ -1,0 +1,19 @@
+<map id="Net_DNS_Resolver\cname_addr" name="Net_DNS_Resolver\cname_addr">
+<area shape="rect" id="node2" href="$class_net___d_n_s___resolver.html#a3bf22a7a58480dd7a6fd0dd17807fc70" title="Gets or sets the nameservers to be queried. " alt="" coords="269,247,488,275"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___resolver.html#ae4def11574ad6e93176670c726541bed" title="Reads and parses a resolver configuration file. " alt="" coords="551,67,719,111"/>
+<area shape="rect" id="node6" href="$class_net___d_n_s___resolver.html#a2a3d25c5dd2b1810b60ad05b84787855" title="Examines the environment for resolver config information. " alt="" coords="536,187,733,215"/>
+<area shape="rect" id="node7" href="$class_net___d_n_s___resolver.html#a848934658b6a75720a71e286500fcc40" title="Builds a string containing the current state of the resolver. " alt="" coords="548,135,722,163"/>
+<area shape="rect" id="node8" href="$class_net___d_n_s___resolver.html#a5ff32917a5f06e5eba819c0fb4e7196a" title="Sends a packet via TCP to the list of name servers. " alt="" coords="537,375,732,403"/>
+<area shape="rect" id="node15" href="$class_net___d_n_s___resolver.html#a31d4b4651960d0fb08aa07990d21ce39" title="Sends a packet via UDP to the list of name servers. " alt="" coords="550,239,720,283"/>
+<area shape="rect" id="node17" href="$class_net___d_n_s___resolver.html#a6f7a0d5aaecc4824d9e59c9eb2597a62" title="Sends a packet via UDP to the list of name servers. " alt="" coords="550,307,720,351"/>
+<area shape="rect" id="node13" href="$class_net___d_n_s___resolver.html#a9a745e4f5009dac279562318bb927370" title="Performs an AXFR query (zone transfer) " alt="" coords="800,427,963,455"/>
+<area shape="rect" id="node18" href="$class_net___d_n_s___resolver.html#a068e8e173ff40d4a3b74193792bed4e0" title="Sends a packet via TCP to the list of name servers. " alt="" coords="553,479,716,523"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___resolver.html#aa2e8d58074354b1f9292500119470431" title="Initalizes the resolver library. " alt="" coords="789,75,974,103"/>
+<area shape="rect" id="node5" href="$class_net___d_n_s___resolver.html#a4358663ec326e406c398f6cb09bd5544" title="Initializes the Resolver Object. " alt="" coords="1043,38,1205,82"/>
+<area shape="rect" id="node9" href="$class_net___d_n_s___resolver.html#aaabc96cbbb5bce627d31583d0e6af3d5" title="Sends a packet to a nameserver. " alt="" coords="1039,343,1209,371"/>
+<area shape="rect" id="node10" href="$class_net___d_n_s___resolver.html#ab00f28a838dbaebffe986b2fb81b4e8f" title="Queries nameservers for an answer. " alt="" coords="1267,343,1466,371"/>
+<area shape="rect" id="node11" href="$class_net___d_n_s___resolver.html#a433200f56099815168ddd63a715e8ac5" title="Queries nameservers for an answer. " alt="" coords="1515,343,1690,371"/>
+<area shape="rect" id="node12" href="$class_net___d_n_s___resolver.html#a13ee3a449b00b1a0e2f36bb1404e4291" title="Searches nameservers for an answer. " alt="" coords="1739,343,1920,371"/>
+<area shape="rect" id="node14" href="$class_net___d_n_s___resolver.html#a73f7861954f4990bc8d18d6a82f7334d" title="Performs an AXFR query (zone transfer) (OLD BUGGY STYLE) " alt="" coords="1030,427,1218,455"/>
+<area shape="rect" id="node16" href="$class_net___d_n_s___resolver.html#a77e292f0bf9e3cadf36d26b76b02a733" title="Sends a packet via UDP to the list of name servers. " alt="" coords="781,315,981,343"/>
+</map>

@@ -149,9 +149,9 @@ class CTCT_Settings extends CTCT_Admin_Page {
 			// Hook in here for more tabs.
 			do_action('ctct_settings_sections');
 
-			add_settings_section('registration', __('Registration', 'constant-contact-api'), '<h3>Configure how users sign up.</h3>', 'constant-contact-api');
+			add_settings_section('registration', __('Sign-Up Methods', 'constant-contact-api'), '<h3>Configure how users sign up.</h3>', 'constant-contact-api');
 			add_settings_section('spam', __('Spam Prevention', 'constant-contact-api'), '<h3>How do you want to prevent spam?</h3>', 'constant-contact-api');
-			
+
 			$groups = array(
 				'setup' => array(
 					array(
@@ -186,7 +186,6 @@ class CTCT_Settings extends CTCT_Admin_Page {
 						'type' => 'checkbox',
 						'desc' => __('Opt-in users by default?', 'constant-contact-api'),
 						'label' => __('Should the opt-in checkbox(es) be checked by default? If using the "List Selection" method, should lists be pre-selected by default.', 'constant-contact-api'),
-						'help' => 'asdsadasdasdsadsa'
 					),
 					array(
 						'type' => 'lists',
@@ -201,6 +200,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 								'id_attr' => 'constant-contact-api_registration_checkbox_lists_%%id%%',
 								'checked' => self::get('registration_checkbox_lists')
 							)),
+						'help' => __('When users sign up for your newsletter while registering for a WordPress account, they will be added to the following lists.', 'constant-contact-api'),
 					),
 					array(
 						'id' => 'signup_title',
@@ -302,7 +302,8 @@ class CTCT_Settings extends CTCT_Admin_Page {
 						'id' => 'spam_methods',
 						'toggle' => 'spam_methods',
 						'options' => array(
-							'datavalidation' => 'Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">'.__('DataValidation.com', 'constant-contact-api').'</a>'.constant_contact_tip('DataValidation.com is <strong>the best way</strong> to verify that when users submit a form, the submitted email address is valid.', false),
+							'smtp' => __('Validate Email Addresses Via SMTP (<a href="http://katz.si/smtpvalidation" rel="external">See the project</a>)', 'constant-contact-api').constant_contact_tip(__('Uses server methods to verify emails: checks for a valid domain, then sends a request for a read receipt.', 'constant-contact-api'), false),
+							'datavalidation' => __('Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">DataValidation.com</a>', 'constant-contact-api').constant_contact_tip(__('<h6>About DataValidation.com</h6>DataValidation.com is <strong>the best way</strong> to verify that when users submit a form, the submitted email address is valid.', 'constant-contact-api'), false),
 							'akismet' => __('Akismet', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install Akismet" href="%s">Install Akismet</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=akismet&TB_iframe=true&width=640&height=808')),
 							'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install WangGuard" href="%s">Install WangGuard</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=wangguard&TB_iframe=true&width=640&height=808')), // TODO: Check if wangguard exists
 						),
@@ -455,7 +456,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 		$value = isset($value) ? $value : self::get($id);
 		$page = isset($page) ? $page : '';
 		$type = isset($type) ? $type : '';
-		
+
 		if($type == 'heading' && !empty($desc)) {
 			$desc = '<h4 class="field_heading'.$togglegroup.'">'.$desc.'</h4>';
 			$desc .= isset($label) ? '<p class="description">'.$label.'</p>' : '';
@@ -660,9 +661,9 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 	 				// Make labels clickable
 	 	 				$field['args']['label_for'] = 'constant-contact-api_'.$field['args']['id'];
 	 	 			}
-	 	 			
-					$help = isset($field['args']['help']) ? '<span class="ctct_help cc_qtip" title="'.str_replace('"', '&quot;', $field['args']['help']).'">?</span>' : '';
-	 				
+
+					$help = isset($field['args']['help']) ? '<span class="ctct_help cc_tip" title="'.str_replace('"', '&quot;', $field['args']['help']).'">?</span>' : '';
+
 	 				if ( !empty($field['args']['label_for']) ) {
 	 					echo '<th scope="row"><label for="' . $field['args']['label_for'] . '">' . $field['title'] . '</label>'.$help.'</th>';
 	 				} else {

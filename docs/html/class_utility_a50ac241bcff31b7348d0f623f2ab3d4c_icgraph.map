@@ -1,0 +1,14 @@
+<map id="Utility\findNextLink" name="Utility\findNextLink">
+<area shape="rect" id="node2" href="$class_settings_collection.html#a5b55d829b678ff6e8ef61cb7c3af3afe" title="Get a list of verified email addresses for an account. " alt="" coords="225,5,353,49"/>
+<area shape="rect" id="node3" href="$class_campaigns_collection.html#ab3a63de718c94ce760ebf19f59170f0c" title="CampaignsCollection\l\\getCampaignEvents" alt="" coords="216,73,363,117"/>
+<area shape="rect" id="node4" href="$class_campaigns_collection.html#a2ec4b8a52341c840c56881d98d0bfdd6" title="Get a page of Campaigns. " alt="" coords="216,141,363,185"/>
+<area shape="rect" id="node5" href="$class_campaigns_collection.html#a60d74f76a35500fc9bb792fd98d94b3c" title="Get a page of campaigns by status. " alt="" coords="207,209,372,253"/>
+<area shape="rect" id="node6" href="$class_contacts_collection.html#a8c5270d8d9d42b17b119c41b64b2e991" title="Get events for a given Contact. " alt="" coords="223,277,356,321"/>
+<area shape="rect" id="node7" href="$class_contacts_collection.html#a9dcfa1067f115ee7ba5f231b5433e912" title="ContactsCollection\l\\getContacts" alt="" coords="223,345,356,389"/>
+<area shape="rect" id="node9" href="$class_events_collection.html#ad0ab949e45693fd1d72baed5d5e5d552" title="Get a page of Events. " alt="" coords="198,413,381,441"/>
+<area shape="rect" id="node10" href="$class_library_collection.html#a9a59624475132d58b8d356ff17cc3d71" title="Get a page of Folders. " alt="" coords="196,465,383,493"/>
+<area shape="rect" id="node11" href="$class_lists_collection.html#a6669dd5849b06b88788089506f656af5" title="Get a page of contacts from a given list. " alt="" coords="186,517,392,545"/>
+<area shape="rect" id="node12" href="$class_lists_collection.html#a81d8be6f107777e34fc2384b2c4b3150" title="Get an array of ContactList objects. " alt="" coords="211,569,368,597"/>
+<area shape="rect" id="node13" href="$class_events_collection.html#a6baab87fc0a58669c4b88cb2625c4b8a" title="Get a page of Registrants for an Event. " alt="" coords="184,621,394,649"/>
+<area shape="rect" id="node8" href="$class_contacts_collection.html#a5b3e93e3981dcec723292446f678f053" title="Search for contacts that have been updated since a specific date. " alt="" coords="443,345,645,389"/>
+</map>

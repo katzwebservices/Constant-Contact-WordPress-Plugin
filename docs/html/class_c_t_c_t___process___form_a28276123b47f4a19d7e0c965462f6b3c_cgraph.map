@@ -1,0 +1,9 @@
+<map id="CTCT_Process_Form\process" name="CTCT_Process_Form\process">
+<area shape="rect" id="node2" href="$class_k_w_s_constant_contact.html#a8727c849d70591f321408b5bc01d5321" title="Get access to instance or create one. " alt="" coords="294,5,445,49"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___process___form.html#a67c53f4d0d95bd3f3a2e8ed285218677" title="Sanitize the post data array before working with it. " alt="" coords="256,73,483,101"/>
+<area shape="rect" id="node4" href="$class_c_t_c_t___process___form.html#a252d206a32ffa566d28ae95d24e2ca75" title="Add key/value pair to results output. " alt="" coords="261,125,478,153"/>
+<area shape="rect" id="node5" href="$class_c_t_c_t___process___form.html#aaafc23302889bc63c66db53deeb8aef3" title="Validate email based on user settings. " alt="" coords="269,177,470,221"/>
+<area shape="rect" id="node6" href="$class_k_w_s_contact.html#abc7dd1ab0ce9b4e227e2308ba47732c0" title="KWSContact\\get" alt="" coords="571,133,691,161"/>
+<area shape="rect" id="node7" href="$class_c_t_c_t___settings.html#ae3c076753f9e642d69924227641b75e7" title="Alias for get_setting() &#160;CTCT_Settings::get_setting() " alt="" coords="563,185,698,213"/>
+<area shape="rect" id="node8" href="$class_c_t_c_t___process___form.html#a726bf81a5ba9dbd266831fa6a65fbd8c" title="Verify the $_POST using Akismet. " alt="" coords="530,237,731,281"/>
+</map>

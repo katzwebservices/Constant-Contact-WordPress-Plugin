@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Handle all plugin form submissions.
+ */
 class CTCT_Process_Form {
 
 	var $results;
@@ -9,13 +12,23 @@ class CTCT_Process_Form {
 
 	function __construct() {
 
-		include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
+		if(!class_exists('DataValidation')) {
+			include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
+		}
+
+		if(!class_exists('SMTP_validateEmail')) {
+			include_once(CTCT_DIR_PATH.'lib/mail/smtp_validateEmail.class.php');
+		}
 
 		add_action('plugins_loaded', array(&$this, 'process'));
 
 		self::$instance = &$this;
 	}
 
+	/**
+	 * Get an instance of the object
+	 * @return CTCT_Process_Form
+	 */
 	static function getInstance() {
 
 		if(empty(self::$instance)) {
@@ -25,11 +38,21 @@ class CTCT_Process_Form {
 		return self::$instance;
 	}
 
+	/**
+	 * Process the form if there is a $_POST['uniqueformid'] set
+	 *
+	 * 1. Validates the data
+	 * 2. Creates a KWSContact contact object
+	 * 3. Validate the email based on settings
+	 * 4. If valid, add/update
+	 *
+	 * @uses KWSConstantContact::addUpdateContact() To add/update contact
+	 * @todo Return contact on success.
+	 * @return WP_Error|KWSContact Returns a WP error if error, otherwise a contact object.
+	 */
 	function process() {
 
-		/**
-		 * Check that the form was submitted and we have an email value, otherwise return false
-		 */
+		// Check that the form was submitted and we have an email value, otherwise return false
 		if(!isset($_POST['uniqueformid'])) { return false; }
 
 		$this->id = esc_attr($_POST['uniqueformid']);
@@ -40,34 +63,52 @@ class CTCT_Process_Form {
 		// Create the contact
 		$KWSContact = new KWSContact($data);
 
-		// Check if the contact is valid
-
 		// Check If Email Is Real
 		$email_validation = $this->validateEmail($KWSContact);
 
 		// Add the data to the object
 		$this->setResults('email_validation', $email_validation);
 
+		#r($_POST);
+		#r($data);
+		#r($this);
+		#r($KWSContact, true);
+
 		// If validation failed, stop processing
 		if(is_wp_error($email_validation)) { return $email_validation; }
 
 		// Otherwise, let's Add/Update
-		KWSConstantContact::getInstance()->addUpdateContact($KWSContact);
+		return KWSConstantContact::getInstance()->addUpdateContact($KWSContact);
 	}
 
+	/**
+	 * Add key/value pair to results output
+	 * @param string $key   The key of the pair
+	 * @param mixed $value The value to set
+	 */
 	private function setResults($key = '', $value) {
 		$this->results[$this->id][$key] = $value;
 	}
 
+	/**
+	 * Get results for a form based on the form key
+	 * @see  constant_contact_public_signup_form() for how the key is generated (sha1 of form settings array)
+	 * @param  string $key The key of the form (its unique id)
+	 * @return array|false      If a form with unique ID `$key` has been processed, return the form results array. Otherwise, return false.
+	 */
 	public function getResults($key = '') {
 
-		if(empty($this->id)) { return false; }
+		if(empty($this->id)) { return NULL; }
 
 		if(empty($key)) { return $this->results[$this->id]; }
-		
+
 		return isset($this->results[$this->id][$key]) ? $this->results[$this->id][$key] : false;
 	}
 
+	/**
+	 * Sanitize the post data array before working with it
+	 * @return array Sanitized $_POST array
+	 */
 	private function sanitizePost() {
 
 		unset($_POST['fields']['lists']);
@@ -80,11 +121,30 @@ class CTCT_Process_Form {
 			}
 		}
 
+		// Make sure lists are IDs
+		if(!empty($_POST['lists'])) {
+			foreach($_POST['lists'] as $list) {
+				if(!is_numeric($list)) { continue; }
+				// Constant Contact requires list IDs to be strings of numbers...
+				$output['lists'][] = (string)intval($list);
+			}
+		}
+
 		unset($output['constant-contact-signup-submit']);
 
 		return $output;
 	}
 
+	/**
+	 * Validate email based on user settings.
+	 *
+	 * First, verify email using `is_email()` WordPress function (required)
+	 *
+	 * Then, process email validation based on settings.
+	 *
+	 * @param  KWSContact $Contact Contact object
+	 * @return WP_Error|boolean 	If valid, return `true`, otherwise return a WP_Error object.
+	 */
 	function validateEmail(KWSContact $Contact) {
 
 		$email = $Contact->get('email');
@@ -112,7 +172,6 @@ class CTCT_Process_Form {
 		}
 
 		// 3: WangGuard validation
-
 		if(in_array('wangguard', $methods) && function_exists('wangguard_verify_email') && wangguard_server_connectivity_ok()) {
 			global $wangguard_api_host;
 
@@ -141,6 +200,21 @@ class CTCT_Process_Form {
 				do_action('ctct_debug', 'DataValidation validation inconclusive.', $email, $Validate);
 			} elseif($validation === true) {
 				do_action('ctct_debug', 'DataValidation validation passed.', $email, $Validate);
+			}
+		}
+
+		// 5: SMTP validation
+		if(in_array('smtp', $methods) && class_exists('SMTP_validateEmail')) {
+
+			$SMTP_Validator = new SMTP_validateEmail();
+
+			$results = $SMTP_Validator->validate(array($email), get_option( 'admin_email' ));
+
+			if($results[$email]) {
+				do_action('ctct_debug', 'SMTP validation passed.', $email, $results);
+			} else {
+				do_action('ctct_debug', 'SMTP validation failed.', $email, $results);
+				return new WP_Error('smtp', 'Email validation failed.', $email, $results);
 			}
 		}
 

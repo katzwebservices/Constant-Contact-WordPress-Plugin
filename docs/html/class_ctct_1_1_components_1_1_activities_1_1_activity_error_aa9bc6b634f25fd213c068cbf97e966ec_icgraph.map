@@ -1,0 +1,9 @@
+<map id="Ctct\Components\Activities\ActivityError\create" name="Ctct\Components\Activities\ActivityError\create">
+<area shape="rect" id="node2" href="$class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. " alt="" coords="235,175,416,219"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_activity_service.html#a30d4ffe1d8324873b1940dbcd172ce11" title="Create a Clear Lists Activity. " alt="" coords="494,5,684,49"/>
+<area shape="rect" id="node4" href="$class_ctct_1_1_services_1_1_activity_service.html#a063acad0b025be72ea770afc58d5cd74" title="Create an Export Contacts Activity. " alt="" coords="494,73,684,117"/>
+<area shape="rect" id="node5" href="$class_ctct_1_1_services_1_1_activity_service.html#a0e0d8c43b0b569687ff2c1113c96a769" title="Create a Remove Contacts From Lists Activity. " alt="" coords="464,141,714,185"/>
+<area shape="rect" id="node6" href="$class_ctct_1_1_services_1_1_activity_service.html#a7585bd43669c8f9c4e1b6884e58322f6" title="Create an Add Contacts Activity. " alt="" coords="494,209,684,253"/>
+<area shape="rect" id="node7" href="$class_ctct_1_1_services_1_1_activity_service.html#afffe78c9da3d893eee3d31e947de0992" title="Get an array of activities. " alt="" coords="494,277,684,321"/>
+<area shape="rect" id="node8" href="$class_ctct_1_1_services_1_1_activity_service.html#a29a275be3f87a87150f225f939e07637" title="Get an array of activities. " alt="" coords="494,345,684,389"/>
+</map>

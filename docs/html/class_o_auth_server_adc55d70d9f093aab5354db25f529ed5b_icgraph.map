@@ -1,0 +1,5 @@
+<map id="OAuthServer\get_consumer" name="OAuthServer\get_consumer">
+<area shape="rect" id="node2" href="$class_o_auth_server.html#a5c76359726e685013d2e0cb8a1abe09a" title="process an access_token request returns the access token on success " alt="" coords="242,5,422,49"/>
+<area shape="rect" id="node3" href="$class_o_auth_server.html#aa91f1a763ab36c576ebf9319ac4751f6" title="process a request_token request returns the request token on success " alt="" coords="241,73,423,117"/>
+<area shape="rect" id="node4" href="$class_o_auth_server.html#ad31e95096adeac980a8a99f59c4cadc6" title="verify an api call, checks all the parameters " alt="" coords="265,141,399,185"/>
+</map>

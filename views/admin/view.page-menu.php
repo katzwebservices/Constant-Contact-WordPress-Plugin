@@ -1,4 +1,4 @@
-<div class="wrap constant_contact_plugin_page_list cc_hidden" style="padding-bottom:10px; background:white; display:none;">
+<div class="wrap constant_contact_plugin_page_list cc_hidden ui-tooltip" style="display:none;">
     <h2>Plugin Pages</h2>
     <h3>Plugin Configuration</h3>
     <ul class="ul-disc">

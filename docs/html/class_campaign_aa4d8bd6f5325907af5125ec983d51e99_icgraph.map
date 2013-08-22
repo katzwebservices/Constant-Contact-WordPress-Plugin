@@ -1,0 +1,5 @@
+<map id="Campaign\createXml" name="Campaign\createXml">
+<area shape="rect" id="node2" href="$class_campaigns_collection.html#a4bbf8266fa150e04a4bff5a8052967a6" title="Add a new Campaign. " alt="" coords="200,5,347,49"/>
+<area shape="rect" id="node3" href="$class_campaigns_collection.html#a0d5df67f0dd50c64257c8b0135196509" title="Schedule an email for delivery. " alt="" coords="200,73,347,117"/>
+<area shape="rect" id="node4" href="$class_campaigns_collection.html#a9c9715edb4f23ba515ce7b53a38cfdbb" title="Update a campaign with it&#39;s current properties. " alt="" coords="200,141,347,185"/>
+</map>

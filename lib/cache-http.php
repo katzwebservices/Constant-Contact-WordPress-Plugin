@@ -3,7 +3,7 @@
 Plugin Name: Cache Requests
 Plugin URI: http://wordpress.org/extend/plugins/cache-http/
 Description: Easily cache requests made using the WordPress HTTP API
-Version: 1.0
+Version: 1.0.1
 Author: Katz Web Services, Inc.
 Author URI: http://www.katzwebservices.com
 */
@@ -34,7 +34,7 @@ class Cache_WP_HTTP {
 			return false;
 		}
 
-		$response = maybe_unserialize( get_site_transient( $key ));
+		$response = maybe_unserialize( get_transient( $key ));
 
 		$this->flushCache($url, $r);
 
@@ -78,7 +78,7 @@ class Cache_WP_HTTP {
 		$time = $this->getCacheTime($args);
 		if(!is_null($time)) {
 			$key = $this->getKey($url, $args);
-			$success = set_site_transient( $key, $response, $time );
+			$success = set_transient( $key, $response, $time );
 			$this->r(sprintf('cache time: %s<br/>cache key: %s<br />cache success: %s', $time, $key, (bool)$success));
 		}
 
@@ -135,12 +135,12 @@ class Cache_WP_HTTP {
 
 		if(isset($r['flush_key'])) {
 			$this->r(sprintf('Flush URL: %s<br />Deleting transietnt with key %s', $url, $r['flush_key']), false, 'flushCache');
-			delete_site_transient($r['flush_key']);
+			delete_transient($r['flush_key']);
 		}
 
 #		$key = $this->getKey($url,  array('body' => NULL, 'method' => 'GET'));
 #		$this->r(sprintf('Flush URL: %s<br />Deleting transietnt with key %s', $url, $key), false, 'flushCache');
-#		delete_site_transient($key);
+#		delete_transient($key);
 
 	}
 

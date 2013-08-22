@@ -1,0 +1,6 @@
+<map id="Registrant\createStruct" name="Registrant\createStruct">
+<area shape="rect" id="node2" href="$class_custom_field.html#a4e25506f8bdd629223fcf0ef94b508c0" title="Create CustomField object from XML. " alt="" coords="211,5,402,33"/>
+<area shape="rect" id="node3" href="$class_cost.html#ace3bfdbf89c0bd466208d0ea5f2e62f1" title="Create associative array of object properties. " alt="" coords="244,57,369,85"/>
+<area shape="rect" id="node4" href="$class_personal_information.html#a459c575ff93d4a7f0662baa439a454d0" title="Create array from associative array of object properties. " alt="" coords="236,109,377,153"/>
+<area shape="rect" id="node5" href="$class_business_information.html#ac7e97ef553fa2189bd85dce10999c58e" title="Create an associative array of object properties from XML. " alt="" coords="236,177,378,221"/>
+</map>

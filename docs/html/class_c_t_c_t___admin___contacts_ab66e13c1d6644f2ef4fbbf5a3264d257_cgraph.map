@@ -1,0 +1,5 @@
+<map id="CTCT_Admin_Contacts\getTitle" name="CTCT_Admin_Contacts\getTitle">
+<area shape="rect" id="node2" href="$class_c_t_c_t___admin___page.html#aa09ddad8c19f7b5e766616954288f30c" title="CTCT_Admin_Page\\isAdd" alt="" coords="223,5,401,33"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___admin___page.html#a3022d3649afef42fe8a14b1f34f50a11" title="CTCT_Admin_Page\\isEdit" alt="" coords="224,57,400,85"/>
+<area shape="rect" id="node4" href="$class_c_t_c_t___admin___page.html#a79cac52351cd72e5cb0269ad98ac9a82" title="CTCT_Admin_Page\\isSingle" alt="" coords="216,109,408,137"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="Net_DNS\classesbyname" name="Net_DNS\classesbyname">
+<area shape="rect" id="node2" href="$class_net___d_n_s___question.html#af2289a48d2fc52b5619ae769a38860c5" title="Net_DNS_Question\\data" alt="" coords="227,5,395,33"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___r_r.html#a2ba8db7475430522d54c3eff8f4f54b4" title="Net_DNS_RR\\data" alt="" coords="244,57,378,85"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___question.html#a99a2a39439701505659336cfa10cfc25" title="Net_DNS_Question\\Net\l_DNS_Question" alt="" coords="229,109,392,153"/>
+<area shape="rect" id="node5" href="$class_net___d_n_s___r_r.html#a1654146cab0e22d9bae1dae01d42f9fd" title="Net_DNS_RR\\new_from\l_string" alt="" coords="227,177,394,221"/>
+<area shape="rect" id="node9" href="$class_net___d_n_s___r_r___t_s_i_g.html#a34aa917d71dd9b645ecf8d4abb104a25" title="Net_DNS_RR_TSIG\\rr\l_rdata" alt="" coords="233,245,388,289"/>
+<area shape="rect" id="node6" href="$class_net___d_n_s___r_r.html#a135785ee6a8c1f0a5e0597d7f61465b5" title="Net_DNS_RR\\factory" alt="" coords="443,185,591,213"/>
+<area shape="rect" id="node7" href="$class_net___d_n_s___packet.html#a8684f7ece05b01f65ec45160cca1852d" title="Parses a resource record section of a packet. " alt="" coords="640,185,819,213"/>
+<area shape="rect" id="node8" href="$class_net___d_n_s___packet.html#a108461c26b058bf6aed5e4bcae9da3e6" title="Parses a DNS packet returned by a DNS server. " alt="" coords="867,185,1029,213"/>
+</map>

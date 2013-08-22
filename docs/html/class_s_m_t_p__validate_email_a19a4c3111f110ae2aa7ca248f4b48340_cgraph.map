@@ -1,0 +1,5 @@
+<map id="SMTP_validateEmail\SMTP_validateEmail" name="SMTP_validateEmail\SMTP_validateEmail">
+<area shape="rect" id="node2" href="$class_s_m_t_p__validate_email.html#a735a2baa7c1d89f2a0f1985dc33c5c15" title="Set the Emails to validate. " alt="" coords="203,5,349,49"/>
+<area shape="rect" id="node4" href="$class_s_m_t_p__validate_email.html#a396adea78616a4087d2343794557b049" title="Set the Email of the sender/validator. " alt="" coords="203,73,349,117"/>
+<area shape="rect" id="node3" href="$class_s_m_t_p__validate_email.html#a85d339ef8bdb566afa3be9ca11820594" title="SMTP_validateEmail\l\\_parseEmail" alt="" coords="398,39,543,83"/>
+</map>

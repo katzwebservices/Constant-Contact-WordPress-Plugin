@@ -11,37 +11,37 @@
 
 jQuery(document).ready(function($) {
 
-	
+
 	function ctct_pointers(target) {
 
     	if(typeof CTCT == 'undefined' || !CTCT || !CTCT.pointers.pointers) { return; }
-    	
+
     	CTCT.pointers.pointers.forEach(function(pointer, index, array) {
 			ctct_pointer(pointer);
         });
     }
 
     function ctct_pointer(pointer) {
-    	
+
     	hide_pointers = $.cookie('ctct_hide_pointers');
     	hide_pointers_array = hide_pointers ? hide_pointers.split(/,/) : new Array();
-    	
+
     	if($.inArray(pointer.pointer_id, hide_pointers_array) >= 0) { return; }
-    	
+
 		options = $.extend( pointer.options, {
     	    close: function(event) {
-    			    	
+
     	    	hide_pointers_array.push(pointer.pointer_id);
 
     	    	$.cookie('ctct_hide_pointers', hide_pointers_array.join(','));
-    	    	
+
     	    	$.post( ajaxurl, {
     	            pointer: pointer.pointer_id,
     	            action: 'dismiss-wp-pointer'
     	        });
     	    }
     	});
-    	
+
     	$(pointer.target).data('pointer_id', pointer.pointer_id).pointer( options );
 
 		if($(pointer.target).is(':visible')) {
@@ -56,13 +56,13 @@ jQuery(document).ready(function($) {
      * Toggle the WP help menu tab by linking to them
      */
     $('a[rel="wp-help"]').live('click', function() {
-    	
+
     	if($('#screen-meta').is(':hidden')) {
     		$('#contextual-help-link').click();
     	}
-    	
+
     	$('#screen-meta a[href*="' + $(this).attr('href').replace('#', '') +'"]').click();
-    	
+
     	return false;
     });
 
@@ -78,10 +78,10 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.confirm').click(function() {
-	
+
 		var confirm1 = confirm($(this).data('confirm'));
 		var confirm2 = $(this).data('confirm-again');
-	
+
 		if(confirm1) {
 			if(confirm2) { return confirm(confirm2); }
 			return true;
@@ -166,16 +166,16 @@ jQuery(document).ready(function($) {
 			ctct_set_referrer();
 
 			$('.constant-contact-api-toggle[rel]').trigger('ctct_ready');
-			
+
 			return false;
 		},
 		cookie: { expires: 1 }
 	});
 
 	function ctct_set_referrer() {
-		
+
 		var $referrer = $('input[name=_wp_http_referer]', '.toplevel_page_constant-contact-api');
-		
+
 		if($referrer.length) {
 			$referrer.val($referrer.val().replace(/(#.+)$/gi, '') + document.location.hash);
 		}
@@ -269,43 +269,43 @@ jQuery(document).ready(function($) {
 	}
 
 	// For support
-	$('.cc_qtip,.ctct_qtip').qtip({
-		style: {
-			classes: 'ui-tooltip-light ui-tooltip-shadow ctct-tooltip',
-			width: '280px'
-		}
-	});
+	$('.cc_tip,.ctct_tip').each(function() {
+		$(this).tooltip({
+	        content: function () {
+	            return $(this).prop('title');
+	        }
+	    });
+     });
+
+	var mouseLeaveTimer;
+	var mouseEnterTimer;
 
 	// For logo dropdown
-	$('a.cc_logo').qtip({
-		content: {
-		text: $('.constant_contact_plugin_page_list.cc_hidden')
-	},
-	style: {
-		classes: 'ui-tooltip-light ui-tooltip-shadow ctct-tooltip',
-		width: '500px',
-		tip: {
-			corner: true,
-			height: 15,
-			width: 15
+	$('a.cc_logo').hover(
+		function(e) {
+			$('.constant_contact_plugin_page_list').removeClass('cc_hidden').slideDown('fast');
+		},
+		function(e) {
+
+		// close the tooltip later (maybe ...)
+		   mouseLeaveTimer = setTimeout(function(){
+		       $('.constant_contact_plugin_page_list').addClass('cc_hidden').slideUp('fast');
+		   }, 200);
+
+			e.stopImmediatePropagation();
 		}
-	},
-	position: {
-		my: 'top left',// Position my top left...
-		at: 'bottom left', // at the bottom right of...
-		target: $('a.cc_logo'), // my target
-		adjust: {
-			x: 20
-		}
-	},
-	show: {
-		target: $('a.cc_logo') // my target
-	},
-	hide: {
-		fixed: true,
-		delay: 500
-	}
-	});
+	);
+
+	$(document)
+		.on('mouseenter', '.constant_contact_plugin_page_list', function(e){
+		    // cancel tooltip closing on hover
+		    clearTimeout(mouseLeaveTimer);
+		})
+		.on('mouseleave', '.constant_contact_plugin_page_list', function(){
+	    	mouseLeaveTimer = setTimeout(function(){
+		       $('.constant_contact_plugin_page_list').addClass('cc_hidden').slideUp('fast');
+		   }, 200);
+		});
 
 	// For component summary boxes
 	$('.fittext').fitText(1.2, {maxFontSize: 50});

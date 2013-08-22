@@ -1,0 +1,5 @@
+<map id="CTCT_Admin_Table\do_not_esc_th" name="CTCT_Admin_Table\do_not_esc_th">
+<area shape="rect" id="node2" href="$class_c_t_c_t___admin___table.html#a86ee4b0a1ffc7f7fa9b41ffaac329d3b" title="Constructor. " alt="" coords="236,5,388,49"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___admin___table.html#adeaebbd18a2a51c37385fb7f50a0b44b" title="Builds the table and returns HTML ready to echo to the browser. " alt="" coords="214,73,410,101"/>
+<area shape="rect" id="node4" href="$class_c_t_c_t___admin___table.html#a33cb1d8da54850e6aeba100bfb95145c" title="Alias to $this&#45;&gt;render() " alt="" coords="459,73,642,101"/>
+</map>

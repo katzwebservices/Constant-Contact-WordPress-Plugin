@@ -1,0 +1,12 @@
+<map id="Net_DNS_Packet\parse_rr" name="Net_DNS_Packet\parse_rr">
+<area shape="rect" id="node2" href="$class_net___d_n_s.html#aa174e141c3f35c55667c426f4e14fdbf" title="Translates RR class integers into names. " alt="" coords="252,5,409,33"/>
+<area shape="rect" id="node3" href="$class_net___d_n_s___packet.html#a9844b7ce62cb096db44f58882f8ca403" title="DNS packet decompression method. " alt="" coords="233,57,428,85"/>
+<area shape="rect" id="node4" href="$class_net___d_n_s___r_r.html#a135785ee6a8c1f0a5e0597d7f61465b5" title="Net_DNS_RR\\factory" alt="" coords="257,109,405,137"/>
+<area shape="rect" id="node11" href="$class_net___d_n_s.html#a861c4a9129fe2a4993108b6925d58f93" title="Translates RR type integers into names. " alt="" coords="258,161,403,189"/>
+<area shape="rect" id="node5" href="$class_net___d_n_s___r_r.html#a1654146cab0e22d9bae1dae01d42f9fd" title="Net_DNS_RR\\new_from\l_string" alt="" coords="494,169,661,213"/>
+<area shape="rect" id="node9" href="$class_net___d_n_s___r_r.html#a14ca0dc83ff30526df3d595b83ef13dd" title="Net_DNS_RR\\new_from_data" alt="" coords="477,49,677,77"/>
+<area shape="rect" id="node10" href="$class_net___d_n_s___r_r.html#ae21f552addb2e6fea8f4e87ea883ba78" title="Net_DNS_RR\\new_from\l_array" alt="" coords="494,101,661,145"/>
+<area shape="rect" id="node6" href="$class_net___d_n_s___r_r.html#ab64df1897e6e896b456e7007085fad40" title="Net_DNS_RR\\Net_DNS_RR" alt="" coords="726,109,917,137"/>
+<area shape="rect" id="node7" href="$class_net___d_n_s.html#a1e086e94cfa4b747b481b1e5859a1caf" title="translates a DNS class from it&#39;s name to it&#39;s integer value. " alt="" coords="735,169,908,197"/>
+<area shape="rect" id="node8" href="$class_net___d_n_s.html#a1420f63422265cad4ceb1899647e53e6" title="Translates RR type names into integers. " alt="" coords="741,221,902,249"/>
+</map>

@@ -87,7 +87,6 @@ if(!$debug) {
 		$asterisk = $bold = $italic = $required = $val = $size = '';
 		$fields = '';
 		$data = getData();
-
 		if(!isset($field['id'])) { return ''; }
 
 		if(is_array($field)) { extract($field); }
@@ -153,7 +152,7 @@ if(!$debug) {
 			if(!empty($label)) {
 				$fields .= "\n<label class='$class'>$label</label>\n";
 			}
-			$fields .= "<!-- %%LISTSELECTION%% -->";
+			$fields .= '<!-- %%LISTSELECTION%% -->';
 		}
 		// It's a text field
 		else {
@@ -164,7 +163,6 @@ if(!$debug) {
 		if(!empty($label)) { $fields .= "\n".'<input type="hidden" name="'.$name.'[label]" value="'.htmlentities($label).'" />'; }
 		$fields .= $requiredFields;
 		$fields .= "\n</div>";
-
 		return $fields;
 	}
 
@@ -229,11 +227,20 @@ if(!$debug) {
 			}
 			array_multisort($position, SORT_ASC, $f);
 
+			$lists_shown = false;
 			foreach($f as $field) {
                 $field['size'] = $size;
                 $field['form_id'] = $cc_signup_count;
+                if($field['t'] === 'lists') {
+                	$lists_shown = true;
+                }
 				$fieldoutput = makeFormField($field, $cc_request, $currentform);
 				$inputfields .= $fieldoutput;
+            }
+
+            // Make sure the lists fields are shown if not already added.
+            if(!$lists_shown) {
+            	$inputfields .= '<!-- %%LISTSELECTION%% -->';
             }
 
             // We need a submit field for some strange reason in some IE versions
@@ -243,7 +250,7 @@ if(!$debug) {
             $inputfields = "\n".'<div class="kws_input_fields gform_fields">'.$inputfields."\n".'</div>';
         }
 
-        r(htmlentities($inputfields));
+        #r(htmlentities($inputfields));
 
 		if($safesubscribe != 'no') {
 			$safesubscribelink = '<a href="http://katz.si/safesubscribe" target="_blank" class="cc_safesubscribe safesubscribe_'.$safesubscribe.'" rel="nofollow">Privacy by SafeSubscribe</a>';
@@ -273,8 +280,10 @@ if(!$debug) {
 		</form>
 	</div>
 EOD;
-		$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
-		$form = preg_replace('/\s\s/ism', ' ', $form);
+		if(!$debug) {
+			$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
+			$form = preg_replace('/\s\s/ism', ' ', $form);
+		}
 		return $form;
 	}
 
@@ -287,7 +296,7 @@ EOD;
 
 		extract($data);
 
-		if(isset($form)) { $selector = 'div#cc_form_'.$form; } else { $selector = 'div.kws_form'; }
+		if(isset($form)) { $selector = '#content #cc_form_'.$form; } else { $selector = 'html body div.kws_form'; }
 
 		$bgtop = $color6;
 		$bgtopraw = str_replace('#', '', $bgtop);
@@ -308,7 +317,7 @@ EOD;
 					$bgrepeat = 'left top repeat-x';
 					$bgback = $bgbottom;
 				}
-				$bgcss = "background: $bgbottom url('{$path}ozhgradient.php?start=$bgtopraw&end=$bgbottomraw&&type=$gradtype&$dimensions') $bgrepeat;";
+				$bgcss = "background: $bgbottom url('{$path}ozhgradient.php?start=$bgtopraw&end=$bgbottomraw&type=$gradtype&$dimensions') $bgrepeat;";
 				break;
 			case 'solid':
 				$bgcss = "background-color: $bgbottom; background-image:none;";

@@ -96,6 +96,7 @@ class KWSRestClient implements RestClientInterface
 			'flush_key' => apply_filters('ctct_flushkey', self::$flushkey),
 		);
 
+
 		$response = wp_remote_request( $url, $args );
 
 		// check if any errors were returned
@@ -104,17 +105,22 @@ class KWSRestClient implements RestClientInterface
 			$ex = new CtctException($response['body']);
 			$ex->setCurlInfo($response['response']);
 			$ex->setErrors($body);
-			
+
 			do_action('ctct_log_message', 'httpRequest Error', $ex);
 			do_action('ctct_debug', 'httpRequest Error', $ex);
-			
+
 			$errors = $ex->getErrors();
 
 			preg_match('/^#\/(.*?):(.+)/ism', $errors[0]['error_message'], $matches);
-			$error_field = $matches[1];
-			$error_message = $matches[2];
+			if(!empty($matches)) {
+				$error_field = $matches[1];
+				$error_message = $matches[2];
+			} else {
+				$error_field = NULL;
+				$error_message = $errors[0]['error_message'];
+			}
 			$Error = new WP_Error($errors[0]['error_key'], $error_message, array('field' => $error_field, 'response' => $response, 'request' => $args, 'request_url' => $url));
-			
+
 			throw $ex;
 		}
 

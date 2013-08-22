@@ -25,10 +25,10 @@ class KWS_V1API extends ConstantContact {
 
 	    $EventsCollection = new EventsCollection($this->CTCTRequest);
 	    $key = constant_contact_cache_key('Event', $Event);
-	    $details = get_site_transient($key);
+	    $details = get_transient($key);
 	    if(!$details || $this->refreshCache('event')) {
 	    	$details = $EventsCollection->getEventDetails($this->CTCTRequest->baseUri.$Event->link);
-	    	set_site_transient( $key, $details, self::$event_cache_age);
+	    	set_transient( $key, $details, self::$event_cache_age);
 	    }
 
 	    return $details;
@@ -43,10 +43,10 @@ class KWS_V1API extends ConstantContact {
 	    $EventsCollection = new EventsCollection($this->CTCTRequest);
 
 	    $key = constant_contact_cache_key('Registrant', $Registrant);
-	    $details = get_site_transient( $key );
+	    $details = get_transient( $key );
 		if(!$details || $this->refreshCache('registrant')) {
 			$details = $EventsCollection->getRegistrantDetails($this->CTCTRequest->baseUri.$Registrant->link);
-			set_site_transient( $key, $details, self::$registrant_cache_age);
+			set_transient( $key, $details, self::$registrant_cache_age);
 		}
 
 	    return $details;

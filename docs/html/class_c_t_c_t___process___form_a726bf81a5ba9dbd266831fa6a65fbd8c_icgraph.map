@@ -1,0 +1,4 @@
+<map id="CTCT_Process_Form\akismetCheck" name="CTCT_Process_Form\akismetCheck">
+<area shape="rect" id="node2" href="$class_c_t_c_t___process___form.html#aaafc23302889bc63c66db53deeb8aef3" title="Validate email based on user settings. " alt="" coords="253,5,454,49"/>
+<area shape="rect" id="node3" href="$class_c_t_c_t___process___form.html#a28276123b47f4a19d7e0c965462f6b3c" title="Process the form if there is a $_POST[&#39;uniqueformid&#39;] set. " alt="" coords="502,13,703,41"/>
+</map>

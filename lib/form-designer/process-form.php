@@ -108,7 +108,7 @@ function constant_contact_handle_public_signup_form() {
      * If we have nothing in $list_id's return an error and exit
      */
     if(empty($subscribe_lists)) {
-        set_site_transient($form_id, new WP_Error('select a list', 'Please select at least 1 list.'));
+        set_transient($form_id, new WP_Error('select a list', 'Please select at least 1 list.'));
         return;
     }
 
@@ -134,15 +134,15 @@ function constant_contact_handle_public_signup_form() {
      * If the call was unsuccessful show a generic error.
      */
     if(!$status && (int)$cc->http_response_code !== 0) {
-        set_site_transient($form_id, new WP_Error('http response', 'Sorry there was a problem, please try again later'));
+        set_transient($form_id, new WP_Error('http response', 'Sorry there was a problem, please try again later'));
         return;
     } elseif($redirect_to) {
-        set_site_transient($form_id, 'success');
+        set_transient($form_id, 'success');
         $redirect_to = apply_filters('constant_contact_add_success_param', true) ? add_query_arg('success', true, $redirect_to) : $redirect_to;
         header("Location: {$redirect_to}");
         exit;
     } else {
-        set_site_transient($form_id, 'success');
+        set_transient($form_id, 'success');
     }
 
     // return false so we display no errors when viewing the form

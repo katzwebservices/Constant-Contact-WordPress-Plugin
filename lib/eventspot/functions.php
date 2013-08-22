@@ -18,7 +18,7 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 
 	$key = constant_contact_cache_key('all_'.$type, $passed);
 
-	if(!constant_contact_refresh_cache($type) && $cached = get_site_transient($key)) {
+	if(!constant_contact_refresh_cache($type) && $cached = get_transient($key)) {
 		return $cached;
 	}
 
@@ -44,13 +44,13 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 		constant_contact_old_api_get_all($type, $api, $passed, $all, $items['nextLink']);
 	}
 
-	set_site_transient($key, $all, apply_filters('constant_contact_cache_age', 60 * 60 * 6));
+	set_transient($key, $all, apply_filters('constant_contact_cache_age', 60 * 60 * 6));
 
 	return $all;
 }
 
 function constant_contact_get_timezone($value='') {
-	
+
 	$timezone = null;
 
 	if (date_default_timezone_get()) { $timezone = date_default_timezone_get(); }
@@ -61,7 +61,7 @@ function constant_contact_get_timezone($value='') {
 }
 
 function constant_contact_event_date($value = null) {
-	
+
 	// We get the current server timezone
 	$timezone = constant_contact_get_timezone();
 
@@ -70,10 +70,10 @@ function constant_contact_event_date($value = null) {
 
 	// We convert the date to "Date at Time"
 	$string = sprintf(__('%1$s at %2$s','constant-contact-api'), date_i18n(get_option('date_format'), strtotime($value), false), date_i18n(get_option('time_format'), strtotime($value), false));
-	
+
 	// We restore the timezone to what it was
 	date_default_timezone_set($timezone);
-	
+
     return $string;
 }
 

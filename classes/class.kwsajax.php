@@ -46,7 +46,7 @@ class KWSAJAX {
 								$response['message'] = __('Successfully updated.', 'constant-contact-api');
 								$response['code'] = 200;
 
-								delete_site_transient('ctct_all_contacts');
+								delete_transient('ctct_all_contacts');
 
 								/**
 								 * Set this so that next time the user refreshes the contact page,
@@ -78,7 +78,7 @@ class KWSAJAX {
 								$response['message'] = __('Successfully updated.', 'constant-contact-api');
 								$response['code'] = 200;
 
-								delete_site_transient('ctct_all_lists');
+								delete_transient('ctct_all_lists');
 							}
 						}
 					} catch(Exception $e) {
