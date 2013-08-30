@@ -88,14 +88,16 @@ class KWSRestClient implements RestClientInterface
 			'method' => $method,
 			'body' => $data,
 			'timeout' => 50,
+			// When using wp_remote_request, there can be issues that
+			// arise when you have redirection set to more than 0 for post
+			// requests.
 			'redirection' => (strtoupper($method) === 'POST' ? 0 : 10),
 			'httpversion' => '1.1',
 			'ssl_verify' => 0,
-			'cache' => self::getCache($url, $data),
+			'cache' => self::getCache($url, $data, $method),
 			'cache_key' => apply_filters('ctct_cachekey', self::$cachekey),
 			'flush_key' => apply_filters('ctct_flushkey', self::$flushkey),
 		);
-
 
 		$response = wp_remote_request( $url, $args );
 
@@ -106,15 +108,16 @@ class KWSRestClient implements RestClientInterface
 			$ex->setCurlInfo($response['response']);
 			$ex->setErrors($body);
 
-			do_action('ctct_log_message', 'httpRequest Error', $ex);
+			do_action('ctct_log', 'httpRequest Error', $ex);
 			do_action('ctct_debug', 'httpRequest Error', $ex);
 
 			$errors = $ex->getErrors();
 
-			preg_match('/^#\/(.*?):(.+)/ism', $errors[0]['error_message'], $matches);
+			preg_match('/^#\/(.*?):(.+)$/ism', $errors[0]['error_message'], $matches);
+
 			if(!empty($matches)) {
-				$error_field = $matches[1];
-				$error_message = $matches[2];
+				$error_field = trim(rtrim($matches[1]));
+				$error_message = trim(rtrim($matches[2]));
 			} else {
 				$error_field = NULL;
 				$error_message = $errors[0]['error_message'];
@@ -130,9 +133,10 @@ class KWSRestClient implements RestClientInterface
 		return $responseClass;
 	}
 
-	static private function getCache($url, $data) {
+	static private function getCache($url, $data, $method = 'POST') {
 
-		if(defined('DOING_AJAX')) { return 0; }
+		// Only cache GET requests, and not when using ajax.
+		if(strtoupper($method) !== 'GET' || defined('DOING_AJAX')) { return 0; }
 
 		return apply_filters('ctct_cache', apply_filters('constant_contact_cache_age', 60 * 60 * 6, $url, $data), $url, $data);
 	}

@@ -54,14 +54,14 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
             $action = "Getting Contact By Email Address";
             try {
-                // check to see if a contact with the email addess already exists in the account
-                $response = $this->cc->getContactByEmail($email);
-
 
                 $data = $_POST;
-                $data['email_addresses'] = $email;
-                // Placeholder until we get $_POST
-                /*$data = array(
+                #$data = new KWSContact($data);
+
+               # $data['email_addresses'] = $email;
+
+               /* // Placeholder until we get $_POST
+                $data = array(
                     'first_name' => 'Example',
                     'last_name' => 'Jones',
                     'job_title' => 'President',
@@ -100,33 +100,21 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
                     'notes' => array(
                         array(
                          'note' => 'Note 1'
-                        ),
-                        array(
-                         'note' => 'Note 2'
-                        ),
+                        )
                     ),
                     'lists' => array('3', '27', '34')
                 );*/
 
+                $returnContact = $this->cc->addUpdateContact($data);
+
                 // create a new contact if one does not exist
-                if (empty($response->results)) {
-                    $action = "Creating Contact";
-
-                    $kwscontact = new KWSContact($data);
-
-                    $returnContact = $this->cc->addContact(CTCT_ACCESS_TOKEN, $kwscontact);
+                if ($returnContact) {
 
                     wp_redirect(add_query_arg(array('page' => $this->getKey(), 'view' => $returnContact->id), admin_url('admin.php')));
 
                 // update the existing contact if address already existed
                 } else {
-                    $action = "Updating Contact";
 
-                    $contact = new KWSContact($response->results[0]);
-
-                    $contact = $contact->update($data);
-
-                    $returnContact = $this->cc->updateContact(CTCT_ACCESS_TOKEN, $contact);
                 }
 
             // catch any exceptions thrown during the process and print the errors to screen

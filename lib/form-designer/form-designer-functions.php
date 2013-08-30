@@ -3,18 +3,6 @@
  * @package CTCT\Form Designer
  */
 
-if(!function_exists('tempty')) {
-	/**
-	 * Is the value empty when trimmed of whitespace and is it not zero?
-	 * @param  mixed $val The content to check
-	 * @return boolean   True: empty; False: not empty
-	 */
-	function tempty($val) {
-		$val = rtrim(trim($val));
-    	return empty($val) && $val !== 0  && $val !== '0';
-	}
-}
-
 /**
  * Return the current page being accessed
  * From http://www.webcheatsheet.com/PHP/get_current_page_url.php

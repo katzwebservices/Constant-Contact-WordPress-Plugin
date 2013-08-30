@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="class_c_t_c_t___registration.html#a019b36be949a8c744ba312e099be9194" target="_top" xlink:title="CTCT_Registration\\\l__construct">
+<g id="a_node2"><a xlink:href="class_c_t_c_t___registration.html#a019b36be949a8c744ba312e099be9194" target="_top" xlink:title="Set up hooks, filters, and whether to process registration at all. ">
 <polygon fill="white" stroke="black" points="160.82,-243 160.82,-275 265.18,-275 265.18,-243 160.82,-243"/>
 <text text-anchor="start" x="168.82" y="-261" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\</text>
 <text text-anchor="middle" x="213" y="-249" font-family="Helvetica,sans-Serif" font-size="10.00">__construct</text>
@@ -71,7 +71,7 @@
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="class_c_t_c_t___registration.html#ac5d49d7c63cbc560e9f89144a544762e" target="_top" xlink:title="Hook into &#39;register_post&#39; action to manage subscription of new users during user registration. ">
+<g id="a_node6"><a xlink:href="class_c_t_c_t___registration.html#a7b08750aaabbf7a8b110da33b9e2c261" target="_top" xlink:title="Hook into &#39;register_post&#39; action to manage subscription of new users during user registration. ">
 <polygon fill="white" stroke="black" points="143.313,-51 143.313,-83 282.687,-83 282.687,-51 143.313,-51"/>
 <text text-anchor="start" x="151.313" y="-69" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\process</text>
 <text text-anchor="middle" x="213" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">_submission</text>

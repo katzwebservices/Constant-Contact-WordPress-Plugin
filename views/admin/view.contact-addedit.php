@@ -55,7 +55,8 @@
                 	break;
                 	break;
                 case 'notes':
-                    $html .= '<textarea name="notes" type="text" class="all-options" title="'.esc_attr($Contact->getLabel($key)).'" placeholder="'.esc_attr($Contact->getLabel($key)).'">'.$Contact->get('notes').'</textarea>';
+                    // Constant contact got rid of notes for now
+                    /*$html .= '<textarea name="notes" type="text" class="all-options" title="'.esc_attr($Contact->getLabel($key)).'" placeholder="'.esc_attr($Contact->getLabel($key)).'">'.$Contact->get('notes').'</textarea>';*/
                     break;
                 default:
                 	$html .= '<input id="'.$key.'" type="text" name="'.$key.'" class="regular-text" title="'.esc_attr($Contact->getLabel($key)).'" value="'.$Contact->get($key).'" placeholder="'.esc_attr($Contact->getLabel($key)).'" />';

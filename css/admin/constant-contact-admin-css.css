@@ -376,3 +376,17 @@ body .constant_contact_plugin_page_list {
 	max-width:80%;
 	background: #fcfcfc;
 }
+
+.constant-contact_page_constant-contact-forms #screen-meta {
+	z-index: 999999;
+}
+/**
+ * #screen-meta-links margin-right:24px;
+ * #screen-meta-links .screen-meta-toggle top:-1px;
+ */
+#delete_all_forms {
+	position: absolute;
+	top:-1px;
+	margin-right: 24px;
+	right: 5em;
+}

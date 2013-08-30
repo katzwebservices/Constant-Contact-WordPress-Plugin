@@ -1,8 +1,12 @@
 <?php
+
 /**
  * @package CTCT\Form Designer
+ *
+ * @todo Add `cc_redirect_url`-type setting
+ * @todo Test widget
+ * @todo Test backward compatibility
  */
-
 class CTCT_Form_Designer extends CTCT_Admin_Page {
 
 	var $key = 'constant-contact-forms';
@@ -21,21 +25,15 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		define('CC_FORM_GEN_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
 
 		require_once( CC_FORM_GEN_PATH . 'form-designer-functions.php' );
-		require_once( CC_FORM_GEN_PATH . 'process-form.php' );
 		require_once( CC_FORM_GEN_PATH . 'widget-form-designer.php');
 
 		add_action('init', 'check_ccfg_compatibility');
 
 		add_shortcode('constantcontactapi', 'constant_contact_signup_form_shortcode');
 
-		// TODO: Enable widget
-		// TODO: Backward compatibility
-		#add_action('widgets_init', 'constant_contact_form_load_widget');
+		add_action('widgets_init', 'constant_contact_form_load_widget');
 
 		if(!($pagenow === 'admin.php' && $plugin_page === 'constant-contact-forms')) { return; }
-
-		// Stop the heartbeat!
-		remove_action( 'admin_init', 'wp_auth_check_load' );
 
 		add_action('admin_print_scripts', 'constant_contact_admin_widget_scripts');
 		add_filter( 'teeny_mce_before_init', 'ccfg_tiny_mce_before_init', 10, 2);

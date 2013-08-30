@@ -16,7 +16,6 @@
     </thead>
     <tbody>
         <?php
-
     $alt = ''; $html = '';
     foreach ($Campaign as $key => $value) {
         $alt = empty($alt) ? ' class="alt"' : '';
@@ -31,6 +30,24 @@
                 case 'lists':
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
                         <td>%s</td>', $Campaign->getLabel($key), KWSContactList::outputHTML($Campaign->get($key), array('type' => 'ul')));
+                    break;
+                case 'click_through_details':
+                    $clickThroughOutput = '';
+                    if(!empty($value)) {
+                        $clickThroughOutput = '<ul class="ul-disc">';
+                        foreach((array)$value as $click) {
+                            $clickThroughOutput .= '<li>';
+                            $clickThroughOutput .= '<a class="block" href="'.$click->url.'">'.$click->url.'</a>';
+                            $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'constant-contact-api'), __('Clicks', 'constant-contact-api'), $click->click_count)).'</strong>';
+                            $clickThroughOutput .= '</li>';
+                        }
+
+                        $clickThroughOutput .= '</ul>';
+                    }
+
+                    $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
+                        <td>%s</td>', $Campaign->getLabel($key), $clickThroughOutput);
+
                     break;
                 default:
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('campaigns_8php_source.html','');});
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span>(empty($value) &amp;&amp; $this-&gt;<a class="code" href="class_c_t_c_t___admin___page.html#a3022d3649afef42fe8a14b1f34f50a11">isEdit</a>() || $value == <span class="stringliteral">&#39;edit&#39;</span>)</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">return</span> <span class="stringliteral">&quot;Edit Campaign&quot;</span>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span>(empty($value) &amp;&amp; $this-&gt;<a class="code" href="class_c_t_c_t___admin___page.html#a79cac52351cd72e5cb0269ad98ac9a82">isSingle</a>() || $value == <span class="stringliteral">&#39;single&#39;</span>)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> <span class="stringliteral">&#39;Campaign&#39;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span> sprintf(<span class="stringliteral">&#39;Campaign #%s&#39;</span>, $_GET[<span class="stringliteral">&#39;view&#39;</span>]);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&#39;Campaigns&#39;</span>;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
@@ -214,7 +214,7 @@ $(document).ready(function(){initNavTree('campaigns_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d3f82993fbddabfc4f70407388515af0.html">admin</a></li><li class="navelem"><b>campaigns.php</b></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

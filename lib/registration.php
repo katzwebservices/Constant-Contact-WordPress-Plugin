@@ -9,12 +9,15 @@ class CTCT_Registration {
 	var $method;
 	var $format;
 
+	/**
+	 * Set up hooks, filters, and whether to process registration at all
+	 */
 	function __construct() {
 
 		$this->method = CTCT_Settings::get('register_page_method');
 		$this->format = CTCT_Settings::get('list_selection_format');
 
-		// Disable this
+		// Disable registration
 		if($this->method === 'none') { return; }
 
 		// register user registration action
@@ -50,15 +53,24 @@ class CTCT_Registration {
 	 *
 	 * @uses KWSConstantContact::addUpdateContact()
 	 * @global  $cc
-	 * @param <type> $login
-	 * @param <type> $email
-	 * @param <type> $errors
+	 * @param string $login The login name of the user
+	 * @param string $email The email address of the user
+	 * @param WP_Error $errors any errors going on thrown by WordPress
 	 * @return <type>
 	 */
-	function process_submission($login,$email,$errors) {
+	function process_submission($login = '', $email = '',$errors = false) {
+		$KWSLog = new KWSLog;
+
+		do_action('ctct_log', 'Starting to process registration for '.$login);
+
+		// Don't register users if there are errors thrown by WordPress
+		if(!empty($errors->errors)) {
+			return;
+		}
 
 		$has_subscribed = false;
 		$post = $_POST;
+
 		if($this->method == 'checkbox' && !empty($post['ctct-subscribe'])) {
 			// subscribe or update the user to the lists admin have selected
 			$has_subscribed = true;
@@ -71,7 +83,8 @@ class CTCT_Registration {
 		}
 
 		if($has_subscribed) {
-			WP_CTCT::getInstance()->cc->addUpdateContact(apply_filters('cc_register_post_data', $post, $login, $email, $errors));
+			do_action('ctct_log', sprintf('Processing Registration for %s', $email));
+			$returnContact = WP_CTCT::getInstance()->cc->addUpdateContact(apply_filters('cc_register_post_data', $post, $login, $email, $errors));
 		}
 
 	}
@@ -84,10 +97,20 @@ class CTCT_Registration {
 	function form() {
 
 		$reg = '';
-		$regform = '<div style="margin-bottom:16px">';
+
+		$regform = '
+		<style>
+			.ctct-register { margin-bottom:16px }
+			.ctct-register p { margin:8px 0 }
+		</style>';
+
+		// Margin bottom is to match .login form .input bottom margin.
+		// Sorry for the hack.
+		$regform .= '<div class="ctct-register">';
+
 		$title = CTCT_Settings::get('signup_title');
-		$method = $this->method; // CTCT_Settings::get('register_page_method');
-		switch($method) {
+
+		switch($this->method) {
 			case 'checkbox':
 				$reg = '<p class="ctct-subscribe">';
 
@@ -99,7 +122,7 @@ class CTCT_Registration {
 				$title = empty($title) ? '' : '<label>'.$title.'</label>';
 				$include = CTCT_Settings::get('registration_checkbox_lists');
 				$checked = isset($_POST['lists']) ? $_POST['lists'] : (CTCT_Settings::get('default_opt_in') ? true : false);
-				$reg .= KWSContactList::outputHTML('all', array('type' => $method, 'checked' => $checked, 'include' => $include));
+				$reg .= KWSContactList::outputHTML('all', array('type' => $this->method, 'checked' => $checked, 'include' => $include));
 			break;
 		}
 

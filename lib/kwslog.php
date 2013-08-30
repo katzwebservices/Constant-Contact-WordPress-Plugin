@@ -25,8 +25,8 @@ if(class_exists('KWSLog')) { return; }
 
 class KWSLog {
 
-	private static $name = 'KWS';
-	private static $slug = 'kwslog';
+	private static $name = 'Constant Contact';
+	private static $slug = 'ctct';
 	private static $tablename;
 	private static $instance;
 	private $logs = array();
@@ -45,9 +45,10 @@ class KWSLog {
 		return self::$instance;
 	}
 
-	function __construct($name = 'KWS Log') {
+	function __construct($name = 'Constant Contact') {
 
 		$slug = sanitize_title( str_replace(array(ABSPATH, 'plugins/', 'wp-content/', 'mu-plugins/', '/lib'), '', __DIR__) );
+
 
 		self::$slug = $slug;
 		self::$tablename = $slug.'_log';
@@ -57,7 +58,7 @@ class KWSLog {
 		 *
 		 * Trigger a log item using `do_action('$tablename', $message, $loglevel);`
 		 */
-		add_action(self::$tablename, array(&$this, "log_message") ,1,2);
+		add_action(self::$tablename, array(&$this, "log_message") ,1,3);
 		add_action(self::$slug.'_debug', array(&$this, "debug"));
 
 		add_action('admin_menu', array(&$this, 'log_menu'));
@@ -138,10 +139,13 @@ class KWSLog {
 	}
 
 	function debug($message = '') {
+
+		if(!function_exists('current_user_can') || !current_user_can('manage_options')) { return; }
+
 		$bt = debug_backtrace();
 
 		foreach($bt as $call) {
-			if($call['function'] === 'do_action' && $call['args'][0] === 'ctct_debug') {
+			if($call['function'] === 'do_action' && $call['args'][0] === self::$slug.'_debug') {
 				$caller = $call;
 				// do_action and title
 				unset($caller['args'][0]);
@@ -203,10 +207,12 @@ class KWSLog {
 	 * @param  string  $level     Debug level. Default: 'debug'
 	 * @param  boolean $recursive Whether or not the message is being called by itself. Only here to prevent infinite loop.
 	 */
-	function log_message($message, $level = 'debug', $recursive = false) {
+	function log_message($message, $data = '', $level = 'debug', $recursive = false) {
 		global $wpdb;
 
 		$message = is_string($message) ? $message : print_r($message, true);
+		$data = is_string($data) ? $data : print_r($data, true);
+		$message = $message."<br />".$data;
 
 		$values = array(
 			'message' => $message,
@@ -217,7 +223,7 @@ class KWSLog {
 
 		if(!empty($wpdb->last_error) && preg_match('/doesn\'t\ exist/ism', $wpdb->last_error) && !$recursive) {
 			$this->activate_plugin();
-			$this->log_message($message, $level, true);
+			$this->log_message($message, $data, $level, true);
 		}
 	}
 

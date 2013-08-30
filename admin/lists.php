@@ -21,12 +21,18 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
         return "constant-contact-lists";
     }
 
-    protected function getTitle() {
-        return $this->isEdit() ? "Edit Lists" : 'Lists';
+    protected function getNavTitle() {
+        return 'Lists';
+    }
+
+    protected function getTitle($type = '') {
+        if($this->isEdit()) { return "Edit Lists"; }
+        if($this->isSingle() || $type === 'single') { return "List #".intval(@$_GET['view']); }
+        return 'Lists';
     }
 
 	protected function add() {
-		die('addo');
+
 	}
 
     protected function processForms() {
@@ -49,6 +55,10 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
         include(CTCT_DIR_PATH.'views/admin/view.list-edit.php');
     }
 
+    /**
+     * Show all the contacts for a single list
+     * @return [type] [description]
+     */
     protected function single() {
 
         $id = intval(@$_GET['view']);
@@ -60,6 +70,9 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
             echo 'no list is specified.';
             return;
         }
+
+        // We define the transient key that is used so we can force-flush it
+        add_filter('ctct_cachekey', function() { return 'ctct_contacts_from_list_'.intval(@$_GET['view']); });
 
         $Contacts = $this->cc->getAll('ContactsFromList', $id, 50);
 

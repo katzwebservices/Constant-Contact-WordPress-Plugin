@@ -2,6 +2,7 @@
 
 use Ctct\ConstantContact;
 use Ctct\Util\Config;
+use Ctct\Components\Contacts\Contact;
 use Ctct\Services\ListService;
 class KWSConstantContact extends ConstantContact {
 
@@ -18,6 +19,7 @@ class KWSConstantContact extends ConstantContact {
 
 		$Client = new KWSRestClient();
 
+		// Use our own REST client.
 		$this->setRestClient($Client);
 		$this->setUrls();
 		$this->setHooks();
@@ -134,12 +136,12 @@ class KWSConstantContact extends ConstantContact {
         if (empty($existingContact)) {
             $action = "Creating Contact";
             try {
-	            $returnContact = $this->addContact(CTCT_ACCESS_TOKEN, $contact);
+	            $returnContact = $this->addContact(CTCT_ACCESS_TOKEN, $contact, true);
 	            $action .= ' Succeeded';
 			} catch(Exception $e) {
 				$returnContact = false;
 				$action .= ' Failed';
-        		do_action('ctct_log_message', 'Creating Contact Exception', $e);
+        		do_action('ctct_log', 'Creating Contact Exception', $e);
 			}
         // update the existing contact if address already existed
         } else {
@@ -156,14 +158,40 @@ class KWSConstantContact extends ConstantContact {
         	} catch(Exception $e) {
         		$returnContact = false;
         		$action .= ' Failed';
-        		do_action('ctct_log_message', 'Updating Contact Exception', $e);
+        		do_action('ctct_log', 'Updating Contact Exception', $e);
         	}
         }
 
-        do_action('ctct_log_message', $action, $returnContact);
+        do_action('ctct_log', $action, $returnContact);
         do_action('ctct_debug', $action, $returnContact);
 
         return $returnContact;
+	}
+
+	/**
+	 * Add a new contact to an account
+	 *
+	 * Clone of the addContact, but it unsets the readOnly items.
+	 *
+	 * @param string $accessToken - Valid access token
+	 * @param Contact $contact - Contact to add
+	 * @param boolean $actionByVisitor - is the action being taken by the visitor
+	 * @return Contact
+	 */
+	public function addContact($accessToken, Contact $contact, $actionByVisitor = false)
+	{
+	    $params = array();
+	    if ($actionByVisitor == true) {
+	        $params['action_by'] = "ACTION_BY_VISITOR";
+	    }
+
+	    // If you have set an `id` or `status`, it
+	    // makes everything screwy.
+	    foreach(KWSContact::getReadOnly() as $key) {
+	    	unset($contact->{$key});
+	    }
+
+	    return $this->contactService->addContact($accessToken, $contact, $params);
 	}
 
 	/**
