@@ -1,5 +1,6 @@
 <map id="KWSConstantContact\addUpdateContact" name="KWSConstantContact\addUpdateContact">
-<area shape="rect" id="node2" href="$class_ctct_1_1_constant_contact.html#a773a68ca201cfb3c03a8b228933d20c1" title="Add a new contact to an account. " alt="" coords="207,5,355,49"/>
-<area shape="rect" id="node3" href="$class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. " alt="" coords="206,73,357,117"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_constant_contact.html#a6b2642fb5dd23f6672e1324ceceb6de5" title="Update an individual contact. " alt="" coords="207,141,355,185"/>
+<area shape="rect" id="node2" href="$class_k_w_s_constant_contact.html#ab2beb4f9243e4865485c0035ec842364" title="Add a new contact to an account. " alt="" coords="206,5,357,49"/>
+<area shape="rect" id="node4" href="$class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. " alt="" coords="206,73,357,117"/>
+<area shape="rect" id="node5" href="$class_ctct_1_1_constant_contact.html#a6b2642fb5dd23f6672e1324ceceb6de5" title="Update an individual contact. " alt="" coords="207,141,355,185"/>
+<area shape="rect" id="node3" href="$class_k_w_s_contact.html#a1b7ac8d3c189f9af0bc315a03e85e8d5" title="KWSContact\\getReadOnly" alt="" coords="405,13,584,41"/>
 </map>

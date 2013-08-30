@@ -88,7 +88,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
-<g id="a_node9"><a xlink:href="class_c_t_c_t___registration.html#ac5d49d7c63cbc560e9f89144a544762e" target="_top" xlink:title="Hook into &#39;register_post&#39; action to manage subscription of new users during user registration. ">
+<g id="a_node9"><a xlink:href="class_c_t_c_t___registration.html#a7b08750aaabbf7a8b110da33b9e2c261" target="_top" xlink:title="Hook into &#39;register_post&#39; action to manage subscription of new users during user registration. ">
 <polygon fill="white" stroke="black" points="166.313,-20 166.313,-52 305.687,-52 305.687,-20 166.313,-20"/>
 <text text-anchor="start" x="174.313" y="-38" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\process</text>
 <text text-anchor="middle" x="236" y="-26" font-family="Helvetica,sans-Serif" font-size="10.00">_submission</text>
@@ -111,14 +111,14 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge"><title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M302.89,-113.573C307.45,-115.448 311.869,-117.579 316,-120 336.071,-131.765 332.622,-145.126 352,-158 357.651,-161.754 363.92,-165.069 370.308,-167.964"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="303.976,-110.243 293.383,-110.074 301.558,-116.813 303.976,-110.243"/>
+<path fill="none" stroke="midnightblue" d="M305.309,-113.629C309.015,-115.226 312.607,-117.009 316,-119 336.344,-130.939 332.437,-144.82 352,-158 357.521,-161.719 363.646,-165.001 369.901,-167.868"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="306.497,-110.337 295.907,-110.033 303.997,-116.875 306.497,-110.337"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="class_c_t_c_t___registration.html#a753ff3c5cdd35809e3de5a513f50ae4d" target="_top" xlink:title="Hook into &#39;register_form&#39; action to show our subscription form to users while they are registering th...">
-<polygon fill="white" stroke="black" points="359.82,-129 359.82,-149 484.18,-149 484.18,-129 359.82,-129"/>
-<text text-anchor="middle" x="422" y="-135" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\form</text>
+<g id="a_node5"><a xlink:href="class_c_t_c_t___widget___simple.html#ab6851d66b2918d51cb3c16ae8f8da36e" target="_top" xlink:title="CTCT_Widget_Simple\\form">
+<polygon fill="white" stroke="black" points="352.875,-129 352.875,-149 491.125,-149 491.125,-129 352.875,-129"/>
+<text text-anchor="middle" x="422" y="-135" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple\form</text>
 </a>
 </g>
 </g>
@@ -127,17 +127,17 @@ var sectionId = 'dynsection-1';
 <path fill="none" stroke="midnightblue" d="M294.309,-112.147C319.84,-117.558 349.548,-123.855 373.776,-128.991"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="294.893,-108.693 284.385,-110.043 293.441,-115.541 294.893,-108.693"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node"><title>Node6</title>
-<g id="a_node6"><a xlink:href="class_c_t_c_t___widget___simple.html#ab6851d66b2918d51cb3c16ae8f8da36e" target="_top" xlink:title="CTCT_Widget_Simple\\form">
-<polygon fill="white" stroke="black" points="352.875,-90 352.875,-110 491.125,-110 491.125,-90 352.875,-90"/>
-<text text-anchor="middle" x="422" y="-96" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple\form</text>
+<!-- Node7 -->
+<g id="node7" class="node"><title>Node7</title>
+<g id="a_node7"><a xlink:href="class_c_t_c_t___registration.html#a753ff3c5cdd35809e3de5a513f50ae4d" target="_top" xlink:title="Hook into &#39;register_form&#39; action to show our subscription form to users while they are registering th...">
+<polygon fill="white" stroke="black" points="359.82,-90 359.82,-110 484.18,-110 484.18,-90 359.82,-90"/>
+<text text-anchor="middle" x="422" y="-96" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\form</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node6 -->
-<g id="edge5" class="edge"><title>Node3&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M319.588,-100C330.696,-100 341.99,-100 352.811,-100"/>
+<!-- Node3&#45;&gt;Node7 -->
+<g id="edge6" class="edge"><title>Node3&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M319.66,-100C333.095,-100 346.799,-100 359.609,-100"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="319.458,-96.5001 309.458,-100 319.458,-103.5 319.458,-96.5001"/>
 </g>
 <!-- Node8 -->
@@ -153,19 +153,19 @@ var sectionId = 'dynsection-1';
 <path fill="none" stroke="midnightblue" d="M294.309,-87.8531C319.84,-82.4415 349.548,-76.1448 373.776,-71.0094"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="293.441,-84.459 284.385,-89.9565 294.893,-91.3069 293.441,-84.459"/>
 </g>
-<!-- Node7 -->
-<g id="node7" class="node"><title>Node7</title>
-<g id="a_node7"><a xlink:href="class_c_t_c_t___widget___simple.html#ae5b10a325a41312983bf9567e992f92c" target="_top" xlink:title="CTCT_Widget_Simple\l\\widget">
-<polygon fill="white" stroke="black" points="528.264,-84 528.264,-116 643.736,-116 643.736,-84 528.264,-84"/>
-<text text-anchor="start" x="536.264" y="-102" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple</text>
-<text text-anchor="middle" x="586" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">\widget</text>
+<!-- Node6 -->
+<g id="node6" class="node"><title>Node6</title>
+<g id="a_node6"><a xlink:href="class_c_t_c_t___widget___simple.html#ae5b10a325a41312983bf9567e992f92c" target="_top" xlink:title="CTCT_Widget_Simple\l\\widget">
+<polygon fill="white" stroke="black" points="528.264,-123 528.264,-155 643.736,-155 643.736,-123 528.264,-123"/>
+<text text-anchor="start" x="536.264" y="-141" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple</text>
+<text text-anchor="middle" x="586" y="-129" font-family="Helvetica,sans-Serif" font-size="10.00">\widget</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node7 -->
-<g id="edge6" class="edge"><title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M501.372,-100C510.389,-100 519.45,-100 528.107,-100"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="501.233,-96.5001 491.233,-100 501.233,-103.5 501.233,-96.5001"/>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge"><title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M501.372,-139C510.389,-139 519.45,-139 528.107,-139"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="501.233,-135.5 491.233,-139 501.233,-142.5 501.233,-135.5"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node"><title>Node10</title>

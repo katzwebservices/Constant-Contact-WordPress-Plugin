@@ -11,7 +11,13 @@ use Ctct\Exceptions\CtctException;
 
 class KWSContact extends Contact {
 
-    private static $read_only = array('created_date', 'status', 'modified_date', 'id', 'confirmed', 'source', 'source_details', 'opt_out_date', 'opt_in_date', 'confirm_status');
+    /**
+     * The items of the Contact object that aren't writeable.
+     *
+     * @todo  remove Notes when avaiable again.
+     * @var array
+     */
+    private static $read_only = array('created_date', 'status', 'modified_date', 'id', 'confirmed', 'source', 'source_details', 'opt_out_date', 'opt_in_date', 'confirm_status', 'notes');
 
 	function __construct($Contact = '') {
 
@@ -25,10 +31,33 @@ class KWSContact extends Contact {
 
 		if(!empty($Contact) && (is_array($Contact) || $Contact instanceof Contact)) {
 			foreach($Contact as $k => &$v) {
-                $this->{$k} = constant_contact_prepare_value($v);
+                $this->{$k} = self::prepareValue($v);
 			}
 		}
 	}
+
+    public static function getReadOnly() {
+        return self::$read_only;
+    }
+
+    private static function prepareValue($value) {
+        if(empty($value) || is_numeric($value)) {
+            return $value;
+        } else if(is_string($value)) {
+            $value = stripslashes($value);
+        } else {
+            if(!empty($value)) {
+
+            foreach($value as $k => $v) {
+                if(is_array($value)) {
+                    $value[$k] = self::prepareValue($v);
+                } else {
+                    $value->{$k} = self::prepareValue($v);
+                }
+            }}
+        }
+        return $value;
+    }
 
 	/**
      * Factory method to create a Contact object from an array
@@ -48,7 +77,9 @@ class KWSContact extends Contact {
 
     	$new_contact = new KWSContact($new_contact_array, true);
 
-    	unset($new_contact->id, $new_contact->status, $new_contact->source, $new_contact->source_details);
+        foreach(self::$read_only as $key) {
+            unset($new_contact->{$key});
+        }
 
     	foreach($new_contact as $k => $v) {
     		$existing_contact->{$k} = $v;
@@ -126,7 +157,7 @@ class KWSContact extends Contact {
                 'address_country_code' => NULL,
                 'address_postal_code' => NULL,
                 'address_sub_postal_code' => NULL,
-            'notes' => array(),
+            # 'notes' => array(), // Future
             'company_name' => NULL,
             'home_phone' => NULL,
             'work_phone' => NULL,
@@ -257,11 +288,13 @@ class KWSContact extends Contact {
     	}
 
         if(isset($Contact['notes'])) {
-            $Contact['notes'] = (array)$Contact['notes'];
+            unset($Contact['notes']);
+            // CTCT got rid of notes for now.
+/*            $Contact['notes'] = (array)$Contact['notes'];
             foreach ($Contact['notes'] as &$note) {
                 $note = is_array($note) ? $note : array('note' => $note);
                 $note = Note::create($note);
-            }
+            }*/
         }
 
         if(isset($Contact['custom_fields'])) {
@@ -343,11 +376,12 @@ class KWSContact extends Contact {
                 $this->email_addresses[0]->email_address = $value;
                 break;
             case 'notes':
-                if(isset($this->notes[0]) && is_object($this->notes[0])) {
+                // Ctct got rid of notes for now.
+                /*if(isset($this->notes[0]) && is_object($this->notes[0])) {
                     $this->notes[0]->note = $value;
                 } else {
                     $this->addNote($value);
-                }
+                }*/
                 break;
 
             case (preg_match('/^personal_/ism', $key) ? true : false):

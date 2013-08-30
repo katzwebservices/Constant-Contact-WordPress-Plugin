@@ -148,6 +148,7 @@ if(!$debug) {
 			$fields .= "\n<input type='submit' value='$val' class='$t button' id='cc_{$form_id}{$id}' name='constant-contact-signup-submit' >\n<div class='kws_clear'></div>";
 			if(empty($label)) { $fields .= "\n</label>"; }
 		}
+		// Lists selection
 		else if($t === 'lists') {
 			if(!empty($label)) {
 				$fields .= "\n<label class='$class'>$label</label>\n";

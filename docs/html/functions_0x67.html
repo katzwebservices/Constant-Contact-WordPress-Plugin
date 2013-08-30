@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -227,7 +227,7 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 , <a class="el" href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a9a549d6870b28ae70684f8fb55993a59">Ctct\Services\ContactTrackingService</a>
 </li>
 <li>getCache()
-: <a class="el" href="class_k_w_s_rest_client.html#a27c56891481da9d15893c0279fb2c3b8">KWSRestClient</a>
+: <a class="el" href="class_k_w_s_rest_client.html#a7e01741f40bf36875d3d774df5250709">KWSRestClient</a>
 </li>
 <li>getCacheTime()
 : <a class="el" href="class_cache___w_p___h_t_t_p.html#a90ae2e338d476c82174316d493ac220c">Cache_WP_HTTP</a>
@@ -340,17 +340,17 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 , <a class="el" href="class_k_w_s_o_auth2.html#aa2b690c799bd81e65a1079e1ece3b354">KWSOAuth2</a>
 </li>
 <li>getKey()
-: <a class="el" href="class_cache___w_p___h_t_t_p.html#ab19810eea1f27ad002f256a313cec1dc">Cache_WP_HTTP</a>
-, <a class="el" href="class_c_t_c_t___admin___campaigns.html#a5e2fd434d283fa0bf3610f0fd68cc62a">CTCT_Admin_Campaigns</a>
+: <a class="el" href="class_c_t_c_t___admin___campaigns.html#a5e2fd434d283fa0bf3610f0fd68cc62a">CTCT_Admin_Campaigns</a>
 , <a class="el" href="class_c_t_c_t___admin___contacts.html#ab2fcec542cf96c6e125b2b20d5216aac">CTCT_Admin_Contacts</a>
 , <a class="el" href="class_c_t_c_t___admin___lists.html#a49bed5570369d9848c22c8181ac7ae47">CTCT_Admin_Lists</a>
 , <a class="el" href="class_c_t_c_t___admin___page.html#af75e5afacc1fcfff476e13e5de52eefe">CTCT_Admin_Page</a>
 , <a class="el" href="class_c_t_c_t___event_spot.html#af70068194880dce9b0a484a75ab2059b">CTCT_EventSpot</a>
+, <a class="el" href="class_cache___w_p___h_t_t_p.html#ab19810eea1f27ad002f256a313cec1dc">Cache_WP_HTTP</a>
 </li>
 <li>getLabel()
-: <a class="el" href="class_k_w_s_campaign.html#a827ae32b6db23ef8302b436a27fbbff0">KWSCampaign</a>
+: <a class="el" href="class_k_w_s_contact_list.html#a9064720827c47038c1468a5bdecfab54">KWSContactList</a>
+, <a class="el" href="class_k_w_s_campaign.html#a827ae32b6db23ef8302b436a27fbbff0">KWSCampaign</a>
 , <a class="el" href="class_k_w_s_contact.html#a3e7c8681c53200abceef638506ecb837">KWSContact</a>
-, <a class="el" href="class_k_w_s_contact_list.html#a9064720827c47038c1468a5bdecfab54">KWSContactList</a>
 </li>
 <li>getList()
 : <a class="el" href="class_ctct_1_1_services_1_1_list_service.html#af8c9fa4bf45b4d905c86269b127b9636">Ctct\Services\ListService</a>
@@ -364,6 +364,7 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 : <a class="el" href="class_c_t_c_t___admin___page.html#adbfa5f90d2474587ade02994d254de5e">CTCT_Admin_Page</a>
 , <a class="el" href="class_c_t_c_t___admin___campaigns.html#af6d682264815e597f9f7bc4510845b9e">CTCT_Admin_Campaigns</a>
 , <a class="el" href="class_c_t_c_t___admin___contacts.html#a1767b833a396d3b044d78ff50e1f5223">CTCT_Admin_Contacts</a>
+, <a class="el" href="class_c_t_c_t___admin___lists.html#aa89e90fc0cbd3ec1ebe2d95a73fbe91a">CTCT_Admin_Lists</a>
 , <a class="el" href="class_c_t_c_t___event_spot.html#a2683748858f2f71990426ee04edf9945">CTCT_EventSpot</a>
 </li>
 <li>getOpens()
@@ -375,6 +376,9 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 </li>
 <li>getPointers()
 : <a class="el" href="class_c_t_c_t___admin___page.html#a05b33ad05b2a8fb25be1f21015422239">CTCT_Admin_Page</a>
+</li>
+<li>getReadOnly()
+: <a class="el" href="class_k_w_s_contact.html#a1b7ac8d3c189f9af0bc315a03e85e8d5">KWSContact</a>
 </li>
 <li>getRedirectUri()
 : <a class="el" href="class_k_w_s_o_auth2.html#aad804108205b7df2ce2464ad69821c41">KWSOAuth2</a>
@@ -408,15 +412,15 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 : <a class="el" href="class_data_validation.html#a1be1c1cee24ff04cc4d035620052ba20">DataValidation</a>
 </li>
 <li>getSummary()
-: <a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#aaafdbbc4ee6e9b089fef38693970b24f">Ctct\Services\CampaignTrackingService</a>
-, <a class="el" href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a3772a32865e7e76603f0b39cd6d7a315">Ctct\Services\ContactTrackingService</a>
+: <a class="el" href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a3772a32865e7e76603f0b39cd6d7a315">Ctct\Services\ContactTrackingService</a>
+, <a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#aaafdbbc4ee6e9b089fef38693970b24f">Ctct\Services\CampaignTrackingService</a>
 </li>
 <li>getTitle()
-: <a class="el" href="class_c_t_c_t___admin___contacts.html#ab66e13c1d6644f2ef4fbbf5a3264d257">CTCT_Admin_Contacts</a>
+: <a class="el" href="class_c_t_c_t___event_spot.html#acdbdce321684577624cec73d36cbf622">CTCT_EventSpot</a>
+, <a class="el" href="class_c_t_c_t___admin___lists.html#a03b4d6697494ea3fb75e7316e1ca6a7f">CTCT_Admin_Lists</a>
 , <a class="el" href="class_c_t_c_t___admin___page.html#a96eaf870d8a4a93746149a495de929e0">CTCT_Admin_Page</a>
+, <a class="el" href="class_c_t_c_t___admin___contacts.html#ab66e13c1d6644f2ef4fbbf5a3264d257">CTCT_Admin_Contacts</a>
 , <a class="el" href="class_c_t_c_t___admin___campaigns.html#ad6242d9a9105b91d0a3f23045e2a3d25">CTCT_Admin_Campaigns</a>
-, <a class="el" href="class_c_t_c_t___admin___lists.html#a944774faa0877f7240828362c33add71">CTCT_Admin_Lists</a>
-, <a class="el" href="class_c_t_c_t___event_spot.html#acdbdce321684577624cec73d36cbf622">CTCT_EventSpot</a>
 </li>
 <li>getToken()
 : <a class="el" href="class_k_w_s_o_auth2.html#a96673d7d42e332457779d3272419cc01">KWSOAuth2</a>
@@ -425,12 +429,12 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 : <a class="el" href="class_ctct_1_1_auth_1_1_ctct_o_auth2.html#ac8c0188c7ed7ba615d27931f689152b4">Ctct\Auth\CtctOAuth2</a>
 </li>
 <li>getUnsubscribes()
-: <a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#acf4875b2c9d6c9190c9a50a7d29631d9">Ctct\Services\CampaignTrackingService</a>
-, <a class="el" href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a6b279b5a34d5d5ae01d7104e4ed4cccc">Ctct\Services\ContactTrackingService</a>
+: <a class="el" href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a6b279b5a34d5d5ae01d7104e4ed4cccc">Ctct\Services\ContactTrackingService</a>
+, <a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#acf4875b2c9d6c9190c9a50a7d29631d9">Ctct\Services\CampaignTrackingService</a>
 </li>
 <li>getUser()
-: <a class="el" href="class_ctct_1_1_auth_1_1_session_data_store.html#a345924d3f2c8662528d7f21a9df086c8">Ctct\Auth\SessionDataStore</a>
-, <a class="el" href="interface_ctct_1_1_auth_1_1_ctct_data_store.html#af5bf2ae2f8b3e36517afddbe5eeae43f">Ctct\Auth\CtctDataStore</a>
+: <a class="el" href="interface_ctct_1_1_auth_1_1_ctct_data_store.html#af5bf2ae2f8b3e36517afddbe5eeae43f">Ctct\Auth\CtctDataStore</a>
+, <a class="el" href="class_ctct_1_1_auth_1_1_session_data_store.html#a345924d3f2c8662528d7f21a9df086c8">Ctct\Auth\SessionDataStore</a>
 </li>
 <li>getValue()
 : <a class="el" href="class_ctct_1_1_components_1_1_component.html#a6e0d8afc5d291f59234626de90116161">Ctct\Components\Component</a>
@@ -449,7 +453,7 @@ $(document).ready(function(){initNavTree('functions_0x67.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

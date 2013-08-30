@@ -40,24 +40,6 @@ function constant_contact_tip($tip, $echo = true) {
 	if($echo) { echo $tip; } return $tip;
 }
 
-function constant_contact_prepare_value($value) {
-	if(empty($value) || is_numeric($value)) {
-		return $value;
-	} else if(is_string($value)) {
-	    $value = stripslashes($value);
-	} else {
-		if(!empty($value)) {
-
-		foreach($value as $k => $v) {
-			if(is_array($value)) {
-				$value[$k] = constant_contact_prepare_value($v);
-			} else {
-				$value->{$k} = constant_contact_prepare_value($v);
-			}
-		}}
-	}
-	return $value;
-}
 
 function kws_format_date($date, $include_time = false) {
 	$date = date_i18n(get_option('date_format'), strtotime($date), true);
@@ -78,6 +60,41 @@ function kws_current_class($key, $val = '', $echo = false) {
 	}
 }
 
+/**
+ * array_diff with sorting built in
+ *
+ * @param  array $a array 1 to compare
+ * @param  [type] $b array 2 to compare
+ * @return array    array of differences in array
+ */
+function kws_array_diff(array $a, array $b) {
+    $map = $out = array();
+
+    sort($a);
+    sort($b);
+
+    $ad1 = array_diff($a, $b);
+    $ad2 = array_diff($b, $a);
+
+    return array_unique(array_merge($ad1, $ad2));
+}
+
+/**
+ * Echo the submenu links for browsing admin page filters
+ *
+ * To generate a menu with "active" and "inactive" contact status, you could use:
+ *
+ * `
+ * $array = array(
+ * array('val' => 'active', 'text' => 'Active Contacts'),
+ * array('val' => 'inactive', 'text' => 'Inactive Contacts')
+ * );
+ * kws_print_subsub('status', $array);
+ *
+ * @param  string $key   The key for the filtering, or "Filter by" parameter. Example: `status`
+ * @param  array $array Associative array of items with `val` and `text` parameters. `val` is the URL param, and `text` is the link text.
+ * @return [type]        [description]
+ */
 function kws_print_subsub($key, $array) {
 
 	$output = '<ul class="subsubsub">';
@@ -200,13 +217,6 @@ function esc_attr_recursive($array) {
 	}
 	return $array;
 }
-}
-
-if(!function_exists('tempty')) {
-	function tempty($val) {
-		$val = trim(rtrim($val));
-    	return empty($val) && $val !== 0;
-	}
 }
 
 

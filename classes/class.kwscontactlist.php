@@ -63,44 +63,11 @@ class KWSContactList extends ContactList {
 		$defaults = array(
 			'id' => NULL,
 			'name' => NULL,
-			'subject' => NULL,
-			'from_name' => NULL,
-			'from_email' => NULL,
-			'reply_to_email' => NULL,
-			'template_type' => NULL,
-			'created_date' => NULL,
-			'modified_date' => NULL,
-			'last_run_date' => NULL,
-			'next_run_date' => NULL,
 			'status' => NULL,
-			'is_permission_reminder_enabled' => NULL,
-			'permission_reminder_text' => NULL,
-			'is_view_as_webpage_enabled' => NULL,
-			'view_as_web_page_text' => NULL,
-			'view_as_web_page_link_text' => NULL,
-			'greeting_salutations' => NULL,
-			'greeting_name' => NULL,
-			'greeting_string' => NULL,
-			'message_footer' => NULL,
-			'tracking_summary' => NULL,
-			'email_content' => NULL,
-			'email_content_format' => NULL,
-			'style_sheet' => NULL,
-			'text_content' => NULL,
-			'sent_to_contact_lists' => array(),
-	    	'click_through_details' => array(),
+			'contact_count' => NULL,
 		);
 
         $List = wp_parse_args( $list_array, $defaults );
-
-        if (array_key_exists("message_footer", $List)) {
-            $List['message_footer'] = MessageFooter::create($this->prepareMessageFooter($List['message_footer']));
-        }
-
-        $List['greeting_name'] = strtoupper($List['greeting_name']);
-        if(!in_array($List['greeting_name'], array('FIRST_NAME', 'LAST_NAME', 'FIRST_AND_LAST_NAME', 'NONE'))) {
-        	$List['greeting_name'] = 'NONE';
-        }
 
 		return $List;
 	}
@@ -128,6 +95,12 @@ class KWSContactList extends ContactList {
 	        case 'name':
 	            $this->{$key} = $value;
 	            break;
+	        case 'status':
+	        	// Only these two values are allowed.
+	        	if($value === 'ACTIVE' || $value === 'HIDDEN') {
+	        		$this->{$key} = $value;
+	        	}
+	        	break;
 	        default:
 	        	return false;
 		        break;
@@ -263,17 +236,6 @@ class KWSContactList extends ContactList {
 
 	function get($key, $format = false) {
 		switch($key) {
-			case 'created_date':
-			case 'next_run_date':
-			case 'modified_date':
-			case 'last_run_date':
-				$date = date_i18n(get_option('date_format').' '.get_option('time_format'), strtotime($this->{$key}), true);
-
-				return $format ? $date : $this->{$key};
-				break;
-			case 'status':
-				return $format ? ucfirst(strtolower($this->{$key})) : $this->{$key};
-				break;
 			default:
 				if(isset($this->{$key})) {
 					return ($format && $this->is_editable($key)) ? '<span class="editable" data-name="'.$key.'" data-id="'.$this->get('id').'">'.esc_html($this->{$key}).'</span>' : $this->{$key};

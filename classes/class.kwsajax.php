@@ -16,7 +16,8 @@ class KWSAJAX {
 		$id = (int)@$_REQUEST['id'];
 		$component = esc_html(@$_REQUEST['component']);
 		$field = esc_attr(@$_REQUEST['field']);
-		$value = esc_attr(@$_REQUEST['value']);
+		$value = @$_REQUEST['value'];
+		$value = is_array($value) ? $value : esc_attr($value);
 		$parent = esc_attr(@$_REQUEST['parent']);
 		$parent = !empty($parent) ? $parent.'_' : NULL;
 
@@ -32,8 +33,32 @@ class KWSAJAX {
 			switch ($component) {
 				case 'Contact':
 					try {
+
 						$KWSContact = new KWSContact($KWSConstantContact->getContact(CTCT_ACCESS_TOKEN, $id));
-						if($value === $KWSContact->get($parent.$field)) {
+
+						// Did anything change?
+						$nothingChanged = ($value === $KWSContact->get($parent.$field) || $KWSContact->get($parent.$field, true));
+
+						// Lists need to be handled slightly differently.
+						if($parent.$field === 'lists') {
+
+							// Get the lists for the contact
+							$existingLists = $KWSContact->get($parent.$field, true);
+
+							$items = $value;
+							$value = array();
+							foreach ($items as $key => $item) {
+								$value[] = new KWSContactList(array('id' => $item['value']));
+								$compareLists[] = $item['value'];
+							}
+
+							// If nothing changed, the arrays should be the same
+							// and the diff should be empty
+							$diff = kws_array_diff($existingLists, $compareLists);
+							$nothingChanged = empty($diff);
+						}
+
+						if($nothingChanged) {
 							$response['message'] = __('Nothing changed.', 'constant-contact-api');
 							$response['code'] = 204;
 						} else {

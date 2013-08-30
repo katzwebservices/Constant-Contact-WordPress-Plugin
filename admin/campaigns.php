@@ -27,7 +27,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
         if(empty($value) && $this->isEdit() || $value == 'edit')
             return "Edit Campaign";
         if(empty($value) && $this->isSingle() || $value == 'single')
-            return 'Campaign';
+            return sprintf('Campaign #%s', $_GET['view']);
 
         return 'Campaigns';
     }
