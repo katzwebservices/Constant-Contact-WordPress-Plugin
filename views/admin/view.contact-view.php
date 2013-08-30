@@ -60,7 +60,8 @@ foreach($summary as $k => $v) {
                     $html .= sprintf('<span class="editable" data-name="'.$key.'">%s</span>', $Contact->get('email_address'));
                     break;
                 case 'notes':
-                    $html .= sprintf('<span class="editable" data-name="'.$key.'">%s</span>', $Contact->get('notes'));
+                    // Constant Contact got rid of Notes for now.
+                    /*$html .= sprintf('<span class="editable" data-name="'.$key.'">%s</span>', $Contact->get('notes'));*/
                     break;
                 case 'custom_fields':
                     $i = 1;

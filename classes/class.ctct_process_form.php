@@ -2,6 +2,8 @@
 
 /**
  * Handle all plugin form submissions.
+ *
+ * @todo  Support `cc_redirect_url` setting for widgets
  */
 class CTCT_Process_Form {
 

@@ -4,6 +4,7 @@ var class_k_w_s_constant_contact =
     [ "_flushCampaigns", "class_k_w_s_constant_contact.html#a9532be9a0c17dcb25e8fa0bb50481817", null ],
     [ "_flushContacts", "class_k_w_s_constant_contact.html#a11a47b5a489f052a03cff3b8a5b42bf7", null ],
     [ "_flushLists", "class_k_w_s_constant_contact.html#a3b1348c1fdb3e1654daaf6bbb0e7f173", null ],
+    [ "addContact", "class_k_w_s_constant_contact.html#ab2beb4f9243e4865485c0035ec842364", null ],
     [ "addUpdateContact", "class_k_w_s_constant_contact.html#affa7a9ab01ddbf0d89537237c8da5459", null ],
     [ "getAll", "class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6", null ],
     [ "getAllContacts", "class_k_w_s_constant_contact.html#a53e2459f73db9e1e949ec309ddf419e8", null ],

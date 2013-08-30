@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('ctct_8php_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">Plugin URI: http://www.katzwebservices.com</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">Description: Powerfully integrate &lt;a href=&quot;http://katz.si/6e&quot; target=&quot;_blank&quot;&gt;Constant Contact&lt;/a&gt; into your WordPress website.</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">Author: Katz Web Services, Inc.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Version: 3.0.1</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">Version: 3.0.2</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">Author URI: http://www.katzwebservices.com</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('ctct_8php_source.html','');});
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span>(!defined(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>)) {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.1&#39;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.2&#39;</span>);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE&#39;</span>, __FILE__); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_PATH&#39;</span>, dirname(__FILE__) . <span class="charliteral">&#39;/&#39;</span>); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_URL&#39;</span>, plugin_dir_url(__FILE__)); <span class="comment">// @ Added 2.0 The full URL to this file</span></div>
@@ -212,15 +212,15 @@ $(document).ready(function(){initNavTree('ctct_8php_source.html','');});
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /** Admin pages */</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/profile.php&#39;</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/registration.php&#39;</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">        /** Modules */</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">        /** Modules */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/registration.php&#39;</span>;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/constant-analytics/constant-analytics.php&#39;</span>;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/comment-form-signup.php&#39;</span>;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/simple-widget.php&#39;</span>;</div>
@@ -235,7 +235,7 @@ $(document).ready(function(){initNavTree('ctct_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>ctct.php</b></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

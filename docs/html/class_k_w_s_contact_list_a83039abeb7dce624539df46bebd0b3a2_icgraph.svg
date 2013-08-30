@@ -30,28 +30,28 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="class_c_t_c_t___registration.html#a753ff3c5cdd35809e3de5a513f50ae4d" target="_top" xlink:title="Hook into &#39;register_form&#39; action to show our subscription form to users while they are registering th...">
-<polygon fill="white" stroke="black" points="191.82,-78 191.82,-98 316.18,-98 316.18,-78 191.82,-78"/>
-<text text-anchor="middle" x="254" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\form</text>
+<g id="a_node3"><a xlink:href="class_c_t_c_t___widget___simple.html#ab6851d66b2918d51cb3c16ae8f8da36e" target="_top" xlink:title="CTCT_Widget_Simple\\form">
+<polygon fill="white" stroke="black" points="184.875,-78 184.875,-98 323.125,-98 323.125,-78 184.875,-78"/>
+<text text-anchor="middle" x="254" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple\form</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge"><title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M157.486,-77.2681C169.029,-78.5651 180.719,-79.8785 191.774,-81.1206"/>
+<path fill="none" stroke="midnightblue" d="M157.584,-77.2791C166.657,-78.2985 175.818,-79.3279 184.69,-80.3247"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="157.728,-73.7733 147.399,-76.1348 156.946,-80.7295 157.728,-73.7733"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node"><title>Node4</title>
-<g id="a_node4"><a xlink:href="class_c_t_c_t___widget___simple.html#ab6851d66b2918d51cb3c16ae8f8da36e" target="_top" xlink:title="CTCT_Widget_Simple\\form">
-<polygon fill="white" stroke="black" points="184.875,-39 184.875,-59 323.125,-59 323.125,-39 184.875,-39"/>
-<text text-anchor="middle" x="254" y="-45" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple\form</text>
+<!-- Node5 -->
+<g id="node5" class="node"><title>Node5</title>
+<g id="a_node5"><a xlink:href="class_c_t_c_t___registration.html#a753ff3c5cdd35809e3de5a513f50ae4d" target="_top" xlink:title="Hook into &#39;register_form&#39; action to show our subscription form to users while they are registering th...">
+<polygon fill="white" stroke="black" points="191.82,-39 191.82,-59 316.18,-59 316.18,-39 191.82,-39"/>
+<text text-anchor="middle" x="254" y="-45" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Registration\form</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node4 -->
-<g id="edge3" class="edge"><title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M157.584,-59.1848C166.657,-58.2164 175.818,-57.2385 184.69,-56.2916"/>
+<!-- Node1&#45;&gt;Node5 -->
+<g id="edge4" class="edge"><title>Node1&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M157.486,-59.1953C169.029,-57.9632 180.719,-56.7154 191.774,-55.5354"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="156.971,-55.7303 147.399,-60.272 157.714,-62.6907 156.971,-55.7303"/>
 </g>
 <!-- Node6 -->
@@ -67,19 +67,19 @@
 <path fill="none" stroke="midnightblue" d="M112.147,-54.4984C133.146,-47.005 159.936,-37.6763 184,-30 194.694,-26.5887 206.397,-23.104 217.078,-20.0192"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="110.872,-51.2372 102.64,-57.9066 113.234,-57.8266 110.872,-51.2372"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node"><title>Node5</title>
-<g id="a_node5"><a xlink:href="class_c_t_c_t___widget___simple.html#ae5b10a325a41312983bf9567e992f92c" target="_top" xlink:title="CTCT_Widget_Simple\l\\widget">
-<polygon fill="white" stroke="black" points="360.264,-33 360.264,-65 475.736,-65 475.736,-33 360.264,-33"/>
-<text text-anchor="start" x="368.264" y="-51" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple</text>
-<text text-anchor="middle" x="418" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00">\widget</text>
+<!-- Node4 -->
+<g id="node4" class="node"><title>Node4</title>
+<g id="a_node4"><a xlink:href="class_c_t_c_t___widget___simple.html#ae5b10a325a41312983bf9567e992f92c" target="_top" xlink:title="CTCT_Widget_Simple\l\\widget">
+<polygon fill="white" stroke="black" points="360.264,-72 360.264,-104 475.736,-104 475.736,-72 360.264,-72"/>
+<text text-anchor="start" x="368.264" y="-90" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_Widget_Simple</text>
+<text text-anchor="middle" x="418" y="-78" font-family="Helvetica,sans-Serif" font-size="10.00">\widget</text>
 </a>
 </g>
 </g>
-<!-- Node4&#45;&gt;Node5 -->
-<g id="edge4" class="edge"><title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M333.372,-49C342.389,-49 351.45,-49 360.107,-49"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="333.233,-45.5001 323.233,-49 333.233,-52.5001 333.233,-45.5001"/>
+<!-- Node3&#45;&gt;Node4 -->
+<g id="edge3" class="edge"><title>Node3&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M333.372,-88C342.389,-88 351.45,-88 360.107,-88"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="333.233,-84.5001 323.233,-88 333.233,-91.5001 333.233,-84.5001"/>
 </g>
 </g>
 </svg>

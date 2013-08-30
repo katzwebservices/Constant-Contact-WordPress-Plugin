@@ -39,6 +39,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 	}
 
 	function page() {
+
 		if(!$this->cc->isConfigured()) {
 			echo kws_ob_include(CTCT_DIR_PATH.'views/admin/view.setup.php', $this);
 		} else {

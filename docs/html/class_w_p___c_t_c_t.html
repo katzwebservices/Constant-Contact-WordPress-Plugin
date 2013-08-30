@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -167,7 +167,7 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span>(!defined(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>)) {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.1&#39;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.2&#39;</span>);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE&#39;</span>, __FILE__); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_PATH&#39;</span>, dirname(__FILE__) . <span class="charliteral">&#39;/&#39;</span>); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_URL&#39;</span>, plugin_dir_url(__FILE__)); <span class="comment">// @ Added 2.0 The full URL to this file</span></div>
@@ -233,7 +233,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ctct_8php_source.html#l00080">80</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8ctct__admin__page_8php_source.html#l00017">CTCT_Admin_Page\__construct()</a>, <a class="el" href="class_8kwscontactlist_8php_source.html#l00148">KWSContactList\outputHTML()</a>, and <a class="el" href="admin_2registration_8php_source.html#l00058">CTCT_Registration\process_submission()</a>.</p>
+<p>Referenced by <a class="el" href="class_8ctct__admin__page_8php_source.html#l00017">CTCT_Admin_Page\__construct()</a>, <a class="el" href="class_8kwscontactlist_8php_source.html#l00121">KWSContactList\outputHTML()</a>, and <a class="el" href="registration_8php_source.html#l00061">CTCT_Registration\process_submission()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                  {</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span>(empty(self::$instance)){</div>
@@ -248,7 +248,8 @@ Static Private Attributes</h2></td></tr>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a485eac1e69d12c9e2ecac70bf3295c3f_icgraph.svg" width="100%" height="508"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a485eac1e69d12c9e2ecac70bf3295c3f_icgraph.svg" width="100%" height="508"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </p>
 
@@ -296,15 +297,15 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /** Admin pages */</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/profile.php&#39;</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/registration.php&#39;</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">        /** Modules */</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">        /** Modules */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/registration.php&#39;</span>;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/constant-analytics/constant-analytics.php&#39;</span>;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/comment-form-signup.php&#39;</span>;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/simple-widget.php&#39;</span>;</div>
@@ -442,7 +443,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_w_p___c_t_c_t.html">WP_CTCT</a></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

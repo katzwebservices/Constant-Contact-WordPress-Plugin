@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -157,6 +157,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:affa7a9ab01ddbf0d89537237c8da5459"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_w_s_constant_contact.html#affa7a9ab01ddbf0d89537237c8da5459">addUpdateContact</a> ($data)</td></tr>
 <tr class="memdesc:affa7a9ab01ddbf0d89537237c8da5459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a contact if it doesn't exist and update it if it does.  <a href="#affa7a9ab01ddbf0d89537237c8da5459">More...</a><br/></td></tr>
 <tr class="separator:affa7a9ab01ddbf0d89537237c8da5459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2beb4f9243e4865485c0035ec842364"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_w_s_constant_contact.html#ab2beb4f9243e4865485c0035ec842364">addContact</a> ($accessToken, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html">Contact</a> $contact, $actionByVisitor=false)</td></tr>
+<tr class="memdesc:ab2beb4f9243e4865485c0035ec842364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new contact to an account.  <a href="#ab2beb4f9243e4865485c0035ec842364">More...</a><br/></td></tr>
+<tr class="separator:ab2beb4f9243e4865485c0035ec842364"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53e2459f73db9e1e949ec309ddf419e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_k_w_s_constant_contact.html#a53e2459f73db9e1e949ec309ddf419e8">getAllContacts</a> ()</td></tr>
 <tr class="memdesc:a53e2459f73db9e1e949ec309ddf419e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all contacts  <a class="el" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">KWSConstantContact::getAll()</a>  <a href="#a53e2459f73db9e1e949ec309ddf419e8">More...</a><br/></td></tr>
 <tr class="separator:a53e2459f73db9e1e949ec309ddf419e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -357,7 +360,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00006">6</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00007">7</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9a74b22b0d866670aa3b13bfceba8926"></a>
 <div class="memitem">
@@ -373,23 +376,24 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00013">13</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00014">14</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>References <a class="el" href="_constant_contact_8php_source.html#l00039">Ctct\ConstantContact\$apiKey</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00046">setHooks()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00111">setRestClient()</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00071">setUrls()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                                {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span>(empty(<a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a>)) { <a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a> = CTCT_APIKEY; }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        parent::__construct(<a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        $Client = <span class="keyword">new</span> <a class="code" href="class_k_w_s_rest_client.html">KWSRestClient</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a630763fcb0aa48aaef1803828d85ccfe" title="Allow subclasses to set the REST Client used by the services. ">setRestClient</a>($Client);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a0d50ace05f1ec8c66118feda823cfdb6">setUrls</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a45252a83d4b4e5fea9592ad31199a712" title="Add actions to clear caches when appropriate. ">setHooks</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        self::$instance = $this;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<p>References <a class="el" href="_constant_contact_8php_source.html#l00039">Ctct\ConstantContact\$apiKey</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00048">setHooks()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00113">setRestClient()</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00073">setUrls()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                                {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span>(empty(<a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a>)) { <a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a> = CTCT_APIKEY; }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        parent::__construct(<a class="code" href="class_ctct_1_1_constant_contact.html#a1b4e20b021640308689fd096c0870754">$apiKey</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        $Client = <span class="keyword">new</span> <a class="code" href="class_k_w_s_rest_client.html">KWSRestClient</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="comment">// Use our own REST client.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a630763fcb0aa48aaef1803828d85ccfe" title="Allow subclasses to set the REST Client used by the services. ">setRestClient</a>($Client);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a0d50ace05f1ec8c66118feda823cfdb6">setUrls</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a45252a83d4b4e5fea9592ad31199a712" title="Add actions to clear caches when appropriate. ">setHooks</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        self::$instance = $this;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -418,10 +422,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Clear the campaigns cache. </p>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00067">67</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                               {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_campaigns&#39;</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00069">69</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                               {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_campaigns&#39;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -440,10 +444,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Clear the contacts cache. </p>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00061">61</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                              {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_contacts&#39;</span>);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00063">63</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                              {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_contacts&#39;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -462,11 +466,95 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Clear the lists cache. </p>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00055">55</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                           {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_lists&#39;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00057">57</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                           {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        delete_transient(<span class="stringliteral">&#39;ctct_all_lists&#39;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab2beb4f9243e4865485c0035ec842364"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">KWSConstantContact::addContact </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html">Contact</a>&#160;</td>
+          <td class="paramname"><em>$contact</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$actionByVisitor</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new contact to an account. </p>
+<p>Clone of the addContact, but it unsets the readOnly items.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- Valid access token </td></tr>
+    <tr><td class="paramtype">Contact</td><td class="paramname">$contact</td><td>- Contact to add </td></tr>
+    <tr><td class="paramtype">boolean</td><td class="paramname">$actionByVisitor</td><td>- is the action being taken by the visitor </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Contact </dd></dl>
+
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00181">181</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+
+<p>References <a class="el" href="class_8kwscontact_8php_source.html#l00039">KWSContact\getReadOnly()</a>.</p>
+
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00128">addUpdateContact()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        $params = array();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span> ($actionByVisitor == <span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            $params[<span class="stringliteral">&#39;action_by&#39;</span>] = <span class="stringliteral">&quot;ACTION_BY_VISITOR&quot;</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// If you have set an `id` or `status`, it</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// makes everything screwy.</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">foreach</span>(<a class="code" href="class_k_w_s_contact.html#a1b7ac8d3c189f9af0bc315a03e85e8d5">KWSContact::getReadOnly</a>() as $key) {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            unset($contact-&gt;{$key});</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordflow">return</span> $this-&gt;contactService-&gt;addContact($accessToken, $contact, $params);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_ab2beb4f9243e4865485c0035ec842364_cgraph.svg" width="390" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
+<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_ab2beb4f9243e4865485c0035ec842364_icgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="affa7a9ab01ddbf0d89537237c8da5459"></a>
@@ -491,58 +579,59 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00126">126</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00128">128</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>References <a class="el" href="_constant_contact_8php_source.html#l00148">Ctct\ConstantContact\addContact()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00247">getContactByEmail()</a>, and <a class="el" href="_constant_contact_8php_source.html#l00207">Ctct\ConstantContact\updateContact()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                                     {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        $contact = <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($data);</div>
+<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00181">addContact()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00275">getContactByEmail()</a>, and <a class="el" href="_constant_contact_8php_source.html#l00207">Ctct\ConstantContact\updateContact()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                                     {</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">// check to see if a contact with the email addess already exists</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        $existingContact = $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>($contact-&gt;get(<span class="stringliteral">&#39;email&#39;</span>));</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="comment">// create a new contact if one does not exist</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">if</span> (empty($existingContact)) {</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            $action = <span class="stringliteral">&quot;Creating Contact&quot;</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                $returnContact = $this-&gt;<a class="code" href="class_ctct_1_1_constant_contact.html#a773a68ca201cfb3c03a8b228933d20c1" title="Add a new contact to an account. ">addContact</a>(CTCT_ACCESS_TOKEN, $contact);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                $action .= <span class="stringliteral">&#39; Succeeded&#39;</span>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            } <span class="keywordflow">catch</span>(Exception $e) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                $returnContact = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                $action .= <span class="stringliteral">&#39; Failed&#39;</span>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                do_action(<span class="stringliteral">&#39;ctct_log_message&#39;</span>, <span class="stringliteral">&#39;Creating Contact Exception&#39;</span>, $e);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            }</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="comment">// update the existing contact if address already existed</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            $action = <span class="stringliteral">&quot;Updating Contact&quot;</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        $contact = <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($data);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="comment">// check to see if a contact with the email addess already exists</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        $existingContact = $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>($contact-&gt;get(<span class="stringliteral">&#39;email&#39;</span>));</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="comment">// create a new contact if one does not exist</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span> (empty($existingContact)) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            $action = <span class="stringliteral">&quot;Creating Contact&quot;</span>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                $returnContact = $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#ab2beb4f9243e4865485c0035ec842364" title="Add a new contact to an account. ">addContact</a>(CTCT_ACCESS_TOKEN, $contact, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                $action .= <span class="stringliteral">&#39; Succeeded&#39;</span>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            } <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                $returnContact = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                $action .= <span class="stringliteral">&#39; Failed&#39;</span>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                do_action(<span class="stringliteral">&#39;ctct_log&#39;</span>, <span class="stringliteral">&#39;Creating Contact Exception&#39;</span>, $e);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="comment">// update the existing contact if address already existed</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="comment">// Update the contact details</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                $existingContact = $existingContact-&gt;update($data);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="comment">// Push the update to CTCT</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                $returnContact = $this-&gt;<a class="code" href="class_ctct_1_1_constant_contact.html#a6b2642fb5dd23f6672e1324ceceb6de5" title="Update an individual contact. ">updateContact</a>(CTCT_ACCESS_TOKEN, $existingContact);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                $action .= <span class="stringliteral">&#39; Succeeded&#39;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            } <span class="keywordflow">catch</span>(Exception $e) {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                $returnContact = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                $action .= <span class="stringliteral">&#39; Failed&#39;</span>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                do_action(<span class="stringliteral">&#39;ctct_log_message&#39;</span>, <span class="stringliteral">&#39;Updating Contact Exception&#39;</span>, $e);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_log_message&#39;</span>, $action, $returnContact);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $action, $returnContact);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">return</span> $returnContact;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            $action = <span class="stringliteral">&quot;Updating Contact&quot;</span>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                <span class="comment">// Update the contact details</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                $existingContact = $existingContact-&gt;update($data);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="comment">// Push the update to CTCT</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                $returnContact = $this-&gt;<a class="code" href="class_ctct_1_1_constant_contact.html#a6b2642fb5dd23f6672e1324ceceb6de5" title="Update an individual contact. ">updateContact</a>(CTCT_ACCESS_TOKEN, $existingContact);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                $action .= <span class="stringliteral">&#39; Succeeded&#39;</span>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            } <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                $returnContact = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                $action .= <span class="stringliteral">&#39; Failed&#39;</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                do_action(<span class="stringliteral">&#39;ctct_log&#39;</span>, <span class="stringliteral">&#39;Updating Contact Exception&#39;</span>, $e);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_log&#39;</span>, $action, $returnContact);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $action, $returnContact);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">return</span> $returnContact;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_affa7a9ab01ddbf0d89537237c8da5459_cgraph.svg" width="363" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_affa7a9ab01ddbf0d89537237c8da5459_cgraph.svg" width="590" height="190"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -597,46 +686,35 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array Results array with <code>id</code> as key to each key/value pair. </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00213">213</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00174">getAllContacts()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00192">getAllContactSends()</a>, <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00201">getAllEmailCampaigns()</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00183">getAllLists()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                                                                                          {</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $type);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        add_filter(<span class="stringliteral">&#39;ctct_cache&#39;</span>, <span class="keyword">function</span>() { <span class="keywordflow">return</span> 60 * 60 * 48; });</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">if</span>($type === <span class="stringliteral">&#39;EmailCampaigns&#39;</span>){</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="keywordflow">if</span>(!is_null($param)) { $id_or_status = null; }</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!is_null($id_or_status)) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $param);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="comment">// If this returns the results directly, not as an object.</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">if</span>(is_array($fetch)) { <span class="keywordflow">return</span> $fetch; }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">foreach</span>($fetch-&gt;results as $r) { $results[$r-&gt;id] = $r;  }</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">if</span>(!empty($fetch-&gt;next) &amp;&amp; $fetch-&gt;next != $param) {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>($type, $id_or_status, $fetch-&gt;next, $results);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordflow">return</span> $results;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00241">241</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                                                                                          {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $type);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        add_filter(<span class="stringliteral">&#39;ctct_cache&#39;</span>, <span class="keyword">function</span>() { <span class="keywordflow">return</span> 60 * 60 * 48; });</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">if</span>($type === <span class="stringliteral">&#39;EmailCampaigns&#39;</span>){</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">if</span>(!is_null($param)) { $id_or_status = null; }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!is_null($id_or_status)) {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $param);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="comment">// If this returns the results directly, not as an object.</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordflow">if</span>(is_array($fetch)) { <span class="keywordflow">return</span> $fetch; }</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">foreach</span>($fetch-&gt;results as $r) { $results[$r-&gt;id] = $r;  }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordflow">if</span>(!empty($fetch-&gt;next) &amp;&amp; $fetch-&gt;next != $param) {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>($type, $id_or_status, $fetch-&gt;next, $results);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="keywordflow">return</span> $results;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_af6a84270968f93842fbfd508e9a6a8f6_icgraph.svg" width="371" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="a53e2459f73db9e1e949ec309ddf419e8"></a>
@@ -655,22 +733,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Get all contacts  <a class="el" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">KWSConstantContact::getAll()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00174">174</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-
-<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00213">getAll()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                              {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;Contacts&#39;</span>);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00202">202</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                              {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;Contacts&#39;</span>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a53e2459f73db9e1e949ec309ddf419e8_cgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="af149aa7a8e4eef27a22d0d6ebe70cd95"></a>
@@ -690,22 +757,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Get all contact sends  <a class="el" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">KWSConstantContact::getAll()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00192">192</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-
-<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00213">getAll()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                                     {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;ContactSends&#39;</span>, $id);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00220">220</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                                     {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;ContactSends&#39;</span>, $id);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_af149aa7a8e4eef27a22d0d6ebe70cd95_cgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="a9a4f843ebc1393bf55c4e7ac63a2d197"></a>
@@ -725,22 +781,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Get all email campaigns  <a class="el" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">KWSConstantContact::getAll()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00201">201</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-
-<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00213">getAll()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                                                  {</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;EmailCampaigns&#39;</span>, $status);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00229">229</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                                                  {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;EmailCampaigns&#39;</span>, $status);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a9a4f843ebc1393bf55c4e7ac63a2d197_cgraph.svg" width="371" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="a3116a6d3903a586cf19f8837dcdfbdfa"></a>
@@ -759,22 +804,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Get all lists  <a class="el" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">KWSConstantContact::getAll()</a> </p>
 <dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00183">183</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
-
-<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00213">getAll()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                           {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;Lists&#39;</span>);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00211">211</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                           {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        <span class="keywordflow">return</span> $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>(<span class="stringliteral">&#39;Lists&#39;</span>);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a3116a6d3903a586cf19f8837dcdfbdfa_cgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="a98799590a11a6885e13a6e203bae0fc4"></a>
@@ -811,22 +845,22 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>KWSContact|boolean If contact, <a class="el" href="class_k_w_s_contact.html">KWSContact</a> object; if none, false </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00247">247</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00275">275</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00126">addUpdateContact()</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00084">isConfigured()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                                                             {</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        $contact = $this-&gt;contactService-&gt;getContacts(CTCT_ACCESS_TOKEN, array(<span class="stringliteral">&#39;email&#39;</span> =&gt; $email));</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordflow">if</span>(!empty($contact-&gt;results)) {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($contact-&gt;results[0]);</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00128">addUpdateContact()</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00086">isConfigured()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                                                             {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        $contact = $this-&gt;contactService-&gt;getContacts(CTCT_ACCESS_TOKEN, array(<span class="stringliteral">&#39;email&#39;</span> =&gt; $email));</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">if</span>(!empty($contact-&gt;results)) {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($contact-&gt;results[0]);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a98799590a11a6885e13a6e203bae0fc4_icgraph.svg" width="363" height="122"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -849,21 +883,21 @@ Additional Inherited Members</h2></td></tr>
 <p>Get access to instance or create one. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_k_w_s_constant_contact.html">KWSConstantContact</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00032">32</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00034">34</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8ctct__process__form_8php_source.html#l00053">CTCT_Process_Form\process()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                           {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">if</span>(empty(self::$instance)) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            self::$instance = <span class="keyword">new</span> <a class="code" href="class_k_w_s_constant_contact.html">KWSConstantContact</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">return</span> self::$instance;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="class_8ctct__process__form_8php_source.html#l00055">CTCT_Process_Form\process()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                           {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">if</span>(empty(self::$instance)) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            self::$instance = <span class="keyword">new</span> <a class="code" href="class_k_w_s_constant_contact.html">KWSConstantContact</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> self::$instance;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a8727c849d70591f321408b5bc01d5321_icgraph.svg" width="414" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -894,36 +928,36 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>boolean <code>true</code>: Configured; <code>false</code>: Not configured properly. </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00084">84</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00086">86</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00008">$configured</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00247">getContactByEmail()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                                                 {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span>(!$force) {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">return</span> get_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span> );</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// Force caching feature to turn off.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        $_GET[<span class="stringliteral">&#39;cache&#39;</span>] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            $contacts = $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>(<span class="stringliteral">&#39;asdasdasdasd@asdasdasdasdasdasdasdasd.com&#39;</span>);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            $this-&gt;configured = 1;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            update_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span>, 1 );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        } <span class="keywordflow">catch</span>(Exception $e) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            $this-&gt;configured = 0;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            delete_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span> );</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment">// Turn caching back on.</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        unset($_GET[<span class="stringliteral">&#39;cache&#39;</span>]);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_k_w_s_constant_contact.html#a7830688891063aedabf7c7f36d8754e3">$this-&gt;configured</a>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<p>References <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00009">$configured</a>, and <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00275">getContactByEmail()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                                                 {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span>(!$force) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">return</span> get_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span> );</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">// Force caching feature to turn off.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        $_GET[<span class="stringliteral">&#39;cache&#39;</span>] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            $contacts = $this-&gt;<a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>(<span class="stringliteral">&#39;asdasdasdasd@asdasdasdasdasdasdasdasd.com&#39;</span>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            $this-&gt;configured = 1;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            update_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span>, 1 );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        } <span class="keywordflow">catch</span>(Exception $e) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            $this-&gt;configured = 0;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            delete_site_option( <span class="stringliteral">&#39;ctct_configured&#39;</span> );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">// Turn caching back on.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        unset($_GET[<span class="stringliteral">&#39;cache&#39;</span>]);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_k_w_s_constant_contact.html#a7830688891063aedabf7c7f36d8754e3">$this-&gt;configured</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a4731d675e5fdb15dda2133027550cb91_cgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -946,20 +980,20 @@ Additional Inherited Members</h2></td></tr>
 <p>Add actions to clear caches when appropriate. </p>
 <p>Clear the lists cache by running `do_action('ctct_flush_lists');<code> Clear the contacts cache by running</code>do_action('ctct_flush_contacts');<code> Clear the campaigns cache by running</code>do_action('ctct_flush_campaigns');` </p>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00046">46</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00048">48</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00013">__construct()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_lists&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushLists&#39;</span>));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_contacts&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushContacts&#39;</span>));</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_campaigns&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushCampaigns&#39;</span>));</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00014">__construct()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_lists&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushLists&#39;</span>));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_contacts&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushContacts&#39;</span>));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        add_action(<span class="stringliteral">&#39;ctct_flush_campaigns&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;_flushCampaigns&#39;</span>));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a45252a83d4b4e5fea9592ad31199a712_icgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -989,25 +1023,25 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See Also</dt><dd>BaseService::setRestClient() </dd></dl>
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00111">111</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00113">113</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00013">__construct()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                        {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        $this-&gt;contactService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        $this-&gt;emailMarketingService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        $this-&gt;activityService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        $this-&gt;campaignTrackingService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        $this-&gt;contactTrackingService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        $this-&gt;campaignScheduleService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        $this-&gt;listService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        $this-&gt;accountService-&gt;setRestClient($restClient);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00014">__construct()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                                        {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        $this-&gt;contactService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        $this-&gt;emailMarketingService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        $this-&gt;activityService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        $this-&gt;campaignTrackingService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        $this-&gt;contactTrackingService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        $this-&gt;campaignScheduleService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        $this-&gt;listService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        $this-&gt;accountService-&gt;setRestClient($restClient);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a630763fcb0aa48aaef1803828d85ccfe_icgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -1035,20 +1069,20 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00071">71</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00073">73</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00013">__construct()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                               {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">foreach</span>($this-&gt;cache_services as $key =&gt; $service) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            $this-&gt;{$service}-&gt;baseUrl = Config::get(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . Config::get(<span class="stringliteral">&#39;endpoints.&#39;</span>.$key);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00014">__construct()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                               {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">foreach</span>($this-&gt;cache_services as $key =&gt; $service) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            $this-&gt;{$service}-&gt;baseUrl = Config::get(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . Config::get(<span class="stringliteral">&#39;endpoints.&#39;</span>.$key);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_k_w_s_constant_contact_a0d50ace05f1ec8c66118feda823cfdb6_icgraph.svg" width="363" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
@@ -1074,7 +1108,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00011">11</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00012">12</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
 </div>
 </div>
@@ -1088,9 +1122,9 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00008">8</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00009">9</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00084">isConfigured()</a>.</p>
+<p>Referenced by <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00086">isConfigured()</a>.</p>
 
 </div>
 </div>
@@ -1112,7 +1146,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00009">9</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
+<p>Definition at line <a class="el" href="class_8kwsconstantcontact_8php_source.html#l00010">10</a> of file <a class="el" href="class_8kwsconstantcontact_8php_source.html">class.kwsconstantcontact.php</a>.</p>
 
 </div>
 </div>
@@ -1125,7 +1159,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_k_w_s_constant_contact.html">KWSConstantContact</a></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

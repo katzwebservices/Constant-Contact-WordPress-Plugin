@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -250,493 +250,494 @@ $(document).ready(function(){initNavTree('form_8php_source.html','');});
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            $fields .= <span class="stringliteral">&quot;\n&lt;input type=&#39;submit&#39; value=&#39;$val&#39; class=&#39;$t button&#39; id=&#39;cc_{$form_id}{$id}&#39; name=&#39;constant-contact-signup-submit&#39; &gt;\n&lt;div class=&#39;kws_clear&#39;&gt;&lt;/div&gt;&quot;</span>;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="keywordflow">if</span>(empty($label)) { $fields .= <span class="stringliteral">&quot;\n&lt;/label&gt;&quot;</span>; }</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>($t === <span class="stringliteral">&#39;lists&#39;</span>) {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">if</span>(!empty($label)) {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                $fields .= <span class="stringliteral">&quot;\n&lt;label class=&#39;$class&#39;&gt;$label&lt;/label&gt;\n&quot;</span>;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            $fields .= <span class="stringliteral">&#39;&lt;!-- %%LISTSELECTION%% --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="comment">// It&#39;s a text field</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">if</span>(!empty($label)) { $fields .= <span class="stringliteral">&quot;&lt;label for=&#39;cc_{$form_id}{$id}&#39; class=&#39;$class  gfield_label&#39;&gt;\n$label{$asterisk}&lt;/label&gt;&quot;</span>; }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span>(!empty($size) &amp;&amp; $t == <span class="charliteral">&#39;t&#39;</span>) { $size = <span class="stringliteral">&quot; size=\&quot;$size\&quot;&quot;</span>;}</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            $fields .= <span class="stringliteral">&quot;&lt;input type=&#39;text&#39; value=&#39;$val&#39;$size $placeholder name=&#39;&quot;</span>.$name.<span class="stringliteral">&quot;[value]&#39; class=&#39;{$t} $class{$required}&#39; id=&#39;cc_{$form_id}{$id}&#39; /&gt;\n&quot;</span>;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span>(!empty($label)) { $fields .= <span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;&#39;</span>.$name.<span class="stringliteral">&#39;[label]&quot; value=&quot;&#39;</span>.htmlentities($label).<span class="stringliteral">&#39;&quot; /&gt;&#39;</span>; }</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        $fields .= $requiredFields;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        $fields .= <span class="stringliteral">&quot;\n&lt;/div&gt;&quot;</span>;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">return</span> $fields;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">function</span> processForm() {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        $f = $uid = $required = $t = $label = $givethanks = $safesubscribe = $size = $name = $id = $fields = $labelsusesamecolor = $labelsusesamealign = $labelsusesamefont = $labelsusesamepadding = $bgrepeat = $lfont = $tfont = $widthtype = $backgroundtype = $blockalign = $intro = $size = $uniqueformid = $inputfields = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        $cc_request = array();</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        ctctlog(<span class="stringliteral">&#39;processForm&#39;</span>);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        $data = getData();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="charliteral">&#39;f&#39;</span>])) {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;text&#39;</span>])) {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                $data[<span class="stringliteral">&#39;text&#39;</span>] = json_decode(stripslashes($data[<span class="stringliteral">&#39;text&#39;</span>]), <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        extract($data);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="comment">// If there is more than one form...no repeating IDs</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        $form_id_attr = <span class="stringliteral">&#39;constant-contact-signup&#39;</span>;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span>(isset($cc_signup_count) &amp;&amp; $cc_signup_count &gt; 1) {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            $form_id_attr = <span class="stringliteral">&#39;constant-contact-signup-&#39;</span>.$cc_signup_count;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            r(<span class="stringliteral">&#39;signupcount: &#39;</span>.$cc_signup_count.<span class="stringliteral">&#39;; $form_id_attr = &#39;</span>.$form_id_attr);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            $cc_signup_count = 0;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="comment">// If we&#39;re fetching a specific form (sending a unique form ID with the request),</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="comment">// $currentform checks whether the requested form is the form that we&#39;re working with.</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        $currentform = (isset($cc_request[<span class="stringliteral">&#39;uniqueformid&#39;</span>]) &amp;&amp; $cc_request[<span class="stringliteral">&#39;uniqueformid&#39;</span>] == $uniqueformid);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="comment">// Lists selection</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>($t === <span class="stringliteral">&#39;lists&#39;</span>) {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keywordflow">if</span>(!empty($label)) {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                $fields .= <span class="stringliteral">&quot;\n&lt;label class=&#39;$class&#39;&gt;$label&lt;/label&gt;\n&quot;</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            $fields .= <span class="stringliteral">&#39;&lt;!-- %%LISTSELECTION%% --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="comment">// It&#39;s a text field</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span>(!empty($label)) { $fields .= <span class="stringliteral">&quot;&lt;label for=&#39;cc_{$form_id}{$id}&#39; class=&#39;$class  gfield_label&#39;&gt;\n$label{$asterisk}&lt;/label&gt;&quot;</span>; }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keywordflow">if</span>(!empty($size) &amp;&amp; $t == <span class="charliteral">&#39;t&#39;</span>) { $size = <span class="stringliteral">&quot; size=\&quot;$size\&quot;&quot;</span>;}</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            $fields .= <span class="stringliteral">&quot;&lt;input type=&#39;text&#39; value=&#39;$val&#39;$size $placeholder name=&#39;&quot;</span>.$name.<span class="stringliteral">&quot;[value]&#39; class=&#39;{$t} $class{$required}&#39; id=&#39;cc_{$form_id}{$id}&#39; /&gt;\n&quot;</span>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">if</span>(!empty($label)) { $fields .= <span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;&#39;</span>.$name.<span class="stringliteral">&#39;[label]&quot; value=&quot;&#39;</span>.htmlentities($label).<span class="stringliteral">&#39;&quot; /&gt;&#39;</span>; }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        $fields .= $requiredFields;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        $fields .= <span class="stringliteral">&quot;\n&lt;/div&gt;&quot;</span>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">return</span> $fields;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">function</span> processForm() {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        $f = $uid = $required = $t = $label = $givethanks = $safesubscribe = $size = $name = $id = $fields = $labelsusesamecolor = $labelsusesamealign = $labelsusesamefont = $labelsusesamepadding = $bgrepeat = $lfont = $tfont = $widthtype = $backgroundtype = $blockalign = $intro = $size = $uniqueformid = $inputfields = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        $cc_request = array();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        ctctlog(<span class="stringliteral">&#39;processForm&#39;</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        $data = getData();</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="charliteral">&#39;f&#39;</span>])) {</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;text&#39;</span>])) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                $data[<span class="stringliteral">&#39;text&#39;</span>] = json_decode(stripslashes($data[<span class="stringliteral">&#39;text&#39;</span>]), <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        extract($data);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="comment">// If there is more than one form...no repeating IDs</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        $form_id_attr = <span class="stringliteral">&#39;constant-contact-signup&#39;</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">if</span>(isset($cc_signup_count) &amp;&amp; $cc_signup_count &gt; 1) {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            $form_id_attr = <span class="stringliteral">&#39;constant-contact-signup-&#39;</span>.$cc_signup_count;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            r(<span class="stringliteral">&#39;signupcount: &#39;</span>.$cc_signup_count.<span class="stringliteral">&#39;; $form_id_attr = &#39;</span>.$form_id_attr);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            $cc_signup_count = 0;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="comment">// If we&#39;re fetching a specific form (sending a unique form ID with the request),</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="comment">// $currentform checks whether the requested form is the form that we&#39;re working with.</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        $currentform = (isset($cc_request[<span class="stringliteral">&#39;uniqueformid&#39;</span>]) &amp;&amp; $cc_request[<span class="stringliteral">&#39;uniqueformid&#39;</span>] == $uniqueformid);</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">if</span>(isset($form)) { $selector = <span class="stringliteral">&#39; id=&quot;cc_form_&#39;</span>.$form.<span class="charliteral">&#39;&quot;&#39;</span>; } <span class="keywordflow">else</span> { $selector = <span class="stringliteral">&#39;&#39;</span>; }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="comment">// Only process one to speed up things.</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordflow">if</span>(!empty($changed)) {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            ctctlog(<span class="stringliteral">&#39;Changed is set: &#39;</span>.$changed);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keywordflow">foreach</span>($f as $field) {</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                $field[<span class="stringliteral">&#39;size&#39;</span>] = $size;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                $field[<span class="stringliteral">&#39;form_id&#39;</span>] = isset($cc_signup_count) ? $cc_signup_count : 1;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="keywordflow">if</span>($field[<span class="stringliteral">&#39;id&#39;</span>] == str_replace(<span class="stringliteral">&#39;_default&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $changed) || $field[<span class="stringliteral">&#39;id&#39;</span>] == str_replace(<span class="stringliteral">&#39;_label&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $changed)) {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <span class="keywordflow">return</span> makeFormField($field, $cc_request);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                };</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            };</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        }</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        ctctlog(<span class="stringliteral">&#39;Changed is not set.&#39;</span>);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        ctctlog(<span class="stringliteral">&#39;fields:&#39;</span>);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        r($f);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">if</span>(is_array($f)) {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            $position = array();</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            <span class="keywordflow">foreach</span> ($f as $key =&gt; $field) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                <span class="keywordflow">if</span>(!isset($field[<span class="stringliteral">&#39;pos&#39;</span>])) {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                    unset($f[$key]);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                $position[$key] = $field[<span class="stringliteral">&#39;pos&#39;</span>];</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            array_multisort($position, SORT_ASC, $f);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            $lists_shown = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordflow">foreach</span>($f as $field) {</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                $field[<span class="stringliteral">&#39;size&#39;</span>] = $size;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                $field[<span class="stringliteral">&#39;form_id&#39;</span>] = $cc_signup_count;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="keywordflow">if</span>($field[<span class="charliteral">&#39;t&#39;</span>] === <span class="stringliteral">&#39;lists&#39;</span>) {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                    $lists_shown = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                $fieldoutput = makeFormField($field, $cc_request, $currentform);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                $inputfields .= $fieldoutput;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="comment">// Make sure the lists fields are shown if not already added.</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">if</span>(!$lists_shown) {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                $inputfields .= <span class="stringliteral">&#39;&lt;!-- %%LISTSELECTION%% --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <span class="comment">// We need a submit field for some strange reason in some IE versions</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="comment">// Can&#39;t use a hidden field, either.</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            $inputfields .= <span class="stringliteral">&quot;\n&lt;input type=&#39;submit&#39; style=&#39;position:absolute; width:0;height:0;left:-9999px;&#39; name=&#39;constant-contact-signup-submit&#39; /&gt;&quot;</span>;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            $inputfields = <span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;div class=&quot;kws_input_fields gform_fields&quot;&gt;&#39;</span>.$inputfields.<span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">        #r(htmlentities($inputfields));</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">if</span>($safesubscribe != <span class="stringliteral">&#39;no&#39;</span>) {</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            $safesubscribelink = <span class="stringliteral">&#39;&lt;a href=&quot;http://katz.si/safesubscribe&quot; target=&quot;_blank&quot; class=&quot;cc_safesubscribe safesubscribe_&#39;</span>.$safesubscribe.<span class="stringliteral">&#39;&quot; rel=&quot;nofollow&quot;&gt;Privacy by SafeSubscribe&lt;/a&gt;&#39;</span>;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            $safesubscribelink = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        $haserror = $errors = $success = $hidden = $action = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;output&#39;</span>]) &amp;&amp; $data[<span class="stringliteral">&#39;output&#39;</span>] == <span class="stringliteral">&#39;html&#39;</span>) {</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            $haserror = <span class="stringliteral">&#39; %%HASERROR%%&#39;</span>;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            $action = <span class="stringliteral">&#39;%%ACTION%%&#39;</span>;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            $errors = <span class="stringliteral">&#39;&lt;!-- %%ERRORS%% --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            $success = <span class="stringliteral">&#39;&lt;!-- %%SUCCESS%% --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            $hidden = <span class="stringliteral">&#39;&lt;!-- %%HIDDEN%% --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">if</span>(empty($cc_success)) {</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            $formInner = $errors . $success . $inputfields . $safesubscribelink . $hidden;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            $formInner = $success;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        $form = &lt;&lt;&lt;EOD</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;kws_form gform_wrapper$haserror&quot;</span>$selector&gt;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        &lt;form <span class="keywordtype">id</span>=<span class="stringliteral">&quot;$form_id_attr&quot;</span> action=<span class="stringliteral">&quot;$action&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            $formInner</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;kws_clear&quot;</span>&gt;&lt;/div&gt;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            &lt;!-- Form Generated by the Constant Contact API WordPress Plugin by Katz Web Services, Inc. --&gt;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        &lt;/form&gt;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    &lt;/div&gt;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;EOD;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        <span class="keywordflow">if</span>(!$debug) {</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            $form = str_replace(array(<span class="stringliteral">&quot;\n&quot;</span>, <span class="stringliteral">&quot;\r&quot;</span>, <span class="stringliteral">&quot;\t&quot;</span>), <span class="charliteral">&#39; &#39;</span>, $form);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            $form = preg_replace(<span class="stringliteral">&#39;/\s\s/ism&#39;</span>, <span class="charliteral">&#39; &#39;</span>, $form);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        }</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <span class="keywordflow">return</span> $form;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keyword">function</span> processStyle() {</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        $required = $color2 = $tcolor = $lcolor = $bordercolor = $color6 = $color5 = $t = $label = $size = $name = $id = $fields = $labelsusesamecolor = $labelsusesamealign = $labelsusesamefont = $labelsusesamepadding = $givethanks = $safesubscribe = $blockalign = $bgcss = $gradheight = $lpad = $lalign = $bgimage = $bgpos = $bgrepeat = $lfont = $tfont = $f = $lsize = $talign = $width = $widthtype = $borderradius = $borderwidth = $paddingwidth = $formalign = $talign = $backgroundtype = $widthtype = $borderstyle = $tsize = $lsize = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        ctctlog(<span class="stringliteral">&#39;start processStyle&#39;</span>);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        $data = getData();</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        extract($data);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <span class="keywordflow">if</span>(isset($form)) { $selector = <span class="stringliteral">&#39;#content #cc_form_&#39;</span>.$form; } <span class="keywordflow">else</span> { $selector = <span class="stringliteral">&#39;html body div.kws_form&#39;</span>; }</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        $bgtop = $color6;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        $bgtopraw = str_replace(<span class="charliteral">&#39;#&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $bgtop);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        $bgbottom = $color2;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        $bgbottomraw = str_replace(<span class="charliteral">&#39;#&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $bgbottom);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        $tfont = findFont($tfont);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        $lfont = findFont($lfont);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="keywordflow">if</span>($widthtype == <span class="stringliteral">&#39;per&#39;</span>) { $widthtype = <span class="charliteral">&#39;%&#39;</span>; }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">switch</span>($backgroundtype) {</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;gradient&#39;</span>:</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                <span class="keywordflow">if</span>($gradtype == <span class="stringliteral">&#39;horizontal&#39;</span>) {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                    $bgrepeat = <span class="stringliteral">&#39;left top repeat-y&#39;</span>;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                    $dimensions = <span class="stringliteral">&quot;width=$gradheight&amp;height=1&quot;</span>;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                    $bgback = $bgtop;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                    $dimensions = <span class="stringliteral">&quot;height=$gradheight&amp;width=1&quot;</span>;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                    $bgrepeat = <span class="stringliteral">&#39;left top repeat-x&#39;</span>;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                    $bgback = $bgbottom;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;{$path}ozhgradient.php?start=$bgtopraw&amp;end=$bgbottomraw&amp;type=$gradtype&amp;$dimensions&#39;) $bgrepeat;&quot;</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;solid&#39;</span>:</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                $bgcss = <span class="stringliteral">&quot;background-color: $bgbottom; background-image:none;&quot;</span>;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;pattern&#39;</span>:</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;{$path}$patternurl&#39;) left top repeat;&quot;</span>;</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;transparent&#39;</span>:</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: none transparent;&quot;</span>;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;$bgimage&#39;) $bgpos $bgrepeat;&quot;</span>;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="preprocessor">#       if($labelsusesamealign == &#39;yes&#39;) { $lalign = $talign; }</span></div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="preprocessor"></span>    <span class="comment">/*  if($labelsusesamepadding == &#39;yes&#39;) { $lpad = $tpad; } */</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;        <span class="keywordflow">if</span>($labelsusesamefont) { $lfont = $tfont; $lsize = $tsize; }</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="keywordflow">if</span>($labelsusesamecolor) { $lcolor = $tcolor; }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="keywordflow">if</span>($talign == <span class="stringliteral">&#39;center&#39;</span>) { $blockalign = <span class="stringliteral">&#39;margin:0 auto;&#39;</span>; } elseif($talign == <span class="stringliteral">&#39;right&#39;</span>) { $blockalign = <span class="stringliteral">&#39;clear:both; float:right;&#39;</span>;}</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">if</span>($formalign == <span class="stringliteral">&#39;center&#39;</span>) { $formalign = <span class="stringliteral">&#39;margin:0 auto;&#39;</span>; } elseif($formalign == <span class="stringliteral">&#39;right&#39;</span>) { $formalign = <span class="stringliteral">&#39;clear:both; float:right;&#39;</span>;} elseif($formalign == <span class="stringliteral">&#39;left&#39;</span>) { $formalign = <span class="stringliteral">&#39;clear:both; float:left;&#39;</span>;}</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordflow">if</span>($givethanks) { $formalign .= <span class="stringliteral">&#39;margin-bottom: .5em;&#39;</span>;}</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        $safesubscribecss = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        $sspad = $lpad * 1.6;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="keywordflow">if</span>(!empty($safesubscribe) &amp;&amp; $safesubscribe != <span class="stringliteral">&#39;no&#39;</span>) {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            $safesubscribecss = <span class="stringliteral">&quot;$selector a.safesubscribe_{$safesubscribe} {</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="stringliteral">            background: transparent url({$path}images/safesubscribe-$safesubscribe.gif) left top no-repeat;</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="stringliteral">            $blockalign</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="stringliteral">            width:168px;</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="stringliteral">            height:14px;</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="stringliteral">            display:block;</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="stringliteral">            text-align:left!important;</span></div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="stringliteral">            overflow:hidden!important;</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="stringliteral">            text-indent: -9999px!important;</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="stringliteral">            margin-top: {$sspad}em!important;</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="stringliteral">        }&quot;</span>;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        }</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    $paddingwidth = (int)$paddingwidth;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    $borderradius = (int)$borderradius;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    $width = (int)$width;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    $lpadbottom = round($lpad/3, 3);</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;$css = &lt;&lt;&lt;EOD</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;&lt;style type=<span class="stringliteral">&quot;text/css&quot;</span>&gt;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    &lt;!--[<span class="keywordflow">if</span> IE lte 9]&gt;$selector { behavior: url({$path}css/border-radius.htc); }&lt;![endif]--&gt;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    .has_errors .cc_intro { display:none;}</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    $selector .cc_success {</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        margin:0!important;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        padding:10px;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        color: $tcolor!important;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    }</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    $selector {</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        line-height: 1;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    $selector ol, $selector ul {</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        list-style: none;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        margin:0;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        padding:0;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    }</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    $selector li {</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        list-style: none;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    }</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    $selector blockquote, $selector q {</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        quotes: none;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    }</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    $selector blockquote:before, $selector blockquote:after,</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    $selector q:before, $selector q:after {</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        content: <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        content: none;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="comment">/* remember to define focus styles! */</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    $selector :focus {</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        outline: 0;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    }</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    $selector .req { cursor: help; }</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    $selector {</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        $bgcss</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        padding: {$paddingwidth}px;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        $formalign</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        -webkit-background-clip: border-box;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        -moz-background-clip: border-box;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        background-clip:border-box;</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        background-origin: border-box;</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        -webkit-background-origin: border-box;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        -moz-background-origin: border-box;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        border: $borderstyle $bordercolor {$borderwidth}px;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        -moz-border-radius: {$borderradius}px {$borderradius}px;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        -webkit-border-radius: {$borderradius}px {$borderradius}px;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        border-radius: {$borderradius}px {$borderradius}px {$borderradius}px {$borderradius}px;</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        width: {$width}{$widthtype};</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        color: $tcolor!important;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        font-family: $tfont!important;</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        font-size: $tsize!important;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        text-align: $talign!important;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    }</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    $selector * {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;        font-size: $tsize;</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    }</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="preprocessor">    #content $selector { margin-bottom: 1em; margin-top: 1em; }</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    $selector select { max-width: 100%; }</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    .kws_input_fields {</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        text-align: $talign;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    }</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    $selector .cc_newsletter li {</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        margin:.5em 0;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    }</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    $selector .cc_newsletter ul label {</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        margin: 0;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        padding:0;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        line-height:1;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        cursor: pointer;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    $selector input.t {</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        margin: 0;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        padding:.3em;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        line-height:1.1;</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        -moz-border-radius: 2px 2px;</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        -webkit-border-radius: 2px 2px;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        border-radius: 2px 2px 2px 2px;</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        font-family: $lfont;</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        max-width: 95%;</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    }</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    $selector .cc_intro, $selector .cc_intro * {</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        font-family: $tfont;</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        margin:0;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        padding:0;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        line-height:1;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        color: $tcolor;</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    }</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    $selector .cc_intro * {</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;        padding: .5em 0;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        margin: 0;</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    $selector .cc_intro {</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        padding-bottom:{$lpadbottom}em;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    $selector .kws_input_container {</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;        padding-top: {$lpad}em;</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    }</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    $selector label {</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        margin-bottom:{$lpadbottom}em;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        text-align: {$lalign};</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        color: {$lcolor};</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        font-size: {$lsize}px!important;</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        font-family: $lfont;</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        display:block;</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    }</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="keywordflow">if</span>(isset($form)) { $selector = <span class="stringliteral">&#39; id=&quot;cc_form_&#39;</span>.$form.<span class="charliteral">&#39;&quot;&#39;</span>; } <span class="keywordflow">else</span> { $selector = <span class="stringliteral">&#39;&#39;</span>; }</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="comment">// Only process one to speed up things.</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="keywordflow">if</span>(!empty($changed)) {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            ctctlog(<span class="stringliteral">&#39;Changed is set: &#39;</span>.$changed);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">foreach</span>($f as $field) {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                $field[<span class="stringliteral">&#39;size&#39;</span>] = $size;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                $field[<span class="stringliteral">&#39;form_id&#39;</span>] = isset($cc_signup_count) ? $cc_signup_count : 1;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">if</span>($field[<span class="stringliteral">&#39;id&#39;</span>] == str_replace(<span class="stringliteral">&#39;_default&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $changed) || $field[<span class="stringliteral">&#39;id&#39;</span>] == str_replace(<span class="stringliteral">&#39;_label&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $changed)) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    <span class="keywordflow">return</span> makeFormField($field, $cc_request);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                };</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            };</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        ctctlog(<span class="stringliteral">&#39;Changed is not set.&#39;</span>);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        ctctlog(<span class="stringliteral">&#39;fields:&#39;</span>);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        r($f);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordflow">if</span>(is_array($f)) {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            $position = array();</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">foreach</span> ($f as $key =&gt; $field) {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                <span class="keywordflow">if</span>(!isset($field[<span class="stringliteral">&#39;pos&#39;</span>])) {</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                    unset($f[$key]);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                }</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                $position[$key] = $field[<span class="stringliteral">&#39;pos&#39;</span>];</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            array_multisort($position, SORT_ASC, $f);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            $lists_shown = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordflow">foreach</span>($f as $field) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                $field[<span class="stringliteral">&#39;size&#39;</span>] = $size;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                $field[<span class="stringliteral">&#39;form_id&#39;</span>] = $cc_signup_count;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordflow">if</span>($field[<span class="charliteral">&#39;t&#39;</span>] === <span class="stringliteral">&#39;lists&#39;</span>) {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                    $lists_shown = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                $fieldoutput = makeFormField($field, $cc_request, $currentform);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                $inputfields .= $fieldoutput;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="comment">// Make sure the lists fields are shown if not already added.</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">if</span>(!$lists_shown) {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                $inputfields .= <span class="stringliteral">&#39;&lt;!-- %%LISTSELECTION%% --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="comment">// We need a submit field for some strange reason in some IE versions</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="comment">// Can&#39;t use a hidden field, either.</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            $inputfields .= <span class="stringliteral">&quot;\n&lt;input type=&#39;submit&#39; style=&#39;position:absolute; width:0;height:0;left:-9999px;&#39; name=&#39;constant-contact-signup-submit&#39; /&gt;&quot;</span>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            $inputfields = <span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;div class=&quot;kws_input_fields gform_fields&quot;&gt;&#39;</span>.$inputfields.<span class="stringliteral">&quot;\n&quot;</span>.<span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor">        #r(htmlentities($inputfields));</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="keywordflow">if</span>($safesubscribe != <span class="stringliteral">&#39;no&#39;</span>) {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            $safesubscribelink = <span class="stringliteral">&#39;&lt;a href=&quot;http://katz.si/safesubscribe&quot; target=&quot;_blank&quot; class=&quot;cc_safesubscribe safesubscribe_&#39;</span>.$safesubscribe.<span class="stringliteral">&#39;&quot; rel=&quot;nofollow&quot;&gt;Privacy by SafeSubscribe&lt;/a&gt;&#39;</span>;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            $safesubscribelink = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        $haserror = $errors = $success = $hidden = $action = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;output&#39;</span>]) &amp;&amp; $data[<span class="stringliteral">&#39;output&#39;</span>] == <span class="stringliteral">&#39;html&#39;</span>) {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            $haserror = <span class="stringliteral">&#39; %%HASERROR%%&#39;</span>;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            $action = <span class="stringliteral">&#39;%%ACTION%%&#39;</span>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            $errors = <span class="stringliteral">&#39;&lt;!-- %%ERRORS%% --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            $success = <span class="stringliteral">&#39;&lt;!-- %%SUCCESS%% --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            $hidden = <span class="stringliteral">&#39;&lt;!-- %%HIDDEN%% --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">if</span>(empty($cc_success)) {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            $formInner = $errors . $success . $inputfields . $safesubscribelink . $hidden;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            $formInner = $success;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        $form = &lt;&lt;&lt;EOD</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;kws_form gform_wrapper$haserror&quot;</span>$selector&gt;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        &lt;form <span class="keywordtype">id</span>=<span class="stringliteral">&quot;$form_id_attr&quot;</span> action=<span class="stringliteral">&quot;$action&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            $formInner</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;kws_clear&quot;</span>&gt;&lt;/div&gt;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            &lt;!-- Form Generated by the Constant Contact API WordPress Plugin by Katz Web Services, Inc. --&gt;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        &lt;/form&gt;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    &lt;/div&gt;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;EOD;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">if</span>(!$debug) {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            $form = str_replace(array(<span class="stringliteral">&quot;\n&quot;</span>, <span class="stringliteral">&quot;\r&quot;</span>, <span class="stringliteral">&quot;\t&quot;</span>), <span class="charliteral">&#39; &#39;</span>, $form);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            $form = preg_replace(<span class="stringliteral">&#39;/\s\s/ism&#39;</span>, <span class="charliteral">&#39; &#39;</span>, $form);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">return</span> $form;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keyword">function</span> processStyle() {</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        $required = $color2 = $tcolor = $lcolor = $bordercolor = $color6 = $color5 = $t = $label = $size = $name = $id = $fields = $labelsusesamecolor = $labelsusesamealign = $labelsusesamefont = $labelsusesamepadding = $givethanks = $safesubscribe = $blockalign = $bgcss = $gradheight = $lpad = $lalign = $bgimage = $bgpos = $bgrepeat = $lfont = $tfont = $f = $lsize = $talign = $width = $widthtype = $borderradius = $borderwidth = $paddingwidth = $formalign = $talign = $backgroundtype = $widthtype = $borderstyle = $tsize = $lsize = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        ctctlog(<span class="stringliteral">&#39;start processStyle&#39;</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        $data = getData();</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        extract($data);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        <span class="keywordflow">if</span>(isset($form)) { $selector = <span class="stringliteral">&#39;#content #cc_form_&#39;</span>.$form; } <span class="keywordflow">else</span> { $selector = <span class="stringliteral">&#39;html body div.kws_form&#39;</span>; }</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        $bgtop = $color6;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        $bgtopraw = str_replace(<span class="charliteral">&#39;#&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $bgtop);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        $bgbottom = $color2;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        $bgbottomraw = str_replace(<span class="charliteral">&#39;#&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, $bgbottom);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        $tfont = findFont($tfont);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        $lfont = findFont($lfont);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">if</span>($widthtype == <span class="stringliteral">&#39;per&#39;</span>) { $widthtype = <span class="charliteral">&#39;%&#39;</span>; }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">switch</span>($backgroundtype) {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;gradient&#39;</span>:</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                <span class="keywordflow">if</span>($gradtype == <span class="stringliteral">&#39;horizontal&#39;</span>) {</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                    $bgrepeat = <span class="stringliteral">&#39;left top repeat-y&#39;</span>;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                    $dimensions = <span class="stringliteral">&quot;width=$gradheight&amp;height=1&quot;</span>;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                    $bgback = $bgtop;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                    $dimensions = <span class="stringliteral">&quot;height=$gradheight&amp;width=1&quot;</span>;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                    $bgrepeat = <span class="stringliteral">&#39;left top repeat-x&#39;</span>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                    $bgback = $bgbottom;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;{$path}ozhgradient.php?start=$bgtopraw&amp;end=$bgbottomraw&amp;type=$gradtype&amp;$dimensions&#39;) $bgrepeat;&quot;</span>;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;solid&#39;</span>:</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                $bgcss = <span class="stringliteral">&quot;background-color: $bgbottom; background-image:none;&quot;</span>;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;pattern&#39;</span>:</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;{$path}$patternurl&#39;) left top repeat;&quot;</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&#39;transparent&#39;</span>:</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: none transparent;&quot;</span>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                $bgcss = <span class="stringliteral">&quot;background: $bgbottom url(&#39;$bgimage&#39;) $bgpos $bgrepeat;&quot;</span>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="preprocessor">#       if($labelsusesamealign == &#39;yes&#39;) { $lalign = $talign; }</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="preprocessor"></span>    <span class="comment">/*  if($labelsusesamepadding == &#39;yes&#39;) { $lpad = $tpad; } */</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <span class="keywordflow">if</span>($labelsusesamefont) { $lfont = $tfont; $lsize = $tsize; }</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="keywordflow">if</span>($labelsusesamecolor) { $lcolor = $tcolor; }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">if</span>($talign == <span class="stringliteral">&#39;center&#39;</span>) { $blockalign = <span class="stringliteral">&#39;margin:0 auto;&#39;</span>; } elseif($talign == <span class="stringliteral">&#39;right&#39;</span>) { $blockalign = <span class="stringliteral">&#39;clear:both; float:right;&#39;</span>;}</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        <span class="keywordflow">if</span>($formalign == <span class="stringliteral">&#39;center&#39;</span>) { $formalign = <span class="stringliteral">&#39;margin:0 auto;&#39;</span>; } elseif($formalign == <span class="stringliteral">&#39;right&#39;</span>) { $formalign = <span class="stringliteral">&#39;clear:both; float:right;&#39;</span>;} elseif($formalign == <span class="stringliteral">&#39;left&#39;</span>) { $formalign = <span class="stringliteral">&#39;clear:both; float:left;&#39;</span>;}</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <span class="keywordflow">if</span>($givethanks) { $formalign .= <span class="stringliteral">&#39;margin-bottom: .5em;&#39;</span>;}</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        $safesubscribecss = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        $sspad = $lpad * 1.6;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <span class="keywordflow">if</span>(!empty($safesubscribe) &amp;&amp; $safesubscribe != <span class="stringliteral">&#39;no&#39;</span>) {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            $safesubscribecss = <span class="stringliteral">&quot;$selector a.safesubscribe_{$safesubscribe} {</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="stringliteral">            background: transparent url({$path}images/safesubscribe-$safesubscribe.gif) left top no-repeat;</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="stringliteral">            $blockalign</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="stringliteral">            width:168px;</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="stringliteral">            height:14px;</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="stringliteral">            display:block;</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="stringliteral">            text-align:left!important;</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="stringliteral">            overflow:hidden!important;</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="stringliteral">            text-indent: -9999px!important;</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="stringliteral">            margin-top: {$sspad}em!important;</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="stringliteral">        }&quot;</span>;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        }</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    $paddingwidth = (int)$paddingwidth;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    $borderradius = (int)$borderradius;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    $width = (int)$width;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    $lpadbottom = round($lpad/3, 3);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;$css = &lt;&lt;&lt;EOD</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;&lt;style type=<span class="stringliteral">&quot;text/css&quot;</span>&gt;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    &lt;!--[<span class="keywordflow">if</span> IE lte 9]&gt;$selector { behavior: url({$path}css/border-radius.htc); }&lt;![endif]--&gt;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    .has_errors .cc_intro { display:none;}</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    $selector .cc_success {</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        margin:0!important;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        padding:10px;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        color: $tcolor!important;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    $selector {</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        line-height: 1;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    }</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    $selector ol, $selector ul {</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        list-style: none;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        margin:0;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        padding:0;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    }</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    $selector li {</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        list-style: none;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    $selector blockquote, $selector q {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        quotes: none;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    $selector blockquote:before, $selector blockquote:after,</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    $selector q:before, $selector q:after {</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        content: <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        content: none;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    }</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="comment">/* remember to define focus styles! */</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    $selector :focus {</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        outline: 0;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    }</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    $selector .req { cursor: help; }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    $selector {</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        $bgcss</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        padding: {$paddingwidth}px;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;        $formalign</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        -webkit-background-clip: border-box;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        -moz-background-clip: border-box;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        background-clip:border-box;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        background-origin: border-box;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        -webkit-background-origin: border-box;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        -moz-background-origin: border-box;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        border: $borderstyle $bordercolor {$borderwidth}px;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        -moz-border-radius: {$borderradius}px {$borderradius}px;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        -webkit-border-radius: {$borderradius}px {$borderradius}px;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        border-radius: {$borderradius}px {$borderradius}px {$borderradius}px {$borderradius}px;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        width: {$width}{$widthtype};</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        color: $tcolor!important;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        font-family: $tfont!important;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        font-size: $tsize!important;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        text-align: $talign!important;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    }</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    $selector * {</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;        font-size: $tsize;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="preprocessor">    #content $selector { margin-bottom: 1em; margin-top: 1em; }</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    $selector select { max-width: 100%; }</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    .kws_input_fields {</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;        text-align: $talign;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    }</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    $selector .cc_newsletter li {</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        margin:.5em 0;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    }</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    $selector .cc_newsletter ul label {</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        margin: 0;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        padding:0;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        line-height:1;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        cursor: pointer;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    }</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    $selector input.t {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        margin: 0;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        padding:.3em;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        line-height:1.1;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        -moz-border-radius: 2px 2px;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        -webkit-border-radius: 2px 2px;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        border-radius: 2px 2px 2px 2px;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        font-family: $lfont;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        max-width: 95%;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    }</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    $selector .cc_intro, $selector .cc_intro * {</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        font-family: $tfont;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        margin:0;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        padding:0;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        line-height:1;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        color: $tcolor;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    }</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    $selector .cc_intro * {</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        padding: .5em 0;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        margin: 0;</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    }</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    $selector .cc_intro {</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        padding-bottom:{$lpadbottom}em;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    }</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    $selector .kws_input_container {</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        padding-top: {$lpad}em;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    }</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    $selector label {</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        margin-bottom:{$lpadbottom}em;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        text-align: {$lalign};</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        color: {$lcolor};</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        font-size: {$lsize}px!important;</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;        font-family: $lfont;</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;        display:block;</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    }</div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    $selector .cc_lists li { text-indent: -1.25em; padding-left: 1.4em; }</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    $selector .cc_lists label { display:<span class="keyword">inline</span>; }</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    {$safesubscribecss}</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    {$selector} .submit { display:block; padding-top: {$lpad}px; {$blockalign} }</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    {$selector} label.kws_bold { font-weight:bold; } label.kws_bold input { font-weight:normal; }</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    {$selector} label.kws_italic { font-style:italic; } label.kws_italic input { text-style:normal; }</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    .kws_clear { clear:both;}</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    &lt;/style&gt;</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;EOD;</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\n&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\r&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\t&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <span class="keywordflow">return</span> $css;</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;}</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="keyword">function</span> getData() {</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    global $debug;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    $data = $debug ? $_REQUEST : $_POST;</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="keywordflow">return</span> $data;</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;}</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;<span class="keywordflow">if</span>(!function_exists(<span class="stringliteral">&#39;ctctlog&#39;</span>)){</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="keyword">function</span> ctctlog($info) {</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    global $debug;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    <span class="keywordflow">if</span>(!$debug) { <span class="keywordflow">return</span>; }</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    echo <span class="stringliteral">&#39;&lt;h4&gt;&#39;</span>.$info.<span class="stringliteral">&#39;&lt;/h4&gt;&#39;</span>;</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;}}</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="keywordflow">if</span>(!function_exists(<span class="charliteral">&#39;r&#39;</span>)) {</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="keyword">function</span> r($content, $die = <span class="keyword">false</span>, $echo=<span class="keyword">true</span>) {</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    global $debug;</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keywordflow">if</span>(!$debug) { <span class="keywordflow">return</span>; }</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        <span class="keywordflow">if</span>(!function_exists(<span class="stringliteral">&#39;htmlentities_recursive&#39;</span>)) {</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;            <span class="keyword">function</span> htmlentities_recursive($data) {</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                <span class="keywordflow">foreach</span>($data as $key =&gt; $value) {</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;                    <span class="keywordflow">if</span> (is_array($value)) {</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;                        $data[$key] = htmlentities_recursive($value);</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;                        <span class="keywordflow">if</span>(is_string($value)) {</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;                        $data[$key] = htmlentities($value);</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;                        }</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;                    }</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;                }</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                <span class="keywordflow">return</span> $data;</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;            }</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        }</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        <span class="keywordflow">if</span>(is_array($content)) { $content = htmlentities_recursive($content); }</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        $output = <span class="stringliteral">&#39;&lt;pre style=&quot;text-align:left; margin:10px; padding:10px; background-color: rgba(255,255,255,.95); border:3px solid rgba(100,100,100,.95); overflow:scroll; max-height:400px; float:left; width:90%; max-width:800px; white-space:pre;&quot;&gt;&#39;</span>;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        $output .= print_r($content, <span class="keyword">true</span>); <span class="comment">//print_r(mixed expression [, bool return])</span></div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;        $output .= <span class="stringliteral">&#39;&lt;/pre&gt;&#39;</span>;</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        <span class="keywordflow">if</span>($echo) { echo $output; } <span class="keywordflow">else</span> { <span class="keywordflow">return</span> $output; }</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        <span class="keywordflow">if</span>($die)  { die(); }</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    } <span class="keywordflow">catch</span>(Exception $e) { }</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;}</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    $selector .cc_lists li { text-indent: -1.25em; padding-left: 1.4em; }</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    $selector .cc_lists label { display:<span class="keyword">inline</span>; }</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    {$safesubscribecss}</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    {$selector} .submit { display:block; padding-top: {$lpad}px; {$blockalign} }</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    {$selector} label.kws_bold { font-weight:bold; } label.kws_bold input { font-weight:normal; }</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    {$selector} label.kws_italic { font-style:italic; } label.kws_italic input { text-style:normal; }</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    .kws_clear { clear:both;}</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    &lt;/style&gt;</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;EOD;</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\n&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\r&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        $css = str_replace(<span class="stringliteral">&quot;\t&quot;</span>, <span class="charliteral">&#39; &#39;</span>, $css);</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        <span class="keywordflow">return</span> $css;</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;}</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="keyword">function</span> getData() {</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    global $debug;</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    $data = $debug ? $_REQUEST : $_POST;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="keywordflow">return</span> $data;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;}</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="keywordflow">if</span>(!function_exists(<span class="stringliteral">&#39;ctctlog&#39;</span>)){</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="keyword">function</span> ctctlog($info) {</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    global $debug;</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    <span class="keywordflow">if</span>(!$debug) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    echo <span class="stringliteral">&#39;&lt;h4&gt;&#39;</span>.$info.<span class="stringliteral">&#39;&lt;/h4&gt;&#39;</span>;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;}}</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="keywordflow">if</span>(!function_exists(<span class="charliteral">&#39;r&#39;</span>)) {</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="keyword">function</span> r($content, $die = <span class="keyword">false</span>, $echo=<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    global $debug;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="keywordflow">if</span>(!$debug) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        <span class="keywordflow">if</span>(!function_exists(<span class="stringliteral">&#39;htmlentities_recursive&#39;</span>)) {</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;            <span class="keyword">function</span> htmlentities_recursive($data) {</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;                <span class="keywordflow">foreach</span>($data as $key =&gt; $value) {</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;                    <span class="keywordflow">if</span> (is_array($value)) {</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;                        $data[$key] = htmlentities_recursive($value);</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;                        <span class="keywordflow">if</span>(is_string($value)) {</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;                        $data[$key] = htmlentities($value);</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;                        }</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;                    }</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                }</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;                <span class="keywordflow">return</span> $data;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;            }</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        }</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        <span class="keywordflow">if</span>(is_array($content)) { $content = htmlentities_recursive($content); }</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        $output = <span class="stringliteral">&#39;&lt;pre style=&quot;text-align:left; margin:10px; padding:10px; background-color: rgba(255,255,255,.95); border:3px solid rgba(100,100,100,.95); overflow:scroll; max-height:400px; float:left; width:90%; max-width:800px; white-space:pre;&quot;&gt;&#39;</span>;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;        $output .= print_r($content, <span class="keyword">true</span>); <span class="comment">//print_r(mixed expression [, bool return])</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        $output .= <span class="stringliteral">&#39;&lt;/pre&gt;&#39;</span>;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        <span class="keywordflow">if</span>($echo) { echo $output; } <span class="keywordflow">else</span> { <span class="keywordflow">return</span> $output; }</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        <span class="keywordflow">if</span>($die)  { die(); }</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    } <span class="keywordflow">catch</span>(Exception $e) { }</div>
 <div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;}</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="keyword">function</span> printForm() {</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    global $debug;</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    $data = getData();</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;    <span class="comment">// Some very basic verification. Not secure, but better than nothing.</span></div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    <span class="keywordflow">if</span>(</div>
-<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        !(@$data[<span class="stringliteral">&#39;verify&#39;</span>] === @$data[<span class="stringliteral">&#39;rand&#39;</span>] . @$data[<span class="stringliteral">&#39;cc-form-id&#39;</span>] . @$data[<span class="stringliteral">&#39;date&#39;</span>]) &amp;&amp;</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;       <span class="comment">// Make sure the verification fields are there</span></div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;       !(isset($data[<span class="stringliteral">&#39;verify&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;time&#39;</span>]) &amp;&amp; ($data[<span class="stringliteral">&#39;verify&#39;</span>] === sha1($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>].$data[<span class="stringliteral">&#39;time&#39;</span>])))</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    ) {</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;        r($data[<span class="stringliteral">&#39;verify&#39;</span>]);</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        r(sha1($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>].$data[<span class="stringliteral">&#39;time&#39;</span>]));</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;        ctctlog(<span class="stringliteral">&#39;The form was requested without authentication&#39;</span>);</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;        $output = <span class="stringliteral">&#39;&lt;!-- Constant Contact: The form was requested without verification. --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;echo&#39;</span>])) { echo $output; }</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;        <span class="keywordflow">return</span> $output;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;    }</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    <span class="keywordflow">if</span>(isset($data[<span class="charliteral">&#39;f&#39;</span>]) &amp;&amp; is_array($data[<span class="charliteral">&#39;f&#39;</span>])) {</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;        <span class="keywordflow">foreach</span>($data[<span class="charliteral">&#39;f&#39;</span>] as $key =&gt; $field) {</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;            <span class="keywordflow">if</span>(!isset($field[<span class="stringliteral">&#39;pos&#39;</span>]) || !isset($field[<span class="stringliteral">&#39;id&#39;</span>])) {</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;                ctctlog(<span class="stringliteral">&#39;pos not set for &#39;</span>.$key);</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                unset($data[<span class="charliteral">&#39;f&#39;</span>][$key]);</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;            }</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;        }</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    }</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;output&#39;</span>]) &amp;&amp; $data[<span class="stringliteral">&#39;output&#39;</span>] == <span class="stringliteral">&#39;html&#39;</span>) {</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;        <span class="keywordflow">if</span>(!isset($data[<span class="stringliteral">&#39;form&#39;</span>])  &amp;&amp; !isset($data[<span class="stringliteral">&#39;cc-form-id&#39;</span>])) {</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;            ctctlog(<span class="stringliteral">&#39;form does not exist&#39;</span>);</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;            $output = <span class="stringliteral">&#39;&lt;!-- Constant Contact: The form you requested does not exist --&gt;&#39;</span>;</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;            <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;formOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;formOnly&#39;</span>])) {</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                ctctlog(<span class="stringliteral">&#39;get formOnly&#39;</span>);</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                $output = processForm();</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                ctctlog(<span class="stringliteral">&#39;get style Only&#39;</span>);</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                $output = processStyle();</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                ctctlog(<span class="stringliteral">&#39;get full form&#39;</span>);</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                $output = !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>]) ? processStyle().processForm() : processForm();</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;            }</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;        }</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;echo&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;echo&#39;</span>])) {</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;            echo $output;</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;            <span class="keywordflow">return</span> $output;</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;        }</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;        ctctlog(<span class="stringliteral">&#39;Output not set.&#39;</span>);</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;changed&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;textOnly&#39;</span>])) {</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;            ctctlog(<span class="stringliteral">&#39;Text only, input changed: &#39;</span>.$data[<span class="stringliteral">&#39;changed&#39;</span>]);</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;input&#39;</span> =&gt; processForm()));</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;        } elseif(isset($data[<span class="stringliteral">&#39;textOnly&#39;</span>])) {</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;            ctctlog(<span class="stringliteral">&#39;Text only&#39;</span>);</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;form&#39;</span> =&gt; processForm()));</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        } elseif(isset($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;            ctctlog(<span class="stringliteral">&#39;Style only&#39;</span>);</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;css&#39;</span> =&gt; processStyle()));</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;            ctctlog(<span class="stringliteral">&#39;Whole form&#39;</span>);</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            <span class="keywordflow">if</span>(!empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                $form = processForm();</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                $css = processStyle();</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                ctctlog(<span class="stringliteral">&#39;Toggle Design set&#39;</span>);</div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                print json_encode(array(<span class="stringliteral">&#39;css&#39;</span> =&gt; $css, <span class="stringliteral">&#39;form&#39;</span> =&gt; $form));</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                ctctlog(<span class="stringliteral">&#39;Design not set&#39;</span>);</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                print json_encode(array(<span class="stringliteral">&#39;form&#39;</span> =&gt; processForm()));</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;            }</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        }</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    }</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;}</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;<span class="keywordflow">if</span>($debug) {</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;    ini_set(<span class="stringliteral">&#39;display_errors&#39;</span>, 1);</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    error_reporting(E_ALL);</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;}</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;printForm();</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;exit();</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;}</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="keyword">function</span> printForm() {</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    global $debug;</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    $data = getData();</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    <span class="comment">// Some very basic verification. Not secure, but better than nothing.</span></div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <span class="keywordflow">if</span>(</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        !(@$data[<span class="stringliteral">&#39;verify&#39;</span>] === @$data[<span class="stringliteral">&#39;rand&#39;</span>] . @$data[<span class="stringliteral">&#39;cc-form-id&#39;</span>] . @$data[<span class="stringliteral">&#39;date&#39;</span>]) &amp;&amp;</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;       <span class="comment">// Make sure the verification fields are there</span></div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;       !(isset($data[<span class="stringliteral">&#39;verify&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;time&#39;</span>]) &amp;&amp; ($data[<span class="stringliteral">&#39;verify&#39;</span>] === sha1($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>].$data[<span class="stringliteral">&#39;time&#39;</span>])))</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    ) {</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        r($data[<span class="stringliteral">&#39;verify&#39;</span>]);</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;        r(sha1($data[<span class="stringliteral">&#39;uniqueformid&#39;</span>].$data[<span class="stringliteral">&#39;time&#39;</span>]));</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;        ctctlog(<span class="stringliteral">&#39;The form was requested without authentication&#39;</span>);</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;        $output = <span class="stringliteral">&#39;&lt;!-- Constant Contact: The form was requested without verification. --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;echo&#39;</span>])) { echo $output; }</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        <span class="keywordflow">return</span> $output;</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    }</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;    <span class="keywordflow">if</span>(isset($data[<span class="charliteral">&#39;f&#39;</span>]) &amp;&amp; is_array($data[<span class="charliteral">&#39;f&#39;</span>])) {</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;        <span class="keywordflow">foreach</span>($data[<span class="charliteral">&#39;f&#39;</span>] as $key =&gt; $field) {</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;            <span class="keywordflow">if</span>(!isset($field[<span class="stringliteral">&#39;pos&#39;</span>]) || !isset($field[<span class="stringliteral">&#39;id&#39;</span>])) {</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                ctctlog(<span class="stringliteral">&#39;pos not set for &#39;</span>.$key);</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                unset($data[<span class="charliteral">&#39;f&#39;</span>][$key]);</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;            }</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        }</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    }</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;output&#39;</span>]) &amp;&amp; $data[<span class="stringliteral">&#39;output&#39;</span>] == <span class="stringliteral">&#39;html&#39;</span>) {</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;        <span class="keywordflow">if</span>(!isset($data[<span class="stringliteral">&#39;form&#39;</span>])  &amp;&amp; !isset($data[<span class="stringliteral">&#39;cc-form-id&#39;</span>])) {</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;            ctctlog(<span class="stringliteral">&#39;form does not exist&#39;</span>);</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;            $output = <span class="stringliteral">&#39;&lt;!-- Constant Contact: The form you requested does not exist --&gt;&#39;</span>;</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;            <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;formOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;formOnly&#39;</span>])) {</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                ctctlog(<span class="stringliteral">&#39;get formOnly&#39;</span>);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                $output = processForm();</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                ctctlog(<span class="stringliteral">&#39;get style Only&#39;</span>);</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                $output = processStyle();</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                ctctlog(<span class="stringliteral">&#39;get full form&#39;</span>);</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                $output = !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>]) ? processStyle().processForm() : processForm();</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;            }</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;        }</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;echo&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;echo&#39;</span>])) {</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            echo $output;</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;            <span class="keywordflow">return</span> $output;</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;        }</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        ctctlog(<span class="stringliteral">&#39;Output not set.&#39;</span>);</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;        <span class="keywordflow">if</span>(isset($data[<span class="stringliteral">&#39;changed&#39;</span>]) &amp;&amp; isset($data[<span class="stringliteral">&#39;textOnly&#39;</span>])) {</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            ctctlog(<span class="stringliteral">&#39;Text only, input changed: &#39;</span>.$data[<span class="stringliteral">&#39;changed&#39;</span>]);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;input&#39;</span> =&gt; processForm()));</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;        } elseif(isset($data[<span class="stringliteral">&#39;textOnly&#39;</span>])) {</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;            ctctlog(<span class="stringliteral">&#39;Text only&#39;</span>);</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;form&#39;</span> =&gt; processForm()));</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;        } elseif(isset($data[<span class="stringliteral">&#39;styleOnly&#39;</span>]) &amp;&amp; !empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;            ctctlog(<span class="stringliteral">&#39;Style only&#39;</span>);</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;            print json_encode(array(<span class="stringliteral">&#39;css&#39;</span> =&gt; processStyle()));</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            ctctlog(<span class="stringliteral">&#39;Whole form&#39;</span>);</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;            <span class="keywordflow">if</span>(!empty($data[<span class="stringliteral">&#39;toggledesign&#39;</span>])) {</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                $form = processForm();</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                $css = processStyle();</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                ctctlog(<span class="stringliteral">&#39;Toggle Design set&#39;</span>);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                print json_encode(array(<span class="stringliteral">&#39;css&#39;</span> =&gt; $css, <span class="stringliteral">&#39;form&#39;</span> =&gt; $form));</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                ctctlog(<span class="stringliteral">&#39;Design not set&#39;</span>);</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                print json_encode(array(<span class="stringliteral">&#39;form&#39;</span> =&gt; processForm()));</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            }</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        }</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;    }</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;}</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="keywordflow">if</span>($debug) {</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    ini_set(<span class="stringliteral">&#39;display_errors&#39;</span>, 1);</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;    error_reporting(E_ALL);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;}</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;printForm();</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;exit();</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e8d5c2f72da7f56e29f1cffbc2f5386e.html">form-designer</a></li><li class="navelem"><b>form.php</b></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

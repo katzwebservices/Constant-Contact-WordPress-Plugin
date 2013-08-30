@@ -229,7 +229,7 @@ jQuery(document).ready(function($) {
 		if($('.edit-new-h2').length === 0) { return; }
 
 		var data = {
-			value : $('input', $(this)).serialize(),
+			value : $('input', $(this)).serializeArray(),
 			field : 'lists'
 		};
 
@@ -249,9 +249,12 @@ jQuery(document).ready(function($) {
 				'_wpnonce': CTCT._wpnonce,
 				'value': data.value,
 				'id': id,
+				'async': true,
 				'component': CTCT.component,
 				'field': field,
-				'parent': parent
+				'parent': parent,
+				'isLocal': true,
+				'type': 'POST'
 			}
 		});
 
@@ -259,7 +262,7 @@ jQuery(document).ready(function($) {
 
 		if(parseInt(responseText.code, 10) === 400) {
 			$object.effect("highlight", {color: 'red'}, 2000);
-			alertify.alert('<h3>The request failed.</h3><p>Error ' + responseText.code + ': '+responseText.message[0].error_message.replace(/^.*:/ig, '')+'</p>');
+			alertify.alert('<h3>The request failed.</h3><p>Error ' + responseText.code + ': '+responseText.message[0].error_message.replace(/^.*?:/ig, '')+'</p>');
 			return false;
 		}
 
@@ -268,7 +271,7 @@ jQuery(document).ready(function($) {
 		return true;
 	}
 
-	// For support
+	// Set up support tooltips
 	$('.cc_tip,.ctct_tip').each(function() {
 		$(this).tooltip({
 	        content: function () {

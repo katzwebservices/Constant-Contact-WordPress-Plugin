@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.1</span>
+   &#160;<span id="projectnumber">3.0.2</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -162,40 +162,41 @@ $(document).ready(function(){initNavTree('view_8contact-view_8php_source.html','
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    $html .= sprintf(<span class="stringliteral">&#39;&lt;span class=&quot;editable&quot; data-name=&quot;&#39;</span>.$key.<span class="stringliteral">&#39;&quot;&gt;%s&lt;/span&gt;&#39;</span>, $Contact-&gt;get(<span class="stringliteral">&#39;email_address&#39;</span>));</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">case</span> <span class="stringliteral">&#39;notes&#39;</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    $html .= sprintf(<span class="stringliteral">&#39;&lt;span class=&quot;editable&quot; data-name=&quot;&#39;</span>.$key.<span class="stringliteral">&#39;&quot;&gt;%s&lt;/span&gt;&#39;</span>, $Contact-&gt;get(<span class="stringliteral">&#39;notes&#39;</span>));</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">case</span> <span class="stringliteral">&#39;custom_fields&#39;</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                    $i = 1;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    $html .= <span class="stringliteral">&#39;&lt;ul class=&quot;ctct-checkboxes&quot;&gt;&#39;</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    <span class="keywordflow">while</span>($i &lt; 16) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        $html .= sprintf(<span class="stringliteral">&#39;&lt;li&gt;Custom Field %1$s &lt;span class=&quot;editable&quot; data-name=&quot;CustomField%d&quot;&gt;%s&lt;/span&gt;&lt;/li&gt;&#39;</span>, $i, $Contact-&gt;get(<span class="stringliteral">&#39;CustomField&#39;</span>.$i));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        $i++;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    $html .= <span class="stringliteral">&#39;&lt;/ul&gt;&#39;</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    $html .= $Contact-&gt;get($key, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            $html .= sprintf(<span class="stringliteral">&#39;&lt;span%s&gt;%s&lt;/span&gt;&lt;/td&gt;&#39;</span>, ($Contact-&gt;is_editable($key) ? <span class="stringliteral">&#39; class=&quot;editable&quot; data-name=&quot;&#39;</span>.$key.<span class="charliteral">&#39;&quot;&#39;</span> : <span class="stringliteral">&#39; class=&quot;not-editable&quot;&#39;</span>), $Contact-&gt;get($key));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        $html .= <span class="stringliteral">&#39;&lt;/td&gt;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="stringliteral">        &lt;/tr&gt;&#39;</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    echo $html;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;?&gt;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;&lt;/tbody&gt;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;&lt;/table&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    <span class="comment">// Constant Contact got rid of Notes for now.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    <span class="comment">/*$html .= sprintf(&#39;&lt;span class=&quot;editable&quot; data-name=&quot;&#39;.$key.&#39;&quot;&gt;%s&lt;/span&gt;&#39;, $Contact-&gt;get(&#39;notes&#39;));*/</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">case</span> <span class="stringliteral">&#39;custom_fields&#39;</span>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    $i = 1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    $html .= <span class="stringliteral">&#39;&lt;ul class=&quot;ctct-checkboxes&quot;&gt;&#39;</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                    <span class="keywordflow">while</span>($i &lt; 16) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        $html .= sprintf(<span class="stringliteral">&#39;&lt;li&gt;Custom Field %1$s &lt;span class=&quot;editable&quot; data-name=&quot;CustomField%d&quot;&gt;%s&lt;/span&gt;&lt;/li&gt;&#39;</span>, $i, $Contact-&gt;get(<span class="stringliteral">&#39;CustomField&#39;</span>.$i));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        $i++;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    $html .= <span class="stringliteral">&#39;&lt;/ul&gt;&#39;</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    $html .= $Contact-&gt;get($key, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            $html .= sprintf(<span class="stringliteral">&#39;&lt;span%s&gt;%s&lt;/span&gt;&lt;/td&gt;&#39;</span>, ($Contact-&gt;is_editable($key) ? <span class="stringliteral">&#39; class=&quot;editable&quot; data-name=&quot;&#39;</span>.$key.<span class="charliteral">&#39;&quot;&#39;</span> : <span class="stringliteral">&#39; class=&quot;not-editable&quot;&#39;</span>), $Contact-&gt;get($key));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        $html .= <span class="stringliteral">&#39;&lt;/td&gt;</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="stringliteral">        &lt;/tr&gt;&#39;</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    echo $html;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;?&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;&lt;/tbody&gt;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;&lt;/table&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a28135c7fe4f1ceaf910fc6d6560c222.html">views</a></li><li class="navelem"><a class="el" href="dir_72f9c3d920c36408143e655a61eb73ae.html">admin</a></li><li class="navelem"><b>view.contact-view.php</b></li>
-    <li class="footer">Generated on Thu Aug 22 2013 15:09:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

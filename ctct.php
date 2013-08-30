@@ -4,7 +4,7 @@ Plugin Name: Official Constant Contact Plugin
 Plugin URI: http://www.katzwebservices.com
 Description: Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: Katz Web Services, Inc.
-Version: 3.0.1
+Version: 3.0.2
 Author URI: http://www.katzwebservices.com
 */
 
@@ -19,7 +19,7 @@ class WP_CTCT {
 
 		if(!defined('CTCT_VERSION')) {
 
-			define('CTCT_VERSION', '3.0.1');
+			define('CTCT_VERSION', '3.0.2');
 			define('CTCT_FILE', __FILE__); // The full path to this file
 			define('CTCT_FILE_PATH', dirname(__FILE__) . '/'); // The full path to this file
 			define('CTCT_FILE_URL', plugin_dir_url(__FILE__)); // @ Added 2.0 The full URL to this file
@@ -110,7 +110,6 @@ class WP_CTCT {
 
 		/** Admin pages */
 		include_once CTCT_DIR_PATH.'admin/profile.php';
-		include_once CTCT_DIR_PATH.'admin/registration.php';
 		include_once CTCT_DIR_PATH.'admin/campaigns.php';
 		include_once CTCT_DIR_PATH.'admin/contacts.php';
 		include_once CTCT_DIR_PATH.'admin/lists.php';
@@ -119,6 +118,7 @@ class WP_CTCT {
 		if(!is_ctct_configured()) { return; }
 
 		/** Modules */
+		include_once CTCT_DIR_PATH.'lib/registration.php';
 		include_once CTCT_DIR_PATH.'lib/constant-analytics/constant-analytics.php';
 		include_once CTCT_DIR_PATH.'lib/comment-form-signup.php';
 		include_once CTCT_DIR_PATH.'lib/simple-widget.php';
