@@ -11,7 +11,6 @@ var class_c_t_c_t___admin___page =
     [ "getKey", "class_c_t_c_t___admin___page.html#af75e5afacc1fcfff476e13e5de52eefe", null ],
     [ "getNavTitle", "class_c_t_c_t___admin___page.html#adbfa5f90d2474587ade02994d254de5e", null ],
     [ "getPermission", "class_c_t_c_t___admin___page.html#aa84212af40ce919ccaae4130bded6583", null ],
-    [ "getPointers", "class_c_t_c_t___admin___page.html#a05b33ad05b2a8fb25be1f21015422239", null ],
     [ "getTitle", "class_c_t_c_t___admin___page.html#a96eaf870d8a4a93746149a495de929e0", null ],
     [ "help_tabs", "class_c_t_c_t___admin___page.html#a7e8eb5dc02aa790260ee6e5552b10b58", null ],
     [ "isAdd", "class_c_t_c_t___admin___page.html#aa09ddad8c19f7b5e766616954288f30c", null ],
@@ -19,7 +18,6 @@ var class_c_t_c_t___admin___page =
     [ "isSingle", "class_c_t_c_t___admin___page.html#a79cac52351cd72e5cb0269ad98ac9a82", null ],
     [ "isView", "class_c_t_c_t___admin___page.html#a0a77dcf97ad2553b5a49c8dee3674bb4", null ],
     [ "page", "class_c_t_c_t___admin___page.html#ad4d8edcfbf3023f7f18a6d188adaf99c", null ],
-    [ "pointer_content", "class_c_t_c_t___admin___page.html#a47e12a9296f5dd00b9a4d84481b73f2c", null ],
     [ "print_errors", "class_c_t_c_t___admin___page.html#a4b26f51438cbd2148d28edeace31ec70", null ],
     [ "print_scripts", "class_c_t_c_t___admin___page.html#a487ade20252dfe30745e6237b23d5193", null ],
     [ "print_styles", "class_c_t_c_t___admin___page.html#a9dbfbf2ae04e990481f1f5d63dd7e891", null ],
@@ -34,6 +32,5 @@ var class_c_t_c_t___admin___page =
     [ "$key", "class_c_t_c_t___admin___page.html#a1cf51cfb7322508d13dcc7fb52e80c16", null ],
     [ "$oauth", "class_c_t_c_t___admin___page.html#af1168c9b5e3067ddba51848c5f1d0cc1", null ],
     [ "$permission", "class_c_t_c_t___admin___page.html#a7482eb7a2fbe252a0e7621a71aee9b69", null ],
-    [ "$pointers", "class_c_t_c_t___admin___page.html#a19d73c8387ba71fb0bbd6f078bb4653b", null ],
     [ "$title", "class_c_t_c_t___admin___page.html#a2e24e86366719bfcaa812d6e6f0e9600", null ]
 ];

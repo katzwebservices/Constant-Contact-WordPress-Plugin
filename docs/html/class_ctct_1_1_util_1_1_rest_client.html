@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_util_1_1_rest_client.ht
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -144,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:ac51e29486b2cd2d1b80db8126698ffae"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_util_1_1_rest_client.html#ac51e29486b2cd2d1b80db8126698ffae">httpRequest</a> ($url, $method, array $headers=array(), $data=null)</td></tr>
-<tr class="memdesc:ac51e29486b2cd2d1b80db8126698ffae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an Http request.  <a href="#ac51e29486b2cd2d1b80db8126698ffae">More...</a><br/></td></tr>
+<tr class="memdesc:ac51e29486b2cd2d1b80db8126698ffae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an HTTP request.  <a href="#ac51e29486b2cd2d1b80db8126698ffae">More...</a><br/></td></tr>
 <tr class="separator:ac51e29486b2cd2d1b80db8126698ffae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -180,7 +181,6 @@ Static Private Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramtype"></td><td class="paramname">$url</td><td>- request url </td></tr>
     <tr><td class="paramtype">array</td><td class="paramname">$headers</td><td>- array of all http headers to send </td></tr>
-    <tr><td class="paramtype"></td><td class="paramname">$data</td><td>- data to send with request </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,10 +188,10 @@ Static Private Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="interface_ctct_1_1_util_1_1_rest_client_interface.html#a7ff0d74c56d914e76f6aa1bee3406aac">Ctct\Util\RestClientInterface</a>.</p>
 
-<p>Definition at line <a class="el" href="_rest_client_8php_source.html#l00058">58</a> of file <a class="el" href="_rest_client_8php_source.html">RestClient.php</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> self::httpRequest($url, <span class="stringliteral">&quot;DELETE&quot;</span>, $headers);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="_rest_client_8php_source.html#l00057">57</a> of file <a class="el" href="_rest_client_8php_source.html">RestClient.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> self::httpRequest($url, <span class="stringliteral">&quot;DELETE&quot;</span>, $headers);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -282,22 +282,23 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Make an Http request. </p>
+<p>Make an HTTP request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype"></td><td class="paramname">$url</td><td>- request url </td></tr>
-    <tr><td class="paramtype">array</td><td class="paramname">$headers</td><td>- array of all http headers to send </td></tr>
-    <tr><td class="paramtype"></td><td class="paramname">$data</td><td>- data to send with the request </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">CTCTException</td><td>- if any errors are contained in the returned payload </td></tr>
+    <tr><td class="paramtype"></td><td class="paramname">$method</td><td>- HTTP method to use for the request </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$headers</td><td>- any http headers that should be included with the request </td></tr>
+    <tr><td class="paramtype">string&#160;|&#160;null</td><td class="paramname">$data</td><td>- payload to send with the request, if any </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_ctct_1_1_util_1_1_curl_response.html">CurlResponse</a> </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">CTCTException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_rest_client_8php_source.html#l00071">71</a> of file <a class="el" href="_rest_client_8php_source.html">RestClient.php</a>.</p>
 
@@ -307,19 +308,19 @@ Static Private Member Functions</h2></td></tr>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        curl_setopt($curl, CURLOPT_URL, $url);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        curl_setopt($curl, CURLOPT_HEADER, 0);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        curl_setopt($curl, CURLOPT_USERAGENT, <span class="stringliteral">&quot;ConstantContact Appconnect PHP Library v1.0&quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        curl_setopt($curl, CURLOPT_USERAGENT, <span class="stringliteral">&quot;ConstantContact AppConnect PHP Library v1.1&quot;</span>);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// add data to send with request if present</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> ($data) {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        $response = <a class="code" href="class_ctct_1_1_util_1_1_curl_response.html#acafe6d33ebefa50b7d83fb37c4f4f6fd">CurlResponse::create</a>(curl_exec($curl), curl_getinfo($curl), curl_error($curl));</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        curl_close($curl);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="comment">// check if any errors were returned</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">if</span> (isset($body[0]) &amp;&amp; array_key_exists(<span class="stringliteral">&#39;error_key&#39;</span>, $body[0])) {</div>
@@ -328,7 +329,7 @@ Static Private Member Functions</h2></td></tr>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            $ex-&gt;setErrors($body);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">throw</span> $ex;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> $response;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
 </div><!-- fragment -->
@@ -452,7 +453,7 @@ Static Private Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_util.html">Util</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_util_1_1_rest_client.html">RestClient</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

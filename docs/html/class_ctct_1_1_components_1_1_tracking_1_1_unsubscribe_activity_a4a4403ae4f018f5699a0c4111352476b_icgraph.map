@@ -1,4 +1,4 @@
 <map id="Ctct\Components\Tracking\UnsubscribeActivity\create" name="Ctct\Components\Tracking\UnsubscribeActivity\create">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#acf4875b2c9d6c9190c9a50a7d29631d9" title="Get unsubscribes for a given campaign. " alt="" coords="238,5,453,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a6b279b5a34d5d5ae01d7104e4ed4cccc" title="Get unsubscribes for a given contact. " alt="" coords="245,73,445,117"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#a476d1a1d064871d5e5daf4b03477fdf9" title="Get unsubscribes for a given campaign. " alt="" coords="238,5,453,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#abc75d3b2f76e6148592614ccc79180fe" title="Get unsubscribes for a given contact. " alt="" coords="245,73,445,117"/>
 </map>

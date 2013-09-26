@@ -1,5 +1,5 @@
 <map id="Ctct\Services\ListService\getContactsFromList" name="Ctct\Services\ListService\getContactsFromList">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. " alt="" coords="225,73,404,117"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url..." alt="" coords="225,73,404,117"/>
 <area shape="rect" id="node3" href="$class_ctct_1_1_components_1_1_contacts_1_1_contact.html#aea94ae08d0308ccb24c030bd9d96e368" title="Factory method to create a Contact object from an array. " alt="" coords="224,141,405,185"/>
 <area shape="rect" id="node9" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="248,209,381,237"/>
 <area shape="rect" id="node4" href="$class_ctct_1_1_components_1_1_contacts_1_1_custom_field.html#ae68b392692a27d65f007ca88378303ac" title="Factory method to create a CustomField object from an array. " alt="" coords="454,5,634,49"/>

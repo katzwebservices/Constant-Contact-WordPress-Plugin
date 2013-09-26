@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_w_p___c_t_c_t.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -162,12 +163,12 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ctct_8php_source.html#l00018">18</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
 
-<p>References <a class="el" href="ctct_8php_source.html#l00053">setup()</a>.</p>
+<p>References <a class="el" href="exceptional_8php_source.html#l00029">Exceptional\$controller</a>, <a class="el" href="exceptional_8php_source.html#l00041">Exceptional\setup()</a>, and <a class="el" href="ctct_8php_source.html#l00053">setup()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                           {</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span>(!defined(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>)) {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.2&#39;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            define(<span class="stringliteral">&#39;CTCT_VERSION&#39;</span>, <span class="stringliteral">&#39;3.0.3&#39;</span>);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE&#39;</span>, __FILE__); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_PATH&#39;</span>, dirname(__FILE__) . <span class="charliteral">&#39;/&#39;</span>); <span class="comment">// The full path to this file</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            define(<span class="stringliteral">&#39;CTCT_FILE_URL&#39;</span>, plugin_dir_url(__FILE__)); <span class="comment">// @ Added 2.0 The full URL to this file</span></div>
@@ -181,14 +182,14 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/kwslog.php&#39;</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            $this-&gt;log = <span class="keyword">new</span> <a class="code" href="class_k_w_s_log.html" title="Katz Web Services, Inc. ">KWSLog</a>(<span class="stringliteral">&#39;ctct&#39;</span>, <span class="stringliteral">&#39;Constant Contact&#39;</span>);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            require CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/exceptional-php/exceptional.php&#39;</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">            #Exceptional::setup(&#39;9135dc8782a0e5f1b72b51a73b0382982521f943&#39;, true);</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">            #Exceptional::setup(&#39;&#39;, true);</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            Exceptional::$controller = <span class="stringliteral">&#39;WP_CTCT&#39;</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            require_once plugin_dir_path(__FILE__).<span class="stringliteral">&#39;vendor/autoload.php&#39;</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/kwslog.php&#39;</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            $this-&gt;log = <span class="keyword">new</span> <a class="code" href="class_k_w_s_log.html" title="Katz Web Services, Inc. ">KWSLog</a>(<span class="stringliteral">&#39;ctct&#39;</span>, <span class="stringliteral">&#39;Constant Contact&#39;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">            #Exceptional::setup(&#39;9135dc8782a0e5f1b72b51a73b0382982521f943&#39;, true);</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>            <a class="code" href="class_exceptional.html#ab42943a9bf51feb7f3790680b0f1489c">Exceptional::setup</a>(<span class="stringliteral">&#39;&#39;</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="class_exceptional.html#aadc277c7a5d56f903be4fe2338537cad">Exceptional::$controller</a> = <span class="stringliteral">&#39;WP_CTCT&#39;</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            add_action(<span class="stringliteral">&#39;plugins_loaded&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;setup&#39;</span>), 1);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            add_action(<span class="stringliteral">&#39;plugins_loaded&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;include_files&#39;</span>), 5);</div>
@@ -203,7 +204,8 @@ Static Private Attributes</h2></td></tr>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a44ba5137a33324e9b408ef70ff91d1f0_cgraph.svg" width="342" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a44ba5137a33324e9b408ef70ff91d1f0_cgraph.svg" width="347" height="90"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -231,25 +233,24 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ctct_8php_source.html#l00080">80</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
+<p>Definition at line <a class="el" href="ctct_8php_source.html#l00076">76</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8ctct__admin__page_8php_source.html#l00017">CTCT_Admin_Page\__construct()</a>, <a class="el" href="class_8kwscontactlist_8php_source.html#l00121">KWSContactList\outputHTML()</a>, and <a class="el" href="registration_8php_source.html#l00061">CTCT_Registration\process_submission()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                  {</div>
+<p>Referenced by <a class="el" href="class_8ctct__admin__page_8php_source.html#l00016">CTCT_Admin_Page\__construct()</a>, <a class="el" href="class_8kwscontactlist_8php_source.html#l00121">KWSContactList\outputHTML()</a>, and <a class="el" href="registration_8php_source.html#l00061">CTCT_Registration\process_submission()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                  {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span>(empty(self::$instance)){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            self::$instance = <span class="keyword">new</span> <a class="code" href="class_w_p___c_t_c_t.html">WP_CTCT</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span>(empty(self::$instance)){</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            self::$instance = <span class="keyword">new</span> <a class="code" href="class_w_p___c_t_c_t.html">WP_CTCT</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">return</span> self::$instance;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> self::$instance;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a485eac1e69d12c9e2ecac70bf3295c3f_icgraph.svg" width="100%" height="508"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_w_p___c_t_c_t_a485eac1e69d12c9e2ecac70bf3295c3f_icgraph.svg" width="100%" height="508"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </p>
 
@@ -272,46 +273,44 @@ Static Private Attributes</h2></td></tr>
 <p><a class="el" href="namespace_admin.html">Admin</a> pages</p>
 <p>Modules </p>
 
-<p>Definition at line <a class="el" href="ctct_8php_source.html#l00089">89</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
-<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                             {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">        /** Helpers */</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/cache-http.php&#39;</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/table.php&#39;</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/functions.php&#39;</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">// TODO: Flesh out the help tabs</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/help.php&#39;</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">        #include_once CTCT_DIR_PATH.&#39;inc/pointers.php&#39;;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span><span class="preprocessor">        #include_once CTCT_DIR_PATH.&#39;classes/class.pointers.php&#39;;</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor"></span><span class="comment"></span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        /** Classes */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_process_form.php&#39;</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscontact.php&#39;</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscontactlist.php&#39;</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscampaign.php&#39;</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsajax.php&#39;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_admin_page.php&#39;</span>;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_settings.php&#39;</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_admin.php&#39;</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">        /** Admin pages */</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/profile.php&#39;</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">        /** Modules */</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/registration.php&#39;</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/constant-analytics/constant-analytics.php&#39;</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/comment-form-signup.php&#39;</span>;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/simple-widget.php&#39;</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/eventspot/eventspot.php&#39;</span>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/form-designer/form-designer.php&#39;</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="ctct_8php_source.html#l00085">85</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                             {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">        /** Helpers */</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/cache-http.php&#39;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/table.php&#39;</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/functions.php&#39;</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">// TODO: Flesh out the help tabs</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;inc/help.php&#39;</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">        /** Classes */</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_process_form.php&#39;</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscontact.php&#39;</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscontactlist.php&#39;</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwscampaign.php&#39;</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsajax.php&#39;</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_admin_page.php&#39;</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_settings.php&#39;</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.ctct_admin.php&#39;</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">        /** Admin pages */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/profile.php&#39;</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/campaigns.php&#39;</span>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/contacts.php&#39;</span>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;admin/lists.php&#39;</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">// If the plugin is not configured, don&#39;t do anything else.</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span>(!is_ctct_configured()) { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">        /** Modules */</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/registration.php&#39;</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/constant-analytics/constant-analytics.php&#39;</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/comment-form-signup.php&#39;</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/simple-widget.php&#39;</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/eventspot/eventspot.php&#39;</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        include_once CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/form-designer/form-designer.php&#39;</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -330,33 +329,31 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="ctct_8php_source.html#l00053">53</a> of file <a class="el" href="ctct_8php_source.html">ctct.php</a>.</p>
 
+<p>References <a class="el" href="exceptional_8php_source.html#l00029">Exceptional\$controller</a>.</p>
+
 <p>Referenced by <a class="el" href="ctct_8php_source.html#l00018">__construct()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                     {</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        Exceptional::$controller = <span class="stringliteral">&#39;setup&#39;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_exceptional.html#aadc277c7a5d56f903be4fe2338537cad">Exceptional::$controller</a> = <span class="stringliteral">&#39;setup&#39;</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span>(!defined(<span class="stringliteral">&#39;CTCT_APIKEY&#39;</span>)) {</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">if</span>(!class_exists(<span class="stringliteral">&#39;Ctct\SplClassLoader&#39;</span>)) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                require CTCT_DIR_PATH.<span class="stringliteral">&#39;lib/Ctct/autoload.php&#39;</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsrestclient.php&#39;</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsoauth2.php&#39;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsconstantcontact.php&#39;</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsrestclient.php&#39;</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsoauth2.php&#39;</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            include CTCT_DIR_PATH.<span class="stringliteral">&#39;classes/class.kwsconstantcontact.php&#39;</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            define(<span class="stringliteral">&quot;CTCT_APIKEY&quot;</span>, <span class="stringliteral">&quot;hu2nnqvtd3gt82uwkr7z565t&quot;</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            define(<span class="stringliteral">&quot;CTCT_APISECRET&quot;</span>, <span class="stringliteral">&quot;z39WYdrXu7tuEtaJcGPzN3dF&quot;</span>);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            $this-&gt;oauth = <span class="keyword">new</span> <a class="code" href="class_k_w_s_o_auth2.html">KWSOAuth2</a>();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            $token = $this-&gt;oauth-&gt;getToken();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            define(<span class="stringliteral">&quot;CTCT_ACCESS_TOKEN&quot;</span>, $token);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            define(<span class="stringliteral">&quot;CTCT_USERNAME&quot;</span>, $this-&gt;oauth-&gt;getToken(<span class="stringliteral">&#39;username&#39;</span>));</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">if</span>(is_null($this-&gt;oauth)) { $this-&gt;oauth = <span class="keyword">new</span> <a class="code" href="class_k_w_s_o_auth2.html">KWSOAuth2</a>(); }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        $this-&gt;cc = <span class="keyword">new</span> <a class="code" href="class_k_w_s_constant_contact.html">KWSConstantContact</a>();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            define(<span class="stringliteral">&quot;CTCT_APIKEY&quot;</span>, <span class="stringliteral">&quot;hu2nnqvtd3gt82uwkr7z565t&quot;</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            define(<span class="stringliteral">&quot;CTCT_APISECRET&quot;</span>, <span class="stringliteral">&quot;z39WYdrXu7tuEtaJcGPzN3dF&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            $this-&gt;oauth = <span class="keyword">new</span> <a class="code" href="class_k_w_s_o_auth2.html">KWSOAuth2</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            $token = $this-&gt;oauth-&gt;getToken();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            define(<span class="stringliteral">&quot;CTCT_ACCESS_TOKEN&quot;</span>, $token);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            define(<span class="stringliteral">&quot;CTCT_USERNAME&quot;</span>, $this-&gt;oauth-&gt;getToken(<span class="stringliteral">&#39;username&#39;</span>));</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span>(is_null($this-&gt;oauth)) { $this-&gt;oauth = <span class="keyword">new</span> <a class="code" href="class_k_w_s_o_auth2.html">KWSOAuth2</a>(); }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        $this-&gt;cc = <span class="keyword">new</span> <a class="code" href="class_k_w_s_constant_contact.html">KWSConstantContact</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -443,7 +440,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_w_p___c_t_c_t.html">WP_CTCT</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:45 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

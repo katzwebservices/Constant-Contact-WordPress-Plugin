@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_c_t_c_t___settings.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -161,10 +162,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a487ade20252dfe30745e6237b23d5193 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e8eb5dc02aa790260ee6e5552b10b58 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a7e8eb5dc02aa790260ee6e5552b10b58">help_tabs</a> ($tabs)</td></tr>
 <tr class="separator:a7e8eb5dc02aa790260ee6e5552b10b58 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47e12a9296f5dd00b9a4d84481b73f2c inherit pub_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a47e12a9296f5dd00b9a4d84481b73f2c">pointer_content</a> ()</td></tr>
-<tr class="separator:a47e12a9296f5dd00b9a4d84481b73f2c inherit pub_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05b33ad05b2a8fb25be1f21015422239 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a05b33ad05b2a8fb25be1f21015422239">getPointers</a> ($hook_suffix= '')</td></tr>
-<tr class="separator:a05b33ad05b2a8fb25be1f21015422239 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84212af40ce919ccaae4130bded6583 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#aa84212af40ce919ccaae4130bded6583">getPermission</a> ()</td></tr>
 <tr class="separator:aa84212af40ce919ccaae4130bded6583 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cc1493ccd31221d648442404bbb73d2 inherit pub_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a2cc1493ccd31221d648442404bbb73d2">add_menu</a> ()</td></tr>
@@ -228,8 +225,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6aa68962ccbaae00f2fbf72d7b437f9b inherit pub_attribs_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8454fc136da7d37c68c00d360fbcabcb inherit pub_attribs_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a8454fc136da7d37c68c00d360fbcabcb">$component</a> = ''</td></tr>
 <tr class="separator:a8454fc136da7d37c68c00d360fbcabcb inherit pub_attribs_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19d73c8387ba71fb0bbd6f078bb4653b inherit pub_attribs_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a19d73c8387ba71fb0bbd6f078bb4653b">$pointers</a> = array()</td></tr>
-<tr class="separator:a19d73c8387ba71fb0bbd6f078bb4653b inherit pub_attribs_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_c_t_c_t___admin___page"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_c_t_c_t___admin___page')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_c_t_c_t___admin___page.html">CTCT_Admin_Page</a></td></tr>
 <tr class="memitem:a0f0cd8a2a0f3084b67a5981a9c6b869d inherit pro_methods_class_c_t_c_t___admin___page"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_c_t___admin___page.html#a0f0cd8a2a0f3084b67a5981a9c6b869d">addIncludes</a> ()</td></tr>
 <tr class="separator:a0f0cd8a2a0f3084b67a5981a9c6b869d inherit pro_methods_class_c_t_c_t___admin___page"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -514,7 +509,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="class_8ctct__settings_8php_source.html#l00595">595</a> of file <a class="el" href="class_8ctct__settings_8php_source.html">class.ctct_settings.php</a>.</p>
 
-<p>Referenced by <a class="el" href="class_8ctct__admin_8php_source.html#l00050">CTCT_Admin\content()</a>.</p>
+<p>Referenced by <a class="el" href="class_8ctct__admin_8php_source.html#l00061">CTCT_Admin\content()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                                                 {</div>
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;        global $wp_settings_sections, $wp_settings_fields;</div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;</div>
@@ -686,8 +681,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_c_t_c_t___settings_ae3c076753f9e642d69924227641b75e7_icgraph.svg" width="646" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_c_t_c_t___settings_ae3c076753f9e642d69924227641b75e7_icgraph.svg" width="646" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </p>
 
@@ -1445,7 +1439,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_c_t_c_t___settings.html">CTCT_Settings</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:45 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

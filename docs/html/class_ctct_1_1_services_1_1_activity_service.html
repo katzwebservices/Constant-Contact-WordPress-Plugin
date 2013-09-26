@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_services_1_1_activity_s
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -127,31 +128,37 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_services_1_1_activity_s
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afffe78c9da3d893eee3d31e947de0992"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#afffe78c9da3d893eee3d31e947de0992">getActivities</a> ($accessToken)</td></tr>
-<tr class="memdesc:afffe78c9da3d893eee3d31e947de0992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an array of activities.  <a href="#afffe78c9da3d893eee3d31e947de0992">More...</a><br/></td></tr>
-<tr class="separator:afffe78c9da3d893eee3d31e947de0992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530561ac3d289f0d3e39f358107f91ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a530561ac3d289f0d3e39f358107f91ba">getActivities</a> ($accessToken, array $params=array())</td></tr>
+<tr class="memdesc:a530561ac3d289f0d3e39f358107f91ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an array of activities.  <a href="#a530561ac3d289f0d3e39f358107f91ba">More...</a><br/></td></tr>
+<tr class="separator:a530561ac3d289f0d3e39f358107f91ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29a275be3f87a87150f225f939e07637"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a29a275be3f87a87150f225f939e07637">getActivity</a> ($accessToken, $activityId)</td></tr>
 <tr class="memdesc:a29a275be3f87a87150f225f939e07637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an array of activities.  <a href="#a29a275be3f87a87150f225f939e07637">More...</a><br/></td></tr>
 <tr class="separator:a29a275be3f87a87150f225f939e07637"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7585bd43669c8f9c4e1b6884e58322f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a7585bd43669c8f9c4e1b6884e58322f6">createAddContactsActivity</a> ($accessToken, <a class="el" href="class_ctct_1_1_components_1_1_activities_1_1_add_contacts.html">AddContacts</a> $addContacts)</td></tr>
 <tr class="memdesc:a7585bd43669c8f9c4e1b6884e58322f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an Add Contacts Activity.  <a href="#a7585bd43669c8f9c4e1b6884e58322f6">More...</a><br/></td></tr>
 <tr class="separator:a7585bd43669c8f9c4e1b6884e58322f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30d4ffe1d8324873b1940dbcd172ce11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a30d4ffe1d8324873b1940dbcd172ce11">addClearListsActivity</a> ($accessToken, Array $lists)</td></tr>
-<tr class="memdesc:a30d4ffe1d8324873b1940dbcd172ce11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Clear Lists Activity.  <a href="#a30d4ffe1d8324873b1940dbcd172ce11">More...</a><br/></td></tr>
-<tr class="separator:a30d4ffe1d8324873b1940dbcd172ce11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7afa7fcfe01bec0576f985a606082e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a2f7afa7fcfe01bec0576f985a606082e">createAddContactsActivityFromFile</a> ($accessToken, $fileName, $contents, $lists)</td></tr>
+<tr class="memdesc:a2f7afa7fcfe01bec0576f985a606082e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an Add Contacts Activity from a file.  <a href="#a2f7afa7fcfe01bec0576f985a606082e">More...</a><br/></td></tr>
+<tr class="separator:a2f7afa7fcfe01bec0576f985a606082e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7e6a5e97c1bf0563aaaa0ddb11c3a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#aee7e6a5e97c1bf0563aaaa0ddb11c3a8">addClearListsActivity</a> ($accessToken, array $lists)</td></tr>
+<tr class="memdesc:aee7e6a5e97c1bf0563aaaa0ddb11c3a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Clear Lists Activity.  <a href="#aee7e6a5e97c1bf0563aaaa0ddb11c3a8">More...</a><br/></td></tr>
+<tr class="separator:aee7e6a5e97c1bf0563aaaa0ddb11c3a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063acad0b025be72ea770afc58d5cd74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a063acad0b025be72ea770afc58d5cd74">addExportContactsActivity</a> ($accessToken, <a class="el" href="class_ctct_1_1_components_1_1_activities_1_1_export_contacts.html">ExportContacts</a> $exportContacts)</td></tr>
 <tr class="memdesc:a063acad0b025be72ea770afc58d5cd74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an Export Contacts Activity.  <a href="#a063acad0b025be72ea770afc58d5cd74">More...</a><br/></td></tr>
 <tr class="separator:a063acad0b025be72ea770afc58d5cd74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e0d8c43b0b569687ff2c1113c96a769"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a0e0d8c43b0b569687ff2c1113c96a769">addRemoveContactsFromListsActivity</a> ($accessToken, Array $emailAddresses, Array $lists)</td></tr>
-<tr class="memdesc:a0e0d8c43b0b569687ff2c1113c96a769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Remove Contacts From Lists Activity.  <a href="#a0e0d8c43b0b569687ff2c1113c96a769">More...</a><br/></td></tr>
-<tr class="separator:a0e0d8c43b0b569687ff2c1113c96a769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76ad74246b9aa697963901107242d85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#ac76ad74246b9aa697963901107242d85">addRemoveContactsFromListsActivity</a> ($accessToken, array $emailAddresses, array $lists)</td></tr>
+<tr class="memdesc:ac76ad74246b9aa697963901107242d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Remove Contacts From Lists Activity.  <a href="#ac76ad74246b9aa697963901107242d85">More...</a><br/></td></tr>
+<tr class="separator:ac76ad74246b9aa697963901107242d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa44f57da731685f008e54a893b8fa88d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#aa44f57da731685f008e54a893b8fa88d">addRemoveContactsFromListsActivityFromFile</a> ($accessToken, $fileName, $contents, $lists)</td></tr>
+<tr class="memdesc:aa44f57da731685f008e54a893b8fa88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an Remove Contacts Activity from a file.  <a href="#aa44f57da731685f008e54a893b8fa88d">More...</a><br/></td></tr>
+<tr class="separator:aa44f57da731685f008e54a893b8fa88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_ctct_1_1_services_1_1_base_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_ctct_1_1_services_1_1_base_service')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_ctct_1_1_services_1_1_base_service.html">Ctct\Services\BaseService</a></td></tr>
 <tr class="memitem:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a18b66946555616b9ca6aa9290201aafd">__construct</a> ($apiKey, $restClient=null)</td></tr>
 <tr class="memdesc:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with the option to to supply an alternative rest client to be used.  <a href="#a18b66946555616b9ca6aa9290201aafd">More...</a><br/></td></tr>
 <tr class="separator:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6">buildUrl</a> ($url, $queryParams=null)</td></tr>
-<tr class="memdesc:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a url from the base url and query parameters array.  <a href="#a5c4ae0795fcc06c137b6e761963c4df6">More...</a><br/></td></tr>
-<tr class="separator:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e">buildUrl</a> ($url, array $queryParams=null)</td></tr>
+<tr class="memdesc:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a URL from a base url and optional array of query parameters to append to the url.  <a href="#a682b3692a73a009ec026442110cf968e">More...</a><br/></td></tr>
+<tr class="separator:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a3309528077e2ec8847d33db70fc52f74">getRestClient</a> ()</td></tr>
 <tr class="memdesc:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rest client being used by the service.  <a href="#a3309528077e2ec8847d33db70fc52f74">More...</a><br/></td></tr>
 <tr class="separator:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,7 +181,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock">
 <p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00020">20</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a30d4ffe1d8324873b1940dbcd172ce11"></a>
+<a class="anchor" id="aee7e6a5e97c1bf0563aaaa0ddb11c3a8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -187,7 +194,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
+          <td class="paramtype">array&#160;</td>
           <td class="paramname"><em>$lists</em>&#160;</td>
         </tr>
         <tr>
@@ -202,29 +209,30 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">array</td><td class="paramname">$clearLists</td><td>- Array of list id's to be cleared </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$lists</td><td>- Array of list id's to be cleared </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all Activity </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00075">75</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00117">117</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.clear_lists_activity&#39;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        $payload = array(<span class="stringliteral">&#39;lists&#39;</span> =&gt; $lists);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($payload));</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.clear_lists_activity&#39;</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        $payload = array(<span class="stringliteral">&#39;lists&#39;</span> =&gt; $lists);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($payload));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a30d4ffe1d8324873b1940dbcd172ce11_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_aee7e6a5e97c1bf0563aaaa0ddb11c3a8_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -264,28 +272,29 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all ActivitySummaryReports </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00090">90</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00132">132</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.export_contacts_activity&#39;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($exportContacts));</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.export_contacts_activity&#39;</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($exportContacts));</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a063acad0b025be72ea770afc58d5cd74_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a063acad0b025be72ea770afc58d5cd74_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a0e0d8c43b0b569687ff2c1113c96a769"></a>
+<a class="anchor" id="ac76ad74246b9aa697963901107242d85"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -298,13 +307,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
+          <td class="paramtype">array&#160;</td>
           <td class="paramname"><em>$emailAddresses</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
+          <td class="paramtype">array&#160;</td>
           <td class="paramname"><em>$lists</em>&#160;</td>
         </tr>
         <tr>
@@ -319,37 +328,135 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">RemoveFromLists</td><td class="paramname">$removeFromLists</td><td></td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$emailAddresses</td><td>- array of email addresses to remove </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$lists</td><td>- array of lists to remove the provided email addresses from </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all ActivitySummaryReports </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00104">104</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00147">147</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.remove_from_lists_activity&#39;</span>);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        $payload = array(</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="stringliteral">&#39;import_data&#39;</span>    =&gt; array(),</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="stringliteral">&#39;lists&#39;</span>          =&gt; $lists</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        );</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">foreach</span> ($emailAddresses as $emailAddress) {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            $payload[<span class="stringliteral">&#39;import_data&#39;</span>][] = array(<span class="stringliteral">&#39;email_addresses&#39;</span> =&gt; array($emailAddress));</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($payload));</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.remove_from_lists_activity&#39;</span>);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        $payload = array(</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="stringliteral">&#39;import_data&#39;</span> =&gt; array(),</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="stringliteral">&#39;lists&#39;</span> =&gt; $lists</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        );</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">foreach</span> ($emailAddresses as $emailAddress) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            $payload[<span class="stringliteral">&#39;import_data&#39;</span>][] = array(<span class="stringliteral">&#39;email_addresses&#39;</span> =&gt; array($emailAddress));</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), json_encode($payload));</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a0e0d8c43b0b569687ff2c1113c96a769_cgraph.svg" width="100%" height="430"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_ac76ad74246b9aa697963901107242d85_cgraph.svg" width="100%" height="430"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa44f57da731685f008e54a893b8fa88d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ctct\Services\ActivityService::addRemoveContactsFromListsActivityFromFile </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$contents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$lists</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an Remove Contacts Activity from a file. </p>
+<p>Valid file types are txt, csv, xls, xlsx </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$fileName</td><td>- The name of the file (ie: contacts.csv) </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$contents</td><td>- The contents of the file </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$lists</td><td>- Comma separated list of ContactList id' to add the contacts too </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00172">172</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        $eol = <span class="stringliteral">&quot;\r\n&quot;</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        $data = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        $boundary=md5(time());</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;file_name&quot;&#39;</span> . $eol;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Type: text/plain&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        $data .= $fileName . $eol;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;lists&quot;&#39;</span> . $eol;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Type: text/plain&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        $data .= $lists . $eol;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;data&quot;&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        $data .= $contents . $eol;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        $data .= <span class="stringliteral">&quot;--&quot;</span> . $boundary . <span class="stringliteral">&quot;--&quot;</span> . $eol;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        $headers = array(</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="stringliteral">&quot;Authorization: Bearer {$accessToken}&quot;</span>,</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="stringliteral">&quot;Content-Type: multipart/form-data; boundary={$boundary}&quot;</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        );</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.remove_from_lists_activity&#39;</span>);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        $response = parent::getRestClient()-&gt;post($url, $headers, $data);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_aa44f57da731685f008e54a893b8fa88d_cgraph.svg" width="100%" height="430"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </p>
 
@@ -383,34 +490,131 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">AddContacts</td><td class="paramname">$addContact</td><td></td></tr>
+    <tr><td class="paramtype">AddContacts</td><td class="paramname">$addContacts</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all ActivitySummaryReports </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00061">61</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00062">62</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>, and <a class="el" href="_add_contacts_8php_source.html#l00111">Ctct\Components\Activities\AddContacts\toJson()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.add_contacts_activity&#39;</span>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), $addContacts-&gt;toJson());</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>, and <a class="el" href="_add_contacts_8php_source.html#l00111">Ctct\Components\Activities\AddContacts\toJson()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.add_contacts_activity&#39;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), $addContacts-&gt;toJson());</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a7585bd43669c8f9c4e1b6884e58322f6_cgraph.svg" width="662" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a7585bd43669c8f9c4e1b6884e58322f6_cgraph.svg" width="662" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="afffe78c9da3d893eee3d31e947de0992"></a>
+<a class="anchor" id="a2f7afa7fcfe01bec0576f985a606082e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ctct\Services\ActivityService::createAddContactsActivityFromFile </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$contents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$lists</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an Add Contacts Activity from a file. </p>
+<p>Valid file types are txt, csv, xls, xlsx </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$fileName</td><td>- The name of the file (ie: contacts.csv) </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$contents</td><td>- The contents of the file </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$lists</td><td>- Comma separated list of ContactList id's to add the contacts to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00078">78</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        $eol = <span class="stringliteral">&quot;\r\n&quot;</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        $data = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        $boundary=md5(time());</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;file_name&quot;&#39;</span> . $eol;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Type: text/plain&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        $data .= $fileName . $eol;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;lists&quot;&#39;</span> . $eol;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Type: text/plain&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        $data .= $lists . $eol;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        $data .= <span class="stringliteral">&#39;--&#39;</span> . $boundary . $eol;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        $data .= <span class="stringliteral">&#39;Content-Disposition: form-data; name=&quot;data&quot;&#39;</span> . $eol . $eol;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        $data .= $contents . $eol;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        $data .= <span class="stringliteral">&quot;--&quot;</span> . $boundary . <span class="stringliteral">&quot;--&quot;</span> . $eol;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        $headers = array(</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="stringliteral">&quot;Authorization: Bearer {$accessToken}&quot;</span>,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="stringliteral">&quot;Content-Type: multipart/form-data; boundary={$boundary}&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        );</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.add_contacts_activity&#39;</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        $response = parent::getRestClient()-&gt;post($url, $headers, $data);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+</div><!-- fragment -->
+<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a2f7afa7fcfe01bec0576f985a606082e_cgraph.svg" width="100%" height="430"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a530561ac3d289f0d3e39f358107f91ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -418,8 +622,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">Ctct\Services\ActivityService::getActivities </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$accessToken</em>)</td><td></td>
+          <td class="paramname"><em>$accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -428,33 +642,35 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$params</td><td>- array of query parameters to be appended to the url </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all ActivitySummaryReports </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00027">27</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00028">28</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.activities&#39;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $jsonResponse = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        $activities = array();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">foreach</span> ($jsonResponse as $activity) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            $activities[] = <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>($activity);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> $activities;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.activities&#39;</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        $jsonResponse = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        $activities = array();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">foreach</span> ($jsonResponse as $activity) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            $activities[] = <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>($activity);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> $activities;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_afffe78c9da3d893eee3d31e947de0992_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a530561ac3d289f0d3e39f358107f91ba_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -494,22 +710,23 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array - Array of all ActivitySummaryReports </dd></dl>
 
-<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00047">47</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
+<p>Definition at line <a class="el" href="_activity_service_8php_source.html#l00048">48</a> of file <a class="el" href="_activity_service_8php_source.html">ActivityService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.activity&#39;</span>), $activityId);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_activity_8php_source.html#l00033">Ctct\Components\Activities\Activity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) . sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.activity&#39;</span>), $activityId);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03" title="Factory method to create an Activity object from an array. ">Activity::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
 </div><!-- fragment -->
-<p><div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<p><div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a29a275be3f87a87150f225f939e07637_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_activity_service_a29a275be3f87a87150f225f939e07637_cgraph.svg" width="662" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -524,7 +741,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_services_1_1_activity_service.html">ActivityService</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

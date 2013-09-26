@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_services_1_1_campaign_s
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -149,9 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a18b66946555616b9ca6aa9290201aafd">__construct</a> ($apiKey, $restClient=null)</td></tr>
 <tr class="memdesc:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with the option to to supply an alternative rest client to be used.  <a href="#a18b66946555616b9ca6aa9290201aafd">More...</a><br/></td></tr>
 <tr class="separator:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6">buildUrl</a> ($url, $queryParams=null)</td></tr>
-<tr class="memdesc:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a url from the base url and query parameters array.  <a href="#a5c4ae0795fcc06c137b6e761963c4df6">More...</a><br/></td></tr>
-<tr class="separator:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e">buildUrl</a> ($url, array $queryParams=null)</td></tr>
+<tr class="memdesc:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a URL from a base url and optional array of query parameters to append to the url.  <a href="#a682b3692a73a009ec026442110cf968e">More...</a><br/></td></tr>
+<tr class="separator:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a3309528077e2ec8847d33db70fc52f74">getRestClient</a> ()</td></tr>
 <tr class="memdesc:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rest client being used by the service.  <a href="#a3309528077e2ec8847d33db70fc52f74">More...</a><br/></td></tr>
 <tr class="separator:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,15 +214,15 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Campaign </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Schedule </dd></dl>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00024">24</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>, and <a class="el" href="_schedule_8php_source.html#l00045">Ctct\Components\EmailMarketing\Schedule\toJson()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>, and <a class="el" href="_schedule_8php_source.html#l00045">Ctct\Components\EmailMarketing\Schedule\toJson()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_schedules&#39;</span>), $campaignId);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), $schedule-&gt;toJson());</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254" title="Factory method to create a Schedule object from an array. ">Schedule::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
@@ -231,7 +232,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a2bcc5ee12d91827d7ca93eaf01ae3be7_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a2bcc5ee12d91827d7ca93eaf01ae3be7_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -280,11 +282,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00094">94</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_schedule&#39;</span>), $campaignId, $scheduleId);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        $response = parent::getRestClient()-&gt;delete($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> ($response-&gt;info[<span class="stringliteral">&#39;http_code&#39;</span>] == 204) ? <span class="keyword">true</span> : <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
@@ -294,7 +296,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a8512e8e22c587dbf0274518c7b9db0d0_cgraph.svg" width="459" height="106"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a8512e8e22c587dbf0274518c7b9db0d0_cgraph.svg" width="459" height="106"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -335,7 +338,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
     <tr><td class="paramtype">int</td><td class="paramname">$campaignId</td><td>- Campaign id to be get a schedule for </td></tr>
-    <tr><td class="paramtype">int</td><td class="paramname">$scheudle_id</td><td>- Schedule id to retrieve </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$scheduleId</td><td>- Schedule id to retrieve </td></tr>
   </table>
   </dd>
 </dl>
@@ -343,11 +346,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00062">62</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_schedule&#39;</span>), $campaignId, $scheduleId);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254" title="Factory method to create a Schedule object from an array. ">Schedule::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
@@ -357,7 +360,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a649b23866eee81fb8ef6bcc01113c92b_cgraph.svg" width="502" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a649b23866eee81fb8ef6bcc01113c92b_cgraph.svg" width="502" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -399,19 +403,19 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00039">39</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_schedules&#39;</span>), $campaignId);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        $schedules = array();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">foreach</span> (json_decode($response-&gt;body, <span class="keyword">true</span>) as $schedule) {</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            $schedules[] = <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254" title="Factory method to create a Schedule object from an array. ">Schedule::create</a>($schedule);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> $schedules;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 </div><!-- fragment -->
@@ -420,7 +424,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a10f70dabb56c1a16159991bcfba81e4e_cgraph.svg" width="502" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a10f70dabb56c1a16159991bcfba81e4e_cgraph.svg" width="502" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -469,11 +474,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00110">110</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_test_send_8php_source.html#l00038">Ctct\Components\EmailMarketing\TestSend\create()</a>, <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>, and <a class="el" href="_test_send_8php_source.html#l00064">Ctct\Components\EmailMarketing\TestSend\toJson()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_test_send_8php_source.html#l00038">Ctct\Components\EmailMarketing\TestSend\create()</a>, <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>, and <a class="el" href="_test_send_8php_source.html#l00064">Ctct\Components\EmailMarketing\TestSend\toJson()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_test_sends&#39;</span>), $campaignId);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        $response = parent::getRestClient()-&gt;post($url, parent::getHeaders($accessToken), $test_send-&gt;toJson());</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_test_send.html#ad7a93792aca4fefaa863fc5dc4645b18" title="Factory method to create a TestSend object from an array. ">TestSend::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
@@ -483,7 +488,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a2cea061aedc6d0934803d6a2d05c2ca0_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a2cea061aedc6d0934803d6a2d05c2ca0_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -532,11 +538,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_schedule_service_8php_source.html#l00078">78</a> of file <a class="el" href="_campaign_schedule_service_8php_source.html">CampaignScheduleService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>, and <a class="el" href="_schedule_8php_source.html#l00045">Ctct\Components\EmailMarketing\Schedule\toJson()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_schedule_8php_source.html#l00033">Ctct\Components\EmailMarketing\Schedule\create()</a>, <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>, and <a class="el" href="_schedule_8php_source.html#l00045">Ctct\Components\EmailMarketing\Schedule\toJson()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_schedule&#39;</span>), $campaignId, $schedule-&gt;id);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        $response = parent::getRestClient()-&gt;put($url, parent::getHeaders($accessToken), $schedule-&gt;toJson());</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254" title="Factory method to create a Schedule object from an array. ">Schedule::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
@@ -546,7 +552,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a9f260b3737372bd05a280a265545fc58_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_schedule_service_a9f260b3737372bd05a280a265545fc58_cgraph.svg" width="502" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -561,7 +568,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_services_1_1_campaign_schedule_service.html">CampaignScheduleService</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

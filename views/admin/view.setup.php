@@ -94,16 +94,16 @@
         	<p class="submit">
         		<a href="%s" class="button button-primary button-large">%s</a> <span class="button-group alignright"><a href="%s" class="button button-warning confirm" data-confirm="%s">%s</a><a href="%s" class="button button-danger confirm" data-confirm="%s" data-confirm-again="%s">%s</a></span>
         	</p>
-        ', 'constant-contact-api'), 
-        	sprintf(__('Your token is %s', 'constant-contact-api'), $token), 
-        	$tokenUsername, 
-        	$tokenTime, 
-        	$CTCT->oauth->getAuthorizationUrl(), 
-        	__('Switch Connected Accounts', 'constant-contact-api'), 
-        	add_query_arg(array('delete-settings' => wp_create_nonce('delete-settings')), remove_query_arg(array('error', 'error_description'))), 
-        	sprintf(__('Your site will no longer be connected to the %s Constant Contact account.', 'constant-contact-api'), $tokenUsername), 
-        	__('De-Authenticate Plugin', 'constant-contact-api'), 
-        	add_query_arg(array('delete-settings' => wp_create_nonce('delete-settings')), remove_query_arg(array('error', 'error_description'))), 
+        ', 'constant-contact-api'),
+        	sprintf(__('Your token is %s', 'constant-contact-api'), $token),
+        	$tokenUsername,
+        	$tokenTime,
+        	$CTCT->oauth->getAuthorizationUrl(),
+        	__('Switch Connected Accounts', 'constant-contact-api'),
+        	add_query_arg(array('de-authenticate' => wp_create_nonce('de-authenticate')), remove_query_arg(array('error', 'error_description'))),
+        	sprintf(__('Your site will no longer be connected to the %s Constant Contact account. Form configurations will remain intact.', 'constant-contact-api'), $tokenUsername),
+        	__('De-Authenticate Plugin', 'constant-contact-api'),
+        	add_query_arg(array('delete-settings' => wp_create_nonce('delete-settings')), remove_query_arg(array('error', 'error_description'))),
         	__('This will remove ALL DATA, including Form Designer forms and account information. Continue?', 'constant-contact-api'),
         	__('Are you really sure? All Constant Contact plugin data will be removed and you will have to start from scratch. Continue?', 'constant-contact-api'),
         	__('Delete All Plugin Settings', 'constant-contact-api')

@@ -3,7 +3,7 @@ Contributors: katzwebdesign, katzwebservices, jamesbenson
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 2.9
-Tested up to: 3.5.1
+Tested up to: 3.6.1
 Stable tag: 2.4.1
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -70,8 +70,14 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-= 3.0.1 =
+= 3.0.3 =
+* Now uses Composer to auto-load classes
+* Updated to fix compatibility issues with changes to CTCT PHP SDK
+* Improved deleting of settings and de-authentication
+* Fixed Events shortcode echoing output instead of returning output
+* Removed Pointers implementation for now.
 
+= 3.0.1 =
 ### Completely re-written plugin
 
 * The biggest thing: moves the plugin over to the new Constant Contact API.

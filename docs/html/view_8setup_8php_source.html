@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('view_8setup_8php_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -196,16 +197,16 @@ $(document).ready(function(){initNavTree('view_8setup_8php_source.html','');});
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="stringliteral">            &lt;p class=&quot;submit&quot;&gt;</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="stringliteral">                &lt;a href=&quot;%s&quot; class=&quot;button button-primary button-large&quot;&gt;%s&lt;/a&gt; &lt;span class=&quot;button-group alignright&quot;&gt;&lt;a href=&quot;%s&quot; class=&quot;button button-warning confirm&quot; data-confirm=&quot;%s&quot;&gt;%s&lt;/a&gt;&lt;a href=&quot;%s&quot; class=&quot;button button-danger confirm&quot; data-confirm=&quot;%s&quot; data-confirm-again=&quot;%s&quot;&gt;%s&lt;/a&gt;&lt;/span&gt;</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="stringliteral">            &lt;/p&gt;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral">        &#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            sprintf(__(<span class="stringliteral">&#39;Your token is %s&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), $token), </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            $tokenUsername, </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            $tokenTime, </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            $CTCT-&gt;oauth-&gt;getAuthorizationUrl(), </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            __(<span class="stringliteral">&#39;Switch Connected Accounts&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            add_query_arg(array(<span class="stringliteral">&#39;delete-settings&#39;</span> =&gt; wp_create_nonce(<span class="stringliteral">&#39;delete-settings&#39;</span>)), remove_query_arg(array(<span class="stringliteral">&#39;error&#39;</span>, <span class="stringliteral">&#39;error_description&#39;</span>))), </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            sprintf(__(<span class="stringliteral">&#39;Your site will no longer be connected to the %s Constant Contact account.&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), $tokenUsername), </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            __(<span class="stringliteral">&#39;De-Authenticate Plugin&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            add_query_arg(array(<span class="stringliteral">&#39;delete-settings&#39;</span> =&gt; wp_create_nonce(<span class="stringliteral">&#39;delete-settings&#39;</span>)), remove_query_arg(array(<span class="stringliteral">&#39;error&#39;</span>, <span class="stringliteral">&#39;error_description&#39;</span>))), </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="stringliteral">        &#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>),</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            sprintf(__(<span class="stringliteral">&#39;Your token is %s&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), $token),</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            $tokenUsername,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            $tokenTime,</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            $CTCT-&gt;oauth-&gt;getAuthorizationUrl(),</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            __(<span class="stringliteral">&#39;Switch Connected Accounts&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>),</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            add_query_arg(array(<span class="stringliteral">&#39;de-authenticate&#39;</span> =&gt; wp_create_nonce(<span class="stringliteral">&#39;de-authenticate&#39;</span>)), remove_query_arg(array(<span class="stringliteral">&#39;error&#39;</span>, <span class="stringliteral">&#39;error_description&#39;</span>))),</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            sprintf(__(<span class="stringliteral">&#39;Your site will no longer be connected to the %s Constant Contact account. Form configurations will remain intact.&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), $tokenUsername),</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            __(<span class="stringliteral">&#39;De-Authenticate Plugin&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>),</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            add_query_arg(array(<span class="stringliteral">&#39;delete-settings&#39;</span> =&gt; wp_create_nonce(<span class="stringliteral">&#39;delete-settings&#39;</span>)), remove_query_arg(array(<span class="stringliteral">&#39;error&#39;</span>, <span class="stringliteral">&#39;error_description&#39;</span>))),</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            __(<span class="stringliteral">&#39;This will remove ALL DATA, including Form Designer forms and account information. Continue?&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>),</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            __(<span class="stringliteral">&#39;Are you really sure? All Constant Contact plugin data will be removed and you will have to start from scratch. Continue?&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>),</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            __(<span class="stringliteral">&#39;Delete All Plugin Settings&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>)</div>
@@ -219,7 +220,7 @@ $(document).ready(function(){initNavTree('view_8setup_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_a28135c7fe4f1ceaf910fc6d6560c222.html">views</a></li><li class="navelem"><a class="el" href="dir_72f9c3d920c36408143e655a61eb73ae.html">admin</a></li><li class="navelem"><b>view.setup.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:45 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_components_1_1_contacts
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -181,7 +182,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">if</span> (!is_null($list_id)) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            $this-&gt;<span class="keywordtype">id</span> = $list_id;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> $this;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
 </div><!-- fragment -->
@@ -221,7 +222,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_contact_list_8php_source.html#l00053">53</a> of file <a class="el" href="_contact_list_8php_source.html">ContactList.php</a>.</p>
 
-<p>Referenced by <a class="el" href="_list_service_8php_source.html#l00042">Ctct\Services\ListService\addList()</a>, <a class="el" href="_contact_8php_source.html#l00142">Ctct\Components\Contacts\Contact\create()</a>, <a class="el" href="_campaign_8php_source.html#l00196">Ctct\Components\EmailMarketing\Campaign\create()</a>, <a class="el" href="_list_service_8php_source.html#l00070">Ctct\Services\ListService\getList()</a>, <a class="el" href="_list_service_8php_source.html#l00023">Ctct\Services\ListService\getLists()</a>, and <a class="el" href="_list_service_8php_source.html#l00056">Ctct\Services\ListService\updateList()</a>.</p>
+<p>Referenced by <a class="el" href="_list_service_8php_source.html#l00043">Ctct\Services\ListService\addList()</a>, <a class="el" href="_contact_8php_source.html#l00142">Ctct\Components\Contacts\Contact\create()</a>, <a class="el" href="_campaign_8php_source.html#l00202">Ctct\Components\EmailMarketing\Campaign\create()</a>, <a class="el" href="_list_service_8php_source.html#l00071">Ctct\Services\ListService\getList()</a>, <a class="el" href="_list_service_8php_source.html#l00024">Ctct\Services\ListService\getLists()</a>, and <a class="el" href="_list_service_8php_source.html#l00057">Ctct\Services\ListService\updateList()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        $contact_list = <span class="keyword">new</span> ContactList();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        $contact_list-&gt;id = parent::getValue($props, <span class="stringliteral">&quot;id&quot;</span>);</div>
@@ -236,7 +237,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_components_1_1_contacts_1_1_contact_list_a3fc8e0d47e974d0ba80d1ff92ec48d5c_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_components_1_1_contacts_1_1_contact_list_a3fc8e0d47e974d0ba80d1ff92ec48d5c_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </p>
 
@@ -257,7 +259,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_contact_list_8php_source.html#l00063">63</a> of file <a class="el" href="_contact_list_8php_source.html">ContactList.php</a>.</p>
 
-<p>Referenced by <a class="el" href="_list_service_8php_source.html#l00042">Ctct\Services\ListService\addList()</a>, and <a class="el" href="_list_service_8php_source.html#l00056">Ctct\Services\ListService\updateList()</a>.</p>
+<p>Referenced by <a class="el" href="_list_service_8php_source.html#l00043">Ctct\Services\ListService\addList()</a>, and <a class="el" href="_list_service_8php_source.html#l00057">Ctct\Services\ListService\updateList()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> json_encode($this);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
@@ -339,7 +341,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components_1_1_contacts.html">Contacts</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html">ContactList</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:45 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

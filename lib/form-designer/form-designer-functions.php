@@ -138,12 +138,9 @@ function constant_contact_public_signup_form($args, $echo = true) {
      * Display errors or Success message if the form was submitted.
      */
 
-    #$form_status = get_transient($unique_id);
-
     $ProcessForm = CTCT_Process_Form::getInstance();
     $form_status = $ProcessForm->getResults($unique_id);
 
-    #die(var_dump($form_status));
     /**
      * Success message: If no errors AND signup was successful show the success message
      */
@@ -156,17 +153,10 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
         return $form;
     } else if(is_wp_error( $form_status )) {
-    	r($ProcessForm->getResults());
-        $haserror = ' has_errors';
+    	$haserror = ' has_errors';
       	$email = $ProcessForm->getResults('email_validation');
-  	r($email);
-        $error_output = constant_contact_generate_error_output($form_status);
-
+  	    $error_output = constant_contact_generate_error_output($form_status);
     } // end if(isset($GLOBALS['cc_errors_'.$unique_id]))
-
-    r($unique_id);
-    r($ProcessForm);
-    #die('asdasdasdasd');
 
     $form = str_replace('<!-- %%SUCCESS%% -->', '', $form);
     $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
