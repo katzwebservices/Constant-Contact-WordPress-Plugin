@@ -56,9 +56,9 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		add_action('wp_dashboard_setup', array(&$this, 'dashboard_setup'));
 
 		// Create events shortcode
-		add_shortcode('ccevents', array(&$this, 'events_output'));
-		add_shortcode('constantcontactevents', array(&$this, 'events_output'));
-		add_shortcode('eventspot', array(&$this, 'events_output'));
+		add_shortcode('ccevents', array(&$this, 'events_shortcode_output'));
+		add_shortcode('constantcontactevents', array(&$this, 'events_shortcode_output'));
+		add_shortcode('eventspot', array(&$this, 'events_shortcode_output'));
 		add_action('eventspot_output',  array(&$this, 'events_output'), 10, 3);
 
 		add_filter('cc_event_registrationdate', 'constant_contact_event_date');
@@ -147,13 +147,57 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		return 'Events';
 	}
 
+	/**
+	 * Instantiate the class
+	 */
 	static function setup() {
 		$CTCT_EventSpot = new CTCT_EventSpot;
 	}
 
+	/**
+	 * Handle the shortcode output
+	 * @uses CTCT_EventSpot::events_output()
+	 * @param  array  $args    Settings passed by the shortcode
+	 * @param  string $content Content inside shortcode. Ignored.
+	 * @param  string $tag     Tag used in shortcode.
+	 * @return string          Output of shortcode.
+	 */
+	function events_shortcode_output($args = array(), $content = null, $tag = '') {
+		return $this->events_output($args, false);
+	}
 
-	function events_output($args = array(), $content = null, $echo = false) {
+	/**
+	 * Output events.
+	 *
+	 * Pass $args as an array with the following settings.
+	 * 'id' // REQUIRED if you want to show a single event! The ID is the ID of the event. Looks like a18g4v1b611561nn40b. If empty, show a list of events.
+	 * 'limit' // If you want to embed a list of events, limit the list to this number. Default: 3; Type: number
+	 * 'showtitle' // Show the title of the event. Default: true
+	 * 'showdescription' // Show the description of the event. Default: true
+	 * 'datetime' // Show the date and time of the event. Default: true
+	 * 'location' // Show the location of the event. Default: false
+	 * 'map' // Show a link to the map. Default: false
+	 * 'calendar' // Show a link to add the event to calendar. Default: false
+	 * 'style' // Style the event listing with some basic styles? Default: true
+	 * 'newwindow' // Open the links in a new window? Default: false
+	 * 'onlyactive' // Only show active events? Default: true
+	 * 'mobile' // If users are on mobile devices, link to a mobile-friendly registration page? Default: true,
+	 * @param  array   $args    Output settings. See function description.
+	 * @param  boolean $echo    Echo or return events output
+	 * @return [type]           [description]
+	 */
+	function events_output($args = array(), $echo = false) {
+
+		ob_start();
 		require(EVENTSPOT_FILE_PATH.'shortcode.php');
+		$output = ob_get_clean();
+
+		if($echo) {
+			echo $output;
+		} else {
+			return $output;
+		}
+
 	}
 
 	/**
@@ -182,14 +226,25 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		}
 	}
 
+	/**
+	 * Add the WP Admin dashboard widget with upcoming events details
+	 */
 	function dashboard_setup() {
 		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot','constant-contact-api'), array(&$this, 'events_dashboard') );
 	}
 
+	/**
+	 * Generate a table of events from an events array
+	 * @param string $title Title of the header
+	 * @param array $events Array of events
+	 */
 	function dashboard_make_table($title = 'Events', $events = array()) {
 		include(EVENTSPOT_FILE_PATH.'views/dashboard-table.php');
 	}
 
+	/**
+	 * Generate the content for the Events dashboard widget
+	 */
 	function events_dashboard() {
 
 		$_events = constant_contact_old_api_get_all('Events', $this->old_api);
@@ -212,7 +267,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	<?php
 		} else {
 	?>
-		<p style='font-size:12px;'><?php _e(sprintf("You don't have any events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://conta.cc/hB5lnC" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api'); ?></p>
+		<p><?php _e(sprintf("You don't have any events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://katz.si/4o" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api'); ?></p>
 	<?php
 		}
 		return true;

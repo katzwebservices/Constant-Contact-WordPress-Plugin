@@ -13,9 +13,20 @@ class CTCT_Admin extends CTCT_Admin_Page {
 		if(isset($_GET['error']) && isset($_GET['error_description'])) {
 			$this->errors[] = new WP_Error($_GET['error'], $_GET['error_description']);
 		}
+		if(isset($_GET['de-authenticate']) && wp_verify_nonce( $_GET['de-authenticate'], 'de-authenticate' )) {
+			$this->oauth->deleteToken();
+			delete_option('ccStats_ga_token');
+			delete_option('ccStats_ga_profile_id');
+		}
 		if(isset($_GET['delete-settings']) && wp_verify_nonce( $_GET['delete-settings'], 'delete-settings' )) {
 			CTCT_Settings::flush_transients();
 			$this->oauth->deleteToken();
+			delete_option('ccStats_ga_token');
+			delete_option('ccStats_ga_profile_id');
+			delete_option('cc_form_increment');
+			delete_option('cc_form_design');
+			delete_option('ctct_configured');
+			delete_option('ctct_settings');
 		}
 	}
 

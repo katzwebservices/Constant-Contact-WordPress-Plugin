@@ -227,7 +227,8 @@ class KWSConstantContact extends ConstantContact {
 	 * @return array
 	 */
 	function getAllEmailCampaigns($status = NULL) {
-		return $this->getAll('EmailCampaigns', $status);
+		$status = empty($status) ? array() : array('status' => $status);
+		return $this->getAll('EmailCampaigns', NULL, $status);
 	}
 
 	/**
@@ -238,20 +239,29 @@ class KWSConstantContact extends ConstantContact {
 	 * @param  array  $results      Pass the previous results for recursive calls to the method.
 	 * @return array               Results array with `id` as key to each key/value pair.
 	 */
-	function getAll($type = '', $id_or_status = NULL, $param = NULL, &$results = array()) {
+	function getAll($type = '', $id_or_status = NULL, $param = array(), &$results = array()) {
 
 		do_action('ctct_debug', $type);
 		add_filter('ctct_cache', function() { return 60 * 60 * 48; });
 
-		if($type === 'EmailCampaigns'){
-			if(!is_null($param)) { $id_or_status = null; }
-			$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
-		} else if(!is_null($id_or_status)) {
-			if(is_null($param)) { $param = '?limit=500'; }
-			$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
-		} else {
-			if(is_null($param)) { $param = '?limit=500'; }
-			$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $param);
+		switch($type) {
+			case "Lists":
+				// Lists doesn't support limit param
+				$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, (array)$param);
+				break;
+			case "EmailCampaigns":
+			default:
+				if(!is_null($id_or_status)) {
+					if(is_null($param)) { $param = array('limit' => 500); }
+					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
+				} else {
+					if(is_string($param)) {
+						die($param);return;
+					}
+					if(empty($param)) { $param = array('limit' => 500); }
+
+					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $param);
+				}
 		}
 
 		// If this returns the results directly, not as an object.
@@ -259,12 +269,15 @@ class KWSConstantContact extends ConstantContact {
 
 		foreach($fetch->results as $r) { $results[$r->id] = $r;  }
 
-		if(!empty($fetch->next) && $fetch->next != $param) {
-    		$this->getAll($type, $id_or_status, $fetch->next, $results);
+		// If there is a next link set and the next link
+		// is not the current page (no next link, actually),
+		// recursively call the function.
+		if(!empty($fetch->next) && $fetch->next != @$param['next']) {
+    		$this->getAll($type, $id_or_status, array('next' => $fetch->next), $results);
     	}
 
     	return $results;
-    }
+	}
 
     /**
      * Get contacts with a specified email eaddress

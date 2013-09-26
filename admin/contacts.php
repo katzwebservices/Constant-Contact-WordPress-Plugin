@@ -163,7 +163,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
         $CC_Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $id);
         $Contact = new KWSContact($CC_Contact);
-
+        $summary = $this->cc->getContactSummaryReport(CTCT_ACCESS_TOKEN, $Contact->get('id'));
         include(CTCT_DIR_PATH.'views/admin/view.contact-view.php');
     }
 

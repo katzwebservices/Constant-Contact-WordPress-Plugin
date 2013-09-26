@@ -102,6 +102,7 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	<ul class="list-selection-format">
 		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox', true); ?> /> <?php _e('Opt-in Checkbox', 'consatnt-contact-api'); ?></label></li>
 		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php _e('Dropdown List', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden'); ?> /> <?php _e('Hidden', 'consatnt-contact-api'); ?></label></li>
 	</ul>
 	<p class="description"><?php _e('This controls what kind of list is shown. <a href="#listTypeInfo" class="moreInfo">More info</a>', 'constant-contact-api'); ?></p>
 

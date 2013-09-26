@@ -12,7 +12,6 @@ abstract class CTCT_Admin_Page {
     var $can_edit = false;
     var $can_add = false;
     var $component = '';
-    var $pointers = array();
 
     function __construct() {
 
@@ -33,8 +32,6 @@ abstract class CTCT_Admin_Page {
             add_action('admin_print_styles', array(&$this, 'print_styles'));
         }
 
-        add_filter( 'ctct_admin_pointers-'.$this->getKey(), array(&$this, 'pointer_content'));
-
         add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
 
         $this->addActions();
@@ -47,8 +44,7 @@ abstract class CTCT_Admin_Page {
         wp_enqueue_style('constant-contact-api-admin', CTCT_FILE_URL.'css/admin/constant-contact-admin-css.css', array('thickbox'));
         wp_enqueue_style('alertify-core', CTCT_FILE_URL.'js/alertify.js/themes/alertify.core.css');
         wp_enqueue_style('alertify-default', CTCT_FILE_URL.'js/alertify.js/themes/alertify.default.css');
-        wp_enqueue_style('select2', CTCT_FILE_URL.'css/select2/select2.css');
-        wp_enqueue_style( 'wp-pointer' );
+        wp_enqueue_style('select2', CTCT_FILE_URL.'vendor/nineinchnick/select2/assets/select2.css');
     }
 
     public function print_scripts() {
@@ -56,22 +52,13 @@ abstract class CTCT_Admin_Page {
 
         wp_enqueue_script('alertify', CTCT_FILE_URL.'js/alertify.js/lib/alertify.min.js', array('jquery'));
         wp_enqueue_script('jquery-cookie', CTCT_FILE_URL.'js/admin/jquery.cookie.js', array('jquery'));
-        wp_enqueue_script('select2', CTCT_FILE_URL.'js/select2/select2.min.js', array('jquery'));
+        wp_enqueue_script('select2', CTCT_FILE_URL.'vendor/nineinchnick/select2/assets/select2.min.js', array('jquery'));
 
-        wp_enqueue_script('ctct-admin-page', CTCT_FILE_URL.'js/admin/cc-page.js', array('jquery', 'jquery-effects-highlight', 'jquery-ui-tooltip', 'jquery-ui-tabs', 'select2', 'thickbox', 'wp-pointer'));
+        wp_enqueue_script('ctct-admin-page', CTCT_FILE_URL.'js/admin/cc-page.js', array('jquery', 'jquery-effects-highlight', 'jquery-ui-tooltip', 'jquery-ui-tabs', 'select2', 'thickbox'));
 
         wp_enqueue_script('ctct-admin-fittext', CTCT_FILE_URL.'js/admin/jquery.fittext.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-equalize', CTCT_FILE_URL.'js/admin/jquery.equalize.min.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-inlineedit', CTCT_FILE_URL.'js/admin/jquery.inlineedit.js', array('ctct-admin-page'));
-
-        if($plugin_page === $this->key) {
-            wp_localize_script( 'ctct-admin-page', 'CTCT', array(
-                'component' => $this->component,
-                'id' => @$_GET['view'],
-                '_wpnonce' => wp_create_nonce('ctct'),
-                'pointers' => $this->getPointers(),
-            ));
-        }
 
         $this->addScripts();
     }
@@ -121,55 +108,6 @@ abstract class CTCT_Admin_Page {
     		$tab['title'] = str_replace('Constant Contact: ', '', $tab['title']);
     	}
     	return $tabs;
-    }
-
-    public function pointer_content() {
-    	global $plugin_page;
-
-    	include_once(CTCT_DIR_PATH.'/inc/pointers.php');
-
-    	$pointers = ctct_get_pointers();
-
-    	if(isset($_GET['pointers']) && $_GET['pointers'] === 'debug' && current_user_can('manage_options')){
-	    	// TODO: REmove this; it's only for debug
-	    	foreach((array)$pointers as $k => $v) {
-	    		$pointers[rand(0,1000).$k] = $v;
-	    		unset($pointers[$k]);
-	    	}
-    	}
-    	return apply_filters('constant_contact_pointers', $pointers);
-
-    }
-
-    public function getPointers( $hook_suffix = '' ) {
-    	global $plugin_page;
-    	if($plugin_page !== $this->getKey()) { return; }
-
-       // Get pointers for this screen
-        $pointers = apply_filters( 'ctct_admin_pointers-' . $this->getKey(), $this->pointers );
-
-        if ( ! $pointers || ! is_array( $pointers ) )
-            return;
-
-        // Get dismissed pointers
-        $dismissed = explode( ',', (string)get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
-        $valid_pointers =array();
-
-        // Check pointers and remove dismissed ones.
-        foreach ( $pointers as $pointer_id => $pointer ) {
-
-            // Sanity check
-            if ( in_array( $pointer_id, $dismissed ) || empty( $pointer )  || empty( $pointer_id ) || empty( $pointer['target'] ) || empty( $pointer['options'] ) )
-                continue;
-
-            $pointer['pointer_id'] = $pointer_id;
-
-            // Add the pointer to $valid_pointers array
-            $valid_pointers['pointers'][] =  $pointer;
-        }
-        #r($valid_pointers, true);
-
-        return (array)$valid_pointers;
     }
 
     public function getPermission() {}
