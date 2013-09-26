@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('_rest_client_interface_8php_source.htm
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,7 +120,7 @@ $(document).ready(function(){initNavTree('_rest_client_interface_8php_source.htm
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">     * @return array - array of the response body, http info, and error (if one exists)</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <span class="keyword">get</span>($url, array $headers);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">     * Make an Http POST request</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">     * @param $url - request url</span></div>
@@ -128,7 +129,7 @@ $(document).ready(function(){initNavTree('_rest_client_interface_8php_source.htm
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     * @return array - array of the response body, http info, and error (if one exists)</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="interface_ctct_1_1_util_1_1_rest_client_interface.html#a782fad2041d5b6938f99f372fc3d5331" title="Make an Http POST request. ">post</a>($url, array $headers = array(), $data = null);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">     * Make an Http PUT request</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">     * @param $url - request url</span></div>
@@ -137,7 +138,7 @@ $(document).ready(function(){initNavTree('_rest_client_interface_8php_source.htm
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">     * @return array - array of the response body, http info, and error (if one exists)</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="interface_ctct_1_1_util_1_1_rest_client_interface.html#a6c2b0d7dc54e929371cf9b942d03f070" title="Make an Http PUT request. ">put</a>($url, array $headers = array(), $data = null);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">     * Make an Http DELETE request</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">     * @param $url - request url</span></div>
@@ -152,8 +153,8 @@ $(document).ready(function(){initNavTree('_rest_client_interface_8php_source.htm
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e3fa7edd72d5150bbaebb846ef8da0d5.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_5ad89f0e21bff512ad90475f2862db0e.html">Util</a></li><li class="navelem"><b>RestClientInterface.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="navelem"><a class="el" href="dir_1ccce6ba2cd867ee49c44f272f3fceda.html">vendor</a></li><li class="navelem"><a class="el" href="dir_0faafcdc02cd99f36c04f9e30c9d9aa5.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_57ebdb077a0b98b3b0326c21b9886d44.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_ec2bf1181596f75d518d9ef845b43474.html">src</a></li><li class="navelem"><a class="el" href="dir_c8150e5f5e201635c8b99c6bebc8a401.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_6aae57f0e317010c99488ac2e0c801a7.html">Util</a></li><li class="navelem"><b>RestClientInterface.php</b></li>
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

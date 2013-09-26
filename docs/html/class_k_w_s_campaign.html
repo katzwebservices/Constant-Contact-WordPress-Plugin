@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_k_w_s_campaign.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -237,6 +238,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a85146616a0e081f53a135aebfa6e9864 inherit pub_attribs_class_ctct_1_1_components_1_1_email_marketing_1_1_campaign"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa94bc4c05b38d5bd9eed2589c2c9ea82 inherit pub_attribs_class_ctct_1_1_components_1_1_email_marketing_1_1_campaign"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aa94bc4c05b38d5bd9eed2589c2c9ea82">$click_through_details</a> = array()</td></tr>
 <tr class="separator:aa94bc4c05b38d5bd9eed2589c2c9ea82 inherit pub_attribs_class_ctct_1_1_components_1_1_email_marketing_1_1_campaign"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e6f0bcfa3303a97dc8dff6bf25b1ce inherit pub_attribs_class_ctct_1_1_components_1_1_email_marketing_1_1_campaign"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ac8e6f0bcfa3303a97dc8dff6bf25b1ce">$permalink_url</a></td></tr>
+<tr class="separator:ac8e6f0bcfa3303a97dc8dff6bf25b1ce inherit pub_attribs_class_ctct_1_1_components_1_1_email_marketing_1_1_campaign"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_class_ctct_1_1_components_1_1_component"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_class_ctct_1_1_components_1_1_component')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="class_ctct_1_1_components_1_1_component.html">Ctct\Components\Component</a></td></tr>
 <tr class="memitem:a6e0d8afc5d291f59234626de90116161 inherit pro_static_methods_class_ctct_1_1_components_1_1_component"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_components_1_1_component.html#a6e0d8afc5d291f59234626de90116161">getValue</a> (array $array, $item, $default=null)</td></tr>
 <tr class="memdesc:a6e0d8afc5d291f59234626de90116161 inherit pro_static_methods_class_ctct_1_1_components_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the requested value from an array, or return the default.  <a href="#a6e0d8afc5d291f59234626de90116161">More...</a><br/></td></tr>
@@ -715,7 +718,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_k_w_s_campaign.html">KWSCampaign</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:45 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

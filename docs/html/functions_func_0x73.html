@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -125,7 +126,7 @@ $(document).ready(function(){initNavTree('functions_func_0x73.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -144,16 +145,20 @@ $(document).ready(function(){initNavTree('functions_func_0x73.html','');});
 <li>saveToken()
 : <a class="el" href="class_k_w_s_o_auth2.html#a0b7202a4789cdb63620efefda30426de">KWSOAuth2</a>
 </li>
+<li>send_exception()
+: <a class="el" href="class_exceptional_remote.html#a457fbb66fea16ab74eb6b0cfca4f1f84">ExceptionalRemote</a>
+</li>
 <li>sendEmailCampaignTest()
-: <a class="el" href="class_ctct_1_1_constant_contact.html#aecf59a6dfa51ba2883729359a3e191c9">Ctct\ConstantContact</a>
+: <a class="el" href="class_ctct_1_1_constant_contact.html#aaf1db8a08cb681bc469c9486862ff7ba">Ctct\ConstantContact</a>
 </li>
 <li>sendTest()
 : <a class="el" href="class_ctct_1_1_services_1_1_campaign_schedule_service.html#a2cea061aedc6d0934803d6a2d05c2ca0">Ctct\Services\CampaignScheduleService</a>
 </li>
 <li>set()
-: <a class="el" href="class_k_w_s_campaign.html#a17330ba0ceb6ac2f1fce2738e9b36dc8">KWSCampaign</a>
+: <a class="el" href="class_k_w_s_contact_list.html#a86dd4f335f12080428e573d5dc67a56f">KWSContactList</a>
+, <a class="el" href="class_composer_1_1_autoload_1_1_class_loader.html#a76f8e2aa4329d78063cc7932108891ce">Composer\Autoload\ClassLoader</a>
+, <a class="el" href="class_k_w_s_campaign.html#a17330ba0ceb6ac2f1fce2738e9b36dc8">KWSCampaign</a>
 , <a class="el" href="class_k_w_s_contact.html#a41953b700fcc65985c48920ab73c0d36">KWSContact</a>
-, <a class="el" href="class_k_w_s_contact_list.html#a86dd4f335f12080428e573d5dc67a56f">KWSContactList</a>
 </li>
 <li>set_data()
 : <a class="el" href="class_c_t_c_t___admin___table.html#a339b03005fc87c0ebfaf883647a8b4f1">CTCT_Admin_Table</a>
@@ -177,8 +182,8 @@ $(document).ready(function(){initNavTree('functions_func_0x73.html','');});
 : <a class="el" href="class_k_w_s_constant_contact.html#a45252a83d4b4e5fea9592ad31199a712">KWSConstantContact</a>
 </li>
 <li>setRestClient()
-: <a class="el" href="class_ctct_1_1_services_1_1_base_service.html#af407e0696d41761db7bcd4e62581da8a">Ctct\Services\BaseService</a>
-, <a class="el" href="class_k_w_s_constant_contact.html#a630763fcb0aa48aaef1803828d85ccfe">KWSConstantContact</a>
+: <a class="el" href="class_k_w_s_constant_contact.html#a630763fcb0aa48aaef1803828d85ccfe">KWSConstantContact</a>
+, <a class="el" href="class_ctct_1_1_services_1_1_base_service.html#af407e0696d41761db7bcd4e62581da8a">Ctct\Services\BaseService</a>
 </li>
 <li>setResults()
 : <a class="el" href="class_c_t_c_t___process___form.html#a252d206a32ffa566d28ae95d24e2ca75">CTCT_Process_Form</a>
@@ -189,27 +194,48 @@ $(document).ready(function(){initNavTree('functions_func_0x73.html','');});
 <li>settings_init()
 : <a class="el" href="class_c_t_c_t___settings.html#a5d48dfd60dd8af82e9dd1f4eb837c3b7">CTCT_Settings</a>
 </li>
+<li>setUp()
+: <a class="el" href="class_contact_service_unit_test.html#aca4e20fa94cb01878b0829d45ce73e38">ContactServiceUnitTest</a>
+, <a class="el" href="class_contact_tracking_service_unit_test.html#aabe5a468c0f6dfaa35e1b22e6f86a630">ContactTrackingServiceUnitTest</a>
+, <a class="el" href="class_email_marketing_service_unit_test.html#ae86824284fb1fecd2382e0d03aa05bd1">EmailMarketingServiceUnitTest</a>
+, <a class="el" href="class_list_service_unit_test.html#abe4e7b662ba7974c91e4134801d34424">ListServiceUnitTest</a>
+, <a class="el" href="class_account_service_unit_test.html#ac9ff9e6ccf25a619fb16301bb45d9257">AccountServiceUnitTest</a>
+</li>
 <li>setup()
 : <a class="el" href="class_w_p___c_t_c_t.html#a3f205c224e9c08358d885fe489c8d82e">WP_CTCT</a>
 , <a class="el" href="class_c_t_c_t___event_spot.html#a8ac415bd82e6ae58cc4ce268ae595706">CTCT_EventSpot</a>
+, <a class="el" href="class_exceptional.html#ab42943a9bf51feb7f3790680b0f1489c">Exceptional</a>
+</li>
+<li>setUp()
+: <a class="el" href="class_exceptional_test.html#aab1777952f97475b597c23bcfd12b653">ExceptionalTest</a>
+, <a class="el" href="class_ctct_o_auth2_unit_test.html#a0043b0d372a5a234d95a0988f6834d71">CtctOAuth2UnitTest</a>
+, <a class="el" href="class_activity_service_unit_test.html#a074cf34aa913e5b34e0dbf4f90341aed">ActivityServiceUnitTest</a>
+, <a class="el" href="class_campaign_schedule_service_unit_test.html#afbb84a96de18bc7f9d443338537b7460">CampaignScheduleServiceUnitTest</a>
+, <a class="el" href="class_campaign_tracking_service_unit_test.html#af01b82cc9158cd8a1f3e116baccce9f5">CampaignTrackingServiceUnitTest</a>
 </li>
 <li>setUrls()
 : <a class="el" href="class_k_w_s_constant_contact.html#a0d50ace05f1ec8c66118feda823cfdb6">KWSConstantContact</a>
 </li>
+<li>setUseIncludePath()
+: <a class="el" href="class_composer_1_1_autoload_1_1_class_loader.html#a350f3d947ee3e29b0ac0e09e4a086642">Composer\Autoload\ClassLoader</a>
+</li>
 <li>show_ga_auth_error()
 : <a class="el" href="class_c_t_c_t___constant___analytics.html#ac29dd9da306d1516c8d4c55734827078">CTCT_Constant_Analytics</a>
 </li>
+<li>shutdown()
+: <a class="el" href="class_exceptional.html#ac66ec1b69f4232094c5556ee679c1da5">Exceptional</a>
+</li>
 <li>single()
-: <a class="el" href="class_c_t_c_t___admin___contacts.html#a491195877903d374723200d2a4c0c6f2">CTCT_Admin_Contacts</a>
-, <a class="el" href="class_c_t_c_t___constant___analytics.html#aea4d1a314a7a121e7368a7bdd2370f5d">CTCT_Constant_Analytics</a>
-, <a class="el" href="class_c_t_c_t___admin___campaigns.html#a5281650c171b601da395a57daa5fa6ae">CTCT_Admin_Campaigns</a>
-, <a class="el" href="class_c_t_c_t___event_spot.html#a8666a6182012e1567d84d968a82fefab">CTCT_EventSpot</a>
-, <a class="el" href="class_c_t_c_t___admin___user___profile.html#a1994f06b6defb0185a07b6eec3d3a6f2">CTCT_Admin_User_Profile</a>
+: <a class="el" href="class_c_t_c_t___constant___analytics.html#aea4d1a314a7a121e7368a7bdd2370f5d">CTCT_Constant_Analytics</a>
 , <a class="el" href="class_c_t_c_t___form___designer.html#a45161f9c6c6d1fa84a72e87bffc8ecd3">CTCT_Form_Designer</a>
+, <a class="el" href="class_c_t_c_t___admin___user___profile.html#a1994f06b6defb0185a07b6eec3d3a6f2">CTCT_Admin_User_Profile</a>
 , <a class="el" href="class_c_t_c_t___settings.html#adfbb6df8aa9b749cfb80c94c6e608aca">CTCT_Settings</a>
-, <a class="el" href="class_c_t_c_t___admin.html#a13c6ee1f4e219d97f90627fab9792764">CTCT_Admin</a>
-, <a class="el" href="class_c_t_c_t___admin___lists.html#a2f6fd43cdc5b7859d979a1ba4270d3c3">CTCT_Admin_Lists</a>
+, <a class="el" href="class_c_t_c_t___event_spot.html#a8666a6182012e1567d84d968a82fefab">CTCT_EventSpot</a>
+, <a class="el" href="class_c_t_c_t___admin___campaigns.html#a5281650c171b601da395a57daa5fa6ae">CTCT_Admin_Campaigns</a>
 , <a class="el" href="class_c_t_c_t___admin___page.html#aa2467682cbcb0035e36c016f050fc791">CTCT_Admin_Page</a>
+, <a class="el" href="class_c_t_c_t___admin___contacts.html#a491195877903d374723200d2a4c0c6f2">CTCT_Admin_Contacts</a>
+, <a class="el" href="class_c_t_c_t___admin___lists.html#a2f6fd43cdc5b7859d979a1ba4270d3c3">CTCT_Admin_Lists</a>
+, <a class="el" href="class_c_t_c_t___admin.html#a13c6ee1f4e219d97f90627fab9792764">CTCT_Admin</a>
 </li>
 <li>singleEvent()
 : <a class="el" href="class_c_t_c_t___event_spot.html#a1bd895d44467fed9e47de6d3ccecab55">CTCT_EventSpot</a>
@@ -226,7 +252,7 @@ $(document).ready(function(){initNavTree('functions_func_0x73.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:08 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

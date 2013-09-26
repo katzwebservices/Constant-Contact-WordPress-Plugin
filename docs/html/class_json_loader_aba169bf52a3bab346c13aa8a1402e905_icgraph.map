@@ -1,0 +1,5 @@
+<map id="JsonLoader\getCampaignJson" name="JsonLoader\getCampaignJson">
+<area shape="rect" id="node2" href="$class_email_marketing_service_unit_test.html#a3632b06e037f84d50a20eb7bb7fb0951" title="EmailMarketingServiceUnit\lTest\\testAddCampaign" alt="" coords="256,5,437,49"/>
+<area shape="rect" id="node3" href="$class_email_marketing_service_unit_test.html#a8723289f85db78aba91b3b5b7587cee2" title="EmailMarketingServiceUnit\lTest\\testGetCampaign" alt="" coords="256,73,437,117"/>
+<area shape="rect" id="node4" href="$class_email_marketing_service_unit_test.html#a2bc9abd631fff45ffe8eb24272e49cc9" title="EmailMarketingServiceUnit\lTest\\testUpdateCampaign" alt="" coords="256,141,437,185"/>
+</map>

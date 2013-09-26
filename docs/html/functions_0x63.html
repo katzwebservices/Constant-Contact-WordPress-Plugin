@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -126,7 +127,7 @@ $(document).ready(function(){initNavTree('functions_0x63.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -139,52 +140,76 @@ $(document).ready(function(){initNavTree('functions_0x63.html','');});
 <div class="textblock">Here is a list of all struct and union fields with links to the structures/unions they belong to:</div>
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>call_remote()
+: <a class="el" href="class_exceptional_remote.html#a50efaaa71497bc6f8c161fa63610a9a8">ExceptionalRemote</a>
+</li>
+<li>CAMPAIGN_TRACKING_FOLDER
+: <a class="el" href="class_json_loader.html#a5791dbc55268c312fa40b95edb7833cc">JsonLoader</a>
+</li>
+<li>CAMPAIGNS_FOLDER
+: <a class="el" href="class_json_loader.html#a4ccb129e3fc83bc6594e747a18dbeb9a">JsonLoader</a>
+</li>
 <li>check_config()
 : <a class="el" href="class_c_t_c_t___constant___analytics.html#a9fa88000a3aacc7d0876bf8046911c8f">CTCT_Constant_Analytics</a>
 </li>
 <li>check_nonce()
 : <a class="el" href="class_c_t_c_t___constant___analytics.html#a952313620203e84901a1a48dc511f351">CTCT_Constant_Analytics</a>
 </li>
+<li>clear()
+: <a class="el" href="class_exceptional.html#a6417ec2e4e1fee92fc07ee5f227d0790">Exceptional</a>
+</li>
 <li>config_warnings()
 : <a class="el" href="class_c_t_c_t___constant___analytics.html#a5a4aa1b1d76fcf26e45d6072e58855a6">CTCT_Constant_Analytics</a>
+</li>
+<li>CONTACTS_FOLDER
+: <a class="el" href="class_json_loader.html#a87a67f439cb3d51ea70b6d0674b74010">JsonLoader</a>
 </li>
 <li>content()
 : <a class="el" href="class_c_t_c_t___admin.html#afa822329cd4c10e82e2a41d17f9d1dd9">CTCT_Admin</a>
 , <a class="el" href="class_c_t_c_t___admin___page.html#acdbed2f16a36a9384b2fa5f01073024d">CTCT_Admin_Page</a>
 , <a class="el" href="class_c_t_c_t___settings.html#aada466c0f6fbbfb8a7f90254b997050a">CTCT_Settings</a>
 </li>
+<li>context()
+: <a class="el" href="class_exceptional.html#a6635613a1c7132b43f428d296c31088a">Exceptional</a>
+</li>
 <li>create()
-: <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a2559d62ef3c0e3a457df0c50043311d4">Ctct\Components\Tracking\TrackingSummary</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_send_activity.html#aeb8fec65449804a1a21b9e7afa886bc5">Ctct\Components\Tracking\SendActivity</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_open_activity.html#a85e11212d1c6e80e4eea4ad6c60de4bc">Ctct\Components\Tracking\OpenActivity</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_forward_activity.html#afdc78dd81810506d09da13256ab7d586">Ctct\Components\Tracking\ForwardActivity</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_click_activity.html#aae5eeb4c290cddc152f44ac03543f38d">Ctct\Components\Tracking\ClickActivity</a>
-, <a class="el" href="class_ctct_1_1_util_1_1_curl_response.html#acafe6d33ebefa50b7d83fb37c4f4f6fd">Ctct\Util\CurlResponse</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_test_send.html#ad7a93792aca4fefaa863fc5dc4645b18">Ctct\Components\EmailMarketing\TestSend</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254">Ctct\Components\EmailMarketing\Schedule</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html#a6e4143e459132449e4ad848e0d66a0e5">Ctct\Components\EmailMarketing\MessageFooter</a>
-, <a class="el" href="class_k_w_s_contact.html#a3f7dadcb18a0f6fdcb9d29d62cb05cf2">KWSContact</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f">Ctct\Components\EmailMarketing\Campaign</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_note.html#a0f5c7143a592b1da1467efbeba73d715">Ctct\Components\Contacts\Note</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_custom_field.html#ae68b392692a27d65f007ca88378303ac">Ctct\Components\Contacts\CustomField</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_email_address.html#ad5ccee9c619500b3e61a3307c0635c89">Ctct\Components\Contacts\EmailAddress</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c">Ctct\Components\Contacts\ContactList</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#aea94ae08d0308ccb24c030bd9d96e368">Ctct\Components\Contacts\Contact</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_address.html#a0a1be46e7c7d87d63874c4d618ae3583">Ctct\Components\Contacts\Address</a>
+: <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_click_activity.html#aae5eeb4c290cddc152f44ac03543f38d">Ctct\Components\Tracking\ClickActivity</a>
 , <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_bounce_activity.html#a85479492b54edd3d4b7887c5a148641d">Ctct\Components\Tracking\BounceActivity</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03">Ctct\Components\Activities\Activity</a>
-, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a21bbd4ba0873831d3cc03d8dc2e8ebe0">Ctct\Components\EmailMarketing\ClickThroughDetails</a>
-, <a class="el" href="class_k_w_s_contact_list.html#a169e30a62ae247a14af32bee10a6aea3">KWSContactList</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_test_send.html#ad7a93792aca4fefaa863fc5dc4645b18">Ctct\Components\EmailMarketing\TestSend</a>
 , <a class="el" href="class_ctct_1_1_components_1_1_account_1_1_verified_email_address.html#a52406eba65a18e2dc5f953fa582bb784">Ctct\Components\Account\VerifiedEmailAddress</a>
-, <a class="el" href="class_k_w_s_campaign.html#a34f19953e025621630bbc70384bcef2d">KWSCampaign</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html#a6e4143e459132449e4ad848e0d66a0e5">Ctct\Components\EmailMarketing\MessageFooter</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a21bbd4ba0873831d3cc03d8dc2e8ebe0">Ctct\Components\EmailMarketing\ClickThroughDetails</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_forward_activity.html#afdc78dd81810506d09da13256ab7d586">Ctct\Components\Tracking\ForwardActivity</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_open_activity.html#a85e11212d1c6e80e4eea4ad6c60de4bc">Ctct\Components\Tracking\OpenActivity</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_email_address.html#ad5ccee9c619500b3e61a3307c0635c89">Ctct\Components\Contacts\EmailAddress</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_custom_field.html#ae68b392692a27d65f007ca88378303ac">Ctct\Components\Contacts\CustomField</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c">Ctct\Components\Contacts\ContactList</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_activities_1_1_activity.html#ad67770e21bcf6b61eef2f6c519763d03">Ctct\Components\Activities\Activity</a>
 , <a class="el" href="class_ctct_1_1_components_1_1_activities_1_1_activity_error.html#aa9bc6b634f25fd213c068cbf97e966ec">Ctct\Components\Activities\ActivityError</a>
 , <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_unsubscribe_activity.html#a4a4403ae4f018f5699a0c4111352476b">Ctct\Components\Tracking\UnsubscribeActivity</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_address.html#a0a1be46e7c7d87d63874c4d618ae3583">Ctct\Components\Contacts\Address</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_send_activity.html#aeb8fec65449804a1a21b9e7afa886bc5">Ctct\Components\Tracking\SendActivity</a>
+, <a class="el" href="class_k_w_s_contact_list.html#a169e30a62ae247a14af32bee10a6aea3">KWSContactList</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_schedule.html#ab39b6eeb65b3d502ea1f2b5ad9a89254">Ctct\Components\EmailMarketing\Schedule</a>
+, <a class="el" href="class_k_w_s_campaign.html#a34f19953e025621630bbc70384bcef2d">KWSCampaign</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f">Ctct\Components\EmailMarketing\Campaign</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#aea94ae08d0308ccb24c030bd9d96e368">Ctct\Components\Contacts\Contact</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a2559d62ef3c0e3a457df0c50043311d4">Ctct\Components\Tracking\TrackingSummary</a>
+, <a class="el" href="class_ctct_1_1_util_1_1_curl_response.html#acafe6d33ebefa50b7d83fb37c4f4f6fd">Ctct\Util\CurlResponse</a>
+, <a class="el" href="class_ctct_1_1_components_1_1_contacts_1_1_note.html#a0f5c7143a592b1da1467efbeba73d715">Ctct\Components\Contacts\Note</a>
+, <a class="el" href="class_k_w_s_contact.html#a3f7dadcb18a0f6fdcb9d29d62cb05cf2">KWSContact</a>
 </li>
 <li>create_nonce()
 : <a class="el" href="class_c_t_c_t___constant___analytics.html#a592dbe3dc3585fa623f9f22f8d6e0a48">CTCT_Constant_Analytics</a>
 </li>
 <li>createAddContactsActivity()
 : <a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a7585bd43669c8f9c4e1b6884e58322f6">Ctct\Services\ActivityService</a>
+</li>
+<li>createAddContactsActivityFromFile()
+: <a class="el" href="class_ctct_1_1_services_1_1_activity_service.html#a2f7afa7fcfe01bec0576f985a606082e">Ctct\Services\ActivityService</a>
+</li>
+<li>createExceptionData()
+: <a class="el" href="class_exceptional_test.html#aef72dc8cd2149ea37737ffb952e90ff0">ExceptionalTest</a>
 </li>
 <li>createSummary()
 : <a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd">Ctct\Components\EmailMarketing\Campaign</a>
@@ -195,7 +220,7 @@ $(document).ready(function(){initNavTree('functions_0x63.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

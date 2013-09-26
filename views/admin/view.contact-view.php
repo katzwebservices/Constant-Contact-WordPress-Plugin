@@ -7,11 +7,10 @@
 
 <div class="clear component-summary">
 <?php
-$summary = $this->cc->getContactSummaryReport(CTCT_ACCESS_TOKEN, $Contact->get('id'));
 $i = 1;
 foreach($summary as $k => $v) {
     echo '<dl class="'.$k.' summary-'.$i.'">
-            <dt>'.ucfirst($k).'</dt>
+            <dt>'.ucwords(str_replace('_', ' ', $k)).'</dt>
             <dd>'.$v.'</dd>
         </dl>';
     $i++;

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_services_1_1_campaign_t
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -127,24 +128,24 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_services_1_1_campaign_t
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5a839d70fd23d4f6723f12b361ad9a8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a5a839d70fd23d4f6723f12b361ad9a8d">getBounces</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:a5a839d70fd23d4f6723f12b361ad9a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a result set of bounces for a given campaign.  <a href="#a5a839d70fd23d4f6723f12b361ad9a8d">More...</a><br/></td></tr>
-<tr class="separator:a5a839d70fd23d4f6723f12b361ad9a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca3d8026c24f6aecdeb901e98864904c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#aca3d8026c24f6aecdeb901e98864904c">getClicks</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:aca3d8026c24f6aecdeb901e98864904c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get clicks for a given campaign.  <a href="#aca3d8026c24f6aecdeb901e98864904c">More...</a><br/></td></tr>
-<tr class="separator:aca3d8026c24f6aecdeb901e98864904c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66a3720d913437692a7a83776f816862"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a66a3720d913437692a7a83776f816862">getForwards</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:a66a3720d913437692a7a83776f816862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get forwards for a given campaign.  <a href="#a66a3720d913437692a7a83776f816862">More...</a><br/></td></tr>
-<tr class="separator:a66a3720d913437692a7a83776f816862"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4fd5dff50cff339675ae810d36f5967"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#ad4fd5dff50cff339675ae810d36f5967">getOpens</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:ad4fd5dff50cff339675ae810d36f5967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get opens for a given campaign.  <a href="#ad4fd5dff50cff339675ae810d36f5967">More...</a><br/></td></tr>
-<tr class="separator:ad4fd5dff50cff339675ae810d36f5967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cfb4782dd12ac6b950c89b3e12af44f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a2cfb4782dd12ac6b950c89b3e12af44f">getSends</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:a2cfb4782dd12ac6b950c89b3e12af44f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sends for a given campaign.  <a href="#a2cfb4782dd12ac6b950c89b3e12af44f">More...</a><br/></td></tr>
-<tr class="separator:a2cfb4782dd12ac6b950c89b3e12af44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4875b2c9d6c9190c9a50a7d29631d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#acf4875b2c9d6c9190c9a50a7d29631d9">getUnsubscribes</a> ($accessToken, $campaign_id, Array $params=null)</td></tr>
-<tr class="memdesc:acf4875b2c9d6c9190c9a50a7d29631d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get unsubscribes for a given campaign.  <a href="#acf4875b2c9d6c9190c9a50a7d29631d9">More...</a><br/></td></tr>
-<tr class="separator:acf4875b2c9d6c9190c9a50a7d29631d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76291b8cb3cb4e3e5b127127eee95dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#af76291b8cb3cb4e3e5b127127eee95dd">getBounces</a> ($accessToken, $campaign_id, array $params=array())</td></tr>
+<tr class="memdesc:af76291b8cb3cb4e3e5b127127eee95dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a result set of bounces for a given campaign.  <a href="#af76291b8cb3cb4e3e5b127127eee95dd">More...</a><br/></td></tr>
+<tr class="separator:af76291b8cb3cb4e3e5b127127eee95dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b0868274684b703dd42562d334b94b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a03b0868274684b703dd42562d334b94b">getClicks</a> ($accessToken, $campaignId, array $params=array())</td></tr>
+<tr class="memdesc:a03b0868274684b703dd42562d334b94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get clicks for a given campaign.  <a href="#a03b0868274684b703dd42562d334b94b">More...</a><br/></td></tr>
+<tr class="separator:a03b0868274684b703dd42562d334b94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c1dde09fef0cc49363f3df569007329"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a1c1dde09fef0cc49363f3df569007329">getForwards</a> ($accessToken, $campaignId, array $params=array())</td></tr>
+<tr class="memdesc:a1c1dde09fef0cc49363f3df569007329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get forwards for a given campaign.  <a href="#a1c1dde09fef0cc49363f3df569007329">More...</a><br/></td></tr>
+<tr class="separator:a1c1dde09fef0cc49363f3df569007329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb56a4f72f5d556ab085ab0c9433b94"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#acdb56a4f72f5d556ab085ab0c9433b94">getOpens</a> ($accessToken, $campaign_id, array $params=array())</td></tr>
+<tr class="memdesc:acdb56a4f72f5d556ab085ab0c9433b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get opens for a given campaign.  <a href="#acdb56a4f72f5d556ab085ab0c9433b94">More...</a><br/></td></tr>
+<tr class="separator:acdb56a4f72f5d556ab085ab0c9433b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f10bc6e14bbadf06f30710bd2e4a40b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a3f10bc6e14bbadf06f30710bd2e4a40b">getSends</a> ($accessToken, $campaignId, array $params=array())</td></tr>
+<tr class="memdesc:a3f10bc6e14bbadf06f30710bd2e4a40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sends for a given campaign.  <a href="#a3f10bc6e14bbadf06f30710bd2e4a40b">More...</a><br/></td></tr>
+<tr class="separator:a3f10bc6e14bbadf06f30710bd2e4a40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476d1a1d064871d5e5daf4b03477fdf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a476d1a1d064871d5e5daf4b03477fdf9">getUnsubscribes</a> ($accessToken, $campaignId, array $params=array())</td></tr>
+<tr class="memdesc:a476d1a1d064871d5e5daf4b03477fdf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get unsubscribes for a given campaign.  <a href="#a476d1a1d064871d5e5daf4b03477fdf9">More...</a><br/></td></tr>
+<tr class="separator:a476d1a1d064871d5e5daf4b03477fdf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaafdbbc4ee6e9b089fef38693970b24f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#aaafdbbc4ee6e9b089fef38693970b24f">getSummary</a> ($accessToken, $campaign_id)</td></tr>
 <tr class="memdesc:aaafdbbc4ee6e9b089fef38693970b24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a summary of reporting data for a given campaign.  <a href="#aaafdbbc4ee6e9b089fef38693970b24f">More...</a><br/></td></tr>
 <tr class="separator:aaafdbbc4ee6e9b089fef38693970b24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,9 +153,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a18b66946555616b9ca6aa9290201aafd">__construct</a> ($apiKey, $restClient=null)</td></tr>
 <tr class="memdesc:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with the option to to supply an alternative rest client to be used.  <a href="#a18b66946555616b9ca6aa9290201aafd">More...</a><br/></td></tr>
 <tr class="separator:a18b66946555616b9ca6aa9290201aafd inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6">buildUrl</a> ($url, $queryParams=null)</td></tr>
-<tr class="memdesc:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a url from the base url and query parameters array.  <a href="#a5c4ae0795fcc06c137b6e761963c4df6">More...</a><br/></td></tr>
-<tr class="separator:a5c4ae0795fcc06c137b6e761963c4df6 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e">buildUrl</a> ($url, array $queryParams=null)</td></tr>
+<tr class="memdesc:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a URL from a base url and optional array of query parameters to append to the url.  <a href="#a682b3692a73a009ec026442110cf968e">More...</a><br/></td></tr>
+<tr class="separator:a682b3692a73a009ec026442110cf968e inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_services_1_1_base_service.html#a3309528077e2ec8847d33db70fc52f74">getRestClient</a> ()</td></tr>
 <tr class="memdesc:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the rest client being used by the service.  <a href="#a3309528077e2ec8847d33db70fc52f74">More...</a><br/></td></tr>
 <tr class="separator:a3309528077e2ec8847d33db70fc52f74 inherit pub_methods_class_ctct_1_1_services_1_1_base_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,7 +178,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock">
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00022">22</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a5a839d70fd23d4f6723f12b361ad9a8d"></a>
+<a class="anchor" id="af76291b8cb3cb4e3e5b127127eee95dd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -196,8 +197,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -220,20 +221,20 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00032">32</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_bounce_activity_8php_source.html#l00030">Ctct\Components\Tracking\BounceActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_bounce_activity_8php_source.html#l00030">Ctct\Components\Tracking\BounceActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_bounces&#39;</span>), $campaign_id);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        $bounces = array();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">foreach</span> ($body[<span class="stringliteral">&#39;results&#39;</span>] as $bounceActivity) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            $contacts[] = <a class="code" href="class_ctct_1_1_components_1_1_tracking_1_1_bounce_activity.html#a85479492b54edd3d4b7887c5a148641d" title="Factory method to create a BounceActivity object from an array. ">BounceActivity::create</a>($bounceActivity);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            $bounces[] = <a class="code" href="class_ctct_1_1_components_1_1_tracking_1_1_bounce_activity.html#a85479492b54edd3d4b7887c5a148641d" title="Factory method to create a BounceActivity object from an array. ">BounceActivity::create</a>($bounceActivity);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> ResultSet($contacts, $body[<span class="stringliteral">&#39;meta&#39;</span>]);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> ResultSet($bounces, $body[<span class="stringliteral">&#39;meta&#39;</span>]);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -241,13 +242,14 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a5a839d70fd23d4f6723f12b361ad9a8d_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_af76291b8cb3cb4e3e5b127127eee95dd_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aca3d8026c24f6aecdeb901e98864904c"></a>
+<a class="anchor" id="a03b0868274684b703dd42562d334b94b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -261,13 +263,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$campaign_id</em>, </td>
+          <td class="paramname"><em>$campaignId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -281,21 +283,21 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$campaign_id</td><td>- Campaign id </td></tr>
-    <tr><td class="paramtype">array</td><td class="paramname">$param</td><td>- query params to be appended to request </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$campaignId</td><td>- Campaign id </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$params</td><td>- query params to be appended to request </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TrackingActivity - Containing a results array of <a class="el" href="">ClickActivity</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ResultSet - Containing a results array of <a class="el" href="">ClickActivity</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00055">55</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_click_activity_8php_source.html#l00028">Ctct\Components\Tracking\ClickActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_click_activity_8php_source.html#l00028">Ctct\Components\Tracking\ClickActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_clicks&#39;</span>), $campaign_id);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_clicks&#39;</span>), $campaignId);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
@@ -313,13 +315,14 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_aca3d8026c24f6aecdeb901e98864904c_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a03b0868274684b703dd42562d334b94b_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a66a3720d913437692a7a83776f816862"></a>
+<a class="anchor" id="a1c1dde09fef0cc49363f3df569007329"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -333,13 +336,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$campaign_id</em>, </td>
+          <td class="paramname"><em>$campaignId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -353,8 +356,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$campaign_id</td><td>- Campaign id </td></tr>
-    <tr><td class="paramtype">array</td><td class="paramname">$param</td><td>- query param to be appended to request </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$campaignId</td><td>- Campaign id </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$params</td><td>- query param to be appended to request </td></tr>
   </table>
   </dd>
 </dl>
@@ -362,12 +365,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00080">80</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_forward_activity_8php_source.html#l00027">Ctct\Components\Tracking\ForwardActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_forward_activity_8php_source.html#l00027">Ctct\Components\Tracking\ForwardActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_forwards&#39;</span>), $campaign_id);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_forwards&#39;</span>), $campaignId);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
@@ -384,13 +387,14 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a66a3720d913437692a7a83776f816862_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a1c1dde09fef0cc49363f3df569007329_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="ad4fd5dff50cff339675ae810d36f5967"></a>
+<a class="anchor" id="acdb56a4f72f5d556ab085ab0c9433b94"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -409,8 +413,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -433,12 +437,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00104">104</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_open_activity_8php_source.html#l00027">Ctct\Components\Tracking\OpenActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_open_activity_8php_source.html#l00027">Ctct\Components\Tracking\OpenActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_opens&#39;</span>), $campaign_id);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
@@ -455,13 +459,14 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_ad4fd5dff50cff339675ae810d36f5967_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_acdb56a4f72f5d556ab085ab0c9433b94_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a2cfb4782dd12ac6b950c89b3e12af44f"></a>
+<a class="anchor" id="a3f10bc6e14bbadf06f30710bd2e4a40b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -475,13 +480,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$campaign_id</em>, </td>
+          <td class="paramname"><em>$campaignId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -495,8 +500,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$campaign_id</td><td>- Campaign id </td></tr>
-    <tr><td class="paramtype">Array</td><td class="paramname">$param</td><td>- query params to be appended to request </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$campaignId</td><td>- Campaign id </td></tr>
+    <tr><td class="paramtype">Array</td><td class="paramname">$params</td><td>- query params to be appended to request </td></tr>
   </table>
   </dd>
 </dl>
@@ -504,12 +509,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00128">128</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_send_activity_8php_source.html#l00027">Ctct\Components\Tracking\SendActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_send_activity_8php_source.html#l00027">Ctct\Components\Tracking\SendActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_sends&#39;</span>), $campaign_id);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_sends&#39;</span>), $campaignId);</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
@@ -526,7 +531,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a2cfb4782dd12ac6b950c89b3e12af44f_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a3f10bc6e14bbadf06f30710bd2e4a40b_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -568,11 +574,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00175">175</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_tracking_summary_8php_source.html#l00028">Ctct\Components\Tracking\TrackingSummary\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_tracking_summary_8php_source.html#l00029">Ctct\Components\Tracking\TrackingSummary\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    {</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_summary&#39;</span>), $campaign_id);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a2559d62ef3c0e3a457df0c50043311d4" title="Factory method to create a TrackingSummary object from an array. ">TrackingSummary::create</a>(json_decode($response-&gt;body, <span class="keyword">true</span>));</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
@@ -582,13 +588,14 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_aaafdbbc4ee6e9b089fef38693970b24f_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_aaafdbbc4ee6e9b089fef38693970b24f_cgraph.svg" width="454" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="acf4875b2c9d6c9190c9a50a7d29631d9"></a>
+<a class="anchor" id="a476d1a1d064871d5e5daf4b03477fdf9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -602,13 +609,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$campaign_id</em>, </td>
+          <td class="paramname"><em>$campaignId</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Array&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$params</em> = <code>array()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -622,8 +629,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$accessToken</td><td>- <a class="el" href="namespace_constant.html" title="Contact. ">Constant</a> Contact OAuth2 access token </td></tr>
-    <tr><td class="paramtype">string</td><td class="paramname">$campaign_id</td><td>- Campaign id </td></tr>
-    <tr><td class="paramtype">array</td><td class="paramname">$param</td><td>- query params to be appended to request </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$campaignId</td><td>- Campaign id </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$params</td><td>- query params to be appended to request </td></tr>
   </table>
   </dd>
 </dl>
@@ -631,12 +638,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_campaign_tracking_service_8php_source.html#l00152">152</a> of file <a class="el" href="_campaign_tracking_service_8php_source.html">CampaignTrackingService.php</a>.</p>
 
-<p>References <a class="el" href="_base_service_8php_source.html#l00046">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_unsubscribe_activity_8php_source.html#l00028">Ctct\Components\Tracking\UnsubscribeActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00136">Ctct\Util\Config\get()</a>.</p>
+<p>References <a class="el" href="_base_service_8php_source.html#l00050">Ctct\Services\BaseService\buildUrl()</a>, <a class="el" href="_unsubscribe_activity_8php_source.html#l00028">Ctct\Components\Tracking\UnsubscribeActivity\create()</a>, and <a class="el" href="_config_8php_source.html#l00123">Ctct\Util\Config\get()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    {</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>) .</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_unsubscribes&#39;</span>), $campaign_id);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.campaign_tracking_unsubscribes&#39;</span>), $campaignId);</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        $body = json_decode($response-&gt;body, <span class="keyword">true</span>);</div>
@@ -653,7 +660,8 @@ Additional Inherited Members</h2></td></tr>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_acf4875b2c9d6c9190c9a50a7d29631d9_cgraph.svg" width="459" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_ctct_1_1_services_1_1_campaign_tracking_service_a476d1a1d064871d5e5daf4b03477fdf9_cgraph.svg" width="459" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </p>
 
@@ -668,7 +676,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_services_1_1_campaign_tracking_service.html">CampaignTrackingService</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

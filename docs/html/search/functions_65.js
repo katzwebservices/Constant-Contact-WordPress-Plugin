@@ -5,5 +5,6 @@ var searchData=
   ['enqueue',['enqueue',['../class_c_t_c_t___pointers.html#ab2d6906f7b23a7d6257b4392b794469d',1,'CTCT_Pointers']]],
   ['enqueue_5fscripts',['enqueue_scripts',['../class_c_t_c_t___constant___analytics.html#a0b5589251b3a6cd9cf457fed695c885c',1,'CTCT_Constant_Analytics']]],
   ['events_5fdashboard',['events_dashboard',['../class_c_t_c_t___event_spot.html#adc958c8151d67743a6db3c4f08d342b7',1,'CTCT_EventSpot']]],
-  ['events_5foutput',['events_output',['../class_c_t_c_t___event_spot.html#abadaf010f1f5f290a4b13ee0bfd83920',1,'CTCT_EventSpot']]]
+  ['events_5foutput',['events_output',['../class_c_t_c_t___event_spot.html#a8f99b2953415067bab44ebba3a1d8cbf',1,'CTCT_EventSpot']]],
+  ['events_5fshortcode_5foutput',['events_shortcode_output',['../class_c_t_c_t___event_spot.html#a9053463f44fb78be061829cd18661e20',1,'CTCT_EventSpot']]]
 ];

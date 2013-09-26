@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="class_c_t_c_t___event_spot.html#adc958c8151d67743a6db3c4f08d342b7" target="_top" xlink:title="CTCT_EventSpot\\events\l_dashboard">
+<g id="a_node2"><a xlink:href="class_c_t_c_t___event_spot.html#adc958c8151d67743a6db3c4f08d342b7" target="_top" xlink:title="Generate the content for the Events dashboard widget. ">
 <polygon fill="white" stroke="black" points="180.697,-0 180.697,-32 307.303,-32 307.303,-0 180.697,-0"/>
 <text text-anchor="start" x="188.697" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">CTCT_EventSpot\events</text>
 <text text-anchor="middle" x="244" y="-6" font-family="Helvetica,sans-Serif" font-size="10.00">_dashboard</text>

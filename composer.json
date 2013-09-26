@@ -1,0 +1,24 @@
+{
+	"name": "katzwebservices/ctct",
+	"license": "GPL-2.0+",
+	"type": "project",
+	"authors": [
+		{
+	            "name": "Zack Katz",
+        	    "email": "zack@katz.co",
+	            "homepage": "http://www.katzwebservices.com",
+        	    "role": "Developer"
+        	}
+	],
+	"support": {
+        	"email": "support@katz.co",
+	        "issues": "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?state=open"
+    	},
+	"require": {
+		"constantcontact/constantcontact": "dev-master",
+		"nineinchnick/select2": "dev-master",
+		"ankane/exceptional-php": "dev-master",
+		"php": ">=5.3.0",
+	        "ext-curl": "*"
+	}
+}

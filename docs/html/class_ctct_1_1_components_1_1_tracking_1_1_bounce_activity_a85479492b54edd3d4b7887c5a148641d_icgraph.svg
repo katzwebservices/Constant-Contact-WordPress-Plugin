@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#a5a839d70fd23d4f6723f12b361ad9a8d" target="_top" xlink:title="Get a result set of bounces for a given campaign. ">
+<g id="a_node2"><a xlink:href="class_ctct_1_1_services_1_1_campaign_tracking_service.html#af76291b8cb3cb4e3e5b127127eee95dd" target="_top" xlink:title="Get a result set of bounces for a given campaign. ">
 <polygon fill="white" stroke="black" points="170.38,-51 170.38,-83 331.62,-83 331.62,-51 170.38,-51"/>
 <text text-anchor="start" x="178.38" y="-69" font-family="Helvetica,sans-Serif" font-size="10.00">Ctct\Services\CampaignTracking</text>
 <text text-anchor="middle" x="251" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">Service\getBounces</text>
@@ -31,7 +31,7 @@
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
-<g id="a_node3"><a xlink:href="class_ctct_1_1_services_1_1_contact_tracking_service.html#a9a549d6870b28ae70684f8fb55993a59" target="_top" xlink:title="Get bounces for a given contact. ">
+<g id="a_node3"><a xlink:href="class_ctct_1_1_services_1_1_contact_tracking_service.html#acca53aa1ae3e3d64de8b92b9b00fa26f" target="_top" xlink:title="Get bounces for a given contact. ">
 <polygon fill="white" stroke="black" points="175.939,-0 175.939,-32 326.061,-32 326.061,-0 175.939,-0"/>
 <text text-anchor="start" x="183.939" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ctct\Services\ContactTracking</text>
 <text text-anchor="middle" x="251" y="-6" font-family="Helvetica,sans-Serif" font-size="10.00">Service\getBounces</text>

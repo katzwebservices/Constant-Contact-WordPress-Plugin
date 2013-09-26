@@ -4,7 +4,7 @@
 		<tr>
 			<th scope="col" id="name" class="manage-column column-title" style=""><?php _e('Name', 'constant-contact-api'); ?></th>
 			<th scope="col" id="title" class="manage-column column-title" style=""><?php _e('Title', 'constant-contact-api'); ?></th>
-			<th scope="col" id="eventid" class="manage-column column-id" style=""><?php _e('Shortcode', 'constant-contact-api'); ?> <span class="help cc_qtip" title="<?php _e('Use the ID inside the [eventspot] shortcode to display a single event in your post or page content; for example: [eventspot id=\'abc1244\' /]', 'constant-contact-api'); ?>" style="display:inline-block; background: url(<?php echo str_replace('/admin/', '/', plugin_dir_url(__FILE__)).'images/help.png'; ?>) left top no-repeat; width:16px; height:16px; overflow:hidden; text-indent:-99999px; text-align:left;"><?php _e('What is this for?', 'constant-contact-api'); ?></span></th>
+			<th scope="col" id="eventid" class="manage-column column-id" style=""><?php _e('Shortcode', 'constant-contact-api'); ?> <span class="ctct_help cc_tip" title="<?php _e('Use the ID inside the [eventspot] shortcode to display a single event in your post or page content; for example: [eventspot id=\'abc1244\' /]', 'constant-contact-api'); ?>">?</span></th>
 			<?php if(!isset($_GET['status']) || $_GET['status'] == 'all') {?>
 			<th scope="col" id="status" class="manage-column column-date" style=""><?php _e('Status', 'constant-contact-api'); ?></th>
 			<?php } ?>

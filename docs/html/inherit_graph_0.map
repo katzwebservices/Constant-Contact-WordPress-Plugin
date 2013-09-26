@@ -1,3 +1,12 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_cache___w_p___h_t_t_p.html" title="Cache_WP_HTTP" alt="" coords="5,5,136,33"/>
+<area shape="rect" id="node2" href="$class_account_service_unit_test.html" title="AccountServiceUnitTest" alt="" coords="299,5,461,33"/>
+<area shape="rect" id="node3" href="$class_activity_service_unit_test.html" title="ActivityServiceUnitTest" alt="" coords="302,57,458,85"/>
+<area shape="rect" id="node4" href="$class_campaign_schedule_service_unit_test.html" title="CampaignScheduleServiceUnitTest" alt="" coords="265,109,495,137"/>
+<area shape="rect" id="node5" href="$class_campaign_tracking_service_unit_test.html" title="CampaignTrackingServiceUnitTest" alt="" coords="267,161,493,189"/>
+<area shape="rect" id="node6" href="$class_contact_service_unit_test.html" title="ContactServiceUnitTest" alt="" coords="300,213,460,241"/>
+<area shape="rect" id="node7" href="$class_contact_tracking_service_unit_test.html" title="ContactTrackingServiceUnitTest" alt="" coords="275,265,485,293"/>
+<area shape="rect" id="node8" href="$class_ctct_o_auth2_unit_test.html" title="CtctOAuth2UnitTest" alt="" coords="311,317,449,345"/>
+<area shape="rect" id="node9" href="$class_email_marketing_service_unit_test.html" title="EmailMarketingServiceUnitTest" alt="" coords="277,369,483,397"/>
+<area shape="rect" id="node10" href="$class_exceptional_test.html" title="ExceptionalTest" alt="" coords="323,421,437,449"/>
+<area shape="rect" id="node11" href="$class_list_service_unit_test.html" title="ListServiceUnitTest" alt="" coords="313,473,447,501"/>
 </map>

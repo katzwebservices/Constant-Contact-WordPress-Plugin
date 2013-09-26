@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,7 +103,7 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">namespace </span>Ctct\Components\Contacts;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;use <a class="code" href="class_ctct_1_1_components_1_1_component.html" title="Super class for all components. ">Ctct\Components\Component</a>;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;use <a class="code" href="class_ctct_1_1_util_1_1_config.html">Ctct\Util\Config</a>;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
@@ -251,36 +252,36 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        $contact-&gt;last_name = parent::getValue($props, <span class="stringliteral">&quot;last_name&quot;</span>);</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        $contact-&gt;confirmed = parent::getValue($props, <span class="stringliteral">&quot;confirmed&quot;</span>);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        $contact-&gt;source = parent::getValue($props, <span class="stringliteral">&quot;source&quot;</span>);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;email_addresses&#39;</span>] as $email_address) {</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            $contact-&gt;email_addresses[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_email_address.html#ad5ccee9c619500b3e61a3307c0635c89" title="Factory method to create an EmailAddress object from an array. ">EmailAddress::create</a>($email_address);</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        }</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        $contact-&gt;prefix_name = parent::getValue($props, <span class="stringliteral">&quot;prefix_name&quot;</span>);</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        $contact-&gt;job_title = parent::getValue($props, <span class="stringliteral">&quot;job_title&quot;</span>);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;addresses&#39;</span>] as $address) {</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            $contact-&gt;addresses[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_address.html#a0a1be46e7c7d87d63874c4d618ae3583" title="Factory method to create an Address object from an array  $props - Associative array of initial prope...">Address::create</a>($address);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;notes&#39;</span>] as $note) {</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            $contact-&gt;notes[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_note.html#a0f5c7143a592b1da1467efbeba73d715" title="Factory method to create a Note object from an array. ">Note::create</a>($note);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        $contact-&gt;company_name = parent::getValue($props, <span class="stringliteral">&quot;company_name&quot;</span>);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        $contact-&gt;home_phone = parent::getValue($props, <span class="stringliteral">&quot;home_phone&quot;</span>);</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        $contact-&gt;work_phone = parent::getValue($props, <span class="stringliteral">&quot;work_phone&quot;</span>);</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        $contact-&gt;cell_phone = parent::getValue($props, <span class="stringliteral">&quot;cell_phone&quot;</span>);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        $contact-&gt;fax = parent::getValue($props, <span class="stringliteral">&quot;fax&quot;</span>);</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;custom_fields&#39;</span>] as $custom_field) {</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            $contact-&gt;custom_fields[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_custom_field.html#ae68b392692a27d65f007ca88378303ac" title="Factory method to create a CustomField object from an array. ">CustomField::create</a>($custom_field);</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;lists&#39;</span>] as $contact_list) {</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            $contact-&gt;lists[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c" title="Factory method to create a ContactList object from an array. ">ContactList::create</a>($contact_list);</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        $contact-&gt;source_details = parent::getValue($props, <span class="stringliteral">&quot;source_details&quot;</span>);</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span> $contact;</div>
@@ -298,17 +299,17 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        $this-&gt;lists[] = $contactList;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">     * Add an EmailAddress</span></div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">     * @param mixed $emailAddress - EmailAddress object or email address</span></div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#ac0faeb04718c2af89fef047687bb5625">  204</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#ac0faeb04718c2af89fef047687bb5625" title="Add an EmailAddress. ">addEmail</a>($emailAddress)</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">if</span> (! $emailAddress instanceof <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_email_address.html">EmailAddress</a>) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordflow">if</span> (!$emailAddress instanceof <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_email_address.html">EmailAddress</a>) {</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            $emailAddress = <span class="keyword">new</span> EmailAddress($emailAddress);</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        $this-&gt;email_addresses[] = $emailAddress;</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"></span></div>
@@ -320,7 +321,7 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    {</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        $this-&gt;custom_fields[] = $customField;</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    }</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">     * Add an address</span></div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">     * @param Address $address - Address to add</span></div>
@@ -329,7 +330,7 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    {</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        $this-&gt;addresses[] = $address;</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
 <div class="line"><a name="l00231"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#a364e62d83b19239d6074e87465ca145d">  231</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact.html#a364e62d83b19239d6074e87465ca145d">toJson</a>()</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    {</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        unset($this-&gt;last_update_date);</div>
@@ -341,8 +342,8 @@ $(document).ready(function(){initNavTree('_contact_8php_source.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e3fa7edd72d5150bbaebb846ef8da0d5.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_d6dfb4b53f822fc14d7fb759cb9ce65c.html">Components</a></li><li class="navelem"><a class="el" href="dir_df0c251dfc14c1e42b3be55ff959f32c.html">Contacts</a></li><li class="navelem"><b>Contact.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="navelem"><a class="el" href="dir_1ccce6ba2cd867ee49c44f272f3fceda.html">vendor</a></li><li class="navelem"><a class="el" href="dir_0faafcdc02cd99f36c04f9e30c9d9aa5.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_57ebdb077a0b98b3b0326c21b9886d44.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_ec2bf1181596f75d518d9ef845b43474.html">src</a></li><li class="navelem"><a class="el" href="dir_c8150e5f5e201635c8b99c6bebc8a401.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_aad13a632d7294deb10666975e03e001.html">Components</a></li><li class="navelem"><a class="el" href="dir_a210097b7957e25e724d47b679f7b43b.html">Contacts</a></li><li class="navelem"><b>Contact.php</b></li>
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('class_8kwsconstantcontact_8php_source.
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -329,68 +330,81 @@ $(document).ready(function(){initNavTree('class_8kwsconstantcontact_8php_source.
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">     * @return array</span></div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00229"></a><span class="lineno"><a class="code" href="class_k_w_s_constant_contact.html#a9a4f843ebc1393bf55c4e7ac63a2d197">  229</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_k_w_s_constant_contact.html#a9a4f843ebc1393bf55c4e7ac63a2d197" title="Get all email campaigns  KWSConstantContact::getAll() ">getAllEmailCampaigns</a>($status = NULL) {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">return</span> $this-&gt;getAll(<span class="stringliteral">&#39;EmailCampaigns&#39;</span>, $status);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">     * Function to fetch multi-page results. Works for all component types.</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">     * @param  string $type         Component type name</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">     * @param  int|string $id_or_status Either the ID of the component or the status filter. Depends on the component. Example: `$id_or_status = &#39;sent&#39;;` for `EmailCampaigns` component. Example: `$id_or_status = 13;` for `ContactSends` component.</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">     * @param  string $param        Search filter. Sets the limit for requests.</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">     * @param  array  $results      Pass the previous results for recursive calls to the method.</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">     * @return array               Results array with `id` as key to each key/value pair.</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno"><a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6">  241</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_k_w_s_constant_contact.html#af6a84270968f93842fbfd508e9a6a8f6" title="Function to fetch multi-page results. ">getAll</a>($type = <span class="stringliteral">&#39;&#39;</span>, $id_or_status = NULL, $param = NULL, &amp;$results = array()) {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $type);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        add_filter(<span class="stringliteral">&#39;ctct_cache&#39;</span>, <span class="keyword">function</span>() { <span class="keywordflow">return</span> 60 * 60 * 48; });</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">if</span>($type === <span class="stringliteral">&#39;EmailCampaigns&#39;</span>){</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">if</span>(!is_null($param)) { $id_or_status = null; }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!is_null($id_or_status)) {</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">if</span>(is_null($param)) { $param = <span class="stringliteral">&#39;?limit=500&#39;</span>; }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $param);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        }</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="comment">// If this returns the results directly, not as an object.</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordflow">if</span>(is_array($fetch)) { <span class="keywordflow">return</span> $fetch; }</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">foreach</span>($fetch-&gt;results as $r) { $results[$r-&gt;id] = $r;  }</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordflow">if</span>(!empty($fetch-&gt;next) &amp;&amp; $fetch-&gt;next != $param) {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            $this-&gt;getAll($type, $id_or_status, $fetch-&gt;next, $results);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="keywordflow">return</span> $results;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">     * Get contacts with a specified email eaddress</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">     * @param string $email - contact email address to search for</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment">     * @param string $null - placeholder for PHP 5.4 Strict standards</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">     * @return KWSContact|boolean If contact, KWSContact object; if none, false</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4">  275</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>($email, $null = null ) {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        $contact = $this-&gt;contactService-&gt;getContacts(CTCT_ACCESS_TOKEN, array(<span class="stringliteral">&#39;email&#39;</span> =&gt; $email));</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">if</span>(!empty($contact-&gt;results)) {</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($contact-&gt;results[0]);</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;}</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        $status = empty($status) ? array() : array(<span class="stringliteral">&#39;status&#39;</span> =&gt; $status);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">return</span> $this-&gt;getAll(<span class="stringliteral">&#39;EmailCampaigns&#39;</span>, NULL, $status);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">     * Function to fetch multi-page results. Works for all component types.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">     * @param  string $type         Component type name</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">     * @param  int|string $id_or_status Either the ID of the component or the status filter. Depends on the component. Example: `$id_or_status = &#39;sent&#39;;` for `EmailCampaigns` component. Example: `$id_or_status = 13;` for `ContactSends` component.</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">     * @param  string $param        Search filter. Sets the limit for requests.</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">     * @param  array  $results      Pass the previous results for recursive calls to the method.</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">     * @return array               Results array with `id` as key to each key/value pair.</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="code" href="class_k_w_s_constant_contact.html#a73cd3bfef44ad8c2c4c679978360cfbb">  242</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_k_w_s_constant_contact.html#a73cd3bfef44ad8c2c4c679978360cfbb" title="Function to fetch multi-page results. ">getAll</a>($type = <span class="stringliteral">&#39;&#39;</span>, $id_or_status = NULL, $param = array(), &amp;$results = array()) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        do_action(<span class="stringliteral">&#39;ctct_debug&#39;</span>, $type);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        add_filter(<span class="stringliteral">&#39;ctct_cache&#39;</span>, <span class="keyword">function</span>() { <span class="keywordflow">return</span> 60 * 60 * 48; });</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordflow">switch</span>($type) {</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&quot;Lists&quot;</span>:</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                <span class="comment">// Lists doesn&#39;t support limit param</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, (array)$param);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            <span class="keywordflow">case</span> <span class="stringliteral">&quot;EmailCampaigns&quot;</span>:</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <span class="keywordflow">if</span>(!is_null($id_or_status)) {</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                    <span class="keywordflow">if</span>(is_null($param)) { $param = array(<span class="stringliteral">&#39;limit&#39;</span> =&gt; 500); }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                    $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $id_or_status, $param);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                    <span class="keywordflow">if</span>(is_string($param)) {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                        die($param);<span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                    }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                    <span class="keywordflow">if</span>(empty($param)) { $param = array(<span class="stringliteral">&#39;limit&#39;</span> =&gt; 500); }</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    $fetch = $this-&gt;{<span class="stringliteral">&quot;get{$type}&quot;</span>}(CTCT_ACCESS_TOKEN, $param);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                }</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        <span class="comment">// If this returns the results directly, not as an object.</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">if</span>(is_array($fetch)) { <span class="keywordflow">return</span> $fetch; }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordflow">foreach</span>($fetch-&gt;results as $r) { $results[$r-&gt;id] = $r;  }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="comment">// If there is a next link set and the next link</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="comment">// is not the current page (no next link, actually),</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="comment">// recursively call the function.</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">if</span>(!empty($fetch-&gt;next) &amp;&amp; $fetch-&gt;next != @$param[<span class="stringliteral">&#39;next&#39;</span>]) {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            $this-&gt;getAll($type, $id_or_status, array(<span class="stringliteral">&#39;next&#39;</span> =&gt; $fetch-&gt;next), $results);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">return</span> $results;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment">     * Get contacts with a specified email eaddress</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">     * @param string $email - contact email address to search for</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="comment">     * @param string $null - placeholder for PHP 5.4 Strict standards</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">     * @return KWSContact|boolean If contact, KWSContact object; if none, false</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4">  288</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_k_w_s_constant_contact.html#a98799590a11a6885e13a6e203bae0fc4" title="Get contacts with a specified email eaddress. ">getContactByEmail</a>($email, $null = null ) {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        $contact = $this-&gt;contactService-&gt;getContacts(CTCT_ACCESS_TOKEN, array(<span class="stringliteral">&#39;email&#39;</span> =&gt; $email));</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">if</span>(!empty($contact-&gt;results)) {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_k_w_s_contact.html">KWSContact</a>($contact-&gt;results[0]);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        }</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_3f7ee4cd93c2ab56f749882a111b17c4.html">classes</a></li><li class="navelem"><b>class.kwsconstantcontact.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

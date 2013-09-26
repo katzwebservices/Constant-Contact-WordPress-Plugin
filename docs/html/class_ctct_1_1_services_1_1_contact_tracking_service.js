@@ -1,10 +1,10 @@
 var class_ctct_1_1_services_1_1_contact_tracking_service =
 [
-    [ "getBounces", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a9a549d6870b28ae70684f8fb55993a59", null ],
-    [ "getClicks", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a784190494397f76bf2372d259c1d2942", null ],
-    [ "getForwards", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a7d86d0489b959efaa7ab03c1b79c3b90", null ],
-    [ "getOpens", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a43d3ef18164b6cd96558cbe80706536e", null ],
-    [ "getSends", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a973ca05b6cf27e6456e3afe501415df4", null ],
+    [ "getBounces", "class_ctct_1_1_services_1_1_contact_tracking_service.html#acca53aa1ae3e3d64de8b92b9b00fa26f", null ],
+    [ "getClicks", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a387607cca6f6382ec07e683228e5f0d6", null ],
+    [ "getForwards", "class_ctct_1_1_services_1_1_contact_tracking_service.html#afc86e267fe09827fef9664a5358b2b7e", null ],
+    [ "getOpens", "class_ctct_1_1_services_1_1_contact_tracking_service.html#ad2a67ab3db6827047d115791e76c2ac4", null ],
+    [ "getSends", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a9496997efd2d49e18f635333d288e1e5", null ],
     [ "getSummary", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a3772a32865e7e76603f0b39cd6d7a315", null ],
-    [ "getUnsubscribes", "class_ctct_1_1_services_1_1_contact_tracking_service.html#a6b279b5a34d5d5ae01d7104e4ed4cccc", null ]
+    [ "getUnsubscribes", "class_ctct_1_1_services_1_1_contact_tracking_service.html#abc75d3b2f76e6148592614ccc79180fe", null ]
 ];

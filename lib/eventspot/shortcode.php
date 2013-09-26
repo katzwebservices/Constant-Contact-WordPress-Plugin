@@ -58,7 +58,7 @@
 				if(empty($event) || (empty($id) && $event->status !== 'ACTIVE')) { continue; }
 
 				extract((array)$event);
-				
+
 				$link = $event->registrationUrl;
 
 				if(!empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile()) {
@@ -133,8 +133,4 @@
 
 	$output = apply_filters('cc_event_output', $output);
 
-	if($echo) {
-		echo $output;
-	} else {
-		return $output;
-	}
+	echo $output;

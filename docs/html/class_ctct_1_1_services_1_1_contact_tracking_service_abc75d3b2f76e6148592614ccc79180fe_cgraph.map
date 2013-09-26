@@ -1,0 +1,5 @@
+<map id="Ctct\Services\ContactTrackingService\getUnsubscribes" name="Ctct\Services\ContactTrackingService\getUnsubscribes">
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url..." alt="" coords="256,5,435,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_components_1_1_tracking_1_1_unsubscribe_activity.html#a4a4403ae4f018f5699a0c4111352476b" title="Factory method to create an OptOutActivity object from an array. " alt="" coords="254,73,436,117"/>
+<area shape="rect" id="node4" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="279,141,412,169"/>
+</map>

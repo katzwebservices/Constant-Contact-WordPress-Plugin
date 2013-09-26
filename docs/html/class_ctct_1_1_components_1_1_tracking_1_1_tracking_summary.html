@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_components_1_1_tracking
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -146,6 +147,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a881cde5d124e53a07750cfe2686a2b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38613efd8d60e59c91619c9e1542cb68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a38613efd8d60e59c91619c9e1542cb68">$bounces</a></td></tr>
 <tr class="separator:a38613efd8d60e59c91619c9e1542cb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f8813d2d404fc380834f0456db6f8e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a6f8813d2d404fc380834f0456db6f8e3">$spam_count</a></td></tr>
+<tr class="separator:a6f8813d2d404fc380834f0456db6f8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -189,19 +192,26 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html">TrackingSummary</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_tracking_summary_8php_source.html#l00028">28</a> of file <a class="el" href="_tracking_summary_8php_source.html">TrackingSummary.php</a>.</p>
+<p>Definition at line <a class="el" href="_tracking_summary_8php_source.html#l00029">29</a> of file <a class="el" href="_tracking_summary_8php_source.html">TrackingSummary.php</a>.</p>
 
-<p>Referenced by <a class="el" href="_campaign_8php_source.html#l00196">Ctct\Components\EmailMarketing\Campaign\create()</a>, <a class="el" href="_campaign_tracking_service_8php_source.html#l00175">Ctct\Services\CampaignTrackingService\getSummary()</a>, and <a class="el" href="_contact_tracking_service_8php_source.html#l00178">Ctct\Services\ContactTrackingService\getSummary()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        $tracking_summary = <span class="keyword">new</span> TrackingSummary();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        $tracking_summary-&gt;sends = parent::getValue($props, <span class="stringliteral">&quot;sends&quot;</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $tracking_summary-&gt;opens = parent::getValue($props, <span class="stringliteral">&quot;opens&quot;</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        $tracking_summary-&gt;clicks = parent::getValue($props, <span class="stringliteral">&quot;clicks&quot;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        $tracking_summary-&gt;forwards = parent::getValue($props, <span class="stringliteral">&quot;forwards&quot;</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        $tracking_summary-&gt;unsubscribes = parent::getValue($props, <span class="stringliteral">&quot;unsubscribes&quot;</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        $tracking_summary-&gt;bounces = parent::getValue($props, <span class="stringliteral">&quot;bounces&quot;</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> $tracking_summary;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<p>Referenced by <a class="el" href="_campaign_8php_source.html#l00202">Ctct\Components\EmailMarketing\Campaign\create()</a>, <a class="el" href="_campaign_tracking_service_8php_source.html#l00175">Ctct\Services\CampaignTrackingService\getSummary()</a>, and <a class="el" href="_contact_tracking_service_8php_source.html#l00178">Ctct\Services\ContactTrackingService\getSummary()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        $tracking_summary = <span class="keyword">new</span> TrackingSummary();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        $tracking_summary-&gt;sends = parent::getValue($props, <span class="stringliteral">&quot;sends&quot;</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        $tracking_summary-&gt;opens = parent::getValue($props, <span class="stringliteral">&quot;opens&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        $tracking_summary-&gt;clicks = parent::getValue($props, <span class="stringliteral">&quot;clicks&quot;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        $tracking_summary-&gt;forwards = parent::getValue($props, <span class="stringliteral">&quot;forwards&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        $tracking_summary-&gt;unsubscribes = parent::getValue($props, <span class="stringliteral">&quot;unsubscribes&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $tracking_summary-&gt;bounces = parent::getValue($props, <span class="stringliteral">&quot;bounces&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        $tracking_summary-&gt;spam_count = parent::getValue($props, <span class="stringliteral">&quot;spam_count&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// TrackingSummary for Contacts don&#39;t have spam_count.</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">if</span>(is_null($tracking_summary-&gt;spam_count)) {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            unset($tracking_summary-&gt;spam_count);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span> $tracking_summary;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
 </div><!-- fragment -->
 <p><div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -285,6 +295,20 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6f8813d2d404fc380834f0456db6f8e3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ctct\Components\Tracking\TrackingSummary::$spam_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_tracking_summary_8php_source.html#l00022">22</a> of file <a class="el" href="_tracking_summary_8php_source.html">TrackingSummary.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a881cde5d124e53a07750cfe2686a2b5b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +332,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components_1_1_tracking.html">Tracking</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html">TrackingSummary</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
