@@ -69,5 +69,52 @@
             "exception",
             "monitoring"
         ]
+    },
+    {
+        "name": "constantcontact/constantcontact",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/constantcontact/php-sdk.git",
+            "reference": "9734168d380166ae6404174904c31aad9e1fe2e7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/9734168d380166ae6404174904c31aad9e1fe2e7",
+            "reference": "9734168d380166ae6404174904c31aad9e1fe2e7",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "php": ">=5.3.0"
+        },
+        "time": "2013-09-23 14:13:01",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Ctct": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Constant Contact Web Services",
+                "email": "webservices@constantcontact.com",
+                "homepage": "http://developer.constantcontact.com"
+            }
+        ],
+        "description": "Constant Contact PHP SDK for v2",
+        "homepage": "http://developer.constantcontact.com",
+        "keywords": [
+            "constant contact",
+            "constantcontact",
+            "ctct",
+            "email marketing"
+        ]
     }
 ]
