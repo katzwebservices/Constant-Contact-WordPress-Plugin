@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('events_8php_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,7 +107,7 @@ $(document).ready(function(){initNavTree('events_8php_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        &lt;tr&gt;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;            &lt;th scope=<span class="stringliteral">&quot;col&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;name&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;manage-column column-title&quot;</span> style=<span class="stringliteral">&quot;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;Name&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt;&lt;/th&gt;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;            &lt;th scope=<span class="stringliteral">&quot;col&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;title&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;manage-column column-title&quot;</span> style=<span class="stringliteral">&quot;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;Title&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt;&lt;/th&gt;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;            &lt;th scope=<span class="stringliteral">&quot;col&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;eventid&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;manage-column column-id&quot;</span> style=<span class="stringliteral">&quot;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;Shortcode&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt; &lt;span <span class="keyword">class</span>=<span class="stringliteral">&quot;help cc_qtip&quot;</span> title=<span class="stringliteral">&quot;&lt;?php _e(&#39;Use the ID inside the [eventspot] shortcode to display a single event in your post or page content; for example: [eventspot id=\&#39;abc1244\&#39; /]&#39;, &#39;constant-contact-api&#39;); ?&gt;&quot;</span> style=<span class="stringliteral">&quot;display:inline-block; background: url(&lt;?php echo str_replace(&#39;/admin/&#39;, &#39;/&#39;, plugin_dir_url(__FILE__)).&#39;images/help.png&#39;; ?&gt;) left top no-repeat; width:16px; height:16px; overflow:hidden; text-indent:-99999px; text-align:left;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;What is this for?&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt;&lt;/span&gt;&lt;/th&gt;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;            &lt;th scope=<span class="stringliteral">&quot;col&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;eventid&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;manage-column column-id&quot;</span> style=<span class="stringliteral">&quot;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;Shortcode&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt; &lt;span <span class="keyword">class</span>=<span class="stringliteral">&quot;ctct_help cc_tip&quot;</span> title=<span class="stringliteral">&quot;&lt;?php _e(&#39;Use the ID inside the [eventspot] shortcode to display a single event in your post or page content; for example: [eventspot id=\&#39;abc1244\&#39; /]&#39;, &#39;constant-contact-api&#39;); ?&gt;&quot;</span>&gt;?&lt;/span&gt;&lt;/th&gt;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;            &lt;?php <span class="keywordflow">if</span>(!isset($_GET[<span class="stringliteral">&#39;status&#39;</span>]) || $_GET[<span class="stringliteral">&#39;status&#39;</span>] == <span class="stringliteral">&#39;all&#39;</span>) {?&gt;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            &lt;th scope=<span class="stringliteral">&quot;col&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;status&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;manage-column column-date&quot;</span> style=<span class="stringliteral">&quot;&quot;</span>&gt;&lt;?php _e(<span class="stringliteral">&#39;Status&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>); ?&gt;&lt;/th&gt;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            &lt;?php } ?&gt;</div>
@@ -163,7 +164,7 @@ $(document).ready(function(){initNavTree('events_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_f2449522035e263841afc52939e742cf.html">eventspot</a></li><li class="navelem"><a class="el" href="dir_d0d7fb7c6235f3b4e14e7782aff5d8fb.html">views</a></li><li class="navelem"><b>events.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

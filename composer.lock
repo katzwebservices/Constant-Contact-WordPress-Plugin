@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "890e00c673ace2a03d716e21e6b1e3f7",
+    "hash": "887ce9749a37ddf95671ea02b85be0b1",
     "packages": [
         {
             "name": "ankane/exceptional-php",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/katzwebservices/exceptional-php.git",
-                "reference": "f756e372a45c69c5042b780dfa25714f630a496c"
+                "reference": "cee38e9fd68d313a2e0664309f429ad033ab63ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/katzwebservices/exceptional-php/zipball/f756e372a45c69c5042b780dfa25714f630a496c",
-                "reference": "f756e372a45c69c5042b780dfa25714f630a496c",
+                "url": "https://api.github.com/repos/katzwebservices/exceptional-php/zipball/cee38e9fd68d313a2e0664309f429ad033ab63ba",
+                "reference": "cee38e9fd68d313a2e0664309f429ad033ab63ba",
                 "shasum": ""
             },
             "require": {
@@ -30,61 +30,16 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-2-Clause"
+                "MIT"
             ],
-            "description": "A package for Exceptional PHP",
+            "description": "The power of Exceptional for PHP",
             "homepage": "https://github.com/ankane/exceptional-php",
             "keywords": [
                 "error",
                 "exception",
                 "monitoring"
             ],
-            "time": "2013-09-26 16:36:54"
-        },
-        {
-            "name": "constantcontact/constantcontact",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/constantcontact/php-sdk.git",
-                "reference": "9734168d380166ae6404174904c31aad9e1fe2e7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/9734168d380166ae6404174904c31aad9e1fe2e7",
-                "reference": "9734168d380166ae6404174904c31aad9e1fe2e7",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Ctct": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Constant Contact Web Services",
-                    "email": "webservices@constantcontact.com",
-                    "homepage": "http://developer.constantcontact.com"
-                }
-            ],
-            "description": "Constant Contact PHP SDK for v2",
-            "homepage": "http://developer.constantcontact.com",
-            "keywords": [
-                "constant contact",
-                "constantcontact",
-                "ctct",
-                "email marketing"
-            ],
-            "time": "2013-09-23 14:13:01"
+            "time": "2013-09-26 16:38:42"
         },
         {
             "name": "nineinchnick/select2",
@@ -126,7 +81,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "constantcontact/constantcontact": 20,
         "nineinchnick/select2": 20,
         "ankane/exceptional-php": 20
     },

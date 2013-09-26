@@ -1,4 +1,4 @@
 <map id="Ctct\Components\Tracking\OpenActivity\create" name="Ctct\Components\Tracking\OpenActivity\create">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#ad4fd5dff50cff339675ae810d36f5967" title="Get opens for a given campaign. " alt="" coords="233,5,447,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a43d3ef18164b6cd96558cbe80706536e" title="Get opens for a given contact. " alt="" coords="240,73,440,117"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#acdb56a4f72f5d556ab085ab0c9433b94" title="Get opens for a given campaign. " alt="" coords="233,5,447,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#ad2a67ab3db6827047d115791e76c2ac4" title="Get opens for a given contact. " alt="" coords="240,73,440,117"/>
 </map>

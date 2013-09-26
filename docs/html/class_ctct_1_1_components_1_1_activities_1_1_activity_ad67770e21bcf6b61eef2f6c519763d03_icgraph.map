@@ -1,8 +1,10 @@
 <map id="Ctct\Components\Activities\Activity\create" name="Ctct\Components\Activities\Activity\create">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_activity_service.html#a30d4ffe1d8324873b1940dbcd172ce11" title="Create a Clear Lists Activity. " alt="" coords="265,5,455,49"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_activity_service.html#aee7e6a5e97c1bf0563aaaa0ddb11c3a8" title="Create a Clear Lists Activity. " alt="" coords="265,5,455,49"/>
 <area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_activity_service.html#a063acad0b025be72ea770afc58d5cd74" title="Create an Export Contacts Activity. " alt="" coords="265,73,455,117"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_services_1_1_activity_service.html#a0e0d8c43b0b569687ff2c1113c96a769" title="Create a Remove Contacts From Lists Activity. " alt="" coords="235,141,485,185"/>
-<area shape="rect" id="node5" href="$class_ctct_1_1_services_1_1_activity_service.html#a7585bd43669c8f9c4e1b6884e58322f6" title="Create an Add Contacts Activity. " alt="" coords="265,209,455,253"/>
-<area shape="rect" id="node6" href="$class_ctct_1_1_services_1_1_activity_service.html#afffe78c9da3d893eee3d31e947de0992" title="Get an array of activities. " alt="" coords="265,277,455,321"/>
-<area shape="rect" id="node7" href="$class_ctct_1_1_services_1_1_activity_service.html#a29a275be3f87a87150f225f939e07637" title="Get an array of activities. " alt="" coords="265,345,455,389"/>
+<area shape="rect" id="node4" href="$class_ctct_1_1_services_1_1_activity_service.html#ac76ad74246b9aa697963901107242d85" title="Create a Remove Contacts From Lists Activity. " alt="" coords="235,141,485,185"/>
+<area shape="rect" id="node5" href="$class_ctct_1_1_services_1_1_activity_service.html#aa44f57da731685f008e54a893b8fa88d" title="Create an Remove Contacts Activity from a file. " alt="" coords="235,209,485,269"/>
+<area shape="rect" id="node6" href="$class_ctct_1_1_services_1_1_activity_service.html#a7585bd43669c8f9c4e1b6884e58322f6" title="Create an Add Contacts Activity. " alt="" coords="265,293,455,337"/>
+<area shape="rect" id="node7" href="$class_ctct_1_1_services_1_1_activity_service.html#a2f7afa7fcfe01bec0576f985a606082e" title="Create an Add Contacts Activity from a file. " alt="" coords="243,361,477,405"/>
+<area shape="rect" id="node8" href="$class_ctct_1_1_services_1_1_activity_service.html#a530561ac3d289f0d3e39f358107f91ba" title="Get an array of activities. " alt="" coords="265,429,455,473"/>
+<area shape="rect" id="node9" href="$class_ctct_1_1_services_1_1_activity_service.html#a29a275be3f87a87150f225f939e07637" title="Get an array of activities. " alt="" coords="265,497,455,541"/>
 </map>

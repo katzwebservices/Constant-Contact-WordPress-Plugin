@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('_account_service_8php_source.html','')
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,21 +120,21 @@ $(document).ready(function(){initNavTree('_account_service_8php_source.html','')
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">     * Get all verified email addresses associated with an account</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">     * @param string $accessToken - Constant Contact OAuth2 Access Token</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">     * @param array $params - array of query parameters/values to append to the request</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">     * @return array of VerifiedEmailAddress </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">     * @return array of VerifiedEmailAddress</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="class_ctct_1_1_services_1_1_account_service.html#a0db5ed8bcca68b2e75ee7e87d9be3068">   22</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_services_1_1_account_service.html#a0db5ed8bcca68b2e75ee7e87d9be3068" title="Get all verified email addresses associated with an account. ">getVerifiedEmailAddresses</a>($accessToken, Array $params)</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        $baseUrl = <a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.base_url&#39;</span>)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            . sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;endpoints.account_verified_addresses&#39;</span>));</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. ">buildUrl</a>($baseUrl, $params);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        $url = $this-&gt;<a class="code" href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url...">buildUrl</a>($baseUrl, $params);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        $response = parent::getRestClient()-&gt;get($url, parent::getHeaders($accessToken));</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        $verifiedAddresses = array();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">foreach</span> (json_decode($response-&gt;body, <span class="keyword">true</span>) as $verifiedAddress) {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            $verifiedAddresses[] = <a class="code" href="class_ctct_1_1_components_1_1_account_1_1_verified_email_address.html#a52406eba65a18e2dc5f953fa582bb784" title="Factory method to create an VerifiedEmail object from an array. ">VerifiedEmailAddress::create</a>($verifiedAddress);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">return</span> $verifiedAddresses;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
@@ -142,8 +143,8 @@ $(document).ready(function(){initNavTree('_account_service_8php_source.html','')
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e3fa7edd72d5150bbaebb846ef8da0d5.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_629275c39dc1bdb569f31476c98ccddb.html">Services</a></li><li class="navelem"><b>AccountService.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="navelem"><a class="el" href="dir_1ccce6ba2cd867ee49c44f272f3fceda.html">vendor</a></li><li class="navelem"><a class="el" href="dir_0faafcdc02cd99f36c04f9e30c9d9aa5.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_57ebdb077a0b98b3b0326c21b9886d44.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_ec2bf1181596f75d518d9ef845b43474.html">src</a></li><li class="navelem"><a class="el" href="dir_c8150e5f5e201635c8b99c6bebc8a401.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_76bb1a2b71721d74a4ba7b16a1069054.html">Services</a></li><li class="navelem"><b>AccountService.php</b></li>
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

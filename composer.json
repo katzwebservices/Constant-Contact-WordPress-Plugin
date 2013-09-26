@@ -15,7 +15,6 @@
 	        "issues": "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?state=open"
     	},
 	"require": {
-		"constantcontact/constantcontact": "dev-master",
 		"nineinchnick/select2": "dev-master",
 		"ankane/exceptional-php": "dev-master",
 		"php": ">=5.3.0",

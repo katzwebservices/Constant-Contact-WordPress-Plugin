@@ -6,5 +6,6 @@ var class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary =
     [ "$forwards", "class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a9ed381cca5018570cd06bd09f8c3eb69", null ],
     [ "$opens", "class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#af270c3bceb5a76ce7904a6dbb0ec6124", null ],
     [ "$sends", "class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#add4d5e4fe836e9ab7c0128e76f4b3f4a", null ],
+    [ "$spam_count", "class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a6f8813d2d404fc380834f0456db6f8e3", null ],
     [ "$unsubscribes", "class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a881cde5d124e53a07750cfe2686a2b5b", null ]
 ];

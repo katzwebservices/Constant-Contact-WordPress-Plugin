@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +95,7 @@ $(document).ready(function(){initNavTree('class_ctct_1_1_components_1_1_email_ma
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -205,7 +206,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_message_footer_8php_source.html#l00034">34</a> of file <a class="el" href="_message_footer_8php_source.html">MessageFooter.php</a>.</p>
 
-<p>Referenced by <a class="el" href="_campaign_8php_source.html#l00196">Ctct\Components\EmailMarketing\Campaign\create()</a>.</p>
+<p>Referenced by <a class="el" href="_campaign_8php_source.html#l00202">Ctct\Components\EmailMarketing\Campaign\create()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        $message_footer = <span class="keyword">new</span> MessageFooter();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        $message_footer-&gt;city = parent::getValue($props, <span class="stringliteral">&quot;city&quot;</span>);</div>
@@ -221,7 +222,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        $message_footer-&gt;forward_email_link_text = parent::getValue($props, <span class="stringliteral">&quot;forward_email_link_text&quot;</span>);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        $message_footer-&gt;include_subscribe_link = parent::getValue($props, <span class="stringliteral">&quot;include_subscribe_link&quot;</span>);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        $message_footer-&gt;subscribe_link_text = parent::getValue($props, <span class="stringliteral">&quot;subscribe_link_text&quot;</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">return</span> $message_footer;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 </div><!-- fragment -->
@@ -428,7 +429,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_ctct.html">Ctct</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_ctct_1_1_components_1_1_email_marketing.html">EmailMarketing</a></li><li class="navelem"><a class="el" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html">MessageFooter</a></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:07 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:46 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('_click_through_details_8php_source.htm
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,7 +107,7 @@ $(document).ready(function(){initNavTree('_click_through_details_8php_source.htm
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;use <a class="code" href="class_ctct_1_1_components_1_1_component.html" title="Super class for all components. ">Ctct\Components\Component</a>;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Represents a click through detail </span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Represents a click through detail</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * @package        EmailMarketing</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * @subpackage     Campaigns</span></div>
@@ -119,16 +120,16 @@ $(document).ready(function(){initNavTree('_click_through_details_8php_source.htm
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">     * @var string</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a072d0593a20d1a63e4a0144821222bed">   19</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a072d0593a20d1a63e4a0144821222bed">$url</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">     * url unique identifier</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">     * @var string </span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">     * @var string</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#ab14392237c9e6116f1fe077f51e09b8c">   25</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#ab14392237c9e6116f1fe077f51e09b8c">$url_uid</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     * number of times the url was clicked on</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">     * @var int </span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">     * @var int</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a00e72535a063384dfa2f5330177f0e6a">   31</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a00e72535a063384dfa2f5330177f0e6a">$click_count</a>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span></div>
@@ -151,8 +152,8 @@ $(document).ready(function(){initNavTree('_click_through_details_8php_source.htm
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e3fa7edd72d5150bbaebb846ef8da0d5.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_d6dfb4b53f822fc14d7fb759cb9ce65c.html">Components</a></li><li class="navelem"><a class="el" href="dir_9cdd287932031c44c2ebb80cd3c5b119.html">EmailMarketing</a></li><li class="navelem"><b>ClickThroughDetails.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="navelem"><a class="el" href="dir_1ccce6ba2cd867ee49c44f272f3fceda.html">vendor</a></li><li class="navelem"><a class="el" href="dir_0faafcdc02cd99f36c04f9e30c9d9aa5.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_57ebdb077a0b98b3b0326c21b9886d44.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_ec2bf1181596f75d518d9ef845b43474.html">src</a></li><li class="navelem"><a class="el" href="dir_c8150e5f5e201635c8b99c6bebc8a401.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_aad13a632d7294deb10666975e03e001.html">Components</a></li><li class="navelem"><a class="el" href="dir_0f641453531a3018093760edc07fa087.html">EmailMarketing</a></li><li class="navelem"><b>ClickThroughDetails.php</b></li>
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

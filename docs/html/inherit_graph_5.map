@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_ctct_1_1_components_1_1_result_set.html" title="Container for a get on a collection, such as Contacts, Campaigns, or TrackingData. " alt="" coords="6,5,192,33"/>
+<area shape="rect" id="node1" href="$interface_ctct_1_1_auth_1_1_ctct_data_store.html" title="Ctct\\Auth\\CtctDataStore" alt="" coords="6,5,170,33"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_auth_1_1_session_data_store.html" title="Ctct\\Auth\\SessionDataStore" alt="" coords="220,5,407,33"/>
 </map>

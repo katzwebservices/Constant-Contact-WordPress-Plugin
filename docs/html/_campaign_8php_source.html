@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,7 +103,7 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&lt;?php</div>
 <div class="line"><a name="l00002"></a><span class="lineno"><a class="code" href="namespace_ctct_1_1_components_1_1_email_marketing.html">    2</a></span>&#160;<span class="keyword">namespace </span>Ctct\Components\EmailMarketing;</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;use <a class="code" href="class_ctct_1_1_components_1_1_component.html" title="Super class for all components. ">Ctct\Components\Component</a>;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;use <a class="code" href="class_ctct_1_1_util_1_1_config.html">Ctct\Util\Config</a>;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;use <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html">Ctct\Components\EmailMarketing\MessageFooter</a>;</div>
@@ -161,7 +162,7 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">     * @var string</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">     */</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a7bcad8cb0da6e1746f48a717a24ec2d8">   61</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a7bcad8cb0da6e1746f48a717a24ec2d8">$reply_to_email</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment"></span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /**</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">     * The template used to create the email campaign</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">     * @var string</span></div>
@@ -205,7 +206,7 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
 <div class="line"><a name="l00103"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aae8f4b3d824caae5eb7a0d666e0f19b9">  103</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aae8f4b3d824caae5eb7a0d666e0f19b9">$permission_reminder_text</a>;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">     * If true, displays the text and link specified in permission_reminder_text to view web page </span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">     * If true, displays the text and link specified in permission_reminder_text to view web page</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">     * version of email message</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">     * @var string</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">     */</span></div>
@@ -272,7 +273,7 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
 <div class="line"><a name="l00170"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a906ed933040fa196d2fe78d53e4e7ea1">  170</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a906ed933040fa196d2fe78d53e4e7ea1">$style_sheet</a>;</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">     * The content for the text-only version of the email campaign which is viewed by recipients </span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">     * The content for the text-only version of the email campaign which is viewed by recipients</span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">     * whose email client does not accept HTML email</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">     * @var string</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">     */</span></div>
@@ -291,142 +292,149 @@ $(document).ready(function(){initNavTree('_campaign_8php_source.html','');});
 <div class="line"><a name="l00189"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aa94bc4c05b38d5bd9eed2589c2c9ea82">  189</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aa94bc4c05b38d5bd9eed2589c2c9ea82">$click_through_details</a> = array();</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">     * Factory method to create a Campaign object from an array</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">     * @param array $props - associative array of initial properties to set</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">     * @return Campaign</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f">  196</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f" title="Factory method to create a Campaign object from an array. ">create</a>(array $props)</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    {</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        $campaign = <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html">Campaign</a>();</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        $campaign-&gt;id = parent::getValue($props, <span class="stringliteral">&quot;id&quot;</span>);</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        $campaign-&gt;name = parent::getValue($props, <span class="stringliteral">&quot;name&quot;</span>);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        $campaign-&gt;subject = parent::getValue($props, <span class="stringliteral">&quot;subject&quot;</span>);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        $campaign-&gt;from_name = parent::getValue($props, <span class="stringliteral">&quot;from_name&quot;</span>);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        $campaign-&gt;from_email = parent::getValue($props, <span class="stringliteral">&quot;from_email&quot;</span>);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        $campaign-&gt;reply_to_email = parent::getValue($props, <span class="stringliteral">&quot;reply_to_email&quot;</span>);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        $campaign-&gt;template_type = parent::getValue($props, <span class="stringliteral">&quot;template_type&quot;</span>);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        $campaign-&gt;created_date = parent::getValue($props, <span class="stringliteral">&quot;created_date&quot;</span>);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        $campaign-&gt;modified_date = parent::getValue($props, <span class="stringliteral">&quot;modified_date&quot;</span>);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        $campaign-&gt;last_run_date = parent::getValue($props, <span class="stringliteral">&quot;last_run_date&quot;</span>);</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        $campaign-&gt;next_run_date = parent::getValue($props, <span class="stringliteral">&quot;next_run_date&quot;</span>);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        $campaign-&gt;status = parent::getValue($props, <span class="stringliteral">&quot;status&quot;</span>);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        $campaign-&gt;is_permission_reminder_enabled = parent::getValue($props, <span class="stringliteral">&quot;is_permission_reminder_enabled&quot;</span>);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        $campaign-&gt;permission_reminder_text = parent::getValue($props, <span class="stringliteral">&quot;permission_reminder_text&quot;</span>);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        $campaign-&gt;is_view_as_webpage_enabled = parent::getValue($props, <span class="stringliteral">&quot;is_view_as_webpage_enabled&quot;</span>);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        $campaign-&gt;view_as_web_page_text = parent::getValue($props, <span class="stringliteral">&quot;view_as_web_page_text&quot;</span>);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        $campaign-&gt;view_as_web_page_link_text = parent::getValue($props, <span class="stringliteral">&quot;view_as_web_page_link_text&quot;</span>);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        $campaign-&gt;greeting_salutations = parent::getValue($props, <span class="stringliteral">&quot;greeting_salutations&quot;</span>);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        $campaign-&gt;greeting_name = parent::getValue($props, <span class="stringliteral">&quot;greeting_name&quot;</span>);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        $campaign-&gt;greeting_string = parent::getValue($props, <span class="stringliteral">&quot;greeting_string&quot;</span>);</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&quot;message_footer&quot;</span>, $props)) {</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            $campaign-&gt;message_footer = <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html#a6e4143e459132449e4ad848e0d66a0e5" title="Factory method to create a MessageFooter object from an array. ">MessageFooter::create</a>($props[<span class="stringliteral">&#39;message_footer&#39;</span>]);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&quot;tracking_summary&quot;</span>, $props)) {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            $campaign-&gt;tracking_summary = <a class="code" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a2559d62ef3c0e3a457df0c50043311d4" title="Factory method to create a TrackingSummary object from an array. ">TrackingSummary::create</a>($props[<span class="stringliteral">&#39;tracking_summary&#39;</span>]);</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        $campaign-&gt;email_content = parent::getValue($props, <span class="stringliteral">&quot;email_content&quot;</span>);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        $campaign-&gt;email_content_format = parent::getValue($props, <span class="stringliteral">&quot;email_content_format&quot;</span>);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        $campaign-&gt;style_sheet = parent::getValue($props, <span class="stringliteral">&quot;style_sheet&quot;</span>);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        $campaign-&gt;text_content = parent::getValue($props, <span class="stringliteral">&quot;text_content&quot;</span>);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&#39;sent_to_contact_lists&#39;</span>, $props)) {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;sent_to_contact_lists&#39;</span>] as $sent_to_contact_list) {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                $campaign-&gt;sent_to_contact_lists[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c" title="Factory method to create a ContactList object from an array. ">ContactList::create</a>($sent_to_contact_list);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&#39;click_through_details&#39;</span>, $props)) {</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;click_through_details&#39;</span>] as <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aa94bc4c05b38d5bd9eed2589c2c9ea82">$click_through_details</a>) {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                $campaign-&gt;click_through_details[] = <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a21bbd4ba0873831d3cc03d8dc2e8ebe0" title="Factory method to create a ClickThroughDetails object from an array. ">ClickThroughDetails::create</a>($click_through_details);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">return</span> $campaign;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">     * Factory method to create a Campaign object from an array</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">     * @param array $props - associative array of initial properties to set</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">     * @return Campaign</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd">  253</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd" title="Factory method to create a Campaign object from an array. ">createSummary</a>(array $props)</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    {</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        $campaign = <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html">Campaign</a>();</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        $campaign-&gt;id = parent::getValue($props, <span class="stringliteral">&quot;id&quot;</span>);</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        $campaign-&gt;name = parent::getValue($props, <span class="stringliteral">&quot;name&quot;</span>);</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        $campaign-&gt;status = parent::getValue($props, <span class="stringliteral">&quot;status&quot;</span>);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        $campaign-&gt;modified_date = parent::getValue($props, <span class="stringliteral">&quot;modified_date&quot;</span>);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="comment">// remove unused fields</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keywordflow">foreach</span> ($campaign as $key =&gt; $value) {</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">if</span> ($value == null) {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                unset($campaign-&gt;$key);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            }</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">     * URL of the permalink for this email campaign if it exists</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">     * @var string</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ac8e6f0bcfa3303a97dc8dff6bf25b1ce">  195</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ac8e6f0bcfa3303a97dc8dff6bf25b1ce">$permalink_url</a>;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">     * Factory method to create a Campaign object from an array</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">     * @param array $props - associative array of initial properties to set</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">     * @return Campaign</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f">  202</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#afbeef4aaccb7fd7be77f5e497e0fbc5f" title="Factory method to create a Campaign object from an array. ">create</a>(array $props)</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        $campaign = <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html">Campaign</a>();</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        $campaign-&gt;id = parent::getValue($props, <span class="stringliteral">&quot;id&quot;</span>);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        $campaign-&gt;name = parent::getValue($props, <span class="stringliteral">&quot;name&quot;</span>);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        $campaign-&gt;subject = parent::getValue($props, <span class="stringliteral">&quot;subject&quot;</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        $campaign-&gt;from_name = parent::getValue($props, <span class="stringliteral">&quot;from_name&quot;</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        $campaign-&gt;from_email = parent::getValue($props, <span class="stringliteral">&quot;from_email&quot;</span>);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        $campaign-&gt;reply_to_email = parent::getValue($props, <span class="stringliteral">&quot;reply_to_email&quot;</span>);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        $campaign-&gt;template_type = parent::getValue($props, <span class="stringliteral">&quot;template_type&quot;</span>);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        $campaign-&gt;created_date = parent::getValue($props, <span class="stringliteral">&quot;created_date&quot;</span>);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        $campaign-&gt;modified_date = parent::getValue($props, <span class="stringliteral">&quot;modified_date&quot;</span>);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        $campaign-&gt;last_run_date = parent::getValue($props, <span class="stringliteral">&quot;last_run_date&quot;</span>);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        $campaign-&gt;next_run_date = parent::getValue($props, <span class="stringliteral">&quot;next_run_date&quot;</span>);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        $campaign-&gt;status = parent::getValue($props, <span class="stringliteral">&quot;status&quot;</span>);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        $campaign-&gt;is_permission_reminder_enabled = parent::getValue($props, <span class="stringliteral">&quot;is_permission_reminder_enabled&quot;</span>);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        $campaign-&gt;permission_reminder_text = parent::getValue($props, <span class="stringliteral">&quot;permission_reminder_text&quot;</span>);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        $campaign-&gt;is_view_as_webpage_enabled = parent::getValue($props, <span class="stringliteral">&quot;is_view_as_webpage_enabled&quot;</span>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        $campaign-&gt;view_as_web_page_text = parent::getValue($props, <span class="stringliteral">&quot;view_as_web_page_text&quot;</span>);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        $campaign-&gt;view_as_web_page_link_text = parent::getValue($props, <span class="stringliteral">&quot;view_as_web_page_link_text&quot;</span>);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        $campaign-&gt;greeting_salutations = parent::getValue($props, <span class="stringliteral">&quot;greeting_salutations&quot;</span>);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        $campaign-&gt;greeting_name = parent::getValue($props, <span class="stringliteral">&quot;greeting_name&quot;</span>);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        $campaign-&gt;greeting_string = parent::getValue($props, <span class="stringliteral">&quot;greeting_string&quot;</span>);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&quot;message_footer&quot;</span>, $props)) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            $campaign-&gt;message_footer = <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_message_footer.html#a6e4143e459132449e4ad848e0d66a0e5" title="Factory method to create a MessageFooter object from an array. ">MessageFooter::create</a>($props[<span class="stringliteral">&#39;message_footer&#39;</span>]);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&quot;tracking_summary&quot;</span>, $props)) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            $campaign-&gt;tracking_summary = <a class="code" href="class_ctct_1_1_components_1_1_tracking_1_1_tracking_summary.html#a2559d62ef3c0e3a457df0c50043311d4" title="Factory method to create a TrackingSummary object from an array. ">TrackingSummary::create</a>($props[<span class="stringliteral">&#39;tracking_summary&#39;</span>]);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        $campaign-&gt;email_content = parent::getValue($props, <span class="stringliteral">&quot;email_content&quot;</span>);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        $campaign-&gt;email_content_format = parent::getValue($props, <span class="stringliteral">&quot;email_content_format&quot;</span>);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        $campaign-&gt;style_sheet = parent::getValue($props, <span class="stringliteral">&quot;style_sheet&quot;</span>);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        $campaign-&gt;text_content = parent::getValue($props, <span class="stringliteral">&quot;text_content&quot;</span>);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        $campaign-&gt;permalink_url = parent::getValue($props, <span class="stringliteral">&quot;permalink_url&quot;</span>);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&#39;sent_to_contact_lists&#39;</span>, $props)) {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;sent_to_contact_lists&#39;</span>] as $sent_to_contact_list) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                $campaign-&gt;sent_to_contact_lists[] = <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c" title="Factory method to create a ContactList object from an array. ">ContactList::create</a>($sent_to_contact_list);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">if</span> (array_key_exists(<span class="stringliteral">&#39;click_through_details&#39;</span>, $props)) {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">foreach</span> ($props[<span class="stringliteral">&#39;click_through_details&#39;</span>] as <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aa94bc4c05b38d5bd9eed2589c2c9ea82">$click_through_details</a>) {</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                $campaign-&gt;click_through_details[] = <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_click_through_details.html#a21bbd4ba0873831d3cc03d8dc2e8ebe0" title="Factory method to create a ClickThroughDetails object from an array. ">ClickThroughDetails::create</a>($click_through_details);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        }</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> $campaign;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">     * Factory method to create a Campaign object from an array</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">     * @param array $props - associative array of initial properties to set</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">     * @return Campaign</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd">  260</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#abb3d7426f96344e6146a1bce6d83f7dd" title="Factory method to create a Campaign object from an array. ">createSummary</a>(array $props)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    {</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        $campaign = <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html">Campaign</a>();</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        $campaign-&gt;id = parent::getValue($props, <span class="stringliteral">&quot;id&quot;</span>);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        $campaign-&gt;name = parent::getValue($props, <span class="stringliteral">&quot;name&quot;</span>);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        $campaign-&gt;status = parent::getValue($props, <span class="stringliteral">&quot;status&quot;</span>);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        $campaign-&gt;modified_date = parent::getValue($props, <span class="stringliteral">&quot;modified_date&quot;</span>);</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="keywordflow">return</span> $campaign;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="comment">     * Add a contact list to set of lists associated with this email</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">     * @param mixed $contact_list - Contact list id, or ContactList object</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a1ea3fa48f8fbd7662f7c5123d6317388">  275</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a1ea3fa48f8fbd7662f7c5123d6317388" title="Add a contact list to set of lists associated with this email. ">addList</a>($contact_list)</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordflow">if</span> ($contact_list instanceof <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html">ContactList</a>) {</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            $list = $contact_list;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        } elseif (is_numeric($contact_list)) {</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            $list = <span class="keyword">new</span> ContactList($contact_list);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_exceptions_1_1_illegal_argument_exception.html">IllegalArgumentException</a>(sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;errors.id_or_object&#39;</span>), <span class="stringliteral">&#39;ContactList&#39;</span>));</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        }</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        $this-&gt;sent_to_contact_lists[] = $list;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    }</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="comment"></span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">    /**</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="comment">     * Create json used for a POST/PUT request, also handles removing attributes that will cause errors if sent </span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment">     * @return string </span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ad29703c7b4fe34431c2fa79232df4bd3">  292</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ad29703c7b4fe34431c2fa79232df4bd3" title="Create json used for a POST/PUT request, also handles removing attributes that will cause errors if s...">toJson</a>()</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    {</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        $campaign = clone $this;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        unset($campaign-&gt;id);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        unset($campaign-&gt;created_date);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        unset($campaign-&gt;last_run_date);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        unset($campaign-&gt;next_run_date);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        unset($campaign-&gt;tracking_summary);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        unset($campaign-&gt;click_through_details);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">if</span> (is_null($campaign-&gt;message_footer)) {</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            unset($campaign-&gt;message_footer);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="keywordflow">if</span> (empty($campaign-&gt;sent_to_contact_lists)) {</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            unset($campaign-&gt;sent_to_contact_lists);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            <span class="comment">// remove sent_to_contact_lists fields that cause errors</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            <span class="keywordflow">foreach</span> ($campaign-&gt;sent_to_contact_lists as $list) {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                unset($list-&gt;name);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                unset($list-&gt;contact_count);</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                unset($list-&gt;status);</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            }</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keywordflow">return</span> json_encode($campaign);</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;}</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <span class="comment">// remove unused fields</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">foreach</span> ($campaign as $key =&gt; $value) {</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">if</span> ($value == null) {</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                unset($campaign-&gt;$key);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            }</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">return</span> $campaign;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">     * Add a contact list to set of lists associated with this email</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">     * @param mixed $contact_list - Contact list id, or ContactList object</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a1ea3fa48f8fbd7662f7c5123d6317388">  282</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a1ea3fa48f8fbd7662f7c5123d6317388" title="Add a contact list to set of lists associated with this email. ">addList</a>($contact_list)</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">if</span> ($contact_list instanceof <a class="code" href="class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html">ContactList</a>) {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            $list = $contact_list;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        } elseif (is_numeric($contact_list)) {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            $list = <span class="keyword">new</span> ContactList($contact_list);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_ctct_1_1_exceptions_1_1_illegal_argument_exception.html">IllegalArgumentException</a>(sprintf(<a class="code" href="class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) ">Config::get</a>(<span class="stringliteral">&#39;errors.id_or_object&#39;</span>), <span class="stringliteral">&#39;ContactList&#39;</span>));</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        $this-&gt;sent_to_contact_lists[] = $list;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="comment">    /**</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">     * Create json used for a POST/PUT request, also handles removing attributes that will cause errors if sent</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">     * @return string</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ad29703c7b4fe34431c2fa79232df4bd3">  299</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ad29703c7b4fe34431c2fa79232df4bd3" title="Create json used for a POST/PUT request, also handles removing attributes that will cause errors if s...">toJson</a>()</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        $campaign = clone $this;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        unset($campaign-&gt;id);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        unset($campaign-&gt;created_date);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        unset($campaign-&gt;last_run_date);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        unset($campaign-&gt;next_run_date);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        unset($campaign-&gt;tracking_summary);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        unset($campaign-&gt;click_through_details);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">if</span> (is_null($campaign-&gt;message_footer)) {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            unset($campaign-&gt;message_footer);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordflow">if</span> (empty($campaign-&gt;sent_to_contact_lists)) {</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            unset($campaign-&gt;sent_to_contact_lists);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="comment">// remove sent_to_contact_lists fields that cause errors</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="keywordflow">foreach</span> ($campaign-&gt;sent_to_contact_lists as $list) {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                unset($list-&gt;name);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                unset($list-&gt;contact_count);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                unset($list-&gt;status);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            }</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="keywordflow">return</span> json_encode($campaign);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1da4270117b7b4041d4491270373a02b.html">lib</a></li><li class="navelem"><a class="el" href="dir_e3fa7edd72d5150bbaebb846ef8da0d5.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_d6dfb4b53f822fc14d7fb759cb9ce65c.html">Components</a></li><li class="navelem"><a class="el" href="dir_9cdd287932031c44c2ebb80cd3c5b119.html">EmailMarketing</a></li><li class="navelem"><b>Campaign.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="navelem"><a class="el" href="dir_1ccce6ba2cd867ee49c44f272f3fceda.html">vendor</a></li><li class="navelem"><a class="el" href="dir_0faafcdc02cd99f36c04f9e30c9d9aa5.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_57ebdb077a0b98b3b0326c21b9886d44.html">constantcontact</a></li><li class="navelem"><a class="el" href="dir_ec2bf1181596f75d518d9ef845b43474.html">src</a></li><li class="navelem"><a class="el" href="dir_c8150e5f5e201635c8b99c6bebc8a401.html">Ctct</a></li><li class="navelem"><a class="el" href="dir_aad13a632d7294deb10666975e03e001.html">Components</a></li><li class="navelem"><a class="el" href="dir_0f641453531a3018093760edc07fa087.html">EmailMarketing</a></li><li class="navelem"><b>Campaign.php</b></li>
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<g id="a_node2"><a xlink:href="class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" target="_top" xlink:title="Build a url from the base url and query parameters array. ">
+<g id="a_node2"><a xlink:href="class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" target="_top" xlink:title="Build a URL from a base url and optional array of query parameters to append to the url...">
 <polygon fill="white" stroke="black" points="181.091,-141 181.091,-173 314.909,-173 314.909,-141 181.091,-141"/>
 <text text-anchor="start" x="189.091" y="-159" font-family="Helvetica,sans-Serif" font-size="10.00">Ctct\Services\BaseService</text>
 <text text-anchor="middle" x="248" y="-147" font-family="Helvetica,sans-Serif" font-size="10.00">\buildUrl</text>

@@ -21,6 +21,7 @@ var class_ctct_1_1_components_1_1_email_marketing_1_1_campaign =
     [ "$modified_date", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a9781c3f6405133dd8d1790a9e65a21da", null ],
     [ "$name", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a37e6a248aade7bbb677dc78c3872d8d9", null ],
     [ "$next_run_date", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#acaa5fb4fd7f83cc2a9ffa040420a2fa8", null ],
+    [ "$permalink_url", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#ac8e6f0bcfa3303a97dc8dff6bf25b1ce", null ],
     [ "$permission_reminder_text", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#aae8f4b3d824caae5eb7a0d666e0f19b9", null ],
     [ "$reply_to_email", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a7bcad8cb0da6e1746f48a717a24ec2d8", null ],
     [ "$sent_to_contact_lists", "class_ctct_1_1_components_1_1_email_marketing_1_1_campaign.html#a85146616a0e081f53a135aebfa6e9864", null ],

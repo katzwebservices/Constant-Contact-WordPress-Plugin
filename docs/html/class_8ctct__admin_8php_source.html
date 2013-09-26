@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-horizontal.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Constant Contact for WordPress
-   &#160;<span id="projectnumber">3.0.2</span>
+   &#160;<span id="projectnumber">3.0.3</span>
    </div>
    <div id="projectbrief">Powerfully integrate Constant Contact into your WordPress website.</div>
   </td>
@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -86,7 +87,7 @@ $(document).ready(function(){initNavTree('class_8ctct__admin_8php_source.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,62 +116,73 @@ $(document).ready(function(){initNavTree('class_8ctct__admin_8php_source.html','
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span>(isset($_GET[<span class="stringliteral">&#39;error&#39;</span>]) &amp;&amp; isset($_GET[<span class="stringliteral">&#39;error_description&#39;</span>])) {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            $this-&gt;errors[] = <span class="keyword">new</span> WP_Error($_GET[<span class="stringliteral">&#39;error&#39;</span>], $_GET[<span class="stringliteral">&#39;error_description&#39;</span>]);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span>(isset($_GET[<span class="stringliteral">&#39;delete-settings&#39;</span>]) &amp;&amp; wp_verify_nonce( $_GET[<span class="stringliteral">&#39;delete-settings&#39;</span>], <span class="stringliteral">&#39;delete-settings&#39;</span> )) {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="class_c_t_c_t___settings.html#a018662b5ec1e7da462cf5b7cdbed4198" title="When settings are changed, delete the CTCT transients. ">CTCT_Settings::flush_transients</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            $this-&gt;oauth-&gt;deleteToken();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#ae72a4a91b0c177ac53b96a4807039379">   22</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#ae72a4a91b0c177ac53b96a4807039379">add_menu</a>() {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="comment">// create new top-level menu</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        add_menu_page(__(<span class="stringliteral">&#39;Constant Contact API&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), __(<span class="stringliteral">&#39;Constant Contact&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), <span class="stringliteral">&#39;manage_options&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;page&#39;</span>), CTCT_FILE_URL.<span class="stringliteral">&#39;images/admin/constant-contact-admin-icon.png&#39;</span>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#a667b1476f6463e47180a7338a98c4265">   27</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#a667b1476f6463e47180a7338a98c4265">addActions</a>() {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        $CTCT_Settings = <span class="keyword">new</span> <a class="code" href="class_c_t_c_t___settings.html">CTCT_Settings</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        add_filter(<span class="stringliteral">&#39;admin_footer_text&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;pluginStatus&#39;</span>));</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span>(isset($_GET[<span class="stringliteral">&#39;de-authenticate&#39;</span>]) &amp;&amp; wp_verify_nonce( $_GET[<span class="stringliteral">&#39;de-authenticate&#39;</span>], <span class="stringliteral">&#39;de-authenticate&#39;</span> )) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            $this-&gt;oauth-&gt;deleteToken();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            delete_option(<span class="stringliteral">&#39;ccStats_ga_token&#39;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            delete_option(<span class="stringliteral">&#39;ccStats_ga_profile_id&#39;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">if</span>(isset($_GET[<span class="stringliteral">&#39;delete-settings&#39;</span>]) &amp;&amp; wp_verify_nonce( $_GET[<span class="stringliteral">&#39;delete-settings&#39;</span>], <span class="stringliteral">&#39;delete-settings&#39;</span> )) {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="class_c_t_c_t___settings.html#a018662b5ec1e7da462cf5b7cdbed4198" title="When settings are changed, delete the CTCT transients. ">CTCT_Settings::flush_transients</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            $this-&gt;oauth-&gt;deleteToken();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            delete_option(<span class="stringliteral">&#39;ccStats_ga_token&#39;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            delete_option(<span class="stringliteral">&#39;ccStats_ga_profile_id&#39;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            delete_option(<span class="stringliteral">&#39;cc_form_increment&#39;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            delete_option(<span class="stringliteral">&#39;cc_form_design&#39;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            delete_option(<span class="stringliteral">&#39;ctct_configured&#39;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            delete_option(<span class="stringliteral">&#39;ctct_settings&#39;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#a7c18d64b53a048652edeaeee7e400046">   33</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#a7c18d64b53a048652edeaeee7e400046">pluginStatus</a>($content = <span class="stringliteral">&#39;&#39;</span>) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        global $plugin_page;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">if</span>($plugin_page === $this-&gt;<a class="code" href="class_c_t_c_t___admin___page.html#af75e5afacc1fcfff476e13e5de52eefe">getKey</a>()) {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">return</span> kws_ob_include(CTCT_FILE_PATH.<span class="stringliteral">&#39;/views/admin/view.plugin-status.php&#39;</span>, $CTCT);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> $content;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#ae72a4a91b0c177ac53b96a4807039379">   33</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#ae72a4a91b0c177ac53b96a4807039379">add_menu</a>() {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">// create new top-level menu</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        add_menu_page(__(<span class="stringliteral">&#39;Constant Contact API&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), __(<span class="stringliteral">&#39;Constant Contact&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>), <span class="stringliteral">&#39;manage_options&#39;</span>, <span class="stringliteral">&#39;constant-contact-api&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;page&#39;</span>), CTCT_FILE_URL.<span class="stringliteral">&#39;images/admin/constant-contact-admin-icon.png&#39;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#a667b1476f6463e47180a7338a98c4265">   38</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#a667b1476f6463e47180a7338a98c4265">addActions</a>() {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        $CTCT_Settings = <span class="keyword">new</span> <a class="code" href="class_c_t_c_t___settings.html">CTCT_Settings</a>();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#ae49e50d486b23cf205d2be5e2e2a97af">   41</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#ae49e50d486b23cf205d2be5e2e2a97af">page</a>() {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span>(!$this-&gt;cc-&gt;isConfigured()) {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            echo kws_ob_include(CTCT_DIR_PATH.<span class="stringliteral">&#39;views/admin/view.setup.php&#39;</span>, $this);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            parent::page();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#afa822329cd4c10e82e2a41d17f9d1dd9">   50</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#afa822329cd4c10e82e2a41d17f9d1dd9">content</a>() {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    ?&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        &lt;form action=<span class="stringliteral">&quot;options.php&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        &lt;?php</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            settings_fields(<span class="stringliteral">&#39;ctct_settings&#39;</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <a class="code" href="class_c_t_c_t___settings.html#a2548f09e2e10cefb440f9888dd03ccb7">CTCT_Settings::do_settings_sections</a>(<span class="stringliteral">&#39;constant-contact-api&#39;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        ?&gt;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        &lt;/form&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    &lt;?php</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;$CTCT_Admin = <span class="keyword">new</span> <a class="code" href="class_c_t_c_t___admin.html">CTCT_Admin</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        add_filter(<span class="stringliteral">&#39;admin_footer_text&#39;</span>, array(&amp;$this, <span class="stringliteral">&#39;pluginStatus&#39;</span>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#a7c18d64b53a048652edeaeee7e400046">   44</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#a7c18d64b53a048652edeaeee7e400046">pluginStatus</a>($content = <span class="stringliteral">&#39;&#39;</span>) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        global $plugin_page;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span>($plugin_page === $this-&gt;<a class="code" href="class_c_t_c_t___admin___page.html#af75e5afacc1fcfff476e13e5de52eefe">getKey</a>()) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> kws_ob_include(CTCT_FILE_PATH.<span class="stringliteral">&#39;/views/admin/view.plugin-status.php&#39;</span>, $CTCT);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> $content;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#ae49e50d486b23cf205d2be5e2e2a97af">   52</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#ae49e50d486b23cf205d2be5e2e2a97af">page</a>() {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span>(!$this-&gt;cc-&gt;isConfigured()) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            echo kws_ob_include(CTCT_DIR_PATH.<span class="stringliteral">&#39;views/admin/view.setup.php&#39;</span>, $this);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            parent::page();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="class_c_t_c_t___admin.html#afa822329cd4c10e82e2a41d17f9d1dd9">   61</a></span>&#160;    <span class="keyword">function</span> <a class="code" href="class_c_t_c_t___admin.html#afa822329cd4c10e82e2a41d17f9d1dd9">content</a>() {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    ?&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        &lt;form action=<span class="stringliteral">&quot;options.php&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        &lt;?php</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            settings_fields(<span class="stringliteral">&#39;ctct_settings&#39;</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <a class="code" href="class_c_t_c_t___settings.html#a2548f09e2e10cefb440f9888dd03ccb7">CTCT_Settings::do_settings_sections</a>(<span class="stringliteral">&#39;constant-contact-api&#39;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        ?&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        &lt;/form&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    &lt;?php</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;$CTCT_Admin = <span class="keyword">new</span> <a class="code" href="class_c_t_c_t___admin.html">CTCT_Admin</a>();</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_3f7ee4cd93c2ab56f749882a111b17c4.html">classes</a></li><li class="navelem"><b>class.ctct_admin.php</b></li>
-    <li class="footer">Generated on Fri Aug 30 2013 14:29:06 for Constant Contact for WordPress by
+    <li class="footer">Generated on Thu Sep 26 2013 12:16:44 for Constant Contact for WordPress by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

@@ -1,4 +1,4 @@
 <map id="Ctct\Components\Tracking\ClickActivity\create" name="Ctct\Components\Tracking\ClickActivity\create">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#aca3d8026c24f6aecdeb901e98864904c" title="Get clicks for a given campaign. " alt="" coords="233,5,447,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a784190494397f76bf2372d259c1d2942" title="Get clicks for a given contact. " alt="" coords="240,73,440,117"/>
+<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_tracking_service.html#a03b0868274684b703dd42562d334b94b" title="Get clicks for a given campaign. " alt="" coords="233,5,447,49"/>
+<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_contact_tracking_service.html#a387607cca6f6382ec07e683228e5f0d6" title="Get clicks for a given contact. " alt="" coords="240,73,440,117"/>
 </map>
