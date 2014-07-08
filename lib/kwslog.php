@@ -64,6 +64,7 @@ class KWSLog {
 		add_action('admin_menu', array(&$this, 'log_menu'));
 
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
+		add_action('admin_head', array(&$this, 'wp_head'));
 		add_action('wp_head', array(&$this, 'wp_head'));
 		add_action('shutdown', array(&$this, 'print_logs'), 10000);
 	}
@@ -78,9 +79,11 @@ class KWSLog {
 		if(current_user_can('manage_options')) {
 			?>
 			<script>
-				jQuery('.kwslog-toggle').live('click', function(e) {
-					jQuery('.data', jQuery(this).parents('.kwslog-debug')).toggle();
-					return false;
+				jQuery(document).ready(function($) {
+					$('body').on('click', '.kwslog-toggle', function(e) {
+						$('.data', $(this).parents('.kwslog-debug')).toggle();
+						return false;
+					});
 				});
 			</script>
 			<style type="text/css">

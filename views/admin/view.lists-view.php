@@ -13,8 +13,9 @@
 
 foreach ($Lists as $List ) {
 		$List = new KWSContactList($List);
+		$alt = empty( $alt ) ? 'class="alt"' : '';
 	?>
-		<tr>
+		<tr <?php echo $alt; ?>>
 			<td class="column-id">
 				<?php echo $List->get('id'); ?>
 			</td>

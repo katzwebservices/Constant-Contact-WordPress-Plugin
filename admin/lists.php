@@ -97,4 +97,4 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
     }
 }
 
-$CTCT_Admin_Lists = new CTCT_Admin_Lists();
+new CTCT_Admin_Lists;

@@ -18,9 +18,10 @@
         <?php
     $alt = ''; $html = '';
     foreach ($Campaign as $key => $value) {
-        $alt = empty($alt) ? ' class="alt"' : '';
 
         if(empty($value)) { continue; }
+
+        $alt = empty($alt) ? ' class="alt"' : '';
 
         $html .= '<tr'.$alt.'>';
 

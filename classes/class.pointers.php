@@ -3,7 +3,7 @@
  * @package Admin
  */
 
-if ( !defined('CTCT_VERSION') ) {
+if ( !class_exists( 'WP_CTCT' ) ) {
 	header('HTTP/1.0 403 Forbidden');
 	wp_die();
 }
@@ -232,7 +232,7 @@ class CTCT_Pointers {
 				}
 			});
 
-			
+
 			<?php _e($key); ?>setup = function () {
 				jQuery('<?php echo $selector; ?>').pointer(<?php _e($key); ?>ctct_pointer_options).pointer('open');
 				<?php if ( $button2 ) { ?>

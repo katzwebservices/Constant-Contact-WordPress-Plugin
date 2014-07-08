@@ -3,6 +3,7 @@
 
 abstract class CTCT_Admin_Page {
 
+    var $id;
     var $key;
     var $title;
     var $permission = 'manage_options';
@@ -13,7 +14,9 @@ abstract class CTCT_Admin_Page {
     var $can_add = false;
     var $component = '';
 
-    function __construct() {
+    function __construct( $force_load = false ) {
+
+        if( !is_admin() && !$force_load ) { return; }
 
     	$this->addIncludes();
 
@@ -21,18 +24,20 @@ abstract class CTCT_Admin_Page {
     	$this->cc = $WP_CTCT->cc;
         $this->oauth = $WP_CTCT->oauth;
 
+
         $this->title = $this->getTitle();
-    	$this->key = $this->getKey();
-    	$this->processForms();
+        $this->key = $this->getKey();
+        $this->id = $this->getID();
 
-        add_action('admin_menu', array(&$this, 'add_menu'));
+        if( is_admin() ) {
 
-        if(is_admin()) {
+            $this->processForms();
+
+            add_action('admin_menu', array(&$this, 'add_menu'));
             add_action('admin_print_scripts', array(&$this, 'print_scripts'));
             add_action('admin_print_styles', array(&$this, 'print_styles'));
+            add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
         }
-
-        add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
 
         $this->addActions();
     }
@@ -41,7 +46,13 @@ abstract class CTCT_Admin_Page {
 
     // TODO: Only load on CTCT pages.
     public function print_styles() {
+
+        // If the current page isn't the page being requested, we don't print those scripts
+        if( !empty($plugin_page) && $this->key !== $plugin_page ){ return; }
+
+
         wp_enqueue_style('constant-contact-api-admin', CTCT_FILE_URL.'css/admin/constant-contact-admin-css.css', array('thickbox'));
+        wp_enqueue_style('dashicons'); // For the plugin status checkboxes
         wp_enqueue_style('alertify-core', CTCT_FILE_URL.'js/alertify.js/themes/alertify.core.css');
         wp_enqueue_style('alertify-default', CTCT_FILE_URL.'js/alertify.js/themes/alertify.default.css');
         wp_enqueue_style('select2', CTCT_FILE_URL.'vendor/nineinchnick/select2/assets/select2.css');
@@ -50,11 +61,20 @@ abstract class CTCT_Admin_Page {
     public function print_scripts() {
         global $plugin_page;
 
+        // If the current page isn't the page being requested, we don't print those scripts
+        if( !empty($plugin_page) && $this->key !== $plugin_page ){ return; }
+
         wp_enqueue_script('alertify', CTCT_FILE_URL.'js/alertify.js/lib/alertify.min.js', array('jquery'));
         wp_enqueue_script('jquery-cookie', CTCT_FILE_URL.'js/admin/jquery.cookie.js', array('jquery'));
         wp_enqueue_script('select2', CTCT_FILE_URL.'vendor/nineinchnick/select2/assets/select2.min.js', array('jquery'));
 
         wp_enqueue_script('ctct-admin-page', CTCT_FILE_URL.'js/admin/cc-page.js', array('jquery', 'jquery-effects-highlight', 'jquery-ui-tooltip', 'jquery-ui-tabs', 'select2', 'thickbox'));
+
+        wp_localize_script( 'ctct-admin-page', 'CTCT', array(
+            'component' => $this->component,
+            '_wpnonce' => wp_create_nonce( 'ctct' ),
+            'id' => $this->id,
+        ));
 
         wp_enqueue_script('ctct-admin-fittext', CTCT_FILE_URL.'js/admin/jquery.fittext.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-equalize', CTCT_FILE_URL.'js/admin/jquery.equalize.min.js', array('ctct-admin-page'));
@@ -68,6 +88,19 @@ abstract class CTCT_Admin_Page {
     protected function isEdit() { return isset($_GET['edit']); }
     protected function isSingle() { return isset($_GET['view']); }
     protected function isView() { return !isset($_GET['view']) && !isset($_GET['edit']) && !isset($_GET['add']); }
+
+    protected function getID() {
+
+        if( $this->isEdit() ) {
+            return esc_attr( $_GET['edit'] );
+        }
+
+        if( $this->isSingle() ) {
+            return esc_attr( $_GET['view'] );
+        }
+
+        return null;
+    }
 
     protected function getKey() {
         return $this->key;
@@ -87,18 +120,13 @@ abstract class CTCT_Admin_Page {
     protected function addActions() {}
 
     protected function content() {
-        Exceptional::$controller = $this->title;
-    	if($this->isAdd()) {
-            Exceptional::$action = 'add';
-    		$this->add();
+        if($this->isAdd()) {
+        	$this->add();
     	} else if($this->isEdit()) {
-            Exceptional::$action = 'edit';
-    		$this->edit();
+        	$this->edit();
     	} else if($this->isSingle()) {
-            Exceptional::$action = 'single';
-    		$this->single();
+        	$this->single();
     	} else {
-            Exceptional::$action = 'view';
             $this->view();
         }
     }
@@ -147,8 +175,6 @@ abstract class CTCT_Admin_Page {
         <div class="wrap">
             <h2 class="cc_logo"><a class="cc_logo" href="<?php echo admin_url('admin.php?page=constant-contact-api'); ?>"><?php _e('Constant Contact', 'constant-contact-api'); ?></a></h2>
 	<?php
-
-        include(CTCT_DIR_PATH.'views/admin/view.page-menu.php');
 
         if(!$this->isView()) {
             $breadcrumb[] = '<a href="'.remove_query_arg(array('view', 'edit', 'add')).'">'.$this->getNavTitle().'</a>';

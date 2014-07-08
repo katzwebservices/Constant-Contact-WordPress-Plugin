@@ -84,7 +84,7 @@
 						<?php
 						wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
 						wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
-						wp_nonce_field( 'update-cc-form', 'update-cc-form-nonce' );
+						wp_nonce_field( 'update-cc-form-'.(int)$cc_form_selected_id, 'update-cc-form-nonce', false );
 						?>
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="cc-form-id" id="cc-form-id" value="<?php echo (int)$cc_form_selected_id; ?>" />

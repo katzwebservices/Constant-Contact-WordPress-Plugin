@@ -36,7 +36,8 @@
                 <a href="http://katz.si/4o" rel="external"><img src="<?php echo plugins_url('images/eventspot-logo.png', EVENTSPOT_FILE); ?>" alt="EventSpot from Constant Contact" /></a>
             <?php
 
-            try {
+           /* try {
+
 	            $events = CTCT_EventSpot::getInstance()->old_api->getEvents();
 
 	            if(empty($events)) {
@@ -100,11 +101,11 @@
 	                <a class="button alignright button-secondary" style="color:#ccc;" href="#" onclick="tb_remove(); return false;"><?php _e("Cancel", "constant-contact-api		"); ?></a>
 	            </div>
 	        </div>
-	    <?php } // End empty events 
+	    <?php } // End empty events
 	    } catch(Exception $e) {
 	    	// TODO: log this
 	    	echo sprintf(__('<p>There was a problem fetching the Events:</p><pre>%s</pre>', 'constant-contact-api'), $e->getMessage());
-	    } // End events throwing exception
+	    } // End events throwing exception*/
 	?>
     </div>
 </div>

@@ -251,14 +251,17 @@ class KWSConstantContact extends ConstantContact {
 				break;
 			case "EmailCampaigns":
 			default:
+
+				$max_limit = ($type === 'EmailCampaigns') ? 50 : 500;
+
 				if(!is_null($id_or_status)) {
-					if(is_null($param)) { $param = array('limit' => 500); }
+					if(is_null($param)) { $param = array('limit' => $max_limit); }
 					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
 				} else {
 					if(is_string($param)) {
 						die($param);return;
 					}
-					if(empty($param)) { $param = array('limit' => 500); }
+					if(empty($param)) { $param = array('limit' => $max_limit); }
 
 					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $param);
 				}

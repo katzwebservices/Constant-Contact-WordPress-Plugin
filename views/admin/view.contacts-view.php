@@ -1,4 +1,4 @@
-<table class="wp-list-table widefat fixed users ctct_table" cellspacing="0">
+<table class="widefat fixed users ctct_table" cellspacing="0">
     <thead>
         <tr>
             <th scope="col" id="email" class="manage-column column-name" style=""><?php _e('Email Address', 'constant-contact-api'); ?></th>
@@ -13,8 +13,9 @@
 
 foreach ($Contacts as $Contact ) {
         $Contact = new KWSContact($Contact);
+        $alt = empty( $alt ) ? 'class="alt"' : '';
     ?>
-        <tr>
+        <tr <?php echo $alt; ?>>
             <td class="email column-email">
                 <a href="<?php
                     echo add_query_arg(array('page' => CTCT_Admin_Contacts::getKey(), 'view' => $Contact->id), admin_url('admin.php'));

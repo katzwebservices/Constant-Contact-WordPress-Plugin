@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 
 	function ctct_pointers(target) {
 
-    	if(typeof CTCT == 'undefined' || !CTCT || !CTCT.pointers.pointers) { return; }
+    	if(typeof CTCT == 'undefined' || !CTCT || !CTCT.pointers || !CTCT.pointers.pointers) { return; }
 
     	CTCT.pointers.pointers.forEach(function(pointer, index, array) {
 			ctct_pointer(pointer);
@@ -55,7 +55,7 @@ jQuery(document).ready(function($) {
     /**
      * Toggle the WP help menu tab by linking to them
      */
-    $('a[rel="wp-help"]').live('click', function() {
+    $('body').on('click', 'a[rel="wp-help"]', function() {
 
     	if($('#screen-meta').is(':hidden')) {
     		$('#contextual-help-link').click();
@@ -239,7 +239,7 @@ jQuery(document).ready(function($) {
 
 	function ctct_ajax(data, $object) {
 
-		var id = CTCT.id ? CTCT.id : $object.data('id');
+		var id = ( typeof( CTCT ) !== 'undefined' ) ? CTCT.id : $object.data('id');
 		var field = $object.data('name') ? $object.data('name') : data.field;
 		var parent = $object.data('parent') ? $object.data('parent') : data.parent;
 
@@ -279,36 +279,6 @@ jQuery(document).ready(function($) {
 	        }
 	    });
      });
-
-	var mouseLeaveTimer;
-	var mouseEnterTimer;
-
-	// For logo dropdown
-	$('a.cc_logo').hover(
-		function(e) {
-			$('.constant_contact_plugin_page_list').removeClass('cc_hidden').slideDown('fast');
-		},
-		function(e) {
-
-		// close the tooltip later (maybe ...)
-		   mouseLeaveTimer = setTimeout(function(){
-		       $('.constant_contact_plugin_page_list').addClass('cc_hidden').slideUp('fast');
-		   }, 200);
-
-			e.stopImmediatePropagation();
-		}
-	);
-
-	$(document)
-		.on('mouseenter', '.constant_contact_plugin_page_list', function(e){
-		    // cancel tooltip closing on hover
-		    clearTimeout(mouseLeaveTimer);
-		})
-		.on('mouseleave', '.constant_contact_plugin_page_list', function(){
-	    	mouseLeaveTimer = setTimeout(function(){
-		       $('.constant_contact_plugin_page_list').addClass('cc_hidden').slideUp('fast');
-		   }, 200);
-		});
 
 	// For component summary boxes
 	$('.fittext').fitText(1.2, {maxFontSize: 50});

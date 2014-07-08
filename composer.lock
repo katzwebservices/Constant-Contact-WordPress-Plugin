@@ -3,56 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "890e00c673ace2a03d716e21e6b1e3f7",
+    "hash": "479c413e50f3ca4d378b2290f7e20a2e",
     "packages": [
-        {
-            "name": "ankane/exceptional-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/katzwebservices/exceptional-php.git",
-                "reference": "cee38e9fd68d313a2e0664309f429ad033ab63ba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/katzwebservices/exceptional-php/zipball/cee38e9fd68d313a2e0664309f429ad033ab63ba",
-                "reference": "cee38e9fd68d313a2e0664309f429ad033ab63ba",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Exceptional": "/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "The power of Exceptional for PHP",
-            "homepage": "https://github.com/ankane/exceptional-php",
-            "keywords": [
-                "error",
-                "exception",
-                "monitoring"
-            ],
-            "time": "2013-09-26 16:38:42"
-        },
         {
             "name": "constantcontact/constantcontact",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/constantcontact/php-sdk.git",
-                "reference": "9734168d380166ae6404174904c31aad9e1fe2e7"
+                "reference": "529438969d02b18ec907bef252e6b68ff2c07e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/9734168d380166ae6404174904c31aad9e1fe2e7",
-                "reference": "9734168d380166ae6404174904c31aad9e1fe2e7",
+                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/529438969d02b18ec907bef252e6b68ff2c07e6e",
+                "reference": "529438969d02b18ec907bef252e6b68ff2c07e6e",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +48,7 @@
                 "ctct",
                 "email marketing"
             ],
-            "time": "2013-09-23 14:13:01"
+            "time": "2014-07-03 18:41:49"
         },
         {
             "name": "nineinchnick/select2",
@@ -92,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nineinchnick/ESelect2.git",
-                "reference": "412acd86dc300e7b8d62cfb2248a3b445ec9985e"
+                "reference": "ff95ee3c12cb66f446de8da9a1613a4608eb799b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nineinchnick/ESelect2/zipball/412acd86dc300e7b8d62cfb2248a3b445ec9985e",
-                "reference": "412acd86dc300e7b8d62cfb2248a3b445ec9985e",
+                "url": "https://api.github.com/repos/nineinchnick/ESelect2/zipball/ff95ee3c12cb66f446de8da9a1613a4608eb799b",
+                "reference": "ff95ee3c12cb66f446de8da9a1613a4608eb799b",
                 "shasum": ""
             },
             "type": "library",
@@ -115,7 +79,7 @@
                 }
             ],
             "description": "Wrapper for ivaynberg jQuery select2",
-            "time": "2013-05-22 21:13:01"
+            "time": "2014-04-16 06:40:10"
         }
     ],
     "packages-dev": [
@@ -127,8 +91,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "constantcontact/constantcontact": 20,
-        "nineinchnick/select2": 20,
-        "ankane/exceptional-php": 20
+        "nineinchnick/select2": 20
     },
     "platform": {
         "php": ">=5.3.0",

@@ -1,18 +1,18 @@
 {
     "name": "nineinchnick/select2",
     "description": "Wrapper for ivaynberg jQuery select2",
-	"version": "1.0",
     "authors": [
         {
             "name": "Anggiajuang Patria",
+			"email": "anggiaj@gmail.com",
             "homepage": "http://anggiaj.herokuapp.com/"
         },
         {
             "name": "Jan Waś",
-            "email": "janek.jan@gmail.com"
+            "email": "janek.jan@gmail.com",
+			"homepage": "http://niix.pl/"
         }
     ],
     "require": {
-
     }
 }

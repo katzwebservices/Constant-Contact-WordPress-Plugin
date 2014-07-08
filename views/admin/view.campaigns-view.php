@@ -1,7 +1,3 @@
-<?php
-Exceptional::$controller = 'view.campaigns-view.php';
-Exceptional::$action = 'view campaigns';
-?>
 <table class="widefat ctct_table" cellspacing="0">
     <thead>
         <tr>
@@ -15,12 +11,13 @@ Exceptional::$action = 'view campaigns';
 
 if(empty($Campaigns)) {
     ?>
-    <tr><td colspan="4"><?php _e('No Results', 'constant-contact-api'); ?></td></tr>
+    <tr><td colspan="4"><h3><?php _e('No results.', 'constant-contact-api'); ?></h3></td></tr>
     <?php
 } else {
     foreach ($Campaigns as $result ) {
+        $alt = empty( $alt ) ? 'class="alt"' : '';
         ?>
-            <tr>
+            <tr <?php echo $alt; ?>>
                 <td class="column-name post-title wrap"><strong><a href="<?php echo add_query_arg(array('view' => $result->id), remove_query_arg('add')); ?>"><?php echo htmlentities($result->name); ?></a></strong></td>
                 <td class="column-name wrap"><?php echo kws_format_date($result->modified_date); ?></td>
                 <td class="column-name wrap">

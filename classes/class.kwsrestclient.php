@@ -80,7 +80,7 @@ class KWSRestClient implements RestClientInterface
 		self::$debug = current_user_can('manage_options') && (isset($_GET['debug']) && $_GET['debug'] === 'requests');
 
 		// Make it WP format.
-		$headers[] = "User-Agent: Constant Contact WordPress Plugin v".CTCT_VERSION;
+		$headers[] = sprintf( "User-Agent: Constant Contact WordPress Plugin v%s", WP_CTCT::version );
 		$headers = implode("\n", $headers);
 
 		$args = array(

@@ -2,6 +2,7 @@
 
 use Ctct\Components\Contacts\ContactList;
 use Ctct\Components\EmailMarketing\MessageFooter;
+
 class KWSContactList extends ContactList {
 
 	private static $read_only = array('contact_count', 'id');
@@ -72,6 +73,12 @@ class KWSContactList extends ContactList {
 		return $List;
 	}
 
+	/**
+	 * Get the label for a field based on the key
+	 *
+	 * @param  string      $key  Key, like Addr2 or FirstName
+	 * @return [type]            [description]
+	 */
 	function getLabel($key) {
 
 		switch($key) {

@@ -70,6 +70,26 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+= 3.0.4 = 
+* Added JS localization to fix inline edit screens
+* Fixed: Error 500 with form live preview
+* Fixed: many PHP warnings
+* Fixed: Added security validation when updating / deleting forms.
+* Fixed: logging toggle not toggling
+* Moved SafeSubscribe to Form Fields metabox in Form Designer
+* Removed Exceptional.io integration
+* Only load `CTCT_Admin_Page` in admin. Saves memory and improves speed.
+* Added: Zebra-striping on tables
+* Improved: Design for WP 3.8+
+* Removed: Menu when hovering-over logo
+* Changed icon images to dashicons
+* Fixed: Converted jQuery `.live()` to `.on()`
+* Added: Internationalization strings & improvements
+* Added: Disabled `<input>` fields to select events shortcode, instead of text. Should make it easier to grab the code.
+* Converted plugin version constant to class constants
+* Fixed: Campaigns limit fatal error: 50 not 500 are allowed.
+* Fixed: "Nothing changed" message when ajax editing Contact fields
+
 = 3.0.3 =
 * Now uses Composer to auto-load classes
 * Updated to fix compatibility issues with changes to CTCT PHP SDK

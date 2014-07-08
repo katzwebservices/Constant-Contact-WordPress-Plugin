@@ -17,7 +17,7 @@
 	<?php
 	if(empty($events)) { ?>
 		<tr><td colspan="6">
-		<h3><?php _e('No events found&hellip;', 'constant-contact-api'); ?></h3>
+		<h3><?php _e('No events found.', 'constant-contact-api'); ?></h3>
 		</td></tr></table>
 	<?php
 		return;
@@ -36,7 +36,7 @@
 				<?php echo $v->title; ?>
 			</td>
 			<td class="column-title column-shortcode wrap">
-				<code style="font-size:1em;"><?php _e(sprintf('[eventspot id="%s" /]', constant_contact_get_id_from_object($v)), 'constant-contact-api'); ?></code>
+				<input type="text" class="widefat" readonly="readonly" value="<?php esc_attr_e(sprintf('[eventspot id="%s" /]', constant_contact_get_id_from_object($v)), 'constant-contact-api'); ?>" />
 			</td>
 	<?php if(!isset($_GET['status']) || $_GET['status'] == 'all') {?>
 			<td class="column-role wrap">

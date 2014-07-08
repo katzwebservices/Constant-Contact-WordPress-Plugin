@@ -14,12 +14,12 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 	var $messages = array();
 	var $form_id = -1;
 
+	function __construct() {
+		parent::__construct( true );
+	}
+
 	protected function addIncludes() {
 		global $pagenow, $plugin_page;
-
-		if(is_admin() && !empty($plugin_page) && ($plugin_page !== $this->getKey() || empty($plugin_page) && @$_GET['page'] !== $this->getKey())) {
-			return;
-		}
 
 		define('CC_FORM_GEN_URL', plugin_dir_url(__FILE__));
 		define('CC_FORM_GEN_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
@@ -27,13 +27,13 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		require_once( CC_FORM_GEN_PATH . 'form-designer-functions.php' );
 		require_once( CC_FORM_GEN_PATH . 'widget-form-designer.php');
 
-		add_action('init', 'check_ccfg_compatibility');
-
 		add_shortcode('constantcontactapi', 'constant_contact_signup_form_shortcode');
 
 		add_action('widgets_init', 'constant_contact_form_load_widget');
 
-		if(!($pagenow === 'admin.php' && $plugin_page === 'constant-contact-forms')) { return; }
+		if( !is_admin() || !($pagenow === 'admin.php' && $plugin_page === 'constant-contact-forms')) {
+		 	return;
+		}
 
 		add_action('admin_print_scripts', 'constant_contact_admin_widget_scripts');
 		add_filter( 'teeny_mce_before_init', 'ccfg_tiny_mce_before_init', 10, 2);
@@ -59,30 +59,30 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 
 	protected function view() {
 
-			$compat = check_ccfg_compatibility();
-			if(empty($compat)) { return false; }
+		$compat = check_ccfg_compatibility();
+		if(empty($compat)) { return false; }
 
-			global $cc_form_selected_id;
-			$cc_forms = array();
-
-
-			// Container for any messages displayed to the user
-			$messages = array();
-
-			$_form = wp_get_cc_form( $cc_form_selected_id );
-
-			// Container that stores the name of the active menu
-			$cc_form_selected_title = constant_contact_get_form_title($_form);
+		global $cc_form_selected_id;
+		$cc_forms = array();
 
 
-			// Work with the actions and echo a message if there is one.
-			$messages = $this->messages;
+		// Container for any messages displayed to the user
+		$messages = array();
 
-			// Get all forms
-			$cc_forms = wp_get_cc_forms();
+		$_form = wp_get_cc_form( $cc_form_selected_id );
 
-			// The menu id of the current menu being edited
-			$cc_form_selected_id = cc_form_get_selected_id($cc_forms);
+		// Container that stores the name of the active menu
+		$cc_form_selected_title = constant_contact_get_form_title($_form);
+
+
+		// Work with the actions and echo a message if there is one.
+		$messages = $this->messages;
+
+		// Get all forms
+		$cc_forms = wp_get_cc_forms();
+
+		// The menu id of the current menu being edited
+		$cc_form_selected_id = cc_form_get_selected_id($cc_forms);
 
 		?>
 		<?php
@@ -97,92 +97,110 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 
 	protected function processForms() {
 
-			if(!isset($_REQUEST['cc-form-id'])) { return; }
+		if(!isset($_REQUEST['cc-form-id']) && empty($_REQUEST['form'])) { return; }
 
-			global $cc_form_selected_id;
+		global $cc_form_selected_id;
 
-			// Allowed actions: add, update, delete
-			$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : 'edit';
+		// Allowed actions: add, update, delete
+		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : 'edit';
 
-			$cc_form_selected_id = cc_form_get_selected_id();
+		$cc_form_selected_id = cc_form_get_selected_id();
 
-			if($action === 'edit') { return; }
+		if($action === 'edit') { return; }
 
-			$messages = array();
+		$messages = array();
 
-			switch ( $action ) {
-				case 'delete_all':
-					delete_option('cc_form_design');
-					break;
-				case 'delete':
+		switch ( $action ) {
+			case 'delete_all':
 
-					$cc_form_selected_id = isset($_REQUEST['form']) ? (int)$_REQUEST['form'] : $cc_form_selected_id;
+				if( !wp_verify_nonce( $_REQUEST['_wpnonce'], 'delete-all' ) ) {
+					wp_die( 'You are not authorized to delete these forms. The request may have expired; please go back and refresh the page, then try again.');
+				}
 
-					if ( $deleted_form = wp_get_cc_form( $cc_form_selected_id ) ) {
+				delete_option('cc_form_design');
+				break;
+			case 'delete':
 
-						$delete_cc_form = wp_delete_cc_form( $cc_form_selected_id );
+				$cc_form_selected_id = isset($_REQUEST['form']) ? (int)$_REQUEST['form'] : $cc_form_selected_id;
 
-						if ( is_wp_error($delete_cc_form) ) {
-							$messages[] = '<div id="message" class="error"><p>' . $delete_cc_form->get_error_message() . '</p></div>';
-						} else {
-							$messages[] = '<div id="message" class="updated"><p>' . __('The form '.$deleted_form['form-name'].' has been successfully deleted.','constant-contact-api') . '</p></div>';
-							// Select the next available menu
-							$cc_form_selected_id = -1;
-							$_cc_forms = wp_get_cc_forms( array('orderby' => 'name') );
-							foreach( $_cc_forms as $index => $_cc_form ) {
-								if ( $index == count( $_cc_forms ) - 1 ) {
-									$cc_form_selected_id = $_cc_form['cc-form-id'];
-									break;
-								}
-							}
-						}
-						$_REQUEST['deleted'] = 1;
+				if( !wp_verify_nonce( $_REQUEST['_wpnonce'], 'delete-cc_form-'.$cc_form_selected_id ) ) {
+					wp_die( 'You are not authorized to delete the form. The request may have expired; please go back and refresh the page, then try again.');
+				}
+
+				if ( $deleted_form = wp_get_cc_form( $cc_form_selected_id ) ) {
+
+					$delete_cc_form = wp_delete_cc_form( $cc_form_selected_id );
+
+					if ( is_wp_error($delete_cc_form) ) {
+						$messages[] = '<div class="error below-h2"><p>' . $delete_cc_form->get_error_message() . '</p></div>';
 					} else {
-						$_REQUEST['deleted'] = 0;
-						// Reset the selected menu
+						$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The form %s has been successfully deleted.','constant-contact-api'), $deleted_form['form-name'] ) . '</p></div>';
+						// Select the next available menu
 						$cc_form_selected_id = -1;
-						unset( $_REQUEST['form'] );
-						$messages[] = '<div id="message" class="error"><p>'.__('The form could not be deleted. The form may have already been deleted.', 'constant-contact-api').'</p></div>';
-					}
-					break;
-
-				case 'update':
-		#			check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
-					// Add Form
-					if ( -1 == $cc_form_selected_id ) {
-						$new_form_title = trim( esc_html( $_REQUEST['form-name'] ) );
-						if($new_form_title == 'Enter form name here') { $new_form_title = ''; }
-
-							$cc_form_selected_id = wp_create_cc_form();
-
-							if ( is_wp_error( $cc_form_selected_id ) ) {
-								$messages[] = '<div id="message" class="error"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
-							} else {
-								$messages[] = '<div id="message" class="updated"><p>' . sprintf( __('The <strong>%s</strong> form has been successfully created.','constant-contact-api'), $new_form_title ) . '</p></div>';
+						$_cc_forms = wp_get_cc_forms( array('orderby' => 'name') );
+						foreach( $_cc_forms as $index => $_cc_form ) {
+							if ( $index == count( $_cc_forms ) - 1 ) {
+								$cc_form_selected_id = $_cc_form['cc-form-id'];
+								break;
 							}
-
-					// update existing form
-					} else {
-						if(wp_get_cc_form($cc_form_selected_id)) {
-							$request = wp_update_cc_form_object($cc_form_selected_id, $_REQUEST);
-							if(!is_wp_error($request)) {
-								$messages[] = '<div id="message" class="updated after-h2 fade"><p>' . sprintf( __('The <strong>%s</strong> form has been updated.','constant-contact-api'), $request['form-name'] ) . '</p></div>';
-							} else {
-								$messages[] = '<div id="message" class="error"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
-							}
-						} else {
-
 						}
 					}
-					break;
-			}
+					$_REQUEST['deleted'] = 1;
+				} else {
+					$_REQUEST['deleted'] = 0;
+					// Reset the selected menu
+					$cc_form_selected_id = -1;
+					unset( $_REQUEST['form'] );
 
-			$this->messages = $messages;
+					$messages[] = '<div class="error below-h2"><p>'.__('The form could not be deleted. The form may have already been deleted.', 'constant-contact-api').'</p></div>';
+				}
+				break;
+
+			case 'update':
+
+				if( !current_user_can( 'edit_posts' ) ) {
+					return;
+				}
+
+				if( !wp_verify_nonce( $_REQUEST['update-cc-form-nonce'], 'update-cc-form-'.(int)$cc_form_selected_id ) ) {
+					wp_die( 'You are not authorized to modify the form. The request may have expired; please go back and refresh the page, then try again.');
+				}
+
+				// Add Form
+				if ( -1 == $cc_form_selected_id ) {
+					$new_form_title = trim( esc_html( $_REQUEST['form-name'] ) );
+					if($new_form_title == 'Enter form name here') { $new_form_title = ''; }
+
+						$cc_form_selected_id = wp_create_cc_form();
+
+						if ( is_wp_error( $cc_form_selected_id ) ) {
+							$messages[] = '<div class="error below-h2"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
+						} else {
+							$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The  form %s has been successfully created.','constant-contact-api'), '<strong>'.$new_form_title.'</strong>' ) . '</p></div>';
+						}
+
+				// update existing form
+				} else {
+					if(wp_get_cc_form($cc_form_selected_id)) {
+						$request = wp_update_cc_form_object($cc_form_selected_id, $_REQUEST);
+						if(!is_wp_error($request)) {
+							$messages[] = '<div class="below-h2 updated fade"><p>' . sprintf( __('The <strong>%s</strong> form has been updated.','constant-contact-api'), $request['form-name'] ) . '</p></div>';
+						} else {
+							$messages[] = '<div class="error below-h2"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
+						}
+					} else {
+
+					}
+				}
+				break;
+		}
+
+		$this->messages = $messages;
 
 	}
 }
 
-$CTCT_Form_Designer = new CTCT_Form_Designer;
+new CTCT_Form_Designer;
 
 
 
@@ -205,10 +223,11 @@ function ccfg_tiny_mce_before_init( $mceInit, $editor_id) {
  */
 function check_ccfg_compatibility() {
 	global $cc;
-	wp_dequeue_script('heartbeat');
+
 	if(!defined('CTCT_APIKEY')) {
 		return null;
 	}
+
 	return true;
 }
 
@@ -246,7 +265,7 @@ function is_widget_active_in_sidebar($name) {
 
 function constant_contact_retrieve_form($formid, $force_update=false, $unique_id = '', $lists = array()) {
 
-	@$_GET['cc_signup_count']++;
+	$_GET['cc_signup_count'] = empty( $_GET['cc_signup_count'] ) ? 1 : $_GET['cc_signup_count']++;
 
 	$formid = (int)$formid;
 

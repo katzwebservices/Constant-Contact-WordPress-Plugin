@@ -14,6 +14,14 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 	var $ga_auth_error;
 	var $ga_profile_id = NULL;
 
+	function __construct() {
+
+		// We only want this in the admin.
+		if( !is_admin() ) { return; }
+
+		parent::__construct();
+	}
+
 	protected function add() {}
 	protected function edit() {}
 	protected function view() {
@@ -819,4 +827,4 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 	}
 }
 
-$CTCT_Constant_Analytics = new CTCT_Constant_Analytics;
+new CTCT_Constant_Analytics;

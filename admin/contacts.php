@@ -127,17 +127,15 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
     protected function edit() {
 
-        $id = intval(@$_GET['edit']);
-
         /**
          * @todo Specify no contact ID error
          */
-        if(!isset($id) || empty($id)) {
+        if( empty( $this->id ) ) {
             echo 'no contact is specified.';
             return;
         }
 
-        $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $id);
+        $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $this->id );
 
         $Contact = new KWSContact($Contact);
 
@@ -146,18 +144,18 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
     protected function single() {
 
-        $id = intval(@$_GET['view']);
+        $id = $this->id;
 
         /**
          * @todo Specify no contact ID error
          */
-        if(!isset($id) || empty($id)) {
+        if( empty( $id ) ) {
             echo 'no contact is specified.';
             return;
         }
 
-        if($refresh = get_site_option( 'ctct_refresh_contact_'.$id)) {
-            delete_site_option( 'ctct_refresh_contact_'.$id);
+        if($refresh = get_option( 'ctct_refresh_contact_'.$id)) {
+            delete_option( 'ctct_refresh_contact_'.$id);
             add_filter('ctct_cache', '__return_false');
         }
 
@@ -185,11 +183,11 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         ));
 
     	if(empty($Contacts)) {
-    		echo 'Your account has no contacts.';
+    		echo __( 'Your account has no contacts.', 'constant-contact-api' );
     	} else {
     		include(CTCT_DIR_PATH.'views/admin/view.contacts-view.php');
     	}
     }
 }
 
-$CTCT_Admin_Contacts = new CTCT_Admin_Contacts();
+new CTCT_Admin_Contacts;

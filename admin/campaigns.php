@@ -105,4 +105,4 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
     }
 }
 
-$CTCT_Admin_Campaigns = new CTCT_Admin_Campaigns;
+new CTCT_Admin_Campaigns;

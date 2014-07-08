@@ -8,7 +8,13 @@
 <div class="clear component-summary">
 <?php
 $i = 1;
+
+// Create summary "Sheets"
 foreach($summary as $k => $v) {
+
+    // Spam Count may be null
+    if( is_null( $v ) ) { continue; }
+
     echo '<dl class="'.$k.' summary-'.$i.'">
             <dt>'.ucwords(str_replace('_', ' ', $k)).'</dt>
             <dd>'.$v.'</dd>
@@ -30,7 +36,7 @@ foreach($summary as $k => $v) {
     foreach ($Contact as $key => $value) {
         $alt = empty($alt) ? ' class="alt"' : '';
 
-        if(!$Contact->is_editable($key)) { continue; }
+        #if(!$Contact->is_editable($key)) { continue; }
 
         $html .= '<tr'.$alt.'>';
         $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>', $Contact->getLabel($key));
@@ -39,20 +45,20 @@ foreach($summary as $k => $v) {
         if(is_array($value)) {
             switch($key) {
                 case 'lists':
+
                     $html .= KWSContactList::outputHTML('all', array(
-                                                        'type' => 'checkboxes',
-                                                        'checked' => $Contact->get('lists', true)
-                                                    ));
+                        'type' => 'checkboxes',
+                        'checked' => $Contact->get('lists', true)
+                    ));
+
                     break;
                 case 'addresses':
                     if($personal = $Contact->get('personal_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Personal Address', 'constant-contact-api'), $personal);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'constant-contact-api'), $personal);
                     }
 
                     if($business = $Contact->get('business_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Business Address', 'constant-contact-api'), $business);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'constant-contact-api'), $business);
                     }
                     break;
                 case 'email_addresses':
@@ -60,7 +66,7 @@ foreach($summary as $k => $v) {
                     break;
                 case 'notes':
                     // Constant Contact got rid of Notes for now.
-                    /*$html .= sprintf('<span class="editable" data-name="'.$key.'">%s</span>', $Contact->get('notes'));*/
+                    $html .= $Contact->is_editable($key) ? sprintf('<span class="editable" data-name="'.$key.'">%s</span>', $Contact->get('notes')) : $Contact->get('notes');
                     break;
                 case 'custom_fields':
                     $i = 1;

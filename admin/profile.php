@@ -1,7 +1,7 @@
 <?php
 
 class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
-	
+
 	var $subscribe_method;
 
 	function add_menu() { return; }
@@ -14,13 +14,13 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 	function addActions() {
 		// Get our "User Subscription Method" option value.
 		$this->subscribe_method = CTCT_Settings::get('profile_page_form');
-		
+
 		// If it is disabled exit this function
 		if($this->subscribe_method) {
-			
+
 			// register user update action
 			add_action('profile_update', array(&$this, 'update'));
-		
+
 		}
 
 		// register show user update form action
@@ -103,12 +103,12 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 		if($Contact && current_user_can('edit_users') && !isset($_GET['debug-user-display'])) {
 			echo sprintf(__('
 				<p><img src="%s" width="225" height="33" alt="Constant Contact" class="block" /><a href="%s">Admin-Only: Edit this User\'s Details</a> %s</p>
-			', 'constant-contact-api'), 
-				plugins_url('images/admin/logo-horizontal.png', CTCT_FILE), 
+			', 'constant-contact-api'),
+				plugins_url('images/admin/logo-horizontal.png', CTCT_FILE),
 				admin_url('admin.php?page=constant-contact-contacts&edit='.$Contact->id),
 				constant_contact_tip(__('Users will not see this link or the Constant Contact logo.'), false)
 			);
-			
+
 		}
 
 		if(!$this->subscribe_method) { return; }
@@ -127,7 +127,7 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 		<?php echo $signup_description;?>
 
 		<p><?php
-		
+
 			$lists = (array)$Contact->get('lists', true);
 			echo KWSContactList::outputHTML('all', array('checked' => $lists));
 		?></p>
@@ -136,4 +136,4 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 	}
 }
 
-$CTCT_User_Profile = new CTCT_Admin_User_Profile;
+new CTCT_Admin_User_Profile;

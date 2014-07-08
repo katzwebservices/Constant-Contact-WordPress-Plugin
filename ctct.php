@@ -1,15 +1,16 @@
 <?php
 /*
-Plugin Name: Official Constant Contact Plugin
-Plugin URI: http://www.katzwebservices.com
+Plugin Name: Constant Contact Plugin for WordPress
+Plugin URI: https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
 Description: Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: Katz Web Services, Inc.
-Version: 3.0.3
-Author URI: http://www.katzwebservices.com
+Version: 3.0.4
+Author URI: http://katz.co
 */
 
-class WP_CTCT {
+final class WP_CTCT {
 
+	const version = '3.0.4';
 	public $cc = NULL;
 	public $oauth = NULL;
 	public $log = NULL;
@@ -17,9 +18,8 @@ class WP_CTCT {
 
 	function __construct() {
 
-		if(!defined('CTCT_VERSION')) {
+		if(!defined('CTCT_DIR_PATH')) {
 
-			define('CTCT_VERSION', '3.0.3');
 			define('CTCT_FILE', __FILE__); // The full path to this file
 			define('CTCT_FILE_PATH', dirname(__FILE__) . '/'); // The full path to this file
 			define('CTCT_FILE_URL', plugin_dir_url(__FILE__)); // @ Added 2.0 The full URL to this file
@@ -38,10 +38,6 @@ class WP_CTCT {
 			include CTCT_DIR_PATH.'lib/kwslog.php';
 			$this->log = new KWSLog('ctct', 'Constant Contact');
 
-			#Exceptional::setup('9135dc8782a0e5f1b72b51a73b0382982521f943', true);
-			Exceptional::setup('', true);
-			Exceptional::$controller = 'WP_CTCT';
-
 			add_action('plugins_loaded', array(&$this, 'setup'), 1);
 			add_action('plugins_loaded', array(&$this, 'include_files'), 5);
 
@@ -52,8 +48,6 @@ class WP_CTCT {
 
 	function setup() {
 
-		Exceptional::$controller = 'setup';
-
 		if(!defined('CTCT_APIKEY')) {
 
 			include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
@@ -62,6 +56,7 @@ class WP_CTCT {
 
 			define("CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t");
 			define("CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF");
+
 			$this->oauth = new KWSOAuth2();
 			$token = $this->oauth->getToken();
 			define("CTCT_ACCESS_TOKEN", $token);
@@ -121,4 +116,4 @@ class WP_CTCT {
 	}
 }
 
-$CTCT = new WP_CTCT;
+new WP_CTCT;

@@ -8,9 +8,13 @@ global $debug;
 $debug = !empty($_REQUEST['debug']);
 
 if(!$debug) {
-	@define('DOING_AJAX', true);
+
+	if( !defined( 'DOING_AJAX' ) ) {
+		define('DOING_AJAX', true);
+	}
+
+	header_remove();
 	@header('Content-Type: application/json;');
-	@header('Status Code: 200 OK;');
 
 	if(function_exists('xdebug_disable')) { xdebug_disable(); }
 
@@ -204,7 +208,7 @@ if(!$debug) {
 			foreach($f as $field) {
 				$field['size'] = $size;
 				$field['form_id'] = isset($cc_signup_count) ? $cc_signup_count : 1;
-				if($field['id'] == str_replace('_default', '', $changed) || $field['id'] == str_replace('_label', '', $changed)) {
+				if( isset( $field['id'] ) && $field['id'] == str_replace('_default', '', $changed) || $field['id'] == str_replace('_label', '', $changed)) {
 
 					return makeFormField($field, $cc_request);
 				};
@@ -281,7 +285,7 @@ if(!$debug) {
 		</form>
 	</div>
 EOD;
-		if(!$debug) {
+		if( empty( $debug) ) {
 			$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
 			$form = preg_replace('/\s\s/ism', ' ', $form);
 		}
@@ -553,7 +557,7 @@ function printForm() {
 	   !(isset($data['verify']) && isset($data['uniqueformid']) && isset($data['time']) && ($data['verify'] === sha1($data['uniqueformid'].$data['time'])))
 	) {
 		r($data['verify']);
-		r(sha1($data['uniqueformid'].$data['time']));
+		#r(sha1($data['uniqueformid'].$data['time']));
 		ctctlog('The form was requested without authentication');
 		$output = '<!-- Constant Contact: The form was requested without verification. -->';
 		if(isset($data['echo'])) { echo $output; }

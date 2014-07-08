@@ -1,4 +1,4 @@
-<table class="widefat form-table" cellspacing="0">
+<table class="widefat ctct_table" cellspacing="0">
 	<thead>
 		<tr>
 			<th scope="col" class="manage-column column-name wrap"><?php _e('Name', 'constant-contact-api'); ?></th>

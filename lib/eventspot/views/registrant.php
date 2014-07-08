@@ -36,34 +36,34 @@
 	}
 
 	$data = array(
-		'Registration Information' => array(
-			'Registration Status'=> $v->registrationStatus,
-			'Registration Date' => constant_contact_event_date($v->registrationDate),
-			'Guest Count'=> get_if_not_empty($v->guestCount,1),
-			'Payment Status'=> $v->paymentStatus,
-			'Order Amount'=> $v->orderAmount,
-			'Currency Type'=>$v->currencyType,
-			'Payment Type' => $v->paymentType,
-			'Summary of Costs' => $costs,
+			__('Registration Information', 'constant-contact-api') => array(
+			__('Registration Status', 'constant-contact-api') => $v->registrationStatus,
+			__('Registration Date', 'constant-contact-api') => constant_contact_event_date($v->registrationDate),
+			__('Guest Count', 'constant-contact-api') => get_if_not_empty($v->guestCount,1),
+			__('Payment Status', 'constant-contact-api') => $v->paymentStatus,
+			__('Order Amount', 'constant-contact-api') => $v->orderAmount,
+			__('Currency Type', 'constant-contact-api') =>$v->currencyType,
+			__('Payment Type', 'constant-contact-api') => $v->paymentType,
+			__('Summary of Costs', 'constant-contact-api') => $costs,
 		),
-		'Personal Information' => array(
-		    'Name' => $v->title,
-		    'Email' => get_if_not_empty($v->email,'', "<a href='mailto:{$v->email}'>{$v->email}</a>"),
-		    'Phone' => $v->personalInformation->phone,
-			'Cell Phone' => $v->personalInformation->cellPhone,
-	        'Address' => constant_contact_create_location($v->personalInformation),
+		__('Personal Information', 'constant-contact-api') => array(
+		    __('Name', 'constant-contact-api') => $v->title,
+		    __('Email', 'constant-contact-api') => get_if_not_empty($v->email,'', "<a href='mailto:{$v->email}'>{$v->email}</a>"),
+		    __('Phone', 'constant-contact-api') => $v->personalInformation->phone,
+			__('Cell Phone', 'constant-contact-api') => $v->personalInformation->cellPhone,
+	        __('Address', 'constant-contact-api') => constant_contact_create_location($v->personalInformation),
 		),
-		'Business Information' => array(
-			'Company' => $v->businessInformation->company,
-			'Job Title' => $v->businessInformation->jobTitle,
-			'Department' => $v->businessInformation->department,
-			'Phone' => $v->businessInformation->phone,
-			'Fax' => $v->businessInformation->fax,
-			'Website' => $v->businessInformation->website,
-			'Blog' => $v->businessInformation->blog,
-			'Address' => constant_contact_create_location($v->businessInformation),
+		__('Business Information', 'constant-contact-api') => array(
+			__('Company', 'constant-contact-api') => $v->businessInformation->company,
+			__('Job Title', 'constant-contact-api') => $v->businessInformation->jobTitle,
+			__('Department', 'constant-contact-api') => $v->businessInformation->department,
+			__('Phone', 'constant-contact-api') => $v->businessInformation->phone,
+			__('Fax', 'constant-contact-api') => $v->businessInformation->fax,
+			__('Website', 'constant-contact-api') => $v->businessInformation->website,
+			__('Blog', 'constant-contact-api') => $v->businessInformation->blog,
+			__('Address', 'constant-contact-api') => constant_contact_create_location($v->businessInformation),
 		),
-		'Custom Information' => $customs
+		__('Custom Information', 'constant-contact-api') => $customs
 	);
 
 		echo constant_contact_generate_table($data);

@@ -104,7 +104,7 @@ function constant_contact_public_signup_form($args, $echo = true) {
     $selected = $lists;
     if($widget) {
         $lists = @$form['lists'];
-        $show_list_selection = in_array('lists', @$form['formfields']);
+        $show_list_selection = ( !empty( $form['formfields'] ) && is_array( $form['formfields'] ) ) ? in_array('lists', $form['formfields']) : null;
         $list_selection_format = @$form['list_format'];
         $selected = isset($form['checked_by_default']) ? $form['checked_by_default'] : false;
     }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Ctct\Components\Tracking;
 
 use Ctct\Components\Component;
@@ -36,6 +35,12 @@ class TrackingSummary extends Component
         $tracking_summary->unsubscribes = parent::getValue($props, "unsubscribes");
         $tracking_summary->bounces = parent::getValue($props, "bounces");
         $tracking_summary->spam_count = parent::getValue($props, "spam_count");
+
+        // Contacts don't have spam_count, only Campaigns
+        if(is_null($tracking_summary->spam_count)) {
+            unset($tracking_summary->spam_count);
+        }
+        
         return $tracking_summary;
     }
 }

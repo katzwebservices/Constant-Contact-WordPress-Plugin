@@ -37,7 +37,8 @@ class KWSAJAX {
 						$KWSContact = new KWSContact($KWSConstantContact->getContact(CTCT_ACCESS_TOKEN, $id));
 
 						// Did anything change?
-						$nothingChanged = ($value === $KWSContact->get($parent.$field) || $KWSContact->get($parent.$field, true));
+						// Check unformattet, then formatted.
+						$nothingChanged = ($value === $KWSContact->get($parent.$field) || $value === $KWSContact->get($parent.$field, true) );
 
 						// Lists need to be handled slightly differently.
 						if($parent.$field === 'lists') {
@@ -79,7 +80,7 @@ class KWSAJAX {
 								 *
 								 * @see CTCT_Admin_Contacts::single()
 								 */
-								add_site_option('ctct_refresh_contact_'.$KWSContact->get('id'), 1);
+								add_option('ctct_refresh_contact_'.$KWSContact->get('id'), 1);
 							}
 						}
 					} catch(Exception $e) {

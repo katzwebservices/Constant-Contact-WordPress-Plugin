@@ -106,7 +106,7 @@ function constant_contact_generate_table(array $data) {
 		if(empty($rows)) { continue; }
 	?>
 		<h2><?php echo $k; ?></h2>
-		<table class="widefat form-table" id="<?php echo sanitize_title($k); ?>" cellspacing="0">
+		<table class="widefat form-table ctct_table" id="<?php echo sanitize_title($k); ?>" cellspacing="0">
 			<tbody>
 			<?php echo $rows; ?>
 			</tbody>
@@ -119,8 +119,9 @@ function constant_contact_generate_rows(array $data) {
 	$reg = '';
 	foreach($data as $key => $val) {
 		if(!is_string($val)) { continue; }
+		$alt = empty( $alt ) ? 'class="alt"' : '';
 		$key = preg_replace('/(?!^)[[:upper:]]/',' \0',$key);
-		$reg .= '<tr><th scope="row" id="'.sanitize_title($key).'" class="manage-column column-name" style=""><span>'.$key.'</span></th><td>'.get_if_not_empty($val, '<span class="description">(Empty)</span>').'</td></tr>';
+		$reg .= '<tr '.$alt.'><th scope="row" id="'.sanitize_title($key).'" class="manage-column column-name" style=""><span>'.$key.'</span></th><td>'.get_if_not_empty($val, '<span class="description">(Empty)</span>').'</td></tr>';
 	}
 	return $reg;
 }

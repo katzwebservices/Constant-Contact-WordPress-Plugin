@@ -69,16 +69,6 @@ function cc_form_meta_box_designoptions($post, $metabox=array()) {
 		<p class="description"><?php _e('When changing Form Designs, update form text with presets. <strong>Will overwrite text modifications.</strong>', 'constant-contact-api'); ?></p>
 		</label>
 	</div>
-
-	<div>
-	<label class="howto block"><span><?php _e('SafeSubscribe', 'constant-contact-api'); ?></span></label>
-		<ul>
-			<li><label for="safesubscribelight"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'light', true); ?> name="safesubscribe" id="safesubscribelight" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-light.gif" alt="SafeSubscribe Light" width="168" height="14" id="safesubscribelightimg" class="safesubscribesample" title="<?php _e('Gray', 'constant-contact-api'); ?>"/></label></li>
-			<li><label for="safesubscribedark"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'dark'); ?> name="safesubscribe" id="safesubscribedark" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-dark.gif" alt="SafeSubscribe Dark" width="168" height="14" id="safesubscribedarkimg" class="safesubscribesample" title="<?php _e('White', 'constant-contact-api'); ?>"/></label></li>
-			<li><label for="safesubscribeblack"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'black'); ?> name="safesubscribe" id="safesubscribeblack" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-black.gif" alt="SafeSubscribe Black" width="168" height="14" id="safesubscribeblackimg" class="safesubscribesample" title="<?php _e('Black', 'constant-contact-api'); ?>"/></label></li>
-			<li><label for="safesubscribeno"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'no'); ?> name="safesubscribe" id="safesubscribeno" /> <?php _e('Do Not Display', 'constant-contact-api'); ?></label></li>
-		</ul>
-	</div>
 <?php
 }
 
@@ -177,6 +167,17 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 		?>
 		</ul>
 	</div>
+
+	<div>
+	<label class="howto block"><span><?php _e('SafeSubscribe', 'constant-contact-api'); ?></span></label>
+		<ul>
+			<li><label for="safesubscribelight"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'light', true); ?> name="safesubscribe" id="safesubscribelight" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-light.gif" alt="SafeSubscribe Light" width="168" height="14" id="safesubscribelightimg" class="safesubscribesample" title="<?php _e('Gray', 'constant-contact-api'); ?>"/></label></li>
+			<li><label for="safesubscribedark"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'dark'); ?> name="safesubscribe" id="safesubscribedark" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-dark.gif" alt="SafeSubscribe Dark" width="168" height="14" id="safesubscribedarkimg" class="safesubscribesample" title="<?php _e('White', 'constant-contact-api'); ?>"/></label></li>
+			<li><label for="safesubscribeblack"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'black'); ?> name="safesubscribe" id="safesubscribeblack" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-black.gif" alt="SafeSubscribe Black" width="168" height="14" id="safesubscribeblackimg" class="safesubscribesample" title="<?php _e('Black', 'constant-contact-api'); ?>"/></label></li>
+			<li><label for="safesubscribeno"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'no'); ?> name="safesubscribe" id="safesubscribeno" /> <?php _e('Do Not Display', 'constant-contact-api'); ?></label></li>
+		</ul>
+	</div>
+
 </div>
 <?php
 }
