@@ -243,11 +243,8 @@ class KWSContact extends Contact {
 
         foreach($Contact['email_addresses'] as &$email_address) {
 
-        	if(is_email( $email_address )) {
-        		$email_address= array('email_address' => $email_address);
-        	}
+        	$email_address = EmailAddress::create( array('email_address' => $email_address) );
 
-            $email_address = EmailAddress::create($email_address);
         }
 
         if(!empty($Contact['address']) && empty($Contact['addresses'])) {
@@ -540,6 +537,6 @@ class KWSContact extends Contact {
 	}
 
 	private function getEmail() {
-		return isset($this->email_addresses[0]) ? $this->email_addresses[0]->email_address : false;
+		return ( !empty( $this->email_addresses ) && !empty($this->email_addresses[0]) && !empty($this->email_addresses[0]->email_address) ) ? $this->email_addresses[0]->email_address : false;
 	}
 }

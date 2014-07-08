@@ -31,7 +31,7 @@ class KWSConstantContact extends ConstantContact {
 	 * Get access to instance or create one
 	 * @return KWSConstantContact
 	 */
-	function getInstance() {
+	static function getInstance() {
 		if(empty(self::$instance)) {
 			self::$instance = new KWSConstantContact;
 		}

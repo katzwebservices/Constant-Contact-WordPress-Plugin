@@ -1,5 +1,28 @@
 /* @override http://local/dev/devwordpress/wp-content/plugins/constant-contact-form-generator/css/style.css?ver=3.0 */
 
+a.cc_safesubscribe {
+	background: transparent url(../images/safesubscribe-black.gif) left top no-repeat;
+	margin: 0 auto;
+	width:168px;
+	height:14px;
+	display:block;
+	text-align:left!important;
+	overflow:hidden!important;
+	text-indent: -9999px!important;
+}
+#constant-contact-signup a.safesubscribe_no {
+	display: none;
+}
+#constant-contact-signup a.safesubscribe_light {
+	background-image: url(../images/safesubscribe-light.gif);
+}
+#constant-contact-signup a.safesubscribe_dark {
+	background-image: url(../images/safesubscribe-dark.gif);
+}
+#constant-contact-signup a.safesubscribe_black {
+	background-image: url(../images/safesubscribe-black.gif);
+}
+
 #paint-bucket {
 	background: url(../images/paint-sprite.png) left top;
 	width:80px;

@@ -7,20 +7,17 @@
  */
 class CTCT_Process_Form {
 
+	private $errors = array();
+
 	var $results;
-	var $id;
+
+	private $id;
 
 	static private $instance;
 
+	private $is_processed = false;
+
 	function __construct() {
-
-		if(!class_exists('DataValidation')) {
-			include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
-		}
-
-		if(!class_exists('SMTP_validateEmail')) {
-			include_once(CTCT_DIR_PATH.'lib/mail/smtp_validateEmail.class.php');
-		}
 
 		add_action('plugins_loaded', array(&$this, 'process'));
 
@@ -31,13 +28,17 @@ class CTCT_Process_Form {
 	 * Get an instance of the object
 	 * @return CTCT_Process_Form
 	 */
-	static function getInstance() {
+	static function &getInstance() {
 
-		if(empty(self::$instance)) {
+		if( empty( self::$instance ) ) {
 			self::$instance = new CTCT_Process_Form;
 		}
 
 		return self::$instance;
+	}
+
+	public function is_processed() {
+		return $this->is_processed;
 	}
 
 	/**
@@ -66,21 +67,17 @@ class CTCT_Process_Form {
 		$KWSContact = new KWSContact($data);
 
 		// Check If Email Is Real
-		$email_validation = $this->validateEmail($KWSContact);
+		$this->validateEmail($KWSContact);
 
-		// Add the data to the object
-		$this->setResults('email_validation', $email_validation);
-
-		#r($_POST);
-		#r($data);
-		#r($this);
-		#r($KWSContact, true);
+		$this->is_processed = true;
 
 		// If validation failed, stop processing
-		if(is_wp_error($email_validation)) { return $email_validation; }
+		if( !empty( $this->errors ) ) {
+			return;
+		}
 
 		// Otherwise, let's Add/Update
-		return KWSConstantContact::getInstance()->addUpdateContact($KWSContact);
+		$this->results = KWSConstantContact::getInstance()->addUpdateContact($KWSContact);
 	}
 
 	/**
@@ -102,9 +99,11 @@ class CTCT_Process_Form {
 
 		if(empty($this->id)) { return NULL; }
 
-		if(empty($key)) { return $this->results[$this->id]; }
+		return $this->results;
+	}
 
-		return isset($this->results[$this->id][$key]) ? $this->results[$this->id][$key] : false;
+	public function getErrors() {
+		return $this->errors;
 	}
 
 	/**
@@ -149,6 +148,14 @@ class CTCT_Process_Form {
 	 */
 	function validateEmail(KWSContact $Contact) {
 
+		if(!class_exists('DataValidation')) {
+			include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
+		}
+
+		if(!class_exists('SMTP_validateEmail')) {
+			include_once(CTCT_DIR_PATH.'lib/mail/smtp_validateEmail.class.php');
+		}
+
 		$email = $Contact->get('email');
 
 		$is_valid = array();
@@ -156,11 +163,12 @@ class CTCT_Process_Form {
 		// 1: Check if it's an email at all
 		if(empty($email)) {
 			do_action('ctct_debug', 'Empty email address', $email);
-			return new WP_Error('empty', __('Email address not defined.', 'constant-contact-api'));
-		}
-		if(!is_email($email)) {
+			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'constant-contact-api'));
+			return;
+		} else if(!is_email($email)) {
 			do_action('ctct_debug', 'Invalid email address', $email);
-			return new WP_Error('not_email', __('Invalid email address.', 'constant-contact-api'));
+			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'constant-contact-api'));
+			return;
 		}
 
 		$methods = (array)CTCT_Settings::get('spam_methods');
@@ -169,7 +177,8 @@ class CTCT_Process_Form {
 		if(in_array('akismet', $methods)) {
 			$akismetCheck = $this->akismetCheck($Contact);
 			if(is_wp_error($akismetCheck)) {
-				return $akismetCheck;
+				$this->errors[] = $akismetCheck;
+				return;
 			}
 		}
 
@@ -185,7 +194,8 @@ class CTCT_Process_Form {
 			if($return == 'checked' || $return == 'not-checked') {
 				do_action('ctct_debug', 'DataValidation validation passed.', $email, $return);
 			} else {
-				return new WP_Error('wangguard', 'Email validation failed.', $email, $return);
+				$this->errors[] = new WP_Error('wangguard', 'Email validation failed.', $email, $return);
+				return;
 			}
 		}
 
@@ -197,7 +207,8 @@ class CTCT_Process_Form {
 			if($validation === false) {
 				do_action('ctct_debug', 'DataValidation validation failed.', $email, $Validate);
 				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'constant-contact-api');
-				return new WP_Error('datavalidation', $message, $email, $Validate);
+				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
+				return;
 			} elseif($validation === null) {
 				do_action('ctct_debug', 'DataValidation validation inconclusive.', $email, $Validate);
 			} elseif($validation === true) {
@@ -216,7 +227,8 @@ class CTCT_Process_Form {
 				do_action('ctct_debug', 'SMTP validation passed.', $email, $results);
 			} else {
 				do_action('ctct_debug', 'SMTP validation failed.', $email, $results);
-				return new WP_Error('smtp', 'Email validation failed.', $email, $results);
+				$this->errors[] = new WP_Error('smtp', 'Email validation failed.', $email, $results);
+				return;
 			}
 		}
 
@@ -269,4 +281,4 @@ class CTCT_Process_Form {
 	}
 }
 
-$CTCT_Process_Form = new CTCT_Process_Form;
+new CTCT_Process_Form;

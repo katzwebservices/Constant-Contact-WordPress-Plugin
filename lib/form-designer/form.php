@@ -213,9 +213,9 @@ if(!$debug) {
 					return makeFormField($field, $cc_request);
 				};
 			};
+		} else {
+			ctctlog('Changed is not set.');
 		}
-
-		ctctlog('Changed is not set.');
 
 		ctctlog('fields:');
 		r($f);
@@ -263,9 +263,9 @@ if(!$debug) {
 			$safesubscribelink = '';
 		}
 		$haserror = $errors = $success = $hidden = $action = '';
-		if(isset($data['output']) && $data['output'] == 'html') {
-			$haserror = ' %%HASERROR%%';
-			$action = '%%ACTION%%';
+		if( !isset($data['output']) || isset($data['output']) && $data['output'] == 'html') {
+			$haserror = '<!-- %%HASERROR%% -->';
+			$action = '<!-- %%ACTION%% -->';
 			$errors = '<!-- %%ERRORS%% -->';
 			$success = '<!-- %%SUCCESS%% -->';
 			$hidden = '<!-- %%HIDDEN%% -->';
@@ -273,7 +273,7 @@ if(!$debug) {
 		if(empty($cc_success)) {
 			$formInner = $errors . $success . $inputfields . $safesubscribelink . $hidden;
 		} else {
-			$formInner = $success;
+			$formInner = $success . $hidden;
 		}
 
 		$form = <<<EOD

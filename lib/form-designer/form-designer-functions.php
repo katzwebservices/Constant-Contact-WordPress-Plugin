@@ -139,54 +139,71 @@ function constant_contact_public_signup_form($args, $echo = true) {
      */
 
     $ProcessForm = CTCT_Process_Form::getInstance();
-    $form_status = $ProcessForm->getResults($unique_id);
+
+    $errors = $ProcessForm->getErrors();
+    $success = '';
 
     /**
      * Success message: If no errors AND signup was successful show the success message
      */
-    if($form_status === 'success') {
-        $success = '<p class="success cc_success">Success, you have been subscribed.</p>';
+    if( !empty( $errors ) ) {
+        $haserror = ' has_errors';
+
+        $error_output = '';
+
+        do_action('ctct_debug', $errors);
+
+        // Set up error display
+        $error_output .= '<div id="constant-contact-signup-errors" class="error">';
+        $error_output .= '<ul>';
+        foreach ($errors as $error ) {
+            $label =
+            $error_output .= '<li><label for="'.$error->get_error_code().'">'.$error->get_error_message().'</label></li>';
+        }
+        $error_output .= '</ul>';
+        $error_output .= '</div>';
+
+        // Filter output so text can be modified by plugins/themes
+        $error_output = apply_filters('constant_contact_form_errors', $error_output);
+
+    } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
+        $success = '<p class="success cc_success">';
+        $success .= __('Success, you have been subscribed.', 'constant-contact-api');
+        $success .= '</p>';
         $success = apply_filters('constant_contact_form_success', $success);
+    }
 
-        $form = str_replace('<!-- %%SUCCESS%% -->', $success, $form);
-        $form = preg_replace('/\%\%(.*?)\%\%/ism', '', $form);
-
-        return $form;
-    } else if(is_wp_error( $form_status )) {
-    	$haserror = ' has_errors';
-      	$email = $ProcessForm->getResults('email_validation');
-  	    $error_output = constant_contact_generate_error_output($form_status);
-    } // end if(isset($GLOBALS['cc_errors_'.$unique_id]))
-
-    $form = str_replace('<!-- %%SUCCESS%% -->', '', $form);
+    $form = str_replace('<!-- %%SUCCESS%% -->', $success, $form);
     $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
-    $form = str_replace('%%HASERROR%%', $haserror, $form);
-
-
-    $selected = !empty($_POST['lists']) ? (array)$_POST['lists'] : (bool)$selected;
+    $form = str_replace('<!-- %%HASERROR%% -->', $haserror, $form);
 
     // Generate the current page url, removing the success _GET query arg if it exists
     $current_page_url = remove_query_arg('success', ctct_current_page_url());
-    $form = str_replace('%%ACTION%%', $current_page_url, $form);
+    $form = str_replace('<!-- %%ACTION%% -->', $current_page_url, $form);
 
-    // Remove the cache for this whole joint
-    $listsOutput = KWSContactList::outputHTML($lists, array(
-        'fill' => true,
-        'showhidden' => false,
-        'checked' => $selected,
-        'type' => $show_list_selection ? $list_selection_format : 'hidden',
-    ));
+    if( strpos( $form , '%%LISTSELECTION%%' ) > 0 ) {
 
-    // If you're showing list selection, show the label and wrap it in a container.
-    if($show_list_selection && !$widget) {
-        $listsOutput = '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
-        <div class="cc_newsletter kws_input_container input-text-wrap">
-            '.$listsOutput.'
-        </div>';
+        $selected = !empty($_POST['lists']) ? (array)$_POST['lists'] : (bool)$selected;
+
+        // Remove the cache for this whole joint
+        $listsOutput = KWSContactList::outputHTML($lists, array(
+            'fill' => true,
+            'showhidden' => false,
+            'checked' => $selected,
+            'type' => $show_list_selection ? $list_selection_format : 'hidden',
+        ));
+
+        // If you're showing list selection, show the label and wrap it in a container.
+        if($show_list_selection && !$widget) {
+            $listsOutput = '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
+            <div class="cc_newsletter kws_input_container input-text-wrap">
+                '.$listsOutput.'
+            </div>';
+        }
+
+        $form = str_replace('<!-- %%LISTSELECTION%% -->', $listsOutput, $form);
+
     }
-
-    $form = str_replace('<!-- %%LISTSELECTION%% -->', $listsOutput, $form);
-
 
     /**
      * Finish form output including a hidden field for referrer and submit button
@@ -199,6 +216,9 @@ function constant_contact_public_signup_form($args, $echo = true) {
                 <input type="hidden" name="ccformid" value="'.$formid.'" />
         </div>';
     $form = str_replace('<!-- %%HIDDEN%% -->', $hiddenoutput, $form);
+
+    // All remaining tags should be removed.
+    $form = preg_replace('/\%\%(.*?)\%\%/ism', '', $form);
 
     $output = apply_filters('constant_contact_form', apply_filters( 'constant_contact_form_'.$formid, $form));
 
@@ -214,30 +234,6 @@ function constant_contact_public_signup_form($args, $echo = true) {
      */
     return $output;
 }
-
-function constant_contact_generate_error_output(WP_Error $errors) {
-    $error_output = '';
-    $errors = (array)$errors->get_error_messages();
-
-    do_action('ctct_debug', $errors);
-
-    // Set up error display
-    $error_output .= '<div id="constant-contact-signup-errors" class="error">';
-    $error_output .= '<ul>';
-    foreach ($errors as $e) {
-        if(is_array($e)) { $error_output .= '<li><label for="'.$e[1].'">'.$e[0].'</label></li>'; }
-        else { $error_output .= '<li>'.$e.'</li>'; }
-    }
-    $error_output .= '</ul>';
-    $error_output .= '</div>';
-
-    // Filter output so text can be modified by plugins/themes
-    $error_output = apply_filters('constant_contact_form_errors', $error_output);
-
-    return $error_output;
-}
-
-
 
 
 function wp_get_cc_form_object( $form ) {
