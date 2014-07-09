@@ -6,9 +6,6 @@
 #ctct-settings-tabs {
 	margin-top: 1em;
 }
-#ctct-settings-tabs .nav-tab-wrapper {
-	padding-top: 0;
-}
 
 #ctct-settings-tabs .ui-tabs-active a,
 #ctct-settings-tabs .ui-tabs-panel {
@@ -42,6 +39,7 @@
 
 .ui-tabs-nav li,
 .ui-tabs-nav li.ui-state-hover {
+	margin-right: 3px;
 	outline: none;
 	border: none;
 }
@@ -60,8 +58,29 @@
 	color: #464646;
 }
 
-.ui-tabs-nav ul li a {
-	font-size: 17px;
+#ctct-settings-tabs .nav-tab-wrapper {
+	padding-top: 0;
+	padding-left: 0;
+}
+#ctct-settings-tabs .ui-tabs-nav li a {
+	font-size: 16px;
+	line-height: 28px;
+	font-weight: 100;
+	padding: .5em 1em .333em .75em;
+}
+.ui-tabs-nav .dashicons {
+	line-height:28px;
+	color: #666;
+	font-size: 28px;
+	width: 28px;
+	height: 28px;
+}
+
+#ctct-settings-tabs .ui-state-hover .dashicons {
+	color: #555;
+}
+#ctct-settings-tabs .ui-state-active .dashicons {
+	color: #333;
 }
 
 h2.nav-tab-wrapper, h3.nav-tab-wrapper {

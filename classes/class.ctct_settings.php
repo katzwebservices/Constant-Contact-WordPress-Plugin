@@ -144,13 +144,13 @@ class CTCT_Settings extends CTCT_Admin_Page {
 		// We don't need this yet unless it's configured.
 		if(!$this->cc->isConfigured()) { return; }
 
-		add_settings_section('setup', __('Setup', 'constant-contact-api'), '<h3>Connect the plugin with Constant Contact</h3>', 'constant-contact-api');
+		add_settings_section('setup', '<i class="dashicons dashicons-admin-settings"></i> '.__('Setup', 'constant-contact-api'), '<h3>Connect the plugin with Constant Contact</h3>', 'constant-contact-api');
 
 		// Hook in here for more tabs.
 		do_action('ctct_settings_sections');
 
-		add_settings_section('registration', __('Sign-Up Methods', 'constant-contact-api'), '<h3>Configure how users sign up.</h3>', 'constant-contact-api');
-		add_settings_section('spam', __('Spam Prevention', 'constant-contact-api'), '<h3>How do you want to prevent spam?</h3>', 'constant-contact-api');
+		add_settings_section('registration', '<i class="dashicons dashicons-forms"></i> '.__('Sign-Up Methods', 'constant-contact-api'), '<h3>Configure how users sign up.</h3>', 'constant-contact-api');
+		add_settings_section('spam', '<i class="dashicons dashicons-welcome-comments"></i> '.__('Spam Prevention', 'constant-contact-api'), '<h3>How do you want to prevent spam?</h3>', 'constant-contact-api');
 
 		$groups = array(
 			'setup' => array(
