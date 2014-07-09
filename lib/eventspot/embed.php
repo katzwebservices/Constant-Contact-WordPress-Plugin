@@ -23,7 +23,7 @@ function eventspot_add_form_button(){
     if ($version < 3.5) {
         // show button for v 3.4 and below
         $image_btn = GFCommon::get_base_url() . "/images/form-button.png";
-        echo '<a href="#TB_inline?width=600&height=600&inlineId=select_eventspot_event" class="thickbox" id="add_gform" title="' . __("Add Gravity Form", 'constant-contact-api') . '"><img src="'.$image_btn.'" alt="' . __("Add Gravity Form", 'constant-contact-api') . '" /></a>';
+        echo '<a href="#TB_inline?width=600&amp;height=750&amp;inlineId=select_eventspot_event" class="thickbox" id="add_gform" title="' . __("Add Gravity Form", 'constant-contact-api') . '"><img src="'.$image_btn.'" alt="' . __("Add Gravity Form", 'constant-contact-api') . '" /></a>';
     } else {
         // display button matching new UI
         echo '<style>
@@ -42,7 +42,7 @@ function eventspot_add_form_button(){
                 	background-position: top left;
                 }
              </style>
-              <a href="#TB_inline?width=600&height=600&inlineId=select_eventspot_event" class="thickbox button eventspot_media_link" id="add_gform" title="' . __("Add a EventSpot&trade; Event", 'constant-contact-api') . '"><span class="eventspot_media_icon"></span> ' . __("Add Event", "constant-contact-api") . '</a>';
+              <a href="#TB_inline?width=600&amp;height=750&amp;inlineId=select_eventspot_event" class="thickbox button eventspot_media_link" id="add_gform" title="' . __("Add a EventSpot&trade; Event", 'constant-contact-api') . '"><span class="eventspot_media_icon"></span> ' . __("Add Event", "constant-contact-api") . '</a>';
     }
 }
 

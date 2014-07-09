@@ -102,6 +102,7 @@ To install the plugin follow the steps below:
 * Sanitized widget output
 * Fixed: Insert events widget code would add lots of extra spaces to the shortcode
 * Added: `onlyactive` checkbox to widget (previously it was always on)
+* Added: Multiple event support, event limit selector, and `onlyactive` checkbox to insert event shortcode generator
 
 = 3.0.3 =
 * Now uses Composer to auto-load classes
