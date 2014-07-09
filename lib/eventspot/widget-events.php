@@ -45,8 +45,16 @@ class constant_contact_events_widget extends WP_Widget {
 	}
 
 
-   /** @see WP_Widget::widget */
-    function widget($args = array(), $instance = array())
+   /**
+    * Generate the output for the widget.
+    * @action eventspot_output Triggers the action to generate the output for the events.
+    * @filter constant_contact_event_widget_ouput Modify widget output. Passes $output and $instance.
+    * @uses CTCT_EventSpot::events_output()
+    * @param  array       $args     Widget args
+    * @param  array       $instance Widget settings
+    * @return void
+    */
+   function widget($args = array(), $instance = array())
 	{
 		$output = '';
 
@@ -58,21 +66,22 @@ class constant_contact_events_widget extends WP_Widget {
 		$output .= (isset($before_widget)) ? $before_widget : '';
 		if(!empty($widget_title)) {
 			$output .= (isset($before_title, $after_title)) ? $before_title : '<h2>';
-			$output .= (isset($widget_title)) ? $widget_title : '';
+			$output .= (isset($widget_title)) ? esc_html( $widget_title ) : '';
 			$output .= (isset($after_title, $before_title)) ? $after_title : '</h2>';
 		}
 		$output .= (!empty($widget_description)) ? "\n\t".'<div class="cc_event_description">'."\n\t\t".wpautop(wptexturize($widget_description)).'</div>' : '';
 
+		// Get the output from CTCT_EventSpot::events_output()
 		ob_start();
 		$instance['sidebar'] = true;
-		do_action('eventspot_output', $instance, NULL, true);
+		do_action('eventspot_output', $instance, true);
 		$output .= ob_get_clean();
 
 		$output .= (isset($after_widget)) ? $after_widget : '';
 
 		// Modify the output by calling add_filter('constant_contact_event_widget', 'your_function');
 		// Passes the output to the function, needs return $output coming from the function.
-		$output = apply_filters('constant_contact_event_widget_ouput', $output);
+		$output = apply_filters('constant_contact_event_widget_ouput', $output, $instance );
 
 		echo $output;
 
@@ -99,30 +108,38 @@ class constant_contact_events_widget extends WP_Widget {
 
     /** @see WP_Widget::form */
   /** @see WP_Widget::form */
-    function form($instance)
-	{
+    function form($instance) {
+
+		$instance = wp_parse_args( $instance, array(
+			'title' => '',
+			'description' => '',
+			'no_events_text' => __('There are no active events.','constant-contact-api'),
+		));
 
 		extract($instance);
-
-		$title = isset( $instance['title'] ) ? $instance['title'] : '';
-		$description = isset( $instance['description'] ) ? $instance['description'] : '';
 	?>
 	<h3><?php _e('Constant Contact Event Widget Settings', 'constant-contact-api'); ?></h3>
-	<p class="howto"><?php _e('Note: only active events will be displayed. Completed or cancelled events will not be shown.', 'constant-contact-api'); ?></p>
 	<a name="widget"></a>
 	<table class="form-table">
 		<tr valign="top">
 			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Widget Title', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
-			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo $title; ?>" size="50" />
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo esc_attr( $title ); ?>" size="50" />
 			<p class="description"><?php _e('The title text for the this widget.', 'constant-contact-api'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
 			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Widget Description', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
-			<textarea class="widefat" name="<?php echo $this->get_field_name('description');?>" id="<?php echo $this->get_field_id('description');?>" cols="50" rows="4"><?php echo $description; ?></textarea>
+			<textarea class="widefat" name="<?php echo $this->get_field_name('description');?>" id="<?php echo $this->get_field_id('description');?>" cols="50" rows="4"><?php echo esc_attr( $description ); ?></textarea>
 			<p class="description"><?php _e('The description text displayed in the sidebar widget before the events. HTML allowed. Paragraphs will be added automatically like in posts.', 'constant-contact-api'); ?></p>
+			</td>
+		</tr>
+		<tr valign="top">
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('no_events_text');?>"><span><?php _e('"No Events" Text', 'constant-contact-api'); ?></span></label></p></th>
+			<td>
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id('no_events_text');?>" name="<?php echo $this->get_field_name('no_events_text');?>" value="<?php echo esc_attr( $no_events_text ); ?>" />
+			<p class="description"><?php _e('The text to display if there are no events.', 'constant-contact-api'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
@@ -130,6 +147,7 @@ class constant_contact_events_widget extends WP_Widget {
 			<td>
 				<?php $limit = isset($limit) ? $limit : null; ?>
 				<select class="select" name="<?php echo $this->get_field_name('limit');?>" id="<?php echo $this->get_field_id('limit');?>">
+					<option value="0"<?php selected( empty($limit), true ); ?>><?php esc_attr_e('All', 'constant-contact-api'); ?></option>
 					<option value="1"<?php selected($limit, 1); ?>>1</option>
 					<option value="2"<?php selected($limit, 2); ?>>2</option>
 					<option value="3"<?php selected($limit, 3); selected($limit, null) ?>>3</option>
@@ -150,43 +168,48 @@ class constant_contact_events_widget extends WP_Widget {
 			<?php
 				$fields = array(
 					array(
+						'id' => 'onlyactive',
+						'label' => __('Only show active events', 'constant-contact-api'),
+						'default' => true,
+					),
+					array(
 						'id' => 'showdescription',
-						'label' => 'Show event Description',
+						'label' => __('Show event Description', 'constant-contact-api'),
 						'default' => true
 					),
 					array(
 						'id' => 'datetime',
-						'label' => 'Show event Date & Time',
+						'label' => __('Show event Date & Time', 'constant-contact-api'),
 						'default' => true
 					),
 					array(
 						'id' => 'location',
-						'label' => 'Show event Location',
+						'label' => __('Show event Location', 'constant-contact-api'),
 						'default' => false
 					),
 					array(
 						'id' => 'map',
-						'label' => 'Show map link for Location (if Location is shown)',
+						'label' => __('Show map link for Location (if Location is shown)', 'constant-contact-api'),
 						'default' => false
 					),
 					array(
 						'id' => 'calendar',
-						'label' => 'Show "Add to Calendar" link',
+						'label' => __('Show "Add to Calendar" link', 'constant-contact-api'),
 						'default' => false
 					),
 					array(
 						'id' => 'directtoregistration',
-						'label' => 'Link directly to registration page, rather than event homepage',
+						'label' => __('Link directly to registration page, rather than event homepage', 'constant-contact-api'),
 						'default' => false
 					),
 					array(
 						'id' => 'newwindow',
-						'label' => 'Open event links in a new window',
+						'label' => __('Open event links in a new window', 'constant-contact-api'),
 						'default' => false
 					),
 					array(
 						'id' => 'style',
-						'label' => '<strong>Use plugin styles</strong>. Disable if you want to use your own styles (CSS)',
+						'label' => __('<strong>Use plugin styles</strong>. Disable if you want to use your own styles (CSS)', 'constant-contact-api'),
 						'default' => true
 					)
 				);

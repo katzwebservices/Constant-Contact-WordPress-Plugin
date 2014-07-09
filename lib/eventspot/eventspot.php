@@ -17,7 +17,14 @@ add_action('plugins_loaded', array('CTCT_EventSpot', 'setup'));
 class CTCT_EventSpot extends CTCT_Admin_Page {
 
 	var $old_api;
+
+	var $settings;
+
 	static $instance;
+
+	function __construct() {
+		parent::__construct( true );
+	}
 
 	/**
 	 * Set the submenu anchor text
@@ -171,7 +178,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 *
 	 * Pass $args as an array with the following settings.
 	 * 'id' // REQUIRED if you want to show a single event! The ID is the ID of the event. Looks like a18g4v1b611561nn40b. If empty, show a list of events.
-	 * 'limit' // If you want to embed a list of events, limit the list to this number. Default: 3; Type: number
+	 * 'limit' // If you want to embed a list of events, limit the list to this number. You can set the limit to 0 and have it show all events (not ideal if you have a bunch of events). Default: 3; Type: number
 	 * 'showtitle' // Show the title of the event. Default: true
 	 * 'showdescription' // Show the description of the event. Default: true
 	 * 'datetime' // Show the date and time of the event. Default: true
@@ -182,15 +189,48 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * 'newwindow' // Open the links in a new window? Default: false
 	 * 'onlyactive' // Only show active events? Default: true
 	 * 'mobile' // If users are on mobile devices, link to a mobile-friendly registration page? Default: true,
+	 * 'no_events_text' // Text to display when there are no events shown.
 	 * @param  array   $args    Output settings. See function description.
 	 * @param  boolean $echo    Echo or return events output
 	 * @return [type]           [description]
 	 */
 	function events_output($args = array(), $echo = false) {
 
-		ob_start();
-		require(EVENTSPOT_FILE_PATH.'shortcode.php');
-		$output = ob_get_clean();
+		$settings = shortcode_atts(array(
+			'limit' => 3,
+			'showtitle' => true,
+			'showdescription' => true,
+			'datetime' => true,
+			'location' => false,
+			'calendar' => false,
+			'style' => true,
+			'id' => false,
+			'newwindow' => false,
+			'map' => false,
+			'onlyactive' => true,
+			'sidebar' => false,
+			'mobile' => true,
+			'class' => 'cc_event',
+			'no_events_text' => __('There are no active events.','constant-contact-api'),
+		), $args);
+
+		foreach($settings as $key => $arg) {
+			if(strtolower($arg) == 'false' || empty($arg)) {
+				$settings["{$key}"] = false;
+			}
+		}
+
+		if( empty( $settings['id'] ) ) {
+			$settings['events'] = constant_contact_old_api_get_all('Events', $this->old_api);
+			$settings['class'] .= ' multiple_events';
+		} else {
+			$settings['class'] .= ' single_event';
+			$settings['events'] = array(CTCT_EventSpot::getInstance()->old_api->getEventDetails(new Event(array('link' => sprintf('/ws/customers/%s/events/%s', CTCT_USERNAME, $settings['id'] )))));
+		}
+
+		$this->settings = $settings;
+
+		$output = kws_ob_include(EVENTSPOT_FILE_PATH.'shortcode.php', $this );
 
 		if($echo) {
 			echo $output;

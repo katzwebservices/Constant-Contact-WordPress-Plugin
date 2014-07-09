@@ -21,7 +21,7 @@
             settings[8] = (jQuery("#eventspot_display_usestyles").is(":checked") ? '' : ' style=0');
             settings[9] = (jQuery("#eventspot_display_mobile").is(":checked") ? '' : ' mobile=0');
 
-            window.send_to_editor('[eventspot ' + settings.join(' ') + ' /]');
+            window.send_to_editor('[eventspot ' + settings.join(' ').replace(/\s+/, ' ') + '/]');
 
             jQuery("#add_event_id").val('');
 
@@ -36,7 +36,7 @@
                 <a href="http://katz.si/4o" rel="external"><img src="<?php echo plugins_url('images/eventspot-logo.png', EVENTSPOT_FILE); ?>" alt="EventSpot from Constant Contact" /></a>
             <?php
 
-           /* try {
+            try {
 
 	            $events = CTCT_EventSpot::getInstance()->old_api->getEvents();
 
@@ -105,7 +105,7 @@
 	    } catch(Exception $e) {
 	    	// TODO: log this
 	    	echo sprintf(__('<p>There was a problem fetching the Events:</p><pre>%s</pre>', 'constant-contact-api'), $e->getMessage());
-	    } // End events throwing exception*/
+	    } // End events throwing exception
 	?>
     </div>
 </div>

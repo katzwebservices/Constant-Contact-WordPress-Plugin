@@ -97,6 +97,11 @@ To install the plugin follow the steps below:
 * Fixed: Help tab labels now start with "Constant Contact:" when not on the plugin pages
 * Fixed: CSS / JS loading on all admin pages
 * Removed `/docs/` directory
+* Add `no_events_text` parameter for shortcode (and widget setting) - allows you to define what text is shown when there are no events.
+* Added option to define `0` as the `limit` parameter to show all events
+* Sanitized widget output
+* Fixed: Insert events widget code would add lots of extra spaces to the shortcode
+* Added: `onlyactive` checkbox to widget (previously it was always on)
 
 = 3.0.3 =
 * Now uses Composer to auto-load classes

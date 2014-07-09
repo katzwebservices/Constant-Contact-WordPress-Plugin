@@ -27,7 +27,7 @@ function eventspot_add_form_button(){
     } else {
         // display button matching new UI
         echo '<style>
-        			.eventspot_media_icon{
+        		.eventspot_media_icon{
                 	background:url(' . EVENTSPOT_FILE_URL . '/images/eventspot-icon.png) no-repeat top right;
 	                display: inline-block;
 	                height: 16px;
