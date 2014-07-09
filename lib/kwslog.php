@@ -27,9 +27,9 @@ class KWSLog {
 
 	private static $name = 'Constant Contact';
 	private static $slug = 'ctct';
-	private static $tablename;
 	private static $instance;
-	private $logs = array();
+	private static $methods = array();
+	private $stored_logs = array();
 
 	function load() {
 		$KWSLog = new KWSLog();
@@ -47,45 +47,57 @@ class KWSLog {
 
 	function __construct($name = 'Constant Contact') {
 
+		if( !class_exists( 'CTCT_Settings' )) { return; }
+
+		// Load Pippin's logging class
+		if( !class_exists( 'WP_Logging') ) {
+			include_once CTCT_DIR_PATH.'vendor/pippinsplugins/WP-Logging/WP_Logging.php';
+		}
+
 		$slug = sanitize_title( str_replace(array(ABSPATH, 'plugins/', 'wp-content/', 'mu-plugins/', '/lib'), '', __DIR__) );
 
+		// What methods are supported?
+		self::$methods = (array)CTCT_Settings::get('logging');
 
 		self::$slug = $slug;
-		self::$tablename = $slug.'_log';
 
-		/**
-		 * Register the action for the logger.
-		 *
-		 * Trigger a log item using `do_action('$tablename', $message, $loglevel);`
-		 */
-		add_action(self::$tablename, array(&$this, "log_message") ,1,3);
-		add_action(self::$slug.'_debug', array(&$this, "debug"));
+		add_action('ctct_debug', array(&$this, "debug"), 10, 3);
+		add_action('ctct_log', array(&$this, "debug"), 10, 3);
+		add_action('ctct_error', array(&$this, "error"), 10, 3);
+		add_action('ctct_activity', array(&$this, "activity"), 10, 3);
 
-		add_action('admin_menu', array(&$this, 'log_menu'));
+		add_action( 'init', array(&$this, 'process_stored_logs'));
+
+		add_action('admin_menu', array(&$this, 'log_menu'), 10000 );
+
+		add_filter( 'wp_logging_should_we_prune', '__return_true', 10 );
+		add_filter( 'wp_log_types', array( $this, 'wp_logging_log_types'));
 
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 		add_action('admin_head', array(&$this, 'wp_head'));
 		add_action('wp_head', array(&$this, 'wp_head'));
-		add_action('shutdown', array(&$this, 'print_logs'), 10000);
+	}
+
+	function wp_logging_log_types( $types ) {
+		$types[] = 'ctct_debug';
+		$types[] = 'ctct_log';
+		$types[] = 'ctct_error';
+		$types[] = 'ctct_activity';
+		return $types;
 	}
 
 	function wp_enqueue_scripts() {
+		global $pagenow;
+
 		if(current_user_can('manage_options')) {
 			wp_enqueue_script('jquery');
 		}
+
 	}
 
 	function wp_head() {
 		if(current_user_can('manage_options')) {
 			?>
-			<script>
-				jQuery(document).ready(function($) {
-					$('body').on('click', '.kwslog-toggle', function(e) {
-						$('.data', $(this).parents('.kwslog-debug')).toggle();
-						return false;
-					});
-				});
-			</script>
 			<style type="text/css">
 				.kwslog-debug {
 					margin:10px 0 20px;
@@ -106,184 +118,142 @@ class KWSLog {
 	 * Add the admin menu to the Tools menu
 	 */
 	function log_menu() {
-		add_management_page(__(self::$name, 'kwslog'), sprintf(__('%s Log', 'kwslog'), self::$name), 'manage_options', __FILE__, array(&$this, 'log_page'));
-	}
-
-	/*
-	 *  Add the log table to the installation
-	 */
-	function activate_plugin() {
-		global $wpdb;
-
-
-		$tablename = $wpdb->prefix . self::$tablename;
-
-		if($wpdb->get_var("SHOW TABLES LIKE '{$tablename}'") != $tablename ) {
-
-			$sql = "CREATE TABLE IF NOT EXISTS `{$tablename}` (
-	  				`log_id` int(11) NOT NULL AUTO_INCREMENT,
-	  				`message` text NOT NULL,
-	  				`level` varchar(20) NOT NULL,
-	  				`date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	  				 PRIMARY KEY (`log_id`)
-				);";
-
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			dbDelta($sql);
-		}
-	}
-
-
-	/**
-	 * @todo - Add delete table SQL
-	 */
-	function log_deactivate_plugin() {
-
-	}
-
-	function debug($message = '') {
-
-		if(!function_exists('current_user_can') || !current_user_can('manage_options')) { return; }
-
-		$bt = debug_backtrace();
-
-		foreach($bt as $call) {
-			if($call['function'] === 'do_action' && $call['args'][0] === self::$slug.'_debug') {
-				$caller = $call;
-				// do_action and title
-				unset($caller['args'][0]);
-				if(is_string($caller['args'][1])) {
-					unset($caller['args'][1]);
-				}
-				break;
-			}
-			if(isset($call['line']) && $call['function'] === 'debug' && $call['class'] === 'KWSLog') {
-				$caller = $call;
-				if(!empty($message)) {
-					unset($caller['args'][0]);
-				}
-				break;
-			}
-		}
-
-		if(!empty($message) && is_string($message)) {
-			$message = '<h4>'.$message.'</h4>';
-			$hidedata = 'display:none;';
-		} elseif(!is_string($message)){
-			$message = '';
-			$hidedata = '';
-		}
-
-		$additional_data = '';
-		if(!empty($caller['args'])) {
-			foreach($caller['args'] as &$arg) {
-				if(is_string($arg)){
-					$arg = htmlentities2($arg);
-				}
-			}
-			$additional_data = '<div><a href="#" class="kwslog-toggle">View Data</a></div><div class="data" style="'.$hidedata.'"><pre>'.print_r($caller['args'], true).'</pre></div>';
-		}
-
-		$debug_message = '<div class="kwslog-debug">'.$message.'<p><code>'.str_replace(ABSPATH, '', $caller['file']).'</code>, line <code>'.$caller['line'].'</code></p>'.$additional_data.'</div>';
-
-		$logs = (array)$this->logs;
-		$logs[] = $debug_message;
-		$this->logs = $logs;
-
+		$menu_title = __('Activity Log', 'constant-contact-api' );
+		add_submenu_page( 'constant-contact-api', $menu_title, $menu_title, 'manage_options', 'constant-contact-log', array(&$this, 'log_page'));
 	}
 
 	/**
-	 * Output logs that were generated while the page was being generated
+	 * Handle stored logs that weren't able to be output yet.
+	 * @return void
 	 */
-	function print_logs() {
-		if(!current_user_can('manage_options') || defined('DOING_AJAX')) { return; }
-
-		if(empty($this->logs)) { return; }
-		foreach($this->logs as $log) {
-			echo $log;
+	function process_stored_logs() {
+		if( !empty( $this->stored_logs ) ) {
+			foreach($this->stored_logs as $log ) {
+				$this->insert_log( $log['type'], $log['title'], $log['message'], $log['data'] );
+			}
 		}
 	}
 
-	/**
-	 * Create a log message. If the log table doesn't exist (it should be created on activation), create the log table.
-	 * @param  mixed  $message   What the log message should include.
-	 * @param  string  $level     Debug level. Default: 'debug'
-	 * @param  boolean $recursive Whether or not the message is being called by itself. Only here to prevent infinite loop.
-	 */
-	function log_message($message, $data = '', $level = 'debug', $recursive = false) {
-		global $wpdb;
+	function insert_log( $type = 'debug', $title = NULL, $message = NULL, $data = NULL ) {
+		global $wp_rewrite;
 
-		$message = is_string($message) ? $message : print_r($message, true);
-		$data = is_string($data) ? $data : print_r($data, true);
-		$message = $message."<br />".$data;
+		// If we're not logging for certain types, then do not insert log.
+		if( !in_array( $type, self::$methods) ) { return; }
 
-		$values = array(
-			'message' => $message,
-			'level' => $level
+		// This debug call is being called before a bunch of necessary stuff is loaded.
+		// We store it, then call it later.
+		if ( empty( $wp_rewrite ) ) {
+			$this->stored_logs[] = compact( 'type', 'title', 'message', 'data' );
+			return;
+		}
+
+		$log_data = array(
+			'post_title'   => $title, // Just in case.
+			'post_content' => is_string( $message ) ? $message : NULL,
+			'log_type'     => 'ctct_'.$type,
 		);
 
-		$wpdb->insert($wpdb->prefix.self::$tablename, $values, array('%s','%d'));
-
-		if(!empty($wpdb->last_error) && preg_match('/doesn\'t\ exist/ism', $wpdb->last_error) && !$recursive) {
-			$this->activate_plugin();
-			$this->log_message($message, $data, $level, true);
+		$meta = array();
+		if( !is_string( $message ) ) {
+			$meta['message'] = $message;
 		}
-	}
-
-
-	/*
-	 * Return Array of log messages
-	*/
-	function get_log_messages($start = 0,$limit = 50, $recursive = false) {
-		global $wpdb;
-		$tablename = self::$tablename;
-		$results = $wpdb->get_results($wpdb->prepare("SELECT message, level, date
-			FROM  `{$wpdb->prefix}{$tablename}`
-			ORDER BY date DESC
-			LIMIT %d,%d", $start,$limit));
-
-		if(!empty($wpdb->last_error) && preg_match('/doesn\'t\ exist/ism', $wpdb->last_error) && !$recursive) {
-			$this->activate_plugin();
-			$this->get_log_messages($start, $limit, true);
+		if( !empty( $data ) ) {
+			$meta['data'] = $data;
 		}
 
-		return $results;
+		// Use instead of add(); so we get access to meta.
+		$debug_post_id = WP_Logging::insert_log( $log_data, $meta );
+
 	}
 
+	function debug( $title = NULL, $message = NULL, $data = NULL ) {
+
+		$this->insert_log( 'debug', $title, $message, $data );
+	}
+
+	function error( $title = NULL, $message = NULL, $data = NULL ) {
+
+		if( !in_array( 'error', self::$methods) ) { return; }
+
+		$this->insert_log( 'error', $title, $message, $data );
+	}
+
+	function activity( $title = NULL, $message = NULL, $data = NULL ) {
+
+		$this->insert_log( 'activity', $title, $message, $data );
+	}
 
 
 	/*
 	 * Show WP Sync Log data per blog
 	 *
 	 */
-	function log_page()
-	{
+	function log_page() {
 
-		if (!is_super_admin())
-			redirect_post();
+		$args = array(
+		    'posts_per_page'=> -1,
+		    'paged'         => get_query_var( 'paged' ),
+		    'log_type'      => isset($_GET['log']) ? esc_attr( $_GET['log'] ) : 'ctct_debug',
+		);
 
-		$logdata = $this->get_log_messages(0,40);
+		$logs = WP_Logging::get_connected_logs( $args );
 	?>
 		<div class="wrap">
 			<h2><?php _e(sprintf('%s Log', self::$name), 'kwslog'); ?></h2>
 
-			 <table class="widefat post">
+			<?php
+				kws_print_subsub('log', array(
+				    array('val' => 'ctct_activity', 'text' => 'Constant Contact Activity'),
+				    array('val' => 'ctct_debug', 'text' => 'Debugging Logs'),
+				    array('val' => 'ctct_log', 'text' => 'Notices'),
+				    array('val' => 'ctct_error', 'text' => 'Errors or Exceptions')
+				));
+			?>
+			 <table class="ctct_table widefat">
 				<thead>
 				<tr>
-					<th class="title"><?php _e('Message', 'kwslog')?></th>
-					<th class=""><?php _e('Level', 'kwslog')?></th>
-					<th class="date"><?php _e('Date', 'kwslog')?></th>
-
+					<th class="title"><?php _e('Title', 'kwslog')?></th>
+					<th class="" style="width: 30%"><?php _e('Content', 'kwslog')?></th>
+					<th class="column column-post_date"><?php _e('Date', 'kwslog')?></th>
 				</tr>
 				</thead>
 					<tbody>
-					<?php foreach ($logdata as $logEntry) {?>
-						<tr>
-							<td><pre><?php echo $logEntry->message ?></pre></td>
-							<td><?php echo $logEntry->level ?></td>
-							<td><?php echo $logEntry->date ?></td>
-						</tr>
-					<?php }?>
+					<?php
+
+					if ( $logs ) {
+						foreach ( $logs as $log ) {
+							?>
+								<tr>
+									<td><?php echo get_the_title( $log ); ?></td>
+									<td><?php
+
+										$content = $log->post_content;
+										$message = get_post_meta( $log->ID, '_wp_log_message', true );
+										$data = get_post_meta( $log->ID, '_wp_log_data', true );
+
+										foreach ( array( $content, $message, $data) as $key => $item ) {
+
+											if( empty( $item ) ) {
+												continue;
+											}
+
+											$item = maybe_unserialize( $item );
+
+											echo '<pre style="max-height:300px; overflow:auto; max-width: 400px;">';
+											if( is_string( $item ) ){
+												print( htmlentities2( $item ) );
+											} else {
+												print_r( $item ) ;
+											}
+											echo '</pre>';
+										}
+									?></td>
+									<td><?php echo $log->post_date; ?></td>
+								</tr>
+							<?php
+						}
+					}
+?>
 				</tbody>
 			</table>
 		</div>

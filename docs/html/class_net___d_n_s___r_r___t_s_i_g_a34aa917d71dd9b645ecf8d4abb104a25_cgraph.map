@@ -1,6 +1,0 @@
-<map id="Net_DNS_RR_TSIG\rr_rdata" name="Net_DNS_RR_TSIG\rr_rdata">
-<area shape="rect" id="node2" href="$class_net___d_n_s.html#a1e086e94cfa4b747b481b1e5859a1caf" title="translates a DNS class from it&#39;s name to it&#39;s integer value. " alt="" coords="216,5,389,33"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s___packet.html#a953289b1c2543c4294c5c40a98e04c81" title="DNS packet compression method. " alt="" coords="210,57,395,85"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s___r_r___t_s_i_g.html#a63aef56e97be1cf55d47cbcc584cd60f" title="Net_DNS_RR_TSIG\\error" alt="" coords="215,109,390,137"/>
-<area shape="rect" id="node5" href="$class_net___d_n_s.html#ac6fb33bbed78aa908d67df566bd83dfb" title="Translates rcode integers into names. " alt="" coords="442,109,595,137"/>
-</map>

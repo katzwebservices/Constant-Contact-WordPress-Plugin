@@ -1,5 +1,0 @@
-<map id="KWSContact\get" name="KWSContact\get">
-<area shape="rect" id="node2" href="$class_k_w_s_a_j_a_x.html#a9e4b29f43a7630e1fd9adcab6265e1c7" title="KWSAJAX\\processAjax" alt="" coords="193,5,354,33"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t___process___form.html#aaafc23302889bc63c66db53deeb8aef3" title="Validate email based on user settings. " alt="" coords="173,57,374,101"/>
-<area shape="rect" id="node4" href="$class_c_t_c_t___process___form.html#a28276123b47f4a19d7e0c965462f6b3c" title="Process the form if there is a $_POST[&#39;uniqueformid&#39;] set. " alt="" coords="422,65,623,93"/>
-</map>

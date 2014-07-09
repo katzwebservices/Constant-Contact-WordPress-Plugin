@@ -1,5 +1,0 @@
-<map id="JsonLoader\getContactsJson" name="JsonLoader\getContactsJson">
-<area shape="rect" id="node2" href="$class_contact_service_unit_test.html#a5b7f172215fa57d07ce88c53ea31a912" title="ContactServiceUnitTest\l\\testGetContactByEmail" alt="" coords="253,5,416,49"/>
-<area shape="rect" id="node3" href="$class_contact_service_unit_test.html#abe414fdbcca5d682e765939de50df3a3" title="ContactServiceUnitTest\l\\testGetContacts" alt="" coords="255,73,415,117"/>
-<area shape="rect" id="node4" href="$class_list_service_unit_test.html#ab006965a239294c8fc20e0818172be6d" title="ListServiceUnitTest\l\\testGetContactsFromList" alt="" coords="248,141,421,185"/>
-</map>

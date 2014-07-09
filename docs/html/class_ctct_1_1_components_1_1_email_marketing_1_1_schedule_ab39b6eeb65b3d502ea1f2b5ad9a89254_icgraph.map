@@ -1,6 +1,0 @@
-<map id="Ctct\Components\EmailMarketing\Schedule\create" name="Ctct\Components\EmailMarketing\Schedule\create">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_campaign_schedule_service.html#a2bcc5ee12d91827d7ca93eaf01ae3be7" title="Create a new schedule for a campaign. " alt="" coords="275,5,495,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_services_1_1_campaign_schedule_service.html#a649b23866eee81fb8ef6bcc01113c92b" title="Get a specific schedule for a campaign. " alt="" coords="275,73,495,117"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_services_1_1_campaign_schedule_service.html#a10f70dabb56c1a16159991bcfba81e4e" title="Get a list of schedules for a campaign. " alt="" coords="275,141,495,185"/>
-<area shape="rect" id="node5" href="$class_ctct_1_1_services_1_1_campaign_schedule_service.html#a9f260b3737372bd05a280a265545fc58" title="Update a specific schedule for a campaign. " alt="" coords="275,209,495,253"/>
-</map>

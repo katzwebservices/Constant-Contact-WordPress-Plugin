@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$class_ctct_1_1_exceptions_1_1_ctct_exception.html" title="Ctct\\Exceptions\\CtctException" alt="" coords="144,5,344,33"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_exceptions_1_1_illegal_argument_exception.html" title="Ctct\\Exceptions\\IllegalArgument\lException" alt="" coords="139,57,349,101"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_exceptions_1_1_o_auth2_exception.html" title="Ctct\\Exceptions\\OAuth2Exception" alt="" coords="133,125,355,153"/>
-<area shape="rect" id="node5" href="$class_http404_error.html" title="Http404Error" alt="" coords="195,177,293,205"/>
-</map>

@@ -1,0 +1,3 @@
+[submodule "/Users/zackkatz/Sites/wordpress/wp-content/plugins/ctct/vendor/pippinsplugins/WP-Logging"]
+	path = /Users/zackkatz/Sites/wordpress/wp-content/plugins/ctct/vendor/pippinsplugins/WP-Logging
+	url = https://github.com/pippinsplugins/WP-Logging

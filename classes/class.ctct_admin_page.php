@@ -48,8 +48,7 @@ abstract class CTCT_Admin_Page {
     public function print_styles() {
 
         // If the current page isn't the page being requested, we don't print those scripts
-        if( !empty($plugin_page) && $this->key !== $plugin_page ){ return; }
-
+        if( empty($_GET['page']) || $this->key !== $_GET['page'] ){ return; }
 
         wp_enqueue_style('constant-contact-api-admin', CTCT_FILE_URL.'css/admin/constant-contact-admin-css.css', array('thickbox'));
         wp_enqueue_style('dashicons'); // For the plugin status checkboxes
@@ -62,7 +61,7 @@ abstract class CTCT_Admin_Page {
         global $plugin_page;
 
         // If the current page isn't the page being requested, we don't print those scripts
-        if( !empty($plugin_page) && $this->key !== $plugin_page ){ return; }
+        if( empty($_GET['page']) || $this->key !== $_GET['page'] ){ return; }
 
         wp_enqueue_script('alertify', CTCT_FILE_URL.'js/alertify.js/lib/alertify.min.js', array('jquery'));
         wp_enqueue_script('jquery-cookie', CTCT_FILE_URL.'js/admin/jquery.cookie.js', array('jquery'));
@@ -132,6 +131,15 @@ abstract class CTCT_Admin_Page {
     }
 
     public function help_tabs($tabs) {
+        global $pagenow;
+
+        if( in_array( $pagenow, array( 'edit.php', 'post-new.php' )) ) {
+            return $tabs;
+        }
+        if( !preg_match('/constant-contact/', $pagenow ) ) {
+            return $tabs;
+        }
+
     	foreach($tabs as &$tab) {
     		$tab['title'] = str_replace('Constant Contact: ', '', $tab['title']);
     	}

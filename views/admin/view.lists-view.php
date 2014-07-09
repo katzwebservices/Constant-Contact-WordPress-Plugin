@@ -1,7 +1,7 @@
 <table class="widefat ctct_table fixed" cellspacing="0">
 	<thead>
 		<tr>
-			<th scope="col" class="id manage-column column-name"><?php _e('ID', 'constant-contact-api'); ?></th>
+			<th scope="col" class="id manage-column column-name"><?php _e('List ID', 'constant-contact-api'); ?></th>
 			<th scope="col" class="name manage-column column-name"><?php _e('Name', 'constant-contact-api'); ?></th>
 			<th scope="col" class="count manage-column column-name"><?php _e('Contact Count', 'constant-contact-api'); ?></th>
 			<th scope="col" class="view manage-column column-name"><?php _e('View List Contacts', 'constant-contact-api'); ?></th>
@@ -11,7 +11,7 @@
 
 <?php
 
-foreach ($Lists as $List ) {
+foreach ( (array)$Lists as $List ) {
 		$List = new KWSContactList($List);
 		$alt = empty( $alt ) ? 'class="alt"' : '';
 	?>

@@ -1,9 +1,0 @@
-<map id="ListsCollection\getListDetails" name="ListsCollection\getListDetails">
-<area shape="rect" id="node2" href="$class_contact_list.html#a9817299208af15788b14190f4d8cae5e" title="Create associate array of object from XML. " alt="" coords="260,59,423,87"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t_request.html#aad92e5787f6d3fdf00760d99505aa6db" title="CTCTRequest\\makeRequest" alt="" coords="245,111,438,139"/>
-<area shape="rect" id="node4" href="$class_o_auth_request.html#afe9d0f6cb8e0dadb1c0faeea9ecafe45" title="pretty much a helper function to set up the request " alt="" coords="485,73,691,117"/>
-<area shape="rect" id="node7" href="$class_c_t_c_t_exception.html#adc8307ec7d7a2c730b0dac678d0e7fcb" title="CTCTException\\generateError" alt="" coords="487,141,689,169"/>
-<area shape="rect" id="node5" href="$class_o_auth_request.html#ae544b1c10b82d5a82dcc259064763420" title="util function: current nonce " alt="" coords="740,5,905,49"/>
-<area shape="rect" id="node6" href="$class_o_auth_request.html#adfc6b936799f705d9a4442961a26e8cb" title="util function: current timestamp " alt="" coords="740,73,905,117"/>
-<area shape="rect" id="node8" href="$class_c_t_c_t_exception.html#a6a86531406328bbd2a6c6252b7fb3a70" title="CTCTException\\logError" alt="" coords="739,141,906,169"/>
-</map>

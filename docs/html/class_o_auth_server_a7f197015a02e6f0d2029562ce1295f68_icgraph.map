@@ -1,4 +1,0 @@
-<map id="OAuthServer\get_token" name="OAuthServer\get_token">
-<area shape="rect" id="node2" href="$class_o_auth_server.html#a5c76359726e685013d2e0cb8a1abe09a" title="process an access_token request returns the access token on success " alt="" coords="217,5,397,49"/>
-<area shape="rect" id="node3" href="$class_o_auth_server.html#ad31e95096adeac980a8a99f59c4cadc6" title="verify an api call, checks all the parameters " alt="" coords="240,73,374,117"/>
-</map>

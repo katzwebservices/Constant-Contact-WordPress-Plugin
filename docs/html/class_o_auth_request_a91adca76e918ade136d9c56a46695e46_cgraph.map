@@ -1,7 +1,0 @@
-<map id="OAuthRequest\get_signature_base_string" name="OAuthRequest\get_signature_base_string">
-<area shape="rect" id="node2" href="$class_o_auth_request.html#a30107fa78eae28c9bf4c62f7e7cc05ba" title="just uppercases the http method " alt="" coords="249,5,452,49"/>
-<area shape="rect" id="node3" href="$class_o_auth_request.html#a4a948aed0c29c809d912fab7452f1cc1" title="parses the url and rebuilds it to be scheme://host/path " alt="" coords="249,73,452,117"/>
-<area shape="rect" id="node4" href="$class_o_auth_request.html#a6b65d39d0b253e04133756b3540d763f" title="The request parameters, sorted and concatenated into a normalized string. " alt="" coords="257,141,445,185"/>
-<area shape="rect" id="node6" href="$class_o_auth_util.html#adcb789bfefc729678d5188f05d19b5ba" title="OAuthUtil\\urlencode\l_rfc3986" alt="" coords="691,171,832,215"/>
-<area shape="rect" id="node5" href="$class_o_auth_util.html#afa225b04225a3b8abe804ee294e0d631" title="OAuthUtil\\build_http\l_query" alt="" coords="502,141,642,185"/>
-</map>

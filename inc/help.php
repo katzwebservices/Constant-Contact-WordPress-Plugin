@@ -23,11 +23,6 @@ function constant_contact_add_help() {
 		'content'	=> kws_ob_include( CTCT_DIR_PATH.'views/help/insert-event.html')
 	);
 	$tabs[] = array(
-	    'id'    => 'ctct-insert-settings-setup',
-	    'title' => __('Constant Contact: Settings > Setup', 'constant-contact-api'),
-	    'content'   => kws_ob_include( CTCT_DIR_PATH.'views/help/settings-setup.phtml')
-	);
-	$tabs[] = array(
 	    'id'    => 'ctct-insert-settings-spam',
 	    'title' => __('Constant Contact: Settings > Spam Prevention', 'constant-contact-api'),
 	    'content'   => kws_ob_include( CTCT_DIR_PATH.'views/help/settings-spam.phtml')
@@ -38,7 +33,7 @@ function constant_contact_add_help() {
     foreach($tabs as $tab) {
 
         // Wrap the contents in a .wrap class
-        $tab['content'] = '<div class="wrap">'.$tab['content'].'</div>';
+
 
     	$screen->add_help_tab($tab);
 

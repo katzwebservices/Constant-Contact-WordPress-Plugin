@@ -1,9 +1,0 @@
-<map id="OAuthServer\verify_request" name="OAuthServer\verify_request">
-<area shape="rect" id="node2" href="$class_o_auth_server.html#a42f0158a9a4c166bc9372054626d93ca" title="all&#45;in&#45;one function to check the signature on a request should guess the signature method appropriate..." alt="" coords="187,57,386,85"/>
-<area shape="rect" id="node6" href="$class_o_auth_server.html#adc55d70d9f093aab5354db25f529ed5b" title="try to find the consumer for the provided request&#39;s consumer key " alt="" coords="193,109,380,137"/>
-<area shape="rect" id="node7" href="$class_o_auth_server.html#a7f197015a02e6f0d2029562ce1295f68" title="try to find the token for the provided request&#39;s token key " alt="" coords="206,161,367,189"/>
-<area shape="rect" id="node8" href="$class_o_auth_server.html#af40ad9ca9242a0c3cd2b66c49b547945" title="version 1 " alt="" coords="201,213,372,241"/>
-<area shape="rect" id="node3" href="$class_o_auth_server.html#a4485cb3ffa98de6c0dc513519017dcfb" title="check that the nonce is not repeated " alt="" coords="447,5,628,33"/>
-<area shape="rect" id="node4" href="$class_o_auth_server.html#a46aafda0ef87fbb52e32958c33714a6d" title="check that the timestamp is new enough " alt="" coords="434,57,640,85"/>
-<area shape="rect" id="node5" href="$class_o_auth_server.html#ab3b0e3026dea9faacb8d56cbb2274103" title="figure out the signature with some defaults " alt="" coords="446,109,629,153"/>
-</map>

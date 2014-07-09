@@ -1,9 +1,0 @@
-<map id="Net_DNS_Resolver\make_query_packet" name="Net_DNS_Resolver\make_query_packet">
-<area shape="rect" id="node2" href="$class_net___d_n_s___resolver.html#a9a745e4f5009dac279562318bb927370" title="Performs an AXFR query (zone transfer) " alt="" coords="464,5,627,33"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s___resolver.html#a068e8e173ff40d4a3b74193792bed4e0" title="Sends a packet via TCP to the list of name servers. " alt="" coords="230,26,394,70"/>
-<area shape="rect" id="node5" href="$class_net___d_n_s___resolver.html#aaabc96cbbb5bce627d31583d0e6af3d5" title="Sends a packet to a nameserver. " alt="" coords="227,94,397,122"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s___resolver.html#a73f7861954f4990bc8d18d6a82f7334d" title="Performs an AXFR query (zone transfer) (OLD BUGGY STYLE) " alt="" coords="694,5,882,33"/>
-<area shape="rect" id="node6" href="$class_net___d_n_s___resolver.html#ab00f28a838dbaebffe986b2fb81b4e8f" title="Queries nameservers for an answer. " alt="" coords="446,94,645,122"/>
-<area shape="rect" id="node7" href="$class_net___d_n_s___resolver.html#a433200f56099815168ddd63a715e8ac5" title="Queries nameservers for an answer. " alt="" coords="701,94,875,122"/>
-<area shape="rect" id="node8" href="$class_net___d_n_s___resolver.html#a13ee3a449b00b1a0e2f36bb1404e4291" title="Searches nameservers for an answer. " alt="" coords="931,94,1112,122"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="EventFee\createStruct" name="EventFee\createStruct">
-<area shape="rect" id="node2" href="$class_registration_type.html#a37e3b427edd302135828decaadfe4fe6" title="Create an associative array of object properties from XML. " alt="" coords="208,43,405,71"/>
-<area shape="rect" id="node3" href="$class_event.html#a4d2d7fcea94bab1d73fcb32e356159a4" title="Create an associative array of object properties from XML. " alt="" coords="453,43,584,71"/>
-<area shape="rect" id="node4" href="$class_events_collection.html#afb1f27cb72007acfd6f901d743c8acad" title="Get full details for an Event object. " alt="" coords="636,5,812,49"/>
-<area shape="rect" id="node5" href="$class_events_collection.html#ad0ab949e45693fd1d72baed5d5e5d552" title="Get a page of Events. " alt="" coords="632,73,816,101"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="CTCT_Admin_Page\getNavTitle" name="CTCT_Admin_Page\getNavTitle">
-<area shape="rect" id="node2" href="$class_c_t_c_t___admin___page.html#a2cc1493ccd31221d648442404bbb73d2" title="CTCT_Admin_Page\\add_menu" alt="" coords="264,29,472,57"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t___admin___page.html#ad4d8edcfbf3023f7f18a6d188adaf99c" title="CTCT_Admin_Page\\page" alt="" coords="281,81,455,109"/>
-<area shape="rect" id="node4" href="$class_c_t_c_t___constant___analytics.html#ad379ea8b9d4f8c7735b0f3adeac838fe" title="CTCT_Constant_Analytics\l\\addActions" alt="" coords="520,5,699,49"/>
-<area shape="rect" id="node5" href="$class_c_t_c_t___constant___analytics.html#a0b5589251b3a6cd9cf457fed695c885c" title="CTCT_Constant_Analytics\l\\enqueue_scripts" alt="" coords="520,73,699,117"/>
-<area shape="rect" id="node6" href="$class_c_t_c_t___constant___analytics.html#a835b6b00979fb3965d01a93767d5199e" title="CTCT_Constant_Analytics\l\\admin_head" alt="" coords="520,141,699,185"/>
-</map>

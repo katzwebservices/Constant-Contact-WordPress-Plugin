@@ -1,8 +1,0 @@
-<map id="Net_DNS_RR\factory" name="Net_DNS_RR\factory">
-<area shape="rect" id="node2" href="$class_net___d_n_s___r_r.html#ae21f552addb2e6fea8f4e87ea883ba78" title="Net_DNS_RR\\new_from\l_array" alt="" coords="219,5,386,49"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s___r_r.html#a14ca0dc83ff30526df3d595b83ef13dd" title="Net_DNS_RR\\new_from_data" alt="" coords="203,73,403,101"/>
-<area shape="rect" id="node5" href="$class_net___d_n_s___r_r.html#a1654146cab0e22d9bae1dae01d42f9fd" title="Net_DNS_RR\\new_from\l_string" alt="" coords="219,125,386,169"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s___r_r.html#ab64df1897e6e896b456e7007085fad40" title="Net_DNS_RR\\Net_DNS_RR" alt="" coords="451,73,642,101"/>
-<area shape="rect" id="node6" href="$class_net___d_n_s.html#a1e086e94cfa4b747b481b1e5859a1caf" title="translates a DNS class from it&#39;s name to it&#39;s integer value. " alt="" coords="460,129,633,157"/>
-<area shape="rect" id="node7" href="$class_net___d_n_s.html#a1420f63422265cad4ceb1899647e53e6" title="Translates RR type names into integers. " alt="" coords="466,181,627,209"/>
-</map>

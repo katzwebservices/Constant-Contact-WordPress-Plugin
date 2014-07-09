@@ -1,6 +1,0 @@
-<map id="Cache_WP_HTTP\pre_http_request" name="Cache_WP_HTTP\pre_http_request">
-<area shape="rect" id="node2" href="$class_cache___w_p___h_t_t_p.html#a46a738be1b6d3b3d2c4a7ebbdd4ff6e5" title="Cache_WP_HTTP\\flushCache" alt="" coords="247,5,449,33"/>
-<area shape="rect" id="node4" href="$class_cache___w_p___h_t_t_p.html#a90ae2e338d476c82174316d493ac220c" title="Check the parameters to find if the cache duration has been set. " alt="" coords="238,57,458,85"/>
-<area shape="rect" id="node5" href="$class_cache___w_p___h_t_t_p.html#ab19810eea1f27ad002f256a313cec1dc" title="Generate a unique key for the cache. " alt="" coords="260,109,436,137"/>
-<area shape="rect" id="node3" href="$class_cache___w_p___h_t_t_p.html#a6a0da5658c24517aa2b4884044c9b2b5" title="Cache_WP_HTTP\\r" alt="" coords="506,83,646,111"/>
-</map>

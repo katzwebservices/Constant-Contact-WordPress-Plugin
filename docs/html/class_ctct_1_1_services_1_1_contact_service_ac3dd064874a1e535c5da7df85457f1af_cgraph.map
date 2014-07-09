@@ -1,4 +1,0 @@
-<map id="Ctct\Services\ContactService\deleteContact" name="Ctct\Services\ContactService\deleteContact">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url..." alt="" coords="248,5,427,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="271,73,404,101"/>
-</map>

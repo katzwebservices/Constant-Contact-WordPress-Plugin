@@ -1,6 +1,0 @@
-<map id="Ctct\Services\ListService\addList" name="Ctct\Services\ListService\addList">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a682b3692a73a009ec026442110cf968e" title="Build a URL from a base url and optional array of query parameters to append to the url..." alt="" coords="225,5,404,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#a3fc8e0d47e974d0ba80d1ff92ec48d5c" title="Factory method to create a ContactList object from an array. " alt="" coords="224,73,405,117"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="248,141,381,169"/>
-<area shape="rect" id="node5" href="$class_ctct_1_1_components_1_1_contacts_1_1_contact_list.html#aab1afdb60f9244ec80b485d16836a42e" title="Ctct\\Components\\Contacts\l\\ContactList\\toJson" alt="" coords="224,193,405,237"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="Net_DNS_Resolver\res_init" name="Net_DNS_Resolver\res_init">
-<area shape="rect" id="node2" href="$class_net___d_n_s___resolver.html#ae4def11574ad6e93176670c726541bed" title="Reads and parses a resolver configuration file. " alt="" coords="252,5,420,49"/>
-<area shape="rect" id="node6" href="$class_net___d_n_s___resolver.html#a2a3d25c5dd2b1810b60ad05b84787855" title="Examines the environment for resolver config information. " alt="" coords="238,73,434,101"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s___resolver.html#a3bf22a7a58480dd7a6fd0dd17807fc70" title="Gets or sets the nameservers to be queried. " alt="" coords="483,69,701,97"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s___resolver.html#ae1bb14089519fe774d025156114aae4f" title="Net_DNS_Resolver\\cname_addr" alt="" coords="750,65,965,93"/>
-<area shape="rect" id="node5" href="$class_net___d_n_s___resolver.html#a4358663ec326e406c398f6cb09bd5544" title="Initializes the Resolver Object. " alt="" coords="776,117,938,161"/>
-</map>

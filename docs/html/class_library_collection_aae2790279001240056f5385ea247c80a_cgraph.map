@@ -1,9 +1,0 @@
-<map id="LibraryCollection\getImagesFromFolder" name="LibraryCollection\getImagesFromFolder">
-<area shape="rect" id="node2" href="$class_image.html#ae7d8e411a8a8ee99c6d7acbfb842963a" title="Create associate array of object from XML. " alt="" coords="269,59,403,87"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t_request.html#aad92e5787f6d3fdf00760d99505aa6db" title="CTCTRequest\\makeRequest" alt="" coords="240,111,432,139"/>
-<area shape="rect" id="node4" href="$class_o_auth_request.html#afe9d0f6cb8e0dadb1c0faeea9ecafe45" title="pretty much a helper function to set up the request " alt="" coords="480,73,685,117"/>
-<area shape="rect" id="node7" href="$class_c_t_c_t_exception.html#adc8307ec7d7a2c730b0dac678d0e7fcb" title="CTCTException\\generateError" alt="" coords="482,141,683,169"/>
-<area shape="rect" id="node5" href="$class_o_auth_request.html#ae544b1c10b82d5a82dcc259064763420" title="util function: current nonce " alt="" coords="735,5,900,49"/>
-<area shape="rect" id="node6" href="$class_o_auth_request.html#adfc6b936799f705d9a4442961a26e8cb" title="util function: current timestamp " alt="" coords="735,73,900,117"/>
-<area shape="rect" id="node8" href="$class_c_t_c_t_exception.html#a6a86531406328bbd2a6c6252b7fb3a70" title="CTCTException\\logError" alt="" coords="734,141,901,169"/>
-</map>

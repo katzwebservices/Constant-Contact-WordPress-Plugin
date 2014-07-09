@@ -89,6 +89,14 @@ To install the plugin follow the steps below:
 * Converted plugin version constant to class constants
 * Fixed: Campaigns limit fatal error: 50 not 500 are allowed.
 * Fixed: "Nothing changed" message when ajax editing Contact fields
+* Added: Improved logging with new Activity Log page
+	- Use actions `ctct_debug` for helpful debugging output, `ctct_error` for errors or caught exceptions, and `ctct_activity` for Constant Contact REST calls.
+	- Added logging settings to main settings page to specify which types of actions get logged
+* Fixed: `.updated` `div`s were being removed by the plugin's help tabs 
+* Fixed: Removed extra help tabs
+* Fixed: Help tab labels now start with "Constant Contact:" when not on the plugin pages
+* Fixed: CSS / JS loading on all admin pages
+* Removed `/docs/` directory
 
 = 3.0.3 =
 * Now uses Composer to auto-load classes

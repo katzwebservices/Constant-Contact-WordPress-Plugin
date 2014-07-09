@@ -1,5 +1,0 @@
-<map id="CTCT_Process_Form\validateEmail" name="CTCT_Process_Form\validateEmail">
-<area shape="rect" id="node2" href="$class_c_t_c_t___process___form.html#a726bf81a5ba9dbd266831fa6a65fbd8c" title="Verify the $_POST using Akismet. " alt="" coords="253,5,454,49"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t___settings.html#ae3c076753f9e642d69924227641b75e7" title="Alias for get_setting() &#160;CTCT_Settings::get_setting() " alt="" coords="286,73,421,101"/>
-<area shape="rect" id="node4" href="$class_k_w_s_contact.html#abc7dd1ab0ce9b4e227e2308ba47732c0" title="KWSContact\\get" alt="" coords="293,125,413,153"/>
-</map>

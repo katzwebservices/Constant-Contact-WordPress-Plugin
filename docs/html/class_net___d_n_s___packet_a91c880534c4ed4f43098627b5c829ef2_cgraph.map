@@ -1,5 +1,0 @@
-<map id="Net_DNS_Packet\parse_question" name="Net_DNS_Packet\parse_question">
-<area shape="rect" id="node2" href="$class_net___d_n_s.html#aa174e141c3f35c55667c426f4e14fdbf" title="Translates RR class integers into names. " alt="" coords="236,5,393,33"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s___packet.html#a9844b7ce62cb096db44f58882f8ca403" title="DNS packet decompression method. " alt="" coords="217,57,412,85"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s.html#a861c4a9129fe2a4993108b6925d58f93" title="Translates RR type integers into names. " alt="" coords="242,109,387,137"/>
-</map>

@@ -11,6 +11,10 @@
 
 jQuery(document).ready(function($) {
 
+	$('body').on('click', '.kwslog-toggle', function(e) {
+		$('.data', $(this).parents('.kwslog-debug')).toggle();
+		return false;
+	});
 
 	function ctct_pointers(target) {
 
@@ -118,24 +122,14 @@ jQuery(document).ready(function($) {
 		ctct_pointers();
 	});
 
-	function ctct_hide_save() {
-		if($('#ctct-settings-tabs #setup').is(':visible')) {
-			$('#ctct-save-settings').hide();
-		} else {
-			$('#ctct-save-settings').show();
-		}
-	}
-
 	$('#ctct-settings-tabs').tabs({
 		show: false,
 		create: function(event, ui) {
 			ctct_pointers();
 			ctct_set_referrer();
-			ctct_hide_save();
 		},
 		activate: function(event, ui) {
 			ctct_pointers();
-			ctct_hide_save();
 
 			$(this).addClass('size-'+$('.ui-tabs-nav', $(this)).length);
 			event.preventDefault();
@@ -239,7 +233,7 @@ jQuery(document).ready(function($) {
 
 	function ctct_ajax(data, $object) {
 
-		var id = ( typeof( CTCT ) !== 'undefined' ) ? CTCT.id : $object.data('id');
+		var id = ( typeof( CTCT ) !== 'undefined' && CTCT.id ) ? CTCT.id : $object.data('id');
 		var field = $object.data('name') ? $object.data('name') : data.field;
 		var parent = $object.data('parent') ? $object.data('parent') : data.parent;
 

@@ -1,9 +1,0 @@
-<map id="CTCT_Admin_Page\content" name="CTCT_Admin_Page\content">
-<area shape="rect" id="node2" href="$class_c_t_c_t___admin___page.html#a2239ad5eadd3654b1c163e66e9d2c48c" title="CTCT_Admin_Page\\add" alt="" coords="255,5,422,33"/>
-<area shape="rect" id="node3" href="$class_c_t_c_t___admin___page.html#a22cefb29a88a7407d1448526a6af9a99" title="CTCT_Admin_Page\\edit" alt="" coords="256,57,422,85"/>
-<area shape="rect" id="node4" href="$class_c_t_c_t___admin___page.html#aa09ddad8c19f7b5e766616954288f30c" title="CTCT_Admin_Page\\isAdd" alt="" coords="250,109,428,137"/>
-<area shape="rect" id="node5" href="$class_c_t_c_t___admin___page.html#a3022d3649afef42fe8a14b1f34f50a11" title="CTCT_Admin_Page\\isEdit" alt="" coords="250,161,427,189"/>
-<area shape="rect" id="node6" href="$class_c_t_c_t___admin___page.html#a79cac52351cd72e5cb0269ad98ac9a82" title="CTCT_Admin_Page\\isSingle" alt="" coords="243,213,434,241"/>
-<area shape="rect" id="node7" href="$class_c_t_c_t___admin___page.html#aa2467682cbcb0035e36c016f050fc791" title="CTCT_Admin_Page\\single" alt="" coords="249,265,428,293"/>
-<area shape="rect" id="node8" href="$class_c_t_c_t___admin___page.html#a088ea0e281820f5ca26ebe3aa4e1c50e" title="CTCT_Admin_Page\\view" alt="" coords="253,317,424,345"/>
-</map>

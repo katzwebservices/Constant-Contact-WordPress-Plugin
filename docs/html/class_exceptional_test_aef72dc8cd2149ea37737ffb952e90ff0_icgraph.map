@@ -1,7 +1,0 @@
-<map id="ExceptionalTest\createExceptionData" name="ExceptionalTest\createExceptionData">
-<area shape="rect" id="node2" href="$class_exceptional_test.html#ab7705f69daf405bb742ce24b778d1518" title="ExceptionalTest\\testBlacklist" alt="" coords="318,5,506,33"/>
-<area shape="rect" id="node3" href="$class_exceptional_test.html#a57055cbd3d96c5c8ab20710c7e692e28" title="ExceptionalTest\\testController\lAndAction" alt="" coords="313,57,511,101"/>
-<area shape="rect" id="node4" href="$class_exceptional_test.html#aa2e1ba9ab3a276d628463dbd82205340" title="ExceptionalTest\\testGetParameters" alt="" coords="297,125,527,153"/>
-<area shape="rect" id="node5" href="$class_exceptional_test.html#afb9da9960c7977b06a3e89d1beb9679a" title="ExceptionalTest\\testPost\lParameters" alt="" coords="329,177,495,221"/>
-<area shape="rect" id="node6" href="$class_exceptional_test.html#aafa85f39e7e85d3918a40a5d4255f1ca" title="ExceptionalTest\\testSession\lFilter" alt="" coords="318,245,506,289"/>
-</map>

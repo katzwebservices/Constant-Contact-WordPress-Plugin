@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_payment_option.html" title="PaymentOption" alt="" coords="6,57,119,85"/>
-<area shape="rect" id="node2" href="$class_check_payment.html" title="CheckPayment" alt="" coords="171,5,283,33"/>
-<area shape="rect" id="node3" href="$class_door_payment.html" title="DoorPayment" alt="" coords="175,57,278,85"/>
-<area shape="rect" id="node4" href="$class_pay_pal_payment.html" title="PayPalPayment" alt="" coords="169,109,285,137"/>
-</map>

@@ -219,17 +219,32 @@ class CTCT_Process_Form {
 		// 5: SMTP validation
 		if(in_array('smtp', $methods) && class_exists('SMTP_validateEmail')) {
 
-			$SMTP_Validator = new SMTP_validateEmail();
+			try {
 
-			$results = $SMTP_Validator->validate(array($email), get_option( 'admin_email' ));
+				$SMTP_Validator = new SMTP_validateEmail();
 
-			if($results[$email]) {
-				do_action('ctct_debug', 'SMTP validation passed.', $email, $results);
-			} else {
-				do_action('ctct_debug', 'SMTP validation failed.', $email, $results);
-				$this->errors[] = new WP_Error('smtp', 'Email validation failed.', $email, $results);
+				// Timeout after 5 seconds
+				$SMTP_Validator->max_conn_time = 1;
+				$SMTP_Validator->max_read_time = 1;
+				$SMTP_Validator->debug = 1;
+
+				$results = $SMTP_Validator->validate( array($email), get_option( 'admin_email' ));
+
+				if($results[$email]) {
+					do_action('ctct_debug', 'SMTP validation passed.', $email, $results);
+				} else {
+					do_action('ctct_debug', 'SMTP validation failed.', $email, $results);
+					$this->errors[] = new WP_Error('smtp', 'Email validation failed.', $email, $results);
+					return;
+				}
+
+			} catch( Exception $e ) {
+
+				do_action('ctct_error', 'SMTP validation broke.', $e );
+
 				return;
 			}
+
 		}
 
 		return true;
@@ -266,14 +281,14 @@ class CTCT_Process_Form {
 	    } else {
 		    switch($check['akismet_result']) {
 		    	case 'true':
-		    		do_action('ctct_debug', __('Akismet caught this comment as spam'), $check);
-		    		return new WP_Error('akismet', __('Akismet caught this comment as spam'), $check);
+		    		do_action('ctct_activity', __('Akismet caught this entry as spam'), $check);
+		    		return new WP_Error('akismet', __('Your entry was flagged as spam.'), $check);
 		    		break;
 		    	case 'false':
 		    		do_action('ctct_debug', __('Akismet cleared this comment'), $check);
 		    		break;
 		    	default:
-		    		do_action('ctct_debug', sprintf(__('Akismet was unable to check this comment (response: %s), will automatically retry again later.'), substr($check['akismet_result'], 0, 50)), $check);
+		    		do_action('ctct_error', sprintf(__('Akismet was unable to check this entry (response: %s), will automatically retry again later.'), substr($check['akismet_result'], 0, 50)), $check);
 		    }
 		}
 

@@ -1,5 +1,0 @@
-<map id="Net_DNS_Header\Net_DNS_Header" name="Net_DNS_Header\Net_DNS_Header">
-<area shape="rect" id="node2" href="$class_net___d_n_s___resolver.html#a30e6ce6780c7a603b235ec3feda5aa01" title="Returns the next request Id to be used for the DNS packet header. " alt="" coords="209,5,386,33"/>
-<area shape="rect" id="node3" href="$class_net___d_n_s.html#a8007ac36fa5ed03220ddbb90b956f01a" title="Translates opcode integers into names. " alt="" coords="216,57,379,85"/>
-<area shape="rect" id="node4" href="$class_net___d_n_s.html#ac6fb33bbed78aa908d67df566bd83dfb" title="Translates rcode integers into names. " alt="" coords="221,109,374,137"/>
-</map>

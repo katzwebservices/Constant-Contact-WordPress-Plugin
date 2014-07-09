@@ -1,7 +1,0 @@
-<map id="OAuthRequest\__toString" name="OAuthRequest\__toString">
-<area shape="rect" id="node2" href="$class_o_auth_request.html#a4d27097917ad20e1958f1034eaa1702f" title="builds a url usable for a GET request " alt="" coords="227,43,373,71"/>
-<area shape="rect" id="node3" href="$class_o_auth_request.html#a45591cde97f0abdd0f8e985db3bf463c" title="builds the data one would send in a POST request " alt="" coords="433,13,615,41"/>
-<area shape="rect" id="node6" href="$class_o_auth_request.html#a4a948aed0c29c809d912fab7452f1cc1" title="parses the url and rebuilds it to be scheme://host/path " alt="" coords="422,65,626,109"/>
-<area shape="rect" id="node4" href="$class_o_auth_util.html#afa225b04225a3b8abe804ee294e0d631" title="OAuthUtil\\build_http\l_query" alt="" coords="675,5,815,49"/>
-<area shape="rect" id="node5" href="$class_o_auth_util.html#adcb789bfefc729678d5188f05d19b5ba" title="OAuthUtil\\urlencode\l_rfc3986" alt="" coords="864,5,1005,49"/>
-</map>

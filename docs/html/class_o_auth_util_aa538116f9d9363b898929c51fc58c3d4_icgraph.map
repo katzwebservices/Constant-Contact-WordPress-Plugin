@@ -1,6 +1,0 @@
-<map id="OAuthUtil\urldecode_rfc3986" name="OAuthUtil\urldecode_rfc3986">
-<area shape="rect" id="node2" href="$class_o_auth_util.html#af051ff3956c8d8d7260e15166d392947" title="OAuthUtil\\parse_parameters" alt="" coords="196,5,386,33"/>
-<area shape="rect" id="node5" href="$class_o_auth_util.html#a33c67362886c81064f7c21df11cf6f6f" title="OAuthUtil\\split_header" alt="" coords="213,57,368,85"/>
-<area shape="rect" id="node3" href="$class_o_auth_request.html#a0fdf7d4e7a8b3b669622e39a05e8b4ac" title="OAuthRequest\\__construct" alt="" coords="440,5,621,33"/>
-<area shape="rect" id="node4" href="$class_o_auth_request.html#a8d5d9a8e5d174e594775c5b952bf448f" title="attempt to build up a request from what was passed to the server " alt="" coords="435,57,626,85"/>
-</map>

@@ -33,7 +33,7 @@ final class WP_CTCT {
 				return;
 			}
 
-			require_once plugin_dir_path(__FILE__).'vendor/autoload.php';
+			require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
 			include CTCT_DIR_PATH.'lib/kwslog.php';
 			$this->log = new KWSLog('ctct', 'Constant Contact');

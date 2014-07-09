@@ -94,9 +94,11 @@ class KWSConstantContact extends ConstantContact {
 		try {
 			$contacts = $this->getContactByEmail('asdasdasdasd@asdasdasdasdasdasdasdasd.com');
 			$this->configured = 1;
+			do_action('ctct_debug', 'isConfigured: getContactByEmail succeeded. Adding configured option.' );
 			update_site_option( 'ctct_configured', 1 );
 		} catch(Exception $e) {
 			$this->configured = 0;
+			do_action('ctct_debug', 'isConfigured: getContactByEmail failed. Deleting configured option.' );
 			delete_site_option( 'ctct_configured' );
 		}
 		// Turn caching back on.
@@ -141,7 +143,7 @@ class KWSConstantContact extends ConstantContact {
 			} catch(Exception $e) {
 				$returnContact = false;
 				$action .= ' Failed';
-        		do_action('ctct_log', 'Creating Contact Exception', $e);
+        		do_action('ctct_error', 'Creating Contact Exception', $e);
 			}
         // update the existing contact if address already existed
         } else {
@@ -158,12 +160,11 @@ class KWSConstantContact extends ConstantContact {
         	} catch(Exception $e) {
         		$returnContact = false;
         		$action .= ' Failed';
-        		do_action('ctct_log', 'Updating Contact Exception', $e);
+        		do_action('ctct_error', 'Updating Contact Exception', $e);
         	}
         }
 
-        do_action('ctct_log', $action, $returnContact);
-        do_action('ctct_debug', $action, $returnContact);
+        do_action('ctct_activity', $action, $returnContact );
 
         return $returnContact;
 	}
@@ -241,7 +242,6 @@ class KWSConstantContact extends ConstantContact {
 	 */
 	function getAll($type = '', $id_or_status = NULL, $param = array(), &$results = array()) {
 
-		do_action('ctct_debug', $type);
 		add_filter('ctct_cache', function() { return 60 * 60 * 48; });
 
 		switch($type) {

@@ -1,5 +1,0 @@
-<map id="Ctct\Services\ContactTrackingService\getSends" name="Ctct\Services\ContactTrackingService\getSends">
-<area shape="rect" id="node2" href="$class_ctct_1_1_services_1_1_base_service.html#a5c4ae0795fcc06c137b6e761963c4df6" title="Build a url from the base url and query parameters array. " alt="" coords="253,5,432,49"/>
-<area shape="rect" id="node3" href="$class_ctct_1_1_components_1_1_tracking_1_1_send_activity.html#aeb8fec65449804a1a21b9e7afa886bc5" title="Factory method to create a SentActivity object from an array. " alt="" coords="253,73,432,117"/>
-<area shape="rect" id="node4" href="$class_ctct_1_1_util_1_1_config.html#ab224fae1ce1a1993c1ac42c708dc7de9" title="Get a configuration property given a specified location, example usage: Config::get(&#39;auth.token_endpoint&#39;) " alt="" coords="276,141,409,169"/>
-</map>

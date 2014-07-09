@@ -1,4 +1,0 @@
-<map id="CampaignEvent\createStruct" name="CampaignEvent\createStruct">
-<area shape="rect" id="node2" href="$class_campaigns_collection.html#ab3a63de718c94ce760ebf19f59170f0c" title="CampaignsCollection\l\\getCampaignEvents" alt="" coords="245,5,392,49"/>
-<area shape="rect" id="node3" href="$class_contacts_collection.html#a8c5270d8d9d42b17b119c41b64b2e991" title="Get events for a given Contact. " alt="" coords="252,73,385,117"/>
-</map>

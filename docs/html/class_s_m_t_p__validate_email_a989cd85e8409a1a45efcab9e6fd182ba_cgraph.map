@@ -1,8 +1,0 @@
-<map id="SMTP_validateEmail\validate" name="SMTP_validateEmail\validate">
-<area shape="rect" id="node2" href="$class_s_m_t_p__validate_email.html#ae080662c7b3cf4c4625430efdd9c5f4e" title="SMTP_validateEmail\l\\debug" alt="" coords="427,76,573,120"/>
-<area shape="rect" id="node3" href="$class_s_m_t_p__validate_email.html#ac24abdb0d31b69a5fdc6a558878e70c5" title="Query DNS server for MX entries. " alt="" coords="217,35,362,79"/>
-<area shape="rect" id="node4" href="$class_s_m_t_p__validate_email.html#a26e89e20c5b36b6d1955231b0d1595ec" title="SMTP_validateEmail\\send" alt="" coords="200,103,378,131"/>
-<area shape="rect" id="node5" href="$class_s_m_t_p__validate_email.html#a735a2baa7c1d89f2a0f1985dc33c5c15" title="Set the Emails to validate. " alt="" coords="217,155,362,199"/>
-<area shape="rect" id="node7" href="$class_s_m_t_p__validate_email.html#a396adea78616a4087d2343794557b049" title="Set the Email of the sender/validator. " alt="" coords="217,223,362,267"/>
-<area shape="rect" id="node6" href="$class_s_m_t_p__validate_email.html#a85d339ef8bdb566afa3be9ca11820594" title="SMTP_validateEmail\l\\_parseEmail" alt="" coords="427,173,573,217"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="JsonLoader\getCampaignScheduleJson" name="JsonLoader\getCampaignScheduleJson">
-<area shape="rect" id="node2" href="$class_campaign_schedule_service_unit_test.html#a6340e18a27d43a0559fb514af3ab077d" title="CampaignScheduleServiceUnit\lTest\\testAddSchedule" alt="" coords="312,5,518,49"/>
-<area shape="rect" id="node3" href="$class_campaign_schedule_service_unit_test.html#a344b5ab80098da7991eb5a99f92fe9d9" title="CampaignScheduleServiceUnit\lTest\\testGetSchedule" alt="" coords="312,73,518,117"/>
-<area shape="rect" id="node4" href="$class_campaign_schedule_service_unit_test.html#ab578e578c8bb0ff962e1593509611583" title="CampaignScheduleServiceUnit\lTest\\testUpdateSchedule" alt="" coords="312,141,518,185"/>
-</map>

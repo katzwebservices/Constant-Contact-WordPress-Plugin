@@ -1,6 +1,0 @@
-<map id="OAuthServer\check_nonce" name="OAuthServer\check_nonce">
-<area shape="rect" id="node2" href="$class_o_auth_server.html#a42f0158a9a4c166bc9372054626d93ca" title="all&#45;in&#45;one function to check the signature on a request should guess the signature method appropriate..." alt="" coords="235,81,434,109"/>
-<area shape="rect" id="node3" href="$class_o_auth_server.html#aa91f1a763ab36c576ebf9319ac4751f6" title="process a request_token request returns the request token on success " alt="" coords="483,5,666,49"/>
-<area shape="rect" id="node4" href="$class_o_auth_server.html#a5c76359726e685013d2e0cb8a1abe09a" title="process an access_token request returns the access token on success " alt="" coords="485,73,665,117"/>
-<area shape="rect" id="node5" href="$class_o_auth_server.html#ad31e95096adeac980a8a99f59c4cadc6" title="verify an api call, checks all the parameters " alt="" coords="508,141,642,185"/>
-</map>
