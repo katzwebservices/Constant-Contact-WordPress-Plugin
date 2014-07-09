@@ -412,9 +412,9 @@ class KWSContact extends Contact {
         }
         return true;
     }
-	function get($key, $format = false) {
+	function get($key, $format = NULL) {
 
-        if(!$this->is_editable($key)) { $format = false; }
+        if(!$this->is_editable($key)) { $format = NULL; }
 
         switch(strtolower($key)) {
 			case 'status':
@@ -424,11 +424,13 @@ class KWSContact extends Contact {
 			case 'opt_out_date':
             case 'created_date':
             case 'modified_date':
+
 				if(empty($this->{$key})) { return false; }
 
-				$date = date_i18n(get_option('date_format'), strtotime($this->email_addresses[0]->{$key}), true);
+                $date = date_i18n( get_option('date_format'), strtotime($this->{$key}), true);
 
-				return $format ? $date : $this->{$key};
+                // If boolean is passed instead of null, show the raw time.
+				return !empty( $format ) || is_null( $format ) ? $date : $this->{$key};
 				break;
 			case 'email_addresses':
 			case 'email_address':
