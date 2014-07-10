@@ -29,12 +29,10 @@ function constant_contact_add_help() {
 	);
 
 	$tabs = apply_filters('constant_contact_help_tabs', $tabs, $screen);
-	if(!empty($tabs)) {
+	if(!empty($tabs) && is_object( $screen )) {
     foreach($tabs as $tab) {
 
-        // Wrap the contents in a .wrap class
-
-
+    	// Wrap the contents in a .wrap class
     	$screen->add_help_tab($tab);
 
     	if(!empty($tab['sidebar'])) {
