@@ -1,8 +1,6 @@
-### NOT PRODUCTION READY
+### BETA VERSION
 
-This is a beta version of the new major release of the <a href="http://wordpress.org/extend/plugins/constant-contact-api/">Constant Contact API</a> plugin. Everything has been re-written from the ground up, so there are going to be bugs.
-
-The list of new features is huge. The list of dropped "features" is long, as well.
+This is a beta version of the new major release of the <a href="http://wordpress.org/extend/plugins/constant-contact-api/">Constant Contact API</a> plugin. Please help report any issues you find.
 
 ### Requirements
 * Requires WordPress 3.3 or Higher
