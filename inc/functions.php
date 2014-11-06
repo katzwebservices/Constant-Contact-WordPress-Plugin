@@ -104,6 +104,8 @@ function kws_print_subsub($key, $array) {
 
 		$link = add_query_arg(array($key => (empty($item['val']) ? NULL : $item['val'])));
 
+		$link = remove_query_arg( 'paged', $link );
+
 		$output .= '<li><a '.kws_current_class($key, $item['val']).' href="'.$link.'">'. esc_attr($item['text']).'</a>';
 		if(sizeof($array) !== $i) { $output .= ' |'; }
 		$output .= '</li>';
