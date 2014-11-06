@@ -103,28 +103,46 @@ class KWSRestClient implements RestClientInterface
 
 		// check if any errors were returned
 		$body = json_decode($response['body'], true);
-		if (isset($body[0]) && array_key_exists('error_key', $body[0])) {
-			$ex = new CtctException($response['body']);
-			$ex->setCurlInfo($response['response']);
-			$ex->setErrors($body);
 
-			do_action('ctct_log', 'httpRequest Error', $ex);
-			do_action('ctct_debug', 'httpRequest Error', $ex);
+		// There was an error
+		if ( isset($body[0]) && !empty($body[0]['error_key']) ) {
 
-			$errors = $ex->getErrors();
+			try {
 
-			preg_match('/^#\/(.*?):(.+)$/ism', $errors[0]['error_message'], $matches);
+				// Throw a new CTCT exception
+				$ex = new CtctException($response['body']);
+				$ex->setCurlInfo($response['response']);
+				$ex->setErrors($body);
 
-			if(!empty($matches)) {
-				$error_field = trim(rtrim($matches[1]));
-				$error_message = trim(rtrim($matches[2]));
-			} else {
-				$error_field = NULL;
-				$error_message = $errors[0]['error_message'];
+				do_action('ctct_log', 'httpRequest Error', $ex);
+				do_action('ctct_debug', 'httpRequest Error', $ex);
+
+				throw $ex;
+
+			} catch( Exception $e ) {
+
+				$errors = $ex->getErrors();
+
+				preg_match('/^#\/(.*?):(.+)$/ism', $errors[0]['error_message'], $matches);
+
+				if(!empty($matches)) {
+					$error_field = trim(rtrim($matches[1]));
+					$error_message = trim(rtrim($matches[2]));
+				} else {
+					$error_field = NULL;
+					$error_message = $errors[0]['error_message'];
+				}
+
+				$WP_Error = new WP_Error( $errors[0]['error_key'], $error_message, array(
+					'field' => $error_field,
+					'response' => $response,
+					'request' => $args,
+					'request_url' => $url
+				));
+
+
+				do_action( 'constant_contact_add_notice', $WP_Error );
 			}
-			$Error = new WP_Error($errors[0]['error_key'], $error_message, array('field' => $error_field, 'response' => $response, 'request' => $args, 'request_url' => $url));
-
-			throw $ex;
 		}
 
 		$responseClass = new stdClass();

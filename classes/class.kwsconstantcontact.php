@@ -4,12 +4,44 @@ use Ctct\ConstantContact;
 use Ctct\Util\Config;
 use Ctct\Components\Contacts\Contact;
 use Ctct\Services\ListService;
-class KWSConstantContact extends ConstantContact {
+
+final class KWSConstantContact extends ConstantContact {
 
 	var $configured = false;
+
 	static $instance;
 
-	private $cache_services = array('contacts' => 'contactService', 'campaigns' => 'emailMarketingService', 'activities' => 'activityService', 'lists' => 'listService');
+	private $cache_services = array(
+		'contacts' => 'contactService',
+		'campaigns' => 'emailMarketingService',
+		'activities' => 'activityService',
+		'lists' => 'listService'
+	);
+
+	/**
+	 * Throw error on object clone
+	 *
+	 * The whole idea of the singleton design pattern is that there is a single
+	 * object therefore, we don't want the object to be cloned.
+	 *
+	 * @access protected
+	 * @return void
+	 */
+	public function __clone() {
+		// Cloning instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+	}
+
+	/**
+	 * Disable unserializing of the class
+	 *
+	 * @access protected
+	 * @return void
+	 */
+	public function __wakeup() {
+		// Unserializing instances of the class is forbidden
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+	}
 
 	public function __construct($apiKey = null) {
 
@@ -17,14 +49,12 @@ class KWSConstantContact extends ConstantContact {
 
 		parent::__construct($apiKey);
 
-		$Client = new KWSRestClient();
-
 		// Use our own REST client.
-		$this->setRestClient($Client);
+		$this->setRestClient( new KWSRestClient() );
 		$this->setUrls();
 		$this->setHooks();
 
-		self::$instance = $this;
+		self::$instance = &$this;
 	}
 
 	/**
@@ -32,9 +62,11 @@ class KWSConstantContact extends ConstantContact {
 	 * @return KWSConstantContact
 	 */
 	static function getInstance() {
+
 		if(empty(self::$instance)) {
 			self::$instance = new KWSConstantContact;
 		}
+
 		return self::$instance;
 	}
 
@@ -233,6 +265,17 @@ class KWSConstantContact extends ConstantContact {
 	}
 
 	/**
+	 * Get all email campaigns
+	 * @uses KWSConstantContact::getAll()
+	 * @return array
+	 */
+	function getAllEvents($status = NULL) {
+		$status = empty($status) ? array() : array('status' => $status);
+		return $this->getAll('EmailCampaigns', NULL, $status);
+	}
+
+
+	/**
 	 * Function to fetch multi-page results. Works for all component types.
 	 * @param  string $type         Component type name
 	 * @param  int|string $id_or_status Either the ID of the component or the status filter. Depends on the component. Example: `$id_or_status = 'sent';` for `EmailCampaigns` component. Example: `$id_or_status = 13;` for `ContactSends` component.
@@ -244,6 +287,7 @@ class KWSConstantContact extends ConstantContact {
 
 		add_filter('ctct_cache', function() { return 60 * 60 * 48; });
 
+
 		switch($type) {
 			case "Lists":
 				// Lists doesn't support limit param
@@ -252,16 +296,24 @@ class KWSConstantContact extends ConstantContact {
 			case "EmailCampaigns":
 			default:
 
+				// email campaigns have special 50 limit; others have 500
 				$max_limit = ($type === 'EmailCampaigns') ? 50 : 500;
 
-				if(!is_null($id_or_status)) {
-					if(is_null($param)) { $param = array('limit' => $max_limit); }
+
+				if( is_null( $param ) ) {
+					$param = $max_limit;
+				}
+
+
+				if( !is_null( $id_or_status ) ) {
+
 					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
+
 				} else {
-					if(is_string($param)) {
-						die($param);return;
+
+					if( empty( $param ) ) {
+						$param = array( 'limit' => $max_limit );
 					}
-					if(empty($param)) { $param = array('limit' => $max_limit); }
 
 					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $param);
 				}
@@ -282,14 +334,30 @@ class KWSConstantContact extends ConstantContact {
     	return $results;
 	}
 
+	/**
+	 * We override the default so we can pass arrays as well as strings.
+	 * @param string $param
+	 * @return array
+	 */
+	private function determineParam( $param ) {
+
+		if( is_array( $param ) ) {
+			// If it's an array, we need to convert it to a string because of
+			$param = '?'.http_build_query( $param, '', '&' );
+		}
+
+		return parent::determineParam( $param);
+	}
+
     /**
      * Get contacts with a specified email eaddress
      * @param string $email - contact email address to search for
-     * @param string $null - placeholder for PHP 5.4 Strict standards
+     * @param string $null - placeholder for PHP 5.4 Strict standards to be compatible with the overridden getContactByEmail method
      * @return KWSContact|boolean If contact, KWSContact object; if none, false
      */
     public function getContactByEmail($email, $null = null ) {
-        $contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
+		$contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
+
         if(!empty($contact->results)) {
         	return new KWSContact($contact->results[0]);
         }

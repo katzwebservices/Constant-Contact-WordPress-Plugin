@@ -209,7 +209,8 @@ class CTCT_Settings extends CTCT_Admin_Page {
 							'format' => '%%name%%',
 							'name_attr' => 'ctct_settings[registration_checkbox_lists]',
 							'id_attr' => 'constant-contact-api_registration_checkbox_lists_%%id%%',
-							'checked' => self::get('registration_checkbox_lists')
+							'checked' => self::get('registration_checkbox_lists'),
+							'class' => 'toggle_registration_checkboxes toggle_registration_dropdown',
 						)),
 					'help' => __('When users sign up for your newsletter while registering for a WordPress account, they will be added to the following lists.', 'constant-contact-api'),
 				),
@@ -264,7 +265,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 						'id' => 'comment_form_signup',
 						'label' => __('Add a checkbox for subscribing to a newsletter below a comment form', 'constant-contact-api'),
 						'toggle' => 'comment_form',
-						'desc' => __('Comment Form Signup', 'constant-contact-api')
+						'desc' => __('Comment Form Signup', 'constant-contact-api'),
 					),
 					array(
 					    'togglegroup' => 'comment_form',
@@ -284,6 +285,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 								'format' => '%%name%%',
 								'name_attr' => 'ctct_settings[comment_form_lists]',
 								'id_attr' => 'constant-contact-api_comment_form_lists_%%id%%',
+								'class' => 'toggle_comment_form',
 								'checked' => self::get('comment_form_lists')
 							)),
 					),

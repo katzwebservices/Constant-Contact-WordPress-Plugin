@@ -118,8 +118,7 @@ class KWSContactList extends ContactList {
 
 	/**
 	 * Convert an array of List objects into HTML output
-	 * @param  string $as    Format of HTML; `list`|`select`
-	 * @param  array  $items List array
+	 * @param  array  $passed_items List array
 	 * @param  array  $atts  Settings; `fill`, `selected`, `format`; `format` should use replacement tags with the tag being the name of the var of the List object you want to replace. For example, `%%name%% (%%contact_count%% Contacts)` will return an item with the content "List Name (140 Contacts)"
 	 *
 	 * `showhidden` If true, will exclude lists that have a status of "hidden" in http://dotcms.constantcontact.com/docs/contact-list-api/contactlist-collection.html
@@ -136,6 +135,7 @@ class KWSContactList extends ContactList {
 			'checked' => array(), // If as select, what's active?
 			'include' => array(),
 			'showhidden' => true,
+			'class' => '',
 		));
 
 		extract($settings);
@@ -154,7 +154,9 @@ class KWSContactList extends ContactList {
 				global $list_id;
 
 				if($fill) {
-					$list_id = is_object($item) ? $item->id : $item;
+					$list_id = is_object( $item ) ? $item->id : $item;
+
+					$list_id = esc_attr( $list_id );
 
 					// Tell Cache_WP_HTTP to use the following key
 					// as the transient name
@@ -162,6 +164,7 @@ class KWSContactList extends ContactList {
 						global $list_id;
 						return 'ctct_list_'.$list_id;
 					});
+
 					$item = WP_CTCT::getInstance()->cc->getList(CTCT_ACCESS_TOKEN, $list_id);
 				}
 				$items[] = $item;
@@ -197,7 +200,7 @@ class KWSContactList extends ContactList {
 				break;
 			case 'checkbox':
 			case 'checkboxes':
-				$before = '<ul class="ctct-lists ctct-checkboxes">';
+				$before = '<ul class="ctct-lists ctct-checkboxes '. esc_attr( $class  ). '">';
 					$before_item = '<li><label for="%%id_attr%%"><input type="checkbox" id="%%id_attr%%" value="%%id%%" name="%%name_attr%%[]" %%checked%% /> ';
 					$after_item = '</label></li>';
 				$after = '</ul>';
