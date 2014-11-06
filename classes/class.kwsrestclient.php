@@ -1,6 +1,6 @@
 <?php
 
-use Ctct\Exceptions\CTCTException;
+use Ctct\Exceptions\CtctException;
 use Ctct\Util\RestClientInterface;
 use Ctct\Util\RestClient;
 use Ctct\Util\Config;
@@ -71,7 +71,7 @@ class KWSRestClient implements RestClientInterface
 	 * @param $url - request url
 	 * @param array $headers - array of all http headers to send
 	 * @param $data - data to send with the request
-	 * @throws CTCTException - if any errors are contained in the returned payload
+	 * @throws CtctException - if any errors are contained in the returned payload
 	 * @return CurlResponse
 	 */
 	private static function httpRequest($url, $method, array $headers = array(), $data = null)
