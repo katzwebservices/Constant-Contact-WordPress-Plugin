@@ -42,11 +42,8 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
         $id = intval(@$_GET['edit']);
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if(!isset($id) || empty($id)) {
-            echo 'no contact is specified.';
+            esc_html_e('You have not specified a List to edit', 'constant-contact-api');
             return;
         }
 
@@ -63,18 +60,15 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
         $id = intval(@$_GET['view']);
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if(!isset($id) || empty($id)) {
-            echo 'no list is specified.';
+            esc_html_e('You have not specified a List to view.', 'constant-contact-api');
             return;
         }
 
         // We define the transient key that is used so we can force-flush it
         add_filter('ctct_cachekey', function() { return 'ctct_contacts_from_list_'.intval(@$_GET['view']); });
 
-        $Contacts = $this->cc->getAll('ContactsFromList', $id, 50);
+        $Contacts = $this->cc->getAll('ContactsFromList', $id, 50 );
 
         include(CTCT_DIR_PATH.'views/admin/view.contacts-view.php');
 

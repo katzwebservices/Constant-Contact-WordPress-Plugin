@@ -43,11 +43,8 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
         $id = intval(@$_GET['edit']);
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if(!isset($id) || empty($id)) {
-            echo 'no contact is specified.';
+            esc_html_e('You have not specified a Campaign to edit', 'constant-contact-api');
             return;
         }
 
@@ -68,11 +65,8 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
         $id = intval(@$_GET['view']);
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if(!isset($id) || empty($id)) {
-            echo 'no list is specified.';
+            esc_html_e('You have not specified a Campaign to view', 'constant-contact-api');
             return;
         }
 

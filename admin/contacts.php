@@ -127,15 +127,17 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
     protected function edit() {
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if( empty( $this->id ) ) {
-            echo 'no contact is specified.';
+            esc_html_e('You have not specified a Contact to edit', 'constant-contact-api');
             return;
         }
 
         $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $this->id );
+
+        // The fetching of the contact failed.
+        if( is_null( $Contact->id ) ) {
+            return;
+        }
 
         $Contact = new KWSContact($Contact);
 
@@ -146,11 +148,8 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
         $id = $this->id;
 
-        /**
-         * @todo Specify no contact ID error
-         */
         if( empty( $id ) ) {
-            echo 'no contact is specified.';
+            esc_html_e('You have not specified a Contact to view', 'constant-contact-api');
             return;
         }
 
@@ -159,8 +158,14 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
             add_filter('ctct_cache', '__return_false');
         }
 
-        $CC_Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $id);
-        $Contact = new KWSContact($CC_Contact);
+        $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $id);
+
+        // The fetching of the contact failed.
+        if( is_null( $Contact->id ) ) {
+            return;
+        }
+
+        $Contact = new KWSContact($Contact);
         $summary = $this->cc->getContactSummaryReport(CTCT_ACCESS_TOKEN, $Contact->get('id'));
         include(CTCT_DIR_PATH.'views/admin/view.contact-view.php');
     }
