@@ -13,6 +13,7 @@ abstract class CTCT_Admin_Page {
     var $can_edit = false;
     var $can_add = false;
     var $component = '';
+    var $notices = array();
 
     function __construct( $force_load = false ) {
 

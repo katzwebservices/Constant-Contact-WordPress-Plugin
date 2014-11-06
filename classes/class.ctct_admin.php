@@ -39,6 +39,47 @@ class CTCT_Admin extends CTCT_Admin_Page {
 		$CTCT_Settings = new CTCT_Settings();
 
 		add_filter('admin_footer_text', array(&$this, 'pluginStatus'));
+
+		add_action('constant_contact_add_notice', array(&$this, 'add_notice'));
+		add_action('admin_notices', array(&$this, 'admin_notice' ));
+	}
+
+	public function add_notice( $notice ) {
+
+	    $this->notices[] = $notice;
+
+	    // Already printed the notice, so we're going to print it again.
+	    if( did_action( 'admin_notices' ) ) {
+	        do_action( 'admin_notices' );
+	    }
+	}
+
+	/**
+	 * Print notices, if any
+	 * @return [type] [description]
+	 */
+	public function admin_notice() {
+
+	    if( !empty( $this->notices ) ) {
+
+	        echo '<div class="updated">';
+	        foreach ( (array)$this->notices as $key => $notice ) {
+
+	        	if( is_wp_error( $notice ) ) {
+
+	        		echo '<h3>'.esc_html( sprintf( __('Error: %s', 'constant-contact-api'), $notice->get_error_code() ) ).'</h3>';
+
+	        		echo wpautop( esc_html( $notice->get_error_message() ) );
+
+	        	} else {
+	        		echo wpautop( esc_html( $notice ) );
+	        	}
+
+	        }
+	        echo '</div>';
+	    }
+
+	    $this->notices = array();
 	}
 
 	function pluginStatus($content = '') {
