@@ -6,19 +6,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/constantcontact/php-sdk.git",
-            "reference": "529438969d02b18ec907bef252e6b68ff2c07e6e"
+            "reference": "4b5ac08172af81aab6957fea718df3dfa8c45ce8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/529438969d02b18ec907bef252e6b68ff2c07e6e",
-            "reference": "529438969d02b18ec907bef252e6b68ff2c07e6e",
+            "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/4b5ac08172af81aab6957fea718df3dfa8c45ce8",
+            "reference": "4b5ac08172af81aab6957fea718df3dfa8c45ce8",
             "shasum": ""
         },
         "require": {
             "ext-curl": "*",
             "php": ">=5.3.0"
         },
-        "time": "2014-07-03 18:41:49",
+        "time": "2014-10-01 20:45:02",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -53,15 +53,21 @@
         "source": {
             "type": "git",
             "url": "https://github.com/nineinchnick/ESelect2.git",
-            "reference": "ff95ee3c12cb66f446de8da9a1613a4608eb799b"
+            "reference": "c2bfc139130118f33a39e3282f3cd09cf8182b20"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nineinchnick/ESelect2/zipball/ff95ee3c12cb66f446de8da9a1613a4608eb799b",
-            "reference": "ff95ee3c12cb66f446de8da9a1613a4608eb799b",
+            "url": "https://api.github.com/repos/nineinchnick/ESelect2/zipball/c2bfc139130118f33a39e3282f3cd09cf8182b20",
+            "reference": "c2bfc139130118f33a39e3282f3cd09cf8182b20",
             "shasum": ""
         },
-        "time": "2014-04-16 06:40:10",
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "suggest": {
+            "yiisoft/yii": "1.1.*"
+        },
+        "time": "2014-09-15 06:02:29",
         "type": "library",
         "installation-source": "source",
         "notification-url": "https://packagist.org/downloads/",

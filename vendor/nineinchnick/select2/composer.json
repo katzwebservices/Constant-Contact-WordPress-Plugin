@@ -14,5 +14,9 @@
         }
     ],
     "require": {
+        "php": ">=5.3.3"
+    },
+    "suggest": {
+        "yiisoft/yii": "1.1.*"
     }
 }

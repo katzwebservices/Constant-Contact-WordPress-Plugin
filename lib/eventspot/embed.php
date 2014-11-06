@@ -51,5 +51,11 @@ function eventspot_add_form_button(){
  * Action target that displays the popup to insert a form to a post/page
  */
 function eventspot_add_mce_popup(){
-	echo kws_ob_include(EVENTSPOT_FILE_PATH.'views/embed-form.php');
+    global $pagenow;
+
+    if( empty( $pagenow ) || !in_array( $pagenow, array('post-new.php', 'post.php' )) ) {
+        return;
+    }
+
+    echo kws_ob_include(EVENTSPOT_FILE_PATH.'views/embed-form.php');
 }

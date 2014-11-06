@@ -25,8 +25,8 @@ class CTCT_Registration {
 		add_filter('wpmu_signup_user_notification', array(&$this, 'process_submission_multisite')); // For multisite
 
 		// register show user register form action
-		add_action('signup_extra_fields', array(&$this, 'form')); // For multisite
-		add_action('register_form', array(&$this, 'form'));
+		add_action('signup_extra_fields', array(&$this, 'form') ); // For multisite
+		add_action('register_form', array(&$this, 'form') );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class CTCT_Registration {
 
 		$title = CTCT_Settings::get('signup_title');
 
-		switch($this->method) {
+		switch( $this->method ) {
 			case 'checkbox':
 				$reg = '<p class="ctct-subscribe">';
 
@@ -122,7 +122,7 @@ class CTCT_Registration {
 				$title = empty($title) ? '' : '<label>'.$title.'</label>';
 				$include = CTCT_Settings::get('registration_checkbox_lists');
 				$checked = isset($_POST['lists']) ? $_POST['lists'] : (CTCT_Settings::get('default_opt_in') ? true : false);
-				$reg .= KWSContactList::outputHTML('all', array('type' => $this->method, 'checked' => $checked, 'include' => $include));
+				$reg .= KWSContactList::outputHTML( $include, array('type' => $this->method, 'checked' => $checked ));
 			break;
 		}
 

@@ -28,7 +28,7 @@ class KWSLog {
 	private static $name = 'Constant Contact';
 	private static $slug = 'ctct';
 	private static $instance;
-	private static $methods = array();
+	private static $methods = array('error');
 	private $stored_logs = array();
 
 	function load() {
@@ -47,8 +47,6 @@ class KWSLog {
 
 	function __construct($name = 'Constant Contact') {
 
-		if( !class_exists( 'CTCT_Settings' )) { return; }
-
 		// Load Pippin's logging class
 		if( !class_exists( 'WP_Logging') ) {
 			include_once CTCT_DIR_PATH.'vendor/pippinsplugins/WP-Logging/WP_Logging.php';
@@ -56,8 +54,10 @@ class KWSLog {
 
 		$slug = sanitize_title( str_replace(array(ABSPATH, 'plugins/', 'wp-content/', 'mu-plugins/', '/lib'), '', __DIR__) );
 
+		$settings = get_option('ctct_settings', array( 'logging' => self::$methods ) );
+
 		// What methods are supported?
-		self::$methods = (array)CTCT_Settings::get('logging');
+		self::$methods = (array)$settings['logging'];
 
 		self::$slug = $slug;
 
@@ -109,6 +109,18 @@ class KWSLog {
 				.kwslog-debug pre {
 					overflow-x:auto; whitespace:pre-line
 				}
+
+				/* Pagination links in Logging */
+				.ctct-pagination ul.page-numbers {
+					float: right;
+				}
+				.ctct-pagination .page-numbers li,
+				.ctct-pagination .page-numbers a {
+					display: inline-block;
+				}
+				.ctct-pagination .page-numbers .page-numbers {
+					padding: .5em;
+				}
 			</style>
 			<?php
 		}
@@ -148,7 +160,7 @@ class KWSLog {
 		}
 
 		$log_data = array(
-			'post_title'   => $title, // Just in case.
+			'post_title'   => is_string( $title ) ? $title : NULL, // Just in case.
 			'post_content' => is_string( $message ) ? $message : NULL,
 			'log_type'     => 'ctct_'.$type,
 		);
@@ -190,10 +202,13 @@ class KWSLog {
 	 */
 	function log_page() {
 
+		$page = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
+		$log_type = isset($_GET['log']) ? esc_attr( $_GET['log'] ) : 'ctct_debug';
+		$posts_per_page = 10;
 		$args = array(
-		    'posts_per_page'=> -1,
-		    'paged'         => get_query_var( 'paged' ),
-		    'log_type'      => isset($_GET['log']) ? esc_attr( $_GET['log'] ) : 'ctct_debug',
+		    'posts_per_page'=> $posts_per_page,
+		    'paged' => $page,
+		    'log_type' => $log_type,
 		);
 
 		$logs = WP_Logging::get_connected_logs( $args );
@@ -252,12 +267,38 @@ class KWSLog {
 								</tr>
 							<?php
 						}
+					} else {
+					?>
+					<tr>
+						<td colspan="3" style="text-align:center;">
+						<h4><?php esc_html_e('No activity has been logged.'); ?></h4>
+						</td>
+					</tr>
+					<?php
 					}
 ?>
 				</tbody>
 			</table>
-		</div>
 
+
+			<div class="ctct-pagination">
+
+			<?php
+
+				$translated = __( 'Page', 'constant-contact-api' );
+
+				echo paginate_links( array(
+					'base' => add_query_arg( array( 'paged' => '%#%' ) ),
+					'current' => $page,
+					'total' => ceil( WP_Logging::get_log_count( 0, $log_type ) / $posts_per_page ),
+					'type' => 'list',
+				    'before_page_number' => '<span class="screen-reader-text">'.$translated.' </span>'
+				) );
+
+			?>
+			</div>
+
+		</div>
 	<?php
 	}
 }

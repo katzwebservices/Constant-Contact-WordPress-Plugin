@@ -13,12 +13,17 @@
 
 foreach ($Contacts as $Contact ) {
         $Contact = new KWSContact($Contact);
+        $Admin_Contacts = new CTCT_Admin_Contacts;
         $alt = empty( $alt ) ? 'class="alt"' : '';
     ?>
         <tr <?php echo $alt; ?>>
             <td class="email column-email">
                 <a href="<?php
-                    echo add_query_arg(array('page' => CTCT_Admin_Contacts::getKey(), 'view' => $Contact->id), admin_url('admin.php'));
+                    echo add_query_arg(array(
+                        'page' => $Admin_Contacts->getKey(),
+                        'view' => $Contact->id
+                    ), admin_url('admin.php'));
+
                 ?>" title="<?php _e('View Contact', 'constant-contact-api'); ?>"><?php echo $Contact->get('email_address');?></a>
             </td>
             <td class="column-name">
@@ -32,10 +37,10 @@ foreach ($Contacts as $Contact ) {
             <td class="column-edit">
             	<div class="button-group">
 	                <a href="<?php
-	                    echo add_query_arg(array('page' => CTCT_Admin_Contacts::getKey(), 'view' => $Contact->id), admin_url('admin.php'));
+	                    echo add_query_arg(array('page' => $Admin_Contacts->getKey(), 'view' => $Contact->id), admin_url('admin.php'));
 	                ?>" class="button view-new-h2" title="view"><?php _e('view', 'constant-contact-api'); ?></a>
 	                <a href="<?php
-	                    echo add_query_arg(array('page' => CTCT_Admin_Contacts::getKey(), 'edit' => $Contact->id), admin_url('admin.php'));
+	                    echo add_query_arg(array('page' => $Admin_Contacts->getKey(), 'edit' => $Contact->id), admin_url('admin.php'));
 	                ?>" class="button edit-new-h2" title="edit"><?php _e('edit', 'constant-contact-api'); ?></a>
 	            </div>
             </td>

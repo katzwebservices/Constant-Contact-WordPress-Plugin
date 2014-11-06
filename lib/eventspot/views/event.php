@@ -12,6 +12,7 @@ if($v->status !== 'DRAFT') { ?>
 		              'cancelledCount' => __('Cancelled', 'constant-contact-api')
 		            );
 		$i = 1;
+		$html = '';
 		foreach($cols as $col => $label) {
 			$html .= '<dl class="'.$col.' summary-'.$i.'">
 			        <dt>'.$label.'</dt>
