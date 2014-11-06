@@ -1,16 +1,16 @@
 <?php // $Id$
 /**
- * constant_contact_form_widget Class
+ * CTCT_Form_Designer_Widget Class
  *
  * @package CTCT\Form Designer
  */
 
-add_action( 'widgets_init', array('constant_contact_form_widget', 'register') );
+add_action( 'widgets_init', array('CTCT_Form_Designer_Widget', 'register') );
 
-class constant_contact_form_widget extends WP_Widget {
+class CTCT_Form_Designer_Widget extends WP_Widget {
 
 	static function register() {
-		register_widget( 'constant_contact_form_widget' );
+		register_widget( 'CTCT_Form_Designer_Widget' );
 	}
 
     function __construct() {
@@ -25,7 +25,7 @@ class constant_contact_form_widget extends WP_Widget {
 		);
 
         /* Create the widget. */
-        $this->WP_Widget('constant_contact_form_widget', __('Constant Contact Form Designer Widget', 'constant-contact-api' ), $widget_options, array('width'=>690));
+        $this->WP_Widget('CTCT_Form_Designer_Widget', __('Constant Contact Form Designer Widget', 'constant-contact-api' ), $widget_options, array('width'=>690));
 
         add_action('wp_print_styles', array(&$this, 'print_styles'));
     }
@@ -230,5 +230,5 @@ class constant_contact_form_widget extends WP_Widget {
 	<?php
     }
 
-} // class constant_contact_api_widget
+} // class CTCT_Form_Designer_Widget
 

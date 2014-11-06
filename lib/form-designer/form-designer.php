@@ -24,6 +24,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		define('CC_FORM_GEN_URL', plugin_dir_url(__FILE__));
 		define('CC_FORM_GEN_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
 
+		require_once( CC_FORM_GEN_PATH . 'form.php' );
 		require_once( CC_FORM_GEN_PATH . 'form-designer-functions.php' );
 		require_once( CC_FORM_GEN_PATH . 'widget-form-designer.php');
 
@@ -51,7 +52,23 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 
 		// Otto is the man.
 		wp_enqueue_script( 'cc-code', plugin_dir_url(__FILE__).'js/cc-code-dev.js', array('wp-color-picker', 'jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'jquery-ui-sortable'));
-		$params = array('path' => plugin_dir_url(__FILE__), 'rand' => mt_rand(0, 100000000), 'text' => cc_form_text());
+		$params = array(
+			'path' => plugin_dir_url(__FILE__),
+			'rand' => mt_rand(0, 100000000),
+			'text' => cc_form_text(),
+			'labels' => array(
+				'bottomcolor' => 'Bottom Color',
+				'topcolor' => 'Top Color',
+				'gradientheight' => 'Gradient Height',
+				'leftcolor' => 'Left Color',
+				'rightcolor' => 'Right Color',
+				'gradientwidth' => 'Gradient Width',
+				'bgcolor' => 'Background Color',
+				'hide' => 'Hide',
+				'show' => 'Show',
+			),
+		);
+
 		wp_localize_script('cc-code', 'ScriptParams', $params);
 	}
 	protected function add() {}
@@ -98,6 +115,10 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 	protected function processForms() {
 
 		if(!isset($_REQUEST['cc-form-id']) && empty($_REQUEST['form'])) { return; }
+
+		if( defined('DOING_AJAX') && DOING_AJAX ) {
+			return;
+		}
 
 		global $cc_form_selected_id;
 
@@ -239,7 +260,7 @@ function constant_contact_form_load_widget() {
 	add_filter('cc_widget_description', 'wpautop');
 
 	require_once('widget-form-designer.php');
-	register_widget( 'constant_contact_form_widget' );
+	register_widget( 'CTCT_Form_Designer_Widget' );
 }
 
 function constant_contact_admin_widget_scripts() {
@@ -304,15 +325,21 @@ function constant_contact_retrieve_form($formid, $force_update=false, $unique_id
 	$form['uniqueformid'] = $unique_id;
 	$form['debug'] = (current_user_can('manage_options') && isset($_GET['debug']));
 
+	$form_html = new CTCT_Form_Designer_Output( $form );
+
+
+	return $form_html->html();
+
+
 	// Get the form from form.php
-	$response = wp_remote_request( CC_FORM_GEN_URL.'form.php', array(
-	               'method' => 'POST',
-	               'timeout' => 20,
-	               'body' => $form,
-	               'sslverify' => false,
-	               'compress' => true,
-	               'local' => true
-	           ));
+	$response = wp_remote_request( admin_url('admin-ajax.php'), array(
+       'method' => 'POST',
+       'timeout' => 20,
+       'body' => $form,
+       'sslverify' => false,
+       'compress' => true,
+       'local' => true
+   ));
 
 	do_action('ctct_debug', 'Requesting Form Data for Form #'.$formid, array('POST body' => $form, 'POST response:' => $response));
 
@@ -396,7 +423,6 @@ function wp_cc_form_setup($form = false) {
 	add_meta_box( 'formlists_select', __( 'Default Newsletters','constant-contact-api' ), 'cc_form_meta_box_formlists_select' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'formfields_select', __( 'Form Fields','constant-contact-api' ), 'cc_form_meta_box_formfields_select' , 'constant-contact-form', 'side', 'default', array($form));
 	#add_meta_box( 'usedesign', __( 'Style the Form?','constant-contact-api' ), 'cc_form_meta_box_styleform' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'designoptions', __( 'Design Presets','constant-contact-api' ), 'cc_form_meta_box_designoptions' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'backgroundoptions', __('Background','constant-contact-api'), 'cc_form_meta_box_backgroundoptions' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'border', __('Border','constant-contact-api'), 'cc_form_meta_box_border' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'fontstyles', __('Text Styles & Settings','constant-contact-api'), 'cc_form_meta_box_fontstyles' , 'constant-contact-form', 'side', 'default', array($form));

@@ -22,21 +22,9 @@ function ctct_current_page_url() {
 }
 
 function constant_contact_signup_form_shortcode($atts, $content=null) {
-    $atts = shortcode_atts( array(
-        'before' => null,
-        'after' => null,
-        'formid' => 0,
-        'redirect_url' => false,
-        'lists' => array(),
-        'title' => '',
-        'exclude_lists' => array(),
-        'description' => '',
-        'show_list_selection' => false,
-        'list_selection_title' => 'Add me to these lists:',
-        'list_selection_format' => 'checkbox'
-    ), $atts );
 
     return constant_contact_public_signup_form($atts, false);
+
 };
 
 /**
@@ -47,15 +35,16 @@ function constant_contact_signup_form_shortcode($atts, $content=null) {
  *
  * Modify the output by calling `add_filter('constant_contact_form', 'your_function');`
  *
- * @param array|string $args Settings for generating the signup form
+ * @param array|string $passed_args Settings for generating the signup form
  * @param boolean $echo True: Echo the form; False: return form output.
  * @return string Form HTML output
  */
-function constant_contact_public_signup_form($args, $echo = true) {
-    do_action('ctct_debug', 'constant_contact_public_signup_form', $args, @$_POST);
+function constant_contact_public_signup_form( $passed_args, $echo = true) {
+
+    do_action('ctct_debug', 'constant_contact_public_signup_form', $passed_args, @$_POST);
 
     $output = $error_output = $success = $haserror = $listsOutput = $hiddenlistoutput = '';
-    $defaultArgs = array(
+    $default_args = array(
         'before' => null,
         'after' => null,
         'formid' => 0,
@@ -65,25 +54,35 @@ function constant_contact_public_signup_form($args, $echo = true) {
         'exclude_lists' => array(),
         'description' => '',
         'show_list_selection' => false,
-        'list_selection_title' => 'Add me to these lists:',
-        'list_selection_format' => 'checkbox',
+        'list_selection_title' => __('Add me to these lists:', 'ctct'),
+        'list_selection_format' => NULL,
+        'list_format' => NULL, // Used by form
         'widget' => false, // is this request coming from the widget?
     );
 
-    $settings = wp_parse_args($args, $defaultArgs);
+    $settings = shortcode_atts( $default_args, $passed_args );
 
     /**
      * This unique id will be used to differentiate from other forms on the same page.
      * It will also be used to store cached forms.
+     *
+     * Only get the first 10 characters, since that's all we really need.
      * @var string
      */
-    $unique_id = sha1(maybe_serialize($settings));
+    $unique_id = substr( sha1(maybe_serialize($settings)), 0, 10 );
+
+    $form = wp_get_cc_form($settings['formid']);
+
+    // Merge using the form settings
+    $settings = shortcode_atts( $settings, $form );
+
+    // Override one more time using the passed args as the final
+    $settings = shortcode_atts( $settings, $passed_args );
+
+    // BACKWARD COMPATIBILITY
+    $settings['list_selection_format'] = empty( $settings['list_selection_format'] ) ? $settings['list_format'] : $settings['list_selection_format'];
 
     extract($settings, EXTR_SKIP);
-
-
-    $form = wp_get_cc_form($formid);
-
 
     // The form does not exist.
     if(!$form) {
@@ -103,7 +102,7 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
     $selected = $lists;
     if($widget) {
-        $lists = @$form['lists'];
+        $lists = isset( $form['lists'] ) ? $form['lists'] : null;
         $show_list_selection = ( !empty( $form['formfields'] ) && is_array( $form['formfields'] ) ) ? in_array('lists', $form['formfields']) : null;
         $list_selection_format = @$form['list_format'];
         $selected = isset($form['checked_by_default']) ? $form['checked_by_default'] : false;
@@ -151,7 +150,7 @@ function constant_contact_public_signup_form($args, $echo = true) {
 
         $error_output = '';
 
-        do_action('ctct_debug', $errors);
+        do_action('ctct_debug', 'Handling errors in constant_contact_public_signup_form', $errors);
 
         // Set up error display
         $error_output .= '<div id="constant-contact-signup-errors" class="error">';
@@ -167,9 +166,11 @@ function constant_contact_public_signup_form($args, $echo = true) {
         $error_output = apply_filters('constant_contact_form_errors', $error_output);
 
     } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
+
         $success = '<p class="success cc_success">';
-        $success .= __('Success, you have been subscribed.', 'constant-contact-api');
+        $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
         $success .= '</p>';
+
         $success = apply_filters('constant_contact_form_success', $success);
     }
 
@@ -190,11 +191,11 @@ function constant_contact_public_signup_form($args, $echo = true) {
             'fill' => true,
             'showhidden' => false,
             'checked' => $selected,
-            'type' => $show_list_selection ? $list_selection_format : 'hidden',
+            'type' => $list_selection_format ? $list_selection_format : 'hidden',
         ));
 
         // If you're showing list selection, show the label and wrap it in a container.
-        if($show_list_selection && !$widget) {
+        if( $list_selection_format !== 'hidden' ) {
             $listsOutput = '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
             <div class="cc_newsletter kws_input_container input-text-wrap">
                 '.$listsOutput.'
@@ -537,10 +538,10 @@ function make_formfield($_form_object = array(), $class, $id, $value, $checked, 
         $out .= "\n".'<p><label for="'.$id.'_label" class="labelValue howto"><span class="description">'.$labelLabel.'</span><input name="'.$name.'[label]" type="text" id="'.$id.'_label" value="'.$inputValue.'" class="labelValue widefat"  /></label></p>
 						<p class="labelStyle defaultSkin wp_themeSkin">
 							<label for="'.$id.'_bold" class="labelStyle mce_bold">
-								<a class="mceIcon" title="Make label bold"><input type="checkbox" name="'.$name.'[bold]" id="'.$id.'_bold" value="bold"'.$bold.' /> Bold</a>
+								<a class="mceIcon" title="'.esc_attr__('Make label bold', 'constant-contact-api').'"><input type="checkbox" name="'.$name.'[bold]" id="'.$id.'_bold" value="bold"'.$bold.' /> Bold</a>
 							</label>
 							<label for="'.$id.'_italic"'.$italic.' class="labelStyle mce_italic">
-								<a class="mceIcon" title="Make label italic"><input type="checkbox" name="'.$name.'[italic]" id="'.$id.'_italic" value="italic" /> Italic</a>
+								<a class="mceIcon" title="'.esc_attr__('Make label italic', 'constant-contact-api').'"><input type="checkbox" name="'.$name.'[italic]" id="'.$id.'_italic" value="italic" /> Italic</a>
 							</label>';
 			if($id == 'email_address' || $t == 'b') {
 				$out .= '<input type="hidden" name="'.$name.'[required]" id="'.$id.'_required" value="required" />';
@@ -582,8 +583,8 @@ function ctct_input_value($form, $name, $default) {
  */
 function ctct_check_select($form, $name, $value, $default = false) {
 	echo " value='$value'";
-	$check = (isset($form[$name]) && !empty($form[$name]) && $form[$name] == $value);
-	if($check || !(isset($form[$name]) && !empty($form[$name])) && $default) {
+	$check = (isset($form[$name]) && $form[$name] == $value);
+	if($check || !(isset($form[$name]) ) && $default) {
 		echo ' selected="selected"';
 	}
 }
