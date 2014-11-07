@@ -297,7 +297,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 					$transient_title = 'gwppo'.sha1($this->ga_profile_id.$start.$end.implode('_',$_REQUEST));
 					$results = get_transient($transient_title);
 					if($results && (!isset($_REQUEST['refresh']))) {
-						die(cf_json_encode(array(
+						die(json_encode(array(
 							'success' => true,
 							'data' => $results,
 							'cached' => false
@@ -312,7 +312,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 					set_transient($transient_title, $results, 60*60);
 
-					die(cf_json_encode(array(
+					die(json_encode(array(
 						'success' => true,
 						'data' => $results,
 						'cached' => false
@@ -356,14 +356,14 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 							}
 
 							if (!empty($results)) {
-								die(cf_json_encode(array(
+								die(json_encode(array(
 									'success' => true,
 									'data' => $results,
 									'cached' => false
 								)));
 							}
 							else {
-								die(cf_json_encode(array(
+								die(json_encode(array(
 									'success' => false,
 									'error' => 'No results; something may have gone wrong.'
 								)));
@@ -420,7 +420,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 						foreach ($all_results as $filter => $results) {
 							if (is_wp_error($results)) {
 								header('Content-type: text/javascript');
-								die(cf_json_encode(array(
+								die(json_encode(array(
 									'success' => false,
 									'error' => implode('<br/>', $results->get_error_messages())
 								)));
@@ -430,7 +430,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 							}
 							else {
 								header('Content-type: text/javascript');
-								die(cf_json_encode(array(
+								die(json_encode(array(
 									'success' => false,
 									'error' => $results['body']
 								)));
@@ -444,7 +444,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 						}
 
 						header('Content-type: text/javascript');
-						die(cf_json_encode(array(
+						die(json_encode(array(
 							'success' => true,
 							'data' => $all_results,
 							'cached' => false
@@ -524,7 +524,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 					if (is_wp_error($result)) {
 						header('Content-type: text/javascript');
-						die(cf_json_encode(array(
+						die(json_encode(array(
 							'success' => false,
 							'error' => implode('<br/>', $result->get_error_messages())
 						)));
@@ -544,7 +544,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 	#					$all_results = $this->process_all_results_for_email($all_results);
 
 						header('Content-type: text/javascript');
-						die(cf_json_encode(array(
+						die(json_encode(array(
 							'success' => true,
 							'data' => $result,
 							'cached' => false
@@ -552,7 +552,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 					}
 					else {
 						header('Content-type: text/javascript');
-						die(cf_json_encode(array(
+						die(json_encode(array(
 							'success' => false,
 							'error' => $result['body']
 						)));
