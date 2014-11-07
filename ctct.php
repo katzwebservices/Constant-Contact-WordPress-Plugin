@@ -39,9 +39,6 @@ final class WP_CTCT {
 
 			require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
-			include_once CTCT_DIR_PATH.'lib/kwslog.php';
-			$this->log = new KWSLog('ctct', 'Constant Contact');
-
 			add_action('plugins_loaded', array(&$this, 'setup'), 1);
 			add_action('plugins_loaded', array(&$this, 'include_files'), 5);
 
@@ -100,6 +97,8 @@ final class WP_CTCT {
 		include_once CTCT_DIR_PATH.'classes/class.ctct_admin_page.php';
 		include_once CTCT_DIR_PATH.'classes/class.ctct_settings.php';
 		include_once CTCT_DIR_PATH.'classes/class.ctct_admin.php';
+		include_once CTCT_DIR_PATH.'lib/kwslog.php';
+		$this->log = new KWSLog('ctct', 'Constant Contact');
 
 		/** Admin pages */
 		include_once CTCT_DIR_PATH.'admin/profile.php';

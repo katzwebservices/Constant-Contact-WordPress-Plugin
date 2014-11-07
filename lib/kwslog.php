@@ -25,11 +25,41 @@ if(class_exists('KWSLog')) { return; }
 
 class KWSLog {
 
-	private static $name = 'Constant Contact';
+	/**
+	 * Logging slug to be used for WP_Logging
+	 * @var string
+	 */
 	private static $slug = 'ctct';
+
+	/**
+	 * Hold class instance
+	 * @var KWSLog
+	 */
 	private static $instance;
+
+	/**
+	 * The enabled logging methods
+	 * @var array
+	 */
 	private static $methods = array('error');
+
+	/**
+	 * The current log type being shown on log page
+	 * @var string
+	 */
+	private $current_log_type = 'error';
+
+	/**
+	 * Logs to show later
+	 * @var array
+	 */
 	private $stored_logs = array();
+
+	/**
+	 * How many logs to show per page?
+	 * @var integer
+	 */
+	private $logs_per_page = 10;
 
 	function load() {
 		$KWSLog = new KWSLog();
@@ -45,7 +75,7 @@ class KWSLog {
 		return self::$instance;
 	}
 
-	function __construct($name = 'Constant Contact') {
+	function __construct() {
 
 		// Load Pippin's logging class
 		if( !class_exists( 'WP_Logging') ) {
@@ -79,10 +109,10 @@ class KWSLog {
 	}
 
 	function wp_logging_log_types( $types ) {
-		$types[] = 'ctct_debug';
-		$types[] = 'ctct_log';
-		$types[] = 'ctct_error';
 		$types[] = 'ctct_activity';
+		$types[] = 'ctct_debug';
+		$types[] = 'ctct_error';
+		$types[] = 'ctct_log';
 		return $types;
 	}
 
@@ -106,20 +136,28 @@ class KWSLog {
 					border-bottom: 1px solid #ccc;
 					background: rgba(240,240,240,.5);
 				}
+				.ctct_table pre,
 				.kwslog-debug pre {
-					overflow-x:auto; whitespace:pre-line
+					overflow-x:auto;
+					whitespace:pre-line;
+					max-height:200px;
+					overflow:auto;
+					max-width: 400px;
 				}
 
 				/* Pagination links in Logging */
-				.ctct-pagination ul.page-numbers {
+				.ctct-pagination {
 					float: right;
+				}
+				.ctct-pagination ul {
+					margin: .5em 0;
 				}
 				.ctct-pagination .page-numbers li,
 				.ctct-pagination .page-numbers a {
 					display: inline-block;
 				}
 				.ctct-pagination .page-numbers .page-numbers {
-					padding: .5em;
+					padding: .25em .5em;
 				}
 			</style>
 			<?php
@@ -195,6 +233,52 @@ class KWSLog {
 		$this->insert_log( 'activity', $title, $message, $data );
 	}
 
+	function print_navigation() {
+
+		$methods_text = array(
+			'activity' => __('Constant Contact Activity', 'constant-contact-api'),
+			'debug' => __('Debugging Logs', 'constant-contact-api'),
+			'error' => __('Errors or Exceptions', 'constant-contact-api'),
+			'log' => __('Notices', 'constant-contact-api'),
+		);
+
+		$navigation = array();
+		foreach ( self::$methods as $method ) {
+			$navigation[] = array(
+				'val' => 'ctct_'.$method,
+				'text' => $methods_text[ $method ],
+			);
+		}
+
+		// Grab the first active method if the link hasn't been clicked yet
+		if( empty( $_GET['log'] ) ) {
+			$navigation[0]['val'] = '';
+		}
+
+		kws_print_subsub('log', $navigation );
+
+	}
+
+	function print_pagination( $current = 1 ) {
+		?>
+		<div class="ctct-pagination">
+
+		<?php
+
+			$translated = __( 'Page', 'constant-contact-api' );
+
+			echo paginate_links( array(
+				'base' => add_query_arg( array( 'paged' => '%#%' ) ),
+				'current' => $current,
+				'total' => ceil( WP_Logging::get_log_count( 0, $this->current_log_type ) / $this->logs_per_page ),
+				'type' => 'list',
+			    'before_page_number' => '<span class="screen-reader-text">'.$translated.' </span>'
+			) );
+
+		?>
+		</div>
+		<?php
+	}
 
 	/*
 	 * Show WP Sync Log data per blog
@@ -203,26 +287,32 @@ class KWSLog {
 	function log_page() {
 
 		$page = isset( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1;
-		$log_type = isset($_GET['log']) ? esc_attr( $_GET['log'] ) : 'ctct_debug';
-		$posts_per_page = 10;
+
+		$this->current_log_type = empty( $_GET['log'] ) ? 'ctct_'.self::$methods[0] : $_GET['log'];
+
+		// trying to acces a log type that's not enabled.
+		if( !in_array( str_replace('ctct_', '', $this->current_log_type ), self::$methods ) ) {
+			return;
+		}
+
 		$args = array(
-		    'posts_per_page'=> $posts_per_page,
+		    'posts_per_page'=> $this->logs_per_page,
 		    'paged' => $page,
-		    'log_type' => $log_type,
+		    'log_type' => $this->current_log_type,
 		);
 
 		$logs = WP_Logging::get_connected_logs( $args );
 	?>
 		<div class="wrap">
-			<h2><?php _e(sprintf('%s Log', self::$name), 'kwslog'); ?></h2>
+
+			<h2><?php esc_html_e('Constant Contact Log', 'constant-contact-api'); ?></h2>
 
 			<?php
-				kws_print_subsub('log', array(
-				    array('val' => 'ctct_activity', 'text' => 'Constant Contact Activity'),
-				    array('val' => 'ctct_debug', 'text' => 'Debugging Logs'),
-				    array('val' => 'ctct_log', 'text' => 'Notices'),
-				    array('val' => 'ctct_error', 'text' => 'Errors or Exceptions')
-				));
+
+				$this->print_pagination( $page );
+
+				$this->print_navigation();
+
 			?>
 			 <table class="ctct_table widefat">
 				<thead>
@@ -254,7 +344,7 @@ class KWSLog {
 
 											$item = maybe_unserialize( $item );
 
-											echo '<pre style="max-height:300px; overflow:auto; max-width: 400px;">';
+											echo '<pre>';
 											if( is_string( $item ) ){
 												print( htmlentities2( $item ) );
 											} else {
@@ -280,23 +370,9 @@ class KWSLog {
 				</tbody>
 			</table>
 
-
-			<div class="ctct-pagination">
-
 			<?php
-
-				$translated = __( 'Page', 'constant-contact-api' );
-
-				echo paginate_links( array(
-					'base' => add_query_arg( array( 'paged' => '%#%' ) ),
-					'current' => $page,
-					'total' => ceil( WP_Logging::get_log_count( 0, $log_type ) / $posts_per_page ),
-					'type' => 'list',
-				    'before_page_number' => '<span class="screen-reader-text">'.$translated.' </span>'
-				) );
-
+				$this->print_pagination( $page );
 			?>
-			</div>
 
 		</div>
 	<?php
