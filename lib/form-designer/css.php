@@ -26,9 +26,6 @@
 	switch($backgroundtype) {
 		case 'gradient':
 			if($gradtype == 'horizontal') {
-				$bgrepeat = 'left top repeat-y';
-				$dimensions = "width=$gradheight&height=1";
-				$bgback = $bgtop;
 				$bgcss = <<<EOD
 background: $bgtop;
 background: -moz-linear-gradient(left,  $bgtop 0%, $bgbottom 100%);
@@ -37,7 +34,7 @@ background: -webkit-linear-gradient(left,  $bgtop 0%,$bgbottom 100%);
 background: -o-linear-gradient(left, $bgtop 0%,$bgbottom 100%);
 background: -ms-linear-gradient(left, $bgtop 0%,$bgbottom 100%);
 background: linear-gradient(to right,  $bgtop 0%,$bgbottom 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 );
 
 EOD;
 			} else {
@@ -70,7 +67,6 @@ EOD;
 		// Label uses same font
 		if( $lusf ) {
 			$lfont = $tfont;
-			$lsize = $tsize;
 		}
 
 		// Label uses same color
@@ -126,6 +122,7 @@ EOD;
 
 	$paddingwidth = intval( $paddingwidth );
 	$borderradius = intval( $borderradius );
+
 	$width = intval( $width );
 
 	$lpadbottom = round($lpad/3, 3);
@@ -170,7 +167,7 @@ $css = <<<EOD
 
 {$selector} {
 	{$bgcss}
-	padding: {$paddingwidth}px;
+	padding: {$paddingwidth}px!important;
 	margin-bottom: 1em; margin-top: 1em;
 	{$formalign}
 	-webkit-background-clip: border-box;
@@ -264,7 +261,6 @@ $selector .cc_intro * {
 
 
 {$selector} .cc_lists li { text-indent: -1.25em; padding-left: 1.4em; }
-{$selector} .cc_lists label { display:inline; }
 
 {$safesubscribecss}
 {$selector} .submit { display:block; padding-top: {$lpad}px; {$blockalign} }

@@ -158,6 +158,7 @@ final class KWSConstantContact extends ConstantContact {
 	/**
 	 * Add a contact if it doesn't exist and update it if it does.
 	 * @param array|KWSContact $data Array of contact data or an existing KWSContact or Contact object.
+	 * @return  boolean|KWSContact Returns false if failed, otherwise returns a contact object.
 	 */
 	function addUpdateContact($data) {
 

@@ -417,6 +417,8 @@ EOD;
 		include 'css.php';
 		$css = ob_get_clean();
 
+		$css = apply_filters( 'ctct_form_css', $css, $this );
+
 		return '<style type="text/css">'.$css.'</style>';
 	}
 

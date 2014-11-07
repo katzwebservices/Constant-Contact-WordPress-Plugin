@@ -36,7 +36,7 @@ function kws_ob_include($path, &$CTCT = NULL) {
 }
 
 function constant_contact_tip($tip, $echo = true) {
-	$tip = '<span class="ctct_tip ctct_help" title="'.str_replace('"', '&quot;', $tip).'">?</span>';
+	$tip = '<span class="ctct_tip ctct_help" title="'.esc_attr( $tip ).'">?</span>';
 	if($echo) { echo $tip; } return $tip;
 }
 

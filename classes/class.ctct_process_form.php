@@ -11,7 +11,7 @@ class CTCT_Process_Form {
 
 	private $data = array();
 
-	var $results;
+	private $results = false;
 
 	private $id;
 

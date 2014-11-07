@@ -272,7 +272,7 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 						<input type="hidden" id="color2" name="color2" class="wpcolor" value="<?php ctct_input_value($form, 'color2', '#000001'); ?>" />
 				</div>
 				<div class="form-item" id="bgurl">
-					<p class="link-to-original">For inspiration, check out <a href="http://www.colourlovers.com/patterns/most-loved/all-time/meta">Colourlovers Patterns</a>.</p>
+					<p class="link-to-original">For inspiration, check out <a href="http://www.colourlovers.com/patterns/most-loved/all-time/meta" rel="external">Colourlovers Patterns</a>.</p>
 					<p><label for="bgimage"><span class="howto">Background Image:</span>
 					<input type="text" class="code widefat" id="bgimage" name="bgimage" value="<?php ctct_input_value($form, 'bgimage', 'http://colourlovers.com.s3.amazonaws.com/images/patterns/90/90096.png'); ?>" />
 					</label></p>
@@ -414,9 +414,9 @@ function cc_form_meta_box_formdesign($post, $metabox=array()) {
 			</div>
 			<div class="alignleft">
 				<label for="width" class="howto block"><span><?php esc_html_e('Form Width', 'constant-contact-api'); ?></span> <?php constant_contact_tip(''); ?></label>
-				<input type="text" class="" id="width" name="width" value="<?php ctct_input_value($form, 'width', '300'); ?>" size="12" />
-				<label for="widthtypeper" style="display:inline;" title="<?php esc_html_e('percent of container width', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypeper" <?php ctct_check_radio($form,'widthtype', 'per'); ?>/>%</label>
-				<label for="widthtypepx" style="display:inline;" title="<?php esc_html_e('pixels', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypepx" <?php ctct_check_radio($form,'widthtype', 'px', true); ?> />px</label>
+				<input type="text" class="" id="width" name="width" value="<?php ctct_input_value($form, 'width', '100'); ?>" size="12" />
+				<label for="widthtypeper" style="display:inline;" title="<?php esc_html_e('percent of container width', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypeper" <?php ctct_check_radio($form,'widthtype', 'per', true); ?>/>%</label>
+				<label for="widthtypepx" style="display:inline;" title="<?php esc_html_e('pixels', 'constant-contact-api'); ?>"><input type="radio" name="widthtype" id="widthtypepx" <?php ctct_check_radio($form,'widthtype', 'px'); ?> />px</label>
 			</div>
 
 		<div class="clear">
@@ -500,7 +500,7 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 				</div>
 
 				<div class="block">
-				<label for="lpad" class="howto block"><span><?php esc_html_e('Label Padding', 'constant-contact-api'); ?></span>
+				<label for="lpad" class="howto block"><span><?php esc_html_e('Label Padding', 'constant-contact-api'); constant_contact_tip(__('One "em" is equal to the height of the current font size.', 'constant-contact-api')); ?></span>
 				<select id="lpad" name="lpad">
 				  <option<?php ctct_check_select($form,'lpad', '0'); ?> value="0"><?php _e('None', 'constant-contact-api'); ?></option>
 				  <option<?php ctct_check_select($form,'lpad', '.25'); ?> value=".25"><?php _e('.2 em', 'constant-contact-api'); ?></option>
@@ -516,6 +516,7 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 				<div id="lfontli">
 					<label for="lfont" id="lfontlabel" class="howto block"><span><?php esc_html_e('Label Font', 'constant-contact-api'); ?></span></label>
 					<select id="lfont" name="lfont" class="inline">
+						<option <?php ctct_check_select($form,'tfont', 'inherit'); ?> style="font-family: inherit;" id="inherit"><?php esc_html_e('Use Theme Font', 'constant-contact-api'); ?></option>
 						<optgroup label="Serif">
 							<option <?php ctct_check_select($form,'lfont', 'times'); ?> style="font-family: 'Times New Roman', Times, Georgia, serif;" id="times"><?php esc_html_e('Times New Roman', 'constant-contact-api'); ?></option>
 							<option <?php ctct_check_select($form,'lfont', 'georgia'); ?> style="font-family: Georgia, 'Times New Roman', Times, serif;" id="georgia"><?php esc_html_e('Georgia', 'constant-contact-api'); ?></option>
@@ -546,7 +547,7 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 							<option <?php ctct_check_select($form,'lfont', 'papyrus'); ?> style="font-family: Papyrus, 'Palatino Linotype', Palatino, Bookman, fantasy" id="papyrus"><?php esc_html_e('Papyrus', 'constant-contact-api'); ?></option>
 						</optgroup>
 					</select>
-				<small class="asterix"><?php esc_html_e('* This font is popular, but not a "web-safe" font. If not available on an user\'s computer, it will default to a similar font.', 'constant-contact-api'); ?></small>
+					<small class="asterix"><?php esc_html_e('* This font is popular, but not a "web-safe" font. If not available on an user\'s computer, it will default to a similar font.', 'constant-contact-api'); ?></small>
 				</div>
 
 				<label for="lsize" class="howto block"><span><?php esc_html_e('Label Font Size', 'constant-contact-api'); ?></span></label>

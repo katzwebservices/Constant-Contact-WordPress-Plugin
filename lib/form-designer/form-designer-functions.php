@@ -43,7 +43,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
 
     do_action('ctct_debug', 'constant_contact_public_signup_form', $passed_args, @$_POST);
 
-    $output = $error_output = $success = $haserror = $listsOutput = $hiddenlistoutput = '';
+    $output = $error_output = $success = $haserror = $hiddenlistoutput = '';
     $default_args = array(
         'before' => null,
         'after' => null,
@@ -184,11 +184,16 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
 
     if( strpos( $form , '%%LISTSELECTION%%' ) > 0 ) {
 
+        $listsOutput = '';
+
+        // If lists are submitted, use those.
+        // Otherwise, consider all/no lists selected based on `$selected` setting.
         $selected = !empty($_POST['lists']) ? (array)$_POST['lists'] : (bool)$selected;
 
         // Remove the cache for this whole joint
         $listsOutput = KWSContactList::outputHTML($lists, array(
             'fill' => true,
+            'id_attr' => $unique_id.'-%%id%%',
             'showhidden' => false,
             'checked' => $selected,
             'type' => $list_selection_format ? $list_selection_format : 'hidden',
@@ -196,8 +201,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
 
         // If you're showing list selection, show the label and wrap it in a container.
         if( $list_selection_format !== 'hidden' ) {
-            $listsOutput = '<label for="cc_newsletter_select">'.$list_selection_title .'</label>
-            <div class="cc_newsletter kws_input_container input-text-wrap">
+            $listsOutput = '<div class="cc_newsletter input-text-wrap">
                 '.$listsOutput.'
             </div>';
         }
@@ -448,8 +452,16 @@ function make_formfield_list_items($array, $checkedArray, $name) {
 
 function make_formfield_list_item($id, $title, $checked = false, $name = 'formfields') {
 	if($checked) { $checked = ' checked="checked"';}
-	if($id == 'email_address') { $checked = ' checked="checked" disabled="disabled"'; }
-	return '<li>
+    $style = '';
+    if($id == 'email_address') {
+        $checked = ' checked="checked" disabled="disabled"';
+    }
+
+    if($id == 'lists') {
+        $style = ' style="display:none;"';
+    }
+
+	return '<li'.$style.'>
 		<label class="menu-item-title"><input type="checkbox" class="menu-item-checkbox" name="'.$name.'['.$id.']" value="'.$id.'"'.$checked.' /> '.$title.'</label>
 	</li>';
 }
