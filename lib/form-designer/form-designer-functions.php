@@ -43,7 +43,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
 
     do_action('ctct_debug', 'constant_contact_public_signup_form', $passed_args, @$_POST);
 
-    $output = $error_output = $success = $haserror = $hiddenlistoutput = '';
+    $output = $error_output = $success = $process_class = $hiddenlistoutput = '';
     $default_args = array(
         'before' => null,
         'after' => null,
@@ -146,7 +146,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
      * Success message: If no errors AND signup was successful show the success message
      */
     if( !empty( $errors ) ) {
-        $haserror = ' has_errors';
+        $process_class = ' has_errors';
 
         $error_output = '';
 
@@ -166,7 +166,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
         $error_output = apply_filters('constant_contact_form_errors', $error_output);
 
     } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
-
+        $process_class = ' has_success';
         $success = '<p class="success cc_success">';
         $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
         $success .= '</p>';
@@ -176,7 +176,7 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
 
     $form = str_replace('<!-- %%SUCCESS%% -->', $success, $form);
     $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
-    $form = str_replace('<!-- %%HASERROR%% -->', $haserror, $form);
+    $form = str_replace('<!-- %%PROCESSED_CLASS%% -->', $process_class, $form);
 
     // Generate the current page url, removing the success _GET query arg if it exists
     $current_page_url = remove_query_arg('success', ctct_current_page_url());

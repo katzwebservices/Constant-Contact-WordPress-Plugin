@@ -354,12 +354,12 @@ class CTCT_Form_Designer_Output {
 			$safesubscribelink = '<a href="http://katz.si/safesubscribe" target="_blank" class="cc_safesubscribe safesubscribe_'.$safesubscribe.'" rel="nofollow">Privacy by SafeUnsubscribe</a>';
 		}
 
-		$haserror = $errors = $success = $hidden = $action = '';
+		$processed_class = $errors = $success = $hidden = $action = '';
 		if( empty($data['output']) || $data['output'] === 'html') {
 
 			// If the current form has been submitted, we show the replacement fields
 			if( $currentform ) {
-				$haserror = '<!-- %%HASERROR%% -->';
+				$processed_class = '<!-- %%PROCESSED_CLASS%% -->';
 				$errors = '<!-- %%ERRORS%% -->';
 				$success = '<!-- %%SUCCESS%% -->';
 			}
@@ -374,8 +374,9 @@ class CTCT_Form_Designer_Output {
 			$formInner = $success . $hidden;
 		}
 
+
 $form = <<<EOD
-<div class="kws_form gform_wrapper$haserror"$selector>
+<div class="kws_form gform_wrapper$processed_class"$selector>
 <form id="$form_id_attr" action="$action" method="post">
 	$formInner
 	<div class="kws_clear"></div>
