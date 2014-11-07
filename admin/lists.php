@@ -22,13 +22,13 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
     }
 
     protected function getNavTitle() {
-        return 'Lists';
+        return __('Lists', 'constant-contact-api' );
     }
 
     protected function getTitle($type = '') {
         if($this->isEdit()) { return "Edit Lists"; }
         if($this->isSingle() || $type === 'single') { return "List #".intval(@$_GET['view']); }
-        return 'Lists';
+        return __('Lists', 'constant-contact-api' );
     }
 
 	protected function add() {
@@ -82,7 +82,7 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
         $Lists = $this->cc->getAllLists();
 
     	if(empty($Lists)) {
-    		echo 'Your account has no lists.';
+    		esc_html_e( 'Your account has no lists.', 'constant-contact-api');
     	} else {
 
             include(CTCT_DIR_PATH.'views/admin/view.lists-view.php');

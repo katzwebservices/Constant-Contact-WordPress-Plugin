@@ -29,11 +29,11 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         if(empty($value) && $this->isAdd() || $value == 'add')
             return __('Add a Contact', 'constant-contact-api');
 
-        return 'Contacts';
+        return __('Contacts', 'constant-contact-api' );
     }
 
     protected function getNavTitle() {
-        return 'Contacts';
+        return __('Contacts', 'constant-contact-api' );
     }
 
 	protected function add() {
@@ -56,61 +56,16 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
             try {
 
                 $data = $_POST;
-                #$data = new KWSContact($data);
-
-               # $data['email_addresses'] = $email;
-
-               /* // Placeholder until we get $_POST
-                $data = array(
-                    'first_name' => 'Example',
-                    'last_name' => 'Jones',
-                    'job_title' => 'President',
-                    'email_addresses' => array(rand(0, 0200000).$email),
-                    // 'address' => array(
-                    //             'line1' => '584 Elm Street',
-                    //             'city' => 'Cortez',
-                    //             'address_type' => 'personal',
-                    //             'country_code' => 'us',
-                    //         ),
-                    'addresses' => array(
-                            array(
-                                'line1' => '14870 Road 29',
-                                'address_type' => 'personal',
-                                'country_code' => 'us',
-                            ),
-                            array(
-                                'line1' => '216 A',
-                                'line2' => 'W. Montezuma Ave.',
-                                'city' => 'Cortez',
-                                'postal_code' => '81321',
-                                'address_type' => 'business',
-                                'country_code' => 'us',
-                            ),
-                    ),
-                    'custom_fields' => array(
-                         array(
-                         'name' => 'CustomField1',
-                         'value' => 'custom value now doesnt match'
-                        ),
-                        array(
-                          'name' => 'CustomField2',
-                          'value' => 'Does not match'
-                         )
-                    ),
-                    'notes' => array(
-                        array(
-                         'note' => 'Note 1'
-                        )
-                    ),
-                    'lists' => array('3', '27', '34')
-                );*/
 
                 $returnContact = $this->cc->addUpdateContact($data);
 
                 // create a new contact if one does not exist
                 if ($returnContact) {
 
-                    wp_redirect(add_query_arg(array('page' => $this->getKey(), 'view' => $returnContact->id), admin_url('admin.php')));
+                    wp_redirect(add_query_arg(array(
+                        'page' => $this->getKey(),
+                        'view' => $returnContact->id
+                    ), admin_url('admin.php')));
 
                 // update the existing contact if address already existed
                 } else {
@@ -188,7 +143,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         ));
 
     	if(empty($Contacts)) {
-    		echo __( 'Your account has no contacts.', 'constant-contact-api' );
+    		esc_html_e( 'Your account has no contacts.', 'constant-contact-api' );
     	} else {
     		include(CTCT_DIR_PATH.'views/admin/view.contacts-view.php');
     	}
