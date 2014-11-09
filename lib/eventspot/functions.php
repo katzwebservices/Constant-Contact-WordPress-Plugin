@@ -60,13 +60,56 @@ function constant_contact_get_timezone($value='') {
 	return $timezone;
 }
 
+/**
+ * Returns the timezone string for a site, even if it's set to a UTC offset
+ *
+ * Adapted from http://www.php.net/manual/en/function.timezone-name-from-abbr.php#89155
+ *
+ * @link  http://www.skyverge.com/blog/down-the-rabbit-hole-wordpress-and-timezones/
+ * @return string valid PHP timezone string
+ */
+function constant_contact_get_timezone_string() {
+
+    // if site timezone string exists, return it
+    if ( $timezone = get_option( 'timezone_string' ) )
+        return $timezone;
+
+    // get UTC offset, if it isn't set then return UTC
+    if ( 0 === ( $utc_offset = get_option( 'gmt_offset', 0 ) ) )
+        return 'UTC';
+
+    // adjust UTC offset from hours to seconds
+    $utc_offset *= 3600;
+
+    // attempt to guess the timezone string from the UTC offset
+    $timezone = timezone_name_from_abbr( '', $utc_offset );
+
+    // last try, guess timezone string manually
+    if ( false === $timezone ) {
+
+        $is_dst = date( 'I' );
+
+        foreach ( timezone_abbreviations_list() as $abbr ) {
+            foreach ( $abbr as $city ) {
+                if ( $city['dst'] == $is_dst && $city['offset'] == $utc_offset )
+                    return $city['timezone_id'];
+            }
+        }
+    }
+
+    // fallback to UTC
+    return 'UTC';
+}
+
 function constant_contact_event_date($value = null) {
 
 	// We get the current server timezone
 	$timezone = constant_contact_get_timezone();
 
+	$tz_string = constant_contact_get_timezone_string();
+
 	// We set the timezone to the blog timezone
-	date_default_timezone_set(get_option('timezone_string'));
+	date_default_timezone_set( $tz_string );
 
 	// We convert the date to "Date at Time"
 	$string = sprintf(__('%1$s at %2$s','constant-contact-api'), date_i18n(get_option('date_format'), strtotime($value), false), date_i18n(get_option('time_format'), strtotime($value), false));
