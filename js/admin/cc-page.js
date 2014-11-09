@@ -16,6 +16,23 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+	/**
+	 * Select the text of an input field on click
+	 * @filter default text
+	 * @action default text
+	 * @param  {[type]}    e     [description]
+	 * @return {[type]}          [description]
+	 */
+	function ctct_select_text(e) {
+	    e.preventDefault();
+
+	    $(this).focus().select();
+
+	    return false;
+	}
+
+	$('.ctct_table input[readonly]').on('click', ctct_select_text );
+
 	function ctct_pointers(target) {
 
     	if(typeof CTCT == 'undefined' || !CTCT || !CTCT.pointers || !CTCT.pointers.pointers) { return; }
