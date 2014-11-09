@@ -74,6 +74,9 @@ abstract class CTCT_Admin_Page {
             'component' => $this->component,
             '_wpnonce' => wp_create_nonce( 'ctct' ),
             'id' => $this->id,
+            'text' => array(
+                'editable' => esc_js( __('Click to Edit', 'constant-contact-api') ),
+            ),
         ));
 
         wp_enqueue_script('ctct-admin-fittext', CTCT_FILE_URL.'js/admin/jquery.fittext.js', array('ctct-admin-page'));

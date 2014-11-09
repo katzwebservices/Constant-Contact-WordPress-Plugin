@@ -191,12 +191,10 @@ jQuery(document).ready(function($) {
 	 * Inline Edit
 	 * @see KWSAjax::processAjax()
 	 */
-	$('.editable').attr('title', 'Click to Edit').inlineEdit({
+	$('.editable').attr('title', CTCT.text.editable ).inlineEdit({
 		buttons: '<button class="save button button-primary inline-edit-update">Update</button> <button class="cancel button button-secondary">Cancel</button>',
 		cancelOnBlur: true,
-		valeu: function() {
-			console.log($(this));
-		},
+		placeholder: CTCT.text.editable,
 		editInProgress: 'edit-in-progress',
 		save: function(event, data) {
 			var $that = $(this);
