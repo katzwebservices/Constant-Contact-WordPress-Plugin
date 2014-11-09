@@ -5,7 +5,7 @@
 	extract( $CTCT->settings );
 
 	// Enqueue the style so that it prints in the footer once.
-	if(!empty($style)) {
+	if( !empty( $style ) ) {
 		@wp_enqueue_style('cc-events', plugin_dir_url(__FILE__).'css/events.css');
 	}
 
@@ -14,16 +14,16 @@
 	if(!empty($events)) {
 
 		$i = 0;
-		foreach( (array) $events as $event) {
+		foreach( (array) $events as $partial_event ) {
 
 			// You can set the limit to 0 and have it show all events.
 			if( absint( $limit ) > 0 && $i >= absint( $limit ) ) { continue; }
 
 			$startOut = $descriptionOut = $dateOut = $calendarOut = $locationOut = $titleOut = $endOut = '';
 
-			$oddeven = (empty($oddeven) || $oddeven == ' even-event') ? ' odd-event' : ' even-event';
+			$oddeven = empty( $i % 2 ) ? ' odd-event' : ' even-event';
 
-			$event = $CTCT->old_api->getEventDetails($event, 60*60*24);
+			$event = $CTCT->old_api->getEventDetails( $partial_event, DAY_IN_SECONDS );
 
 			if( empty($event) || ( !empty( $onlyactive ) && $event->status !== 'ACTIVE' ) ) { continue; }
 
