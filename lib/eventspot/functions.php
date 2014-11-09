@@ -14,7 +14,7 @@ function constant_contact_cache_key($string, $passed = null) {
 	return $key;
 }
 
-function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = null, &$all = array(), $page = null) {
+function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = null, &$return = array(), $page = null) {
 
 	$key = constant_contact_cache_key('all_'.$type, $passed);
 
@@ -29,24 +29,26 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 	}
 
 	// If no results
-	if(empty($items[strtolower($type)])) { return $all; }
+	if(empty($items[strtolower($type)])) {
+		return $return;
+	}
 
-	// Otherwise, add items
+	// Otherwise, add items using the startdate time as the key for sorting below
 	foreach($items[strtolower($type)] as $item) {
 		$allkey = isset($item->startDate) ? strtotime($item->startDate) : null;
-		$all[$allkey] = $item;
+		$return[$allkey] = $item;
 	}
 
 	// Sort by event date
-	krsort($all);
+	krsort($return);
 
 	if(!empty($items['nextLink'])) {
-		constant_contact_old_api_get_all($type, $api, $passed, $all, $items['nextLink']);
+		constant_contact_old_api_get_all($type, $api, $passed, $return, $items['nextLink']);
 	}
 
-	set_transient($key, $all, apply_filters('constant_contact_cache_age', 60 * 60 * 6));
+	set_transient($key, $return, apply_filters('constant_contact_cache_age', HOUR_IN_SECONDS * 6 ) );
 
-	return $all;
+	return $return;
 }
 
 function constant_contact_get_timezone($value='') {
