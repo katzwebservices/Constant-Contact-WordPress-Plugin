@@ -24,9 +24,9 @@ class KWS_V1API extends ConstantContact {
 	public function getEventDetails(Event $Event){
 
 	    $EventsCollection = new EventsCollection($this->CTCTRequest);
-	    $key = constant_contact_cache_key('Event', $Event);
+	    $key = constant_contact_cache_key('Events', $Event);
 	    $details = get_transient($key);
-	    if(!$details || $this->refreshCache('event')) {
+	    if( empty( $details ) || $this->refreshCache('events')) {
 	    	$details = $EventsCollection->getEventDetails($this->CTCTRequest->baseUri.$Event->link);
 	    	set_transient( $key, $details, self::$event_cache_age);
 	    }
