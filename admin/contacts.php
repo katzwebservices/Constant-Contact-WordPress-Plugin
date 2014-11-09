@@ -47,17 +47,14 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
         // check if the form was submitted
         if (isset($_POST['email_addresses']) && !empty($_POST['email_addresses'])) {
-            $email = esc_attr($_REQUEST['email_addresses']);
-
-            /////RANDASDSADSADASD
-            $email = rand(0,10000).$email;
 
             $action = "Getting Contact By Email Address";
+
             try {
 
                 $data = $_POST;
 
-                $returnContact = $this->cc->addUpdateContact($data);
+                $returnContact = $this->cc->addUpdateContact( $data );
 
                 // create a new contact if one does not exist
                 if ($returnContact) {
