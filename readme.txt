@@ -70,6 +70,11 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+= 3.1 = 
+* Rewrote form designer
+* Rewrote form output
+* Tons of updates
+
 = 3.0.4 = 
 * Added JS localization to fix inline edit screens
 * Fixed: Error 500 with form live preview
