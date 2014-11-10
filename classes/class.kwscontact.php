@@ -157,7 +157,7 @@ class KWSContact extends Contact {
                 'address_country_code' => NULL,
                 'address_postal_code' => NULL,
                 'address_sub_postal_code' => NULL,
-            # 'notes' => array(), // Future
+            'notes' => array(),
             'company_name' => NULL,
             'home_phone' => NULL,
             'work_phone' => NULL,
@@ -285,13 +285,16 @@ class KWSContact extends Contact {
     	}
 
         if(isset($Contact['notes'])) {
+
             unset($Contact['notes']);
-            // CTCT got rid of notes for now.
-/*            $Contact['notes'] = (array)$Contact['notes'];
-            foreach ($Contact['notes'] as &$note) {
+
+            /*// CTCT got rid of updating notes for now.
+            $Contact['notes'] = array( $Contact['notes'] );
+            foreach( $Contact['notes'] as &$note) {
                 $note = is_array($note) ? $note : array('note' => $note);
                 $note = Note::create($note);
             }*/
+
         }
 
         if(isset($Contact['custom_fields'])) {
@@ -374,11 +377,11 @@ class KWSContact extends Contact {
                 break;
             case 'notes':
                 // Ctct got rid of notes for now.
-                /*if(isset($this->notes[0]) && is_object($this->notes[0])) {
+                if(isset($this->notes[0]) && is_object($this->notes[0])) {
                     $this->notes[0]->note = $value;
                 } else {
                     $this->addNote($value);
-                }*/
+                }
                 break;
 
             case (preg_match('/^personal_/ism', $key) ? true : false):

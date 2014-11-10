@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "479c413e50f3ca4d378b2290f7e20a2e",
+    "hash": "c90939e5127e5622b7e56b966964c5d5",
     "packages": [
         {
             "name": "constantcontact/constantcontact",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/constantcontact/php-sdk.git",
-                "reference": "4b5ac08172af81aab6957fea718df3dfa8c45ce8"
+                "reference": "087a12971b4314ac1961678490815da315244da1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/4b5ac08172af81aab6957fea718df3dfa8c45ce8",
-                "reference": "4b5ac08172af81aab6957fea718df3dfa8c45ce8",
+                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/087a12971b4314ac1961678490815da315244da1",
+                "reference": "087a12971b4314ac1961678490815da315244da1",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,67 @@
                 "ctct",
                 "email marketing"
             ],
-            "time": "2014-10-01 20:45:02"
+            "time": "2014-11-07 16:32:41"
+        },
+        {
+            "name": "giggsey/libphonenumber-for-php",
+            "version": "7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/giggsey/libphonenumber-for-php.git",
+                "reference": "7a66a13b9b1c9c6af0a2bf869722497897553dea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/7a66a13b9b1c9c6af0a2bf869722497897553dea",
+                "reference": "7a66a13b9b1c9c6af0a2bf869722497897553dea",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*"
+            },
+            "require-dev": {
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "~0.6",
+                "symfony/console": "~2.4"
+            },
+            "suggest": {
+                "ext-intl": "To use the geocoder and carrier mapping"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "libphonenumber": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Joshua Gigg",
+                    "email": "giggsey@gmail.com",
+                    "homepage": "http://giggsey.com/"
+                }
+            ],
+            "description": "PHP Port of Google's libphonenumber",
+            "homepage": "https://github.com/giggsey/libphonenumber-for-php",
+            "keywords": [
+                "geocoding",
+                "geolocation",
+                "libphonenumber",
+                "mobile",
+                "phonenumber",
+                "validation"
+            ],
+            "time": "2014-11-03 14:47:13"
         },
         {
             "name": "nineinchnick/select2",
@@ -88,12 +148,8 @@
             "time": "2014-09-15 06:02:29"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "constantcontact/constantcontact": 20,
@@ -103,7 +159,5 @@
         "php": ">=5.3.0",
         "ext-curl": "*"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

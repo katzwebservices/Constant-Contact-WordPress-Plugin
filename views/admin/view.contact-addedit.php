@@ -48,15 +48,14 @@
                 	$i = 1;
                 	$html .= '<ul class="ctct-checkboxes">';
                 	while($i < 16) {
-                	    $html .= sprintf('<li><label class="wrap">Custom Field %1$s <input title="Custom Field %1$s" placeholder="Custom Field %1$s" type="text" name="CustomField%d" class="input regular-text" value="%s" /></label></li>', $i, $Contact->get('CustomField'.$i));
+                        $label = sprintf( esc_attr_x( 'Custom Field %d', 'Admin label for custom fields', 'constant-contact-api' ), $i );
+                	    $html .= sprintf('<li><label class="wrap">%1$s <input title="" placeholder="%1$s" type="text" name="CustomField%2$d" class="input regular-text" value="%3$s" /></label></li>', $label, $i, $Contact->get('CustomField'.$i));
                 	    $i++;
                 	}
                 	$html .= '</ul>';
                 	break;
-                	break;
                 case 'notes':
-                    // Constant contact got rid of notes for now
-                    /*$html .= '<textarea name="notes" type="text" class="all-options" title="'.esc_attr($Contact->getLabel($key)).'" placeholder="'.esc_attr($Contact->getLabel($key)).'">'.$Contact->get('notes').'</textarea>';*/
+                    $html .= '<textarea name="notes" type="text" class="all-options" title="'.esc_attr($Contact->getLabel($key)).'" placeholder="'.esc_attr($Contact->getLabel($key)).'">'.$Contact->get('notes').'</textarea>';
                     break;
                 default:
                 	$html .= '<input id="'.$key.'" type="text" name="'.$key.'" class="regular-text" title="'.esc_attr($Contact->getLabel($key)).'" value="'.$Contact->get($key).'" placeholder="'.esc_attr($Contact->getLabel($key)).'" />';

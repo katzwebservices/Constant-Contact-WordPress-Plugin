@@ -39,6 +39,10 @@ class CTCT_Process_Form {
 		return self::$instance;
 	}
 
+	public function id() {
+		return $this->id;
+	}
+
 	public function is_processed() {
 		return $this->is_processed;
 	}
@@ -70,6 +74,8 @@ class CTCT_Process_Form {
 
 		$this->checkRequired();
 
+		$this->validatePhone( $KWSContact );
+
 		// Check If Email Is Real
 		$this->validateEmail($KWSContact);
 
@@ -93,8 +99,88 @@ class CTCT_Process_Form {
 		foreach ( $_POST['fields'] as $key => $field ) {
 
 			if( !empty( $field['req'] ) && (!isset( $field['value'] ) || $field['value'] === '') ) {
-				$this->errors[] = new WP_Error('empty_field', sprintf( __('The %s field is required.', 'constant-contact-api'), esc_html( $field['label'] ) ) );
+				$this->errors[] = new WP_Error('empty_field', sprintf( __('The %s field is required.', 'constant-contact-api'), esc_html( $field['label'] ) ), $key );
 			}
+		}
+
+	}
+
+	function validatePhone( KWSContact &$Contact ) {
+
+		/**
+		 * Whether to validate phone numbers at all.
+		 * @var boolean
+		 */
+		$validate = apply_filters( 'constant_contact_validate_phone_number', true );
+
+		if( !$validate ) {
+			return;
+		}
+
+		if(!class_exists('libphonenumber\PhoneNumberUtil')) {
+			include_once(CTCT_DIR_PATH.'vendor/giggsey/libphonenumber-for-php/src/libphonenumber/PhoneNumberUtil.php');
+		}
+
+
+		// en_US becomes "en", "US"
+		$locale_pieces = explode( '_', get_locale() );
+
+		// If only one piece, use that. If two, use the second piece.
+		$locale = isset( $locale_pieces[ 1 ] ) ? $locale_pieces[ 1 ] : $locale_pieces[ 0 ];
+
+		$phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+
+		// Check the different number types
+		$phone_numbers = array(
+			'home_phone',
+			'work_phone',
+			'cell_phone',
+			'fax',
+		);
+
+		/**
+		 * Modify the field IDs to check when validating phone numbers
+		 * @var array
+		 */
+		$phone_numbers = apply_filters( 'constant_contact_validate_phone_number_fields', $phone_numbers );
+
+		foreach ( (array)$phone_numbers as $key ) {
+
+			// Get the number
+			$phone = $Contact->get( $key );
+
+			if( empty( $phone ) ) { continue; }
+
+			try {
+
+				$number_proto = $phoneUtil->parse( $phone, $locale );
+
+				/**
+				 * Do you want to check for a number being valid (more strict), or just possible (less strict)
+				 * @var string 'possible' or 'valid'
+				 */
+				$valid_or_possible = apply_filters('constant_contact_phone_number_validation', 'possible' );
+
+				switch ( $valid_or_possible ) {
+
+					case 'valid':
+						$phoneUtil->isValidNumber( $number_proto );
+						break;
+
+					case 'possible':
+					default:
+						$phoneUtil->isPossibleNumber( $number_proto );
+						break;
+				}
+
+			} catch (\libphonenumber\NumberParseException $e) {
+
+				do_action('ctct_activity', $e->getMessage(), $e );
+
+			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'constant-contact-api'), $key );
+
+			}
+
 		}
 
 	}
@@ -131,9 +217,11 @@ class CTCT_Process_Form {
 	 */
 	private function sanitizePost() {
 
-		unset($_POST['fields']['lists']);
+		$post = isset( $_POST ) ? $_POST : array();
 
-		foreach($_POST['fields'] as $key => $value) {
+		unset($post['fields']['lists']);
+
+		foreach($post['fields'] as $key => $value) {
 			if(isset($value['value'])) {
 				$output[$key] = esc_attr($value['value']);
 			} else {
@@ -142,8 +230,8 @@ class CTCT_Process_Form {
 		}
 
 		// Make sure lists are IDs
-		if(!empty($_POST['lists'])) {
-			foreach($_POST['lists'] as $list) {
+		if(!empty($post['lists'])) {
+			foreach($post['lists'] as $list) {
 				if(!is_numeric($list)) { continue; }
 				// Constant Contact requires list IDs to be strings of numbers...
 				$output['lists'][] = (string)intval($list);
@@ -165,7 +253,7 @@ class CTCT_Process_Form {
 	 * @param  KWSContact $Contact Contact object
 	 * @return WP_Error|boolean 	If valid, return `true`, otherwise return a WP_Error object.
 	 */
-	function validateEmail(KWSContact $Contact) {
+	function validateEmail(KWSContact &$Contact) {
 
 		if(!class_exists('DataValidation')) {
 			include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
@@ -182,11 +270,11 @@ class CTCT_Process_Form {
 		// 1: Check if it's an email at all
 		if(empty($email)) {
 			do_action('ctct_activity', 'Empty email address', $email );
-			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'constant-contact-api'));
+			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'constant-contact-api'), 'email_address');
 			return;
 		} else if(!is_email($email)) {
 			do_action('ctct_activity', 'Invalid email address', $email);
-			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'constant-contact-api'));
+			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'constant-contact-api'), 'email_address');
 			return;
 		}
 

@@ -31,11 +31,12 @@
 
 			$link = $event->registrationUrl;
 
+			// If on a mobile phone, use the mobile registration link
 			if(!empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile()) {
 				$link = str_replace('/register/eventReg?', '/register/m?', $link);
 			}
 
-			$linkTitle = apply_filters('cc_event_linktitle', sprintf( __('View event details for "%s"','constant-contact-api'), $event->title));
+			$linkTitle = apply_filters('cc_event_linktitle', sprintf( esc_attr__('View event details for "%s"','constant-contact-api'), $event->title));
 			if(!empty($linkTitle)) { $linkTitle = ' title="'.esc_html($linkTitle).'"'; }
 
 			$class = apply_filters('cc_event_class', $class);
@@ -53,16 +54,16 @@
 				}
 				if(!empty($datetime)) {
 				$dateOut = '
-				<dt class="cc_event_startdate_dt">'.apply_filters('cc_event_startdate_dt', __('Start: ','constant-contact-api')).'</dt>
+				<dt class="cc_event_startdate_dt">'.apply_filters('cc_event_startdate_dt', esc_html__('Start: ','constant-contact-api')).'</dt>
 					<dd class="cc_event_startdate_dd">'.apply_filters('cc_event_date', apply_filters('cc_event_startdate', $event->startDate)).'</dd>
-				<dt class="cc_event_enddate_dt">'.apply_filters('cc_event_enddate_dt', __('End: ','constant-contact-api')).'</dt>
+				<dt class="cc_event_enddate_dt">'.apply_filters('cc_event_enddate_dt', esc_html__('End: ','constant-contact-api')).'</dt>
 					<dd class="cc_event_enddate_dd">'.apply_filters('cc_event_date', apply_filters('cc_event_enddate', $event->endDate)).'</dd>
 					';
 				}
 				if(!empty($calendar)) {
 
 					$link = str_replace('/register/event?', '/register/addtocalendar?', esc_url( $event->registrationUrl) );
-					$linkTitle = apply_filters('cc_event_linktitle', sprintf( __('Add "%s" to your calendar','constant-contact-api'), $event->title));
+					$linkTitle = apply_filters('cc_event_linktitle', sprintf( esc_html__('Add "%s" to your calendar','constant-contact-api'), $event->title));
 					if(!empty($linkTitle)) { $linkTitle = ' title="'.esc_attr($linkTitle).'"'; }
 					$calendarOut = '
 				<dd class="cc_event_calendar"><a'.$target.' href="'.$link.'"'.$linkTitle.'>'.esc_html__('Add to Calendar','constant-contact-api').'</a></dd>
@@ -84,11 +85,11 @@
 							/**
 							 * Modify the map link format. Passes the eventLocation object and the address query string.
 							 */
-							$locationText .= "<br/>".apply_filters('cc_event_map_link', "<a href='http://maps.google.com/maps?q=$address_qs'".$target." class='cc_event_map_link'>".__('Map Location','constant-contact-api')."</a>", $event->eventLocation, $address_qs);
+							$locationText .= "<br/>".apply_filters('cc_event_map_link', "<a href='http://maps.google.com/maps?q=$address_qs'".$target." class='cc_event_map_link'>".esc_html__('Map Location','constant-contact-api')."</a>", $event->eventLocation, $address_qs);
 						}
 
 					$locationOut = '
-					<dt class="cc_event_location cc_event_location_dt">'.apply_filters('cc_event_location_dt', __('Location: ','constant-contact-api')).'</dt>
+					<dt class="cc_event_location cc_event_location_dt">'.apply_filters('cc_event_location_dt', esc_html__('Location: ','constant-contact-api')).'</dt>
 						<dd class="cc_event_location_dd cc_event_location">'.apply_filters('cc_event_location', $locationText).'</dd>';
 					}
 				}
