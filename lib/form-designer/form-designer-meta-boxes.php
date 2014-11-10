@@ -103,7 +103,7 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 			$formfields[] = array('home_phone', __('Home Phone', 'constant-contact-api'), false);
 			$formfields[] = array('work_phone', __('Work Phone', 'constant-contact-api'), false);
 			$formfields[] = array('lists', __('Lists', 'constant-contact-api'), true);
-			echo make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
 		?>
 		</ul>
 	</div>
@@ -138,7 +138,7 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 			$formfields[] = array('CustomField13', __('Custom Field 13', 'constant-contact-api'), false);
 			$formfields[] = array('CustomField14', __('Custom Field 14', 'constant-contact-api'), false);
 			$formfields[] = array('CustomField15', __('Custom Field 15', 'constant-contact-api'), false);
-			echo make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
 		?>
 		</ul>
 	</div>
@@ -193,41 +193,41 @@ function cc_form_meta_box_formfields($_form_object) {
 		<?php
 
 			$formfields = array(
-				make_formfield($_form_object, '', 'intro', __('Form Text Placeholder', 'constant-contact-api'), true, '', 'textarea'),
-				make_formfield($_form_object, '', 'email_address', __('Email Address', 'constant-contact-api'), true, 'example@tryme.com'),
-				make_formfield($_form_object, '', 'first_name', __('First Name', 'constant-contact-api'), true),
-				make_formfield($_form_object, '', 'last_name', __('Last Name', 'constant-contact-api'), true),
-				make_formfield($_form_object, '', 'Go', __('Submit', 'constant-contact-api'), true, 'Subscribe', 'submit'),
-				make_formfield($_form_object, 'more', 'lists', __('Lists', 'constant-contact-api'), false, '', 'lists'),
-				make_formfield($_form_object, 'more', 'middle_name', __('Middle Name', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'company_name', __('Company Name', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'job_title', __('Job Title', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'home_phone', __('Home Phone', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'work_phone', __('Work Phone', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_line1', __('Address Line 1', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_line2', __('Address Line 2', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_line3', __('Address Line 3', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_city', __('City', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_state_code', __('State Code', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_state_name', __('State Name', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_country_code', __('Country Code', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_postal_code', __('ZIP Code', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'address_sub_postal_code', __('Sub ZIP Code', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField1', __('Custom Field 1', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField2', __('Custom Field 2', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField3', __('Custom Field 3', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField4', __('Custom Field 4', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField5', __('Custom Field 5', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField6', __('Custom Field 6', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField7', __('Custom Field 7', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField8', __('Custom Field 8', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField9', __('Custom Field 9', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField10', __('Custom Field 10', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField11', __('Custom Field 11', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField12', __('Custom Field 12', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField13', __('Custom Field 13', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField14', __('Custom Field 14', 'constant-contact-api'), false),
-				make_formfield($_form_object, 'more', 'CustomField15', __('Custom Field 15', 'constant-contact-api'), false)
+				ctct_make_formfield($_form_object, '', 'intro', __('Form Text Placeholder', 'constant-contact-api'), true, '', 'textarea'),
+				ctct_make_formfield($_form_object, '', 'email_address', __('Email Address', 'constant-contact-api'), true, 'example@tryme.com'),
+				ctct_make_formfield($_form_object, '', 'first_name', __('First Name', 'constant-contact-api'), true),
+				ctct_make_formfield($_form_object, '', 'last_name', __('Last Name', 'constant-contact-api'), true),
+				ctct_make_formfield($_form_object, '', 'Go', __('Submit', 'constant-contact-api'), true, 'Subscribe', 'submit'),
+				ctct_make_formfield($_form_object, 'more', 'lists', __('Lists', 'constant-contact-api'), false, '', 'lists'),
+				ctct_make_formfield($_form_object, 'more', 'middle_name', __('Middle Name', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'company_name', __('Company Name', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'job_title', __('Job Title', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'home_phone', __('Home Phone', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'work_phone', __('Work Phone', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_line1', __('Address Line 1', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_line2', __('Address Line 2', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_line3', __('Address Line 3', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_city', __('City', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_state_code', __('State Code', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_state_name', __('State Name', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_country_code', __('Country Code', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_postal_code', __('ZIP Code', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'address_sub_postal_code', __('Sub ZIP Code', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField1', __('Custom Field 1', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField2', __('Custom Field 2', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField3', __('Custom Field 3', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField4', __('Custom Field 4', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField5', __('Custom Field 5', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField6', __('Custom Field 6', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField7', __('Custom Field 7', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField8', __('Custom Field 8', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField9', __('Custom Field 9', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField10', __('Custom Field 10', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField11', __('Custom Field 11', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField12', __('Custom Field 12', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField13', __('Custom Field 13', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField14', __('Custom Field 14', 'constant-contact-api'), false),
+				ctct_make_formfield($_form_object, 'more', 'CustomField15', __('Custom Field 15', 'constant-contact-api'), false)
 			);
 
 			foreach($formfields as $formfield) { echo $formfield; }

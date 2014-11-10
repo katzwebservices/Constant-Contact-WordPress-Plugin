@@ -14,6 +14,8 @@ class CTCT_Form_Designer_Output {
 	private $data = array();
 	private $settings = array();
 	private $form;
+	private $request;
+	static private $instance = NULL;
 
 	function __construct( $form = array() ) {
 
@@ -24,6 +26,19 @@ class CTCT_Form_Designer_Output {
 		add_action( 'wp_ajax_ctct_form_designer', array(&$this, 'handle_ajax') );
 		add_action( 'wp_ajax_nopriv_ctct_form_designer', array(&$this, 'handle_ajax') );
 
+	}
+
+	/**
+	 * Get an instance of the object
+	 * @return CTCT_Process_Form
+	 */
+	static function &getInstance() {
+
+		if( empty( self::$instance ) ) {
+			self::$instance = new CTCT_Form_Designer_Output;
+		}
+
+		return self::$instance;
 	}
 
 	function handle_manual( $data ) {
@@ -73,6 +88,7 @@ class CTCT_Form_Designer_Output {
 
 		$this->output_type = ( !empty( $data['output'] ) && $data['output'] === 'html' ) ? 'html' : 'json';
 
+		// @TODO - VALIDATE REQUEST USING NONCE
 		$this->valid_request = true; ///// $valid;
 
 		$form = array();
@@ -122,57 +138,79 @@ class CTCT_Form_Designer_Output {
 
 	}
 
-	function render_field( $field, $cc_request, $currentform ) {
+	static function get_field_id( $passed_form_id = NULL, $field_name ) {
 
-		$fields = $asterisk = $bold = $italic = $required = $requiredFields = $val = $size = '';
+		return "cc_{$passed_form_id}_{$field_name}";
+	}
 
-		$data = $this->data;
+	/**
+	 * Get the class string for the field.
+	 * @param  array  $field Field passed to render_field()
+	 * @return string        HTML string
+	 */
+	function get_field_class( $field = array() ) {
 
-		if(!isset($field['id'])) { return ''; }
+		$class = '';
 
-		if( is_array($field) ) {
-			$field = stripslashes_deep( $field );
-			extract($field);
+		if( !empty( $field['bold'] ) ) {
+			$class .= ' kws_bold';
 		}
 
+		if( !empty( $field['italic'] ) ) {
+			$class .= ' kws_italic';
+		}
+
+		return $class;
+	}
+
+	function render_field( $passed_field ) {
+
+		$return = $requiredFields = $val = $size = '';
+
+		$field = $passed_field;
+
+		if( empty( $field['id'] ) ) {
+			return '';
+		}
+
+		$field = stripslashes_deep( $field );
+
+		$unique_form_id = isset( $this->request['uniqueformid'] ) ? $this->request['uniqueformid'] : '';
+
 		// Unique ID for labels, etc.
-		$uniqute_form_id = isset( $this->request['uniqueformid'] ) ? $this->request['uniqueformid'] : '';
+		$field_id = self::get_field_id( $unique_form_id, $field['id'] );
 
-		$this->ctctlog('makeFormField');
-		$this->r($field);
+		do_action('ctct_debug', 'render_field', $field);
 
+		$val = $field['val'];
 		$placeholder = '';
-
-		if(isset($cc_request['fields'][$field['id']]['value']) && $currentform) {
-			$val = esc_html( $cc_request['fields'][$field['id']]['value'] );
-		} else {
-
-			if( !empty( $field['val'] ) ) {
-				$placeholder = " placeholder='".esc_attr( $field['val'] )."'";
-			}
-			if(!($t == 'b' || $t == 's' || $t == 'ta')) {
-				$val = '';
-			}
+		if(isset($this->form['cc_request']['fields'][$field['id']]['value']) && $this->is_current_form() ) {
+			$val = esc_html( $this->form['cc_request']['fields'][$field['id']]['value'] );
+		} else if( !empty( $field['val'] ) ) {
+			$placeholder = " placeholder='".esc_attr( $field['val'] )."'";
 		}
 
 		$label = empty( $field['label'] ) ? '' : esc_html( $field['label'] );
 
 		// If this is the submit button, we add list selection
-		$fields .= "<div class='cc_$id kws_input_container gfield'>";
+		$return = "<div class='cc_{$field['id']} kws_input_container gfield'>";
 
-		$class = '';
-		if(!empty($bold)) { $class .= ' kws_bold'; }
-		if(!empty($italic)) { $class .= ' kws_italic'; }
-		$name = "fields[$id]";
+		$class = $this->get_field_class( $field );
+
+
+		$required = $asterisk = '';
 
 		// The field is required
 		if( !empty( $field['required'] ) ) {
 			$required = " required";
-			$reqlabel = isset( $data['text']['reqlabel'] ) ? htmlentities($data['text']['reqlabel']) : __('The %s field is required', 'constant-contact-api');
-			$asterisk = !empty( $this->form['reqast'] ) ? '<span class="req gfield_required" title="'.sprintf($reqlabel, $label).'">*</span>' : '';
+			$reqlabel = isset( $this->data['text']['reqlabel'] ) ? htmlentities($this->data['text']['reqlabel']) : __('The %s field is required', 'constant-contact-api');
+			$asterisk = !empty( $this->form['reqast'] ) ? '<span class="req gfield_required" title="'.esc_attr( sprintf($reqlabel, $label) ).'">*</span>' : '';
 		}
 
-		switch ( $t ) {
+		// Field name attribute
+		$name_attribute = "fields[{$field['id']}]";
+
+		switch ( $field['t'] ) {
 
 			// It's a textarea (which is the HTML "Form Text" field)
 			case 'ta':
@@ -184,7 +222,7 @@ class CTCT_Form_Designer_Output {
 				$val = wpautop( $val );
 
 				// Strip non-standard tags, for a little more security
-				$fields .= strip_tags( $val, '<b><strong><em><i><span><u><ul><li><ol><div><attr><cite><a><style><blockquote><q><p><form><br><meta><option><textarea><input><select><pre><code><s><del><small><table><tbody><tr><th><td><tfoot><thead><u><dl><dd><dt><col><colgroup><fieldset><address><button><aside><article><legend><label><source><kbd><tbody><hr><noscript><link><h1><h2><h3><h4><h5><h6><img>');
+				$return .= strip_tags( $val, '<b><strong><em><i><span><u><ul><li><ol><div><attr><cite><a><style><blockquote><q><p><form><br><meta><option><textarea><input><select><pre><code><s><del><small><table><tbody><tr><th><td><tfoot><thead><u><dl><dd><dt><col><colgroup><fieldset><address><button><aside><article><legend><label><source><kbd><tbody><hr><noscript><link><h1><h2><h3><h4><h5><h6><img>');
 
 				break;
 
@@ -192,51 +230,49 @@ class CTCT_Form_Designer_Output {
 			case 'b':
 			case 's':
 				if(!empty($label)) {
-					$fields .= "\n<label for='cc_{$uniqute_form_id}{$id}' class='$class'>$label</label>\n";
+					$return .= "\n<label for='{$field_id}' class='$class'>$label</label>\n";
 				} else {
-					$fields .= "\n<label for='cc_{$uniqute_form_id}{$id}' class='$class'>\n";
+					$return .= "\n<label for='{$field_id}' class='$class'>\n";
 				}
 
-				$fields .= "\n<input type='submit' value='$val' class='$t button' id='cc_{$uniqute_form_id}{$id}' name='constant-contact-signup-submit' >\n<div class='kws_clear'></div>";
+				$return .= "\n<input type='submit' value='$val' class='{$field['t']} button' id='{$field_id}' name='constant-contact-signup-submit' >\n<div class='kws_clear'></div>";
 
-				if(empty($label)) { $fields .= "\n</label>"; }
+				if(empty($label)) { $return .= "\n</label>"; }
 				break;
 
 			// Lists selection
 			case 'lists':
 				if(!empty($label)) {
-					$fields .= "\n<label class='$class'>$label</label>\n";
+					$return .= "\n<label class='$class'>$label</label>\n";
 				}
-				$fields .= '<!-- %%LISTSELECTION%% -->';
+				$return .= '<!-- %%LISTSELECTION%% -->';
 				break;
 
 			// It's a text field
 			default:
-				if(!empty($label)) { $fields .= "<label for='cc_{$uniqute_form_id}{$id}' class='$class  gfield_label'>\n$label{$asterisk}</label>"; }
-				if(!empty($size) && $t == 't') { $size = " size=\"$size\"";}
-				$fields .= "<input type='text' value='$val'$size $placeholder name='".$name."[value]' class='{$t} $class{$required}' id='cc_{$uniqute_form_id}{$id}' />\n";
+				if(!empty($label)) { $return .= "<label for='{$field_id}' class='$class gfield_label'>\n$label{$asterisk}</label>"; }
+
+				$return .= "<input type='text' value='$val' $placeholder name='".$name_attribute."[value]' class='{$field['t']} $class{$required}' id='{$field_id}' />\n";
 
 				if( !empty( $required ) ) {
-					$requiredFields = "\n".'<input type="hidden" name="'.$name.'[req]" value="1" />';
+					$requiredFields = "\n".'<input type="hidden" name="'.$name_attribute.'[req]" value="1" />';
 				}
 
 				break;
 		}
 
 		if( !empty($label) ) {
-			$fields .= "\n".'<input type="hidden" name="'.$name.'[label]" value="'.htmlentities($label).'" />';
+			$return .= "\n".'<input type="hidden" name="'.$name_attribute.'[label]" value="'.htmlentities($label).'" />';
 		}
 
-		$fields .= $requiredFields;
-		$fields .= "\n</div>";
+		$return .= $requiredFields;
+		$return .= "\n</div>";
 
-		return $fields;
+		return $return;
 
 	}
 
 	function html() {
-
-		$data = $this->form;
 
 		// Some very basic verification. Not secure, but better than nothing.
 		if( !$this->valid_request ) {
@@ -249,7 +285,7 @@ class CTCT_Form_Designer_Output {
 		}
 
 
-		if( !isset($data['form']) && !isset( $data['cc-form-id'] ) ) {
+		if( !isset($this->form['form']) && !isset( $this->form['cc-form-id'] ) ) {
 
 			$this->ctctlog('form does not exist');
 
@@ -257,7 +293,7 @@ class CTCT_Form_Designer_Output {
 
 		} else {
 
-			$output = !empty( $data['toggledesign'] ) ? $this->processStyle().$this->processForm() : $this->processForm();
+			$output = !empty( $this->form['toggledesign'] ) ? $this->processStyle().$this->processForm() : $this->processForm();
 
 		}
 
@@ -270,8 +306,6 @@ class CTCT_Form_Designer_Output {
 			exit( 0 );
 		}
 
-		$data = $this->form;
-
 		$output = array(
 			'css' => $this->strip_whitespace( $this->processStyle() ),
 			'form' => $this->strip_whitespace( $this->processForm() )
@@ -280,60 +314,74 @@ class CTCT_Form_Designer_Output {
 		exit( json_encode( $output ) );
 	}
 
+	/**
+	 * If we're fetching a specific form (sending a unique form ID with the request),
+	 * $currentform checks whether the requested form is the form that we're working with.
+	 * @return boolean [description]
+	 */
+	function is_current_form() {
+		return (isset($this->form['cc_request']['uniqueformid']) && $this->form['cc_request']['uniqueformid'] === $this->request['uniqueformid']);
+	}
+
+	function get_form_counter() {
+		global $cc_signup_count;
+
+		$cc_signup_count = !isset( $cc_signup_count ) ? 0 : $cc_signup_count;
+
+		$cc_signup_count++;
+
+		return $cc_signup_count;
+	}
 
 	function processForm() {
 
-		$cc_request = array();
 		$this->ctctlog('processForm');
-		$data = $this->form;
+		#$data = $this->form;
 
-		if(isset($data['f'])) {
-			if(isset($data['text'])) {
-				$data['text'] = json_decode(stripslashes_deep($data['text']), true);
+		if(isset($this->form['f'])) {
+			if(isset($this->form['text'])) {
+				$this->form['text'] = json_decode(stripslashes_deep($this->form['text']), true);
 			}
 		}
 
-		extract($data);
+		$form_id = $this->get_form_counter();
 
 		// If there is more than one form...no repeating IDs
-		$form_id_attr = 'constant-contact-signup';
-		if(isset($cc_signup_count) && $cc_signup_count > 1) {
-			$form_id_attr = 'constant-contact-signup-'.$cc_signup_count;
-			$this->r('signupcount: '.$cc_signup_count.'; $form_id_attr = '.$form_id_attr);
+		$form_id_attr = empty( $form_id ) ? 'constant-contact-signup' : 'constant-contact-signup-'.$form_id;
+
+		$this->r('signupcount: '.$form_id.'; $form_id_attr = '.$form_id_attr);
+
+
+		if( isset( $this->form['form'] ) ) {
+			$selector = ' id="cc_form_'.$this->form['form'].'"';
 		} else {
-			$cc_signup_count = 0;
+			$selector = '';
 		}
-
-		// If we're fetching a specific form (sending a unique form ID with the request),
-		// $currentform checks whether the requested form is the form that we're working with.
-		$currentform = (isset($cc_request['uniqueformid']) && $cc_request['uniqueformid'] === $this->request['uniqueformid']);
-
-		if(isset($form)) { $selector = ' id="cc_form_'.$form.'"'; } else { $selector = ''; }
 
 		$inputfields = '';
 
-		if( is_array( $data['f'] ) ) {
+		if( is_array( $this->form['f'] ) ) {
 
 			$position = array();
 
 			// Make sure they're in the right order
-			$f = $this->sort_fields( $data['f'] );
+			$fields = $this->sort_fields( $this->form['f'] );
 
 			$lists_shown = false;
 			$kws_hide = '';
 
-			foreach($f as $field) {
+			foreach($fields as $field) {
 
 				$field['size'] = NULL;
 
-                $field['form_id'] = $cc_signup_count;
+                $field['form_id'] = $form_id;
 
                 // There's a list field
                 if( $field['t'] === 'lists' ) {
                 	$lists_shown = true;
                 }
 
-				$fieldoutput = $this->render_field($field, $cc_request, $currentform);
+				$fieldoutput = $this->render_field($field, $this->form['cc_request'] );
 				$inputfields .= $fieldoutput;
             }
 
@@ -350,15 +398,15 @@ class CTCT_Form_Designer_Output {
         }
 
         $safesubscribelink = '';
-		if($safesubscribe != 'no') {
-			$safesubscribelink = '<a href="http://katz.si/safesubscribe" target="_blank" class="cc_safesubscribe safesubscribe_'.$safesubscribe.'" rel="nofollow">Privacy by SafeUnsubscribe</a>';
+		if( !empty( $this->form['safesubscribe'] ) && $this->form['safesubscribe'] != 'no') {
+			$safesubscribelink = '<a href="http://katz.si/safesubscribe" target="_blank" class="cc_safesubscribe safesubscribe_'.$this->form['safesubscribe'].'" rel="nofollow">Privacy by SafeUnsubscribe</a>';
 		}
 
 		$processed_class = $errors = $success = $hidden = $action = '';
-		if( empty($data['output']) || $data['output'] === 'html') {
+		if( empty($this->form['output']) || $this->form['output'] === 'html') {
 
 			// If the current form has been submitted, we show the replacement fields
-			if( $currentform ) {
+			if( $this->is_current_form() ) {
 				$processed_class = '<!-- %%PROCESSED_CLASS%% -->';
 				$errors = '<!-- %%ERRORS%% -->';
 				$success = '<!-- %%SUCCESS%% -->';
@@ -368,10 +416,10 @@ class CTCT_Form_Designer_Output {
 			$hidden = '<!-- %%HIDDEN%% -->';
 		}
 
-		if( empty( $data['cc_success'] ) ) {
-			$formInner = $errors . $success . $inputfields . $safesubscribelink . $hidden;
-		} else {
+		if( $this->is_current_form() && !empty( $this->form['cc_success'] ) ) {
 			$formInner = $success . $hidden;
+		} else {
+			$formInner = $errors . $success . $inputfields . $safesubscribelink . $hidden;
 		}
 
 
@@ -536,4 +584,4 @@ EOD;
 
 }
 
-new CTCT_Form_Designer_Output;
+CTCT_Form_Designer_Output::getInstance();

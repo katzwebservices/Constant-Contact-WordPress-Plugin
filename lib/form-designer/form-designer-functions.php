@@ -156,8 +156,16 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
         $error_output .= '<div id="constant-contact-signup-errors" class="error">';
         $error_output .= '<ul>';
         foreach ($errors as $error ) {
-            $label =
-            $error_output .= '<li><label for="'.$error->get_error_code().'">'.$error->get_error_message().'</label></li>';
+
+            /**
+             * The input ID is stored in the WP_Error error data.
+             * @see CTCT_Process_Form::checkRequired()
+             */
+            $error_field_id = CTCT_Form_Designer_Output::get_field_id( $ProcessForm->id(), $error->get_error_data() );
+
+            $error_label_for = ' for="'.esc_attr( $error_field_id ).'"';
+
+            $error_output .= '<li><label'.$error_label_for.'>'.$error->get_error_message().'</label></li>';
         }
         $error_output .= '</ul>';
         $error_output .= '</div>';
@@ -170,8 +178,9 @@ function constant_contact_public_signup_form( $passed_args, $echo = true) {
         $success = '<p class="success cc_success">';
         $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
         $success .= '</p>';
-
         $success = apply_filters('constant_contact_form_success', $success);
+
+        // Force refresh of the form
     }
 
     $form = str_replace('<!-- %%SUCCESS%% -->', $success, $form);
@@ -320,7 +329,12 @@ function cc_generate_form_from_request($r, $forms) {
 	if(!isset($r['cc-form-id']) || $r['cc-form-id']  === '' || $r['cc-form-id'] == -1 || $r['cc-form-id'] == '-1') {
 		$r['cc-form-id'] = cc_get_form_increment($forms);
 	}
-	if($r['form-name'] == apply_filters('constant_contact_default_form_name', __('Enter form name here', 'constant-contact-api'))) { $r['form-name'] = 'Form #'.$r['cc-form-id']; }
+
+    $using_default_form_name = empty( $r['form-name'] ) || ( $r['form-name'] === apply_filters('constant_contact_default_form_name', __('Enter form name here', 'constant-contact-api')) );
+
+    if( $using_default_form_name ) {
+        $r['form-name'] = sprintf( esc_attr_x( 'Form #%d', 'Default form name when none is provided.', 'constant-contact-api') , $r['cc-form-id'] );
+    }
 
 	return $r;
 }
@@ -442,15 +456,15 @@ function ctct_check_default($form, $name, $id, $value) {
 global $formfield_num;
 $formfield_num = 0;
 
-function make_formfield_list_items($array, $checkedArray, $name) {
+function ctct_make_formfield_list_items($array, $checkedArray, $name) {
 	$out = '';
 	foreach($array as $a) {
-		$out .= make_formfield_list_item($a[0], $a[1], !empty($checkedArray) ? in_array($a[0], $checkedArray) : $a[2], $name);
+		$out .= ctct_make_formfield_list_item($a[0], $a[1], !empty($checkedArray) ? in_array($a[0], $checkedArray) : $a[2], $name);
 	}
 	return $out;
 }
 
-function make_formfield_list_item($id, $title, $checked = false, $name = 'formfields') {
+function ctct_make_formfield_list_item($id, $title, $checked = false, $name = 'formfields') {
 	if($checked) { $checked = ' checked="checked"';}
     $style = '';
     if($id == 'email_address') {
@@ -466,7 +480,7 @@ function make_formfield_list_item($id, $title, $checked = false, $name = 'formfi
 	</li>';
 }
 
-function make_formfield($_form_object = array(), $class, $id, $value, $checked, $default = '', $type="text", $labeldefault = '') {
+function ctct_make_formfield($_form_object = array(), $class, $id, $value, $checked, $default = '', $type="text", $labeldefault = '') {
 	global $formfield_num;
 
 	$out = $position = $emailWidth = $hide = '';

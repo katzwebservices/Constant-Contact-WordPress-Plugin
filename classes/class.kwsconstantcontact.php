@@ -184,11 +184,15 @@ final class KWSConstantContact extends ConstantContact {
             $action = "Updating Contact";
 
             try {
+
             	// Update the contact details
-            	$existingContact = $existingContact->update($data);
+            	$modifiedContact = $existingContact->update($data);
 
             	// Push the update to CTCT
-            	$returnContact = $this->updateContact(CTCT_ACCESS_TOKEN, $existingContact);
+            	$returnContact = $this->updateContact(CTCT_ACCESS_TOKEN, $modifiedContact);
+
+            	unset( $modifiedContact );
+
             	$action .= ' Succeeded';
         	} catch(Exception $e) {
         		$returnContact = false;
