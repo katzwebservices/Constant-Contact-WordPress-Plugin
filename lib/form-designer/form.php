@@ -93,7 +93,7 @@ class CTCT_Form_Designer_Output {
 
 		$form = array();
 
-		if( is_array( $data['form'] ) ) {
+		if( isset( $data['form'] ) && is_array( $data['form'] ) ) {
 			foreach ( $data['form'] as $key => $value) {
 
 				// Convert `f[1][name]` input names to array
@@ -182,9 +182,9 @@ class CTCT_Form_Designer_Output {
 
 		do_action('ctct_debug', 'render_field', $field);
 
-		$val = $field['val'];
+		$val = isset( $field['val'] ) ? $field['val'] : '';
 		$placeholder = '';
-		if(isset($this->form['cc_request']['fields'][$field['id']]['value']) && $this->is_current_form() ) {
+		if( !empty( $this->form['cc_request'] ) && isset($this->form['cc_request']['fields'][$field['id']]['value']) && $this->is_current_form() ) {
 			$val = esc_html( $this->form['cc_request']['fields'][$field['id']]['value'] );
 		} else if( !empty( $field['val'] ) ) {
 			$placeholder = " placeholder='".esc_attr( $field['val'] )."'";
@@ -212,13 +212,13 @@ class CTCT_Form_Designer_Output {
 
 		switch ( $field['t'] ) {
 
-			// It's a textarea (which is the HTML "Form Text" field)
+			// It's the HTML "Form Text" field
 			case 'ta':
 
 				// We allow HTML in the textarea; un-escape the $val
 				$val = html_entity_decode( $val );
 
-				// The text entered into the textarea isn't wrapped in <p>
+				// Wrap text in <p>
 				$val = wpautop( $val );
 
 				// Strip non-standard tags, for a little more security
@@ -251,6 +251,10 @@ class CTCT_Form_Designer_Output {
 			// It's a text field
 			default:
 				if(!empty($label)) { $return .= "<label for='{$field_id}' class='$class gfield_label'>\n$label{$asterisk}</label>"; }
+
+				if( !empty( $placeholder) ) {
+					$val = '';
+				}
 
 				$return .= "<input type='text' value='$val' $placeholder name='".$name_attribute."[value]' class='{$field['t']} $class{$required}' id='{$field_id}' />\n";
 
@@ -293,11 +297,233 @@ class CTCT_Form_Designer_Output {
 
 		} else {
 
-			$output = !empty( $this->form['toggledesign'] ) ? $this->processStyle().$this->processForm() : $this->processForm();
+			$output = !empty( $this->form['toggledesign'] ) || !isset( $this->form['toggledesign'] ) ? $this->processStyle().$this->processForm() : $this->processForm();
 
 		}
 
 		return $output;
+	}
+
+	/**
+	 * HTML Signup form to be used in widget and shortcode
+	 *
+	 * Based on original widget code but broken out to be used in shortcode and
+	 * any other place where non-logged-in users will be signing up.
+	 *
+	 * Modify the output by calling `add_filter('constant_contact_form', 'your_function');`
+	 *
+	 * @param array|string $passed_args Settings for generating the signup form
+	 * @param boolean $echo True: Echo the form; False: return form output.
+	 * @return string Form HTML output
+	 */
+	static function signup_form( $passed_args, $echo = true) {
+
+		do_action('ctct_debug', 'constant_contact_public_signup_form', $passed_args, @$_POST);
+
+	    $output = $error_output = $success = $process_class = $hiddenlistoutput = '';
+	    $default_args = array(
+	        'before' => null,
+	        'after' => null,
+	        'formid' => 0,
+	        'redirect_url' => false,
+	        'lists' => array(),
+	        'title' => '',
+	        'exclude_lists' => array(),
+	        'description' => '',
+	        'show_list_selection' => false,
+	        'list_selection_title' => __('Add me to these lists:', 'ctct'),
+	        'list_selection_format' => NULL,
+	        'list_format' => NULL, // Used by form
+	        'widget' => false, // is this request coming from the widget?
+	    );
+
+	    $settings = shortcode_atts( $default_args, $passed_args );
+
+	    /**
+	     * This unique id will be used to differentiate from other forms on the same page.
+	     * It will also be used to store cached forms.
+	     *
+	     * Only get the first 10 characters, since that's all we really need.
+	     * @var string
+	     */
+	    $unique_id = substr( sha1(maybe_serialize($settings)), 0, 10 );
+
+	    $form = CTCT_Form_Designer_Helper::get_form($settings['formid']);
+
+	    // Merge using the form settings
+	    $settings = shortcode_atts( $settings, $form );
+
+	    // Override one more time using the passed args as the final
+	    $settings = shortcode_atts( $settings, $passed_args );
+
+	    // BACKWARD COMPATIBILITY
+	    $settings['list_selection_format'] = empty( $settings['list_selection_format'] ) ? $settings['list_format'] : $settings['list_selection_format'];
+
+	    extract($settings, EXTR_SKIP);
+
+	    // The form does not exist.
+	    if(!$form) {
+
+	        do_action('ctct_log', sprintf('Form #%s does not exist. Called on %s', $formid, add_query_arg(array())));
+
+	        if(current_user_can('manage_options')) {
+	            return '<!-- Constant Contact API Error: Form #'.$formid.' does not exist. -->';
+	        }
+
+	        return false;
+	    }
+
+	    // If other lists aren't passed to the function,
+	    // use the default lists defined in the form designer.
+	    if( empty($lists) && !empty( $form['lists'] ) ) { $lists = $form['lists']; }
+
+	    $selected = $lists;
+	    if($widget) {
+	        $lists = isset( $form['lists'] ) ? $form['lists'] : null;
+	        $show_list_selection = ( !empty( $form['formfields'] ) && is_array( $form['formfields'] ) ) ? in_array('lists', $form['formfields']) : null;
+	        $list_selection_format = @$form['list_format'];
+	        $selected = isset($form['checked_by_default']) ? $form['checked_by_default'] : false;
+	    }
+
+	    /**
+	     * Make it possible to call using shortcode comma separated values. eg: lists=1,2,3
+	     */
+	    if(is_string($lists)) { $lists = explode(',', $lists); }
+
+	    // The form is retrieved from constant_contact_retrieve_form()
+	    // and then the variables are replaced further down the function.
+	    if($formid !== '' && function_exists('constant_contact_retrieve_form')) {
+	        $force = (isset($_REQUEST['cache']) || (isset($_REQUEST['uniqueformid']) && $_REQUEST['uniqueformid'] === $unique_id)) ? true : false;
+	        $form = constant_contact_retrieve_form($formid, $force, $unique_id, $lists);
+	    } elseif(!function_exists('constant_contact_retrieve_form') && current_user_can('manage_options')) {
+	        echo '<!-- Constant Contact API Error: `constant_contact_retrieve_form` function does not exist. -->';
+	    }
+
+	    // If the form returns an error, we want to get out of here!
+	    if(empty($form) || is_wp_error($form)) {
+	        if(is_wp_error($form)) {
+	            do_action('ctct_debug', 'Form is empty or WP_Error', $form);
+	        }
+	        return false;
+	    }
+
+	    // Modify lists with this filter
+	    $lists = apply_filters('constant_contact_form_designer_lists', apply_filters('constant_contact_form_designer_lists_'.$formid, $lists));
+
+	    /**
+	     * Display errors or Success message if the form was submitted.
+	     */
+
+	    $ProcessForm = CTCT_Process_Form::getInstance();
+
+	    $errors = $ProcessForm->getErrors();
+	    $success = '';
+
+	    /**
+	     * Success message: If no errors AND signup was successful show the success message
+	     */
+	    if( !empty( $errors ) ) {
+	        $process_class = ' has_errors';
+
+	        $error_output = '';
+
+	        do_action('ctct_debug', 'Handling errors in constant_contact_public_signup_form', $errors);
+
+	        // Set up error display
+	        $error_output .= '<div id="constant-contact-signup-errors" class="error">';
+	        $error_output .= '<ul>';
+	        foreach ($errors as $error ) {
+
+	            /**
+	             * The input ID is stored in the WP_Error error data.
+	             * @see CTCT_Process_Form::checkRequired()
+	             */
+	            $error_field_id = CTCT_Form_Designer_Output::get_field_id( $ProcessForm->id(), $error->get_error_data() );
+
+	            $error_label_for = ' for="'.esc_attr( $error_field_id ).'"';
+
+	            $error_output .= '<li><label'.$error_label_for.'>'.$error->get_error_message().'</label></li>';
+	        }
+	        $error_output .= '</ul>';
+	        $error_output .= '</div>';
+
+	        // Filter output so text can be modified by plugins/themes
+	        $error_output = apply_filters('constant_contact_form_errors', $error_output);
+
+	    } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
+	        $process_class = ' has_success';
+	        $success = '<p class="success cc_success">';
+	        $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
+	        $success .= '</p>';
+	        $success = apply_filters('constant_contact_form_success', $success);
+
+	        // Force refresh of the form
+	    }
+
+	    $form = str_replace('<!-- %%SUCCESS%% -->', $success, $form);
+	    $form = str_replace('<!-- %%ERRORS%% -->', $error_output, $form);
+	    $form = str_replace('<!-- %%PROCESSED_CLASS%% -->', $process_class, $form);
+
+	    // Generate the current page url, removing the success _GET query arg if it exists
+	    $current_page_url = remove_query_arg('success', CTCT_Form_Designer_Helper::current_page_url());
+	    $form = str_replace('<!-- %%ACTION%% -->', $current_page_url, $form);
+
+	    if( strpos( $form , '%%LISTSELECTION%%' ) > 0 ) {
+
+	        $listsOutput = '';
+
+	        // If lists are submitted, use those.
+	        // Otherwise, consider all/no lists selected based on `$selected` setting.
+	        $selected = !empty($_POST['lists']) ? (array)$_POST['lists'] : (bool)$selected;
+
+	        // Remove the cache for this whole joint
+	        $listsOutput = KWSContactList::outputHTML($lists, array(
+	            'fill' => true,
+	            'id_attr' => $unique_id.'-%%id%%',
+	            'showhidden' => false,
+	            'checked' => $selected,
+	            'type' => $list_selection_format ? $list_selection_format : 'hidden',
+	        ));
+
+	        // If you're showing list selection, show the label and wrap it in a container.
+	        if( $list_selection_format !== 'hidden' ) {
+	            $listsOutput = '<div class="cc_newsletter input-text-wrap">
+	                '.$listsOutput.'
+	            </div>';
+	        }
+
+	        $form = str_replace('<!-- %%LISTSELECTION%% -->', $listsOutput, $form);
+
+	    }
+
+	    /**
+	     * Finish form output including a hidden field for referrer and submit button
+	     */
+	    $hiddenoutput = '
+	        <div>
+	            <input type="hidden" id="cc_redirect_url" name="cc_redirect_url" value="'. urlencode( $redirect_url ) .'" />
+	            <input type="hidden" id="cc_referral_url" name="cc_referral_url" value="'. urlencode( $current_page_url ) .'" />
+	                <input type="hidden" name="uniqueformid" value="'.$unique_id.'" />
+	                <input type="hidden" name="ccformid" value="'.$formid.'" />
+	        </div>';
+	    $form = str_replace('<!-- %%HIDDEN%% -->', $hiddenoutput, $form);
+
+	    // All remaining tags should be removed.
+	    $form = preg_replace('/\%\%(.*?)\%\%/ism', '', $form);
+
+	    $output = apply_filters('constant_contact_form', apply_filters( 'constant_contact_form_'.$formid, $form));
+
+	    do_action('ctct_debug', 'form output', $output);
+
+	    /**
+	     * Echo the output if $settings['echo'] is true
+	     */
+	    if ($echo) { echo $output; }
+
+	    /**
+	     * And always return the $output
+	     */
+	    return $output;
 	}
 
 	function json() {
@@ -380,8 +606,7 @@ class CTCT_Form_Designer_Output {
                 if( $field['t'] === 'lists' ) {
                 	$lists_shown = true;
                 }
-
-				$fieldoutput = $this->render_field($field, $this->form['cc_request'] );
+                $fieldoutput = $this->render_field($field );
 				$inputfields .= $fieldoutput;
             }
 
@@ -442,6 +667,12 @@ EOD;
 	}
 
 	function sort_fields( $f ) {
+
+		if( !is_array( $f ) ) {
+			return array();
+		}
+
+		$position = array();
 
 		foreach ($f as $key => $field) {
 			if(!isset($field['pos'])) {
