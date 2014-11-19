@@ -1,0 +1,102 @@
+
+@ctct-stage-width: 475px;
+
+@import "general";
+@import "switch";
+@import "side-sortables";
+@import "settings";
+@import "preview";
+@import "bold-italic";
+@import "jquery-ui-slider";
+
+
+.postbox div.inside {
+	padding-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+// Fix issue with tabs not being tall enough
+#nav-menus-frame .wp-switch-editor {
+	height: auto;
+}
+
+#settings
+#settings input.nomargin {margin-left: 0px;}
+
+
+ul.width50 {
+	float: left;
+	clear: none;
+	width:48%;
+	display: block;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 2%;
+}
+
+fieldset ul.width50 {
+	width: 95%;
+	padding-left: 2%!important;
+}
+.width100,
+.width100 ul,
+.width100 li {
+	width:98%!important;
+}
+
+#post-body-content {
+
+	width: 100%;
+	max-width: @ctct-stage-width;
+
+	.menu-item-handle,
+	.menu-item-settings {
+		width: 100%!important;
+	}
+
+	.item-edit {
+		display: none;
+	}
+
+	.menu-item-bar {
+
+		.dashicons-sort {
+			position: absolute;
+			right: 5px;
+			color: #ccc;
+		}
+		&:hover .dashicons-sort {
+			color: #aaa;
+		}
+	}
+
+}
+
+
+
+
+
+/* Patternlist */
+#patternList li {
+	width: 25px;
+	height: 25px;
+	float:left;
+	list-style: none;
+	margin: 2px;
+	padding: 0;
+	background-position: left top;
+	background-repeat: repeat;
+}
+
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}

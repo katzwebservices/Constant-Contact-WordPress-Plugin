@@ -320,36 +320,62 @@ body div.ctct-tooltip .ui-tooltip-content {
 
 .ctct-checkboxes {
 	max-height: 300px;
-	overflow: auto;
+	overflow-y: auto;
 }
 
 .not-editable { cursor: default;}
-.ctct_table .editable {
-	cursor: pointer;
-	padding: .5em;
-	border:1px dotted #CCC;
-	border-radius: 3px;
-	display:inline-block;
-}
-.ctct_table .editable:hover,
-.ctct_table .edit-in-progress,
-.ctct_table .saving-in-progress,
-.ctct_table .edit-in-progress:hover {
-	border:dotted 1px #333;
-	background:#facd69 url('../../images/admin/pencil.png') right center no-repeat;
-	padding-right: 25px;
-	/*padding: 0;*/
-	border: none;
-	border:1px dotted rgba(100,100,100,0);
-	border-right: 10px solid transparent;
-	max-width: 100%;
-	width: auto;
-}
-.ctct_table .edit-in-progress input {
-	margin-bottom: .5em;
-}
-.ctct_table .saving-in-progress {
-	background:#cbcbcb url('../../../../../wp-includes/images/wpspin.gif') right center no-repeat;
+
+.ctct_table {
+
+	.editable {
+		cursor: pointer;
+		padding: .5em;
+		margin-right: 25px;
+		border:1px dotted #CCC;
+		border-radius: 3px;
+		display:inline-block;
+	}
+
+	.editable:hover,
+	.edit-in-progress,
+	.saving-in-progress,
+	.edit-in-progress:hover {
+		margin-right: 0;
+		border:dotted 1px #333;
+		background:#facd69;
+		padding-right: 25px;
+		/*padding: 0;*/
+		border: none;
+		border:1px dotted rgba(100,100,100,0);
+		border-right: 10px solid transparent;
+		max-width: 100%;
+		width: auto;
+		position: relative;
+
+		&:before {
+			content: "\f464";
+			display: inline-block;
+			-webkit-font-smoothing: antialiased;
+			font: normal 20px/1 'dashicons';
+
+			// Customized
+			color: #5a4e35;
+			vertical-align: top;
+			position: absolute;
+			right: -5px;
+			top: 50%;
+			margin-top: -10px;
+		}
+
+	}
+
+	.edit-in-progress input {
+		margin-bottom: .5em;
+	}
+
+	.saving-in-progress {
+		background:#cbcbcb url('../../../../../wp-includes/images/wpspin.gif') right center no-repeat;
+	}
 }
 
 .edit-in-progress input {
@@ -368,12 +394,14 @@ body div.ctct-tooltip .ui-tooltip-content {
 
 .wp-pointer-left { margin-top: -69px;}
 #menu-constant-contact-forms { display: block;}
+
 .ctct_help {
-	display: inline-block;
-	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
+	display: inline-block!important;
+	font-family: 'Open Sans', 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
 	font-size: 10px;
 	line-height: 17px;
 	font-weight: bold;
+	float: none!important;
 	margin-top: 1px;
 	margin-left: 7px;
 	-webkit-border-radius: 13px;

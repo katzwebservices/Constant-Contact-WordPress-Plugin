@@ -70,7 +70,16 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+= 3.1.1 =
+* Redesigned Form Designer to match WP 4.0 look & feel
+	* Added input sliders to Form Designer - easier than dropdowns
+	* Used accordion instead of metaboxes
+	* Use Dashicons for Bold/Italic instead of images
+* Use Dashicons for Edit pencil
+* Updated translation strings
+* Converted much CSS to LESS
 * Refactored `form-designer-functions.php` as `CTCT_Form_Designer_Helper` class
+
 = 3.1 = 
 * Rewrote form designer
 * Rewrote form output

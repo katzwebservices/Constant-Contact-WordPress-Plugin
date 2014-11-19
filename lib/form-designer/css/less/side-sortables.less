@@ -1,0 +1,94 @@
+#side-sortables {
+
+	.block {
+		clear: both;
+		float: left;
+		width: 100%;
+		margin: .5em 0 .25em 0;
+	}
+	.howto {
+		display: block;
+		clear: both;
+	}
+	fieldset {
+		clear: both;
+		float: left;
+		width: 100%;
+		margin: .5em 0;
+	}
+
+	label.checkbox input {
+		width: auto;
+		float: left;
+		display: inline-block;
+		margin: .5em .5em 0 0;
+	}
+
+	select#tfont,
+	select#tsize {
+		 float: left;
+		 margin-left: 0;
+	}
+
+	// Embed code
+	.howto code {
+		display:block;
+		padding: .6em 1em;
+	}
+
+	.ctct-checkboxes {
+
+		max-height: 200px;
+
+		// Make checkboxes align with text
+		& li {
+			text-indent: -1.4em;
+			padding-left: 1.4em;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+		}
+
+	}
+
+	// Use our own overflow management with .ctct-checkboxes
+	#ctct-form-list-select,
+	#formfields-select-most,
+	#formfields-select-all {
+		padding: .5em 0;
+
+		display: none;
+
+		&.tabs-panel-active {
+			display: block;
+		}
+	}
+
+	#ctct-form-list-select {
+		overflow: hidden;
+		max-height: none;
+	}
+
+	// Background image
+	.link-to-original {
+		border: none;
+	}
+
+	// Don't add padding below the Form Styler
+	#formbasics div.inside {
+		padding-bottom: 0;
+	}
+
+	// Hide the Other Fields list
+	li.menu-item.hide {
+		display: none!important;
+	}
+
+	// Display warning in small but readable font
+	.font-asterisk {
+		clear: left;
+		float: left;
+		font-size: .9em;
+		margin: .5em 5px 1em 5px;
+	}
+}
