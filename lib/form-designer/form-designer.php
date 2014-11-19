@@ -50,8 +50,9 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_style( 'cc-style', plugin_dir_url(__FILE__).'css/style.css');
 
-		// Otto is the man.
-		wp_enqueue_script( 'cc-code', plugin_dir_url(__FILE__).'js/cc-code-dev.js', array('wp-color-picker', 'jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'jquery-ui-sortable'));
+		$script_debug = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+		wp_enqueue_script( 'cc-code', plugin_dir_url(__FILE__).'js/cc-code'.$script_debug.'.js', array('wp-color-picker', 'jquery', 'jquery-ui-core', 'jquery-ui-tabs', 'jquery-ui-sortable', 'jquery-ui-slider'));
+
 		$params = array(
 			'path' => plugin_dir_url(__FILE__),
 			'rand' => mt_rand(0, 100000000),
