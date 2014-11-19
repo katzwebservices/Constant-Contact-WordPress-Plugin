@@ -28,7 +28,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		require_once( CC_FORM_GEN_PATH . 'form-designer-functions.php' );
 		require_once( CC_FORM_GEN_PATH . 'widget-form-designer.php');
 
-		add_shortcode('constantcontactapi', 'constant_contact_signup_form_shortcode');
+		add_shortcode('constantcontactapi', array($this, 'shortcode') );
 
 		add_action('widgets_init', 'constant_contact_form_load_widget');
 
@@ -39,6 +39,12 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		add_action('admin_print_scripts', 'constant_contact_admin_widget_scripts');
 		add_filter( 'teeny_mce_before_init', 'ccfg_tiny_mce_before_init', 10, 2);
 		add_filter( 'tiny_mce_before_init', 'ccfg_tiny_mce_before_init', 10, 2);
+	}
+
+	function shortcode($atts, $content=null) {
+
+	    return CTCT_Form_Designer_Output::signup_form( $atts, false);
+
 	}
 
 	public function addScripts($value='') {
@@ -412,6 +418,24 @@ function cc_form_text() {
 	));
 }
 
+/**
+ * HTML Signup form to be used in widget and shortcode
+ *
+ * Based on original widget code but broken out to be used in shortcode and
+ * any other place where non-logged-in users will be signing up.
+ *
+ * Modify the output by calling `add_filter('constant_contact_form', 'your_function');`
+ *
+ * @param array|string $passed_args Settings for generating the signup form
+ * @param boolean $echo True: Echo the form; False: return form output.
+ * @return string Form HTML output
+ */
+function constant_contact_public_signup_form( $passed_args, $echo = true) {
+
+    return CTCT_Form_Designer_Output::signup_form( $passed_args, $echo );
+
+}
+
 function wp_cc_form_setup($form = false) {
 	global $cc, $cc_form_selected_id;
 
@@ -419,15 +443,18 @@ function wp_cc_form_setup($form = false) {
 
 	$form = empty($form) ? wp_get_cc_form($cc_form_selected_id) : $form;
 
+	// Backup $_GET in case it's modified by the metaboxes
 	$getHolder = $_GET;
-	add_meta_box( 'formname', __( 'Form Name','constant-contact-api' ), 'cc_form_meta_box_actions' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'formlists_select', __( 'Default Newsletters','constant-contact-api' ), 'cc_form_meta_box_formlists_select' , 'constant-contact-form', 'side', 'default', array($form));
+
+	add_meta_box( 'formbasics', __('Form Basics', 'constant-contact-api'), 'cc_form_meta_box_actions' , 'constant-contact-form', 'core', 'default', array($form));
+	add_meta_box( 'formlists_select', __( 'Signup Lists','constant-contact-api' ), 'cc_form_meta_box_formlists_select' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'formfields_select', __( 'Form Fields','constant-contact-api' ), 'cc_form_meta_box_formfields_select' , 'constant-contact-form', 'side', 'default', array($form));
-	#add_meta_box( 'usedesign', __( 'Style the Form?','constant-contact-api' ), 'cc_form_meta_box_styleform' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'backgroundoptions', __('Background','constant-contact-api'), 'cc_form_meta_box_backgroundoptions' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'border', __('Border','constant-contact-api'), 'cc_form_meta_box_border' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'fontstyles', __('Text Styles & Settings','constant-contact-api'), 'cc_form_meta_box_fontstyles' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'formdesign', __('Padding & Align','constant-contact-api'), 'cc_form_meta_box_formdesign' , 'constant-contact-form', 'side', 'default', array($form));
+
+	// Restore $_GET to previous value
 	$_GET = $getHolder;
 }
 

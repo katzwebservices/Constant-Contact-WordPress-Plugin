@@ -203,7 +203,7 @@ abstract class CTCT_Admin_Page {
             $button = ' <a href="'.add_query_arg(array('edit' => $_GET['view']), remove_query_arg('view')).'" class="button clear edit-new-h2" title="edit">'.__('Edit', 'constant-contact-api').'</a>';
         }
         if($this->isView() && $this->can_add) {
-            $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(__('Add %s', 'constant-contact-api'), $this->getTitle('single')).'</a>';
+            $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'constant-contact-api'), $this->getTitle('single')).'</a>';
         }
 
     	echo '<h2>'.implode(' &raquo; ', $breadcrumb).$button.'</h2>';

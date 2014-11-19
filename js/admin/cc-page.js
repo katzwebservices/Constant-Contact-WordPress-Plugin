@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 	    return false;
 	}
 
-	$('.ctct_table input[readonly]').on('click', ctct_select_text );
+	$('.ctct_table input[readonly], input[readonly].select-text').on('click', ctct_select_text );
 
 	function ctct_pointers(target) {
 

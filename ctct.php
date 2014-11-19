@@ -72,7 +72,7 @@ final class WP_CTCT {
 	static function getInstance() {
 
 		if(empty(self::$instance)){
-			self::$instance = new WP_CTCT(false);
+			self::$instance = new WP_CTCT;
 		}
 
 		return self::$instance;
@@ -119,4 +119,4 @@ final class WP_CTCT {
 	}
 }
 
-new WP_CTCT;
+WP_CTCT::getInstance();

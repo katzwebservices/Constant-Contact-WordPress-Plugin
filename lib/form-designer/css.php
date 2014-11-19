@@ -272,7 +272,7 @@ $selector .cc_intro * {
 EOD;
 
 // If lists are hidden, hide the container.
-if( $list_format === 'hidden' ) {
+if( isset( $list_format ) && $list_format === 'hidden' ) {
 	$css .= "{$selector} .cc_lists { display: none; }";
 }
 

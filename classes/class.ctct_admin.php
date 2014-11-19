@@ -27,6 +27,8 @@ class CTCT_Admin extends CTCT_Admin_Page {
 			delete_option('cc_form_design');
 			delete_option('ctct_configured');
 			delete_option('ctct_settings');
+			delete_option('cc_username');
+			delete_option('cc_password');
 		}
 	}
 

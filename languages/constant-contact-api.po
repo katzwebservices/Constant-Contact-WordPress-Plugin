@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Constant Contact Plugin for WordPress\n"
-"POT-Creation-Date: 2014-10-28 23:40-0700\n"
-"PO-Revision-Date: 2014-10-28 23:40-0700\n"
+"POT-Creation-Date: 2014-11-18 16:58-0700\n"
+"PO-Revision-Date: 2014-11-18 16:58-0700\n"
 "Last-Translator: Katz Web Services, Inc. <support@katz.co>\n"
 "Language-Team: Katz Web Services, Inc. <support@katz.co>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7beta2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -173,16 +173,27 @@ msgstr ""
 msgid "Add a Contact"
 msgstr ""
 
-#: admin/contacts.php:131
+#: admin/contacts.php:32 admin/contacts.php:36
+msgid "Contacts"
+msgstr ""
+
+#: admin/contacts.php:83
 msgid "You have not specified a Contact to edit"
 msgstr ""
 
-#: admin/contacts.php:152
+#: admin/contacts.php:104
 msgid "You have not specified a Contact to view"
 msgstr ""
 
-#: admin/contacts.php:191
+#: admin/contacts.php:143
 msgid "Your account has no contacts."
+msgstr ""
+
+#: admin/lists.php:25 admin/lists.php:31
+#: lib/form-designer/form-designer-meta-boxes.php:45
+#: lib/form-designer/form-designer-meta-boxes.php:92
+#: lib/form-designer/form-designer-meta-boxes.php:194
+msgid "Lists"
 msgstr ""
 
 #: admin/lists.php:46
@@ -191,6 +202,10 @@ msgstr ""
 
 #: admin/lists.php:64
 msgid "You have not specified a List to view."
+msgstr ""
+
+#: admin/lists.php:85
+msgid "Your account has no lists."
 msgstr ""
 
 #: admin/profile.php:104
@@ -207,67 +222,81 @@ msgstr ""
 msgid "Users will not see this link or the Constant Contact logo."
 msgstr ""
 
-#: classes/class.ctct_admin.php:35
+#: classes/class.ctct_admin.php:37
 msgid "Constant Contact API"
 msgstr ""
 
-#: classes/class.ctct_admin.php:35 classes/class.ctct_admin_page.php:185
+#: classes/class.ctct_admin.php:37 classes/class.ctct_admin_page.php:188
 #: views/admin/view.php-compatibility-notice.php:2
 msgid "Constant Contact"
 msgstr ""
 
-#: classes/class.ctct_admin.php:70
+#: classes/class.ctct_admin.php:72
 #, php-format
 msgid "Error: %s"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:168
+#: classes/class.ctct_admin_page.php:78
+msgid "Click to Edit"
+msgstr ""
+
+#: classes/class.ctct_admin_page.php:171
 msgid "An error"
 msgid_plural "Errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: classes/class.ctct_admin_page.php:200
+#: classes/class.ctct_admin_page.php:203
 msgid "Edit"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:203
+#: classes/class.ctct_admin_page.php:206
 #, php-format
+msgctxt "General button text for adding a new Contact or List, for example."
 msgid "Add %s"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:166
+#: classes/class.ctct_process_form.php:102
+#, php-format
+msgid "The %s field is required."
+msgstr ""
+
+#: classes/class.ctct_process_form.php:180
+msgid "Please enter a valid phone number."
+msgstr ""
+
+#: classes/class.ctct_process_form.php:273
 msgid "Please enter your email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:170
+#: classes/class.ctct_process_form.php:277
 msgid "Invalid email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:209
+#: classes/class.ctct_process_form.php:316
 msgid "Not a valid email."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:284
+#: classes/class.ctct_process_form.php:391
 msgid "Akismet caught this entry as spam"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:285
+#: classes/class.ctct_process_form.php:392
 msgid "Your entry was flagged as spam."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:288
+#: classes/class.ctct_process_form.php:395
 msgid "Akismet cleared this comment"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:291
+#: classes/class.ctct_process_form.php:398
 #, php-format
 msgid ""
 "Akismet was unable to check this entry (response: %s), will automatically "
 "retry again later."
 msgstr ""
 
-#: classes/class.ctct_settings.php:147 classes/class.pointers.php:86
+#: classes/class.ctct_settings.php:147
 msgid "Setup"
 msgstr ""
 
@@ -325,7 +354,7 @@ msgid "List of Checkboxes"
 msgstr ""
 
 #: classes/class.ctct_settings.php:186
-#: lib/form-designer/form-designer-meta-boxes.php:94
+#: lib/form-designer/form-designer-meta-boxes.php:57
 msgid "Dropdown List"
 msgstr ""
 
@@ -443,12 +472,11 @@ msgid "Comment Form Signup"
 msgstr ""
 
 #: classes/class.ctct_settings.php:274
-#: lib/form-designer/form-designer-meta-boxes.php:99
+#: lib/form-designer/form-designer-meta-boxes.php:61
 msgid "Checked by default?"
 msgstr ""
 
 #: classes/class.ctct_settings.php:275
-#: lib/form-designer/form-designer-meta-boxes.php:101
 msgid "Should the checkbox be checked by default?"
 msgstr ""
 
@@ -462,7 +490,7 @@ msgid ""
 msgstr ""
 
 #: classes/class.ctct_settings.php:296
-#: lib/form-designer/form-designer-functions.php:499
+#: lib/form-designer/form-designer-functions.php:299
 msgid "Subscribe Message"
 msgstr ""
 
@@ -548,8 +576,7 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: classes/class.ctct_settings.php:397 classes/class.pointers.php:91
-#: lib/simple-widget.php:95
+#: classes/class.ctct_settings.php:397 lib/simple-widget.php:95
 msgid "Newsletter"
 msgstr ""
 
@@ -606,12 +633,12 @@ msgstr ""
 msgid "There is no component defined."
 msgstr ""
 
-#: classes/class.kwscampaign.php:132 classes/class.kwscontact.php:357
+#: classes/class.kwscampaign.php:132 classes/class.kwscontact.php:360
 #: classes/class.kwscontactlist.php:94
 msgid "Address $1"
 msgstr ""
 
-#: classes/class.kwscampaign.php:133 classes/class.kwscontact.php:358
+#: classes/class.kwscampaign.php:133 classes/class.kwscontact.php:361
 #: classes/class.kwscontactlist.php:95
 msgid "Field $1"
 msgstr ""
@@ -619,256 +646,6 @@ msgstr ""
 #: classes/class.kwsconstantcontact.php:32
 #: classes/class.kwsconstantcontact.php:43
 msgid "Cheatin&#8217; huh?"
-msgstr ""
-
-#: classes/class.pointers.php:62
-msgid "Help improve the Constant Contact plugin"
-msgstr ""
-
-#: classes/class.pointers.php:63
-msgid ""
-"You've just installed Constant Contact WordPress Plugin by Katz Web "
-"Services. Please helps us improve it by allowing us to gather anonymous "
-"usage stats so we know which configurations, plugins and themes to test with."
-msgstr ""
-
-#: classes/class.pointers.php:68
-msgid "Allow tracking"
-msgstr ""
-
-#: classes/class.pointers.php:73
-msgid "Do not allow tracking"
-msgstr ""
-
-#: classes/class.pointers.php:86
-msgid "This is where you connect"
-msgstr ""
-
-#: classes/class.pointers.php:87
-msgid "More WordPress SEO"
-msgstr ""
-
-#: classes/class.pointers.php:87
-#, php-format
-msgid ""
-"There's more to learn about WordPress & SEO than just using this plugin. "
-"Read our article %1$sthe definitive guide to WordPress SEO%2$s."
-msgstr ""
-
-#: classes/class.pointers.php:88
-msgid "Webmaster Tools"
-msgstr ""
-
-#: classes/class.pointers.php:88
-msgid ""
-"Underneath the General Settings, you can add the verification codes for the "
-"different Webmaster Tools programs, I highly encourage you to check out both "
-"Google and Bing's Webmaster Tools."
-msgstr ""
-
-#: classes/class.pointers.php:89
-msgid "About This Tour"
-msgstr ""
-
-#: classes/class.pointers.php:89
-msgid ""
-"Clicking Next below takes you to the next page of the tour. If you want to "
-"stop this tour, click \"Close\"."
-msgstr ""
-
-#: classes/class.pointers.php:90
-msgid "Like this plugin?"
-msgstr ""
-
-#: classes/class.pointers.php:90
-#, php-format
-msgid ""
-"If you like this plugin, please %srate it 5 stars on WordPress.org%s and "
-"consider making a donation by clicking the button on the right!"
-msgstr ""
-
-#: classes/class.pointers.php:92 classes/class.pointers.php:102
-#: classes/class.pointers.php:112 classes/class.pointers.php:117
-#: classes/class.pointers.php:122 classes/class.pointers.php:127
-#: classes/class.pointers.php:132 classes/class.pointers.php:137
-msgid "Next"
-msgstr ""
-
-#: classes/class.pointers.php:96
-msgid "Title &amp; Description settings"
-msgstr ""
-
-#: classes/class.pointers.php:97
-msgid ""
-"This is where you set the templates for your titles and descriptions of all "
-"the different types of pages on your blog, be it your homepage, posts & "
-"pages (under post types), category or tag archives (under taxonomy "
-"archives), or even custom post type archives and custom posts: all of that "
-"is done from here."
-msgstr ""
-
-#: classes/class.pointers.php:98
-msgid "Templates"
-msgstr ""
-
-#: classes/class.pointers.php:99
-msgid ""
-"The templates are built using variables, the help tab for all the different "
-"variables available to you to use in these."
-msgstr ""
-
-#: classes/class.pointers.php:100
-msgid "Sitewide settings"
-msgstr ""
-
-#: classes/class.pointers.php:101
-msgid ""
-"You can also set some settings for the entire site here to add specific meta "
-"tags or to remove some unneeded cruft."
-msgstr ""
-
-#: classes/class.pointers.php:106
-msgid "Social settings"
-msgstr ""
-
-#: classes/class.pointers.php:107
-msgid "Facebook OpenGraph"
-msgstr ""
-
-#: classes/class.pointers.php:108
-msgid ""
-"On this page you can enable the OpenGraph functionality from this plugin, as "
-"well as assign a Facebook user or Application to be the admin of your site, "
-"so you can view the Facebook insights."
-msgstr ""
-
-#: classes/class.pointers.php:109
-#, php-format
-msgid "Read more about %1$sFacebook OpenGraph%2$s."
-msgstr ""
-
-#: classes/class.pointers.php:110
-msgid "Twitter Cards"
-msgstr ""
-
-#: classes/class.pointers.php:111
-#, php-format
-msgid ""
-"This functionality is currently in beta, but it allows for %1$sTwitter Cards"
-"%2$s."
-msgstr ""
-
-#: classes/class.pointers.php:116
-msgid "XML Sitemaps"
-msgstr ""
-
-#: classes/class.pointers.php:116
-msgid ""
-"This plugin adds an XML sitemap to your site. It's automatically updated "
-"when you publish a new post, page or custom post and Google and Bing will be "
-"automatically notified."
-msgstr ""
-
-#: classes/class.pointers.php:116
-msgid ""
-"Be sure to check whether post types or taxonomies are showing that search "
-"engines shouldn't be indexing, if so, check the box before them to hide them "
-"from the XML sitemaps."
-msgstr ""
-
-#: classes/class.pointers.php:121
-msgid "Permalink Settings"
-msgstr ""
-
-#: classes/class.pointers.php:121
-msgid ""
-"All of the options here are for advanced users only, if you don't know "
-"whether you should check any, don't touch them."
-msgstr ""
-
-#: classes/class.pointers.php:126
-msgid "Breadcrumbs Settings"
-msgstr ""
-
-#: classes/class.pointers.php:126
-#, php-format
-msgid ""
-"If your theme supports my breadcrumbs, as all Genesis and WooThemes themes "
-"as well as a couple of other ones do, you can change the settings for those "
-"here. If you want to modify your theme to support them, %sfollow these "
-"instructions%s."
-msgstr ""
-
-#: classes/class.pointers.php:131
-msgid "RSS Settings"
-msgstr ""
-
-#: classes/class.pointers.php:131
-msgid ""
-"This incredibly powerful function allows you to add content to the beginning "
-"and end of your posts in your RSS feed. This helps you gain links from "
-"people who steal your content!"
-msgstr ""
-
-#: classes/class.pointers.php:136
-msgid "Import &amp; Export"
-msgstr ""
-
-#: classes/class.pointers.php:136
-msgid ""
-"Just switched over from another SEO plugin? Use the options here to switch "
-"your data over. If you were using some of my older plugins like Robots Meta "
-"&amp; RSS Footer, you can import the settings here too."
-msgstr ""
-
-#: classes/class.pointers.php:136
-msgid ""
-"If you have multiple blogs and you're happy with how you've configured this "
-"blog, you can export the settings and import them on another blog so you "
-"don't have to go through this process twice!"
-msgstr ""
-
-#: classes/class.pointers.php:141
-msgid "File Editor"
-msgstr ""
-
-#: classes/class.pointers.php:141
-msgid ""
-"Here you can edit the .htaccess and robots.txt files, two of the most "
-"powerful files in your WordPress install. Only touch these files if you know "
-"what you're doing!"
-msgstr ""
-
-#: classes/class.pointers.php:142
-#, php-format
-msgid ""
-"The tour ends here, thank you for using my plugin and good luck with your "
-"SEO!<br/><br/>Best,<br/>Joost de Valk - %1$sYoast.com%2$s"
-msgstr ""
-
-#: classes/class.pointers.php:151
-#, php-format
-msgid ""
-"The tour ends here,thank you for using my plugin and good luck with your SEO!"
-"<br/><br/>Best,<br/>Joost de Valk - %1$sYoast.com%2$s"
-msgstr ""
-
-#: classes/class.pointers.php:164
-msgid "Congratulations!"
-msgstr ""
-
-#: classes/class.pointers.php:165
-msgid ""
-"You've just installed Constant Contact WordPress Plugin! Click \"Start Tour"
-"\" to view a quick introduction of this plugin's core functionality."
-msgstr ""
-
-#: classes/class.pointers.php:170
-msgid "Start Tour"
-msgstr ""
-
-#: classes/class.pointers.php:172 classes/class.pointers.php:185
-msgid "Close"
 msgstr ""
 
 #: inc/help.php:17
@@ -952,6 +729,15 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
+#: lib/eventspot/eventspot.php:106
+#, php-format
+msgid "Event registrants data is stored for %s hours. Refresh data now."
+msgstr ""
+
+#: lib/eventspot/eventspot.php:106
+msgid "Refresh Events"
+msgstr ""
+
 #: lib/eventspot/eventspot.php:214 lib/eventspot/widget-events.php:116
 msgid "There are no active events."
 msgstr ""
@@ -976,38 +762,38 @@ msgstr ""
 msgid "View All Events"
 msgstr ""
 
-#: lib/eventspot/functions.php:72
+#: lib/eventspot/functions.php:117
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: lib/eventspot/shortcode.php:38
+#: lib/eventspot/shortcode.php:39
 #, php-format
 msgid "View event details for \"%s\""
 msgstr ""
 
-#: lib/eventspot/shortcode.php:56
+#: lib/eventspot/shortcode.php:57
 msgid "Start: "
 msgstr ""
 
-#: lib/eventspot/shortcode.php:58
+#: lib/eventspot/shortcode.php:59
 msgid "End: "
 msgstr ""
 
-#: lib/eventspot/shortcode.php:65
+#: lib/eventspot/shortcode.php:66
 #, php-format
 msgid "Add \"%s\" to your calendar"
 msgstr ""
 
-#: lib/eventspot/shortcode.php:68
+#: lib/eventspot/shortcode.php:69
 msgid "Add to Calendar"
 msgstr ""
 
-#: lib/eventspot/shortcode.php:87
+#: lib/eventspot/shortcode.php:88
 msgid "Map Location"
 msgstr ""
 
-#: lib/eventspot/shortcode.php:91
+#: lib/eventspot/shortcode.php:92
 msgid "Location: "
 msgstr ""
 
@@ -1133,7 +919,7 @@ msgid "Description"
 msgstr ""
 
 #: lib/eventspot/views/event.php:41 lib/eventspot/views/events.php:6
-#: lib/kwslog.php:215
+#: lib/kwslog.php:320
 msgid "Title"
 msgstr ""
 
@@ -1156,7 +942,7 @@ msgstr ""
 
 #: lib/eventspot/views/event.php:45 lib/eventspot/views/event.php:46
 #: lib/eventspot/views/events.php:47 lib/eventspot/views/registrants.php:20
-#: lib/form-designer/form-designer-meta-boxes.php:571
+#: lib/form-designer/form-designer-meta-boxes.php:453
 msgid "None"
 msgstr ""
 
@@ -1324,8 +1110,8 @@ msgid "Company"
 msgstr ""
 
 #: lib/eventspot/views/registrant.php:58
-#: lib/form-designer/form-designer-meta-boxes.php:141
-#: lib/form-designer/form-designer-meta-boxes.php:231
+#: lib/form-designer/form-designer-meta-boxes.php:103
+#: lib/form-designer/form-designer-meta-boxes.php:197
 msgid "Job Title"
 msgstr ""
 
@@ -1426,1133 +1212,732 @@ msgid ""
 "styles (CSS)"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:56
-msgid "Add me to these lists:"
-msgstr ""
-
-#: lib/form-designer/form-designer-functions.php:172
-msgid "Success, you have been subscribed."
-msgstr ""
-
-#: lib/form-designer/form-designer-functions.php:323
-#: lib/form-designer/form-designer-meta-boxes.php:15
-#: lib/form-designer/form-designer.php:425
+#: lib/form-designer/form-designer-functions.php:106
+#: lib/form-designer/form-designer.php:468
+#: lib/form-designer/views/form-designer.php:105
 msgid "Enter form name here"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:360
+#: lib/form-designer/form-designer-functions.php:109
+#, php-format
+msgctxt "Default form name when none is provided."
+msgid "Form #%d"
+msgstr ""
+
+#: lib/form-designer/form-designer-functions.php:147
 msgid "The form both does not exist and does exist. Can not process!"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:406
+#: lib/form-designer/form-designer-functions.php:194
 #, php-format
 msgid "Form #%s"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:480
+#: lib/form-designer/form-designer-functions.php:277
 msgid "Label text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:481
+#: lib/form-designer/form-designer-functions.php:278
 msgid "Input placeholder text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:486
+#: lib/form-designer/form-designer-functions.php:283
 msgid "Button label"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:488
+#: lib/form-designer/form-designer-functions.php:285
 msgid "Button text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:495
-msgid ""
-"The Form Text content will be placed where this item is. Edit the Form Text "
-"above &uarr;"
+#: lib/form-designer/form-designer-functions.php:293
+msgid "This is a Placeholder"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:502
+#: lib/form-designer/form-designer-functions.php:294
+msgid "This item will be replaced by the Custom Text entered above &uarr;"
+msgstr ""
+
+#: lib/form-designer/form-designer-functions.php:302
 msgid "The lists will be placed where this item is."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:14
-#: lib/form-designer/form-designer.php:406
-msgid "Form Name"
+#: lib/form-designer/form-designer-functions.php:329
+msgid "Drag and drop to re-order fields."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:14
-msgid "Only for internal use - the outside world won't see this name."
+#: lib/form-designer/form-designer-functions.php:345
+msgid "Make label bold"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:20
+#: lib/form-designer/form-designer-functions.php:348
+msgid "Make label italic"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:15
 msgid "Form ID:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:21
+#: lib/form-designer/form-designer-meta-boxes.php:17
 #, php-format
-msgid ""
-"In a post or page, add the following code: <code>[constantcontactapi formid="
-"\"%d\"]</code> <a href=\"#tab-panel-ctct-insert-form\" rel=\"wp-help\">Learn "
-"More</a></span>"
+msgid "To embed this form in a post or page, add the following code. %s"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:25
+#: lib/form-designer/form-designer-meta-boxes.php:17
+msgid "Learn More"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:23
 msgid "Use Form Styler?"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:25
+#: lib/form-designer/form-designer-meta-boxes.php:23
 msgid ""
 "Use the form styler to change colors and design of your form. If not used, "
 "the form will be styled using your theme's&nbsp;defaults."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:29
+#: lib/form-designer/form-designer-meta-boxes.php:27
 msgid "Customize Form Style?"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:37
-msgid "Create Form"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:37
-msgid "Save Form"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:41
+#: lib/form-designer/form-designer-meta-boxes.php:45
 msgid ""
-"Are you sure you want to delete this form? It will be deleted permanently."
+"Contacts will be added to the selected lists by default. You can override "
+"this selection when you configure a Form Designer widget. You can also "
+"specify different list IDs when inserting a form into content using the "
+"shortcode."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:41
-msgid "Delete Form"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:54
-msgid "Form Design"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:56
-msgid "Select a Design&hellip;"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:57
-msgid "Plain"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:58
-msgid "Army"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:59
-msgid "Apple, Inc."
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:60
-msgid "Jazz Blue"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:61
-msgid "Red IMPACT"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:62
-msgid "Barbie World"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:63
-msgid "New York Taxi"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:68
-msgid "Update label &amp; placeholder text."
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:69
-msgid ""
-"When changing Form Designs, update form text with presets. <strong>Will "
-"overwrite text modifications.</strong>"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:83
-#: lib/form-designer/form-designer-meta-boxes.php:130
-#: lib/form-designer/form-designer-meta-boxes.php:228
-msgid "Lists"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:91
+#: lib/form-designer/form-designer-meta-boxes.php:53
 msgid "List Selection Format"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:93
-msgid "Opt-in Checkbox"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:95
-msgid "Hidden"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:97
+#: lib/form-designer/form-designer-meta-boxes.php:54
 msgid ""
 "This controls what kind of list is shown. <a href=\"#listTypeInfo\" class="
 "\"moreInfo\">More info</a>"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:116
+#: lib/form-designer/form-designer-meta-boxes.php:56
+msgid "Opt-in Checkbox"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:58
+msgid "Hidden"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:63
+msgid "Should the list checkboxes be checked by default?"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:78
 msgid "Most Used"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:117
+#: lib/form-designer/form-designer-meta-boxes.php:79
 msgid "Other Fields"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:123
-#: lib/form-designer/form-designer-meta-boxes.php:223
+#: lib/form-designer/form-designer-meta-boxes.php:85
+#: lib/form-designer/form-designer-meta-boxes.php:190
 #: views/admin/view.contacts-view.php:4
 msgid "Email Address"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:124
-#: lib/form-designer/form-designer-meta-boxes.php:190
-msgid "Form Text"
+#: lib/form-designer/form-designer-meta-boxes.php:86
+#: lib/form-designer/form-designer-meta-boxes.php:157
+#: lib/form-designer/form-designer-meta-boxes.php:189
+msgid "Custom Text"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:125
-#: lib/form-designer/form-designer-meta-boxes.php:224
+#: lib/form-designer/form-designer-meta-boxes.php:87
+#: lib/form-designer/form-designer-meta-boxes.php:191
 msgid "First Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:126
-#: lib/form-designer/form-designer-meta-boxes.php:225
+#: lib/form-designer/form-designer-meta-boxes.php:88
+#: lib/form-designer/form-designer-meta-boxes.php:192
 msgid "Last Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:127
-#: lib/form-designer/form-designer-meta-boxes.php:226
-#: views/admin/view.contact-addedit.php:76
+#: lib/form-designer/form-designer-meta-boxes.php:89
+#: lib/form-designer/form-designer-meta-boxes.php:193
+#: views/admin/view.contact-addedit.php:75
 msgid "Submit"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:128
-#: lib/form-designer/form-designer-meta-boxes.php:232
+#: lib/form-designer/form-designer-meta-boxes.php:90
+#: lib/form-designer/form-designer-meta-boxes.php:198
 msgid "Home Phone"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:129
-#: lib/form-designer/form-designer-meta-boxes.php:233
+#: lib/form-designer/form-designer-meta-boxes.php:91
+#: lib/form-designer/form-designer-meta-boxes.php:199
 msgid "Work Phone"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:139
-#: lib/form-designer/form-designer-meta-boxes.php:229
+#: lib/form-designer/form-designer-meta-boxes.php:101
+#: lib/form-designer/form-designer-meta-boxes.php:195
 msgid "Middle Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:140
-#: lib/form-designer/form-designer-meta-boxes.php:230
+#: lib/form-designer/form-designer-meta-boxes.php:102
+#: lib/form-designer/form-designer-meta-boxes.php:196
 msgid "Company Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:142
-#: lib/form-designer/form-designer-meta-boxes.php:234
+#: lib/form-designer/form-designer-meta-boxes.php:104
+#: lib/form-designer/form-designer-meta-boxes.php:200
 msgid "Address Line 1"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:143
-#: lib/form-designer/form-designer-meta-boxes.php:235
+#: lib/form-designer/form-designer-meta-boxes.php:105
+#: lib/form-designer/form-designer-meta-boxes.php:201
 msgid "Address Line 2"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:144
-#: lib/form-designer/form-designer-meta-boxes.php:236
+#: lib/form-designer/form-designer-meta-boxes.php:106
+#: lib/form-designer/form-designer-meta-boxes.php:202
 msgid "Address Line 3"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:145
+#: lib/form-designer/form-designer-meta-boxes.php:107
 msgid "City Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:146
-#: lib/form-designer/form-designer-meta-boxes.php:238
+#: lib/form-designer/form-designer-meta-boxes.php:108
+#: lib/form-designer/form-designer-meta-boxes.php:204
 msgid "State Code"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:147
-#: lib/form-designer/form-designer-meta-boxes.php:239
+#: lib/form-designer/form-designer-meta-boxes.php:109
+#: lib/form-designer/form-designer-meta-boxes.php:205
 msgid "State Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:148
-#: lib/form-designer/form-designer-meta-boxes.php:240
+#: lib/form-designer/form-designer-meta-boxes.php:110
+#: lib/form-designer/form-designer-meta-boxes.php:206
 msgid "Country Code"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:149
-#: lib/form-designer/form-designer-meta-boxes.php:241
+#: lib/form-designer/form-designer-meta-boxes.php:111
+#: lib/form-designer/form-designer-meta-boxes.php:207
 msgid "ZIP Code"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:150
-#: lib/form-designer/form-designer-meta-boxes.php:242
+#: lib/form-designer/form-designer-meta-boxes.php:112
+#: lib/form-designer/form-designer-meta-boxes.php:208
 msgid "Sub ZIP Code"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:151
-#: lib/form-designer/form-designer-meta-boxes.php:243
+#: lib/form-designer/form-designer-meta-boxes.php:113
+#: lib/form-designer/form-designer-meta-boxes.php:209
 msgid "Custom Field 1"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:152
-#: lib/form-designer/form-designer-meta-boxes.php:244
+#: lib/form-designer/form-designer-meta-boxes.php:114
+#: lib/form-designer/form-designer-meta-boxes.php:210
 msgid "Custom Field 2"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:153
-#: lib/form-designer/form-designer-meta-boxes.php:245
+#: lib/form-designer/form-designer-meta-boxes.php:115
+#: lib/form-designer/form-designer-meta-boxes.php:211
 msgid "Custom Field 3"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:154
-#: lib/form-designer/form-designer-meta-boxes.php:246
+#: lib/form-designer/form-designer-meta-boxes.php:116
+#: lib/form-designer/form-designer-meta-boxes.php:212
 msgid "Custom Field 4"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:155
-#: lib/form-designer/form-designer-meta-boxes.php:247
+#: lib/form-designer/form-designer-meta-boxes.php:117
+#: lib/form-designer/form-designer-meta-boxes.php:213
 msgid "Custom Field 5"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:156
-#: lib/form-designer/form-designer-meta-boxes.php:248
+#: lib/form-designer/form-designer-meta-boxes.php:118
+#: lib/form-designer/form-designer-meta-boxes.php:214
 msgid "Custom Field 6"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:157
-#: lib/form-designer/form-designer-meta-boxes.php:249
+#: lib/form-designer/form-designer-meta-boxes.php:119
+#: lib/form-designer/form-designer-meta-boxes.php:215
 msgid "Custom Field 7"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:158
-#: lib/form-designer/form-designer-meta-boxes.php:250
+#: lib/form-designer/form-designer-meta-boxes.php:120
+#: lib/form-designer/form-designer-meta-boxes.php:216
 msgid "Custom Field 8"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:159
-#: lib/form-designer/form-designer-meta-boxes.php:251
+#: lib/form-designer/form-designer-meta-boxes.php:121
+#: lib/form-designer/form-designer-meta-boxes.php:217
 msgid "Custom Field 9"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:160
-#: lib/form-designer/form-designer-meta-boxes.php:252
+#: lib/form-designer/form-designer-meta-boxes.php:122
+#: lib/form-designer/form-designer-meta-boxes.php:218
 msgid "Custom Field 10"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:161
-#: lib/form-designer/form-designer-meta-boxes.php:253
+#: lib/form-designer/form-designer-meta-boxes.php:123
+#: lib/form-designer/form-designer-meta-boxes.php:219
 msgid "Custom Field 11"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:162
-#: lib/form-designer/form-designer-meta-boxes.php:254
+#: lib/form-designer/form-designer-meta-boxes.php:124
+#: lib/form-designer/form-designer-meta-boxes.php:220
 msgid "Custom Field 12"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:163
-#: lib/form-designer/form-designer-meta-boxes.php:255
+#: lib/form-designer/form-designer-meta-boxes.php:125
+#: lib/form-designer/form-designer-meta-boxes.php:221
 msgid "Custom Field 13"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:164
-#: lib/form-designer/form-designer-meta-boxes.php:256
+#: lib/form-designer/form-designer-meta-boxes.php:126
+#: lib/form-designer/form-designer-meta-boxes.php:222
 msgid "Custom Field 14"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:165
-#: lib/form-designer/form-designer-meta-boxes.php:257
+#: lib/form-designer/form-designer-meta-boxes.php:127
+#: lib/form-designer/form-designer-meta-boxes.php:223
 msgid "Custom Field 15"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:172
-msgid "SafeSubscribe"
+#: lib/form-designer/form-designer-meta-boxes.php:134
+msgid "Required Fields"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:174
+#: lib/form-designer/form-designer-meta-boxes.php:135
+msgid "Add asterisk if field is required."
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:139
+msgid "SafeUnsubscribe"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:141
+msgid "SafeUnsubscribe Gray"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:141
 msgid "Gray"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:175
+#: lib/form-designer/form-designer-meta-boxes.php:142
+msgid "SafeUnsubscribe White"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:142
 msgid "White"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:176
+#: lib/form-designer/form-designer-meta-boxes.php:143
+msgid "SafeUnsubscribe Black"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:143
 msgid "Black"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:177
+#: lib/form-designer/form-designer-meta-boxes.php:144
 msgid "Do Not Display"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:193
-#: lib/form-designer/form-designer-meta-boxes.php:222
-msgid "Form Text Placeholder"
+#: lib/form-designer/form-designer-meta-boxes.php:161
+msgid ""
+"The content below be placed where the \"Custom Text Placeholder\" field is. "
+"Edit the Custom Text below. &darr;"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:237
+#: lib/form-designer/form-designer-meta-boxes.php:167
+msgid "Custom Text Placeholder"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:203
 msgid "City"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:269
+#: lib/form-designer/form-designer-meta-boxes.php:238
 msgid "Background Type:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:272
+#: lib/form-designer/form-designer-meta-boxes.php:241
 msgid "Transparent"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:273
+#: lib/form-designer/form-designer-meta-boxes.php:242
 msgid "Gradient"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:274
+#: lib/form-designer/form-designer-meta-boxes.php:243
 msgid "Solid Color"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:275
+#: lib/form-designer/form-designer-meta-boxes.php:244
 msgid "Image Pattern"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:276
+#: lib/form-designer/form-designer-meta-boxes.php:245
 msgid "URL (External Image)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:281
+#: lib/form-designer/form-designer-meta-boxes.php:251
 msgid "Gradient Type:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:283
+#: lib/form-designer/form-designer-meta-boxes.php:254
 msgid "Vertical"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:284
+#: lib/form-designer/form-designer-meta-boxes.php:255
 msgid "Horizontal"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:290
-msgid "Gradient Height:"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:292
-#: lib/form-designer/form-designer-meta-boxes.php:416
-#: lib/form-designer/form-designer-meta-boxes.php:442
-#: lib/form-designer/form-designer-meta-boxes.php:468
-#: lib/form-designer/form-designer-meta-boxes.php:626
-msgid "10 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:293
-#: lib/form-designer/form-designer-meta-boxes.php:426
-#: lib/form-designer/form-designer-meta-boxes.php:444
-#: lib/form-designer/form-designer-meta-boxes.php:470
-#: lib/form-designer/form-designer-meta-boxes.php:636
-msgid "20 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:294
-#: lib/form-designer/form-designer-meta-boxes.php:428
-#: lib/form-designer/form-designer-meta-boxes.php:446
-#: lib/form-designer/form-designer-meta-boxes.php:472
-msgid "30 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:295
-#: lib/form-designer/form-designer-meta-boxes.php:430
-#: lib/form-designer/form-designer-meta-boxes.php:448
-#: lib/form-designer/form-designer-meta-boxes.php:474
-#: lib/form-designer/form-designer-meta-boxes.php:642
-msgid "40 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:296
-#: lib/form-designer/form-designer-meta-boxes.php:432
-#: lib/form-designer/form-designer-meta-boxes.php:450
-#: lib/form-designer/form-designer-meta-boxes.php:476
-msgid "50 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:297
-#: lib/form-designer/form-designer-meta-boxes.php:451
-#: lib/form-designer/form-designer-meta-boxes.php:477
-msgid "60 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:298
-#: lib/form-designer/form-designer-meta-boxes.php:478
-msgid "70 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:299
-#: lib/form-designer/form-designer-meta-boxes.php:479
-msgid "80 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:300
-msgid "90 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:301
-#: lib/form-designer/form-designer-meta-boxes.php:453
-msgid "100 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:302
-msgid "110 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:303
-msgid "120 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:304
-msgid "130 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:305
-msgid "140 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:306
-msgid "150 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:307
-msgid "175 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:308
-msgid "200 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:309
-msgid "225 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:310
-msgid "250 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:311
-msgid "275 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:312
-msgid "300 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:313
-msgid "350 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:314
-msgid "400 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:315
-msgid "450 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:316
-msgid "500 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:322
+#: lib/form-designer/form-designer-meta-boxes.php:262
 msgid "Top Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:326
+#: lib/form-designer/form-designer-meta-boxes.php:266
 msgid "Bottom Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:335
+#: lib/form-designer/form-designer-meta-boxes.php:275
 msgid "Background Repeat:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:337
+#: lib/form-designer/form-designer-meta-boxes.php:277
 msgid "Repeat"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:338
+#: lib/form-designer/form-designer-meta-boxes.php:278
 msgid "No Repeat"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:339
+#: lib/form-designer/form-designer-meta-boxes.php:279
 msgid "Repeat-X (Horizontal)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:340
+#: lib/form-designer/form-designer-meta-boxes.php:280
 msgid "Repeat-Y (Vertical)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:344
+#: lib/form-designer/form-designer-meta-boxes.php:284
 msgid "Background Position:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:346
+#: lib/form-designer/form-designer-meta-boxes.php:286
 msgid "Left/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:347
+#: lib/form-designer/form-designer-meta-boxes.php:287
 msgid "Center/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:348
+#: lib/form-designer/form-designer-meta-boxes.php:288
 msgid "Right/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:349
+#: lib/form-designer/form-designer-meta-boxes.php:289
 msgid "Left/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:350
+#: lib/form-designer/form-designer-meta-boxes.php:290
 msgid "Center/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:351
+#: lib/form-designer/form-designer-meta-boxes.php:291
 msgid "Right/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:352
+#: lib/form-designer/form-designer-meta-boxes.php:292
 msgid "Left/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:353
+#: lib/form-designer/form-designer-meta-boxes.php:293
 msgid "Center/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:354
+#: lib/form-designer/form-designer-meta-boxes.php:294
 msgid "Right/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:382
-msgid "Border Style"
+#: lib/form-designer/form-designer-meta-boxes.php:325
+msgid "Border Width"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:384
-msgid "No Border"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:385
-msgid "Solid"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:386
-msgid "Dotted"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:387
-msgid "Dashed"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:388
-msgid "Double"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:389
-msgid "Groove"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:390
-msgid "Ridge"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:391
-msgid "Inset"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:392
-msgid "Outset"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:398
+#: lib/form-designer/form-designer-meta-boxes.php:332
 msgid "Border Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:407
-msgid "1 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:408
-msgid "2 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:409
-msgid "3 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:410
-msgid "4 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:411
-#: lib/form-designer/form-designer-meta-boxes.php:441
-#: lib/form-designer/form-designer-meta-boxes.php:467
-msgid "5 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:412
-msgid "6 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:413
-#: lib/form-designer/form-designer-meta-boxes.php:623
-msgid "7 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:414
-#: lib/form-designer/form-designer-meta-boxes.php:624
-msgid "8 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:415
-#: lib/form-designer/form-designer-meta-boxes.php:625
-msgid "9 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:417
-#: lib/form-designer/form-designer-meta-boxes.php:627
-msgid "11 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:418
-#: lib/form-designer/form-designer-meta-boxes.php:628
-msgid "12 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:419
-#: lib/form-designer/form-designer-meta-boxes.php:629
-msgid "13 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:420
-#: lib/form-designer/form-designer-meta-boxes.php:630
-msgid "14 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:421
-#: lib/form-designer/form-designer-meta-boxes.php:443
-#: lib/form-designer/form-designer-meta-boxes.php:469
-#: lib/form-designer/form-designer-meta-boxes.php:631
-msgid "15 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:422
-#: lib/form-designer/form-designer-meta-boxes.php:632
-msgid "16 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:423
-#: lib/form-designer/form-designer-meta-boxes.php:633
-msgid "17 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:424
-#: lib/form-designer/form-designer-meta-boxes.php:634
-msgid "18 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:425
-#: lib/form-designer/form-designer-meta-boxes.php:635
-msgid "19 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:427
-#: lib/form-designer/form-designer-meta-boxes.php:445
-#: lib/form-designer/form-designer-meta-boxes.php:471
-msgid "25 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:429
-#: lib/form-designer/form-designer-meta-boxes.php:447
-#: lib/form-designer/form-designer-meta-boxes.php:473
-msgid "35 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:431
-#: lib/form-designer/form-designer-meta-boxes.php:449
-#: lib/form-designer/form-designer-meta-boxes.php:475
-msgid "45 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:438
+#: lib/form-designer/form-designer-meta-boxes.php:339
 msgid "Rounded Corner Radius"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:440
-msgid "None (Square Corners)"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:452
-msgid "75 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:463
+#: lib/form-designer/form-designer-meta-boxes.php:351
 msgid "Form Padding"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:464
+#: lib/form-designer/form-designer-meta-boxes.php:352
 msgid ""
 "Padding is the space between the outside of the form and the content inside "
 "the form; it's visual insulation."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:466
-msgid "No Padding"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:484
+#: lib/form-designer/form-designer-meta-boxes.php:358
 msgid "Form Width"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:486
+#: lib/form-designer/form-designer-meta-boxes.php:360
 msgid "percent of container width"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:487
+#: lib/form-designer/form-designer-meta-boxes.php:361
 msgid "pixels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:491
+#: lib/form-designer/form-designer-meta-boxes.php:365
 msgid "Form Content Alignment"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:491
+#: lib/form-designer/form-designer-meta-boxes.php:365
 msgid ""
 "Align the form fields and labels inside the form. <strong>Note:</strong> you "
-"can change the alignment of the Form Text separately inside the Form Text "
-"editor."
+"can change the alignment of the Custom Text separately inside the Custom "
+"Text editor."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:493
-#: lib/form-designer/form-designer-meta-boxes.php:501
+#: lib/form-designer/form-designer-meta-boxes.php:367
+#: lib/form-designer/form-designer-meta-boxes.php:375
 msgid "Left"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:494
-#: lib/form-designer/form-designer-meta-boxes.php:502
+#: lib/form-designer/form-designer-meta-boxes.php:368
+#: lib/form-designer/form-designer-meta-boxes.php:376
 msgid "Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:495
-#: lib/form-designer/form-designer-meta-boxes.php:503
+#: lib/form-designer/form-designer-meta-boxes.php:369
+#: lib/form-designer/form-designer-meta-boxes.php:377
 msgid "Right"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:499
+#: lib/form-designer/form-designer-meta-boxes.php:373
 msgid "Form Alignment"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:499
+#: lib/form-designer/form-designer-meta-boxes.php:373
 msgid ""
 "Align the form inside your widget or page content. Also called \"floating\" "
 "to the left or right."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:514
+#: lib/form-designer/form-designer-meta-boxes.php:388
 msgid "Text"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:515
+#: lib/form-designer/form-designer-meta-boxes.php:389
 msgid ""
-"These settings are for the Form Text field. If the checkboxes are checked, "
+"These settings are for the Custom Text field. If the checkboxes are checked, "
 "the settings also apply to the input labels."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:517
+#: lib/form-designer/form-designer-meta-boxes.php:391
 msgid "Text Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:520
+#: lib/form-designer/form-designer-meta-boxes.php:396
 msgid "Use Same Color for Labels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:524
-msgid "Text Font &amp; Size"
+#: lib/form-designer/form-designer-meta-boxes.php:401
+msgid "Font Family"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:527
-#: lib/form-designer/form-designer-meta-boxes.php:589
-msgid "Times New Roman"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:528
-#: lib/form-designer/form-designer-meta-boxes.php:590
-msgid "Georgia"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:529
-#: lib/form-designer/form-designer-meta-boxes.php:591
-msgid "Palatino *"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:530
-#: lib/form-designer/form-designer-meta-boxes.php:592
-msgid "Garamond *"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:531
-#: lib/form-designer/form-designer-meta-boxes.php:593
-msgid "Bookman *"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:534
-#: lib/form-designer/form-designer-meta-boxes.php:596
-msgid "Helvetica"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:535
-#: lib/form-designer/form-designer-meta-boxes.php:597
-msgid "Arial"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:536
-#: lib/form-designer/form-designer-meta-boxes.php:598
-msgid "Lucida Grande"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:537
-#: lib/form-designer/form-designer-meta-boxes.php:599
-msgid "Verdana"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:538
-#: lib/form-designer/form-designer-meta-boxes.php:600
-msgid "Trebuchet MS"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:539
-#: lib/form-designer/form-designer-meta-boxes.php:601
-msgid "Tahoma"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:540
-#: lib/form-designer/form-designer-meta-boxes.php:602
-msgid "Franklin Gothic"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:541
-#: lib/form-designer/form-designer-meta-boxes.php:603
-msgid "Impact *"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:542
-#: lib/form-designer/form-designer-meta-boxes.php:604
-msgid "Arial Black"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:543
-#: lib/form-designer/form-designer-meta-boxes.php:605
-msgid "Gill Sans *"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:546
-#: lib/form-designer/form-designer-meta-boxes.php:608
-msgid "Courier New"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:547
-#: lib/form-designer/form-designer-meta-boxes.php:609
-msgid "Lucida Console"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:550
-#: lib/form-designer/form-designer-meta-boxes.php:612
-msgid "Comic Sans MS"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:553
-#: lib/form-designer/form-designer-meta-boxes.php:615
-msgid "Papyrus"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:556
-#: lib/form-designer/form-designer-meta-boxes.php:618
+#: lib/form-designer/form-designer-meta-boxes.php:401
 msgid ""
-"<strong>* This font is popular, but not a \"web-safe\" font.</strong> If not "
-"available on an user's computer, it will default to a similar font."
+"* next to a font means that the font may not be available on all users' "
+"computers. If not, a similar font will be used."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:557
+#: lib/form-designer/form-designer-meta-boxes.php:404
+#: lib/form-designer/form-designer-meta-boxes.php:468
+msgid "Use Theme Font"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:436
 msgid "Use Same Font for Labels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:561
+#: lib/form-designer/form-designer-meta-boxes.php:440
 msgid "Label"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:563
+#: lib/form-designer/form-designer-meta-boxes.php:442
 msgid "These settings apply to the label text above the inputs."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:565
+#: lib/form-designer/form-designer-meta-boxes.php:444
 msgid "Label Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:572
-msgid ".2 em"
+#: lib/form-designer/form-designer-meta-boxes.php:450
+msgid "Label Padding"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:573
-msgid ".5 em"
+#: lib/form-designer/form-designer-meta-boxes.php:450
+msgid "One \"em\" is equal to the height of the current font size."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:574
-msgid ".75 em"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:575
-msgid "1 em"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:576
-msgid "1.25 em"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:577
-msgid "1.5 em"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:586
+#: lib/form-designer/form-designer-meta-boxes.php:466
 msgid "Label Font"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:621
+#: lib/form-designer/form-designer-meta-boxes.php:470
+msgid "Times New Roman"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:471
+msgid "Georgia"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:472
+msgid "Palatino *"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:473
+msgid "Garamond *"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:474
+msgid "Bookman *"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:477
+msgid "Helvetica"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:478
+msgid "Arial"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:479
+msgid "Lucida Grande"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:480
+msgid "Verdana"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:481
+msgid "Trebuchet MS"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:482
+msgid "Tahoma"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:483
+msgid "Franklin Gothic"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:484
+msgid "Impact *"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:485
+msgid "Arial Black"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:486
+msgid "Gill Sans *"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:489
+msgid "Courier New"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:490
+msgid "Lucida Console"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:493
+msgid "Comic Sans MS"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:496
+msgid "Papyrus"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:499
+msgid ""
+"* This font is popular, but not a \"web-safe\" font. If not available on an "
+"user's computer, it will default to a similar font."
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:502
 msgid "Label Font Size"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:637
-msgid "22 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:638
-msgid "24 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:639
-msgid "28 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:640
-msgid "32 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:641
-msgid "36 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:643
-msgid "48 px"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:647
-msgid "Inputs"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:648
-msgid "Input Size"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:649
-msgid "This setting changes how many characters wide the form inputs are."
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:651
-msgid "20"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:652
-msgid "25"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:653
-msgid "30"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:654
-msgid "35"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:655
-msgid "40"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:656
-msgid "45"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:657
-msgid "50"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:658
-msgid "60"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:659
-msgid "70"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:660
-msgid "80"
-msgstr ""
-
-#: lib/form-designer/form-designer.php:142
+#: lib/form-designer/form-designer.php:165
 #, php-format
 msgid "The form %s has been successfully deleted."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:160
+#: lib/form-designer/form-designer.php:183
 msgid "The form could not be deleted. The form may have already been deleted."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:184
+#: lib/form-designer/form-designer.php:207
 #, php-format
 msgid "The  form %s has been successfully created."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:192
+#: lib/form-designer/form-designer.php:215
 #, php-format
 msgid "The <strong>%s</strong> form has been updated."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:394
+#: lib/form-designer/form-designer.php:417 lib/form-designer/form.php:206
 #, php-format
 msgid "The %s field is required"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:407
-msgid "Default Newsletters"
+#: lib/form-designer/form-designer.php:449
+msgid "Form Basics"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:408
+#: lib/form-designer/form-designer.php:450
+msgid "Signup Lists"
+msgstr ""
+
+#: lib/form-designer/form-designer.php:451
 msgid "Form Fields"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:410
-msgid "Design Presets"
-msgstr ""
-
-#: lib/form-designer/form-designer.php:411
+#: lib/form-designer/form-designer.php:452
 msgid "Background"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:412
+#: lib/form-designer/form-designer.php:453
 msgid "Border"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:413
+#: lib/form-designer/form-designer.php:454
 msgid "Text Styles & Settings"
 msgstr ""
 
-#: lib/form-designer/form-designer.php:414
+#: lib/form-designer/form-designer.php:455
 msgid "Padding & Align"
+msgstr ""
+
+#: lib/form-designer/form.php:334
+msgid "Add me to these lists:"
+msgstr ""
+
+#: lib/form-designer/form.php:456
+msgid "Success, you have been subscribed."
 msgstr ""
 
 #: lib/form-designer/views/form-designer.php:1
@@ -2583,22 +1968,62 @@ msgid ""
 "on in your browser</a> and let's make some forms together!"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:62
+#: lib/form-designer/views/form-designer.php:31
+msgid "Select a form to edit:"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:34
+msgid "Select A Form"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:39
 #, php-format
 msgid "Form #%d"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:67
-#: lib/form-designer/views/form-designer.php:77
-msgid "Add form"
+#: lib/form-designer/views/form-designer.php:48
+msgid "Select"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:101
+#: lib/form-designer/views/form-designer.php:60
+#, php-format
+msgctxt "The strings are HTML link tags for a link to create a new form."
+msgid "or %screate a new form%s."
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:103
+msgid "Form Name"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:103
+msgid "Only for internal use - the outside world won't see this name."
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:111
+#: lib/form-designer/views/form-designer.php:139
+msgid "Create Form"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:111
+#: lib/form-designer/views/form-designer.php:139
+msgid "Save Form"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:123
 msgid "Form Preview"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:104
+#: lib/form-designer/views/form-designer.php:126
 msgid "Toggle Preview"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:134
+msgid ""
+"Are you sure you want to delete this form? It will be deleted permanently."
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:134
+msgid "Delete Form"
 msgstr ""
 
 #: lib/form-designer/widget-form-designer.php:28
@@ -2677,16 +2102,44 @@ msgid ""
 "reload with success message inside widget)."
 msgstr ""
 
-#: lib/kwslog.php:121
+#: lib/kwslog.php:171
 msgid "Activity Log"
 msgstr ""
 
-#: lib/kwslog.php:216
+#: lib/kwslog.php:239
+msgid "Constant Contact Activity"
+msgstr ""
+
+#: lib/kwslog.php:240
+msgid "Debugging Logs"
+msgstr ""
+
+#: lib/kwslog.php:241
+msgid "Errors or Exceptions"
+msgstr ""
+
+#: lib/kwslog.php:242
+msgid "Notices"
+msgstr ""
+
+#: lib/kwslog.php:268
+msgid "Page"
+msgstr ""
+
+#: lib/kwslog.php:308
+msgid "Constant Contact Log"
+msgstr ""
+
+#: lib/kwslog.php:321
 msgid "Content"
 msgstr ""
 
-#: lib/kwslog.php:217
+#: lib/kwslog.php:322
 msgid "Date"
+msgstr ""
+
+#: lib/kwslog.php:364
+msgid "No activity has been logged."
 msgstr ""
 
 #: lib/simple-widget.php:29
@@ -2737,6 +2190,10 @@ msgstr ""
 msgid "Unable to load lists() from Constant Contact."
 msgstr ""
 
+#: vendor/pippinsplugins/WP-Logging/WP_Logging.php:153
+msgid "Logs"
+msgstr ""
+
 #: views/admin/view.campaign-edit.php:9 views/admin/view.campaign-view.php:15
 #: views/admin/view.contact-view.php:30 views/admin/view.list-edit.php:6
 msgid "Data"
@@ -2767,7 +2224,6 @@ msgid "Modified Date"
 msgstr ""
 
 #: views/admin/view.campaigns-view.php:6
-#: views/admin/view.campaigns-view.php:25
 msgid "View Campaign"
 msgstr ""
 
@@ -2776,7 +2232,12 @@ msgid "No results."
 msgstr ""
 
 #: views/admin/view.campaigns-view.php:25
-msgid "View"
+#, php-format
+msgid "View \"%s\" on ConstantContact.com"
+msgstr ""
+
+#: views/admin/view.campaigns-view.php:25
+msgid "View on ConstantContact.com"
 msgstr ""
 
 #: views/admin/view.contact-addedit.php:4
@@ -2785,6 +2246,12 @@ msgstr ""
 
 #: views/admin/view.contact-addedit.php:5
 msgid "Field Values"
+msgstr ""
+
+#: views/admin/view.contact-addedit.php:51
+#, php-format
+msgctxt "Admin label for custom fields"
+msgid "Custom Field %d"
 msgstr ""
 
 #: views/admin/view.contacts-view.php:7

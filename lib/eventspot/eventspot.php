@@ -103,7 +103,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 			$this->make_table($events, __('Events','constant-contact-api'));
 			?>
-			<p class="submit"><a href="<?php echo add_query_arg('refresh', 'events'); ?>" class="button-secondary alignright" title="<?php echo sprintf('Event registrants data is stored for %s hours. Refresh data now.', round(KWS_V1API::$event_cache_age / 3600)); ?>">Refresh Events</a></p>
+			<p class="submit"><a href="<?php echo add_query_arg('refresh', 'events'); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'constant-contact-api'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'constant-contact-api'); ?></a></p>
 			<?php
 		}
 
