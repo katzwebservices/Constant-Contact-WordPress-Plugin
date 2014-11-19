@@ -23,62 +23,71 @@
 			</div>
 		</div>
 	</div>
+<div class="nav-menus-php">
+	<div class="manage-menus">
+		<form method="get" action="<?php echo admin_url('admin.php'); ?>">
+			<input type="hidden" name="action" value="edit" />
+			<input type="hidden" name="page" value="constant-contact-forms" />
+			<label for="menu" class="selected-menu"><?php esc_html_e('Select a form to edit:', 'constant-contact-api'); ?></label>
+
+			<select name="form" id="menu">
+				<option>&mdash;<?php esc_html_e('Select A Form', 'constant-contact-api' );?>&mdash;</option>
+				<?php
+				foreach( (array) $cc_forms as $_cc_form ) {
+					if(!isset($_cc_form['cc-form-id'])) { continue; }
+
+					$label = !empty($_cc_form['truncated_name']) ? esc_html( $_cc_form['truncated_name'] ) : sprintf(__('Form #%d', 'constant-contact-api'), ($_cc_form['cc-form-id'] + 1));
+
+					$selected = selected( $cc_form_selected_id, $_cc_form['cc-form-id'], false );
+
+					printf( '<option value="%d"%s>%s</option>', $_cc_form['cc-form-id'], $selected, esc_html( $label ) );
+				}
+				?>
+			</select>
+
+			<span class="submit-btn"><input type="submit" class="button-secondary" value="<?php esc_attr_e('Select', 'constant-contact-api'); ?>"></span>
+
+			<?php
+
+			$add_form_url = esc_url(add_query_arg(
+				array(
+					'action' => 'edit',
+					'form' => -1,
+				),
+				admin_url( 'admin.php?page=constant-contact-forms' )
+			));
+
+			$new_form_link = sprintf( esc_html_x('or %screate a new form%s.', 'The strings are HTML link tags for a link to create a new form.', 'constant-contact-api'), '<a href="'.$add_form_url.'">', '</a>' );
+			echo '<span class="add-new-menu-action">
+				'.$new_form_link.'
+			</span>';
+
+			?>
+		</form>
+	</div>
+
+	<?php
+
+	$form = wp_get_cc_form($cc_form_selected_id);
+
+	?>
+
 	<form id="cc-form-settings" action="<?php echo admin_url( 'admin.php?page=constant-contact-forms'.$formURL ); ?>" method="post" enctype="multipart/form-data" class="hide-if-no-js">
 	<div id="nav-menus-frame">
 	<div id="menu-settings-column" class="metabox-holder">
 
 		<div id="settings">
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
-				<?php do_meta_boxes( 'constant-contact-form', 'side', null ); ?>
+				<?php do_meta_boxes( 'constant-contact-form', 'core', null ); ?>
+				<?php do_accordion_sections( 'constant-contact-form', 'side', null ); ?>
 			</div>
 		</div>
 
 	</div><!-- /#menu-settings-column -->
 	<div id="menu-management-liquid">
-		<!-- <div id="menu-management"> -->
 
-			<style type="text/css">
-			.nav-tab a {text-decoration: none; width: 100%; height: 100%; display: block;}
-			.nav-tab a:link,.nav-tab a:visited {color: #aaa;}
-			.nav-tab a:hover, .nav-tab a:active { color: #d54e21; }
-			.nav-tab-active a { color: #464646;}
-			</style>
-			<div class="nav-tabs">
-				<h2 class="nav-tab-wrapper">
-				<?php
-
-				foreach( (array) $cc_forms as $_cc_form ) {
-					if(!isset($_cc_form['cc-form-id'])) { continue; }
-					?>
-					<a href="<?php
-							echo esc_url(add_query_arg(
-								array(
-									'action' => 'edit',
-									'form' => $_cc_form['cc-form-id'],
-								),
-								admin_url( 'admin.php?page=constant-contact-forms' )
-							));
-						?>" class="hide-if-no-js nav-tab<?php if ($cc_form_selected_id == $_cc_form['cc-form-id'] ) { echo ' nav-tab-active'; } ?>">
-							<?php echo !empty($_cc_form['truncated_name']) ? esc_html( $_cc_form['truncated_name'] ) : sprintf(__('Form #%d', 'constant-contact-api'), ($_cc_form['cc-form-id'] + 1)); ?>
-					</a>
-					<?php
-				}
-				if ( -1 == $cc_form_selected_id ) : ?><span class="nav-tab menu-add-new nav-tab-active">
-					<?php printf( '<abbr title="%s">+</abbr>', esc_html__( 'Add form','constant-contact-api' ) ); ?>
-				</span><?php else : ?><a href="<?php
-					echo esc_url(add_query_arg(
-						array(
-							'action' => 'edit',
-							'form' => -1,
-						),
-						admin_url( 'admin.php?page=constant-contact-forms' )
-					));
-				?>" class="nav-tab menu-add-new">
-					<?php printf( '<abbr title="%s">+</abbr>', esc_html__( 'Add form','constant-contact-api' ) ); ?>
-				</a><?php endif; ?>
-				</h2>
-			</div>
-			<div class="menu-edit" style="border:none;">
+		<div id="menu-management">
+			<div class="menu-edit">
 				<div id="form-fields">
 					<div id="nav-menu-header">
 						<?php
@@ -88,28 +97,54 @@
 						?>
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="cc-form-id" id="cc-form-id" value="<?php echo (int)$cc_form_selected_id; ?>" />
+
+						<div class="major-publishing-actions">
+							<label class="menu-name-label howto open-label" for="menu-name">
+								<span><?php esc_html_e('Form Name', 'constant-contact-api'). constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), false ); ?></span>
+
+								<?php $title = esc_attr__('Enter form name here', 'constant-contact-api'); ?>
+								<input name="form-name" id="menu-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
+
+
+							</label>
+							<div class="publishing-action">
+								<input class="button button-primary button-large menu-save" name="save_form" type="submit" value="<?php ($cc_form_selected_id != 0 && empty($cc_form_selected_id)) ? esc_attr_e('Create Form', 'constant-contact-api') : esc_attr_e('Save Form', 'constant-contact-api'); ?>" />
+							</div><!-- END .publishing-action -->
+						</div>
+
 					</div><!-- END #nav-menu-header -->
 					<div id="post-body">
 						<div id="post-body-content">
 							<?php
-
-								$form = wp_get_cc_form($cc_form_selected_id);
-
 								cc_form_meta_box_formfields($form);
 							?>
-							<div id="examplewrapper">
-								<h3 class="legend"><?php _e('Form Preview', 'constant-contact-api'); ?></h3>
-								<div class="grabber"></div>
-
-								<a href="#" id="togglePreview"><?php _e('Toggle Preview', 'constant-contact-api'); ?></a>
-							</div><!-- end ExampleWrapper -->
-
 						</div><!-- /#post-body-content -->
-						<div class="clear"></div>
+						<div id="examplewrapper">
+							<h3 class="legend"><?php _e('Form Preview', 'constant-contact-api'); ?></h3>
+							<div class="grabber"></div>
+
+							<a href="#" id="togglePreview"><?php _e('Toggle Preview', 'constant-contact-api'); ?></a>
+						</div><!-- end ExampleWrapper -->
 					</div><!-- /#post-body -->
+
+					<div id="nav-menu-footer">
+						<div class="major-publishing-actions">
+							<span class="delete-action">
+								<?php if ( $cc_form_selected_id != -1 ) {  ?>
+								<a class="submitdelete deletion menu-delete" href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete&amp;form=' . $cc_form_selected_id), 'delete-cc_form-' . $cc_form_selected_id ) ); ?>"  onclick="return confirm('<?php _e('Are you sure you want to delete this form? It will be deleted permanently.', 'constant-contact-api'); ?>');"><?php _e('Delete Form', 'constant-contact-api'); ?></a>
+							<?php  } ?>
+							</span><!-- END .delete-action -->
+
+							<div class="publishing-action">
+								<input class="button button-primary button-large menu-save" name="save_form" type="submit" value="<?php ($cc_form_selected_id != 0 && empty($cc_form_selected_id)) ? esc_attr_e('Create Form', 'constant-contact-api') : esc_attr_e('Save Form', 'constant-contact-api'); ?>" />
+							</div><!-- END .publishing-action -->
+						</div><!-- END .major-publishing-actions -->
+					</div>
+
 				</div><!-- /#update-nav-menu -->
 			</div><!-- /.menu-edit -->
-		<!-- </div> /#menu-management -->
+		</div> <!-- /#menu-management -->
 	</div><!-- /#menu-management-liquid -->
 	</div><!-- /#nav-menus-frame -->
 </form><!-- /#tha-form -->
+</div>
