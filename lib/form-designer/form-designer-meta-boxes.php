@@ -10,16 +10,14 @@ function cc_form_meta_box_actions($post, $metabox=array()) {
 	?>
 	<div id="submitpost" class="submitbox">
 		<div id="minor-publishing">
-			<p><label class="form-preview-label menu-name-label open-label" for="form-name">
-				<span><?php _e('Form Name'); constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api')); ?></span>
-				<input name="form-name" id="form-name" type="text" class="widefat text <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo esc_attr_e('Enter form name here', 'constant-contact-api'); ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
-			</label></p>
 			<?php if($cc_form_selected_id >= 0) { ?>
 
-			<div class="block">
-				<h4 class="smallmarginbottom"><?php _e('Form ID:'); ?> <code style="font-size:1.2em;"><?php _e($cc_form_selected_id); ?></code></h4>
-				<span class="howto"><?php echo sprintf(__('In a post or page, add the following code: <code>[constantcontactapi formid="%d"]</code> <a href="#tab-panel-ctct-insert-form" rel="wp-help">Learn More</a></span>', 'constant-contact-api'), (int)$cc_form_selected_id); ?>
-			</div>
+				<h4 class="smallmarginbottom"><?php _e('Form ID:'); ?> <tt class="large"><?php _e($cc_form_selected_id); ?></tt></h4>
+				<p class="howto">
+					<span><?php printf(__('To embed this form in a post or page, add the following code. %s', 'constant-contact-api'), '<input type="text" class="code widefat block select-text" readonly="readonly" value="'.esc_attr('[constantcontactapi formid="'.(int)$cc_form_selected_id.'"]').'" />' ); ?> <a href="#tab-panel-ctct-insert-form" rel="wp-help"><?php esc_html_e('Learn More', 'constant-contact-api'); ?></a>
+					</span>
+				</p>
+
 			<?php } ?>
 			<div class="block">
 				<h4 class="large smallmarginbottom"><?php _e('Use Form Styler?', 'constant-contact-api'); constant_contact_tip(__('Use the form styler to change colors and design of your form. If not used, the form will be styled using your theme\'s&nbsp;defaults.', 'constant-contact-api')); ?></h4>
@@ -32,17 +30,6 @@ function cc_form_meta_box_actions($post, $metabox=array()) {
 
 			<div class="clear"></div>
 		</div>
-		<div id="major-publishing-actions">
-			<div id="publishing-action">
-				<input class="button button-primary button-large menu-save" name="save_form" type="submit" value="<?php ($cc_form_selected_id != 0 && empty($cc_form_selected_id)) ? esc_attr_e('Create Form', 'constant-contact-api') : esc_attr_e('Save Form', 'constant-contact-api'); ?>" />
-			</div><!-- END .publishing-action -->
-			<?php if ( $cc_form_selected_id != -1 ) {  ?>
-			<div id="delete-action">
-				<a class="submitdelete deletion menu-delete" href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete&amp;form=' . $cc_form_selected_id), 'delete-cc_form-' . $cc_form_selected_id ) ); ?>"  onclick="return confirm('<?php _e('Are you sure you want to delete this form? It will be deleted permanently.', 'constant-contact-api'); ?>');"><?php _e('Delete Form', 'constant-contact-api'); ?></a>
-			</div><!-- END .delete-action -->
-			<?php  } ?>
-			<div class="clear"></div>
-		</div><!-- END .major-publishing-actions -->
 	</div><!-- END #submitpost .submitbox -->
 	<?php
 }
@@ -55,25 +42,25 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	$output = KWSContactList::outputHTML('all', array('checked' => $checkedArray, 'type' => 'checkboxes'));
 ?>
 <div class="posttypediv lists-meta-box">
-	<h4 class="smallmarginbottom"><?php _e('Lists', 'consatnt-contact-api'); constant_contact_tip(sprintf('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the <code>[constantcontactapi%s]</code> shortcode.', ($form['cc-form-id'] > -1 ? ' formid="'.$form['cc-form-id'].'"' : ''))); ?></h4>
-	<div id="formfields-select-most" class="tabs-panel tabs-panel-active">
-		<ul id="formfieldslist-most" class="categorychecklist form-no-clear">
+	<h4 class="smallmarginbottom"><?php esc_html_e('Lists', 'consatnt-contact-api'); constant_contact_tip( __('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the shortcode.', 'constant-contact-api') ); ?></h4>
+	<div class="tabs-panel tabs-panel-active" id="ctct-form-list-select">
+		<ul class="ctct-checkboxes categorychecklist form-no-clear">
 		<?php
 			echo $output;
 		?>
 		</ul>
 	</div>
-	<h4 class="smallmarginbottom"><?php _e('List Selection Format', 'constant-contact-api'); ?></h4>
+	<h4 class="smallmarginbottom"><?php esc_html_e('List Selection Format', 'constant-contact-api'); ?></h4>
+	<p class="description"><?php esc_html_e('This controls what kind of list is shown. <a href="#listTypeInfo" class="moreInfo">More info</a>', 'constant-contact-api'); ?></p>
 	<ul class="list-selection-format">
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php _e('Opt-in Checkbox', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php _e('Dropdown List', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php _e('Hidden', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Opt-in Checkbox', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown List', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'consatnt-contact-api'); ?></label></li>
 	</ul>
-	<p class="description"><?php _e('This controls what kind of list is shown. <a href="#listTypeInfo" class="moreInfo">More info</a>', 'constant-contact-api'); ?></p>
 
-	<h4 class="smallmarginbottom"><?php _e('Checked by default?', 'constant-contact-api'); ?></h4>
-	<label for="checked_by_default" class="description toggle_comment_form">
-		<input name="checked_by_default" id="checked_by_default" type="checkbox" value="true" checked="checked" style="margin-right:.25em;" /><?php _e('Should the checkbox be checked by default?', 'constant-contact-api'); ?>
+	<h4 class="smallmarginbottom"><?php esc_html_e('Checked by default?', 'constant-contact-api'); ?></h4>
+	<label for="checked_by_default" class="checkbox toggle_comment_form">
+		<input name="checked_by_default" id="checked_by_default" type="checkbox" value="true" checked="checked" style="margin-right:.25em;" /><?php esc_html_e('Should the list checkboxes be checked by default?', 'constant-contact-api'); ?>
 	</label>
 
 </div>
@@ -88,15 +75,15 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 ?>
 <div class="posttypediv">
 	<ul id="formfields-select-tabs" class="formfields-select-tabs add-menu-item-tabs">
-		<li class="tabs"><a href="#formfields-select-most" class="nav-tab-link"><?php _e('Most Used', 'constant-contact-api'); ?></a></li>
-		<li><a href="#formfields-select-all" class="nav-tab-link"><?php _e('Other Fields', 'constant-contact-api'); ?></a></li>
+		<li class="tabs"><a href="#formfields-select-most" class="nav-tab-link"><?php esc_html_e('Most Used', 'constant-contact-api'); ?></a></li>
+		<li><a href="#formfields-select-all" class="nav-tab-link"><?php esc_html_e('Other Fields', 'constant-contact-api'); ?></a></li>
 	</ul>
 	<div id="formfields-select-most" class="tabs-panel tabs-panel-active">
 		<ul id="formfieldslist-most" class="categorychecklist form-no-clear">
 		<?php
 			$formfields = array();
 			$formfields[] = array('email_address', __('Email Address', 'constant-contact-api'), true);
-			$formfields[] = array('intro', __('Form Text', 'constant-contact-api'), true);
+			$formfields[] = array('intro', __('Custom Text', 'constant-contact-api'), true);
 			$formfields[] = array('first_name', __('First Name', 'constant-contact-api'), true);
 			$formfields[] = array('last_name', __('Last Name', 'constant-contact-api'), true);
 			$formfields[] = array('Go', __('Submit', 'constant-contact-api'), true);
@@ -145,16 +132,16 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 
 	<div class="block">
 		<label class="block"><?php esc_html_e( 'Required Fields', 'constant-contact-api' ); ?></label>
-		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span>Add asterisk if field is required.</span></label>
+		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span><?php esc_html_e('Add asterisk if field is required.', 'consatnt-contact-api'); ?></span></label>
 	</div>
 
 	<div class="block">
-		<label class="block"><span><?php _e('SafeUnsubscribe', 'constant-contact-api'); ?></span></label>
+		<label class="block"><span><?php esc_html_e('SafeUnsubscribe', 'constant-contact-api'); ?></span></label>
 		<ul>
 			<li><label for="safesubscribelight"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'light', true); ?> name="safesubscribe" id="safesubscribelight" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-light-2x.gif" alt="<?php esc_html_e('SafeUnsubscribe Gray', 'constant-contact-api'); ?>" width="168" height="14" id="safesubscribelightimg" class="safesubscribesample" title="<?php esc_attr_e('Gray', 'constant-contact-api'); ?>"/></label></li>
 			<li><label for="safesubscribedark"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'dark'); ?> name="safesubscribe" id="safesubscribedark" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-dark-2x.gif" alt="<?php esc_html_e('SafeUnsubscribe White', 'constant-contact-api'); ?>" width="168" height="14" id="safesubscribedarkimg" class="safesubscribesample" title="<?php esc_attr_e('White', 'constant-contact-api'); ?>"/></label></li>
 			<li><label for="safesubscribeblack"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'black'); ?> name="safesubscribe" id="safesubscribeblack" /> <img src="<?php echo CC_FORM_GEN_URL; ?>images/safesubscribe-black-2x.gif" alt="<?php esc_html_e('SafeUnsubscribe Black', 'constant-contact-api'); ?>" width="168" height="14" id="safesubscribeblackimg" class="safesubscribesample" title="<?php esc_attr_e('Black', 'constant-contact-api'); ?>"/></label></li>
-			<li><label for="safesubscribeno"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'no'); ?> name="safesubscribe" id="safesubscribeno" /> <?php _e('Do Not Display', 'constant-contact-api'); ?></label></li>
+			<li><label for="safesubscribeno"><input type="radio" <?php ctct_check_radio($form,'safesubscribe', 'no'); ?> name="safesubscribe" id="safesubscribeno" /> <?php esc_html_e('Do Not Display', 'constant-contact-api'); ?></label></li>
 		</ul>
 	</div>
 
@@ -166,11 +153,18 @@ function cc_form_meta_box_formfields($_form_object) {
 	?>
 		<div class="wp-editor-textarea">
 			<input type="checkbox" class="checkbox hide-if-js" name="f[0][n]" value="f[0]" checked="checked" />
-			<label for="form_text" class="labelDefault howto">
-				<h3 class="description"><?php _e('Form Text', 'constant-contact-api'); ?></h3>
+
+				<h3><i class="dashicons dashicons-clipboard"></i> <?php esc_html_e('Custom Text', 'constant-contact-api'); ?></h3>
+
+				<div id="menu-instructions" class="drag-instructions post-body-plain">
+				<?php
+				echo wpautop( esc_html__('The content below be placed where the "Custom Text Placeholder" field is. Edit the Custom Text below. &darr;', 'constant-contact-api') );
+				?>
+				</div>
+
 				<?php
 
-				$default = isset($_form_object['f'][0]['val']) ? html_entity_decode( stripslashes($_form_object['f'][0]['val'])) :  __('Form Text Placeholder', 'constant-contact-api');
+				$default = isset($_form_object['f'][0]['val']) ? html_entity_decode( stripslashes($_form_object['f'][0]['val'])) :  __('Custom Text Placeholder', 'constant-contact-api');
 
 				echo wp_editor(
  				    $default,
@@ -186,14 +180,13 @@ function cc_form_meta_box_formfields($_form_object) {
 					))
 				);
 				?>
-			</label>
 		</div>
 
 		<ul class="menu" id="menu-to-edit">
 		<?php
 
 			$formfields = array(
-				ctct_make_formfield($_form_object, '', 'intro', __('Form Text Placeholder', 'constant-contact-api'), true, '', 'textarea'),
+				ctct_make_formfield($_form_object, '', 'intro', '<i class="dashicons dashicons-clipboard"></i> '.__('Custom Text', 'constant-contact-api'), true, '', 'textarea'),
 				ctct_make_formfield($_form_object, '', 'email_address', __('Email Address', 'constant-contact-api'), true, 'example@tryme.com'),
 				ctct_make_formfield($_form_object, '', 'first_name', __('First Name', 'constant-contact-api'), true),
 				ctct_make_formfield($_form_object, '', 'last_name', __('Last Name', 'constant-contact-api'), true),
@@ -230,7 +223,9 @@ function cc_form_meta_box_formfields($_form_object) {
 				ctct_make_formfield($_form_object, 'more', 'CustomField15', __('Custom Field 15', 'constant-contact-api'), false)
 			);
 
-			foreach($formfields as $formfield) { echo $formfield; }
+			foreach($formfields as $formfield) {
+				echo $formfield;
+			}
 		?>
 	</ul>
 <?php
@@ -240,35 +235,35 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 	$form = $metabox['args'][0];
 	?>
 				<input type="hidden" name="backgroundgradienturl" id="backgroundgradienturl" value="" />
-				<label for="backgroundtype" class="howto hide"><span><?php _e('Background Type:', 'constant-contact-api'); ?></span></label>
+				<label for="backgroundtype" class="howto hide"><span><?php esc_html_e('Background Type:', 'constant-contact-api'); ?></span></label>
 					<div class="tabs-panel tabs-panel-active clear" style="background-color:transparent;">
 						<ul class="categorychecklist">
-							<li><label for="backgroundtransparent" class="menu-item-title backgroundtype"><input type="radio" class="menu-item-checkbox" name="backgroundtype" id="backgroundtransparent" <?php ctct_check_radio($form,'backgroundtype', 'transparent', true); ?> /> <span><?php _e('Transparent', 'constant-contact-api'); ?></span></label></li>
-							<li><label for="backgroundgradient" class="menu-item-title backgroundtype"><input type="radio" class="menu-item-checkbox" name="backgroundtype" id="backgroundgradient" <?php ctct_check_radio($form,'backgroundtype', 'gradient', true); ?> /> <span><?php _e('Gradient', 'constant-contact-api'); ?></span></label></li>
-							<li><label for="backgroundsolid" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'solid'); ?>  name="backgroundtype" id="backgroundsolid" /> <span><?php _e('Solid Color', 'constant-contact-api'); ?></span></label></li>
-							<li><label for="backgroundpattern" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'pattern'); ?> name="backgroundtype" id="backgroundpattern" /> <span><?php _e('Image Pattern', 'constant-contact-api'); ?></span></label></li>
-							<li><label for="backgroundurl" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'url'); ?> name="backgroundtype" id="backgroundurl" /> <span><?php _e('URL (External Image)', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundtransparent" class="menu-item-title backgroundtype"><input type="radio" class="menu-item-checkbox" name="backgroundtype" id="backgroundtransparent" <?php ctct_check_radio($form,'backgroundtype', 'transparent', true); ?> /> <span><?php esc_html_e('Transparent', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundgradient" class="menu-item-title backgroundtype"><input type="radio" class="menu-item-checkbox" name="backgroundtype" id="backgroundgradient" <?php ctct_check_radio($form,'backgroundtype', 'gradient', true); ?> /> <span><?php esc_html_e('Gradient', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundsolid" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'solid'); ?>  name="backgroundtype" id="backgroundsolid" /> <span><?php esc_html_e('Solid Color', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundpattern" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'pattern'); ?> name="backgroundtype" id="backgroundpattern" /> <span><?php esc_html_e('Image Pattern', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundurl" class="backgroundtype"><input type="radio" class="menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'url'); ?> name="backgroundtype" id="backgroundurl" /> <span><?php esc_html_e('URL (External Image)', 'constant-contact-api'); ?></span></label></li>
 						</ul>
 					</div>
 
 				<div id="gradtypeli" class="block">
 					<label class="howto" for="gradtype">
-						<span class="block"><?php _e('Gradient Type:', 'constant-contact-api'); ?></span>
+						<span class="block"><?php esc_html_e('Gradient Type:', 'constant-contact-api'); ?></span>
 
 						<select id="gradtype" name="gradtype">
-						  <option <?php ctct_check_select($form,'gradtype', 'vertical'); ?>><?php _e('Vertical', 'constant-contact-api'); ?></option>
-						  <option <?php ctct_check_select($form,'gradtype', 'horizontal'); ?>><?php _e('Horizontal', 'constant-contact-api'); ?></option>
+						  <option <?php ctct_check_select($form,'gradtype', 'vertical'); ?>><?php esc_html_e('Vertical', 'constant-contact-api'); ?></option>
+						  <option <?php ctct_check_select($form,'gradtype', 'horizontal'); ?>><?php esc_html_e('Horizontal', 'constant-contact-api'); ?></option>
 						</select>
 					</label>
 					<input type="hidden" id="gradwidth" name="gradwidth" value="1" />
 				</div>
 
-				<div class="block" id="bgtop" class="block">
-						<label for="color6" class="howto block"><span><?php _e('Top Color:', 'constant-contact-api'); ?></span></label>
+				<div class="block" id="bgtop">
+						<label for="color6" class="howto block"><span><?php esc_html_e('Top Color:', 'constant-contact-api'); ?></span></label>
 						<input type="hidden" id="color6" name="color6" class="wpcolor" value="<?php ctct_input_value($form, 'color6', '#ad0c0c'); ?>" />
 				</div>
 				<div class="block" id="bgbottom">
-						<label class="howto block"><span><?php _e('Bottom Color:', 'constant-contact-api'); ?></span></label>
+						<label class="howto block"><span><?php esc_html_e('Bottom Color:', 'constant-contact-api'); ?></span></label>
 						<input type="hidden" id="color2" name="color2" class="wpcolor" value="<?php ctct_input_value($form, 'color2', '#000001'); ?>" />
 				</div>
 				<div class="form-item" id="bgurl">
@@ -277,26 +272,26 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 					<input type="text" class="code widefat" id="bgimage" name="bgimage" value="<?php ctct_input_value($form, 'bgimage', 'http://colourlovers.com.s3.amazonaws.com/images/patterns/90/90096.png'); ?>" />
 					</label></p>
 
-					<p><label class="howto" for="bgrepeat"><span><?php _e('Background Repeat:', 'constant-contact-api'); ?></span>
+					<p><label class="howto" for="bgrepeat"><span><?php esc_html_e('Background Repeat:', 'constant-contact-api'); ?></span>
 						<select name="bgrepeat" id="bgrepeat">
-							<option <?php ctct_check_select($form,'bgrepeat', 'repeat',true); ?> value="repeat"><?php _e('Repeat', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgrepeat', 'no-repeat'); ?> value="no-repeat"><?php _e('No Repeat', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgrepeat', 'repeat-x'); ?> value="repeat-x"><?php _e('Repeat-X (Horizontal)', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgrepeat', 'repeat-y'); ?> value="repeat-y"><?php _e('Repeat-Y (Vertical)', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgrepeat', 'repeat',true); ?> value="repeat"><?php esc_html_e('Repeat', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgrepeat', 'no-repeat'); ?> value="no-repeat"><?php esc_html_e('No Repeat', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgrepeat', 'repeat-x'); ?> value="repeat-x"><?php esc_html_e('Repeat-X (Horizontal)', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgrepeat', 'repeat-y'); ?> value="repeat-y"><?php esc_html_e('Repeat-Y (Vertical)', 'constant-contact-api'); ?></option>
 						</select>
 					</label></p>
 					<!-- <p class="howto">Choose the background alignment: Horizontal / Vertical</p> -->
-					<p><label class="howto" for="bgpos"><span><?php _e('Background Position:', 'constant-contact-api'); ?></span>
+					<p><label class="howto" for="bgpos"><span><?php esc_html_e('Background Position:', 'constant-contact-api'); ?></span>
 						<select name="bgpos" id="bgpos">
-							<option <?php ctct_check_select($form,'bgpos', 'left top',true); ?> value="left top"><?php _e('Left/Top', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'center top'); ?> value="center top"><?php _e('Center/Top', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'right top'); ?> value="right top"><?php _e('Right/Top', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'left center'); ?> value="left center"><?php _e('Left/Center', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'center center'); ?> value="center center"><?php _e('Center/Center', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'right center'); ?> value="right center"><?php _e('Right/Center', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'left bottom'); ?> value="left bottom"><?php _e('Left/Bottom', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'center bottom'); ?> value="center bottom"><?php _e('Center/Bottom', 'constant-contact-api'); ?></option>
-							<option <?php ctct_check_select($form,'bgpos', 'right bottom'); ?> value="right bottom"><?php _e('Right/Bottom', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'left top',true); ?> value="left top"><?php esc_html_e('Left/Top', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'center top'); ?> value="center top"><?php esc_html_e('Center/Top', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'right top'); ?> value="right top"><?php esc_html_e('Right/Top', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'left center'); ?> value="left center"><?php esc_html_e('Left/Center', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'center center'); ?> value="center center"><?php esc_html_e('Center/Center', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'right center'); ?> value="right center"><?php esc_html_e('Right/Center', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'left bottom'); ?> value="left bottom"><?php esc_html_e('Left/Bottom', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'center bottom'); ?> value="center bottom"><?php esc_html_e('Center/Bottom', 'constant-contact-api'); ?></option>
+							<option <?php ctct_check_select($form,'bgpos', 'right bottom'); ?> value="right bottom"><?php esc_html_e('Right/Bottom', 'constant-contact-api'); ?></option>
 						</select>
 					</label></p>
 				</div>
@@ -323,67 +318,28 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 function cc_form_meta_box_border($post, $metabox=array()) {
 	$form = $metabox['args'][0];
 ?>
-	<div id="borderitem" class="block">
+
+	<div id="borderitem" class="block cc-has-slider">
 		<label for="borderwidth" class="howto">
 
-			<span><?php esc_html_e('Border Width', 'constant-contact-api'); ?></span>
-			<select id="borderwidth" name="borderwidth">
-				  <option <?php ctct_check_select($form, 'borderwidth', '0',false); ?>><?php esc_html_e('No Border', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '1',false); ?>><?php esc_html_e('1 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '2',false); ?>><?php esc_html_e('2 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '3',false); ?>><?php esc_html_e('3 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '4',true); ?>><?php esc_html_e('4 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '5',false); ?>><?php esc_html_e('5 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '6',false); ?>><?php esc_html_e('6 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '7',false); ?>><?php esc_html_e('7 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '8',false); ?>><?php esc_html_e('8 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '9',false); ?>><?php esc_html_e('9 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '10',false); ?>><?php esc_html_e('10 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '11',false); ?>><?php esc_html_e('11 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '12',false); ?>><?php esc_html_e('12 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '13',false); ?>><?php esc_html_e('13 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '14',false); ?>><?php esc_html_e('14 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '15',false); ?>><?php esc_html_e('15 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '16',false); ?>><?php esc_html_e('16 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '17',false); ?>><?php esc_html_e('17 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '18',false); ?>><?php esc_html_e('18 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '19',false); ?>><?php esc_html_e('19 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '20',false); ?>><?php esc_html_e('20 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '25',false); ?>><?php esc_html_e('25 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '30',false); ?>><?php esc_html_e('30 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '35',false); ?>><?php esc_html_e('35 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '40',false); ?>><?php esc_html_e('40 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '45',false); ?>><?php esc_html_e('45 px', 'constant-contact-api'); ?></option>
-				  <option <?php ctct_check_select($form, 'borderwidth', '50',false); ?>><?php esc_html_e('50 px', 'constant-contact-api'); ?></option>
-			</select>
+			<span><?php esc_html_e('Border Width', 'constant-contact-api'); ?><tt><?php ctct_input_value($form, 'borderwidth', '4'); ?>px</tt></span>
+			<div class="block" id="borderwidth-slider"></div>
+			<input id="borderwidth" name="borderwidth" type="hidden" value="<?php ctct_input_value($form, 'borderwidth', '4'); ?>" />
 		</label>
 	</div>
 
 	<div id="bordercoloritem" class="block">
-		<label for="bordercolor" class="howto inline"><span><?php esc_html_e('Border Color:', 'constant-contact-api'); ?></span></label>
+		<label for="bordercolor" class="howto block"><span><?php esc_html_e('Border Color:', 'constant-contact-api'); ?></span></label>
 		<div class="input">
 			<input type="hidden" id="bordercolor" name="bordercolor" class="wpcolor" value="<?php ctct_input_value($form, 'bordercolor', '#000000'); ?>" />
 		</div>
 	</div>
 
-	<div class="borderradius">
-		<label for="borderradius" class="howto block"><span><?php esc_html_e('Rounded Corner Radius', 'constant-contact-api'); ?></span>
-			<select id="borderradius" name="borderradius">
-			  <option <?php ctct_check_select($form, 'borderradius', '0',false); ?>><?php esc_html_e('None (Square Corners)', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '5',true); ?>><?php esc_html_e('5 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '10',false); ?>><?php esc_html_e('10 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '15',false); ?>><?php esc_html_e('15 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '20',false); ?>><?php esc_html_e('20 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '25',false); ?>><?php esc_html_e('25 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '30',false); ?>><?php esc_html_e('30 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '35',false); ?>><?php esc_html_e('35 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '40',false); ?>><?php esc_html_e('40 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '45',false); ?>><?php esc_html_e('45 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '50',false); ?>><?php esc_html_e('50 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '60',false); ?>><?php esc_html_e('60 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '75',false); ?>><?php esc_html_e('75 px', 'constant-contact-api'); ?></option>
-			  <option <?php ctct_check_select($form, 'borderradius', '100',false); ?>><?php esc_html_e('100 px', 'constant-contact-api'); ?></option>
-			</select>
+	<div class="borderradius cc-has-slider">
+		<label for="borderradius" class="howto block"><span><?php esc_html_e('Rounded Corner Radius', 'constant-contact-api'); ?><tt><?php ctct_input_value($form, 'borderradius', '0'); ?>px</tt></span>
+
+			<div class="block" id="borderradius-slider"></div>
+			<input id="borderradius" name="borderradius" type="hidden" value="<?php ctct_input_value($form, 'borderradius', '0'); ?>" />
 		</label>
 	</div>
 <?php
@@ -391,25 +347,11 @@ function cc_form_meta_box_border($post, $metabox=array()) {
 
 function cc_form_meta_box_formdesign($post, $metabox=array()) {
 	$form = $metabox['args'][0];
-	?>		<div>
-				<label for="isize" class="howto block"><span><?php esc_html_e('Form Padding', 'constant-contact-api'); ?></span>
+	?>		<div class="cc-has-slider">
+				<label for="paddingwidth" class="howto block"><span><?php esc_html_e('Form Padding', 'constant-contact-api'); ?><tt><?php ctct_input_value($form, 'paddingwidth', '10'); ?>px</tt></span>
 					<?php constant_contact_tip(__('Padding is the space between the outside of the form and the content inside the form; it\'s visual insulation.', 'constant-contact-api')); ?>
-					<select id="paddingwidth" name="paddingwidth">
-						<option<?php ctct_check_select($form,'paddingwidth', '0',false); ?> value="0"><?php esc_html_e('No Padding', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '5',false); ?> value="5"><?php esc_html_e('5 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '10', true); ?> value="10"><?php esc_html_e('10 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '15', false); ?> value="15"><?php esc_html_e('15 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '20', false); ?> value="20"><?php esc_html_e('20 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '25', false); ?> value="25"><?php esc_html_e('25 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '30', false); ?> value="30"><?php esc_html_e('30 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '35', false); ?> value="35"><?php esc_html_e('35 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '40', false); ?> value="40"><?php esc_html_e('40 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '45', false); ?> value="45"><?php esc_html_e('45 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '50', false); ?> value="50"><?php esc_html_e('50 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '60', false); ?> value="60"><?php esc_html_e('60 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '70', false); ?> value="70"><?php esc_html_e('70 px', 'constant-contact-api'); ?></option>
-						<option<?php ctct_check_select($form,'paddingwidth', '80', false); ?> value="80"><?php esc_html_e('80 px', 'constant-contact-api'); ?></option>
-					</select>
+					<div class="block" id="paddingwidth-slider"></div>
+					<input id="paddingwidth" name="paddingwidth" type="hidden" value="<?php ctct_input_value($form, 'paddingwidth', '10'); ?>" />
 				</label>
 			</div>
 			<div class="alignleft">
@@ -420,7 +362,7 @@ function cc_form_meta_box_formdesign($post, $metabox=array()) {
 			</div>
 
 		<div class="clear">
-			<label for="lalign" class="howto block"><span><?php esc_html_e('Form Content Alignment', 'constant-contact-api'); constant_contact_tip(__('Align the form fields and labels inside the form. <strong>Note:</strong> you can change the alignment of the Form Text separately inside the Form Text editor.', 'constant-contact-api')); ?></span></label>
+			<label for="lalign" class="howto block"><span><?php esc_html_e('Form Content Alignment', 'constant-contact-api'); constant_contact_tip(__('Align the form fields and labels inside the form. <strong>Note:</strong> you can change the alignment of the Custom Text separately inside the Custom Text editor.', 'constant-contact-api')); ?></span></label>
 			<ul class="categorychecklist form-no-clear">
 				<li><label for="lalignleft" class="menu-item-title"><span><input type="radio" id="lalignleft" name="talign" <?php ctct_check_radio($form,'talign', 'left'); ?> /> <?php esc_html_e('Left', 'constant-contact-api'); ?></span></label></li>
 				<li><label for="laligncenter" class="menu-item-title"><span><input type="radio" id="laligncenter" name="talign" <?php ctct_check_radio($form,'talign', 'center',true); ?> /> <?php esc_html_e('Center', 'constant-contact-api'); ?></span></label></li>
@@ -444,73 +386,80 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 ?>
 <fieldset>
 				<legend><?php esc_html_e('Text', 'constant-contact-api'); ?></legend>
-				<p class="description"><?php esc_html_e('These settings are for the Form Text field. If the checkboxes are checked, the settings also apply to the input labels.', 'constant-contact-api'); ?></p>
+				<p class="description"><?php esc_html_e('These settings are for the Custom Text field. If the checkboxes are checked, the settings also apply to the input labels.', 'constant-contact-api'); ?></p>
 				<div class="block">
-					<label for="tcolor" class="howto inline"><span><?php esc_html_e('Text Color:', 'constant-contact-api'); ?></span></label>
-					<div class="input"><input type="hidden" id="tcolor" name="tcolor" class="wpcolor" value="<?php ctct_input_value($form, 'tcolor', '#accbf7'); ?>" /></div>
+					<label for="tcolor" class="block"><span><?php esc_html_e('Text Color:', 'constant-contact-api'); ?></span></label>
+					<div class="input">
+						<input type="hidden" id="tcolor" name="tcolor" class="wpcolor" value="<?php ctct_input_value($form, 'tcolor', '#accbf7'); ?>" />
+					</div>
 
-					<label for="lusc" class="howto checkbox block"><input type="checkbox" class="checkbox" name="lusc" id="lusc" <?php ctct_check_checkbox($form, 'lusc', 'yes', true); ?> /> <span><?php esc_html_e('Use Same Color for Labels', 'constant-contact-api'); ?></span></label>
+					<label for="lusc" class="checkbox block howto"><input type="checkbox" class="checkbox" name="lusc" id="lusc" <?php ctct_check_checkbox($form, 'lusc', 'yes', true); ?> /> <span><?php esc_html_e('Use Same Color for Labels', 'constant-contact-api'); ?></span></label>
 				</div>
 
-				<p>
-					<label for="tfont" class="howto block"><span><?php esc_html_e('Text Font &amp; Size', 'constant-contact-api'); ?></span></label>
+				<div class="block">
+
+					<label for="tfont" class="block"><span><?php esc_html_e('Font Family', 'constant-contact-api'); constant_contact_tip(__('* next to a font means that the font may not be available on all users\' computers. If not, a similar font will be used.', 'constant-contact-api') ); ?></span></label>
+
 					<select id="tfont" name="tfont" class="inline">
 						<option <?php ctct_check_select($form,'tfont', 'inherit'); ?> style="font-family: inherit;" id="inherit"><?php esc_html_e('Use Theme Font', 'constant-contact-api'); ?></option>
 							<optgroup label="Serif">
-								<option <?php ctct_check_select($form,'tfont', 'times'); ?> style="font-family: 'Times New Roman', Times, Georgia, serif;" id="times"><?php esc_html_e('Times New Roman', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'georgia'); ?> style="font-family: Georgia, 'Times New Roman', Times, serif;" id="georgia"><?php esc_html_e('Georgia', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'palatino'); ?> style="font-family: 'Palatino Linotype', Palatino, 'Book Antiqua',Garamond, Bookman, 'Times New Roman', Times, Georgia, serif" id="palatino"><?php esc_html_e('Palatino *', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'garamond'); ?> style="font-family: Garamond,'Palatino Linotype', Palatino, Bookman, 'Book Antiqua', 'Times New Roman', Times, Georgia, serif" id="garamond"><?php esc_html_e('Garamond *', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'bookman'); ?> style="font-family: Bookman,'Palatino Linotype', Palatino, Garamond, 'Book Antiqua','Times New Roman', Times, Georgia, serif" id="bookman"><?php esc_html_e('Bookman *', 'constant-contact-api'); ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'times'); ?> style="font-family: 'Times New Roman', Times, Georgia, serif;" id="times"><?php echo 'Times New Roman'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'georgia'); ?> style="font-family: Georgia, 'Times New Roman', Times, serif;" id="georgia"><?php echo 'Georgia'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'palatino'); ?> style="font-family: 'Palatino Linotype', Palatino, 'Book Antiqua',Garamond, Bookman, 'Times New Roman', Times, Georgia, serif" id="palatino"><?php echo 'Palatino *'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'garamond'); ?> style="font-family: Garamond,'Palatino Linotype', Palatino, Bookman, 'Book Antiqua', 'Times New Roman', Times, Georgia, serif" id="garamond"><?php echo 'Garamond *'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'bookman'); ?> style="font-family: Bookman,'Palatino Linotype', Palatino, Garamond, 'Book Antiqua','Times New Roman', Times, Georgia, serif" id="bookman"><?php echo 'Bookman *'; ?></option>
 							</optgroup>
 							<optgroup label="Sans-Serif">
-								<option <?php ctct_check_select($form,'tfont', 'helvetica',true); ?> style="font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;" id="helvetica"><?php esc_html_e('Helvetica', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'arial'); ?> style="font-family:Arial, Helvetica, sans-serif;" id="arial"><?php esc_html_e('Arial', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'lucidagrande'); ?> style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Verdana, sans-serif;" id="lucida"><?php esc_html_e('Lucida Grande', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'verdana'); ?> style="font-family: Verdana, 'Lucida Grande', Lucida, TrebuchetMS, 'Trebuchet MS', Helvetica, Arial, sans-serif;" id="bookman"><?php esc_html_e('Verdana', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'trebuchet'); ?> style="font-family:'Trebuchet MS', Trebuchet, sans-serif;" id="trebuchet"><?php esc_html_e('Trebuchet MS', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'tahoma'); ?> style="font-family:Tahoma, Verdana, Arial, sans-serif;" id="tahoma"><?php esc_html_e('Tahoma', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'franklin'); ?> style="font-family:'Franklin Gothic Medium','Arial Narrow Bold',Arial,sans-serif;" id="franklin"><?php esc_html_e('Franklin Gothic', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'impact'); ?> style="font-family:Impact, Chicago, 'Arial Black', Arial, sans-serif;" id="impact"><?php esc_html_e('Impact *', 'constant-contact-api'); ?></option>
-							  	<option <?php ctct_check_select($form,'tfont', 'arialblack'); ?> style="font-family:'Arial Black',Impact, Arial, sans-serif;" id="arial-black"><?php esc_html_e('Arial Black', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'gillsans'); ?> style="font-family:'Gill Sans','Gill Sans MT', 'Trebuchet MS', Trebuchet, Verdana, sans-serif;" id="gill"><?php esc_html_e('Gill Sans *', 'constant-contact-api'); ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'helvetica',true); ?> style="font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;" id="helvetica"><?php echo 'Helvetica'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'arial'); ?> style="font-family:Arial, Helvetica, sans-serif;" id="arial"><?php echo 'Arial'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'lucidagrande'); ?> style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Verdana, sans-serif;" id="lucida"><?php echo 'Lucida Grande'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'verdana'); ?> style="font-family: Verdana, 'Lucida Grande', Lucida, TrebuchetMS, 'Trebuchet MS', Helvetica, Arial, sans-serif;" id="bookman"><?php echo 'Verdana'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'trebuchet'); ?> style="font-family:'Trebuchet MS', Trebuchet, sans-serif;" id="trebuchet"><?php echo 'Trebuchet MS'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'tahoma'); ?> style="font-family:Tahoma, Verdana, Arial, sans-serif;" id="tahoma"><?php echo 'Tahoma'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'franklin'); ?> style="font-family:'Franklin Gothic Medium','Arial Narrow Bold',Arial,sans-serif;" id="franklin"><?php echo 'Franklin Gothic'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'impact'); ?> style="font-family:Impact, Chicago, 'Arial Black', Arial, sans-serif;" id="impact"><?php echo 'Impact *'; ?></option>
+							  	<option <?php ctct_check_select($form,'tfont', 'arialblack'); ?> style="font-family:'Arial Black',Impact, Arial, sans-serif;" id="arial-black"><?php echo 'Arial Black'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'gillsans'); ?> style="font-family:'Gill Sans','Gill Sans MT', 'Trebuchet MS', Trebuchet, Verdana, sans-serif;" id="gill"><?php echo 'Gill Sans *'; ?></option>
 							</optgroup>
 							<optgroup label="Mono">
-								<option <?php ctct_check_select($form,'tfont', 'courier'); ?> style="font-family: 'Courier New', Courier, monospace;" id="courier"><?php esc_html_e('Courier New', 'constant-contact-api'); ?></option>
-								<option <?php ctct_check_select($form,'tfont', 'lucidaconsole'); ?> style="font-family: 'Lucida Console', Monaco, monospace;" id="lucida-console"><?php esc_html_e('Lucida Console', 'constant-contact-api'); ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'courier'); ?> style="font-family: 'Courier New', Courier, monospace;" id="courier"><?php echo 'Courier New'; ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'lucidaconsole'); ?> style="font-family: 'Lucida Console', Monaco, monospace;" id="lucida-console"><?php echo 'Lucida Console'; ?></option>
 							</optgroup>
 							<optgroup label="Cursive">
-								<option <?php ctct_check_select($form,'tfont', 'comicsans'); ?> style="font-family:'Comic Sans MS','Comic Sans', Sand, 'Trebuchet MS', Verdana, sans-serif" id="comicsans"><?php esc_html_e('Comic Sans MS', 'constant-contact-api'); ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'comicsans'); ?> style="font-family:'Comic Sans MS','Comic Sans', Sand, 'Trebuchet MS', Verdana, sans-serif" id="comicsans"><?php echo 'Comic Sans MS'; ?></option>
 							</optgroup>
 							<optgroup label="Fantasy">
-								<option <?php ctct_check_select($form,'tfont', 'papyrus'); ?> style="font-family: Papyrus, 'Palatino Linotype', Palatino, Bookman, fantasy" id="papyrus"><?php esc_html_e('Papyrus', 'constant-contact-api'); ?></option>
+								<option <?php ctct_check_select($form,'tfont', 'papyrus'); ?> style="font-family: Papyrus, 'Palatino Linotype', Palatino, Bookman, fantasy" id="papyrus"><?php echo 'Papyrus'; ?></option>
 							</optgroup>
-						</select>
-					<small class="asterix"><?php esc_html_e('<strong>* This font is popular, but not a "web-safe" font.</strong> If not available on an user\'s computer, it will default to a similar font.', 'constant-contact-api'); ?></small>
-					<label for="lusf" class="howto checkbox"><input type="checkbox" name="lusf" id="lusf" rel="lfont" <?php ctct_check_checkbox($form, 'lusf', 'yes', true); ?> /> <span><?php esc_html_e('Use Same Font for Labels', 'constant-contact-api'); ?></span></label>
-				</p>
+					</select>
+
+					<label for="lusf" class="block howto checkbox"><input type="checkbox" name="lusf" class="checkbox" id="lusf" rel="lfont" <?php ctct_check_checkbox($form, 'lusf', 'yes', true); ?> /> <span><?php esc_html_e('Use Same Font for Labels', 'constant-contact-api'); ?></span></label>
+				</div>
 			</fieldset>
 			<fieldset>
 				<legend><?php esc_html_e('Label', 'constant-contact-api'); ?></legend>
 
 				<p class="description"><?php esc_html_e('These settings apply to the label text above the inputs.', 'constant-contact-api'); ?></p>
 				<div id="labelcolorli" class="block">
-					<label for="tcolor" class="howto inline"><span><?php esc_html_e('Label Color:', 'constant-contact-api'); ?></span></label>
+					<label for="tcolor" class="howto block"><span><?php esc_html_e('Label Color:', 'constant-contact-api'); ?></span></label>
 					<div class="input"><input type="hidden" id="lcolor" name="lcolor" class="wpcolor" value="<?php ctct_input_value($form, 'lcolor', '#accbf7'); ?>" /></div>
 				</div>
 
 				<div class="block">
-				<label for="lpad" class="howto block"><span><?php esc_html_e('Label Padding', 'constant-contact-api'); constant_contact_tip(__('One "em" is equal to the height of the current font size.', 'constant-contact-api')); ?></span>
-				<select id="lpad" name="lpad">
-				  <option<?php ctct_check_select($form,'lpad', '0'); ?> value="0"><?php _e('None', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '.25'); ?> value=".25"><?php _e('.2 em', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '.5'); ?> value=".5"><?php _e('.5 em', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '.75', true); ?> value=".75"><?php _e('.75 em', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '1'); ?> value="1"><?php _e('1 em', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '1.25'); ?> value="1.25"><?php _e('1.25 em', 'constant-contact-api'); ?></option>
-				  <option<?php ctct_check_select($form,'lpad', '1.5'); ?> value="1.5"><?php _e('1.5 em', 'constant-contact-api'); ?></option>
-				</select>
-				</label>
+					<label for="lpad" class="howto">
+						<span class="block"><?php esc_html_e('Label Padding', 'constant-contact-api'); constant_contact_tip(__('One "em" is equal to the height of the current font size.', 'constant-contact-api')); ?></span>
+						<div class="block">
+						<select id="lpad" name="lpad">
+							<option<?php ctct_check_select($form,'lpad', '0'); ?> value="0"><?php esc_html_e('None', 'constant-contact-api'); ?></option>
+							<option<?php ctct_check_select($form,'lpad', '.25'); ?> value=".25"><?php echo '.2 em'; ?></option>
+							<option<?php ctct_check_select($form,'lpad', '.5'); ?> value=".5"><?php echo '.5 em'; ?></option>
+							<option<?php ctct_check_select($form,'lpad', '.75', true); ?> value=".75"><?php echo '.75 em'; ?></option>
+							<option<?php ctct_check_select($form,'lpad', '1'); ?> value="1"><?php echo '1 em'; ?></option>
+							<option<?php ctct_check_select($form,'lpad', '1.25'); ?> value="1.25"><?php echo '1.25 em'; ?></option>
+							<option<?php ctct_check_select($form,'lpad', '1.5'); ?> value="1.5"><?php echo '1.5 em'; ?></option>
+						</select>
+						</div>
+					</label>
 				</div>
 
 				<div id="lfontli">
@@ -552,27 +501,16 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 
 				<label for="lsize" class="howto block"><span><?php esc_html_e('Label Font Size', 'constant-contact-api'); ?></span></label>
 				<select id="lsize" class="nomargin" name="lsize">
-					  <option<?php ctct_check_select($form,'lsize', '7'); ?> value="7"><?php esc_html_e('7 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '8'); ?> value="8"><?php esc_html_e('8 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '9'); ?> value="9"><?php esc_html_e('9 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '10'); ?> value="10"><?php esc_html_e('10 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '11'); ?> value="11"><?php esc_html_e('11 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '12',true); ?> value="12"><?php esc_html_e('12 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '13'); ?> value="13"><?php esc_html_e('13 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '14'); ?> value="14"><?php esc_html_e('14 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '15'); ?> value="15"><?php esc_html_e('15 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '16'); ?> value="16"><?php esc_html_e('16 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '17'); ?> value="17"><?php _e('17 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '18'); ?> value="18"><?php _e('18 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '19'); ?> value="19"><?php _e('19 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '20'); ?> value="20"><?php _e('20 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '22'); ?> value="22"><?php _e('22 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '24'); ?> value="24"><?php _e('24 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '28'); ?> value="28"><?php _e('28 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '32'); ?> value="32"><?php _e('32 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '36'); ?> value="36"><?php _e('36 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '40'); ?> value="40"><?php _e('40 px', 'constant-contact-api'); ?></option>
-					  <option<?php ctct_check_select($form,'lsize', '48'); ?> value="48"><?php _e('48 px', 'constant-contact-api'); ?></option>
+				<?php
+
+					$i = 7;
+					while( $i < 50 ) {
+						?>
+						<option<?php ctct_check_select($form,'lsize', $i ); ?> value="<?php echo $i; ?>"><?php printf( '%d px', $i ); ?></option>
+						<?php
+						$i++;
+					}
+				?>
 				</select>
 		</fieldset>
 <?php

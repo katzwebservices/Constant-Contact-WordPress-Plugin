@@ -70,6 +70,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Refactored `form-designer-functions.php` as `CTCT_Form_Designer_Helper` class
 = 3.1 = 
 * Rewrote form designer
 * Rewrote form output
