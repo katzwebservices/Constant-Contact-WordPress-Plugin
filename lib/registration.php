@@ -119,10 +119,19 @@ class CTCT_Registration {
 				$title = false;
 				break;
 			default:
+
 				$title = empty($title) ? '' : '<label>'.$title.'</label>';
+
 				$include = CTCT_Settings::get('registration_checkbox_lists');
+
 				$checked = isset($_POST['lists']) ? $_POST['lists'] : (CTCT_Settings::get('default_opt_in') ? true : false);
-				$reg .= KWSContactList::outputHTML( $include, array('type' => $this->method, 'checked' => $checked ));
+
+				$reg .= KWSContactList::outputHTML( $include, array(
+					'type' => $this->method,
+					'checked' => $checked,
+					'blank' => CTCT_Settings::get('default_select_option_text')
+				));
+
 			break;
 		}
 

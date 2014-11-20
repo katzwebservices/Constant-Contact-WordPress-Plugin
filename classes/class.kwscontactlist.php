@@ -136,6 +136,7 @@ class KWSContactList extends ContactList {
 			'include' => array(),
 			'showhidden' => true,
 			'class' => '',
+			'blank' => '',
 		));
 
 		extract($settings);
@@ -193,10 +194,17 @@ class KWSContactList extends ContactList {
 				if($type === 'select' || $type === 'multiselect') {
 					$multiple = ' multiple="multiple"';
 				}
+
 				$before = '<select name="%%name_attr%%"'.$multiple.' class="select2 ctct-lists">';
 					$before_item = '<option value="%%id%%">';
 					$after_item = '</option>';
 				$after = '</select>';
+
+				// Allow passing a blank item title
+				if( !empty( $blank ) ) {
+					$before .= '<option value="">'.esc_html( $blank ).'</option>';
+				}
+
 				break;
 			case 'checkbox':
 			case 'checkboxes':
@@ -221,16 +229,18 @@ class KWSContactList extends ContactList {
 
 			$item_content = (!empty($format) || is_null($format)) ? $format : $item->name;
 
-			$item_output = $before_item.$item_content.$after_item."\n";
-			$item_output = str_replace('%%name_attr%%', $name_attr, $item_output);
-			$item_output = str_replace('%%id_attr%%', $id_attr, $item_output);
-			$item_output = str_replace('%%id%%', sanitize_title( $item->get('id') ), $item_output);
-			$item_output = str_replace('%%name%%',	$item->get('name', false), $item_output);
-			$item_output = str_replace('%%status%%', $item->get('status', false), $item_output);
-			$item_output = str_replace('%%contact_count%%', $item->get('contact_count', true), $item_output);
+			$tmp_output  = $before_item.$item_content.$after_item."\n";
 
-			$item_output = str_replace('%%checked%%', checked((in_array($item->get('id'), (array)$checked) || (is_null($checked) && $item->get('status') === 'ACTIVE')), true, false), $item_output);
-			$items_output .= $item_output;
+			$tmp_output = str_replace('%%name_attr%%', $name_attr, $tmp_output);
+			$tmp_output = str_replace('%%id_attr%%', $id_attr, $tmp_output);
+			$tmp_output = str_replace('%%id%%', sanitize_title( $item->get('id') ), $tmp_output);
+			$tmp_output = str_replace('%%name%%',	$item->get('name', false), $tmp_output);
+			$tmp_output = str_replace('%%status%%', $item->get('status', false), $tmp_output);
+			$tmp_output = str_replace('%%contact_count%%', $item->get('contact_count', true), $tmp_output);
+
+			$tmp_output = str_replace('%%checked%%', checked((in_array($item->get('id'), (array)$checked) || (is_null($checked) && $item->get('status') === 'ACTIVE')), true, false), $tmp_output);
+
+			$items_output .= $tmp_output;
 		}
 
 		$output .= $items_output;
