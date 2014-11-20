@@ -31,7 +31,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * @return string "Events"
 	 */
 	protected function getNavTitle() {
-		return __('Events', 'constant-contact-api');
+		return __('Events', 'ctct');
 	}
 
 	function add() {}
@@ -101,9 +101,9 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 				$events = ${$_GET['status']};
 			}
 
-			$this->make_table($events, __('Events','constant-contact-api'));
+			$this->make_table($events, __('Events', 'ctct'));
 			?>
-			<p class="submit"><a href="<?php echo add_query_arg('refresh', 'events'); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'constant-contact-api'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'constant-contact-api'); ?></a></p>
+			<p class="submit"><a href="<?php echo add_query_arg('refresh', 'events'); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
 			<?php
 		}
 
@@ -211,7 +211,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			'sidebar' => false,
 			'mobile' => true,
 			'class' => 'cc_event',
-			'no_events_text' => __('There are no active events.','constant-contact-api'),
+			'no_events_text' => __('There are no active events.', 'ctct'),
 		), $args);
 
 		foreach($settings as $key => $arg) {
@@ -260,7 +260,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			}
 		}
 		if(empty($timestamp)) {
-			return __('N/A','constant-contact-api');
+			return __('N/A', 'ctct');
 		} else {
 			return apply_filters('cc_event_registrationdate', $timestamp);
 		}
@@ -270,7 +270,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * Add the WP Admin dashboard widget with upcoming events details
 	 */
 	function dashboard_setup() {
-		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot','constant-contact-api'), array(&$this, 'events_dashboard') );
+		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot', 'ctct'), array(&$this, 'events_dashboard') );
 	}
 
 	/**
@@ -298,11 +298,11 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 					$draft[$v->id] = $v;
 				}
 			}
-			if(!empty($active)) { $this->dashboard_make_table(__('Active Events','constant-contact-api'), $active); }
-			if(!empty($draft)) { $this->dashboard_make_table(__('Draft Events','constant-contact-api'), $draft); }
+			if(!empty($active)) { $this->dashboard_make_table(__('Active Events', 'ctct'), $active); }
+			if(!empty($draft)) { $this->dashboard_make_table(__('Draft Events', 'ctct'), $draft); }
 		?>
 			<p class="textright">
-				<a class="button" href="<?php echo admin_url('admin.php?page=constant-contact-events'); ?>"><?php _e('View All Events', 'constant-contact-api'); ?></a>
+				<a class="button" href="<?php echo admin_url('admin.php?page=constant-contact-events'); ?>"><?php _e('View All Events', 'ctct'); ?></a>
 			</p>
 	<?php
 		} else {

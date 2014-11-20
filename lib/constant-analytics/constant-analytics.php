@@ -642,8 +642,8 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 
 	function admin_menu() {
 		add_dashboard_page(
-			__('Dashboard', 'constant-contact-api'),
-			__('Constant Analytics', 'constant-contact-api'),
+			__('Dashboard', 'ctct'),
+			__('Constant Analytics', 'ctct'),
 			'manage_options',
 			basename(__FILE__),
 			array(&$this, 'dashboard')
@@ -653,7 +653,7 @@ class CTCT_Constant_Analytics extends CTCT_Admin_Page {
 	function plugin_action_links($links, $file) {
 		$plugin_file = basename(__FILE__);
 		if (basename($file) == $plugin_file) {
-			$settings_link = '<a href="admin.php?page=constant-analytics">'.__('Settings', 'constant-contact-api').'</a>';
+			$settings_link = '<a href="admin.php?page=constant-analytics">'.__('Settings', 'ctct').'</a>';
 			array_unshift($links, $settings_link);
 		}
 		return $links;

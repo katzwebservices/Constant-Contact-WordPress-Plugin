@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Constant Contact Plugin for WordPress\n"
-"POT-Creation-Date: 2014-11-18 16:58-0700\n"
-"PO-Revision-Date: 2014-11-18 16:58-0700\n"
+"POT-Creation-Date: 2014-11-20 16:38-0700\n"
+"PO-Revision-Date: 2014-11-20 16:38-0700\n"
 "Last-Translator: Katz Web Services, Inc. <support@katz.co>\n"
 "Language-Team: Katz Web Services, Inc. <support@katz.co>\n"
 "Language: en_US\n"
@@ -19,134 +19,160 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/analytics-dashboard.php:10
-#, php-format
-msgid ""
-"<div id=\"message\" class=\"error\"><p>Google Analytics integration is not "
-"configured. <a href=\"%s\">Configure your Analytics settings</a>.</p></div></"
-"div>"
+msgid "Google Analytics integration is not configured."
 msgstr ""
 
-#: admin/analytics-dashboard.php:24
+#: admin/analytics-dashboard.php:11
+msgid "Configure your Analytics settings."
+msgstr ""
+
+#: admin/analytics-dashboard.php:17
+#, php-format
+msgid "Analytics for %s"
+msgstr ""
+
+#: admin/analytics-dashboard.php:18
+msgid "Switch Analytics profile &rarr;"
+msgstr ""
+
+#: admin/analytics-dashboard.php:26
 msgid "Apply"
 msgstr ""
 
-#: admin/analytics-dashboard.php:29
+#: admin/analytics-dashboard.php:31
 msgid "Loading"
 msgstr ""
 
-#: admin/analytics-dashboard.php:39
+#: admin/analytics-dashboard.php:41
 msgid "blog post"
 msgstr ""
 
-#: admin/analytics-dashboard.php:40
+#: admin/analytics-dashboard.php:42
 msgid "email campaign"
 msgstr ""
 
-#: admin/analytics-dashboard.php:54
+#: admin/analytics-dashboard.php:56
 msgid "Visits"
 msgstr ""
 
-#: admin/analytics-dashboard.php:59
+#: admin/analytics-dashboard.php:61
 msgid "Pageviews"
 msgstr ""
 
-#: admin/analytics-dashboard.php:64
+#: admin/analytics-dashboard.php:66
 msgid "Pages/Visit"
 msgstr ""
 
-#: admin/analytics-dashboard.php:73
+#: admin/analytics-dashboard.php:75
 msgid "Bounce Rate"
 msgstr ""
 
-#: admin/analytics-dashboard.php:78
+#: admin/analytics-dashboard.php:80
 msgid "Avg. Time on Site"
 msgstr ""
 
-#: admin/analytics-dashboard.php:83
+#: admin/analytics-dashboard.php:85
 msgid "% New Visits"
 msgstr ""
 
-#: admin/analytics-dashboard.php:94
+#: admin/analytics-dashboard.php:96
 msgid "Traffic By Region"
 msgstr ""
 
-#: admin/analytics-dashboard.php:100
+#: admin/analytics-dashboard.php:102
 msgid "Referring Traffic Overview"
 msgstr ""
 
-#: admin/analytics-dashboard.php:107
+#: admin/analytics-dashboard.php:109
 msgid "Top Referrers"
 msgstr ""
 
-#: admin/analytics-dashboard.php:113
+#: admin/analytics-dashboard.php:115
 msgid "Top Content"
 msgstr ""
 
-#: admin/analytics-settings.php:24
+#: admin/analytics-settings.php:22
 msgid "Connect to Google Analytics"
 msgstr ""
 
-#: admin/analytics-settings.php:31
+#: admin/analytics-settings.php:29
 msgid "Authenticate this site with Google."
 msgstr ""
 
-#: admin/analytics-settings.php:32
+#: admin/analytics-settings.php:30
 msgid ""
 "Click the button below to be taken to Google&rsquo;s authentication page. "
-"<strong>After logging in to Google, choose \"Grant Access\"</strong>, you "
-"will be returned to Constant Analytics."
+"After logging in to Google, choose \"Grant Access\", you will be returned to "
+"Constant Analytics."
 msgstr ""
 
-#: admin/analytics-settings.php:33
+#: admin/analytics-settings.php:31
 msgid "Begin Authentication"
 msgstr ""
 
-#: admin/analytics-settings.php:49
+#: admin/analytics-settings.php:37
+msgid "You must have a valid token to revoke a token!"
+msgstr ""
+
+#: admin/analytics-settings.php:39
+msgctxt "Failed authenticating with Google"
+msgid ""
+"Bit of a chicken-and-egg problem, we know. Click the link below to forget "
+"this token and start over, if necessary."
+msgstr ""
+
+#: admin/analytics-settings.php:47
 msgid "Need to forget your Google Analytics authorization token?"
 msgstr ""
 
-#: admin/analytics-settings.php:51
+#: admin/analytics-settings.php:49
 msgid ""
 "You may need to do this if access to this account has been revoked outside "
 "of Constant Analytics."
 msgstr ""
 
-#: admin/analytics-settings.php:52
+#: admin/analytics-settings.php:50
 msgid "Forget My Token"
 msgstr ""
 
-#: admin/analytics-settings.php:66
+#: admin/analytics-settings.php:59
+msgid ""
+"Darn! You should have access to an account, but we couldn't connect to "
+"Google!"
+msgstr ""
+
+#: admin/analytics-settings.php:64
 msgid "Your Google account has been successfully connected."
 msgstr ""
 
-#: admin/analytics-settings.php:73
+#: admin/analytics-settings.php:71
 msgid "Want to revoke access to this analytics account?"
 msgstr ""
 
-#: admin/analytics-settings.php:73
+#: admin/analytics-settings.php:71
 msgid "(or switch Google Accounts)"
 msgstr ""
 
-#: admin/analytics-settings.php:75
+#: admin/analytics-settings.php:73
 msgid ""
 "Press the button below to revoke Constant Contact plugin access to your "
 "Google Analytics account: <span class=\"howto\"><strong>You will be able</"
 "strong> to re-connect to this account if you want to.</span>"
 msgstr ""
 
-#: admin/analytics-settings.php:76
+#: admin/analytics-settings.php:74
 msgid "Revoke Access"
 msgstr ""
 
-#: admin/analytics-settings.php:81
+#: admin/analytics-settings.php:79
 msgid "Choose a Profile to Track"
 msgstr ""
 
-#: admin/analytics-settings.php:99
+#: admin/analytics-settings.php:97
 msgid "Track This Site"
 msgstr ""
 
-#: admin/analytics-settings.php:108
+#: admin/analytics-settings.php:106
 msgid ""
 "You do not have any profiles associated with your Google Analytics account. "
 "Probably better <a href=\"https://www.google.com/analytics\">head over "
@@ -191,8 +217,8 @@ msgstr ""
 
 #: admin/lists.php:25 admin/lists.php:31
 #: lib/form-designer/form-designer-meta-boxes.php:45
-#: lib/form-designer/form-designer-meta-boxes.php:92
-#: lib/form-designer/form-designer-meta-boxes.php:194
+#: lib/form-designer/form-designer-meta-boxes.php:91
+#: lib/form-designer/form-designer-meta-boxes.php:193
 msgid "Lists"
 msgstr ""
 
@@ -222,35 +248,35 @@ msgstr ""
 msgid "Users will not see this link or the Constant Contact logo."
 msgstr ""
 
-#: classes/class.ctct_admin.php:37
+#: classes/class.ctct_admin.php:36
 msgid "Constant Contact API"
 msgstr ""
 
-#: classes/class.ctct_admin.php:37 classes/class.ctct_admin_page.php:188
+#: classes/class.ctct_admin.php:36 classes/class.ctct_admin_page.php:205
 #: views/admin/view.php-compatibility-notice.php:2
 msgid "Constant Contact"
 msgstr ""
 
-#: classes/class.ctct_admin.php:72
+#: classes/class.ctct_admin.php:71
 #, php-format
 msgid "Error: %s"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:78
+#: classes/class.ctct_admin_page.php:79
 msgid "Click to Edit"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:171
+#: classes/class.ctct_admin_page.php:188
 msgid "An error"
 msgid_plural "Errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: classes/class.ctct_admin_page.php:203
+#: classes/class.ctct_admin_page.php:220
 msgid "Edit"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:206
+#: classes/class.ctct_admin_page.php:223
 #, php-format
 msgctxt "General button text for adding a new Contact or List, for example."
 msgid "Add %s"
@@ -258,6 +284,7 @@ msgstr ""
 
 #: classes/class.ctct_process_form.php:102
 #, php-format
+msgctxt "Failed user form submission error"
 msgid "The %s field is required."
 msgstr ""
 
@@ -273,294 +300,320 @@ msgstr ""
 msgid "Invalid email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:316
+#: classes/class.ctct_process_form.php:304
+#: classes/class.ctct_process_form.php:349
+msgid "Email validation failed."
+msgstr ""
+
+#: classes/class.ctct_process_form.php:321
 msgid "Not a valid email."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:391
+#: classes/class.ctct_process_form.php:396
 msgid "Akismet caught this entry as spam"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:392
+#: classes/class.ctct_process_form.php:397
 msgid "Your entry was flagged as spam."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:395
+#: classes/class.ctct_process_form.php:400
 msgid "Akismet cleared this comment"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:398
+#: classes/class.ctct_process_form.php:403
 #, php-format
 msgid ""
 "Akismet was unable to check this entry (response: %s), will automatically "
 "retry again later."
 msgstr ""
 
-#: classes/class.ctct_settings.php:147
-msgid "Setup"
+#: classes/class.ctct_settings.php:145
+msgid "(Installed and active)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:152
-msgid "Sign-Up Methods"
+#: classes/class.ctct_settings.php:149
+#, php-format
+msgid "Install %s"
 msgstr ""
 
 #: classes/class.ctct_settings.php:153
+#, php-format
+msgid "Activate %s"
+msgstr ""
+
+#: classes/class.ctct_settings.php:155
+#, php-format
+msgid "(%s - Installed, but inactive)"
+msgstr ""
+
+#: classes/class.ctct_settings.php:231
+msgid "Setup"
+msgstr ""
+
+#: classes/class.ctct_settings.php:236
+msgid "Registration Form"
+msgstr ""
+
+#: classes/class.ctct_settings.php:236 classes/class.ctct_settings.php:238
+msgid "Configure how users sign up."
+msgstr ""
+
+#: classes/class.ctct_settings.php:238 classes/class.ctct_settings.php:346
+msgid "Comment Form"
+msgstr ""
+
+#: classes/class.ctct_settings.php:239
 msgid "Spam Prevention"
 msgstr ""
 
-#: classes/class.ctct_settings.php:165
+#: classes/class.ctct_settings.php:239
+msgid "How do you want to prevent spam?"
+msgstr ""
+
+#: classes/class.ctct_settings.php:251
 msgid "Log Constant Contact Activity"
 msgstr ""
 
-#: classes/class.ctct_settings.php:166
+#: classes/class.ctct_settings.php:252
 msgid "Log Errors & Exceptions"
 msgstr ""
 
-#: classes/class.ctct_settings.php:167
+#: classes/class.ctct_settings.php:253
 msgid "Detailed Debugging Logs (Do not leave enabled! Server-intensive.)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:169
+#: classes/class.ctct_settings.php:255
 msgid "Activity Logs"
 msgstr ""
 
-#: classes/class.ctct_settings.php:170
+#: classes/class.ctct_settings.php:256
 msgid ""
 "Log different activity from the plugin, including form submissions and the "
 "results (\"Constant Contact Activity\")."
 msgstr ""
 
-#: classes/class.ctct_settings.php:176
+#: classes/class.ctct_settings.php:262
 msgid "WordPress Registration Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:177
+#: classes/class.ctct_settings.php:263
 #, php-format
 msgid ""
 "Add signup options to WordPress' <a href=\"%s\" rel=\"external"
 "\">registration form.</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:183
+#: classes/class.ctct_settings.php:269
 msgid "Disabled"
 msgstr ""
 
-#: classes/class.ctct_settings.php:184
-msgid "Single Checkbox"
+#: classes/class.ctct_settings.php:270
+msgid ""
+"Single Checkbox - show users a checkbox which, if ticked, will automatically "
+"subscribe them to the lists you select below in the \"Active Contact Lists\" "
+"section."
 msgstr ""
 
-#: classes/class.ctct_settings.php:185
-msgid "List of Checkboxes"
+#: classes/class.ctct_settings.php:271
+msgid ""
+"List of Checkboxes - show a bullet list with the name of the list and a "
+"checkbox option for them to sign up"
 msgstr ""
 
-#: classes/class.ctct_settings.php:186
-#: lib/form-designer/form-designer-meta-boxes.php:57
+#: classes/class.ctct_settings.php:272
 msgid "Dropdown List"
 msgstr ""
 
-#: classes/class.ctct_settings.php:189
+#: classes/class.ctct_settings.php:275
 msgid "User Subscription Method"
 msgstr ""
 
-#: classes/class.ctct_settings.php:190
-msgid ""
-"\n"
-"\t\t\t\t<strong>Single Checkbox</strong>: Shows users a checkbox which, if "
-"ticked, will automatically subscribe them to the lists you select below in "
-"the <strong>Active Contact Lists</strong> section.<br />\n"
-"\t\t\t\t<strong>List of Checkboxes</strong> shows a bullet list with the "
-"name of the list and a checkbox option for them to sign up"
-msgstr ""
-
-#: classes/class.ctct_settings.php:198
+#: classes/class.ctct_settings.php:281
 msgid "Opt-in users by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:199
+#: classes/class.ctct_settings.php:282
 msgid ""
 "Should the opt-in checkbox(es) be checked by default? If using the \"List "
 "Selection\" method, should lists be pre-selected by default."
 msgstr ""
 
-#: classes/class.ctct_settings.php:205
+#: classes/class.ctct_settings.php:288
 msgid "Lists for Registration"
 msgstr ""
 
-#: classes/class.ctct_settings.php:206
+#: classes/class.ctct_settings.php:289
 msgid ""
 "<strong>Checkbox:</strong> What lists will users be added to when checking "
 "the opt-in box?<br />Others: What lists will users be presented with?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:215
+#: classes/class.ctct_settings.php:298
 msgid ""
 "When users sign up for your newsletter while registering for a WordPress "
 "account, they will be added to the following lists."
 msgstr ""
 
-#: classes/class.ctct_settings.php:221
-msgid "Signup Title"
-msgstr ""
-
-#: classes/class.ctct_settings.php:222
-msgid ""
-"Title for the signup form displayed on the registration screen and user "
-"profile settings if enabled."
-msgstr ""
-
-#: classes/class.ctct_settings.php:228
+#: classes/class.ctct_settings.php:304
 msgid "Signup Description"
 msgstr ""
 
-#: classes/class.ctct_settings.php:229
+#: classes/class.ctct_settings.php:305
 msgid ""
 "Signup form description text displayed on the registration screen and user "
 "profile setting, if enabled. HTML is allowed. Paragraphs will be added "
 "automatically like in posts."
 msgstr ""
 
-#: classes/class.ctct_settings.php:235
+#: classes/class.ctct_settings.php:312
+msgid "Before the Opt-in"
+msgstr ""
+
+#: classes/class.ctct_settings.php:313 classes/class.ctct_settings.php:436
+msgid "After the Opt-in"
+msgstr ""
+
+#: classes/class.ctct_settings.php:315
+msgid "Signup Description Position"
+msgstr ""
+
+#: classes/class.ctct_settings.php:321
+msgid "Signup Title"
+msgstr ""
+
+#: classes/class.ctct_settings.php:322
+msgid ""
+"Title for the signup form displayed on the registration screen and user "
+"profile settings if enabled."
+msgstr ""
+
+#: classes/class.ctct_settings.php:328
 msgid "Default Option Text"
 msgstr ""
 
-#: classes/class.ctct_settings.php:236
+#: classes/class.ctct_settings.php:329
 msgid ""
 "If \"Opt-in users by default\" (below) is not checked, this will be the "
 "default option in the dropdown menu. Leave blank to not show this option."
 msgstr ""
 
-#: classes/class.ctct_settings.php:243
-msgid "Before the Opt-in"
-msgstr ""
-
-#: classes/class.ctct_settings.php:244 classes/class.ctct_settings.php:351
-msgid "After the Opt-in"
-msgstr ""
-
-#: classes/class.ctct_settings.php:246
-msgid "Signup Description Position"
-msgstr ""
-
-#: classes/class.ctct_settings.php:250
+#: classes/class.ctct_settings.php:333
 msgid "Profile Page"
 msgstr ""
 
-#: classes/class.ctct_settings.php:255
+#: classes/class.ctct_settings.php:338
 msgid ""
 "Allow users to modify their subscription on their WordPress profile page"
 msgstr ""
 
-#: classes/class.ctct_settings.php:256
+#: classes/class.ctct_settings.php:339
 msgid "Show Form on Profile Page?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:257
+#: classes/class.ctct_settings.php:340
 msgid ""
 "Do you want users to be able to update their subscriptions inside WordPress?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:261
-msgid "Comment Form"
-msgstr ""
-
-#: classes/class.ctct_settings.php:266
+#: classes/class.ctct_settings.php:351
 msgid "Add a checkbox for subscribing to a newsletter below a comment form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:268
+#: classes/class.ctct_settings.php:353
 msgid "Comment Form Signup"
 msgstr ""
 
-#: classes/class.ctct_settings.php:274
-#: lib/form-designer/form-designer-meta-boxes.php:61
+#: classes/class.ctct_settings.php:359
+#: lib/form-designer/form-designer-meta-boxes.php:60
 msgid "Checked by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:275
+#: classes/class.ctct_settings.php:360
 msgid "Should the checkbox be checked by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:281
+#: classes/class.ctct_settings.php:366
 msgid "Lists for Comment Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:282
+#: classes/class.ctct_settings.php:367
 msgid ""
 "What lists will users be added to when signing up with the Comment Form?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:296
+#: classes/class.ctct_settings.php:381
 #: lib/form-designer/form-designer-functions.php:299
 msgid "Subscribe Message"
 msgstr ""
 
-#: classes/class.ctct_settings.php:302
+#: classes/class.ctct_settings.php:387
 msgid "Already Subscribed Message"
 msgstr ""
 
-#: classes/class.ctct_settings.php:308
+#: classes/class.ctct_settings.php:393
 msgid "Uncheck if this causes layout issues"
 msgstr ""
 
-#: classes/class.ctct_settings.php:309
+#: classes/class.ctct_settings.php:394
 msgid "Add a CSS 'clear' to the checkbox?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:318
+#: classes/class.ctct_settings.php:403
 msgid ""
 "Verify Email Addresses with <a href=\"http://katz.si/datavalidation\" rel="
 "\"external\">DataValidation.com</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:318
+#: classes/class.ctct_settings.php:403
 msgid ""
-"<h6>About DataValidation.com</h6>DataValidation.com is <strong>the best way</"
-"strong> to verify that when users submit a form, the submitted email address "
-"is valid."
+"DataValidation.com is the best way to verify that when users submit a form, "
+"the submitted email address is valid."
 msgstr ""
 
-#: classes/class.ctct_settings.php:319
+#: classes/class.ctct_settings.php:404
 msgid "Akismet"
 msgstr ""
 
-#: classes/class.ctct_settings.php:320
+#: classes/class.ctct_settings.php:405
 msgid "WangGuard WordPress Plugin"
 msgstr ""
 
-#: classes/class.ctct_settings.php:321
+#: classes/class.ctct_settings.php:406
 msgid ""
 "Validate Email Addresses Via SMTP (<a href=\"http://katz.si/smtpvalidation\" "
 "rel=\"external\">See the project</a>)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:321
+#: classes/class.ctct_settings.php:406
 msgid ""
 "Uses server methods to verify emails: checks for a valid domain, then sends "
 "a request for a read receipt."
 msgstr ""
 
-#: classes/class.ctct_settings.php:323
+#: classes/class.ctct_settings.php:408
 msgid ""
 "What services do you want to use to prevent spam submissions of your forms?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:328
+#: classes/class.ctct_settings.php:413
 msgid "DataValidation.com Settings"
 msgstr ""
 
-#: classes/class.ctct_settings.php:334
+#: classes/class.ctct_settings.php:419
 msgid "DataValidation.com: API Key"
 msgstr ""
 
-#: classes/class.ctct_settings.php:335
-msgid "Enter your DataValidation.com API key here."
+#: classes/class.ctct_settings.php:420
+#, php-format
+msgid "Enter your DataValidation.com API key. %sSign up for a key here%s."
 msgstr ""
 
-#: classes/class.ctct_settings.php:341
+#: classes/class.ctct_settings.php:426
 msgid "DataValidation.com: Should \"ambiguous\" responses be blocked?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:342
+#: classes/class.ctct_settings.php:427
 msgid ""
 "Ambiguous Responses basically mean that the email looks good, it has valid "
 "DNS, it has a valid MX record, it even has an email server, but for a myriad "
@@ -568,40 +621,40 @@ msgid ""
 "refused, could be the server is down, etc."
 msgstr ""
 
-#: classes/class.ctct_settings.php:350
+#: classes/class.ctct_settings.php:435
 msgid "<a href=\"http://www.formstack.com/r/31575458\">Formstack</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:353
+#: classes/class.ctct_settings.php:438
 msgid "Forms"
 msgstr ""
 
-#: classes/class.ctct_settings.php:397 lib/simple-widget.php:95
-msgid "Newsletter"
+#: classes/class.ctct_settings.php:482
+msgid "Receive our Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:398
+#: classes/class.ctct_settings.php:483
 msgid "Subscribe to the Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:399
+#: classes/class.ctct_settings.php:484
 msgid "Select a List&hellip;"
 msgstr ""
 
-#: classes/class.ctct_settings.php:402
+#: classes/class.ctct_settings.php:487
 msgid "Subscribe me to your mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:403
+#: classes/class.ctct_settings.php:488
 msgid "You are currently subscribed to our mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:404
+#: classes/class.ctct_settings.php:489
 msgid ""
 "You are the administrator - no need to subscribe you to the mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:647
+#: classes/class.ctct_settings.php:732
 msgid "Save Settings"
 msgstr ""
 
@@ -648,55 +701,69 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: inc/help.php:17
-msgid "Constant Contact: Add a Form to Post or Page"
+#: classes/class.oauth-migration.php:47
+msgid "The Constant Contact plugin isn't active yet."
+msgstr ""
+
+#: classes/class.oauth-migration.php:48
+msgid ""
+"Please log in to Constant Contact using the button below and your site will "
+"be connected."
+msgstr ""
+
+#: classes/class.oauth-migration.php:49
+msgid "Authorize the Plugin on ConstantContact.com"
 msgstr ""
 
 #: inc/help.php:22
-msgid "Constant Contact: Add an Event"
+msgid "Constant Contact: Add a Form to Post or Page"
 msgstr ""
 
 #: inc/help.php:27
+msgid "Constant Contact: Add an Event"
+msgstr ""
+
+#: inc/help.php:32
 msgid "Constant Contact: Settings > Spam Prevention"
 msgstr ""
 
-#: lib/class.datavalidation.php:113
+#: lib/class.datavalidation.php:107
 msgid "Invalid email address"
 msgstr ""
 
-#: lib/class.datavalidation.php:114
+#: lib/class.datavalidation.php:108
 msgid "Invalid email address host name"
 msgstr ""
 
-#: lib/class.datavalidation.php:115
+#: lib/class.datavalidation.php:109
 msgid "Invalid email server for this domain"
 msgstr ""
 
-#: lib/class.datavalidation.php:116
+#: lib/class.datavalidation.php:110
 msgid "Invalid email address local part"
 msgstr ""
 
-#: lib/class.datavalidation.php:117
+#: lib/class.datavalidation.php:111
 msgid "Email address length exceeded"
 msgstr ""
 
-#: lib/class.datavalidation.php:118
+#: lib/class.datavalidation.php:112
 msgid "Email address not found"
 msgstr ""
 
-#: lib/class.datavalidation.php:119
+#: lib/class.datavalidation.php:113
 msgid "Email address could not be verified"
 msgstr ""
 
-#: lib/class.datavalidation.php:120
+#: lib/class.datavalidation.php:114
 msgid "Email address found"
 msgstr ""
 
-#: lib/class.datavalidation.php:121
+#: lib/class.datavalidation.php:115
 msgid "Domain accepts all recipients &ndash; Accepts All"
 msgstr ""
 
-#: lib/class.datavalidation.php:122
+#: lib/class.datavalidation.php:116
 msgid ""
 "Domain has an email server but there is no connection to it &ndash; Ambiguous"
 msgstr ""
@@ -942,7 +1009,7 @@ msgstr ""
 
 #: lib/eventspot/views/event.php:45 lib/eventspot/views/event.php:46
 #: lib/eventspot/views/events.php:47 lib/eventspot/views/registrants.php:20
-#: lib/form-designer/form-designer-meta-boxes.php:453
+#: lib/form-designer/form-designer-meta-boxes.php:452
 msgid "None"
 msgstr ""
 
@@ -1004,7 +1071,7 @@ msgstr ""
 msgid "See How it Works!"
 msgstr ""
 
-#: lib/eventspot/views/promo.php:47 views/admin/view.setup.php:83
+#: lib/eventspot/views/promo.php:47
 msgid "Start Your Free Trial"
 msgstr ""
 
@@ -1110,8 +1177,8 @@ msgid "Company"
 msgstr ""
 
 #: lib/eventspot/views/registrant.php:58
-#: lib/form-designer/form-designer-meta-boxes.php:103
-#: lib/form-designer/form-designer-meta-boxes.php:197
+#: lib/form-designer/form-designer-meta-boxes.php:102
+#: lib/form-designer/form-designer-meta-boxes.php:196
 msgid "Job Title"
 msgstr ""
 
@@ -1312,571 +1379,569 @@ msgstr ""
 msgid "List Selection Format"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:54
-msgid ""
-"This controls what kind of list is shown. <a href=\"#listTypeInfo\" class="
-"\"moreInfo\">More info</a>"
+#: lib/form-designer/form-designer-meta-boxes.php:55
+msgid "Checkbox List"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:56
-msgid "Opt-in Checkbox"
+msgid "Dropdown Field"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:58
+#: lib/form-designer/form-designer-meta-boxes.php:57
 msgid "Hidden"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:63
+#: lib/form-designer/form-designer-meta-boxes.php:62
 msgid "Should the list checkboxes be checked by default?"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:78
+#: lib/form-designer/form-designer-meta-boxes.php:77
 msgid "Most Used"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:79
+#: lib/form-designer/form-designer-meta-boxes.php:78
 msgid "Other Fields"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:85
-#: lib/form-designer/form-designer-meta-boxes.php:190
+#: lib/form-designer/form-designer-meta-boxes.php:84
+#: lib/form-designer/form-designer-meta-boxes.php:189
 #: views/admin/view.contacts-view.php:4
 msgid "Email Address"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:86
-#: lib/form-designer/form-designer-meta-boxes.php:157
-#: lib/form-designer/form-designer-meta-boxes.php:189
+#: lib/form-designer/form-designer-meta-boxes.php:85
+#: lib/form-designer/form-designer-meta-boxes.php:156
+#: lib/form-designer/form-designer-meta-boxes.php:188
 msgid "Custom Text"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:86
+#: lib/form-designer/form-designer-meta-boxes.php:190
+msgid "First Name"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:87
 #: lib/form-designer/form-designer-meta-boxes.php:191
-msgid "First Name"
+msgid "Last Name"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:88
 #: lib/form-designer/form-designer-meta-boxes.php:192
-msgid "Last Name"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:89
-#: lib/form-designer/form-designer-meta-boxes.php:193
 #: views/admin/view.contact-addedit.php:75
 msgid "Submit"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:90
-#: lib/form-designer/form-designer-meta-boxes.php:198
+#: lib/form-designer/form-designer-meta-boxes.php:89
+#: lib/form-designer/form-designer-meta-boxes.php:197
 msgid "Home Phone"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:91
-#: lib/form-designer/form-designer-meta-boxes.php:199
+#: lib/form-designer/form-designer-meta-boxes.php:90
+#: lib/form-designer/form-designer-meta-boxes.php:198
 msgid "Work Phone"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:100
+#: lib/form-designer/form-designer-meta-boxes.php:194
+msgid "Middle Name"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:101
 #: lib/form-designer/form-designer-meta-boxes.php:195
-msgid "Middle Name"
+msgid "Company Name"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:102
-#: lib/form-designer/form-designer-meta-boxes.php:196
-msgid "Company Name"
+#: lib/form-designer/form-designer-meta-boxes.php:103
+#: lib/form-designer/form-designer-meta-boxes.php:199
+msgid "Address Line 1"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:104
 #: lib/form-designer/form-designer-meta-boxes.php:200
-msgid "Address Line 1"
+msgid "Address Line 2"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:105
 #: lib/form-designer/form-designer-meta-boxes.php:201
-msgid "Address Line 2"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:106
-#: lib/form-designer/form-designer-meta-boxes.php:202
 msgid "Address Line 3"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:107
+#: lib/form-designer/form-designer-meta-boxes.php:106
 msgid "City Name"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:107
+#: lib/form-designer/form-designer-meta-boxes.php:203
+msgid "State Code"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:108
 #: lib/form-designer/form-designer-meta-boxes.php:204
-msgid "State Code"
+msgid "State Name"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:109
 #: lib/form-designer/form-designer-meta-boxes.php:205
-msgid "State Name"
+msgid "Country Code"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:110
 #: lib/form-designer/form-designer-meta-boxes.php:206
-msgid "Country Code"
+msgid "ZIP Code"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:111
 #: lib/form-designer/form-designer-meta-boxes.php:207
-msgid "ZIP Code"
+msgid "Sub ZIP Code"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:112
 #: lib/form-designer/form-designer-meta-boxes.php:208
-msgid "Sub ZIP Code"
+msgid "Custom Field 1"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:113
 #: lib/form-designer/form-designer-meta-boxes.php:209
-msgid "Custom Field 1"
+msgid "Custom Field 2"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:114
 #: lib/form-designer/form-designer-meta-boxes.php:210
-msgid "Custom Field 2"
+msgid "Custom Field 3"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:115
 #: lib/form-designer/form-designer-meta-boxes.php:211
-msgid "Custom Field 3"
+msgid "Custom Field 4"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:116
 #: lib/form-designer/form-designer-meta-boxes.php:212
-msgid "Custom Field 4"
+msgid "Custom Field 5"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:117
 #: lib/form-designer/form-designer-meta-boxes.php:213
-msgid "Custom Field 5"
+msgid "Custom Field 6"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:118
 #: lib/form-designer/form-designer-meta-boxes.php:214
-msgid "Custom Field 6"
+msgid "Custom Field 7"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:119
 #: lib/form-designer/form-designer-meta-boxes.php:215
-msgid "Custom Field 7"
+msgid "Custom Field 8"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:120
 #: lib/form-designer/form-designer-meta-boxes.php:216
-msgid "Custom Field 8"
+msgid "Custom Field 9"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:121
 #: lib/form-designer/form-designer-meta-boxes.php:217
-msgid "Custom Field 9"
+msgid "Custom Field 10"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:122
 #: lib/form-designer/form-designer-meta-boxes.php:218
-msgid "Custom Field 10"
+msgid "Custom Field 11"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:123
 #: lib/form-designer/form-designer-meta-boxes.php:219
-msgid "Custom Field 11"
+msgid "Custom Field 12"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:124
 #: lib/form-designer/form-designer-meta-boxes.php:220
-msgid "Custom Field 12"
+msgid "Custom Field 13"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:125
 #: lib/form-designer/form-designer-meta-boxes.php:221
-msgid "Custom Field 13"
+msgid "Custom Field 14"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:126
 #: lib/form-designer/form-designer-meta-boxes.php:222
-msgid "Custom Field 14"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:127
-#: lib/form-designer/form-designer-meta-boxes.php:223
 msgid "Custom Field 15"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:134
+#: lib/form-designer/form-designer-meta-boxes.php:133
 msgid "Required Fields"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:135
+#: lib/form-designer/form-designer-meta-boxes.php:134
 msgid "Add asterisk if field is required."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:139
+#: lib/form-designer/form-designer-meta-boxes.php:138
 msgid "SafeUnsubscribe"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:141
+#: lib/form-designer/form-designer-meta-boxes.php:140
 msgid "SafeUnsubscribe Gray"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:141
+#: lib/form-designer/form-designer-meta-boxes.php:140
 msgid "Gray"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:142
+#: lib/form-designer/form-designer-meta-boxes.php:141
 msgid "SafeUnsubscribe White"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:142
+#: lib/form-designer/form-designer-meta-boxes.php:141
 msgid "White"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:143
+#: lib/form-designer/form-designer-meta-boxes.php:142
 msgid "SafeUnsubscribe Black"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:143
+#: lib/form-designer/form-designer-meta-boxes.php:142
 msgid "Black"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:144
+#: lib/form-designer/form-designer-meta-boxes.php:143
 msgid "Do Not Display"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:161
+#: lib/form-designer/form-designer-meta-boxes.php:160
 msgid ""
 "The content below be placed where the \"Custom Text Placeholder\" field is. "
 "Edit the Custom Text below. &darr;"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:167
+#: lib/form-designer/form-designer-meta-boxes.php:166
 msgid "Custom Text Placeholder"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:203
+#: lib/form-designer/form-designer-meta-boxes.php:202
 msgid "City"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:238
+#: lib/form-designer/form-designer-meta-boxes.php:237
 msgid "Background Type:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:241
+#: lib/form-designer/form-designer-meta-boxes.php:240
 msgid "Transparent"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:242
+#: lib/form-designer/form-designer-meta-boxes.php:241
 msgid "Gradient"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:243
+#: lib/form-designer/form-designer-meta-boxes.php:242
 msgid "Solid Color"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:244
+#: lib/form-designer/form-designer-meta-boxes.php:243
 msgid "Image Pattern"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:245
+#: lib/form-designer/form-designer-meta-boxes.php:244
 msgid "URL (External Image)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:251
+#: lib/form-designer/form-designer-meta-boxes.php:250
 msgid "Gradient Type:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:254
+#: lib/form-designer/form-designer-meta-boxes.php:253
 msgid "Vertical"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:255
+#: lib/form-designer/form-designer-meta-boxes.php:254
 msgid "Horizontal"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:262
+#: lib/form-designer/form-designer-meta-boxes.php:261
 msgid "Top Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:266
+#: lib/form-designer/form-designer-meta-boxes.php:265
 msgid "Bottom Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:275
+#: lib/form-designer/form-designer-meta-boxes.php:274
 msgid "Background Repeat:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:277
+#: lib/form-designer/form-designer-meta-boxes.php:276
 msgid "Repeat"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:278
+#: lib/form-designer/form-designer-meta-boxes.php:277
 msgid "No Repeat"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:279
+#: lib/form-designer/form-designer-meta-boxes.php:278
 msgid "Repeat-X (Horizontal)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:280
+#: lib/form-designer/form-designer-meta-boxes.php:279
 msgid "Repeat-Y (Vertical)"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:284
+#: lib/form-designer/form-designer-meta-boxes.php:283
 msgid "Background Position:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:286
+#: lib/form-designer/form-designer-meta-boxes.php:285
 msgid "Left/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:287
+#: lib/form-designer/form-designer-meta-boxes.php:286
 msgid "Center/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:288
+#: lib/form-designer/form-designer-meta-boxes.php:287
 msgid "Right/Top"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:289
+#: lib/form-designer/form-designer-meta-boxes.php:288
 msgid "Left/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:290
+#: lib/form-designer/form-designer-meta-boxes.php:289
 msgid "Center/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:291
+#: lib/form-designer/form-designer-meta-boxes.php:290
 msgid "Right/Center"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:292
+#: lib/form-designer/form-designer-meta-boxes.php:291
 msgid "Left/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:293
+#: lib/form-designer/form-designer-meta-boxes.php:292
 msgid "Center/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:294
+#: lib/form-designer/form-designer-meta-boxes.php:293
 msgid "Right/Bottom"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:325
-msgid "Border Width"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:332
+#: lib/form-designer/form-designer-meta-boxes.php:322
 msgid "Border Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:339
+#: lib/form-designer/form-designer-meta-boxes.php:331
+msgid "Border Width"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:338
 msgid "Rounded Corner Radius"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:351
+#: lib/form-designer/form-designer-meta-boxes.php:350
 msgid "Form Padding"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:352
+#: lib/form-designer/form-designer-meta-boxes.php:351
 msgid ""
 "Padding is the space between the outside of the form and the content inside "
 "the form; it's visual insulation."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:358
+#: lib/form-designer/form-designer-meta-boxes.php:357
 msgid "Form Width"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:360
+#: lib/form-designer/form-designer-meta-boxes.php:359
 msgid "percent of container width"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:361
+#: lib/form-designer/form-designer-meta-boxes.php:360
 msgid "pixels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:365
+#: lib/form-designer/form-designer-meta-boxes.php:364
 msgid "Form Content Alignment"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:365
+#: lib/form-designer/form-designer-meta-boxes.php:364
 msgid ""
 "Align the form fields and labels inside the form. <strong>Note:</strong> you "
 "can change the alignment of the Custom Text separately inside the Custom "
 "Text editor."
 msgstr ""
 
+#: lib/form-designer/form-designer-meta-boxes.php:366
+#: lib/form-designer/form-designer-meta-boxes.php:374
+msgid "Left"
+msgstr ""
+
 #: lib/form-designer/form-designer-meta-boxes.php:367
 #: lib/form-designer/form-designer-meta-boxes.php:375
-msgid "Left"
+msgid "Center"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:368
 #: lib/form-designer/form-designer-meta-boxes.php:376
-msgid "Center"
-msgstr ""
-
-#: lib/form-designer/form-designer-meta-boxes.php:369
-#: lib/form-designer/form-designer-meta-boxes.php:377
 msgid "Right"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:373
+#: lib/form-designer/form-designer-meta-boxes.php:372
 msgid "Form Alignment"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:373
+#: lib/form-designer/form-designer-meta-boxes.php:372
 msgid ""
 "Align the form inside your widget or page content. Also called \"floating\" "
 "to the left or right."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:388
+#: lib/form-designer/form-designer-meta-boxes.php:387
 msgid "Text"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:389
+#: lib/form-designer/form-designer-meta-boxes.php:388
 msgid ""
 "These settings are for the Custom Text field. If the checkboxes are checked, "
 "the settings also apply to the input labels."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:391
+#: lib/form-designer/form-designer-meta-boxes.php:390
 msgid "Text Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:396
+#: lib/form-designer/form-designer-meta-boxes.php:395
 msgid "Use Same Color for Labels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:401
+#: lib/form-designer/form-designer-meta-boxes.php:400
 msgid "Font Family"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:401
+#: lib/form-designer/form-designer-meta-boxes.php:400
 msgid ""
 "* next to a font means that the font may not be available on all users' "
 "computers. If not, a similar font will be used."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:404
-#: lib/form-designer/form-designer-meta-boxes.php:468
+#: lib/form-designer/form-designer-meta-boxes.php:403
+#: lib/form-designer/form-designer-meta-boxes.php:467
 msgid "Use Theme Font"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:436
+#: lib/form-designer/form-designer-meta-boxes.php:435
 msgid "Use Same Font for Labels"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:440
+#: lib/form-designer/form-designer-meta-boxes.php:439
 msgid "Label"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:442
+#: lib/form-designer/form-designer-meta-boxes.php:441
 msgid "These settings apply to the label text above the inputs."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:444
+#: lib/form-designer/form-designer-meta-boxes.php:443
 msgid "Label Color:"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:450
+#: lib/form-designer/form-designer-meta-boxes.php:449
 msgid "Label Padding"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:450
+#: lib/form-designer/form-designer-meta-boxes.php:449
 msgid "One \"em\" is equal to the height of the current font size."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:466
+#: lib/form-designer/form-designer-meta-boxes.php:465
 msgid "Label Font"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:470
+#: lib/form-designer/form-designer-meta-boxes.php:469
 msgid "Times New Roman"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:471
+#: lib/form-designer/form-designer-meta-boxes.php:470
 msgid "Georgia"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:472
+#: lib/form-designer/form-designer-meta-boxes.php:471
 msgid "Palatino *"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:473
+#: lib/form-designer/form-designer-meta-boxes.php:472
 msgid "Garamond *"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:474
+#: lib/form-designer/form-designer-meta-boxes.php:473
 msgid "Bookman *"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:477
+#: lib/form-designer/form-designer-meta-boxes.php:476
 msgid "Helvetica"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:478
+#: lib/form-designer/form-designer-meta-boxes.php:477
 msgid "Arial"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:479
+#: lib/form-designer/form-designer-meta-boxes.php:478
 msgid "Lucida Grande"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:480
+#: lib/form-designer/form-designer-meta-boxes.php:479
 msgid "Verdana"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:481
+#: lib/form-designer/form-designer-meta-boxes.php:480
 msgid "Trebuchet MS"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:482
+#: lib/form-designer/form-designer-meta-boxes.php:481
 msgid "Tahoma"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:483
+#: lib/form-designer/form-designer-meta-boxes.php:482
 msgid "Franklin Gothic"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:484
+#: lib/form-designer/form-designer-meta-boxes.php:483
 msgid "Impact *"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:485
+#: lib/form-designer/form-designer-meta-boxes.php:484
 msgid "Arial Black"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:486
+#: lib/form-designer/form-designer-meta-boxes.php:485
 msgid "Gill Sans *"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:489
+#: lib/form-designer/form-designer-meta-boxes.php:488
 msgid "Courier New"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:490
+#: lib/form-designer/form-designer-meta-boxes.php:489
 msgid "Lucida Console"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:493
+#: lib/form-designer/form-designer-meta-boxes.php:492
 msgid "Comic Sans MS"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:496
+#: lib/form-designer/form-designer-meta-boxes.php:495
 msgid "Papyrus"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:499
+#: lib/form-designer/form-designer-meta-boxes.php:498
 msgid ""
 "* This font is popular, but not a \"web-safe\" font. If not available on an "
 "user's computer, it will default to a similar font."
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:502
+#: lib/form-designer/form-designer-meta-boxes.php:501
 msgid "Label Font Size"
 msgstr ""
 
@@ -2174,6 +2239,10 @@ msgstr ""
 msgid "Widget Title:"
 msgstr ""
 
+#: lib/simple-widget.php:95
+msgid "Newsletter"
+msgstr ""
+
 #: lib/simple-widget.php:97
 msgid "Newsletter List:"
 msgstr ""
@@ -2238,6 +2307,51 @@ msgstr ""
 
 #: views/admin/view.campaigns-view.php:25
 msgid "View on ConstantContact.com"
+msgstr ""
+
+#: views/admin/view.connect-account.php:31
+msgid "Already have a Constant Contact account?"
+msgstr ""
+
+#: views/admin/view.connect-account.php:35
+msgid "To start, sign in to Constant Contact."
+msgstr ""
+
+#: views/admin/view.connect-account.php:37
+msgid "Grant Authorization to this plugin"
+msgstr ""
+
+#: views/admin/view.connect-account.php:39
+msgid ""
+"Sign in to the Constant Contact account you would like to use.\n"
+"\n"
+"        Once you sign in, you will be redirected back to this page, and "
+"plugin features will be available."
+msgstr ""
+
+#: views/admin/view.connect-account.php:46
+msgid "Don&rsquo;t have a Constant Contact account?"
+msgstr ""
+
+#: views/admin/view.connect-account.php:48
+msgid "It&rsquo;s easy to get started."
+msgstr ""
+
+#: views/admin/view.connect-account.php:50
+msgid ""
+"Your customers check their inbox all day, every day. You&rsquo;re sure to "
+"reach them when you work with Constant Contact. Build relationships, drive "
+"revenue, and deliver real results for your business.\n"
+msgstr ""
+
+#: views/admin/view.connect-account.php:54
+msgid "Start Your 60-day Free Trial"
+msgstr ""
+
+#: views/admin/view.connect-account.php:55
+#, php-format
+msgctxt "HTML link tags"
+msgid "or %sLearn More%s"
 msgstr ""
 
 #: views/admin/view.contact-addedit.php:4
@@ -2376,94 +2490,48 @@ msgstr ""
 msgid "Constant Contact Status"
 msgstr ""
 
-#: views/admin/view.setup.php:76
-msgid "Already have a Constant Contact account?"
-msgstr ""
-
-#: views/admin/view.setup.php:77
-#, php-format
-msgid ""
-"<h2>To start, <a href=\"%s\">Grant Authorization to this plugin</a> by "
-"signing in to Constant Contact.</h2>\n"
-"    \t<p>Sign in to the Constant Contact account you would like to use.</"
-"p><p>Once you sign in, you will be redirected back to this page, and plugin "
-"features will be available.</p>"
-msgstr ""
-
-#: views/admin/view.setup.php:80
-msgid ""
-"Don't have a <a href=\"http://katz.si/4h\" title=\"Learn more about Constant "
-"Contact\">Constant Contact</a> account?"
-msgstr ""
-
-#: views/admin/view.setup.php:81
-msgid ""
-"This plugin requires <a href=\"http://katz.si/4h\" title=\"Learn more about "
-"Constant Contact\">Constant Contact</a>."
-msgstr ""
-
-#: views/admin/view.setup.php:82
-msgid ""
-"<strong>Grow with Email Marketing</strong> With Email Marketing, it's easy "
-"for you to connect with your customers, and for customers to share your "
-"message with their networks. And the more customers spread the word about "
-"your business, the more you grow"
-msgstr ""
-
-#: views/admin/view.setup.php:84
-#, php-format
-msgid "or <a href=\"%s\">Learn More</a>"
-msgstr ""
-
-#: views/admin/view.setup.php:91
-#, php-format
-msgid ""
-"\n"
-"        \t<h3>Your plugin is configured for the username <span title=\"%s\">"
-"%s</span>.</h3>\n"
-"        \t<p>The plugin was configured on %s.</p>\n"
-"        \t<p class=\"submit\">\n"
-"        \t\t<a href=\"%s\" class=\"button button-primary button-large\">%s</"
-"a> <span class=\"button-group alignright\"><a href=\"%s\" class=\"button "
-"button-warning confirm\" data-confirm=\"%s\">%s</a><a href=\"%s\" class="
-"\"button button-danger confirm\" data-confirm=\"%s\" data-confirm-again=\"%s"
-"\">%s</a></span>\n"
-"        \t</p>\n"
-"        "
-msgstr ""
-
-#: views/admin/view.setup.php:98
+#: views/admin/view.setup.php:9
 #, php-format
 msgid "Your token is %s"
 msgstr ""
 
-#: views/admin/view.setup.php:102
+#: views/admin/view.setup.php:23
+#, php-format
+msgid "The plugin is connected to the username %s."
+msgstr ""
+
+#: views/admin/view.setup.php:24
+#, php-format
+msgid "The plugin was authorized on %s."
+msgstr ""
+
+#: views/admin/view.setup.php:26
 msgid "Switch Connected Accounts"
 msgstr ""
 
-#: views/admin/view.setup.php:104
+#: views/admin/view.setup.php:28
 #, php-format
 msgid ""
 "Your site will no longer be connected to the %s Constant Contact account. "
 "Form configurations will remain intact."
 msgstr ""
 
-#: views/admin/view.setup.php:105
+#: views/admin/view.setup.php:29
 msgid "De-Authenticate Plugin"
 msgstr ""
 
-#: views/admin/view.setup.php:107
+#: views/admin/view.setup.php:31
 msgid ""
 "This will remove ALL DATA, including Form Designer forms and account "
 "information. Continue?"
 msgstr ""
 
-#: views/admin/view.setup.php:108
+#: views/admin/view.setup.php:32
 msgid ""
 "Are you really sure? All Constant Contact plugin data will be removed and "
 "you will have to start from scratch. Continue?"
 msgstr ""
 
-#: views/admin/view.setup.php:109
+#: views/admin/view.setup.php:33
 msgid "Delete All Plugin Settings"
 msgstr ""

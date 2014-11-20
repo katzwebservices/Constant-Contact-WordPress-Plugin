@@ -8,7 +8,7 @@
 		foreach($v->costs as $val) {
 			$val->rate = floatval($val->rate);
 			$costs .= '<li>';
-			$costs .= empty($val->rate) ? __('Free', 'constant-contact-api') : "<strong>{$val->feeType}</strong>: {$val->count} Guest(s) x {$val->rate} = {$val->total}";
+			$costs .= empty($val->rate) ? __('Free', 'ctct') : "<strong>{$val->feeType}</strong>: {$val->count} Guest(s) x {$val->rate} = {$val->total}";
 			$costs .= '</li>';
 		}
 		$costs .= '</ul>';
@@ -36,37 +36,37 @@
 	}
 
 	$data = array(
-			__('Registration Information', 'constant-contact-api') => array(
-			__('Registration Status', 'constant-contact-api') => $v->registrationStatus,
-			__('Registration Date', 'constant-contact-api') => constant_contact_event_date($v->registrationDate),
-			__('Guest Count', 'constant-contact-api') => get_if_not_empty($v->guestCount,1),
-			__('Payment Status', 'constant-contact-api') => $v->paymentStatus,
-			__('Order Amount', 'constant-contact-api') => $v->orderAmount,
-			__('Currency Type', 'constant-contact-api') =>$v->currencyType,
-			__('Payment Type', 'constant-contact-api') => $v->paymentType,
-			__('Summary of Costs', 'constant-contact-api') => $costs,
+			__('Registration Information', 'ctct') => array(
+			__('Registration Status', 'ctct') => $v->registrationStatus,
+			__('Registration Date', 'ctct') => constant_contact_event_date($v->registrationDate),
+			__('Guest Count', 'ctct') => get_if_not_empty($v->guestCount,1),
+			__('Payment Status', 'ctct') => $v->paymentStatus,
+			__('Order Amount', 'ctct') => $v->orderAmount,
+			__('Currency Type', 'ctct') =>$v->currencyType,
+			__('Payment Type', 'ctct') => $v->paymentType,
+			__('Summary of Costs', 'ctct') => $costs,
 		),
-		__('Personal Information', 'constant-contact-api') => array(
-		    __('Name', 'constant-contact-api') => $v->title,
-		    __('Email', 'constant-contact-api') => get_if_not_empty($v->email,'', "<a href='mailto:{$v->email}'>{$v->email}</a>"),
-		    __('Phone', 'constant-contact-api') => $v->personalInformation->phone,
-			__('Cell Phone', 'constant-contact-api') => $v->personalInformation->cellPhone,
-	        __('Address', 'constant-contact-api') => constant_contact_create_location($v->personalInformation),
+		__('Personal Information', 'ctct') => array(
+		    __('Name', 'ctct') => $v->title,
+		    __('Email', 'ctct') => get_if_not_empty($v->email,'', "<a href='mailto:{$v->email}'>{$v->email}</a>"),
+		    __('Phone', 'ctct') => $v->personalInformation->phone,
+			__('Cell Phone', 'ctct') => $v->personalInformation->cellPhone,
+	        __('Address', 'ctct') => constant_contact_create_location($v->personalInformation),
 		),
-		__('Business Information', 'constant-contact-api') => array(
-			__('Company', 'constant-contact-api') => $v->businessInformation->company,
-			__('Job Title', 'constant-contact-api') => $v->businessInformation->jobTitle,
-			__('Department', 'constant-contact-api') => $v->businessInformation->department,
-			__('Phone', 'constant-contact-api') => $v->businessInformation->phone,
-			__('Fax', 'constant-contact-api') => $v->businessInformation->fax,
-			__('Website', 'constant-contact-api') => $v->businessInformation->website,
-			__('Blog', 'constant-contact-api') => $v->businessInformation->blog,
-			__('Address', 'constant-contact-api') => constant_contact_create_location($v->businessInformation),
+		__('Business Information', 'ctct') => array(
+			__('Company', 'ctct') => $v->businessInformation->company,
+			__('Job Title', 'ctct') => $v->businessInformation->jobTitle,
+			__('Department', 'ctct') => $v->businessInformation->department,
+			__('Phone', 'ctct') => $v->businessInformation->phone,
+			__('Fax', 'ctct') => $v->businessInformation->fax,
+			__('Website', 'ctct') => $v->businessInformation->website,
+			__('Blog', 'ctct') => $v->businessInformation->blog,
+			__('Address', 'ctct') => constant_contact_create_location($v->businessInformation),
 		),
-		__('Custom Information', 'constant-contact-api') => $customs
+		__('Custom Information', 'ctct') => $customs
 	);
 
 		echo constant_contact_generate_table($data);
 ?>
 
-<p class="submit"><a href="<?php echo remove_query_arg(array('registrant', 'refresh')); ?>" class="button-primary"><?php _e('Return to Event', 'constant-contact-api'); ?></a> <a href="<?php echo add_query_arg('refresh', 'registrant'); ?>" class="button-secondary alignright" title="<?php _e('Registrant data is stored for 1 hour. Refresh data now.', 'constant-contact-api'); ?>"><?php _e('Refresh Registrant', 'constant-contact-api'); ?></a></p>
+<p class="submit"><a href="<?php echo remove_query_arg(array('registrant', 'refresh')); ?>" class="button-primary"><?php _e('Return to Event', 'ctct'); ?></a> <a href="<?php echo add_query_arg('refresh', 'registrant'); ?>" class="button-secondary alignright" title="<?php _e('Registrant data is stored for 1 hour. Refresh data now.', 'ctct'); ?>"><?php _e('Refresh Registrant', 'ctct'); ?></a></p>

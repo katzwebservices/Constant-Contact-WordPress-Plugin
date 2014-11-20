@@ -99,7 +99,7 @@ class CTCT_Process_Form {
 		foreach ( $_POST['fields'] as $key => $field ) {
 
 			if( !empty( $field['req'] ) && (!isset( $field['value'] ) || $field['value'] === '') ) {
-				$this->errors[] = new WP_Error('empty_field', sprintf( _x('The %s field is required.', 'Failed user form submission error', 'constant-contact-api'), esc_html( $field['label'] ) ), $key );
+				$this->errors[] = new WP_Error('empty_field', sprintf( _x('The %s field is required.', 'Failed user form submission error', 'ctct'), esc_html( $field['label'] ) ), $key );
 			}
 		}
 
@@ -177,7 +177,7 @@ class CTCT_Process_Form {
 
 				do_action('ctct_activity', $e->getMessage(), $e );
 
-			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'constant-contact-api'), $key );
+			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'ctct'), $key );
 
 			}
 
@@ -270,11 +270,11 @@ class CTCT_Process_Form {
 		// 1: Check if it's an email at all
 		if(empty($email)) {
 			do_action('ctct_activity', 'Empty email address', $email );
-			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'constant-contact-api'), 'email_address');
+			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'ctct'), 'email_address');
 			return;
 		} else if(!is_email($email)) {
 			do_action('ctct_activity', 'Invalid email address', $email);
-			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'constant-contact-api'), 'email_address');
+			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'ctct'), 'email_address');
 			return;
 		}
 
@@ -301,7 +301,7 @@ class CTCT_Process_Form {
 			if($return == 'checked' || $return == 'not-checked') {
 				do_action('ctct_activity', 'WangGuard validation passed.', $email, $return);
 			} else {
-				$this->errors[] = new WP_Error('wangguard', __('Email validation failed.', 'constant-contact-api'), $email, $return);
+				$this->errors[] = new WP_Error('wangguard', __('Email validation failed.', 'ctct'), $email, $return);
 				return;
 			}
 		}
@@ -318,7 +318,7 @@ class CTCT_Process_Form {
 			if( $validation === false || ($validation === null && !$process_inconclusive) ) {
 				do_action('ctct_activity', 'DataValidation validation failed.', $email, $Validate);
 
-				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'constant-contact-api');
+				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'ctct');
 				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
 				return;
 			} if($validation === null) {
@@ -346,7 +346,7 @@ class CTCT_Process_Form {
 					do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
 				} else {
 					do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
-					$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'constant-contact-api'), $email, $results);
+					$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
 					return;
 				}
 

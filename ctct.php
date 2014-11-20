@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: Constant Contact Plugin for WordPress
-Plugin URI: https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
-Description: Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
-Author: Katz Web Services, Inc.
-Version: 3.1.2
-Author URI: http://katz.co
-Text Domain: constant-contact-api
-Domain Path: /languages
+Plugin Name: 		Constant Contact Plugin for WordPress
+Plugin URI: 		https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
+Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
+Author: 			Katz Web Services, Inc.
+Version: 			3.1.3
+Author URI: 		http://katz.co
+Text Domain: 		ctct
+Domain Path: 		/languages
 License:           	GPLv2 or later
 License URI: 		http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -17,7 +17,7 @@ register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
 
 final class WP_CTCT {
 
-	const version = '3.1.2';
+	const version = '3.1.3';
 	public $cc = NULL;
 	public $oauth = NULL;
 	public $log = NULL;
@@ -37,6 +37,8 @@ final class WP_CTCT {
 			define('CTCT_FILE_PATH', dirname(__FILE__) . '/');
 			define('CTCT_FILE_URL', plugin_dir_url(__FILE__));
 			define('CTCT_DIR_PATH', plugin_dir_path(__FILE__));
+
+			load_plugin_textdomain( 'ctct', false, dirname( plugin_basename( CTCT_FILE ) ) . '/languages/' );
 
 			/**
 			 * If the server doesn't support PHP 5.3, sorry, but you're outta luck.

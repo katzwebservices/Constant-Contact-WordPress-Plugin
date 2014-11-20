@@ -142,17 +142,17 @@ class CTCT_Settings extends CTCT_Admin_Page {
 			$status = self::get_plugin_status( $plugin['path'] );
 
 			if( $status === true ) {
-				$message = esc_html__('(Installed and active)', 'constant-contact-api');
+				$message = esc_html__('(Installed and active)', 'ctct');
 
 			} elseif( $status === false ) {
 
-				$title = sprintf( esc_html__('Install %s', 'constant-contact-api'), $plugin['name'] );
+				$title = sprintf( esc_html__('Install %s', 'ctct'), $plugin['name'] );
 				$message = sprintf('(<a class="thickbox" href="%s" class="thickbox">%s</a>)', admin_url('plugin-install.php?tab=plugin-information&amp;plugin='.urlencode($key).'&amp;TB_iframe=true&amp;width=640&amp;height=808'), $title );
 			} else {
 
-				$activate_message = sprintf( esc_html__( 'Activate %s', 'constant-contact-api' ), $plugin['name'] );
+				$activate_message = sprintf( esc_html__( 'Activate %s', 'ctct'), $plugin['name'] );
 
-				$message = sprintf( esc_html__('(%s - Installed, but inactive)', 'constant-contact-api'), '<a href="'.wp_nonce_url( admin_url( 'plugins.php?action=activate&amp;plugin='.urlencode($plugin['path']) ), 'activate-plugin_'.$plugin['path']).'">'.$activate_message.'</a>' );
+				$message = sprintf( esc_html__('(%s - Installed, but inactive)', 'ctct'), '<a href="'.wp_nonce_url( admin_url( 'plugins.php?action=activate&amp;plugin='.urlencode($plugin['path']) ), 'activate-plugin_'.$plugin['path']).'">'.$activate_message.'</a>' );
 
 			}
 
@@ -228,15 +228,15 @@ class CTCT_Settings extends CTCT_Admin_Page {
 			return;
 		}
 
-		add_settings_section('setup', '<i class="dashicons dashicons-admin-settings"></i> '.__('Setup', 'constant-contact-api'), '', 'constant-contact-api');
+		add_settings_section('setup', '<i class="dashicons dashicons-admin-settings"></i> '.__('Setup', 'ctct'), '', 'constant-contact-api');
 
 		// Hook in here for more tabs.
 		do_action('ctct_settings_sections');
 
-		add_settings_section('registration', '<i class="dashicons dashicons-forms"></i> '.__('Registration Form', 'constant-contact-api'), '<h3>'.esc_html__('Configure how users sign up.', 'constant-contact-api').'</h3>', 'constant-contact-api');
+		add_settings_section('registration', '<i class="dashicons dashicons-forms"></i> '.__('Registration Form', 'ctct'), '<h3>'.esc_html__('Configure how users sign up.', 'ctct').'</h3>', 'constant-contact-api');
 		add_settings_section('comments', '<i class="dashicons dashicons-admin-comments
-"></i> '.__('Comment Form', 'constant-contact-api'), '<h3>'.esc_html__('Configure how users sign up.', 'constant-contact-api').'</h3>', 'constant-contact-api');
-		add_settings_section('spam', '<i class="dashicons dashicons-trash"></i> '.__('Spam Prevention', 'constant-contact-api'), '<h3>'.esc_html__('How do you want to prevent spam?', 'constant-contact-api').'</h3>', 'constant-contact-api');
+"></i> '.__('Comment Form', 'ctct'), '<h3>'.esc_html__('Configure how users sign up.', 'ctct').'</h3>', 'constant-contact-api');
+		add_settings_section('spam', '<i class="dashicons dashicons-trash"></i> '.__('Spam Prevention', 'ctct'), '<h3>'.esc_html__('How do you want to prevent spam?', 'ctct').'</h3>', 'constant-contact-api');
 
 		$groups = array(
 			'setup' => array(
@@ -248,45 +248,45 @@ class CTCT_Settings extends CTCT_Admin_Page {
 					'type' => 'checkboxes',
 					'id' => 'logging',
 					'options' => array(
-						'activity' => __('Log Constant Contact Activity', 'constant-contact-api'),
-						'error' => __('Log Errors & Exceptions', 'constant-contact-api'),
-						'debug' => __('Detailed Debugging Logs (Do not leave enabled! Server-intensive.)', 'constant-contact-api'),
+						'activity' => __('Log Constant Contact Activity', 'ctct'),
+						'error' => __('Log Errors & Exceptions', 'ctct'),
+						'debug' => __('Detailed Debugging Logs (Do not leave enabled! Server-intensive.)', 'ctct'),
 					),
-					'desc' => __('Activity Logs', 'constant-contact-api'),
-					'label' => __('Log different activity from the plugin, including form submissions and the results ("Constant Contact Activity").', 'constant-contact-api'),
+					'desc' => __('Activity Logs', 'ctct'),
+					'label' => __('Log different activity from the plugin, including form submissions and the results ("Constant Contact Activity").', 'ctct'),
 				),
 			),
 			'registration' => array(
 			    array(
 			    	'type' => 'heading',
-			    	'desc' => __('WordPress Registration Form', 'constant-contact-api'),
-			    	'label' => sprintf(__('Add signup options to WordPress\' <a href="%s" rel="external">registration form.</a>', 'constant-contact-api'), site_url('wp-login.php?action=register')),
+			    	'desc' => __('WordPress Registration Form', 'ctct'),
+			    	'label' => sprintf(__('Add signup options to WordPress\' <a href="%s" rel="external">registration form.</a>', 'ctct'), site_url('wp-login.php?action=register')),
 			    ),
 				array(
 					'type' => 'radio',
 					'id' => 'register_page_method',
 					'options' => array(
-						'none' => __('Disabled', 'constant-contact-api'),
-						'checkbox' => __('Single Checkbox - show users a checkbox which, if ticked, will automatically subscribe them to the lists you select below in the "Active Contact Lists" section.', 'constant-contact-api'),
-						'checkboxes' => __('List of Checkboxes - show a bullet list with the name of the list and a checkbox option for them to sign up', 'constant-contact-api'),
-						'dropdown' => __('Dropdown List', 'constant-contact-api'),
+						'none' => __('Disabled', 'ctct'),
+						'checkbox' => __('Single Checkbox - show users a checkbox which, if ticked, will automatically subscribe them to the lists you select below in the "Active Contact Lists" section.', 'ctct'),
+						'checkboxes' => __('List of Checkboxes - show a bullet list with the name of the list and a checkbox option for them to sign up', 'ctct'),
+						'dropdown' => __('Dropdown List', 'ctct'),
 					),
 					'toggle' => 'registration',
-					'desc' => __('User Subscription Method', 'constant-contact-api'),
+					'desc' => __('User Subscription Method', 'ctct'),
 				),
 				array(
 					'id' => 'default_opt_in',
 					'togglegroup' => 'registration_checkbox registration_checkboxes',
 					'type' => 'checkbox',
-					'desc' => __('Opt-in users by default?', 'constant-contact-api'),
-					'label' => __('Should the opt-in checkbox(es) be checked by default? If using the "List Selection" method, should lists be pre-selected by default.', 'constant-contact-api'),
+					'desc' => __('Opt-in users by default?', 'ctct'),
+					'label' => __('Should the opt-in checkbox(es) be checked by default? If using the "List Selection" method, should lists be pre-selected by default.', 'ctct'),
 				),
 				array(
 					'type' => 'lists',
 					'id' => 'registration_checkbox_lists',
 					'togglegroup' => 'registration_checkbox',
-					'desc' => __('Lists for Registration', 'constant-contact-api'),
-					'label' => __('<strong>Checkbox:</strong> What lists will users be added to when checking the opt-in box?<br />Others: What lists will users be presented with?', 'constant-contact-api'),
+					'desc' => __('Lists for Registration', 'ctct'),
+					'label' => __('<strong>Checkbox:</strong> What lists will users be added to when checking the opt-in box?<br />Others: What lists will users be presented with?', 'ctct'),
 					'options' => KWSContactList::outputHTML('all', array(
 							'type' => 'checkboxes',
 							'format' => '%%name%%',
@@ -295,76 +295,76 @@ class CTCT_Settings extends CTCT_Admin_Page {
 							'checked' => self::get('registration_checkbox_lists'),
 							'class' => 'toggle_registration_checkbox toggle_registration_checkboxes toggle_registration_dropdown',
 						)),
-					'help' => __('When users sign up for your newsletter while registering for a WordPress account, they will be added to the following lists.', 'constant-contact-api'),
+					'help' => __('When users sign up for your newsletter while registering for a WordPress account, they will be added to the following lists.', 'ctct'),
 				),
 				array(
 					'id' => 'signup_description',
 					'togglegroup' => 'registration_checkbox registration_checkboxes registration_dropdown',
 					'type' => 'textarea',
-					'desc' => __('Signup Description', 'constant-contact-api'),
-					'label' => __('Signup form description text displayed on the registration screen and user profile setting, if enabled. HTML is allowed. Paragraphs will be added automatically like in posts.', 'constant-contact-api'),
+					'desc' => __('Signup Description', 'ctct'),
+					'label' => __('Signup form description text displayed on the registration screen and user profile setting, if enabled. HTML is allowed. Paragraphs will be added automatically like in posts.', 'ctct'),
 				),
 				array(
 					'type' => 'radio',
 					'togglegroup' => 'registration_checkbox registration_checkboxes registration_dropdown',
 					'id' => 'signup_description_position',
 					'options' => array(
-						'before' => __('Before the Opt-in', 'constant-contact-api'),
-						'after' => __('After the Opt-in', 'constant-contact-api'),
+						'before' => __('Before the Opt-in', 'ctct'),
+						'after' => __('After the Opt-in', 'ctct'),
 					),
-					'desc' => __('Signup Description Position', 'constant-contact-api')
+					'desc' => __('Signup Description Position', 'ctct')
 				),
 				array(
 					'id' => 'signup_title',
 					'togglegroup' => 'registration_checkbox registration_checkboxes registration_dropdown',
 					'type' => 'text',
-					'desc' => __('Signup Title', 'constant-contact-api'),
-					'label' => __('Title for the signup form displayed on the registration screen and user profile settings if enabled.', 'constant-contact-api'),
+					'desc' => __('Signup Title', 'ctct'),
+					'label' => __('Title for the signup form displayed on the registration screen and user profile settings if enabled.', 'ctct'),
 				),
 				array(
 				    'type' => 'text',
 				    'togglegroup' => 'registration_dropdown',
 					'id' => 'default_select_option_text',
-					'desc' => __('Default Option Text', 'constant-contact-api'),
-					'label' => __('If "Opt-in users by default" (below) is not checked, this will be the default option in the dropdown menu. Leave blank to not show this option.', 'constant-contact-api')
+					'desc' => __('Default Option Text', 'ctct'),
+					'label' => __('If "Opt-in users by default" (below) is not checked, this will be the default option in the dropdown menu. Leave blank to not show this option.', 'ctct')
 				),
 				array(
 					'type' => 'heading',
-					'desc' => __('Profile Page', 'constant-contact-api')
+					'desc' => __('Profile Page', 'ctct')
 				),
 					array(
 						'type' => 'checkbox',
 						'id' => 'profile_page_form',
-						'label' => __('Allow users to modify their subscription on their WordPress profile page', 'constant-contact-api'),
-						'desc' => __('Show Form on Profile Page?', 'constant-contact-api'),
-						'help' => __('Do you want users to be able to update their subscriptions inside WordPress?', 'constant-contact-api'),
+						'label' => __('Allow users to modify their subscription on their WordPress profile page', 'ctct'),
+						'desc' => __('Show Form on Profile Page?', 'ctct'),
+						'help' => __('Do you want users to be able to update their subscriptions inside WordPress?', 'ctct'),
 					),
 			),
 			'comments' => array(
 				array(
 					'type' => 'heading',
-					'desc' => __('Comment Form', 'constant-contact-api')
+					'desc' => __('Comment Form', 'ctct')
 				),
 					array(
 						'type' => 'checkbox',
 						'id' => 'comment_form_signup',
-						'label' => __('Add a checkbox for subscribing to a newsletter below a comment form', 'constant-contact-api'),
+						'label' => __('Add a checkbox for subscribing to a newsletter below a comment form', 'ctct'),
 						'toggle' => 'comment_form',
-						'desc' => __('Comment Form Signup', 'constant-contact-api'),
+						'desc' => __('Comment Form Signup', 'ctct'),
 					),
 					array(
 					    'togglegroup' => 'comment_form',
 						'type' => 'checkbox',
 						'id' => 'comment_form_default',
-						'desc' => __('Checked by default?', 'constant-contact-api'),
-						'label' => __('Should the checkbox be checked by default?', 'constant-contact-api'),
+						'desc' => __('Checked by default?', 'ctct'),
+						'label' => __('Should the checkbox be checked by default?', 'ctct'),
 					),
 					array(
 						'type' => 'lists',
 						'id' => 'comment_form_lists',
 						'togglegroup' => 'comment_form',
-						'desc' => __('Lists for Comment Form', 'constant-contact-api'),
-						'label' => __('What lists will users be added to when signing up with the Comment Form?', 'constant-contact-api'),
+						'desc' => __('Lists for Comment Form', 'ctct'),
+						'label' => __('What lists will users be added to when signing up with the Comment Form?', 'ctct'),
 						'options' => KWSContactList::outputHTML('all', array(
 								'type' => 'checkboxes',
 								'format' => '%%name%%',
@@ -378,20 +378,20 @@ class CTCT_Settings extends CTCT_Admin_Page {
 					    'togglegroup' => 'comment_form',
 						'type' => 'text',
 						'id' => 'comment_form_check_text',
-						'desc' => __('Subscribe Message', 'constant-contact-api')
+						'desc' => __('Subscribe Message', 'ctct')
 					),
 					array(
 					    'togglegroup' => 'comment_form',
 						'type' => 'text',
 						'id' => 'comment_form_subscribed_text',
-						'desc' => __('Already Subscribed Message', 'constant-contact-api')
+						'desc' => __('Already Subscribed Message', 'ctct')
 					),
 					array(
 					    'togglegroup' => 'comment_form',
 						'type' => 'checkbox',
 						'id' => 'comment_form_clear',
-						'label' => __('Uncheck if this causes layout issues', 'constant-contact-api'),
-						'desc' => __('Add a CSS \'clear\' to the checkbox?', 'constant-contact-api'),
+						'label' => __('Uncheck if this causes layout issues', 'ctct'),
+						'desc' => __('Add a CSS \'clear\' to the checkbox?', 'ctct'),
 					),
 			),
 			'spam' => array(
@@ -400,31 +400,31 @@ class CTCT_Settings extends CTCT_Admin_Page {
 					'id' => 'spam_methods',
 					'toggle' => 'spam_methods',
 					'options' => array(
-						'datavalidation' => __('Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">DataValidation.com</a>', 'constant-contact-api').constant_contact_tip(__('DataValidation.com is the best way to verify that when users submit a form, the submitted email address is valid.', 'constant-contact-api'), false),
-						'akismet' => __('Akismet', 'constant-contact-api').self::get_plugin_status_message( 'akismet' ),
-						'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').self::get_plugin_status_message( 'wangguard' ),
-						'smtp' => __('Validate Email Addresses Via SMTP (<a href="http://katz.si/smtpvalidation" rel="external">See the project</a>)', 'constant-contact-api').constant_contact_tip(__('Uses server methods to verify emails: checks for a valid domain, then sends a request for a read receipt.', 'constant-contact-api'), false),
+						'datavalidation' => __('Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">DataValidation.com</a>', 'ctct').constant_contact_tip(__('DataValidation.com is the best way to verify that when users submit a form, the submitted email address is valid.', 'ctct'), false),
+						'akismet' => __('Akismet', 'ctct').self::get_plugin_status_message( 'akismet' ),
+						'wangguard' => __('WangGuard WordPress Plugin', 'ctct').self::get_plugin_status_message( 'wangguard' ),
+						'smtp' => __('Validate Email Addresses Via SMTP (<a href="http://katz.si/smtpvalidation" rel="external">See the project</a>)', 'ctct').constant_contact_tip(__('Uses server methods to verify emails: checks for a valid domain, then sends a request for a read receipt.', 'ctct'), false),
 					),
-					'desc' => __('What services do you want to use to prevent spam submissions of your forms?', 'constant-contact-api')
+					'desc' => __('What services do you want to use to prevent spam submissions of your forms?', 'ctct')
 				),
 				array(
 					'type' => 'heading',
 					'togglegroup' => 'spam_methods_datavalidation',
-					'desc' => __('DataValidation.com Settings', 'constant-contact-api'),
+					'desc' => __('DataValidation.com Settings', 'ctct'),
 				),
 				array(
 					'type' => 'text',
 					'togglegroup' => 'spam_methods_datavalidation',
 					'id' => 'datavalidation_api_key',
-					'desc' => __('DataValidation.com: API Key', 'constant-contact-api'),
-					'label' => sprintf( __('Enter your DataValidation.com API key. %sSign up for a key here%s.', 'constant-contact-api'), '<a href="https://developer.datavalidation.com" rel="external">', '</a>' )
+					'desc' => __('DataValidation.com: API Key', 'ctct'),
+					'label' => sprintf( __('Enter your DataValidation.com API key. %sSign up for a key here%s.', 'ctct'), '<a href="https://developer.datavalidation.com" rel="external">', '</a>' )
 				),
 				array(
 					'type' => 'checkbox',
 					'togglegroup' => 'spam_methods_datavalidation',
 					'id' => 'datavalidation_prevent_ambiguous',
-					'desc' => __('DataValidation.com: Should "ambiguous" responses be blocked?', 'constant-contact-api'),
-					'label' => __('Ambiguous Responses basically mean that the email looks good, it has valid DNS, it has a valid MX record, it even has an email server, but for a myriad of reasons it does not accept any connections to it. Could be connection refused, could be the server is down, etc.', 'constant-contact-api')
+					'desc' => __('DataValidation.com: Should "ambiguous" responses be blocked?', 'ctct'),
+					'label' => __('Ambiguous Responses basically mean that the email looks good, it has valid DNS, it has a valid MX record, it even has an email server, but for a myriad of reasons it does not accept any connections to it. Could be connection refused, could be the server is down, etc.', 'ctct')
 				),
 			),
 			'forms' => array(
@@ -432,10 +432,10 @@ class CTCT_Settings extends CTCT_Admin_Page {
 					'type' => 'checkboxes',
 					'id' => 'forms',
 					'options' => array(
-						'formstack' => __('<a href="http://www.formstack.com/r/31575458">Formstack</a>', 'constant-contact-api'),
-						'after' => __('After the Opt-in', 'constant-contact-api'),
+						'formstack' => __('<a href="http://www.formstack.com/r/31575458">Formstack</a>', 'ctct'),
+						'after' => __('After the Opt-in', 'ctct'),
 					),
-					'desc' => __('Forms', 'constant-contact-api')
+					'desc' => __('Forms', 'ctct')
 				),
 			)
 		);
@@ -479,14 +479,14 @@ class CTCT_Settings extends CTCT_Admin_Page {
 			'register_page_method' => 'none',
 			'list_selection_format' => 'checkbox',
 			'default_opt_in' => 1,
-			'signup_title' => __('Receive our Newsletter', 'constant-contact-api'),
-			'signup_description' => __('Subscribe to the Newsletter', 'constant-contact-api'),
-			'default_select_option_text' => __('Select a List&hellip;', 'constant-contact-api'),
+			'signup_title' => __('Receive our Newsletter', 'ctct'),
+			'signup_description' => __('Subscribe to the Newsletter', 'ctct'),
+			'default_select_option_text' => __('Select a List&hellip;', 'ctct'),
 			'signup_description_position' => 'before',
 			'comment_form_signup' => true,
-			'comment_form_check_text' => __('Subscribe me to your mailing list', 'constant-contact-api'),
-			'comment_form_subscribed_text' => __('You are currently subscribed to our mailing list', 'constant-contact-api'),
-			'comment_form_admin_text' => __('You are the administrator - no need to subscribe you to the mailing list', 'constant-contact-api'),
+			'comment_form_check_text' => __('Subscribe me to your mailing list', 'ctct'),
+			'comment_form_subscribed_text' => __('You are currently subscribed to our mailing list', 'ctct'),
+			'comment_form_admin_text' => __('You are the administrator - no need to subscribe you to the mailing list', 'ctct'),
 			'comment_form_clear' => true,
 			'spam_methods' => array( 'akismet' ),
 		));
@@ -729,7 +729,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 	}
 	 	?>
 	 	</div>
-	 	<p class="submit"><input name="Submit" id="ctct-save-settings" class="button button-primary button-hero" type="submit" value="<?php esc_html_e('Save Settings', 'constant-contact-api'); ?>" /></p>
+	 	<p class="submit"><input name="Submit" id="ctct-save-settings" class="button button-primary button-hero" type="submit" value="<?php esc_html_e('Save Settings', 'ctct'); ?>" /></p>
 	 	<?php
 	 }
 

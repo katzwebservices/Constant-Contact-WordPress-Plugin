@@ -1,10 +1,10 @@
 <table class="widefat ctct_table fixed" cellspacing="0">
 	<thead>
 		<tr>
-			<th scope="col" class="id manage-column column-name"><?php _e('List ID', 'constant-contact-api'); ?></th>
-			<th scope="col" class="name manage-column column-name"><?php _e('Name', 'constant-contact-api'); ?></th>
-			<th scope="col" class="count manage-column column-name"><?php _e('Contact Count', 'constant-contact-api'); ?></th>
-			<th scope="col" class="view manage-column column-name"><?php _e('View List Contacts', 'constant-contact-api'); ?></th>
+			<th scope="col" class="id manage-column column-name"><?php _e('List ID', 'ctct'); ?></th>
+			<th scope="col" class="name manage-column column-name"><?php _e('Name', 'ctct'); ?></th>
+			<th scope="col" class="count manage-column column-name"><?php _e('Contact Count', 'ctct'); ?></th>
+			<th scope="col" class="view manage-column column-name"><?php _e('View List Contacts', 'ctct'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,7 +28,7 @@ foreach ( (array)$Lists as $List ) {
 			<td class="column-name">
 				<a href="<?php
 					echo add_query_arg(array('view' => $List->id), remove_query_arg('add'));
-				?>" class="button view-new-h2" title="view"><?php _e('View Contacts', 'constant-contact-api'); ?></a>
+				?>" class="button view-new-h2" title="view"><?php _e('View Contacts', 'ctct'); ?></a>
 			</td>
 		</tr>
 	<?php

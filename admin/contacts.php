@@ -23,17 +23,17 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
     protected function getTitle($value = '') {
         if(empty($value) && $this->isEdit() || $value == 'edit')
-            return __("Edit Contact", 'constant-contact-api');
+            return __("Edit Contact", 'ctct');
         if(empty($value) && $this->isSingle() || $value == 'single')
-            return __('Contact', 'constant-contact-api');
+            return __('Contact', 'ctct');
         if(empty($value) && $this->isAdd() || $value == 'add')
-            return __('Add a Contact', 'constant-contact-api');
+            return __('Add a Contact', 'ctct');
 
-        return __('Contacts', 'constant-contact-api' );
+        return __('Contacts', 'ctct');
     }
 
     protected function getNavTitle() {
-        return __('Contacts', 'constant-contact-api' );
+        return __('Contacts', 'ctct');
     }
 
 	protected function add() {
@@ -80,7 +80,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
     protected function edit() {
 
         if( empty( $this->id ) ) {
-            esc_html_e('You have not specified a Contact to edit', 'constant-contact-api');
+            esc_html_e('You have not specified a Contact to edit', 'ctct');
             return;
         }
 
@@ -101,7 +101,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         $id = $this->id;
 
         if( empty( $id ) ) {
-            esc_html_e('You have not specified a Contact to view', 'constant-contact-api');
+            esc_html_e('You have not specified a Contact to view', 'ctct');
             return;
         }
 
@@ -140,7 +140,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         ));
 
     	if(empty($Contacts)) {
-    		esc_html_e( 'Your account has no contacts.', 'constant-contact-api' );
+    		esc_html_e( 'Your account has no contacts.', 'ctct');
     	} else {
     		include(CTCT_DIR_PATH.'views/admin/view.contacts-view.php');
     	}

@@ -114,7 +114,7 @@ function constant_contact_event_date($value = null) {
 	date_default_timezone_set( $tz_string );
 
 	// We convert the date to "Date at Time"
-	$string = sprintf(__('%1$s at %2$s','constant-contact-api'), date_i18n(get_option('date_format'), strtotime($value), false), date_i18n(get_option('time_format'), strtotime($value), false));
+	$string = sprintf(__('%1$s at %2$s', 'ctct'), date_i18n(get_option('date_format'), strtotime($value), false), date_i18n(get_option('time_format'), strtotime($value), false));
 
 	// We restore the timezone to what it was
 	date_default_timezone_set($timezone);

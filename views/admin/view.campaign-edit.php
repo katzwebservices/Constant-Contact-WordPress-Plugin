@@ -5,8 +5,8 @@
 <h3><?php echo 'Contact Details: ';?> <a href="<?php echo add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view')); ?>" class="button edit-new-h2" title="edit">edit</a></h3>
 <table class="widefat fixed ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'constant-contact-api'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'constant-contact-api'); ?></th>
+        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
+        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -35,12 +35,12 @@
 
                     if($personal = $Contact->getAddress('personal')) {
                         $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Personal Address', 'constant-contact-api'), $personal);
+                                         __('Personal Address', 'ctct'), $personal);
                     }
 
                     if($business = $Contact->getAddress('business')) {
                         $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Business Address', 'constant-contact-api'), $business);
+                                         __('Business Address', 'ctct'), $business);
                     }
                 break;
                 case 'email_addresses':

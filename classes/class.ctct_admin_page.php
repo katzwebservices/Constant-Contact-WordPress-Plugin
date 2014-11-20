@@ -76,7 +76,7 @@ abstract class CTCT_Admin_Page {
             '_wpnonce' => wp_create_nonce( 'ctct' ),
             'id' => $this->id,
             'text' => array(
-                'editable' => esc_js( __('Click to Edit', 'constant-contact-api') ),
+                'editable' => esc_js( __('Click to Edit', 'ctct') ),
             ),
         ));
 
@@ -185,7 +185,7 @@ abstract class CTCT_Admin_Page {
         echo '
             <div id="message" class="container alert-error errors error">
                 <h3>';
-                _e(sprintf('%s occurred:', _n( 'An error', 'Errors', sizeof($this->errors), 'constant-contact-api' )), 'constant-contact-api');
+                _e(sprintf('%s occurred:', _n( 'An error', 'Errors', sizeof($this->errors), 'ctct')), 'ctct');
         echo ' </h3>
                 <ul class="ul-square">
         ';
@@ -202,7 +202,7 @@ abstract class CTCT_Admin_Page {
     // Common method
     public function page() { ?>
         <div class="wrap">
-            <h2 class="cc_logo"><a class="cc_logo" href="<?php echo admin_url('admin.php?page=constant-contact-api'); ?>"><?php _e('Constant Contact', 'constant-contact-api'); ?></a></h2>
+            <h2 class="cc_logo"><a class="cc_logo" href="<?php echo admin_url('admin.php?page=constant-contact-api'); ?>"><?php _e('Constant Contact', 'ctct'); ?></a></h2>
 	<?php
 
         if(!$this->isView()) {
@@ -217,10 +217,10 @@ abstract class CTCT_Admin_Page {
 
         $button = '';
         if($this->isSingle() && $this->can_edit) {
-            $button = ' <a href="'.add_query_arg(array('edit' => $_GET['view']), remove_query_arg('view')).'" class="button clear edit-new-h2" title="edit">'.__('Edit', 'constant-contact-api').'</a>';
+            $button = ' <a href="'.add_query_arg(array('edit' => $_GET['view']), remove_query_arg('view')).'" class="button clear edit-new-h2" title="edit">'.__('Edit', 'ctct').'</a>';
         }
         if($this->isView() && $this->can_add) {
-            $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'constant-contact-api'), $this->getTitle('single')).'</a>';
+            $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct'), $this->getTitle('single')).'</a>';
         }
 
     	echo '<h2 class="ctct-page-name">'.implode(' &raquo; ', $breadcrumb).$button.'</h2>';

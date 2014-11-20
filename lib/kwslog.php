@@ -168,7 +168,7 @@ class KWSLog {
 	 * Add the admin menu to the Tools menu
 	 */
 	function log_menu() {
-		$menu_title = __('Activity Log', 'constant-contact-api' );
+		$menu_title = __('Activity Log', 'ctct');
 		add_submenu_page( 'constant-contact-api', $menu_title, $menu_title, 'manage_options', 'constant-contact-log', array(&$this, 'log_page'));
 	}
 
@@ -236,10 +236,10 @@ class KWSLog {
 	function print_navigation() {
 
 		$methods_text = array(
-			'activity' => __('Constant Contact Activity', 'constant-contact-api'),
-			'debug' => __('Debugging Logs', 'constant-contact-api'),
-			'error' => __('Errors or Exceptions', 'constant-contact-api'),
-			'log' => __('Notices', 'constant-contact-api'),
+			'activity' => __('Constant Contact Activity', 'ctct'),
+			'debug' => __('Debugging Logs', 'ctct'),
+			'error' => __('Errors or Exceptions', 'ctct'),
+			'log' => __('Notices', 'ctct'),
 		);
 
 		$navigation = array();
@@ -265,7 +265,7 @@ class KWSLog {
 
 		<?php
 
-			$translated = __( 'Page', 'constant-contact-api' );
+			$translated = __( 'Page', 'ctct');
 
 			echo paginate_links( array(
 				'base' => add_query_arg( array( 'paged' => '%#%' ) ),
@@ -305,7 +305,7 @@ class KWSLog {
 	?>
 		<div class="wrap">
 
-			<h2><?php esc_html_e('Constant Contact Log', 'constant-contact-api'); ?></h2>
+			<h2><?php esc_html_e('Constant Contact Log', 'ctct'); ?></h2>
 
 			<?php
 

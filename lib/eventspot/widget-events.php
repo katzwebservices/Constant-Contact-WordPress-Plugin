@@ -113,33 +113,33 @@ class constant_contact_events_widget extends WP_Widget {
 		$instance = wp_parse_args( $instance, array(
 			'title' => '',
 			'description' => '',
-			'no_events_text' => __('There are no active events.','constant-contact-api'),
+			'no_events_text' => __('There are no active events.', 'ctct'),
 		));
 
 		extract($instance);
 	?>
-	<h3><?php _e('Constant Contact Event Widget Settings', 'constant-contact-api'); ?></h3>
+	<h3><?php _e('Constant Contact Event Widget Settings', 'ctct'); ?></h3>
 	<a name="widget"></a>
 	<table class="form-table">
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Widget Title', 'constant-contact-api'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Widget Title', 'ctct'); ?></span></label></p></th>
 			<td>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo esc_attr( $title ); ?>" size="50" />
-			<p class="description"><?php _e('The title text for the this widget.', 'constant-contact-api'); ?></p>
+			<p class="description"><?php _e('The title text for the this widget.', 'ctct'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Widget Description', 'constant-contact-api'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Widget Description', 'ctct'); ?></span></label></p></th>
 			<td>
 			<textarea class="widefat" name="<?php echo $this->get_field_name('description');?>" id="<?php echo $this->get_field_id('description');?>" cols="50" rows="4"><?php echo esc_attr( $description ); ?></textarea>
-			<p class="description"><?php _e('The description text displayed in the sidebar widget before the events. HTML allowed. Paragraphs will be added automatically like in posts.', 'constant-contact-api'); ?></p>
+			<p class="description"><?php _e('The description text displayed in the sidebar widget before the events. HTML allowed. Paragraphs will be added automatically like in posts.', 'ctct'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('no_events_text');?>"><span><?php _e('"No Events" Text', 'constant-contact-api'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('no_events_text');?>"><span><?php _e('"No Events" Text', 'ctct'); ?></span></label></p></th>
 			<td>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id('no_events_text');?>" name="<?php echo $this->get_field_name('no_events_text');?>" value="<?php echo esc_attr( $no_events_text ); ?>" />
-			<p class="description"><?php _e('The text to display if there are no events.', 'constant-contact-api'); ?></p>
+			<p class="description"><?php _e('The text to display if there are no events.', 'ctct'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
@@ -147,7 +147,7 @@ class constant_contact_events_widget extends WP_Widget {
 			<td>
 				<?php $limit = isset($limit) ? $limit : null; ?>
 				<select class="select" name="<?php echo $this->get_field_name('limit');?>" id="<?php echo $this->get_field_id('limit');?>">
-					<option value="0"<?php selected( empty($limit), true ); ?>><?php esc_attr_e('All', 'constant-contact-api'); ?></option>
+					<option value="0"<?php selected( empty($limit), true ); ?>><?php esc_attr_e('All', 'ctct'); ?></option>
 					<option value="1"<?php selected($limit, 1); ?>>1</option>
 					<option value="2"<?php selected($limit, 2); ?>>2</option>
 					<option value="3"<?php selected($limit, 3); selected($limit, null) ?>>3</option>
@@ -159,57 +159,57 @@ class constant_contact_events_widget extends WP_Widget {
 					<option value="9"<?php selected($limit, 9); ?>>9</option>
 					<option value="10"<?php selected($limit, 10); ?>>10</option>
 				</select>
-				<p class="description"><?php _e('The number of events to show at once.', 'constant-contact-api'); ?></p>
+				<p class="description"><?php _e('The number of events to show at once.', 'ctct'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label><span><?php _e('Display Options', 'constant-contact-api'); ?></span></label></p></th>
+			<th scope="row"><p><label><span><?php _e('Display Options', 'ctct'); ?></span></label></p></th>
 			<td>
 			<?php
 				$fields = array(
 					array(
 						'id' => 'onlyactive',
-						'label' => __('Only show active events', 'constant-contact-api'),
+						'label' => __('Only show active events', 'ctct'),
 						'default' => true,
 					),
 					array(
 						'id' => 'showdescription',
-						'label' => __('Show event Description', 'constant-contact-api'),
+						'label' => __('Show event Description', 'ctct'),
 						'default' => true
 					),
 					array(
 						'id' => 'datetime',
-						'label' => __('Show event Date & Time', 'constant-contact-api'),
+						'label' => __('Show event Date & Time', 'ctct'),
 						'default' => true
 					),
 					array(
 						'id' => 'location',
-						'label' => __('Show event Location', 'constant-contact-api'),
+						'label' => __('Show event Location', 'ctct'),
 						'default' => false
 					),
 					array(
 						'id' => 'map',
-						'label' => __('Show map link for Location (if Location is shown)', 'constant-contact-api'),
+						'label' => __('Show map link for Location (if Location is shown)', 'ctct'),
 						'default' => false
 					),
 					array(
 						'id' => 'calendar',
-						'label' => __('Show "Add to Calendar" link', 'constant-contact-api'),
+						'label' => __('Show "Add to Calendar" link', 'ctct'),
 						'default' => false
 					),
 					array(
 						'id' => 'directtoregistration',
-						'label' => __('Link directly to registration page, rather than event homepage', 'constant-contact-api'),
+						'label' => __('Link directly to registration page, rather than event homepage', 'ctct'),
 						'default' => false
 					),
 					array(
 						'id' => 'newwindow',
-						'label' => __('Open event links in a new window', 'constant-contact-api'),
+						'label' => __('Open event links in a new window', 'ctct'),
 						'default' => false
 					),
 					array(
 						'id' => 'style',
-						'label' => __('<strong>Use plugin styles</strong>. Disable if you want to use your own styles (CSS)', 'constant-contact-api'),
+						'label' => __('<strong>Use plugin styles</strong>. Disable if you want to use your own styles (CSS)', 'ctct'),
 						'default' => true
 					)
 				);

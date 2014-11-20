@@ -26,8 +26,8 @@ foreach($summary as $k => $v) {
 
 <table class="widefat clear fixed ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'constant-contact-api'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'constant-contact-api'); ?></th>
+        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
+        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -54,11 +54,11 @@ foreach($summary as $k => $v) {
                     break;
                 case 'addresses':
                     if($personal = $Contact->get('personal_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'constant-contact-api'), $personal);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'ctct'), $personal);
                     }
 
                     if($business = $Contact->get('business_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'constant-contact-api'), $business);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'ctct'), $business);
                     }
                     break;
                 case 'email_addresses':

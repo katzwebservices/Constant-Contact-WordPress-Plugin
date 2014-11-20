@@ -26,9 +26,9 @@ class CTCT_Widget_Simple extends WP_Widget {
 		$this->cc = new KWSConstantContact();
 		/* Widget variable settings. */
 		$this->widget_cssclass = 'ctct-widget-simple';
-		$this->widget_description = __( 'Allow users to subscribe to your Constant Contact .', 'constant-contact-api' );
+		$this->widget_description = __( 'Allow users to subscribe to your Constant Contact .', 'ctct');
 		$this->widget_idbase = 'ctct_widget_simple';
-		$this->widget_name = __('Subscribe to Newsletter', 'constant-contact-api' );
+		$this->widget_name = __('Subscribe to Newsletter', 'ctct');
 
 		/* Widget settings. */
 		$widget_ops = array( 'classname' => $this->widget_cssclass, 'description' => $this->widget_description );
@@ -59,19 +59,19 @@ class CTCT_Widget_Simple extends WP_Widget {
 					$email = sanitize_text_field( $_POST['ctct']['email'] );
 
 					if (!is_email($email)) {
-						echo '<div class="woocommerce_error">'.__('Please enter a valid email address.', 'constant-contact-api').'</div>';
+						echo '<div class="woocommerce_error">'.__('Please enter a valid email address.', 'ctct').'</div>';
 					} else {
 
 						$Contact = $this->cc->addUpdateContact(array('email' => $email, 'lists' => $lists));
 
-						echo '<div class="woocommerce_message">'.__('Thanks for subscribing.', 'constant-contact-api').'</div>';
+						echo '<div class="woocommerce_message">'.__('Thanks for subscribing.', 'ctct').'</div>';
 					}
 				}
 			?>
 			<div>
-				<label class="screen-reader-text hidden" for="s"><?php _e('Email Address:', 'constant-contact-api'); ?></label>
-				<input type="text" name="ctct[email]" id="ctct-newsletter-email" placeholder="<?php _e('Your email address', 'constant-contact-api'); ?>" value="" />
-				<input type="submit" id="newsletter_subscribe" value="<?php _e('Subscribe', 'constant-contact-api'); ?>" />
+				<label class="screen-reader-text hidden" for="s"><?php _e('Email Address:', 'ctct'); ?></label>
+				<input type="text" name="ctct[email]" id="ctct-newsletter-email" placeholder="<?php _e('Your email address', 'ctct'); ?>" value="" />
+				<input type="submit" id="newsletter_subscribe" value="<?php _e('Subscribe', 'ctct'); ?>" />
 			</div>
 		</form>
 		<?php
@@ -90,20 +90,20 @@ class CTCT_Widget_Simple extends WP_Widget {
 	function form( $instance ) {
 		extract($instance);
  ?>
-			<h2><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'constant-contact-api') ?></label></h2>
+			<h2><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'ctct') ?></label></h2>
 			<p>
-			<input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" value="<?php if ( !empty($title)) { echo esc_attr( $title ); } else { echo __('Newsletter', 'constant-contact-api');} ?>" /></p>
+			<input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" value="<?php if ( !empty($title)) { echo esc_attr( $title ); } else { echo __('Newsletter', 'ctct');} ?>" /></p>
 
-			<h2><label for="<?php echo $this->get_field_id('list'); ?>"><?php _e('Newsletter List:', 'constant-contact-api') ?></label></h2>
-			<span class="description" style="font-style:normal;"><?php _e('Users will be subscribed to the following lists when submitted.', 'constant-contact-api'); ?></span>
+			<h2><label for="<?php echo $this->get_field_id('list'); ?>"><?php _e('Newsletter List:', 'ctct') ?></label></h2>
+			<span class="description" style="font-style:normal;"><?php _e('Users will be subscribed to the following lists when submitted.', 'ctct'); ?></span>
 			<p>
 <?php
 
-						$lists = array( '' => __('Select a list...', 'constant-contact-api') );
+						$lists = array( '' => __('Select a list...', 'ctct') );
 						$lists = $this->cc->getAllLists();
 						#IDX_Plus::r($lists);
 						if (!$lists) {
-							echo '<div class="error"><p>'.__('Unable to load lists() from Constant Contact.', 'constant-contact-api').'</p></div>';
+							echo '<div class="error"><p>'.__('Unable to load lists() from Constant Contact.', 'ctct').'</p></div>';
 						} else {
 							$listHTML = KWSContactList::outputHTML($lists, array(
 								'type' => 'checkboxes',

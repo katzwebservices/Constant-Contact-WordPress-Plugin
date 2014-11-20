@@ -42,15 +42,15 @@
 </style>
 
 <div class="wrap" id="cc-message-wrap">
-    <h2 class="clear"><?php echo sprintf(__('Did you know that Constant Contact offers <a href="%s" title="Learn more about Constant Contact Event Marketing" rel="external">Event&nbsp;Marketing</a>?', 'constant-contact-api'), 'http://katz.si/4o'); ?></h2>
-    <a id="see_how" href="http://katz.si/4p" rel="external"><?php _e('See How it Works!', 'constant-contact-api'); ?></a>
-    <a id="free_trial" href="http://katz.si/4k" rel="external"><?php _e('Start Your Free Trial', 'constant-contact-api'); ?></a>
+    <h2 class="clear"><?php echo sprintf(__('Did you know that Constant Contact offers <a href="%s" title="Learn more about Constant Contact Event Marketing" rel="external">Event&nbsp;Marketing</a>?', 'ctct'), 'http://katz.si/4o'); ?></h2>
+    <a id="see_how" href="http://katz.si/4p" rel="external"><?php _e('See How it Works!', 'ctct'); ?></a>
+    <a id="free_trial" href="http://katz.si/4k" rel="external"><?php _e('Start Your Free Trial', 'ctct'); ?></a>
     <ul class="ul-disc clear">
-        <li><?php echo sprintf(__('Affordable, priced for small business, discount for nonprofits. <a href="%s">Start for FREE!</a>', 'constant-contact-api'), 'http://katz.si/4k'); ?></li>
-        <li><?php _e('Easy-to-use tools and templates for online event registration and promotion', 'constant-contact-api'); ?></li>
-        <li><?php _e('Professional &#8212; you, and your events, look professional', 'constant-contact-api'); ?></li>
-        <li><?php _e('Secure credit card processing &#8212; collect event fees securely with PayPal processing', 'constant-contact-api'); ?></li>
-        <li><?php _e('Facebook, Twitter links make it easy to promote your events online', 'constant-contact-api'); ?></li>
-        <li><?php echo sprintf(__('Track and see results with detailed reports on invitations, payments, RSVP\'s, <a href="%s">and more</a>', 'constant-contact-api'), 'http://katz.si/4n'); ?></li>
+        <li><?php echo sprintf(__('Affordable, priced for small business, discount for nonprofits. <a href="%s">Start for FREE!</a>', 'ctct'), 'http://katz.si/4k'); ?></li>
+        <li><?php _e('Easy-to-use tools and templates for online event registration and promotion', 'ctct'); ?></li>
+        <li><?php _e('Professional &#8212; you, and your events, look professional', 'ctct'); ?></li>
+        <li><?php _e('Secure credit card processing &#8212; collect event fees securely with PayPal processing', 'ctct'); ?></li>
+        <li><?php _e('Facebook, Twitter links make it easy to promote your events online', 'ctct'); ?></li>
+        <li><?php echo sprintf(__('Track and see results with detailed reports on invitations, payments, RSVP\'s, <a href="%s">and more</a>', 'ctct'), 'http://katz.si/4n'); ?></li>
     </ul>
 </div>

@@ -1,8 +1,8 @@
 <form method="post">
     <table class="widefat clear fixed ctct_table" cellspacing="0">
         <thead>
-            <th scope="col" class="column-name" style="width:30%"><?php _e('Field Name', 'constant-contact-api'); ?></th>
-            <th scope="col" class="column-title"><?php _e('Field Values', 'constant-contact-api'); ?></th>
+            <th scope="col" class="column-name" style="width:30%"><?php _e('Field Name', 'ctct'); ?></th>
+            <th scope="col" class="column-title"><?php _e('Field Values', 'ctct'); ?></th>
         </thead>
         <tbody>
             <?php
@@ -40,15 +40,15 @@
                     <input name="addresses[%%id%%][address_type]" type="hidden" value="%%name%%" />
                     ';
                     $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                     __('Personal Address', 'constant-contact-api'), str_replace(array('%%name%%', '%%id%%'), array('personal', 0), $personal));
+                                     __('Personal Address', 'ctct'), str_replace(array('%%name%%', '%%id%%'), array('personal', 0), $personal));
                     $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                     __('Business Address', 'constant-contact-api'), str_replace(array('%%name%%', '%%id%%'), array('business', 1), $personal));
+                                     __('Business Address', 'ctct'), str_replace(array('%%name%%', '%%id%%'), array('business', 1), $personal));
                     break;
                 case 'custom_fields':
                 	$i = 1;
                 	$html .= '<ul class="ctct-checkboxes">';
                 	while($i < 16) {
-                        $label = sprintf( esc_attr_x( 'Custom Field %d', 'Admin label for custom fields', 'constant-contact-api' ), $i );
+                        $label = sprintf( esc_attr_x( 'Custom Field %d', 'Admin label for custom fields', 'ctct'), $i );
                 	    $html .= sprintf('<li><label class="wrap">%1$s <input title="" placeholder="%1$s" type="text" name="CustomField%2$d" class="input regular-text" value="%3$s" /></label></li>', $label, $i, $Contact->get('CustomField'.$i));
                 	    $i++;
                 	}

@@ -104,16 +104,16 @@ class DataValidation {
 	function getStatusMessageFromCode($status_code) {
 
 		switch($status_code) {
-			case 1: $message = __('Invalid email address', 'constant-contact-api'); break;
-			case 2:	$message = __('Invalid email address host name', 'constant-contact-api'); break;
-			case 3:	$message = __('Invalid email server for this domain', 'constant-contact-api'); break;
-			case 4:	$message = __('Invalid email address local part', 'constant-contact-api'); break;
-			case 5:	$message = __('Email address length exceeded', 'constant-contact-api'); break;
-			case 6:	$message = __('Email address not found', 'constant-contact-api'); break;
-			case 7:	$message = __('Email address could not be verified', 'constant-contact-api'); break;
-			case 8:	$message = __('Email address found', 'constant-contact-api'); break;
-			case 9:	$message = __('Domain accepts all recipients &ndash; Accepts All', 'constant-contact-api'); break;
-			case 10: $message = __('Domain has an email server but there is no connection to it &ndash; Ambiguous', 'constant-contact-api'); break;
+			case 1: $message = __('Invalid email address', 'ctct'); break;
+			case 2:	$message = __('Invalid email address host name', 'ctct'); break;
+			case 3:	$message = __('Invalid email server for this domain', 'ctct'); break;
+			case 4:	$message = __('Invalid email address local part', 'ctct'); break;
+			case 5:	$message = __('Email address length exceeded', 'ctct'); break;
+			case 6:	$message = __('Email address not found', 'ctct'); break;
+			case 7:	$message = __('Email address could not be verified', 'ctct'); break;
+			case 8:	$message = __('Email address found', 'ctct'); break;
+			case 9:	$message = __('Domain accepts all recipients &ndash; Accepts All', 'ctct'); break;
+			case 10: $message = __('Domain has an email server but there is no connection to it &ndash; Ambiguous', 'ctct'); break;
 		}
 
 		return apply_filters('datavalidation_status_message', $message, $status_code);

@@ -44,7 +44,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
         $id = intval(@$_GET['edit']);
 
         if(!isset($id) || empty($id)) {
-            esc_html_e('You have not specified a Campaign to edit', 'constant-contact-api');
+            esc_html_e('You have not specified a Campaign to edit', 'ctct');
             return;
         }
 
@@ -66,7 +66,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
         $id = intval(@$_GET['view']);
 
         if(!isset($id) || empty($id)) {
-            esc_html_e('You have not specified a Campaign to view', 'constant-contact-api');
+            esc_html_e('You have not specified a Campaign to view', 'ctct');
             return;
         }
 

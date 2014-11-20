@@ -11,8 +11,8 @@
 </div>
 <table class="widefat fixed ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'constant-contact-api'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'constant-contact-api'); ?></th>
+        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
+        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -39,7 +39,7 @@
                         foreach((array)$value as $click) {
                             $clickThroughOutput .= '<li>';
                             $clickThroughOutput .= '<a class="block" href="'.$click->url.'">'.$click->url.'</a>';
-                            $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'constant-contact-api'), __('Clicks', 'constant-contact-api'), $click->click_count)).'</strong>';
+                            $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'ctct'), __('Clicks', 'ctct'), $click->click_count)).'</strong>';
                             $clickThroughOutput .= '</li>';
                         }
 

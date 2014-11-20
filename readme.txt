@@ -49,7 +49,7 @@ If you use the plugin and find it useful please make sure to come back and vote 
 
 To install the plugin follow the steps below:
 
-1. Upload `constant-contact-api` to the `/wp-content/plugins/` directory.
+1. Upload `ctct` to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Activate the Constant Contact API: Form Designer plugin (optional)
 4. Click the new main menu item called "Constant Contact".
@@ -69,6 +69,9 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+= 3.1.3 = 
+* Update translation textdomain to `ctct` from `constant-contact-api`
 
 = 3.1.2 =
 * Delete old username and password on activation

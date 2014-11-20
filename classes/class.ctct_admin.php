@@ -33,7 +33,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 
 	function add_menu() {
 		// create new top-level menu
-		add_menu_page(__('Constant Contact API', 'constant-contact-api'), __('Constant Contact', 'constant-contact-api'), 'manage_options', 'constant-contact-api', array(&$this, 'page'), CTCT_FILE_URL.'images/admin/constant-contact-admin-icon.png');
+		add_menu_page(__('Constant Contact API', 'ctct'), __('Constant Contact', 'ctct'), 'manage_options', 'constant-contact-api', array(&$this, 'page'), CTCT_FILE_URL.'images/admin/constant-contact-admin-icon.png');
 	}
 
 	function addActions() {
@@ -68,7 +68,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 
 	        	if( is_wp_error( $notice ) ) {
 
-	        		echo '<h3>'.esc_html( sprintf( __('Error: %s', 'constant-contact-api'), $notice->get_error_code() ) ).'</h3>';
+	        		echo '<h3>'.esc_html( sprintf( __('Error: %s', 'ctct'), $notice->get_error_code() ) ).'</h3>';
 
 	        		echo wpautop( esc_html( $notice->get_error_message() ) );
 

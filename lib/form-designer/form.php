@@ -203,7 +203,7 @@ class CTCT_Form_Designer_Output {
 		// The field is required
 		if( !empty( $field['required'] ) ) {
 			$required = " required";
-			$reqlabel = isset( $this->data['text']['reqlabel'] ) ? htmlentities($this->data['text']['reqlabel']) : __('The %s field is required', 'constant-contact-api');
+			$reqlabel = isset( $this->data['text']['reqlabel'] ) ? htmlentities($this->data['text']['reqlabel']) : __('The %s field is required', 'ctct');
 			$asterisk = !empty( $this->form['reqast'] ) ? '<span class="req gfield_required" title="'.esc_attr( sprintf($reqlabel, $label) ).'">*</span>' : '';
 		}
 
@@ -453,7 +453,7 @@ class CTCT_Form_Designer_Output {
 	    } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
 	        $process_class = ' has_success';
 	        $success = '<p class="success cc_success">';
-	        $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
+	        $success .= esc_html__('Success, you have been subscribed.', 'ctct');
 	        $success .= '</p>';
 	        $success = apply_filters('constant_contact_form_success', $success);
 
