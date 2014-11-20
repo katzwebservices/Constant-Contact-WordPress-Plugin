@@ -1,10 +1,10 @@
 === Constant Contact for Wordpress ===
-Contributors: katzwebdesign, katzwebservices, jamesbenson
+Contributors: katzwebdesign, katzwebservices
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
-Requires at least: 2.9
-Tested up to: 3.6.1
-Stable tag: 2.4.1
+Requires at least: 3.3
+Tested up to: 4.0.1
+Stable tag: 3.1.2
 
 Integrate Constant Contact into your website with this full-featured plugin.
 
@@ -75,6 +75,9 @@ To install the plugin follow the steps below:
 * When plugin is de-activated, delete stored token and transients
 * Update InlineEdit script
 * Verify plugin status for Akismet and WangGuard plugins
+* Update DataValidation.com API integration
+* Add `blank` parameter to `KWSContactList::outputHTML()` for select dropdowns that need an empty option
+* Update strings
 
 = 3.1.1 =
 * Redesigned Form Designer to match WP 4.0 look & feel
