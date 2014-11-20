@@ -12,6 +12,9 @@ License:           	GPLv2 or later
 License URI: 		http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+// Delete old username & password on activation
+register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
+
 final class WP_CTCT {
 
 	const version = '3.1.1';
@@ -45,6 +48,22 @@ final class WP_CTCT {
 		} else {
 			$this->setup();
 		}
+	}
+
+	/**
+	 * Delete authentication and cached data on de-activation of the plugin
+	 *
+	 * @return void
+	 */
+	static function deactivate() {
+
+		// Clear OAuth tokens
+		delete_option( 'ctct_token_response' );
+		delete_option( 'ctct_configured' );
+
+		// Flush stored transient data
+		CTCT_Settings::flush_transients();
+
 	}
 
 	function setup() {
