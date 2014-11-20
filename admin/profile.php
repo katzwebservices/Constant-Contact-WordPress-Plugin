@@ -105,7 +105,7 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 				<p><img src="%s" width="225" height="33" alt="Constant Contact" class="block" /><a href="%s">Admin-Only: Edit this User\'s Details</a> %s</p>
 			', 'constant-contact-api'),
 				plugins_url('images/admin/logo-horizontal.png', CTCT_FILE),
-				admin_url('admin.php?page=constant-contact-contacts&edit='.$Contact->id),
+				admin_url('admin.php?page=constant-contact-contacts&amp;edit='.$Contact->id),
 				constant_contact_tip(__('Users will not see this link or the Constant Contact logo.'), false)
 			);
 

@@ -51,10 +51,9 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 		</ul>
 	</div>
 	<h4 class="smallmarginbottom"><?php esc_html_e('List Selection Format', 'constant-contact-api'); ?></h4>
-	<p class="description"><?php esc_html_e('This controls what kind of list is shown. <a href="#listTypeInfo" class="moreInfo">More info</a>', 'constant-contact-api'); ?></p>
 	<ul class="list-selection-format">
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Opt-in Checkbox', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown List', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Checkbox List', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown Field', 'consatnt-contact-api'); ?></label></li>
 		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'consatnt-contact-api'); ?></label></li>
 	</ul>
 
@@ -319,20 +318,20 @@ function cc_form_meta_box_border($post, $metabox=array()) {
 	$form = $metabox['args'][0];
 ?>
 
-	<div id="borderitem" class="block cc-has-slider">
+	<div id="bordercoloritem" class="block">
+		<label for="bordercolor" class="howto block"><span><?php esc_html_e('Border Color:', 'constant-contact-api'); ?></span></label>
+		<div class="input">
+			<input type="hidden" id="bordercolor" name="bordercolor" class="wpcolor" value="<?php ctct_input_value($form, 'bordercolor', '#000000'); ?>" />
+		</div>
+	</div>
+
+	<div id="borderwidthitem" class="block cc-has-slider">
 		<label for="borderwidth" class="howto">
 
 			<span><?php esc_html_e('Border Width', 'constant-contact-api'); ?><tt><?php ctct_input_value($form, 'borderwidth', '4'); ?>px</tt></span>
 			<div class="block" id="borderwidth-slider"></div>
 			<input id="borderwidth" name="borderwidth" type="hidden" value="<?php ctct_input_value($form, 'borderwidth', '4'); ?>" />
 		</label>
-	</div>
-
-	<div id="bordercoloritem" class="block">
-		<label for="bordercolor" class="howto block"><span><?php esc_html_e('Border Color:', 'constant-contact-api'); ?></span></label>
-		<div class="input">
-			<input type="hidden" id="bordercolor" name="bordercolor" class="wpcolor" value="<?php ctct_input_value($form, 'bordercolor', '#000000'); ?>" />
-		</div>
 	</div>
 
 	<div class="borderradius cc-has-slider">

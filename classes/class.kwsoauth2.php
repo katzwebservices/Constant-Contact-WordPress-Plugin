@@ -74,6 +74,8 @@ class KWSOAuth2 extends CtctOAuth2 {
 
 					do_action('ctct_token_saved', $token);
 
+					$admin_url = admin_url('admin.php?page=constant-contact-api&oauth=new');
+
 				} catch(Exception $e) {
 
 					$token = false;
@@ -81,11 +83,14 @@ class KWSOAuth2 extends CtctOAuth2 {
 					// Delete configured setting, save error message
 					self::getInstance()->saveToken($e->getMessage(), false);
 
+					$admin_url = admin_url('admin.php?page=constant-contact-api');
 				}
 
 				do_action('ctct_token_updated', $token);
 
-				wp_redirect( admin_url('admin.php?page=constant-contact-api&oauth=new') );
+				// Go to the settings page
+				wp_redirect( $admin_url );
+
 				die();
 			}
 		}

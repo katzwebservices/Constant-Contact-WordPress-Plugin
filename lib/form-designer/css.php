@@ -181,6 +181,7 @@ $css = <<<EOD
 	-webkit-border-radius: {$borderradius}px {$borderradius}px;
 	border-radius: {$borderradius}px {$borderradius}px {$borderradius}px {$borderradius}px;
 	width: {$width}{$widthtype};
+	max-width: 100%;
 	color: {$tcolor}!important;
 	font-family: {$tfont}!important;
 	font-size: {$tsize}!important;

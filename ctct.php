@@ -4,7 +4,7 @@ Plugin Name: Constant Contact Plugin for WordPress
 Plugin URI: https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
 Description: Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: Katz Web Services, Inc.
-Version: 3.1.1
+Version: 3.1.2
 Author URI: http://katz.co
 Text Domain: constant-contact-api
 Domain Path: /languages
@@ -25,12 +25,18 @@ final class WP_CTCT {
 
 	function __construct() {
 
+		// Allow users to override with their own keys in wp-config.php
+		if(!defined('CTCT_APIKEY')) {
+			define("CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t");
+			define("CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF");
+		}
+
 		if(!defined('CTCT_DIR_PATH')) {
 
-			define('CTCT_FILE', __FILE__); // The full path to this file
-			define('CTCT_FILE_PATH', dirname(__FILE__) . '/'); // The full path to this file
-			define('CTCT_FILE_URL', plugin_dir_url(__FILE__)); // @ Added 2.0 The full URL to this file
-			define('CTCT_DIR_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
+			define('CTCT_FILE', __FILE__);
+			define('CTCT_FILE_PATH', dirname(__FILE__) . '/');
+			define('CTCT_FILE_URL', plugin_dir_url(__FILE__));
+			define('CTCT_DIR_PATH', plugin_dir_path(__FILE__));
 
 			/**
 			 * If the server doesn't support PHP 5.3, sorry, but you're outta luck.
@@ -68,18 +74,18 @@ final class WP_CTCT {
 
 	function setup() {
 
-		if(!defined('CTCT_APIKEY')) {
+		if( !class_exists( 'KWSOAuth2' ) ) {
 
 			include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
 			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
 			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
 
-			define("CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t");
-			define("CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF");
-
 			$this->oauth = new KWSOAuth2();
+
 			$token = $this->oauth->getToken();
+
 			define("CTCT_ACCESS_TOKEN", $token);
+
 			define("CTCT_USERNAME", $this->oauth->getToken('username'));
 		}
 
@@ -118,7 +124,9 @@ final class WP_CTCT {
 		include_once CTCT_DIR_PATH.'classes/class.ctct_admin_page.php';
 		include_once CTCT_DIR_PATH.'classes/class.ctct_settings.php';
 		include_once CTCT_DIR_PATH.'classes/class.ctct_admin.php';
+
 		include_once CTCT_DIR_PATH.'lib/kwslog.php';
+
 		$this->log = new KWSLog('ctct', 'Constant Contact');
 
 		/** Admin pages */
