@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/constantcontact/php-sdk.git",
-                "reference": "087a12971b4314ac1961678490815da315244da1"
+                "reference": "1b8f6af720fef1a7b59fdefa9152bd2023144477"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/087a12971b4314ac1961678490815da315244da1",
-                "reference": "087a12971b4314ac1961678490815da315244da1",
+                "url": "https://api.github.com/repos/constantcontact/php-sdk/zipball/1b8f6af720fef1a7b59fdefa9152bd2023144477",
+                "reference": "1b8f6af720fef1a7b59fdefa9152bd2023144477",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "ctct",
                 "email marketing"
             ],
-            "time": "2014-11-07 16:32:41"
+            "time": "2014-11-18 19:21:22"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
