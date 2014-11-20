@@ -70,7 +70,10 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+= 3.1.2 =
+* Delete old username and password on activation
 * When plugin is de-activated, delete stored token and transients
+
 = 3.1.1 =
 * Redesigned Form Designer to match WP 4.0 look & feel
 	* Added input sliders to Form Designer - easier than dropdowns

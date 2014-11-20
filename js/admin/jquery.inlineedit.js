@@ -9,47 +9,60 @@
  * Inline (in-place) editing.
  */
 
-(function($) {
+(function( factory ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define( ['jquery'], factory );
+    } else {
+        factory( jQuery );
+    }
+}(function( $ ) {
 
 // cached values
 var namespace = '.inlineedit',
-    placeholderClass = 'inlineEdit-placeholder';
+    placeholderClass = 'inlineEdit-placeholder',
+    events = ['click', 'mouseenter','mouseleave'].join(namespace+' ');
 
 // define inlineEdit method
 $.fn.inlineEdit = function( options ) {
-    var self = this;
 
-    return this
+    this.each( function() {
+        $.inlineEdit.getInstance( this, options ).initValue();
+    });
 
-        .each( function() {
-            $.inlineEdit.getInstance( this, options ).initValue();
-        })
+    var cbBindings = function( event ) {
+            bindings.apply( this, [event] );
+        };
 
-        .on( ['click', 'mouseenter','mouseleave'].join(namespace+' '), function( event ) {
+    if ($.fn.on) {
+        $(this.context).on( events, this.selector, cbBindings );
+    } else {
+        // legacy support
+        $(this).live( events, cbBindings );
+    }
 
-            var widget = $.inlineEdit.getInstance( this, options ),
-                editableElement = widget.element.find( widget.options.control ),
-                mutated = !!editableElement.length;
+    function bindings( event ) {
+        var widget = $.inlineEdit.getInstance( this, options ),
+            editableElement = widget.element.find( widget.options.control ),
+            mutated = !!editableElement.length;
 
-            widget.element.removeClass( widget.options.hover );
-            if ( editableElement[0] != event.target  && editableElement.has(event.target).length == 0 ) {
-                switch ( event.type ) {
-                    case 'click':
-                        widget[ mutated ? 'mutate' : 'init' ]();
-                        break;
+        widget.element.removeClass( widget.options.hover );
+        if ( editableElement[0] != event.target  && editableElement.has(event.target).length == 0 ) {
+            switch ( event.type ) {
+                case 'click':
+                    widget[ mutated ? 'mutate' : 'init' ]();
+                    break;
 
-                    case 'mouseover': // jquery 1.4.x
-                    case 'mouseout': // jquery 1.4.x
-                    case 'mouseenter':
-                    case 'mouseleave':
-                        if ( !mutated ) {
-                            widget.hoverClassChange( event );
-                        }
-                        break;
-                }
+                case 'mouseover': // jquery 1.4.x
+                case 'mouseout': // jquery 1.4.x
+                case 'mouseenter':
+                case 'mouseleave':
+                    if ( !mutated ) {
+                        widget.hoverClassChange( event );
+                    }
+                    break;
             }
-
-        });
+        }
+    }
 }
 
 // plugin constructor
@@ -89,7 +102,8 @@ $.inlineEdit.defaults = {
     cancelOnBlur: false,
     saveOnBlur: false,
     nl2br: true,
-    debug: false
+    debug: false,
+    mutate: ''
 };
 
 // plugin prototypes
@@ -125,12 +139,11 @@ $.inlineEdit.prototype = {
 
     mutate: function() {
         var self = this;
-        //console.log('mutate', self.value());
 
         // save a copy of self before mutation (useful for cancel)
         self.prevValue( self.element.html() );
 
-        return self
+        self
             .element
             .html( self.mutatedHtml( self.value() ) )
             .addClass( self.options.editInProgress )
@@ -174,6 +187,13 @@ $.inlineEdit.prototype = {
                 })
                 .focus()
             .end();
+
+        // trigger mutate event on mutation (i.e. edit-in-progress)
+        if (this._callback('mutate', [event, this])) {
+            this._debug( 'mutate:', 'Current stored value', this.value() );
+        }
+
+        return this;
     },
 
     value: function( newValue ) {
@@ -320,4 +340,4 @@ $.inlineEdit.prototype = {
 
 };
 
-})(jQuery);
+}));
