@@ -5,11 +5,13 @@
  */
 class DataValidation {
 
-	var $host = 'dvapi.com';
+	var $host = 'https://api.datavalidation.com';
 	var $post_endpoint = 'http://dvapi.com/email/validate';
-	var $get_endpoint = 'http://dvapi.com';
+	var $get_endpoint = 'https://api.datavalidation.com/1.0/rt/%s/';
 	var $apikey;
-	var $message;
+	var $last_response;
+
+	private $message = '';
 
 	function __construct($apikey, $email = false) {
 		$this->apikey = $apikey;
@@ -21,26 +23,31 @@ class DataValidation {
 
 	function validate($email) {
 
-		$location = $this->post($email);
+		$response = $this->get( $email );
 
-		// The post failed.
-		if(!$location) { return false; }
+		if( empty( $response ) || ( !is_array( $response) && !is_string( $response ) ) ) {
+			return false;
+		}
 
-		$response = $this->get($location);
-		$response = @json_decode($response);
+		$response = json_decode($response);
 
-		if(empty($response)) { return false; }
+		$this->last_response = $response;
 
-		$this->message = $this->getStatusMessage($response->code);
+		$this->message = $this->getStatusMessageFromCode($response->code);
 
-		return $this->getStatusIntent($response->code);
+		return $this->getStatusIntent( $response );
+	}
+
+	public function getStatusMessage() {
+		return $this->message;
 	}
 
 	function getRequestArgs($body) {
 		$args = array(
 		    'headers' => array(
 		        'Host' => $this->host,
-				'apikey' => $this->apikey,
+				'Authorization' => 'bearer ' . $this->apikey,
+				'Accept' => '*/*',
 				'Content-Type' => 'application/json',
 				'Content-Length' => strlen($body),
 			),
@@ -54,49 +61,36 @@ class DataValidation {
 		return $args;
 	}
 
-	function get($location) {
-		$url = $this->get_endpoint.$location.'.json';
+	function get( $email ) {
+
+		$url = sprintf( $this->get_endpoint, $email );
+
 		$request = wp_remote_get($url, $this->getRequestArgs(''));
+
+		if( empty( $request ) || is_wp_error( $request ) ) {
+			return false;
+		}
+
 		return wp_remote_retrieve_body($request);
 	}
 
-	function post($email) {
-		$body = json_encode(array(
-				'settings' => array(),
-				#'apikey' => $this->apikey,
-				'emails' => array(
-			    	array('email' => $email)
-			    )
-			));
+	function getStatusIntent( $response ) {
 
-
-		$request = wp_remote_post($this->post_endpoint, $this->getRequestArgs($body));
-
-		$headers = wp_remote_retrieve_headers($request);
-
-		return isset($headers['location']) ? $headers['location'] : false;
-	}
-
-	function getStatusIntent($status_code) {
-		switch($status_code) {
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-				return false;
-				break;
-			case 7:
-			case 9:
-			case 10:
-				return null;
+		switch( $response->grade ) {
+			case 'F':
+				$return = false;
 				break;
 
-			case 8:
-				return true;
+			case 'D':
+				$return = null;
+				break;
+
+			default:
+				$return = true;
 				break;
 		}
+
+		return apply_filters( 'datavalidation_status_intent', $return, $response );
 	}
 	/**
 	 * Get the message associated with the status code
@@ -107,19 +101,19 @@ class DataValidation {
 	 * @param  integer $status_code Status code returned from DataValidation.com
 	 * @return string              Status message
 	 */
-	function getStatusMessage($status_code) {
+	function getStatusMessageFromCode($status_code) {
 
 		switch($status_code) {
-			case 1: $message = __('Invalid email address', 'datavalidation'); break;
-			case 2:	$message = __('Invalid email address host name', 'datavalidation'); break;
-			case 3:	$message = __('Invalid email server for this domain', 'datavalidation'); break;
-			case 4:	$message = __('Invalid email address local part', 'datavalidation'); break;
-			case 5:	$message = __('Email address length exceeded', 'datavalidation'); break;
-			case 6:	$message = __('Email address not found', 'datavalidation'); break;
-			case 7:	$message = __('Email address could not be verified', 'datavalidation'); break;
-			case 8:	$message = __('Email address found', 'datavalidation'); break;
-			case 9:	$message = __('Domain accepts all recipients &ndash; Accepts All', 'datavalidation'); break;
-			case 10: $message = __('Domain has an email server but there is no connection to it &ndash; Ambiguous', 'datavalidation'); break;
+			case 1: $message = __('Invalid email address', 'constant-contact-api'); break;
+			case 2:	$message = __('Invalid email address host name', 'constant-contact-api'); break;
+			case 3:	$message = __('Invalid email server for this domain', 'constant-contact-api'); break;
+			case 4:	$message = __('Invalid email address local part', 'constant-contact-api'); break;
+			case 5:	$message = __('Email address length exceeded', 'constant-contact-api'); break;
+			case 6:	$message = __('Email address not found', 'constant-contact-api'); break;
+			case 7:	$message = __('Email address could not be verified', 'constant-contact-api'); break;
+			case 8:	$message = __('Email address found', 'constant-contact-api'); break;
+			case 9:	$message = __('Domain accepts all recipients &ndash; Accepts All', 'constant-contact-api'); break;
+			case 10: $message = __('Domain has an email server but there is no connection to it &ndash; Ambiguous', 'constant-contact-api'); break;
 		}
 
 		return apply_filters('datavalidation_status_message', $message, $status_code);
