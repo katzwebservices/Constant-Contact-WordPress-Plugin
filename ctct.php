@@ -67,6 +67,8 @@ final class WP_CTCT {
 		if(is_null($this->oauth)) { $this->oauth = new KWSOAuth2(); }
 
 		$this->cc = new KWSConstantContact();
+
+		include CTCT_DIR_PATH.'classes/class.oauth-migration.php';
 	}
 
 	static function getInstance() {

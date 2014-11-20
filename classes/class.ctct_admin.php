@@ -4,7 +4,6 @@ class CTCT_Admin extends CTCT_Admin_Page {
 
 	var $key = 'constant-contact-api';
 	var $title = 'Settings';
-
 	protected function add() {}
 	protected function edit() {}
 	protected function view() {}
@@ -38,7 +37,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 	}
 
 	function addActions() {
-		$CTCT_Settings = new CTCT_Settings();
+		$CTCT_Settings = new CTCT_Settings;
 
 		add_filter('admin_footer_text', array(&$this, 'pluginStatus'));
 
@@ -94,10 +93,10 @@ class CTCT_Admin extends CTCT_Admin_Page {
 
 	function page() {
 
+		parent::page();
+
 		if(!$this->cc->isConfigured()) {
-			echo kws_ob_include(CTCT_DIR_PATH.'views/admin/view.setup.php', $this);
-		} else {
-			parent::page();
+			echo kws_ob_include(CTCT_DIR_PATH.'views/admin/view.connect-account.php', $this);
 		}
 	}
 

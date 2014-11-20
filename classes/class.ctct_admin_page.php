@@ -35,6 +35,7 @@ abstract class CTCT_Admin_Page {
             $this->processForms();
 
             add_action('admin_menu', array(&$this, 'add_menu'));
+            add_action('admin_notices', array(&$this, 'print_notices'));
             add_action('admin_print_scripts', array(&$this, 'print_scripts'));
             add_action('admin_print_styles', array(&$this, 'print_styles'));
             add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
@@ -156,9 +157,25 @@ abstract class CTCT_Admin_Page {
     public function add_menu() {
 
         // Only add the menu if connected to Constant Contact
-        if(!$this->cc->isConfigured()) { return; }
+        if( is_object( $this->cc ) && !$this->cc->isConfigured() ) { return; }
 
     	add_submenu_page( 'constant-contact-api', 'CTCT - '.htmlentities($this->title), '<span id="menu-'.esc_attr($this->getKey()).'">'.htmlentities($this->getNavTitle()).'</span>', $this->permission, $this->key, array(&$this, 'page'));
+    }
+
+    public function print_notices() {
+
+        if( empty($this->notices) ) { return; }
+
+        echo '
+            <div id="message" class="container alert-notice warning">';
+            foreach($this->notices as $key => $notice ) {
+
+                echo wpautop( $notice );
+            }
+        echo '
+            </div>';
+
+        $this->notices = array();
     }
 
     protected function print_errors() {
@@ -206,8 +223,11 @@ abstract class CTCT_Admin_Page {
             $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'constant-contact-api'), $this->getTitle('single')).'</a>';
         }
 
-    	echo '<h2>'.implode(' &raquo; ', $breadcrumb).$button.'</h2>';
-            $this->print_errors();
+    	echo '<h2 class="ctct-page-name">'.implode(' &raquo; ', $breadcrumb).$button.'</h2>';
+
+        $this->print_errors();
+
+        $this->print_notices();
 
         // Show the content that's ready.
         flush();
