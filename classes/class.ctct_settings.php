@@ -34,6 +34,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
     function processForms() { }
 
     function addActions() {
+
     	/**
     	 * Filter the settings to use the $_GET request to modify plugins
     	 */
@@ -41,7 +42,14 @@ class CTCT_Settings extends CTCT_Admin_Page {
 
     	add_action('admin_init', array(&$this, 'settings_init') );
 
-    	add_action('ctct_token_updated', array(&$this, 'flush_transients') );
+    	add_action('ctct_token_updated', array( __CLASS__, 'flush_transients') );
+
+    }
+
+    function print_styles() {
+    	wp_enqueue_script( 'thickbox' );
+
+    	parent::print_styles();
     }
 
     /**
@@ -50,7 +58,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 * This is a bit better for data security, as it were.
 	 *
 	 */
-	function flush_transients($token = array()) {
+	static function flush_transients($token = array()) {
 		global $wpdb;
 		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", '%transient_ctct%', '%transient_timeout_ctct%');
 		$wpdb->query($query);
@@ -77,6 +85,82 @@ class CTCT_Settings extends CTCT_Admin_Page {
 		}
 
 		return $settings;
+	}
+
+	/**
+	 * Check if specified plugin is active, inactive or not installed
+	 *
+	 * @access public
+	 * @static
+	 * @param string $location (default: '')
+	 * @return void
+	 */
+	static function get_plugin_status( $location = '' ) {
+
+		if( ! function_exists('is_plugin_active') ) {
+			include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		}
+
+		if( is_plugin_active( $location ) ) {
+			return true;
+		}
+
+		if( !file_exists( trailingslashit( WP_PLUGIN_DIR ) . $location ) ) {
+			return false;
+		}
+
+		if( is_plugin_inactive( $location ) ) {
+			return 'inactive';
+		}
+	}
+
+	/**
+	 * Show different messages for the different statuses of supporting plugins
+	 *
+	 * Such as "Install Akismet", "Activate Akismet - Installed but inactive", and "Installed and active"
+	 *
+	 * @param  string $message_key Key of plugin: `wangguard` or `akismet`
+	 * @return string|null              If plugin message exists, show the message. Otherwise, null.
+	 */
+	static function get_plugin_status_message( $message_key ) {
+
+		$plugins = array(
+			'wangguard' => array(
+				'name' => 'WangGuard',
+				'path' => 'wangguard/wangguard-admin.php'
+			),
+			'akismet' => array(
+				'name' => 'Akismet',
+				'path' => 'akismet/akismet.php'
+			),
+		);
+
+		$plugin_messages = array();
+
+		foreach ($plugins as $key => $plugin ) {
+
+			$status = self::get_plugin_status( $plugin['path'] );
+
+			if( $status === true ) {
+				$message = esc_html__('(Installed and active)', 'constant-contact-api');
+
+			} elseif( $status === false ) {
+
+				$title = sprintf( esc_html__('Install %s', 'constant-contact-api'), $plugin['name'] );
+				$message = sprintf('(<a class="thickbox" href="%s" class="thickbox">%s</a>)', admin_url('plugin-install.php?tab=plugin-information&amp;plugin='.urlencode($key).'&amp;TB_iframe=true&amp;width=640&amp;height=808'), $title );
+			} else {
+
+				$activate_message = sprintf( esc_html__( 'Activate %s', 'constant-contact-api' ), $plugin['name'] );
+
+				$message = sprintf( esc_html__('(%s - Installed, but inactive)', 'constant-contact-api'), '<a href="'.wp_nonce_url( admin_url( 'plugins.php?action=activate&amp;plugin='.urlencode($plugin['path']) ), 'activate-plugin_'.$plugin['path']).'">'.$activate_message.'</a>' );
+
+			}
+
+			$plugin_messages[ $key ] = ' <span class="description">'.$message.'</span>';
+		}
+
+		return isset( $plugin_messages[ $message_key ] ) ? $plugin_messages[ $message_key ] : null;
+
 	}
 
 	/**
@@ -137,12 +221,12 @@ class CTCT_Settings extends CTCT_Admin_Page {
 
 		register_setting( 'ctct_settings', 'ctct_settings');
 
-		if($plugin_page !== 'constant-contact-api') { return; }
-
-		if (extension_loaded('newrelic')) { newrelic_name_transaction('settings'); }
+		if( $plugin_page !== 'constant-contact-api' ) { return; }
 
 		// We don't need this yet unless it's configured.
-		if(!$this->cc->isConfigured()) { return; }
+		if( !$this->cc->isConfigured() ) {
+			return;
+		}
 
 		add_settings_section('setup', '<i class="dashicons dashicons-admin-settings"></i> '.__('Setup', 'constant-contact-api'), '<h3>Connect the plugin with Constant Contact</h3>', 'constant-contact-api');
 
@@ -316,8 +400,8 @@ class CTCT_Settings extends CTCT_Admin_Page {
 					'toggle' => 'spam_methods',
 					'options' => array(
 						'datavalidation' => __('Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">DataValidation.com</a>', 'constant-contact-api').constant_contact_tip(__('<h6>About DataValidation.com</h6>DataValidation.com is <strong>the best way</strong> to verify that when users submit a form, the submitted email address is valid.', 'constant-contact-api'), false),
-						'akismet' => __('Akismet', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install Akismet" href="%s">Install Akismet</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=akismet&TB_iframe=true&width=640&height=808')),
-						'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').sprintf(' (<a class="thickbox" title="Install WangGuard" href="%s">Install WangGuard</a>)', admin_url('plugin-install.php?tab=plugin-information&plugin=wangguard&TB_iframe=true&width=640&height=808')), // TODO: Check if wangguard exists
+						'akismet' => __('Akismet', 'constant-contact-api').self::get_plugin_status_message( 'akismet' ),
+						'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').self::get_plugin_status_message( 'wangguard' ),
 						'smtp' => __('Validate Email Addresses Via SMTP (<a href="http://katz.si/smtpvalidation" rel="external">See the project</a>)', 'constant-contact-api').constant_contact_tip(__('Uses server methods to verify emails: checks for a valid domain, then sends a request for a read receipt.', 'constant-contact-api'), false),
 					),
 					'desc' => __('What services do you want to use to prevent spam submissions of your forms?', 'constant-contact-api')
@@ -701,4 +785,4 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 }
 }
 
-$CTCT_Settings = new CTCT_Settings;
+new CTCT_Settings;

@@ -73,6 +73,8 @@ To install the plugin follow the steps below:
 = 3.1.2 =
 * Delete old username and password on activation
 * When plugin is de-activated, delete stored token and transients
+* Update InlineEdit script
+* Verify plugin status for Akismet and WangGuard plugins
 
 = 3.1.1 =
 * Redesigned Form Designer to match WP 4.0 look & feel
