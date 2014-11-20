@@ -99,7 +99,7 @@ class CTCT_Process_Form {
 		foreach ( $_POST['fields'] as $key => $field ) {
 
 			if( !empty( $field['req'] ) && (!isset( $field['value'] ) || $field['value'] === '') ) {
-				$this->errors[] = new WP_Error('empty_field', sprintf( __('The %s field is required.', 'constant-contact-api'), esc_html( $field['label'] ) ), $key );
+				$this->errors[] = new WP_Error('empty_field', sprintf( _x('The %s field is required.', 'Failed user form submission error', 'constant-contact-api'), esc_html( $field['label'] ) ), $key );
 			}
 		}
 
@@ -299,24 +299,29 @@ class CTCT_Process_Form {
 			$return = wangguard_verify_email($email , wangguard_getRemoteIP() ,  wangguard_getRemoteProxyIP());
 
 			if($return == 'checked' || $return == 'not-checked') {
-				do_action('ctct_activity', 'DataValidation validation passed.', $email, $return);
+				do_action('ctct_activity', 'WangGuard validation passed.', $email, $return);
 			} else {
-				$this->errors[] = new WP_Error('wangguard', 'Email validation failed.', $email, $return);
+				$this->errors[] = new WP_Error('wangguard', __('Email validation failed.', 'constant-contact-api'), $email, $return);
 				return;
 			}
 		}
 
 		// 4: DataValidation.com validation
 		if(in_array('datavalidation', $methods) && class_exists('DataValidation')) {
+
 			$Validate = new DataValidation(CTCT_Settings::get('datavalidation_api_key'));
+
 			$validation = $Validate->validate($email);
 
-			if($validation === false) {
+			$process_inconclusive = apply_filters( 'ctct_process_inconclusive_emails', true );
+
+			if( $validation === false || ($validation === null && !$process_inconclusive) ) {
 				do_action('ctct_activity', 'DataValidation validation failed.', $email, $Validate);
+
 				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'constant-contact-api');
 				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
 				return;
-			} elseif($validation === null) {
+			} if($validation === null) {
 				do_action('ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate);
 			} elseif($validation === true) {
 				do_action('ctct_activity', 'DataValidation validation passed.', $email, $Validate);
@@ -341,7 +346,7 @@ class CTCT_Process_Form {
 					do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
 				} else {
 					do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
-					$this->errors[] = new WP_Error('smtp', 'Email validation failed.', $email, $results);
+					$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'constant-contact-api'), $email, $results);
 					return;
 				}
 

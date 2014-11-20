@@ -10,13 +10,18 @@
     $token_tag = sprintf('<span title="%s">%s</span>', $token_title, $tokenUsername );
 
     echo sprintf('
-        <h3>%s</h3>
-        <p>%s</p>
-        <p class="submit">
-    		<a href="%s" class="button button-primary button-large">%s</a> <span class="button-group alignright"><a href="%s" class="button button-warning confirm" data-confirm="%s">%s</a><a href="%s" class="button button-danger confirm" data-confirm="%s" data-confirm-again="%s">%s</a></span>
-    	</p>',
-        sprintf( esc_html__('Your plugin is configured for the username %s.', 'constant-contact-api' ), $token_tag ),
-        sprintf( esc_html__('The plugin was configured on %s.', 'constant-contact-api'), $tokenTime),
+        <div class="updated inline" style="padding: 10px;">
+            <h3 style="margin-top:0">%s</h3>
+            <h4><span class="description">%s</span></h4>
+            <p>
+                <span class="alignleft"><a href="%s" class="button button-primary button-large">%s</a></span>
+                <span class="button-group alignright"><a href="%s" class="button button-warning confirm" data-confirm="%s">%s</a><a href="%s" class="button button-danger confirm" data-confirm="%s" data-confirm-again="%s">%s</a></span>
+            </p>
+            <div class="clear"></div>
+        </div>
+    	',
+        sprintf( esc_html__('The plugin is connected to the username %s.', 'constant-contact-api' ), '<tt>'.$token_tag.'</tt>' ),
+        sprintf( esc_html__('The plugin was authorized on %s.', 'constant-contact-api'), $tokenTime),
     	$CTCT->oauth->getAuthorizationUrl(),
     	esc_html__('Switch Connected Accounts', 'constant-contact-api'),
     	add_query_arg(array('de-authenticate' => wp_create_nonce('de-authenticate')), remove_query_arg(array('error', 'error_description', 'oauth'))),
