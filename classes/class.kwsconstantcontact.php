@@ -176,7 +176,7 @@ final class KWSConstantContact extends ConstantContact {
 			} catch(Exception $e) {
 				$returnContact = false;
 				$action .= ' Failed';
-        		do_action('ctct_error', 'Creating Contact Exception', $e);
+        		do_action('ctct_error', 'Creating Contact Exception', $e->getMessage() );
 			}
         // update the existing contact if address already existed
         } else {
