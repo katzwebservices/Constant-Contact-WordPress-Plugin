@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.0.1
-Stable tag: 3.1.3
+Stable tag: 3.1.4
 
 Integrate Constant Contact into your website with this full-featured plugin.
 
@@ -72,6 +72,9 @@ To install the plugin follow the steps below:
 
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+
+= 3.1.4 =
+* Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
 
 = 3.1.3 = 
 * Update translation textdomain to `ctct` from `constant-contact-api`
