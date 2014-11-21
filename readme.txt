@@ -75,6 +75,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 
 = 3.1.4 =
 * Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
+* Fixed: EventSpot widget PHP warnings
 
 = 3.1.3 = 
 * Update translation textdomain to `ctct` from `constant-contact-api`

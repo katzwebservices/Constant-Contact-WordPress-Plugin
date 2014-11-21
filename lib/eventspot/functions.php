@@ -126,20 +126,42 @@ function constant_contact_get_id_from_object($object) {
 	return preg_replace('/(?:.+\/)(.+)/ism', '$1', $object->id);
 }
 
-function constant_contact_create_location($v = array()) {
+function constant_contact_create_location( $v ) {
+
     if(empty($v)) { return ''; }
-    foreach($v as $key=> $l)  { $v->{$key} = (string)get_if_not_empty($l, ''); }
-    extract((array)$v);
-    $location = @get_if_not_empty($location,'', "{$location}<br />");
-    $locationForMap = @get_if_not_empty($locationForMap,'', "<br />{$locationForMap}");
-    $address1 = @get_if_not_empty($addr1, '', $addr1.'<br />');
-    $address2 = @get_if_not_empty($addr2, '', $addr2.'<br />');
-    $address3 = @get_if_not_empty($addr3, '', $addr3.'<br />');
-    $city = @get_if_not_empty($city,'', "{$city}, ");
-    $state = @get_if_not_empty($state,'', "{$state} ");
-    $postalCode = @get_if_not_empty($postalCode,'', "{$postalCode} ");
-    $province = @get_if_not_empty($province,'', ", {$province} ");
-    $country = @get_if_not_empty($country,'', "<br />{$country}");
+
+    foreach($v as $key=> $l)  {
+    	$v->{$key} = (string)get_if_not_empty($l, '');
+    }
+
+    $location_array = (array)$v;
+
+    $possible_keys = array(
+    	'location' => '',
+    	'addr1' => '',
+    	'addr2' => '',
+    	'addr3' => '',
+    	'city' => '',
+    	'state' => '',
+    	'province' => '',
+    	'country' => '',
+    	'postalCode' => '',
+    	'locationForMap' => '',
+    );
+
+    $location_array = wp_parse_args( $location_array, $possible_keys );
+
+    $location = get_if_not_empty($location_array['location'],'', "{$location_array['location']}<br />");
+	$locationForMap = get_if_not_empty($location_array['locationForMap'],'', "<br />{$location_array['locationForMap']}");
+    $address1 = get_if_not_empty($location_array['addr1'], '', $location_array['addr1'].'<br />');
+    $address2 = get_if_not_empty($location_array['addr2'], '', $location_array['addr2'].'<br />');
+    $address3 = get_if_not_empty($location_array['addr3'], '', $location_array['addr3'].'<br />');
+    $city = get_if_not_empty($location_array['city'],'', "{$location_array['city']}, ");
+    $state = get_if_not_empty($location_array['state'],'', "{$location_array['state']} ");
+    $postalCode = get_if_not_empty($location_array['postalCode'],'', "{$location_array['postalCode']} ");
+    $province = get_if_not_empty($location_array['province'],'', ", {$location_array['province']} ");
+    $country = get_if_not_empty($location_array['country'],'', "<br />{$location_array['country']}");
+
     return apply_filters('constant_contact_create_location', rtrim(trim("{$location}{$address1}{$address2}{$address3}{$city}{$state}{$postalCode}{$province}{$country}")));
 }
 
