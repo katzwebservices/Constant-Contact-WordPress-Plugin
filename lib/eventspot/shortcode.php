@@ -21,8 +21,7 @@
 
 			$startOut = $descriptionOut = $dateOut = $calendarOut = $locationOut = $titleOut = $endOut = '';
 
-			$is_even = $i % 2;
-			$oddeven = empty( $is_even ) ? ' odd-event' : ' even-event';
+			$oddeven = ( isset( $oddeven) && $oddeven === ' odd-event' ) ? ' even-event' : ' odd-event';
 
 			$event = $CTCT->old_api->getEventDetails( $partial_event, DAY_IN_SECONDS );
 
