@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.0.1
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 
 Integrate Constant Contact into your website with this full-featured plugin.
 
@@ -69,6 +69,9 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+= Version 3 Requires PHP 5.3 =
+__Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
 = 3.1.3 = 
 * Update translation textdomain to `ctct` from `constant-contact-api`
@@ -630,6 +633,13 @@ This version fixes a major bug and all users should upgrade immediately.
 6. Embed Events inline and view EventSpot event details
 
 == Frequently Asked Questions ==
+
+= The plugin Requires PHP 5.3 =
+__Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+
+Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.3. 
+
+Ask your host about upgrading your server to 5.3. If they say no, chances are you should find a new host; 5.3 has long been available.
 
 = Do I need a Constant Contact account for this plugin? =
 This plugin requires a <a href="http://wordpress.constantcontact.com/index.jsp" rel="nofollow" title="Sign up for Constant Contact">Constant Contact account</a>.
