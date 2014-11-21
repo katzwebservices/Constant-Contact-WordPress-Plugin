@@ -623,13 +623,11 @@ This version fixes a major bug and all users should upgrade immediately.
 
 == Screenshots ==
 1. The administration screen is the landing page for all the functionality of the plugin.
-2. Form Designer - New to 2.0, this bad boy is a custom form designer built right into WordPress.
-3. An example of a form you can create with the custom form designer.
-4. Add users to your registration process
-5. View campaign details on the Campaigns screen
-6. Example events widget display on the default WordPress theme, twentyten
-7. Event widget configuration
-8. A view of Constant Analytics - there are many delicious-looking graphs and charts
+2. Form Designer - custom form designer built right into the plugin
+3. View campaign details on the Campaigns screen
+4. Edit Contacts inside the plugin
+5. Update list names
+6. Embed Events inline and view EventSpot event details
 
 == Frequently Asked Questions ==
 
