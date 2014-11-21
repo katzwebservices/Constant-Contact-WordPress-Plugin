@@ -2,11 +2,11 @@
     return;
 ?>
 
-<h3><?php echo 'Contact Details: ';?> <a href="<?php echo add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view')); ?>" class="button edit-new-h2" title="edit">edit</a></h3>
+<h3><?php esc_html_e('Contact Details:', 'ctct' );?> <a href="<?php echo add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view')); ?>" class="button edit-new-h2" title="edit"><?php esc_html_e('edit', 'ctct'); ?></a></h3>
 <table class="widefat fixed ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
+        <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
+        <th scope="col" class="column-title"><?php esc_html_e('Data', 'ctct'); ?></th>
     </thead>
     <tbody>
         <?php

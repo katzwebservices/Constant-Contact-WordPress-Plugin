@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Constant Contact Plugin for WordPress\n"
-"POT-Creation-Date: 2014-11-20 16:38-0700\n"
-"PO-Revision-Date: 2014-11-20 16:38-0700\n"
+"POT-Creation-Date: 2014-11-20 20:19-0700\n"
+"PO-Revision-Date: 2014-11-20 20:20-0700\n"
 "Last-Translator: Katz Web Services, Inc. <support@katz.co>\n"
 "Language-Team: Katz Web Services, Inc. <support@katz.co>\n"
 "Language: en_US\n"
@@ -543,7 +543,7 @@ msgid ""
 msgstr ""
 
 #: classes/class.ctct_settings.php:381
-#: lib/form-designer/form-designer-functions.php:299
+#: lib/form-designer/form-designer-functions.php:292
 msgid "Subscribe Message"
 msgstr ""
 
@@ -1279,64 +1279,64 @@ msgid ""
 "styles (CSS)"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:106
+#: lib/form-designer/form-designer-functions.php:99
 #: lib/form-designer/form-designer.php:468
 #: lib/form-designer/views/form-designer.php:105
 msgid "Enter form name here"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:109
+#: lib/form-designer/form-designer-functions.php:102
 #, php-format
 msgctxt "Default form name when none is provided."
 msgid "Form #%d"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:147
+#: lib/form-designer/form-designer-functions.php:140
 msgid "The form both does not exist and does exist. Can not process!"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:194
+#: lib/form-designer/form-designer-functions.php:187
 #, php-format
 msgid "Form #%s"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:277
+#: lib/form-designer/form-designer-functions.php:270
 msgid "Label text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:278
+#: lib/form-designer/form-designer-functions.php:271
 msgid "Input placeholder text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:283
+#: lib/form-designer/form-designer-functions.php:276
 msgid "Button label"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:285
+#: lib/form-designer/form-designer-functions.php:278
 msgid "Button text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:293
+#: lib/form-designer/form-designer-functions.php:286
 msgid "This is a Placeholder"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:294
+#: lib/form-designer/form-designer-functions.php:287
 msgid "This item will be replaced by the Custom Text entered above &uarr;"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:302
+#: lib/form-designer/form-designer-functions.php:295
 msgid "The lists will be placed where this item is."
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:329
+#: lib/form-designer/form-designer-functions.php:322
 msgid "Drag and drop to re-order fields."
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:345
+#: lib/form-designer/form-designer-functions.php:338
 msgid "Make label bold"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:348
+#: lib/form-designer/form-designer-functions.php:341
 msgid "Make label italic"
 msgstr ""
 
@@ -2263,6 +2263,14 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+#: views/admin/view.campaign-edit.php:5
+msgid "Contact Details:"
+msgstr ""
+
+#: views/admin/view.campaign-edit.php:5 views/admin/view.contacts-view.php:44
+msgid "edit"
+msgstr ""
+
 #: views/admin/view.campaign-edit.php:9 views/admin/view.campaign-view.php:15
 #: views/admin/view.contact-view.php:30 views/admin/view.list-edit.php:6
 msgid "Data"
@@ -2378,10 +2386,6 @@ msgstr ""
 
 #: views/admin/view.contacts-view.php:41
 msgid "view"
-msgstr ""
-
-#: views/admin/view.contacts-view.php:44
-msgid "edit"
 msgstr ""
 
 #: views/admin/view.contacts-view.php:52
