@@ -502,10 +502,10 @@ function cc_form_meta_box_fontstyles($post, $metabox=array()) {
 				<select id="lsize" class="nomargin" name="lsize">
 				<?php
 
-					$i = 7;
+					$i = 7; $default = 12;
 					while( $i < 50 ) {
 						?>
-						<option<?php ctct_check_select($form,'lsize', $i ); ?> value="<?php echo $i; ?>"><?php printf( '%d px', $i ); ?></option>
+						<option<?php ctct_check_select($form,'lsize', $i, ($i === $default) ); ?> value="<?php echo $i; ?>"><?php printf( '%d px', $i ); ?></option>
 						<?php
 						$i++;
 					}

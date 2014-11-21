@@ -73,6 +73,7 @@ To install the plugin follow the steps below:
 = 3.1.3 = 
 * Update translation textdomain to `ctct` from `constant-contact-api`
 * Hide the custom content editor until checked
+* Fix default label size
 
 = 3.1.2 =
 * Delete old username and password on activation
