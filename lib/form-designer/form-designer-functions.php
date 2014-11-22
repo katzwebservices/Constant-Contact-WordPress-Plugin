@@ -301,6 +301,8 @@ class CTCT_Form_Designer_Helper {
         $required = (isset($_form_object['f'][$formfield_num]['required']) && !empty($_form_object['f'][$formfield_num]['required'])) ? ' checked="checked"' : '';
         $bold = (isset($_form_object['f'][$formfield_num]['bold']) && !empty($_form_object['f'][$formfield_num]['bold'])) ? ' checked="checked"' : '';
         $italic = (isset($_form_object['f'][$formfield_num]['italic']) && !empty($_form_object['f'][$formfield_num]['italic'])) ? ' checked="checked"' : '';
+        // If the field position is set, use it. Otherwise, use the natural order of the fields
+        $position = (!empty($field['pos'])) ? $field['pos'] : $formfield_num;
 
         if(isset($_form_object['f'][$formfield_num]['val'])) {
             $default = html_entity_decode( stripslashes($_form_object['f'][$formfield_num]['val']) );
