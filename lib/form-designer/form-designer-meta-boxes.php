@@ -69,8 +69,13 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 
 	$form = $metabox['args'][0];
-	$checkedArray = !empty($form['formfields']) ? $form['formfields'] : array();
-	$checkedArray['email_address'] = 'email_address';
+
+	$default_checked = array(
+		'email_address',
+		'Go'
+	);
+
+	$checked_fields = !empty($form['formfields']) ? $form['formfields'] : $default_checked;
 ?>
 <div class="posttypediv">
 	<ul id="formfields-select-tabs" class="formfields-select-tabs add-menu-item-tabs">
@@ -90,6 +95,7 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 			$formfields[] = array('work_phone', __('Work Phone', 'ctct'), false);
 			$formfields[] = array('lists', __('Lists', 'ctct'), true);
 			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			echo ctct_make_formfield_list_items($formfields, $checked_fields, 'formfields');
 		?>
 		</ul>
 	</div>
@@ -125,6 +131,7 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 			$formfields[] = array('CustomField14', __('Custom Field 14', 'ctct'), false);
 			$formfields[] = array('CustomField15', __('Custom Field 15', 'ctct'), false);
 			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			echo ctct_make_formfield_list_items($formfields, $checked_fields, 'formfields');
 		?>
 		</ul>
 	</div>
