@@ -128,17 +128,20 @@ class CTCT_Form_Designer_Helper {
             // Get the new form id, set in self::generate_form_from_request()
             $form_id = get_option('cc_form_increment');
 
-            // Add the form to the forms array
-            $forms[$form_id] = $form;
         } elseif(isset($forms[$form_id])) {
+
             // Hook into the form saving process if you want
             $form = apply_filters("wp_update_cc_form_$form_id", $form );
 
-            $forms[$form_id] = $form;
         } else {
+
             do_action('ctct_log', $data, 'error');
+
             return new WP_Error('update_form_object_failed', __('The form both does not exist and does exist. Can not process!', 'ctct'));
         }
+
+        // Add the form to the forms array
+        $forms[$form_id] = $form;
 
         // That cached version's gotta go.
         delete_transient("cc_form_$form_id");
@@ -229,7 +232,11 @@ class CTCT_Form_Designer_Helper {
     }
 
     static function make_formfield_list_item($id, $title, $checked = false, $name = 'formfields') {
-        if($checked) { $checked = ' checked="checked"';}
+
+        if($checked) {
+            $checked = ' checked="checked"';
+        }
+
         $style = '';
         if($id == 'email_address') {
             $checked = ' checked="checked" disabled="disabled"';
@@ -251,66 +258,78 @@ class CTCT_Form_Designer_Helper {
             $formfield_num = 0;
         }
 
-        $out = $position = $emailWidth = $hide = '';
+        $field = isset( $_form_object['f'][ $formfield_num ] ) ? $_form_object['f'][ $formfield_num ] : array();
+
+        $out = $hide = '';
 
         $name = 'f';
         $class = trim($class .' ui-state-default menu-item ui-state-default formfield');
-        if((isset($_form_object['f'][$formfield_num]) && isset($_form_object['f'][$formfield_num]['n']))) {
+        if( isset($field['n']) ) {
             $checked = 'checked="checked"';
         } else {
             $hide = ' style="display:none;"';
         }
 
-        $defaultAlign = 'Align';
-        $defaultSize = 'Input Size';
         $hideinputs = false;
-        $hidevalue = false;
-        if($type == 'text' || $type=='t') {
-            $t = 't';
-            $labelLabel = __('Label text', 'ctct');
-            $defaultLabel = __('Input placeholder text', 'ctct');
-            $inputValue = self::check_default($_form_object, $name, $id, $value);
-            //$value = 'Form Text';
-        } elseif($type=='button' || $type=='submit' || $type=='b' || $type=='s') {
-            $t = 'b';
-            $labelLabel = __('Button label', 'ctct');
-            $inputValue = '';
-            $defaultLabel = __('Button text', 'ctct');
-        } elseif($type=='textarea' || $type=='ta') {
-            $t = 'ta';
-            $hideinputs = true;
-            $labelLabel = 'Headline';
-            $default = $labeldefault;
-            $inputValue = self::check_default($_form_object,$name, $id, $value);
+        $hide_value_input = false;
 
-            $defaultLabel = '<h3>'.esc_html__('This is a Placeholder', 'ctct').'</h3>';
-            $defaultLabel .= '<p>'.esc_html__('This item will be replaced by the Custom Text entered above &uarr;', 'ctct').'</p>';
+        switch ( $type ) {
+            case 'text':
+            case 't':
+                $input_type = 't';
+                $field_label = __('Label text', 'ctct');
+                $field_desc = __('Input placeholder text', 'ctct');
+                $inputValue = self::check_default($_form_object, $name, $id, $value);
+                break;
 
-        } elseif($type == 'lists') {
-            $t = 'lists';
-            $hidevalue = true;
-            $labelLabel = __('Subscribe Message', 'consatnt-contact-api');
-            $default = $labeldefault;
-            $inputValue = self::check_default($_form_object,$name, $id, $value);
-            $defaultLabel = __('The lists will be placed where this item is.', 'ctct');
+            case 'button':
+            case 'submit':
+            case 'b':
+            case 's':
+                $input_type = 'b';
+                $field_label = __('Button label', 'ctct');
+                $inputValue = '';
+                $field_desc = __('Button text', 'ctct');
+                break;
+
+            case 'textarea':
+            case 'ta':
+                $input_type = 'ta';
+                $hideinputs = true;
+                $field_label = __('Headline', 'ctct');
+                $default = $labeldefault;
+                $inputValue = self::check_default($_form_object,$name, $id, $value);
+
+                $field_desc  = '';
+                $field_desc .= '<h3>'.esc_html__('This is a Placeholder', 'ctct').'</h3>';
+                $field_desc .= '<p>'.esc_html__('This item will be replaced by the Custom Text entered above &uarr;', 'ctct').'</p>';
+                break;
+
+            case 'lists':
+                $input_type = 'lists';
+                $hide_value_input = true;
+                $field_label = __('Subscribe Message', 'consatnt-contact-api');
+                $default = $labeldefault;
+                $inputValue = self::check_default($_form_object,$name, $id, $value);
+                $field_desc = __('The lists will be placed where this item is.', 'ctct');
+                break;
         }
-        $defaultRequired = 'Required';
 
-        $position = (isset($_form_object['f'][$formfield_num]['pos']) && !empty($_form_object['f'][$formfield_num]['pos'])) ? $_form_object['f'][$formfield_num]['pos'] : '';
-        $size = (isset($_form_object['f'][$formfield_num]['size']) && !empty($_form_object['f'][$formfield_num]['size'])) ? $_form_object['f'][$formfield_num]['size'] : '';
-        $required = (isset($_form_object['f'][$formfield_num]['required']) && !empty($_form_object['f'][$formfield_num]['required'])) ? ' checked="checked"' : '';
-        $bold = (isset($_form_object['f'][$formfield_num]['bold']) && !empty($_form_object['f'][$formfield_num]['bold'])) ? ' checked="checked"' : '';
-        $italic = (isset($_form_object['f'][$formfield_num]['italic']) && !empty($_form_object['f'][$formfield_num]['italic'])) ? ' checked="checked"' : '';
         // If the field position is set, use it. Otherwise, use the natural order of the fields
         $position = (!empty($field['pos'])) ? $field['pos'] : $formfield_num;
 
-        if(isset($_form_object['f'][$formfield_num]['val'])) {
-            $default = html_entity_decode( stripslashes($_form_object['f'][$formfield_num]['val']) );
+        $size = (!empty($field['size'])) ? $field['size'] : '';
+        $required = (!empty($field['required'])) ? ' checked="checked"' : '';
+        $bold = (!empty($field['bold'])) ? ' checked="checked"' : '';
+        $italic = (!empty($field['italic'])) ? ' checked="checked"' : '';
+
+        if(isset($field['val'])) {
+            $default = html_entity_decode( stripslashes($field['val']) );
         }
 
 
-        if(isset($_form_object['f'][$formfield_num]['label'])) {
-            $inputValue = html_entity_decode( stripslashes($_form_object['f'][$formfield_num]['label']) );
+        if(isset($field['label'])) {
+            $inputValue = html_entity_decode( stripslashes($field['label']) );
         } elseif(isset($labeldefault) && !empty($labeldefault)) {
             $inputValue = $labeldefault;
         }
@@ -331,10 +350,11 @@ class CTCT_Form_Designer_Helper {
                 </dl>
                 <div class="menu-item-settings"><div class="wrap">
                     <input type="hidden" name="'.$name.'[id]" value="'.$id.'" />
-                    <input type="hidden" name="'.$name.'[t]" value="'.$t.'" />
+                    <input type="hidden" name="'.$name.'[t]" value="'.$input_type.'" />
                     <input type="hidden" name="'.$name.'[pos]" id="'.$id.'_pos" value="'.$position.'" class="position" />';
-        if(!$hideinputs) {
-            $out .= "\n".'<p><label for="'.$id.'_label" class="labelValue howto"><span class="description">'.$labelLabel.'</span><input name="'.$name.'[label]" type="text" id="'.$id.'_label" value="'.$inputValue.'" class="labelValue widefat"  /></label></p>
+        // If not a text area
+        if( $input_type !== 'ta') {
+            $out .= "\n".'<p><label for="'.$id.'_label" class="labelValue howto"><span class="description">'.$field_label.'</span><input name="'.$name.'[label]" type="text" id="'.$id.'_label" value="'.$inputValue.'" class="labelValue widefat"  /></label></p>
                             <div class="labelStyle">
                                 <label for="'.$id.'_bold" class="labelStyle mce_bold">
                                     <span class="dashicons dashicons-editor-bold" title="'.esc_attr__('Make label bold', 'ctct').'"></span><input type="checkbox" name="'.$name.'[bold]" id="'.$id.'_bold" value="bold"'.$bold.' />
@@ -343,19 +363,19 @@ class CTCT_Form_Designer_Helper {
                                     <span class="dashicons dashicons-editor-italic" title="'.esc_attr__('Make label italic', 'ctct').'"></span>
                                     <input type="checkbox" name="'.$name.'[italic]" id="'.$id.'_italic" value="italic" />
                                 </label>';
-                if($id == 'email_address' || $t == 'b') {
+                if($id == 'email_address' || $input_type == 'b') {
                     $out .= '<input type="hidden" name="'.$name.'[required]" id="'.$id.'_required" value="required" />';
                 } else {
-                    if(!$hidevalue) {
-                    $out .= '<label for="'.$id.'_required" class="labelStyle checkbox"><span>'.$defaultRequired.'</span>&nbsp;<input type="checkbox" name="'.$name.'[required]" id="'.$id.'_required" value="required"'.$required.' class="labelRequired"  /></label>';
+                    if(!$hide_value_input) {
+                    $out .= '<label for="'.$id.'_required" class="labelStyle checkbox"><span>'.__('Required', 'ctct').'</span>&nbsp;<input type="checkbox" name="'.$name.'[required]" id="'.$id.'_required" value="required"'.$required.' class="labelRequired"  /></label>';
                     }
                 }
             $out .= '<div class="clear"></div></div>';
-            if(!$hidevalue) {
-              $out .= "\n".'<div class="clear"><label for="'.$id.'_default" class="labelDefault howto"><span class="description">'.$defaultLabel.'</span><input type="text" name="'.$name.'[val]" id="'.$id.'_default" value="'.$default.'" class="labelDefault widefat"  /></label></div>';
+            if(!$hide_value_input) {
+              $out .= "\n".'<div class="clear"><label for="'.$id.'_default" class="labelDefault howto"><span class="description">'.$field_desc.'</span><input type="text" name="'.$name.'[val]" id="'.$id.'_default" value="'.$default.'" class="labelDefault widefat"  /></label></div>';
             }
         } else {
-            $out .= "\n".'<div><span class="description">'.$defaultLabel.'</span></div>';
+            $out .= "\n".'<div><span class="description">'.$field_desc.'</span></div>';
         }
         $out .='<div class="clear"></div></div>
                 </div>
