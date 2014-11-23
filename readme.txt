@@ -84,9 +84,9 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 * Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
 * Fixed: EventSpot widget PHP warnings
 * Modified: New Form Designer forms have Submit field checked by default
-* Tweak: Don't modify order of Form Designer fields if no position is set
 * Fixed: Fatal error on plugin deactivation if PHP 5.3 isn't available
 * Fixed: Form Designer Javascript Debug Mode turned off unless `SCRIPT_DEBUG` constant is defined and enabled
+* Tweak: Don't modify order of Form Designer fields if no position is set
 * Tweak: Improved text translations and fix textdomain issues
 
 = 3.1.3 = 
