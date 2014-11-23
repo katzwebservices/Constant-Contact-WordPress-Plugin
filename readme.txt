@@ -86,6 +86,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 * Modified: New Form Designer forms have Submit field checked by default
 * Tweak: Don't modify order of Form Designer fields if no position is set
 * Fixed: Fatal error on plugin deactivation if PHP 5.3 isn't available
+* Tweak: Improved text translations and fix textdomain issues
 
 = 3.1.3 = 
 * Update translation textdomain to `ctct` from `constant-contact-api`

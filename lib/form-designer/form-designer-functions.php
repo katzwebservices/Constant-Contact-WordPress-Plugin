@@ -308,7 +308,7 @@ class CTCT_Form_Designer_Helper {
             case 'lists':
                 $input_type = 'lists';
                 $hide_value_input = true;
-                $field_label = __('Subscribe Message', 'consatnt-contact-api');
+                $field_label = __('Subscribe Message', 'ctct');
                 $default = $labeldefault;
                 $inputValue = self::check_default($_form_object,$name, $id, $value);
                 $field_desc = __('The lists will be placed where this item is.', 'ctct');

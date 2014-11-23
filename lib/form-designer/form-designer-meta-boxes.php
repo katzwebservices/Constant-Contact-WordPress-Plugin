@@ -42,7 +42,7 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	$output = KWSContactList::outputHTML('all', array('checked' => $checked_lists, 'type' => 'checkboxes'));
 ?>
 <div class="posttypediv lists-meta-box">
-	<h4 class="smallmarginbottom"><?php esc_html_e('Lists', 'consatnt-contact-api'); constant_contact_tip( __('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the shortcode.', 'ctct') ); ?></h4>
+	<h4 class="smallmarginbottom"><?php esc_html_e('Lists', 'ctct'); constant_contact_tip( __('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the shortcode.', 'ctct') ); ?></h4>
 	<div class="tabs-panel tabs-panel-active" id="ctct-form-list-select">
 		<ul class="ctct-checkboxes categorychecklist form-no-clear">
 		<?php
@@ -52,9 +52,9 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	</div>
 	<h4 class="smallmarginbottom"><?php esc_html_e('List Selection Format', 'ctct'); ?></h4>
 	<ul class="list-selection-format">
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Checkbox List', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown Field', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Checkbox List', 'ctct'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown Field', 'ctct'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'ctct'); ?></label></li>
 	</ul>
 
 	<h4 class="smallmarginbottom"><?php esc_html_e('Checked by default?', 'ctct'); ?></h4>
@@ -138,7 +138,7 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 
 	<div class="block">
 		<label class="block"><?php esc_html_e( 'Required Fields', 'ctct'); ?></label>
-		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span><?php esc_html_e('Add asterisk if field is required.', 'consatnt-contact-api'); ?></span></label>
+		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span><?php esc_html_e('Add asterisk if field is required.', 'ctct'); ?></span></label>
 	</div>
 
 	<div class="block">
