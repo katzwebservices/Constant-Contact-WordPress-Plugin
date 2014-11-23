@@ -81,6 +81,7 @@ To install the plugin follow the steps below:
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
 = 3.1.4 =
+* Fixed: Original plugin file name restored to help with auto-upgrade issues
 * Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
 * Fixed: EventSpot widget PHP warnings
 * Modified: New Form Designer forms have Submit field checked by default
