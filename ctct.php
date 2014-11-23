@@ -69,8 +69,14 @@ final class WP_CTCT {
 		delete_option( 'ctct_token_response' );
 		delete_option( 'ctct_configured' );
 
-		// Flush stored transient data
-		CTCT_Settings::flush_transients();
+		// CTCT_Settings is only loaded for 5.3+
+		// If they don't have 5.3, they never had the transients in the first place.
+		if( class_exists('CTCT_Settings') ) {
+
+			// Flush stored transient data
+			CTCT_Settings::flush_transients();
+
+		}
 
 	}
 
