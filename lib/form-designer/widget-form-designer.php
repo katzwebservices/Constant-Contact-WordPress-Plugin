@@ -138,7 +138,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 
 		$output = '';
 		$output .= '<select name="'.$this->get_field_name('formid').'" id="'.$this->get_field_id('formid').'">';
-		$output .= '<option value="">'.__('Select a Form Design', 'consatnt-contact-api').'</option>';
+		$output .= '<option value="">'.__('Select a Form Design', 'ctct').'</option>';
 
 		if(!empty($forms)) {
 			$previous_names = array();

@@ -63,6 +63,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 			'path' => plugin_dir_url(__FILE__),
 			'rand' => mt_rand(0, 100000000),
 			'text' => cc_form_text(),
+			'debug' => !empty( $script_debug ),
 			'labels' => array(
 				'bottomcolor' => 'Bottom Color',
 				'topcolor' => 'Top Color',

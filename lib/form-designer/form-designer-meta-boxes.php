@@ -37,12 +37,12 @@ function cc_form_meta_box_actions($post, $metabox=array()) {
 function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	$form = $metabox['args'][0];
 
-	$checkedArray = !empty($form['lists']) ? $form['lists'] : NULL;
+	$checked_lists = !empty($form['lists']) ? $form['lists'] : NULL;
 
-	$output = KWSContactList::outputHTML('all', array('checked' => $checkedArray, 'type' => 'checkboxes'));
+	$output = KWSContactList::outputHTML('all', array('checked' => $checked_lists, 'type' => 'checkboxes'));
 ?>
 <div class="posttypediv lists-meta-box">
-	<h4 class="smallmarginbottom"><?php esc_html_e('Lists', 'consatnt-contact-api'); constant_contact_tip( __('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the shortcode.', 'ctct') ); ?></h4>
+	<h4 class="smallmarginbottom"><?php esc_html_e('Lists', 'ctct'); constant_contact_tip( __('Contacts will be added to the selected lists by default. You can override this selection when you configure a Form Designer widget. You can also specify different list IDs when inserting a form into content using the shortcode.', 'ctct') ); ?></h4>
 	<div class="tabs-panel tabs-panel-active" id="ctct-form-list-select">
 		<ul class="ctct-checkboxes categorychecklist form-no-clear">
 		<?php
@@ -52,9 +52,9 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 	</div>
 	<h4 class="smallmarginbottom"><?php esc_html_e('List Selection Format', 'ctct'); ?></h4>
 	<ul class="list-selection-format">
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Checkbox List', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown Field', 'consatnt-contact-api'); ?></label></li>
-		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'consatnt-contact-api'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'checkbox'); ?> /> <?php esc_html_e('Checkbox List', 'ctct'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'dropdown'); ?> /> <?php esc_html_e('Dropdown Field', 'ctct'); ?></label></li>
+		<li><label><input type="radio" name="list_format" <?php ctct_check_radio($form,'list_format', 'hidden', true); ?> /> <?php esc_html_e('Hidden', 'ctct'); ?></label></li>
 	</ul>
 
 	<h4 class="smallmarginbottom"><?php esc_html_e('Checked by default?', 'ctct'); ?></h4>
@@ -69,8 +69,13 @@ function cc_form_meta_box_formlists_select($post, $metabox=array()) {
 function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 
 	$form = $metabox['args'][0];
-	$checkedArray = !empty($form['formfields']) ? $form['formfields'] : array();
-	$checkedArray['email_address'] = 'email_address';
+
+	$default_checked = array(
+		'email_address',
+		'Go'
+	);
+
+	$checked_fields = !empty($form['formfields']) ? $form['formfields'] : $default_checked;
 ?>
 <div class="posttypediv">
 	<ul id="formfields-select-tabs" class="formfields-select-tabs add-menu-item-tabs">
@@ -80,58 +85,60 @@ function cc_form_meta_box_formfields_select($post, $metabox=array()) {
 	<div id="formfields-select-most" class="tabs-panel tabs-panel-active">
 		<ul id="formfieldslist-most" class="categorychecklist form-no-clear">
 		<?php
-			$formfields = array();
-			$formfields[] = array('email_address', __('Email Address', 'ctct'), true);
-			$formfields[] = array('intro', __('Custom Text', 'ctct'), true);
-			$formfields[] = array('first_name', __('First Name', 'ctct'), true);
-			$formfields[] = array('last_name', __('Last Name', 'ctct'), true);
-			$formfields[] = array('Go', __('Submit', 'ctct'), true);
-			$formfields[] = array('home_phone', __('Home Phone', 'ctct'), false);
-			$formfields[] = array('work_phone', __('Work Phone', 'ctct'), false);
-			$formfields[] = array('lists', __('Lists', 'ctct'), true);
-			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			$formfields = array(
+				array('email_address', __('Email Address', 'ctct'), true),
+				array('intro', __('Custom Text', 'ctct'), true),
+				array('first_name', __('First Name', 'ctct'), true),
+				array('last_name', __('Last Name', 'ctct'), true),
+				array('Go', __('Submit', 'ctct'), true),
+				array('home_phone', __('Home Phone', 'ctct'), false),
+				array('work_phone', __('Work Phone', 'ctct'), false),
+				array('lists', __('Lists', 'ctct'), true),
+			);
+			echo ctct_make_formfield_list_items($formfields, $checked_fields, 'formfields');
 		?>
 		</ul>
 	</div>
 	<div id="formfields-select-all" class="tabs-panel">
 		<ul id="formfieldslist-all" class="categorychecklist form-no-clear">
 		<?php
-			$formfields = array();
-			$formfields[] = array('middle_name', __('Middle Name', 'ctct'), false);
-			$formfields[] = array('company_name', __('Company Name', 'ctct'), false);
-			$formfields[] = array('job_title', __('Job Title', 'ctct'), false);
-			$formfields[] = array('address_line1', __('Address Line 1', 'ctct'), false);
-			$formfields[] = array('address_line2', __('Address Line 2', 'ctct'), false);
-			$formfields[] = array('address_line3', __('Address Line 3', 'ctct'), false);
-			$formfields[] = array('address_city', __('City Name', 'ctct'), false);
-			$formfields[] = array('address_state_code', __('State Code', 'ctct'), false);
-			$formfields[] = array('address_state_name', __('State Name', 'ctct'), false);
-			$formfields[] = array('address_country_code', __('Country Code', 'ctct'), false);
-			$formfields[] = array('address_postal_code', __('ZIP Code', 'ctct'), false);
-			$formfields[] = array('address_sub_postal_code', __('Sub ZIP Code', 'ctct'), false);
-			$formfields[] = array('CustomField1', __('Custom Field 1', 'ctct'), false);
-			$formfields[] = array('CustomField2', __('Custom Field 2', 'ctct'), false);
-			$formfields[] = array('CustomField3', __('Custom Field 3', 'ctct'), false);
-			$formfields[] = array('CustomField4', __('Custom Field 4', 'ctct'), false);
-			$formfields[] = array('CustomField5', __('Custom Field 5', 'ctct'), false);
-			$formfields[] = array('CustomField6', __('Custom Field 6', 'ctct'), false);
-			$formfields[] = array('CustomField7', __('Custom Field 7', 'ctct'), false);
-			$formfields[] = array('CustomField8', __('Custom Field 8', 'ctct'), false);
-			$formfields[] = array('CustomField9', __('Custom Field 9', 'ctct'), false);
-			$formfields[] = array('CustomField10', __('Custom Field 10', 'ctct'), false);
-			$formfields[] = array('CustomField11', __('Custom Field 11', 'ctct'), false);
-			$formfields[] = array('CustomField12', __('Custom Field 12', 'ctct'), false);
-			$formfields[] = array('CustomField13', __('Custom Field 13', 'ctct'), false);
-			$formfields[] = array('CustomField14', __('Custom Field 14', 'ctct'), false);
-			$formfields[] = array('CustomField15', __('Custom Field 15', 'ctct'), false);
-			echo ctct_make_formfield_list_items($formfields, $checkedArray, 'formfields');
+			$formfields = array(
+				array('middle_name', __('Middle Name', 'ctct'), false),
+				array('company_name', __('Company Name', 'ctct'), false),
+				array('job_title', __('Job Title', 'ctct'), false),
+				array('address_line1', __('Address Line 1', 'ctct'), false),
+				array('address_line2', __('Address Line 2', 'ctct'), false),
+				array('address_line3', __('Address Line 3', 'ctct'), false),
+				array('address_city', __('City Name', 'ctct'), false),
+				array('address_state_code', __('State Code', 'ctct'), false),
+				array('address_state_name', __('State Name', 'ctct'), false),
+				array('address_country_code', __('Country Code', 'ctct'), false),
+				array('address_postal_code', __('ZIP Code', 'ctct'), false),
+				array('address_sub_postal_code', __('Sub ZIP Code', 'ctct'), false),
+				array('CustomField1', __('Custom Field 1', 'ctct'), false),
+				array('CustomField2', __('Custom Field 2', 'ctct'), false),
+				array('CustomField3', __('Custom Field 3', 'ctct'), false),
+				array('CustomField4', __('Custom Field 4', 'ctct'), false),
+				array('CustomField5', __('Custom Field 5', 'ctct'), false),
+				array('CustomField6', __('Custom Field 6', 'ctct'), false),
+				array('CustomField7', __('Custom Field 7', 'ctct'), false),
+				array('CustomField8', __('Custom Field 8', 'ctct'), false),
+				array('CustomField9', __('Custom Field 9', 'ctct'), false),
+				array('CustomField10', __('Custom Field 10', 'ctct'), false),
+				array('CustomField11', __('Custom Field 11', 'ctct'), false),
+				array('CustomField12', __('Custom Field 12', 'ctct'), false),
+				array('CustomField13', __('Custom Field 13', 'ctct'), false),
+				array('CustomField14', __('Custom Field 14', 'ctct'), false),
+				array('CustomField15', __('Custom Field 15', 'ctct'), false),
+			);
+			echo ctct_make_formfield_list_items($formfields, $checked_fields, 'formfields');
 		?>
 		</ul>
 	</div>
 
 	<div class="block">
 		<label class="block"><?php esc_html_e( 'Required Fields', 'ctct'); ?></label>
-		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span><?php esc_html_e('Add asterisk if field is required.', 'consatnt-contact-api'); ?></span></label>
+		<label for="reqast" class="howto checkbox block"><input type="checkbox" class="checkbox" name="reqast" id="reqast" <?php ctct_check_checkbox($form, 'reqast', '1', true); ?> /> <span><?php esc_html_e('Add asterisk if field is required.', 'ctct'); ?></span></label>
 	</div>
 
 	<div class="block">
@@ -189,7 +196,7 @@ function cc_form_meta_box_formfields($_form_object) {
 				ctct_make_formfield($_form_object, '', 'email_address', __('Email Address', 'ctct'), true, 'example@tryme.com'),
 				ctct_make_formfield($_form_object, '', 'first_name', __('First Name', 'ctct'), true),
 				ctct_make_formfield($_form_object, '', 'last_name', __('Last Name', 'ctct'), true),
-				ctct_make_formfield($_form_object, '', 'Go', __('Submit', 'ctct'), true, 'Subscribe', 'submit'),
+				ctct_make_formfield($_form_object, '', 'Go', __('Submit', 'ctct'), true, __('Subscribe', 'ctct'), 'submit'),
 				ctct_make_formfield($_form_object, 'more', 'lists', __('Lists', 'ctct'), false, '', 'lists'),
 				ctct_make_formfield($_form_object, 'more', 'middle_name', __('Middle Name', 'ctct'), false),
 				ctct_make_formfield($_form_object, 'more', 'company_name', __('Company Name', 'ctct'), false),
