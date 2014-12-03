@@ -87,7 +87,19 @@ class CTCT_Process_Form {
 		}
 
 		// Otherwise, let's Add/Update
-		$this->results = KWSConstantContact::getInstance()->addUpdateContact( $KWSContact );
+		$result = KWSConstantContact::getInstance()->addUpdateContact( $KWSContact );
+
+		if( is_wp_error( $result ) ) {
+
+			$this->errors[] = $result;
+
+			$this->results = false;
+
+		} else {
+
+			$this->results = $result;
+
+		}
 	}
 
 	/**

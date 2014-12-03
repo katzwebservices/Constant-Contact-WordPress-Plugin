@@ -87,6 +87,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 * Fixed: Issue where Akismet would return all submissions as spam
 * Fixed: Improved error handling for DataValidation.com
 * Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
+* Fixed: Added message for users who are `OPTOUT` status
 * Fixed: Activity Log output now handles exceptions better
 
 = 3.1.4 =
