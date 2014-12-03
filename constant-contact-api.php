@@ -22,7 +22,7 @@ register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
 
 final class WP_CTCT {
 
-	const version = '3.1.4';
+	const version = '3.1.5';
 	public $cc = NULL;
 	public $oauth = NULL;
 	public $log = NULL;
