@@ -510,7 +510,7 @@ class CTCT_Form_Designer_Output {
 	        <div>
 	            <input type="hidden" id="cc_redirect_url" name="cc_redirect_url" value="'. urlencode( $redirect_url ) .'" />
 	            <input type="hidden" id="cc_referral_url" name="cc_referral_url" value="'. urlencode( $current_page_url ) .'" />
-	            <input type="hidden" name="cc_referral_post_id" value="'. get_the_id() .'" />
+	            <input type="hidden" name="cc_referral_post_id" value="'. get_the_ID() .'" />
 	            <input type="hidden" name="uniqueformid" value="'.$unique_id.'" />
 	            <input type="hidden" name="ccformid" value="'.$formid.'" />
 	        </div>';
