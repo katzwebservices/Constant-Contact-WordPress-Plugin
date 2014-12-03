@@ -175,7 +175,7 @@ class CTCT_Process_Form {
 
 			} catch (\libphonenumber\NumberParseException $e) {
 
-				do_action('ctct_activity', $e->getMessage(), $e );
+				do_action('ctct_activity', 'Invalid phone number', $e->getMessage() );
 
 			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'ctct'), $key );
 
