@@ -31,6 +31,11 @@ class DataValidation {
 
 		$response = json_decode($response);
 
+		// Invalid JSON response
+		if( empty( $response ) ) {
+			return new WP_Error('datavalidation', 'Invalid response from DataValidation', $response );
+		}
+
 		$this->last_response = $response;
 
 		$this->message = $this->getStatusMessageFromCode($response->code);
@@ -106,6 +111,8 @@ class DataValidation {
 	 * @return string              Status message
 	 */
 	function getStatusMessageFromCode($status_code) {
+
+		$message = '';
 
 		switch($status_code) {
 			case 1: $message = __('Invalid email address', 'ctct'); break;
