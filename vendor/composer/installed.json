@@ -39,68 +39,6 @@
         "description": "Wrapper for ivaynberg jQuery select2"
     },
     {
-        "name": "giggsey/libphonenumber-for-php",
-        "version": "7.0",
-        "version_normalized": "7.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-            "reference": "7a66a13b9b1c9c6af0a2bf869722497897553dea"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/7a66a13b9b1c9c6af0a2bf869722497897553dea",
-            "reference": "7a66a13b9b1c9c6af0a2bf869722497897553dea",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*"
-        },
-        "require-dev": {
-            "phing/phing": "~2.7",
-            "phpunit/phpunit": "~4.0",
-            "satooshi/php-coveralls": "~0.6",
-            "symfony/console": "~2.4"
-        },
-        "suggest": {
-            "ext-intl": "To use the geocoder and carrier mapping"
-        },
-        "time": "2014-11-03 14:47:13",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "7.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "libphonenumber": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Joshua Gigg",
-                "email": "giggsey@gmail.com",
-                "homepage": "http://giggsey.com/"
-            }
-        ],
-        "description": "PHP Port of Google's libphonenumber",
-        "homepage": "https://github.com/giggsey/libphonenumber-for-php",
-        "keywords": [
-            "geocoding",
-            "geolocation",
-            "libphonenumber",
-            "mobile",
-            "phonenumber",
-            "validation"
-        ]
-    },
-    {
         "name": "constantcontact/constantcontact",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -145,6 +83,68 @@
             "constantcontact",
             "ctct",
             "email marketing"
+        ]
+    },
+    {
+        "name": "giggsey/libphonenumber-for-php",
+        "version": "7.0.1",
+        "version_normalized": "7.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/giggsey/libphonenumber-for-php.git",
+            "reference": "82dbb587f2682ed389295293f1a511e2e778cbcf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/82dbb587f2682ed389295293f1a511e2e778cbcf",
+            "reference": "82dbb587f2682ed389295293f1a511e2e778cbcf",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*"
+        },
+        "require-dev": {
+            "phing/phing": "~2.7",
+            "phpunit/phpunit": "~4.0",
+            "satooshi/php-coveralls": "~0.6",
+            "symfony/console": "~2.4"
+        },
+        "suggest": {
+            "ext-intl": "To use the geocoder and carrier mapping"
+        },
+        "time": "2014-11-25 13:22:15",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "7.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "libphonenumber": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Joshua Gigg",
+                "email": "giggsey@gmail.com",
+                "homepage": "http://giggsey.com/"
+            }
+        ],
+        "description": "PHP Port of Google's libphonenumber",
+        "homepage": "https://github.com/giggsey/libphonenumber-for-php",
+        "keywords": [
+            "geocoding",
+            "geolocation",
+            "libphonenumber",
+            "mobile",
+            "phonenumber",
+            "validation"
         ]
     }
 ]

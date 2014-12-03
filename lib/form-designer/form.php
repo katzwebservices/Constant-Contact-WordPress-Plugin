@@ -139,7 +139,6 @@ class CTCT_Form_Designer_Output {
 	}
 
 	static function get_field_id( $passed_form_id = NULL, $field_name ) {
-
 		return "cc_{$passed_form_id}_{$field_name}";
 	}
 
@@ -434,13 +433,21 @@ class CTCT_Form_Designer_Output {
 	        $error_output .= '<ul>';
 	        foreach ($errors as $error ) {
 
-	            /**
-	             * The input ID is stored in the WP_Error error data.
-	             * @see CTCT_Process_Form::checkRequired()
-	             */
-	            $error_field_id = CTCT_Form_Designer_Output::get_field_id( $ProcessForm->id(), $error->get_error_data() );
+	        	$error_data = $error->get_error_data();
+	        	$error_label_for = '';
 
-	            $error_label_for = ' for="'.esc_attr( $error_field_id ).'"';
+	        	// We only want simple error data that we can output here. Akismet triggers an array instead of a string.
+	        	if( is_string( $error_data ) ) {
+
+		            /**
+		             * The input ID is stored in the WP_Error error data.
+		             * @see CTCT_Process_Form::checkRequired()
+		             */
+		            $error_field_id = CTCT_Form_Designer_Output::get_field_id( $ProcessForm->id(), $error_data );
+
+		            $error_label_for = ' for="'.esc_attr( $error_field_id ).'"';
+
+		        }
 
 	            $error_output .= '<li><label'.$error_label_for.'>'.$error->get_error_message().'</label></li>';
 	        }
@@ -503,8 +510,9 @@ class CTCT_Form_Designer_Output {
 	        <div>
 	            <input type="hidden" id="cc_redirect_url" name="cc_redirect_url" value="'. urlencode( $redirect_url ) .'" />
 	            <input type="hidden" id="cc_referral_url" name="cc_referral_url" value="'. urlencode( $current_page_url ) .'" />
-	                <input type="hidden" name="uniqueformid" value="'.$unique_id.'" />
-	                <input type="hidden" name="ccformid" value="'.$formid.'" />
+	            <input type="hidden" name="cc_referral_post_id" value="'. get_the_ID() .'" />
+	            <input type="hidden" name="uniqueformid" value="'.$unique_id.'" />
+	            <input type="hidden" name="ccformid" value="'.$formid.'" />
 	        </div>';
 	    $form = str_replace('<!-- %%HIDDEN%% -->', $hiddenoutput, $form);
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.0.1
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -79,6 +79,18 @@ To install the plugin follow the steps below:
 
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+
+= 3.1.5 on December 2 =
+* Fixed: Catch `WP_Error` response from the REST client
+* Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
+* Fixed: Form Styler does not stay turned off after saving
+* Fixed: Issue where Akismet would return all submissions as spam
+* Fixed: Improved error handling for DataValidation.com
+* Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
+* Fixed: Added message for users who are `OPTOUT` status
+* Fixed: Activity Log output now handles exceptions better
+* Modified: Updated the phone number validation script
+* Fixed: Hide PHP notices for SMTP Email Validation script
 
 = 3.1.4 =
 * Fixed: Original plugin file name restored to help with auto-upgrade issues
@@ -324,3 +336,10 @@ When you do that, email click stats will be segmented for you in the Site Traffi
 
 = What is the plugin license? =
 Good news, this plugin is free for everyone! The plugin is [licensed under the GPL](http://www.gnu.org/licenses/gpl-2.0.txt "View the GPL License").
+
+= How do I test Akismet spam filtering? =
+
+* Add a First Name field to the form you want to test 
+* Log out of your site (Akismet takes into account if you're logged-in)
+* Submit your form using the First Name field set to `viagra-test-123`
+* That should always return false

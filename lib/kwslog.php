@@ -62,14 +62,14 @@ class KWSLog {
 	private $logs_per_page = 10;
 
 	function load() {
-		$KWSLog = new KWSLog();
+		$KWSLog = new KWSLog;
 		self::$instance = $KWSLog;
 	}
 
 	function getInstance() {
 
 		if(empty(self::$instance)){
-			self::$instance = new KWSLog();
+			self::$instance = new KWSLog;
 		}
 
 		return self::$instance;
@@ -260,6 +260,7 @@ class KWSLog {
 	}
 
 	function print_pagination( $current = 1 ) {
+
 		?>
 		<div class="ctct-pagination">
 
@@ -302,6 +303,7 @@ class KWSLog {
 		);
 
 		$logs = WP_Logging::get_connected_logs( $args );
+
 	?>
 		<div class="wrap">
 
@@ -317,9 +319,9 @@ class KWSLog {
 			 <table class="ctct_table widefat">
 				<thead>
 				<tr>
-					<th class="title"><?php _e('Title', 'kwslog')?></th>
-					<th class="" style="width: 30%"><?php _e('Content', 'kwslog')?></th>
-					<th class="column column-post_date"><?php _e('Date', 'kwslog')?></th>
+					<th class="title"><?php esc_html_e('Title', 'kwslog'); ?></th>
+					<th class="" style="width: 30%"><?php esc_html_e('Content', 'kwslog'); ?></th>
+					<th class="column column-post_date"><?php esc_html_e('Date', 'kwslog'); ?></th>
 				</tr>
 				</thead>
 					<tbody>
@@ -345,15 +347,17 @@ class KWSLog {
 											$item = maybe_unserialize( $item );
 
 											echo '<pre>';
-											if( is_string( $item ) ){
-												print( htmlentities2( $item ) );
-											} else {
-												print_r( $item ) ;
-											}
+
+											ob_start();
+											print_r( $item );
+											$item_output = ob_get_clean();
+
+											echo esc_html( $item_output );
+
 											echo '</pre>';
 										}
 									?></td>
-									<td><?php echo $log->post_date; ?></td>
+									<td><?php echo esc_html( $log->post_date ); ?></td>
 								</tr>
 							<?php
 						}

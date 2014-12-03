@@ -185,15 +185,23 @@ final class KWSConstantContact extends ConstantContact {
 
             try {
 
-            	// Update the contact details
-            	$modifiedContact = $existingContact->update($data);
+            	if( $existingContact->get('status') === 'OPTOUT' ) {
 
-            	// Push the update to CTCT
-            	$returnContact = $this->updateContact(CTCT_ACCESS_TOKEN, $modifiedContact);
+            		$action .= ' Failed';
+            		do_action('ctct_error', 'The contact has opted out; cannot add or update.', $existingContact );
+            		$returnContact = new WP_Error('optout', __('You have opted out of our newsletters and cannot re-subscribe.') );
 
-            	unset( $modifiedContact );
+            	} else {
 
-            	$action .= ' Succeeded';
+					// Update the contact details
+					$modifiedContact = $existingContact->update($data);
+
+					$returnContact = $this->updateContact(CTCT_ACCESS_TOKEN, $modifiedContact);
+					$action .= ' Succeeded';
+
+					unset( $modifiedContact );
+            	}
+
         	} catch(Exception $e) {
         		$returnContact = false;
         		$action .= ' Failed';

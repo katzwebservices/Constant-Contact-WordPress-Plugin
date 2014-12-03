@@ -101,6 +101,19 @@ class KWSRestClient implements RestClientInterface
 
 		$response = wp_remote_request( $url, $args );
 
+		/**
+		 * Since 3.1.5
+		 */
+		if( is_wp_error( $response ) ) {
+
+			$response->add_data( 'url', $url );
+			$response->add_data( 'args', $args );
+
+			do_action( 'constant_contact_add_notice', $response );
+
+			return false;
+		}
+
 		// check if any errors were returned
 		$body = json_decode($response['body'], true);
 
@@ -140,8 +153,9 @@ class KWSRestClient implements RestClientInterface
 					'request_url' => $url
 				));
 
-
 				do_action( 'constant_contact_add_notice', $WP_Error );
+
+				return false;
 			}
 		}
 

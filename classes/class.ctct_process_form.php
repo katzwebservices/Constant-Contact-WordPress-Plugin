@@ -87,7 +87,19 @@ class CTCT_Process_Form {
 		}
 
 		// Otherwise, let's Add/Update
-		$this->results = KWSConstantContact::getInstance()->addUpdateContact( $KWSContact );
+		$result = KWSConstantContact::getInstance()->addUpdateContact( $KWSContact );
+
+		if( is_wp_error( $result ) ) {
+
+			$this->errors[] = $result;
+
+			$this->results = false;
+
+		} else {
+
+			$this->results = $result;
+
+		}
 	}
 
 	/**
@@ -175,7 +187,7 @@ class CTCT_Process_Form {
 
 			} catch (\libphonenumber\NumberParseException $e) {
 
-				do_action('ctct_activity', $e->getMessage(), $e );
+				do_action('ctct_activity', 'Invalid phone number', $e->getMessage() );
 
 			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'ctct'), $key );
 
@@ -315,12 +327,20 @@ class CTCT_Process_Form {
 
 			$process_inconclusive = apply_filters( 'ctct_process_inconclusive_emails', true );
 
-			if( $validation === false || ($validation === null && !$process_inconclusive) ) {
+			if( is_wp_error( $validation ) ) {
+
+				do_action('ctct_activity', 'DataValidation.com error', 'The email was not processed because of the error: '.$validation->get_error_message() );
+
+				return;
+
+			} elseif( $validation === false || ($validation === null && !$process_inconclusive) ) {
+
 				do_action('ctct_activity', 'DataValidation validation failed.', $email, $Validate);
 
 				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'ctct');
 				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
 				return;
+
 			} if($validation === null) {
 				do_action('ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate);
 			} elseif($validation === true) {
@@ -335,19 +355,40 @@ class CTCT_Process_Form {
 
 				$SMTP_Validator = new SMTP_validateEmail();
 
-				// Timeout after 5 seconds
+				// Timeout after 1 second
 				$SMTP_Validator->max_conn_time = 1;
 				$SMTP_Validator->max_read_time = 1;
-				$SMTP_Validator->debug = 1;
+				$SMTP_Validator->debug = 0;
 
+				// Prevent PHP notices about timeouts
+				ob_start();
 				$results = $SMTP_Validator->validate( array($email), get_option( 'admin_email' ));
+				ob_clean();
 
-				if($results[$email]) {
-					do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
+				if( isset( $results[ $email ] ) ) {
+
+					// True = passed
+					if( $results[ $email ] ) {
+
+						do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
+
+						return true;
+
+					} else {
+
+						do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
+
+						$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
+
+						return false;
+					}
+
+
 				} else {
-					do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
-					$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
-					return;
+
+					do_action('ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out?' );
+
+					return true;
 				}
 
 			} catch( Exception $e ) {
@@ -371,25 +412,51 @@ class CTCT_Process_Form {
 	 * @uses akismet_auto_check_comment()
 	 *
 	 */
-	function akismetCheck() {
+	function akismetCheck( $Contact ) {
 		global $akismet_api_host, $akismet_api_port;
 
-		if(!function_exists('akismet_http_post') || apply_filters('disable_constant_contact_akismet', false)) {
+
+		// Disable using a filter
+		if( apply_filters('disable_constant_contact_akismet', false) ) {
 			return true;
 		}
 
-		/** If Akismet hasn't been initialized, initialize it. */
-		if(empty($akismet_api_port)) { akismet_init(); }
+		// Akismet not activated
+		if( !class_exists( 'Akismet' ) ) {
+			do_action('ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
+			return true;
+		}
+
+		$key = Akismet::get_api_key();
+
+		if( empty( $key ) ) {
+
+			do_action('ctct_activity', 'Empty Akismet API key. Not processing.' );
+
+			return true;
+		}
 
 		/** Disable nonce verification */
 		add_filter('akismet_comment_nonce', function() { return 'inactive'; });
 
 		ob_start();
-	    $check = akismet_auto_check_comment(array());
+
+		$comment_data = array(
+	    	'user_ID' => get_current_user_id(),
+	    	'comment_post_ID' => isset( $_POST['cc_referral_post_id'] ) ? intval( $_POST['cc_referral_post_id'] ) : NULL,
+	    	'comment_author' => $Contact->get('name'),
+	    	'comment_author_email' => $Contact->get('email'),
+	    	'is_test' => apply_filters( 'constant_contact_akismet_is_test', false )
+	    );
+
+	    $check = Akismet::auto_check_comment( $comment_data );
+
 	    ob_clean();
 
-	    if(empty($check) || empty($check['akismet_result'])) {
+	    if( empty( $check ) || empty( $check['akismet_result'] ) ) {
+
 	    	do_action('ctct_activity', 'There was an issue with Akismet: the response was invalid.', $check);
+
 	    } else {
 		    switch($check['akismet_result']) {
 		    	case 'true':
