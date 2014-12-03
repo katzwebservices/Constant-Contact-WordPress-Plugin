@@ -336,9 +336,9 @@ class CTCT_Process_Form {
 				$SMTP_Validator = new SMTP_validateEmail();
 
 				// Timeout after 5 seconds
-				$SMTP_Validator->max_conn_time = 1;
-				$SMTP_Validator->max_read_time = 1;
-				$SMTP_Validator->debug = 1;
+				$SMTP_Validator->max_conn_time = 5;
+				$SMTP_Validator->max_read_time = 5;
+				$SMTP_Validator->debug = 0;
 
 				$results = $SMTP_Validator->validate( array($email), get_option( 'admin_email' ));
 
