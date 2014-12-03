@@ -355,19 +355,40 @@ class CTCT_Process_Form {
 
 				$SMTP_Validator = new SMTP_validateEmail();
 
-				// Timeout after 5 seconds
-				$SMTP_Validator->max_conn_time = 5;
-				$SMTP_Validator->max_read_time = 5;
+				// Timeout after 1 second
+				$SMTP_Validator->max_conn_time = 1;
+				$SMTP_Validator->max_read_time = 1;
 				$SMTP_Validator->debug = 0;
 
+				// Prevent PHP notices about timeouts
+				ob_start();
 				$results = $SMTP_Validator->validate( array($email), get_option( 'admin_email' ));
+				ob_clean();
 
-				if($results[$email]) {
-					do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
+				if( isset( $results[ $email ] ) ) {
+
+					// True = passed
+					if( $results[ $email ] ) {
+
+						do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
+
+						return true;
+
+					} else {
+
+						do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
+
+						$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
+
+						return false;
+					}
+
+
 				} else {
-					do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
-					$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
-					return;
+
+					do_action('ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out?' );
+
+					return true;
 				}
 
 			} catch( Exception $e ) {

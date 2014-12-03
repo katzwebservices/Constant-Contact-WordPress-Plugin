@@ -89,6 +89,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 * Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
 * Fixed: Added message for users who are `OPTOUT` status
 * Fixed: Activity Log output now handles exceptions better
+* Fixed: Hide PHP notices for SMTP Email Validation script
 
 = 3.1.4 =
 * Fixed: Original plugin file name restored to help with auto-upgrade issues
