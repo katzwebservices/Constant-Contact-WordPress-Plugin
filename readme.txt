@@ -80,6 +80,8 @@ To install the plugin follow the steps below:
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
+* Fixed: Catch `WP_Error` response from the REST client
+* Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
 * Fixed: Improved error handling for DataValidation.com
 = 3.1.4 =
 * Fixed: Original plugin file name restored to help with auto-upgrade issues

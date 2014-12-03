@@ -1,5 +1,5 @@
 <?php
-if(!class_exists('CTCTRequest') && !class_exists('OAuthSignatureMethod_HMAC_SHA1')) {
+if(!class_exists('CTCTRequest') && !class_exists('CTCT_V1_OAuthSignatureMethod_HMAC_SHA1')) {
     require_once('Authentication.php'); // OAuth & Basic Authentication classes (CTCTDataStore, CTCTRequest, OAuthToken...)
 }
 if(!class_exists('ActivitiesCollection')) {
@@ -26,6 +26,10 @@ class ConstantContact{
      * @return void
      */
     public function __construct($authType, $apiKey, $username, $param){
+
+        if( !class_exists( 'CTCTRequest' ) ) {
+            return;
+        }
 
     	// Set username to the instance so we can use it if neccessary
     	$this->username = $username;
