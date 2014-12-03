@@ -26,7 +26,7 @@ class DataValidation {
 		$response = $this->get( $email );
 
 		if( empty( $response ) || ( !is_array( $response) && !is_string( $response ) ) ) {
-			return false;
+			return new WP_Error('datavalidation', 'Empty response from DataValidation' );
 		}
 
 		$response = json_decode($response);
@@ -42,7 +42,7 @@ class DataValidation {
 		return $this->message;
 	}
 
-	function getRequestArgs($body) {
+	function getRequestArgs( $body ) {
 		$args = array(
 		    'headers' => array(
 		        'Host' => $this->host,
@@ -67,8 +67,12 @@ class DataValidation {
 
 		$request = wp_remote_get($url, $this->getRequestArgs(''));
 
-		if( empty( $request ) || is_wp_error( $request ) ) {
+		if( empty( $request ) ) {
 			return false;
+		}
+
+		if( is_wp_error( $request ) ) {
+			return $request;
 		}
 
 		return wp_remote_retrieve_body($request);

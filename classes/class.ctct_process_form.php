@@ -315,12 +315,20 @@ class CTCT_Process_Form {
 
 			$process_inconclusive = apply_filters( 'ctct_process_inconclusive_emails', true );
 
-			if( $validation === false || ($validation === null && !$process_inconclusive) ) {
+			if( is_wp_error( $validation ) ) {
+
+				do_action('ctct_activity', 'DataValidation.com error', 'The email was not processed because of the error: '.$validation->get_error_message() );
+
+				return;
+
+			} elseif( $validation === false || ($validation === null && !$process_inconclusive) ) {
+
 				do_action('ctct_activity', 'DataValidation validation failed.', $email, $Validate);
 
 				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'ctct');
 				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
 				return;
+
 			} if($validation === null) {
 				do_action('ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate);
 			} elseif($validation === true) {
