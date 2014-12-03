@@ -53,8 +53,6 @@ final class WP_CTCT {
 				return;
 			}
 
-			require_once CTCT_DIR_PATH.'vendor/autoload.php';
-
 			add_action('plugins_loaded', array(&$this, 'setup'), 1);
 			add_action('plugins_loaded', array(&$this, 'include_files'), 5);
 
@@ -86,6 +84,8 @@ final class WP_CTCT {
 	}
 
 	function setup() {
+
+		require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
 		if( !class_exists( 'KWSOAuth2' ) ) {
 
