@@ -80,10 +80,15 @@ To install the plugin follow the steps below:
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
+= 3.1.5 =
 * Fixed: Catch `WP_Error` response from the REST client
 * Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
 * Fixed: Form Styler does not stay turned off after saving
+* Fixed: Issue where Akismet would return all submissions as spam
 * Fixed: Improved error handling for DataValidation.com
+* Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
+* Fixed: Activity Log output now handles exceptions better
+
 = 3.1.4 =
 * Fixed: Original plugin file name restored to help with auto-upgrade issues
 * Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
@@ -328,3 +333,10 @@ When you do that, email click stats will be segmented for you in the Site Traffi
 
 = What is the plugin license? =
 Good news, this plugin is free for everyone! The plugin is [licensed under the GPL](http://www.gnu.org/licenses/gpl-2.0.txt "View the GPL License").
+
+= How do I test Akismet spam filtering? =
+
+* Add a First Name field to the form you want to test 
+* Log out of your site (Akismet takes into account if you're logged-in)
+* Submit your form using the First Name field set to `viagra-test-123`
+* That should always return false
