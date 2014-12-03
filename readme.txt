@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.0.1
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -80,7 +80,7 @@ To install the plugin follow the steps below:
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
-= 3.1.5 =
+= 3.1.5 on December 2 =
 * Fixed: Catch `WP_Error` response from the REST client
 * Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
 * Fixed: Form Styler does not stay turned off after saving
@@ -89,6 +89,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 * Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
 * Fixed: Added message for users who are `OPTOUT` status
 * Fixed: Activity Log output now handles exceptions better
+* Modified: Updated the phone number validation script
 * Fixed: Hide PHP notices for SMTP Email Validation script
 
 = 3.1.4 =
