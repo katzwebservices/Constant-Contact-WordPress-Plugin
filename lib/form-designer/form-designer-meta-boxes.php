@@ -23,6 +23,7 @@ function cc_form_meta_box_actions($post, $metabox=array()) {
 				<h4 class="large smallmarginbottom"><?php _e('Use Form Styler?', 'ctct'); constant_contact_tip(__('Use the form styler to change colors and design of your form. If not used, the form will be styled using your theme\'s&nbsp;defaults.', 'ctct')); ?></h4>
 				<div class="switch">
 
+						<input type="hidden" name="toggledesign" value="" />
 						<input type="checkbox" name="toggledesign" id="toggledesign" <?php ctct_check_checkbox($form, 'toggledesign', 'yes', 'yes'); ?> />
 						<label for="toggledesign"><span class="hide-if-js"><?php _e('Customize Form Style?', 'ctct'); ?></span><i></i></label>
 				</div>

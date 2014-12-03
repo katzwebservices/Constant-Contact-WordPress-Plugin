@@ -82,6 +82,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 
 * Fixed: Catch `WP_Error` response from the REST client
 * Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
+* Fixed: Form Styler does not stay turned off after saving
 * Fixed: Improved error handling for DataValidation.com
 = 3.1.4 =
 * Fixed: Original plugin file name restored to help with auto-upgrade issues
