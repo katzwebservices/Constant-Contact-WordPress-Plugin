@@ -223,7 +223,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 			<th scope="row"><p><label for="<?php echo $this->get_field_id('redirect_url');?>"><span><?php _e('Signup Widget Thanks Page', 'ctct'); ?></span></label></p></th>
 			<td>
 			<input type="text" class="widefat code" name="<?php echo $this->get_field_name('redirect_url');?>"  id="<?php echo $this->get_field_id('redirect_url');?>" value="<?php echo $this->get_value('redirect_url', $instance); ?>" size="50" />
-			<p class="description"><?php _e('Enter a url above to redirect new registrants to a thank you page upon successfully submitting the signup form. Use the full URL/address including <strong>http://</strong> Leave this blank for no redirection (page will reload with success message inside widget).', 'ctct'); ?></p>
+			<p class="description"><?php _e('Enter a url above to redirect new registrants to a thank you page upon successfully submitting the signup form. You can use either the full URL, including `http://`, or you can use a relative path on this site, such as `/post-name/`. Leave this blank for no redirection (page will reload with success message inside widget).', 'ctct'); ?></p>
 			</td>
 		</tr>
 	</table>
