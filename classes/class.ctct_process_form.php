@@ -111,6 +111,7 @@ class CTCT_Process_Form {
 	/**
 	 * If the request included a Redirect URL, parse, sanitize, and process the redirection
 	 *
+	 * @since  3.1.6
 	 * @return void
 	 */
 	function maybe_redirect() {
