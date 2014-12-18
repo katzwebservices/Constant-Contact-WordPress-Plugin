@@ -23,7 +23,25 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	static $instance;
 
 	function __construct() {
+
+		// Triggers addIncludes, etc
 		parent::__construct( true );
+
+		$this->old_api = new KWS_V1API('oauth2', CTCT_APIKEY, CTCT_USERNAME, CTCT_ACCESS_TOKEN);
+
+	}
+
+	function addIncludes() {
+
+		require_once(EVENTSPOT_FILE_PATH.'functions.php');
+		require_once(EVENTSPOT_FILE_PATH.'ctct_php_library/ConstantContact.php');
+		require_once(EVENTSPOT_FILE_PATH.'class.kwsv1api.php');
+		include_once(EVENTSPOT_FILE_PATH.'embed.php');
+
+		if(!class_exists('constant_contact_events_widget')) {
+			require_once EVENTSPOT_FILE_PATH . 'widget-events.php';
+		}
+
 	}
 
 	/**
@@ -48,18 +66,6 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 	function addActions() {
 
-		require_once(EVENTSPOT_FILE_PATH.'functions.php');
-		require_once(EVENTSPOT_FILE_PATH.'ctct_php_library/ConstantContact.php');
-		require_once(EVENTSPOT_FILE_PATH.'class.kwsv1api.php');
-		include_once(EVENTSPOT_FILE_PATH.'embed.php');
-
-		$this->old_api = new KWS_V1API('oauth2', CTCT_APIKEY, CTCT_USERNAME, CTCT_ACCESS_TOKEN);
-
-		if(!class_exists('constant_contact_events_widget')) {
-			require_once EVENTSPOT_FILE_PATH . 'widget-events.php';
-		}
-
-
 		add_action('wp_dashboard_setup', array(&$this, 'dashboard_setup'));
 
 		// Create events shortcode
@@ -71,6 +77,17 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		add_filter('cc_event_registrationdate', 'constant_contact_event_date');
 		add_filter('cc_event_startdate', 'constant_contact_event_date');
 		add_filter('cc_event_enddate', 'constant_contact_event_date');
+	}
+
+	function print_scripts() {
+		global $pagenow;
+
+		if( !in_array( $pagenow, array('post.php', 'post-new.php', 'index.php') ) ) {
+			return;
+		}
+
+		wp_print_scripts( 'thickbox' );
+
 	}
 
 	/**

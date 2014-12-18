@@ -82,6 +82,7 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 
 = 3.1.6 on December 7 =
 * Fixed: Support redirection to Thank You URL in Widget setting
+* Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)
 
 = 3.1.5 on December 2 =
 * Fixed: Catch `WP_Error` response from the REST client

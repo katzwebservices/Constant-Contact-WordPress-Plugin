@@ -50,7 +50,7 @@
 
 			try {
 
-				$events = CTCT_EventSpot::getInstance()->old_api->getEvents();
+				$events = constant_contact_old_api_get_all('Events', CTCT_EventSpot::getInstance()->old_api );
 
 				if(empty($events)) {
 					include(EVENTSPOT_FILE_PATH.'/views/promo.php');

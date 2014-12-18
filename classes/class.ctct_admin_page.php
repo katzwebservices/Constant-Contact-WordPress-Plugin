@@ -37,6 +37,7 @@ abstract class CTCT_Admin_Page {
             add_action('admin_menu', array(&$this, 'add_menu'));
             add_action('admin_notices', array(&$this, 'print_notices'));
             add_action('admin_print_scripts', array(&$this, 'print_scripts'));
+            add_action('admin_print_scripts', array(&$this, 'addScripts'), 11 );
             add_action('admin_print_styles', array(&$this, 'print_styles'));
             add_filter( 'constant_contact_help_tabs', array(&$this, 'help_tabs'));
         }
@@ -83,11 +84,9 @@ abstract class CTCT_Admin_Page {
         wp_enqueue_script('ctct-admin-fittext', CTCT_FILE_URL.'js/admin/jquery.fittext.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-equalize', CTCT_FILE_URL.'js/admin/jquery.equalize.min.js', array('ctct-admin-page'));
         wp_enqueue_script('ctct-admin-inlineedit', CTCT_FILE_URL.'js/admin/jquery.inlineedit.js', array('ctct-admin-page'));
-
-        $this->addScripts();
     }
 
-    protected function addScripts() {}
+    public function addScripts() {}
     protected function isAdd() { return isset($_GET['add']); }
     protected function isEdit() { return isset($_GET['edit']); }
     protected function isSingle() { return isset($_GET['view']); }
