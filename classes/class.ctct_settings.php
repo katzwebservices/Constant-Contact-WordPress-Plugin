@@ -245,6 +245,12 @@ class CTCT_Settings extends CTCT_Admin_Page {
 				    'content' => kws_ob_include(CTCT_DIR_PATH.'views/admin/view.setup.php', $this)
 				),
 				array(
+					'id' => 'eventspot',
+					'type' => 'checkbox',
+					'desc' => __('Enable EventSpot Integration', 'ctct'),
+					'label' => __('Enable integration with Constant Contact Events (EventSpot)?', 'ctct'),
+				),
+				array(
 					'type' => 'checkboxes',
 					'id' => 'logging',
 					'options' => array(
@@ -475,6 +481,7 @@ class CTCT_Settings extends CTCT_Admin_Page {
 
 		$defaults = apply_filters('ctct_default_settings', array(
 			'general' => '',
+			'eventspot' => true,
 			'logging' => array('activity'),
 			'register_page_method' => 'none',
 			'list_selection_format' => 'checkbox',

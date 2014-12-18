@@ -156,7 +156,11 @@ final class WP_CTCT {
 		include_once CTCT_DIR_PATH.'lib/constant-analytics/constant-analytics.php';
 		include_once CTCT_DIR_PATH.'lib/comment-form-signup.php';
 		include_once CTCT_DIR_PATH.'lib/simple-widget.php';
-		include_once CTCT_DIR_PATH.'lib/eventspot/eventspot.php';
+
+		if( CTCT_Settings::get('eventspot') ) {
+			include_once CTCT_DIR_PATH.'lib/eventspot/eventspot.php';
+		}
+
 		include_once CTCT_DIR_PATH.'lib/form-designer/form-designer.php';
 	}
 }
