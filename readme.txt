@@ -3,7 +3,7 @@ Contributors: katzwebdesign, katzwebservices
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: 3.1.5
 License: GPLv2 or later
 
@@ -79,6 +79,11 @@ To install the plugin follow the steps below:
 
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+
+= 3.1.6 on December 17 =
+* Fixed: Support redirection to Thank You URL in Widget setting
+* Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)
+* Added: Setting to disable EventSpot integration
 
 = 3.1.5 on December 2 =
 * Fixed: Catch `WP_Error` response from the REST client
@@ -198,11 +203,37 @@ __Version 3.x changes requirements for your server. If you upgrade and the upgra
 
 == Upgrade Notice ==
 
-= 3.1.2 =
-* __Major rewrite!__
-	- Requires PHP 5.3
-	- Uses different authentication method - password no longer stored on site
-	- Completely re-written to be more stable and functional
+= 3.1.6 on December 17 =
+* Fixed: Support redirection to Thank You URL in Widget setting
+* Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)
+* Added: Setting to disable EventSpot integration
+
+= 3.1.5 on December 2 =
+* Fixed: Catch `WP_Error` response from the REST client
+* Fixed: Namespace the V1 API classes to fix Fatal Errors on activation when already having a plugin using the `OAuthSignatureMethod_HMAC_SHA1` class name
+* Fixed: Form Styler does not stay turned off after saving
+* Fixed: Issue where Akismet would return all submissions as spam
+* Fixed: Improved error handling for DataValidation.com
+* Added: `constant_contact_akismet_is_test` filter to tell Akismet not to train using test data
+* Fixed: Added message for users who are `OPTOUT` status
+* Fixed: Activity Log output now handles exceptions better
+* Modified: Updated the phone number validation script
+* Fixed: Hide PHP notices for SMTP Email Validation script
+
+= 3.1.4 =
+* Fixed: Original plugin file name restored to help with auto-upgrade issues
+* Fixed: Form action URL incorrect for subdomain multisite installations. ([see ticket here](https://wordpress.org/support/topic/action-httpsitecom-within-multi-multi-site))
+* Fixed: EventSpot widget PHP warnings
+* Modified: New Form Designer forms have Submit field checked by default
+* Fixed: Fatal error on plugin deactivation if PHP 5.3 isn't available
+* Fixed: Form Designer Javascript Debug Mode turned off unless `SCRIPT_DEBUG` constant is defined and enabled
+* Tweak: Don't modify order of Form Designer fields if no position is set
+* Tweak: Improved text translations and fix textdomain issues
+
+= 3.1.3 = 
+* Update translation textdomain to `ctct` from `constant-contact-api`
+* Hide the custom content editor until checked
+* Fix default label size
 
 = 2.4.1 =
 * Fixed: issue with WordPress registration: the "Hidden Contact Lists" lists were not being properly added (the list IDs were incorrect), causing issues.

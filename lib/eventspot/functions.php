@@ -19,36 +19,51 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 	$key = constant_contact_cache_key('all_'.$type, $passed);
 
 	if(!constant_contact_refresh_cache($type) && $cached = get_transient($key)) {
-		return $cached;
+		#return $cached;
 	}
 
-	if(!empty($passed)) {
-		$items = $api->{"get{$type}"}($passed, $page);
-	} else {
-		$items = $api->{"get{$type}"}($page);
+	try {
+
+		if(!empty($passed)) {
+			$items = $api->{"get{$type}"}($passed, $page);
+		} else {
+			$items = $api->{"get{$type}"}($page);
+		}
+
+		// If no results
+		if(empty($items[strtolower($type)])) {
+			return $return;
+
+		}
+		// Results
+		else {
+
+			// Otherwise, add items using the startdate time as the key for sorting below
+			foreach($items[strtolower($type)] as $item) {
+				$allkey = isset($item->startDate) ? strtotime($item->startDate) : null;
+				$return[$allkey] = $item;
+			}
+
+			// Sort by event date
+			krsort($return);
+
+			if(!empty($items['nextLink'])) {
+				constant_contact_old_api_get_all($type, $api, $passed, $return, $items['nextLink']);
+			}
+
+			set_transient($key, $return, apply_filters('constant_contact_cache_age', HOUR_IN_SECONDS * 6 ) );
+
+		}
+
+	} catch( Exception $e ) {
+
+		do_action('ctct_error', 'Get All Events Exception', $e->getMessage() );
+
+		$return = false;
 	}
-
-	// If no results
-	if(empty($items[strtolower($type)])) {
-		return $return;
-	}
-
-	// Otherwise, add items using the startdate time as the key for sorting below
-	foreach($items[strtolower($type)] as $item) {
-		$allkey = isset($item->startDate) ? strtotime($item->startDate) : null;
-		$return[$allkey] = $item;
-	}
-
-	// Sort by event date
-	krsort($return);
-
-	if(!empty($items['nextLink'])) {
-		constant_contact_old_api_get_all($type, $api, $passed, $return, $items['nextLink']);
-	}
-
-	set_transient($key, $return, apply_filters('constant_contact_cache_age', HOUR_IN_SECONDS * 6 ) );
 
 	return $return;
+
 }
 
 function constant_contact_get_timezone($value='') {

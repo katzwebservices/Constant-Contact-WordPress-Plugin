@@ -3,7 +3,6 @@
 /**
  * Handle all plugin form submissions.
  *
- * @todo  Support `cc_redirect_url` setting for widgets
  */
 class CTCT_Process_Form {
 
@@ -100,6 +99,96 @@ class CTCT_Process_Form {
 			$this->results = $result;
 
 		}
+
+		if( empty( $this->results ) ) {
+			return;
+		}
+
+		$this->maybe_redirect();
+
+	}
+
+	/**
+	 * If the request included a Redirect URL, parse, sanitize, and process the redirection
+	 *
+	 * @since  3.1.6
+	 * @return void
+	 */
+	function maybe_redirect() {
+
+		if( !empty( $_POST['cc_redirect_url'] ) ) {
+
+			$safe_redirect = false;
+
+			$requested_url = urldecode( $_POST['cc_redirect_url'] );
+
+			$parsed = parse_url( $requested_url );
+
+
+			/**
+			 * This is a local URL, has a path but not a domain or http://
+			 *
+			 * We use wp_safe_redirect() because it's definitely local.
+			 */
+			if( !empty( $parsed['path'] ) && empty( $parsed['host'] ) && empty( $parsed['scheme'] ) ) {
+
+				// Generate the URL based on the path
+				$redirect_url = site_url( $parsed['path'] );
+
+				if( !empty( $parsed['query'] ) ) {
+					$redirect_url .= '?'.$parsed['query'];
+				}
+
+				$safe_redirect = true;
+			}
+
+
+			/**
+			 * If there's a query, it might include some url-encoded `'"`s that will get stripped if just sanitized.
+			 * Instead, let's parse out the query, sanitize the URL, then add back in the query.
+			 *
+			 * Otherwise, this: http://example.com/?custom-redirect=123&example=\/&'"
+			 * Would be stripped to this: http://example.com/?custom-redirect=123&example=\/&
+			 *
+			 * Note the missing ' and "
+			 */
+			else if( !empty( $parsed['query'] ) && !empty( $parsed['scheme'] ) && !empty( $parsed['host'] ) ) {
+
+				$path = isset( $parsed['path'] ) ? $parsed['path'] : '';
+
+				$temp_url = $parsed['scheme'] . '://' . $parsed['host'] . $path;
+
+				$temp_url = esc_url_raw( $temp_url );
+
+				$redirect_url = $temp_url . '?'.$parsed['query'];
+
+			} else {
+
+				$redirect_url = wp_sanitize_redirect( $requested_url );
+
+			}
+
+			/**
+			 * Set whether to use wp_safe_redirect() for a request. If local URL, defaults to yes. If not, defaults to no.
+			 * @var boolean
+			 */
+			$safe_redirect = apply_filters( 'constant_contact_force_use_safe_redirect', $safe_redirect, $this );
+
+			do_action('ctct_activity', 'Redirecting User after processing', $redirect_url );
+
+			if( $safe_redirect ) {
+
+				wp_safe_redirect( $redirect_url );
+
+			} else {
+
+				wp_redirect( $redirect_url );
+
+			}
+
+			exit();
+		}
+
 	}
 
 	/**
