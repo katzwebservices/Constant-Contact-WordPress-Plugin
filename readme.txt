@@ -80,6 +80,10 @@ To install the plugin follow the steps below:
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
+= 3.1.7 =
+* Fixed: short `<?` opening PHP tag in `nameparse.php`
+* 
+
 = 3.1.6 on December 17 =
 * Fixed: Support redirection to Thank You URL in Widget setting
 * Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)

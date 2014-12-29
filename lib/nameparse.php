@@ -1,7 +1,7 @@
-<?
+<?php
 /*
 Name:   nameparse.php
-Version: 0.2a
+Version: 0.2b
 Date:   030507
 First:  030407
 License:    GNU General Public License v2
