@@ -120,7 +120,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 			$this->make_table($events, __('Events', 'ctct'));
 			?>
-			<p class="submit"><a href="<?php echo add_query_arg('refresh', 'events'); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
+			<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'events') ); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
 			<?php
 		}
 

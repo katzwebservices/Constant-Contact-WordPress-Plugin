@@ -66,7 +66,7 @@ class CTCT_Form_Designer_Helper {
      * @param  array $forms If setting for the first time, we'll need the $forms array to get the highest number.
      * @return integer Form ID that won't conflict with other forms.
      */
-    function get_form_increment($forms = array()) {
+    static function get_form_increment($forms = array()) {
 
         $previous = get_option('cc_form_increment');
 
@@ -84,7 +84,7 @@ class CTCT_Form_Designer_Helper {
         return $increment++;
     }
 
-    function generate_form_from_request($r, $forms) {
+    static function generate_form_from_request($r, $forms) {
         if(!is_array($r)) { return false; }
 
         // We don't want to save this extranneous stuff into the DB
@@ -113,7 +113,7 @@ class CTCT_Form_Designer_Helper {
      * @param  array   $data    The form data as an array
      * @return WP_Error|integer     If form update failed, `WP_Error`; otherwise, the saved/updated form ID
      */
-    function update_form_object( $form_id = -1, $data = array()) {
+    static function update_form_object( $form_id = -1, $data = array()) {
         $form_id = floatval($form_id);
 
         // Get existing forms

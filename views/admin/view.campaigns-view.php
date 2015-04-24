@@ -18,7 +18,7 @@ if(empty($Campaigns)) {
         $alt = empty( $alt ) ? 'class="alt"' : '';
         ?>
             <tr <?php echo $alt; ?>>
-                <td class="column-name post-title wrap"><strong><a href="<?php echo add_query_arg(array('view' => $result->id), remove_query_arg('add')); ?>"><?php echo esc_html($result->name); ?></a></strong></td>
+                <td class="column-name post-title wrap"><strong><a href="<?php echo esc_url( add_query_arg(array('view' => $result->id), remove_query_arg('add'))); ?>"><?php echo esc_html($result->name); ?></a></strong></td>
                 <td class="column-name wrap"><?php echo kws_format_date($result->modified_date); ?></td>
                 <td class="column-name wrap">
 		            <div class="button-group">

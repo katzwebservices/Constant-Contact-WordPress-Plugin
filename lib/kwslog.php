@@ -269,7 +269,7 @@ class KWSLog {
 			$translated = __( 'Page', 'ctct');
 
 			echo paginate_links( array(
-				'base' => add_query_arg( array( 'paged' => '%#%' ) ),
+				'base' => esc_url_raw( add_query_arg( array( 'paged' => '%#%' ) ) ),
 				'current' => $current,
 				'total' => ceil( WP_Logging::get_log_count( 0, $this->current_log_type ) / $this->logs_per_page ),
 				'type' => 'list',

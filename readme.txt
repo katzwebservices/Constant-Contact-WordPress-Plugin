@@ -80,6 +80,16 @@ To install the plugin follow the steps below:
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
+= 3.1.7 on April 24, 2015 =
+* Fixed: Security update: properly sanitize URLs.
+* Fixed: short `<?` opening PHP tag in `nameparse.php`
+* Fixed: Error when adding contacts without any lists specified
+* Fixed: Converting `WP_Error` to a string and `trim()` errors
+* Fixed: Static PHP warnings
+* Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)
+* Updated: Phone number validating library
+
+
 = 3.1.6 on December 17 =
 * Fixed: Support redirection to Thank You URL in Widget setting
 * Fixed: Fatal Error preventing Edit Post page from fully loading (due to EventSpot embed form)

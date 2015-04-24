@@ -1,3 +1,5 @@
+<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'contacts') ); ?>" class="button-secondary alignright"><?php esc_html_e('Refresh Contacts', 'ctct'); ?></a></p>
+
 <table class="widefat fixed users ctct_table" cellspacing="0">
     <thead>
         <tr>
@@ -19,10 +21,10 @@ foreach ($Contacts as $Contact ) {
         <tr <?php echo $alt; ?>>
             <td class="email column-email">
                 <a href="<?php
-                    echo add_query_arg(array(
+                    echo esc_url( add_query_arg(array(
                         'page' => $Admin_Contacts->getKey(),
                         'view' => $Contact->id
-                    ), admin_url('admin.php'));
+                    ), admin_url('admin.php')) );
 
                 ?>" title="<?php _e('View Contact', 'ctct'); ?>"><?php echo $Contact->get('email_address');?></a>
             </td>
@@ -37,10 +39,10 @@ foreach ($Contacts as $Contact ) {
             <td class="column-edit">
             	<div class="button-group">
 	                <a href="<?php
-	                    echo add_query_arg(array('page' => $Admin_Contacts->getKey(), 'view' => $Contact->id), admin_url('admin.php'));
+	                    echo esc_url( add_query_arg(array('page' => $Admin_Contacts->getKey(), 'view' => $Contact->id), admin_url('admin.php')) );
 	                ?>" class="button view-new-h2" title="view"><?php _e('view', 'ctct'); ?></a>
 	                <a href="<?php
-	                    echo add_query_arg(array('page' => $Admin_Contacts->getKey(), 'edit' => $Contact->id), admin_url('admin.php'));
+	                    echo esc_url( add_query_arg(array('page' => $Admin_Contacts->getKey(), 'edit' => $Contact->id), admin_url('admin.php')) );
 	                ?>" class="button edit-new-h2" title="edit"><?php _e('edit', 'ctct'); ?></a>
 	            </div>
             </td>

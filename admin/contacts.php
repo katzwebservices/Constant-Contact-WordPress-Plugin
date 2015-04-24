@@ -38,7 +38,9 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 	protected function add() {
 
-        $Contact = new KWSContact();
+		$data = esc_attr_recursive( (array)$_POST );
+
+        $Contact = new KWSContact( $data );
 
         include(CTCT_DIR_PATH.'views/admin/view.contact-addedit.php');
 	}
@@ -56,8 +58,8 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
                 $returnContact = $this->cc->addUpdateContact( $data );
 
-                // create a new contact if one does not exist
-                if ($returnContact) {
+	            // create a new contact if one does not exist
+                if ( $returnContact && !is_wp_error( $returnContact ) ) {
 
                     wp_redirect(add_query_arg(array(
                         'page' => $this->getKey(),
@@ -66,13 +68,13 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
                 // update the existing contact if address already existed
                 } else {
-
+	                $this->errors[] = $returnContact;
                 }
 
             // catch any exceptions thrown during the process and print the errors to screen
             } catch (CtctException $ex) {
                 r($ex, true, $action.' Exception');
-                $this->errors = $ex;
+	            $this->errors = $ex;
             }
         }
     }
@@ -127,6 +129,10 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
         add_filter('ctct_cachekey', function() {
             return isset($_GET['status']) ? false : 'ctct_all_contacts';
         });
+
+	    if( !empty($_GET['refresh']) && $_GET['refresh'] === 'contacts' ) {
+		    do_action( 'ctct_flush_contacts' );
+	    }
 
         $Contacts = $this->cc->getAllContacts();
 
