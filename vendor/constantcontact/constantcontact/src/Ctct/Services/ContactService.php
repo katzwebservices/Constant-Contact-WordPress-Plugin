@@ -60,7 +60,8 @@ class ContactService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.contacts');
         $url = $this->buildUrl($baseUrl, $params);
         $response = parent::getRestClient()->post($url, parent::getHeaders($accessToken), $contact->toJson());
-        return Contact::create(json_decode($response->body, true));
+	    $response_body = empty( $response->body ) ? false : json_decode($response->body, true);
+        return $response_body ? Contact::create($response_body) : false;
     }
 
     /**

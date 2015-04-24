@@ -363,7 +363,7 @@ class CTCT_Form_Designer_Output {
 	    // The form does not exist.
 	    if(!$form) {
 
-	        do_action('ctct_log', sprintf('Form #%s does not exist. Called on %s', $formid, add_query_arg(array())));
+	        do_action('ctct_log', sprintf('Form #%s does not exist. Called on %s', $formid, esc_url(add_query_arg(array()))));
 
 	        if(current_user_can('manage_options')) {
 	            return '<!-- Constant Contact API Error: Form #'.$formid.' does not exist. -->';

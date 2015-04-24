@@ -20,30 +20,24 @@ function eventspot_add_form_button(){
     // do a version check for the new 3.5 UI
     $version = get_bloginfo('version');
 
-    if ($version < 3.5) {
-        // show button for v 3.4 and below
-        $image_btn = GFCommon::get_base_url() . "/images/form-button.png";
-        echo '<a href="#TB_inline?width=600&amp;height=750&amp;inlineId=select_eventspot_event" class="thickbox" id="add_gform" title="' . __("Add Gravity Form", 'ctct') . '"><img src="'.$image_btn.'" alt="' . __("Add Gravity Form", 'ctct') . '" /></a>';
-    } else {
-        // display button matching new UI
-        echo '<style>
-        		.eventspot_media_icon{
-                	background:url(' . EVENTSPOT_FILE_URL . '/images/eventspot-icon.png) no-repeat top right;
-	                display: inline-block;
-	                height: 16px;
-	                margin: 0 2px 0 0;
-	                vertical-align: text-top;
-	                width: 16px;
-                }
-                .wp-core-ui a.eventspot_media_link{
-                 	padding-left: .4em;
-                }
-                a.eventspot_media_link:hover .eventspot_media_icon {
-                	background-position: top left;
-                }
-             </style>
-              <a href="#TB_inline?width=600&amp;height=750&amp;inlineId=select_eventspot_event" class="thickbox button eventspot_media_link" id="add_gform" title="' . __("Add a EventSpot&trade; Event", 'ctct') . '"><span class="eventspot_media_icon"></span> ' . __("Add Event", 'ctct') . '</a>';
-    }
+    // display button matching new UI
+    echo '<style>
+            .eventspot_media_icon{
+                background:url(' . EVENTSPOT_FILE_URL . '/images/eventspot-icon.png) no-repeat top right;
+                display: inline-block;
+                height: 16px;
+                margin: 0 2px 0 0;
+                vertical-align: text-top;
+                width: 16px;
+            }
+            .wp-core-ui a.eventspot_media_link{
+                padding-left: .4em;
+            }
+            a.eventspot_media_link:hover .eventspot_media_icon {
+                background-position: top left;
+            }
+         </style>
+          <a href="#TB_inline?width=600&amp;height=750&amp;inlineId=select_eventspot_event" class="thickbox button eventspot_media_link" id="add_gform" title="' . __("Add a EventSpot&trade; Event", 'ctct') . '"><span class="eventspot_media_icon"></span> ' . __("Add Event", 'ctct') . '</a>';
 }
 
 

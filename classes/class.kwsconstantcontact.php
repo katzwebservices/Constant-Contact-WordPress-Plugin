@@ -172,7 +172,15 @@ final class KWSConstantContact extends ConstantContact {
             $action = "Creating Contact";
             try {
 	            $returnContact = $this->addContact(CTCT_ACCESS_TOKEN, $contact, true);
-	            $action .= ' Succeeded';
+
+	            if( is_wp_error( $returnContact ) ) {
+		            $action .= ' Failed';
+		            /** @var WP_Error $returnContact */
+		            do_action('ctct_error', 'Creating Contact Exception', $returnContact->get_error_message() );
+	            } else {
+		            $action .= ' Succeeded';
+	            }
+
 			} catch(Exception $e) {
 				$returnContact = false;
 				$action .= ' Failed';
@@ -237,7 +245,11 @@ final class KWSConstantContact extends ConstantContact {
 	    	unset($contact->{$key});
 	    }
 
-	    return $this->contactService->addContact($accessToken, $contact, $params);
+		if( empty( $contact->lists ) ) {
+			return new WP_Error('nolists', __('A contact cannot be added without lists.') );
+		}
+
+		return $this->contactService->addContact($accessToken, $contact, $params);
 	}
 
 	/**
@@ -299,7 +311,6 @@ final class KWSConstantContact extends ConstantContact {
 	function getAll($type = '', $id_or_status = NULL, $param = array(), &$results = array()) {
 
 		add_filter('ctct_cache', function() { return 60 * 60 * 48; });
-
 
 		switch($type) {
 			case "Lists":

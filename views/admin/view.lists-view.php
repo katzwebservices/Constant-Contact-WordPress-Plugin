@@ -27,7 +27,7 @@ foreach ( (array)$Lists as $List ) {
 			</td>
 			<td class="column-name">
 				<a href="<?php
-					echo add_query_arg(array('view' => $List->id), remove_query_arg('add'));
+					echo esc_url( add_query_arg(array('view' => $List->id), remove_query_arg('add')) );
 				?>" class="button view-new-h2" title="view"><?php _e('View Contacts', 'ctct'); ?></a>
 			</td>
 		</tr>

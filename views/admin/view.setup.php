@@ -24,10 +24,10 @@
         sprintf( esc_html__('The plugin was authorized on %s.', 'ctct'), $tokenTime),
     	$CTCT->oauth->getAuthorizationUrl(),
     	esc_html__('Switch Connected Accounts', 'ctct'),
-    	add_query_arg(array('de-authenticate' => wp_create_nonce('de-authenticate')), remove_query_arg(array('error', 'error_description', 'oauth'))),
+    	esc_url( add_query_arg(array('de-authenticate' => wp_create_nonce('de-authenticate')), remove_query_arg(array('error', 'error_description', 'oauth'))) ),
     	sprintf(esc_html__('Your site will no longer be connected to the %s Constant Contact account. Form configurations will remain intact.', 'ctct'), $tokenUsername),
     	esc_html__('De-Authenticate Plugin', 'ctct'),
-    	add_query_arg(array('delete-settings' => wp_create_nonce('delete-settings')), remove_query_arg(array('error', 'error_description', 'oauth'))),
+	    esc_url( add_query_arg(array('delete-settings' => wp_create_nonce('delete-settings')), remove_query_arg(array('error', 'error_description', 'oauth'))) ),
     	esc_js(__('This will remove ALL DATA, including Form Designer forms and account information. Continue?', 'ctct') ),
     	esc_js(__('Are you really sure? All Constant Contact plugin data will be removed and you will have to start from scratch. Continue?', 'ctct') ),
     	esc_html__('Delete All Plugin Settings', 'ctct')

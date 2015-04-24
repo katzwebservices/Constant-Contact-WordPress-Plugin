@@ -7,7 +7,12 @@ abstract class CTCT_Admin_Page {
     var $key;
     var $title;
     var $permission = 'manage_options';
+
+	/**
+	 * @var KWSConstantContact
+	 */
     var $cc;
+
     var $oauth;
     var $errors;
     var $can_edit = false;
@@ -166,8 +171,13 @@ abstract class CTCT_Admin_Page {
         if( empty($this->notices) ) { return; }
 
         echo '
-            <div id="message" class="container alert-notice warning">';
+            <div id="message" class="container alert-error errors error notice-dismiss">';
             foreach($this->notices as $key => $notice ) {
+
+	            /** @var WP_Error $notice */
+	            if( is_wp_error( $notice ) ) {
+		            $notice = esc_html( $notice->get_error_message() ).' (<code>error code: '.esc_html($notice->get_error_code()).'</code>)';
+	            }
 
                 echo wpautop( $notice );
             }
@@ -190,7 +200,12 @@ abstract class CTCT_Admin_Page {
         ';
             foreach($this->errors as $key => $error) {
 
-                echo '<li>'.esc_html($error->get_error_message()).' (<code>error code: '.esc_html($error->get_error_code()).'</code>)</li>';
+	            if( is_wp_error( $error ) ) {
+		            $message = esc_html($error->get_error_message()).' (<code>error code: '.esc_html($error->get_error_code()).'</code>)';
+	            } else {
+		            continue;
+	            }
+                echo '<li>'.$message.'</li>';
             }
         echo '
                 </ul>
@@ -205,21 +220,21 @@ abstract class CTCT_Admin_Page {
 	<?php
 
         if(!$this->isView()) {
-            $breadcrumb[] = '<a href="'.remove_query_arg(array('view', 'edit', 'add')).'">'.$this->getNavTitle().'</a>';
+            $breadcrumb[] = '<a href="'.esc_url( remove_query_arg(array('view', 'edit', 'add'))).'">'.$this->getNavTitle().'</a>';
         }
 
         if($this->isEdit()) {
-            $breadcrumb[] = '<a href="'.add_query_arg(array('view' => $_GET['edit']), remove_query_arg(array('edit'))).'">'.$this->getTitle('single').'</a>';
+            $breadcrumb[] = '<a href="'.esc_url( add_query_arg(array('view' => $_GET['edit']), remove_query_arg(array('edit')))).'">'.$this->getTitle('single').'</a>';
         }
 
         $breadcrumb[] = $this->getTitle();
 
         $button = '';
         if($this->isSingle() && $this->can_edit) {
-            $button = ' <a href="'.add_query_arg(array('edit' => $_GET['view']), remove_query_arg('view')).'" class="button clear edit-new-h2" title="edit">'.__('Edit', 'ctct').'</a>';
+            $button = ' <a href="'.esc_url( add_query_arg(array('edit' => $_GET['view']), remove_query_arg('view'))).'" class="button clear edit-new-h2" title="edit">'.__('Edit', 'ctct').'</a>';
         }
         if($this->isView() && $this->can_add) {
-            $button = ' <a href="'.add_query_arg(array('add' => 1), remove_query_arg('status')).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct'), $this->getTitle('single')).'</a>';
+            $button = ' <a href="'.esc_url( add_query_arg(array('add' => 1), remove_query_arg('status'))).'" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">'.sprintf(_x('Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct'), $this->getTitle('single')).'</a>';
         }
 
     	echo '<h2 class="ctct-page-name">'.implode(' &raquo; ', $breadcrumb).$button.'</h2>';

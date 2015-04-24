@@ -2,7 +2,7 @@
     return;
 ?>
 
-<h3><?php esc_html_e('Contact Details:', 'ctct' );?> <a href="<?php echo add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view')); ?>" class="button edit-new-h2" title="edit"><?php esc_html_e('edit', 'ctct'); ?></a></h3>
+<h3><?php esc_html_e('Contact Details:', 'ctct' );?> <a href="<?php echo esc_url( add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view'))); ?>" class="button edit-new-h2" title="edit"><?php esc_html_e('edit', 'ctct'); ?></a></h3>
 <table class="widefat fixed ctct_table" cellspacing="0">
     <thead>
         <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
