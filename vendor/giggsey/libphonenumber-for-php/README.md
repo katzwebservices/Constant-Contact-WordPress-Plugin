@@ -5,7 +5,7 @@
 [![License](http://img.shields.io/badge/license-Apache%202.0-red.svg?style=flat-square)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
 
 ## What is it?
-A PHP library for parsing, formatting, storing and validating international phone numbers. This library is based on Google's [libphonenumber](https://github.com/googlei18n/libphonenumber) and was forked from a version by [Davide Mendolia](https://github.com/davideme/libphonenumber-for-PHP).
+A PHP library for parsing, formatting, storing and validating international phone numbers. This library is based on Google's [libphonenumber](https://github.com/googlei18n/libphonenumber).
 
 
 # Highlights of functionality
@@ -87,13 +87,13 @@ There are a few formats supported by the formatting method, as illustrated below
 
 ```php
 // Produces "+41446681800"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::E164);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::E164);
 
 // Produces "044 668 18 00"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::NATIONAL);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::NATIONAL);
 
 // Produces "+41 44 668 18 00"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::INTERNATIONAL);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
 ```
 
 You could also choose to format the number in the way it is dialled from another country:
@@ -198,6 +198,16 @@ $timeZoneMapper = \libphonenumber\PhoneNumberToTimeZonesMapper::getInstance();
 $timeZones = $timeZoneMapper->getTimeZonesForNumber($swissNumberProto);
 
 ```
+
+## FAQ
+
+#### Problems with Invalid Numbers?
+
+This library uses phone number metadata from Google's [libphonenumber](https://github.com/googlei18n/libphonenumber). If this library is working as intended, it should provide the same result as the Java version of Google's project.
+
+If you believe that a phone number is returning an incorrect result, first test it with [libphonenumber](https://github.com/googlei18n/libphonenumber) via their [Online Demo](https://libphonenumber.appspot.com/). If that returns the same result as this project, and you feel it is in error, raise it as an Issue with the libphonenumber project.
+
+If Google's [Online Demo](https://libphonenumber.appspot.com/) gives a different result to the [libphonenumber-for-php demo](http://giggsey.com/libphonenumber/), then please raise an Issue here.
 
 ## Generating data
 
