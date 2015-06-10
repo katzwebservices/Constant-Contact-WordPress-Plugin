@@ -20,7 +20,7 @@ class CTCT_Process_Form {
 
 	function __construct() {
 
-		add_action('plugins_loaded', array(&$this, 'process'));
+		add_action('template_redirect', array(&$this, 'process'));
 
 		self::$instance = &$this;
 	}

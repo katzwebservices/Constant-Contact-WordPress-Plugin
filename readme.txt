@@ -79,6 +79,7 @@ To install the plugin follow the steps below:
 
 = Version 3 Requires PHP 5.3 =
 __Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+* Fixed: Error when validating entries using Akismet to block spam
 * Updated: Phone number parsing
 
 = 3.1.7 on April 24, 2015 =
