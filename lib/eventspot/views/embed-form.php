@@ -55,7 +55,7 @@
 				if(empty($events)) {
 					include(EVENTSPOT_FILE_PATH.'/views/promo.php');
 				} else {
-				?>
+			?>
 					<h2><?php _e("Insert Event(s)", 'ctct'); ?></h2>
 					<span>
 						<?php _e("Choose to embed multiple events or a single event below. The event(s) will be displayed on your post or page.", 'ctct'); ?>
@@ -66,7 +66,12 @@
 						<option value="">  <?php _e("Show Multiple Events", 'ctct'); ?>  </option>
 						<?php
 
-							foreach($events['events'] as $event){
+							foreach( $events as $event ){
+
+								// Make sure it's an Event object
+								if( !is_object( $event ) || !isset( $event->title ) ) {
+									continue;
+								}
 								?>
 								<option value="<?php echo constant_contact_get_id_from_object($event); ?>"><?php printf('%s (%s)', esc_html($event->title), apply_filters('cc_event_date', apply_filters('cc_event_startdate', $event->startDate)));  ?></option>
 								<?php
