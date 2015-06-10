@@ -27,11 +27,6 @@
         width: 216px;
         height: 80px;
     }
-     {
-        text-indent: -9999px;
-        overflow: hidden;
-        text-align: left;
-    }
     #cc-message-wrap {
         padding: 10px 2%;
 	    width: 96%;
@@ -43,9 +38,6 @@
     }
     #cc-message-wrap h2 {
         margin-bottom: .5em;
-    }
-    .learn-more {
-        margin-left: 15px!important;
     }
 </style>
 

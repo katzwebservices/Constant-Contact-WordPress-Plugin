@@ -17,7 +17,7 @@
 	<?php
 	if(empty($events)) { ?>
 		<tr><td colspan="6">
-		<h3><?php _e('No events found.', 'ctct'); ?></h3>
+		<h3><?php esc_html_e('No events found.', 'ctct'); ?></h3>
 		</td></tr></table>
 	<?php
 		return;
@@ -36,7 +36,7 @@
 				<?php echo $v->title; ?>
 			</td>
 			<td class="column-title column-shortcode wrap">
-				<input type="text" class="widefat" readonly="readonly" value="<?php esc_attr_e(sprintf('[eventspot id="%s" /]', constant_contact_get_id_from_object($v)), 'ctct'); ?>" />
+				<input type="text" class="widefat code" readonly="readonly" value="<?php esc_attr_e(sprintf('[eventspot id="%s" /]', constant_contact_get_id_from_object($v)), 'ctct'); ?>" />
 			</td>
 	<?php if(!isset($_GET['status']) || $_GET['status'] == 'all') {?>
 			<td class="column-role wrap">
