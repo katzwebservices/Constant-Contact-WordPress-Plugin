@@ -99,8 +99,10 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		$events = constant_contact_old_api_get_all('Events', $this->old_api);
 
 		if(empty($events) || !is_array($events)) {
-			constant_contact_get_signup_message('events');
-			constant_contact_admin_refresh();
+			include(EVENTSPOT_FILE_PATH.'/views/promo.php');
+			?>
+			<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'events') ); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
+			<?php
 		} else {
 
 			kws_print_subsub('status', array(

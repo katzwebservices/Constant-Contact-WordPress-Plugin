@@ -4,7 +4,7 @@ Plugin Name: 		Constant Contact Plugin for WordPress
 Plugin URI: 		https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
 Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: 			Katz Web Services, Inc.
-Version: 			3.1.7
+Version: 			3.1.8
 Author URI: 		http://katz.co
 Text Domain: 		ctct
 Domain Path: 		/languages
@@ -22,7 +22,7 @@ register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
 
 final class WP_CTCT {
 
-	const version = '3.1.7';
+	const version = '3.1.8';
 
 	/**
 	 * @var KWSConstantContact
@@ -44,8 +44,14 @@ final class WP_CTCT {
 		if(!defined('CTCT_DIR_PATH')) {
 
 			define('CTCT_FILE', __FILE__);
+
+			/** @define "CTCT_FILE_PATH" "./" */
 			define('CTCT_FILE_PATH', dirname(__FILE__) . '/');
+
+			/** @define "CTCT_FILE_URL" "." */
 			define('CTCT_FILE_URL', plugin_dir_url(__FILE__));
+
+			/** @define "CTCT_DIR_PATH" "." */
 			define('CTCT_DIR_PATH', plugin_dir_path(__FILE__));
 
 			load_plugin_textdomain( 'ctct', false, dirname( plugin_basename( CTCT_FILE ) ) . '/languages/' );
