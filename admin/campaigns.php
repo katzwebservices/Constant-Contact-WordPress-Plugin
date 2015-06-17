@@ -1,5 +1,5 @@
 <?php
-use \KWSContactList;
+
 use Ctct\ConstantContact;
 use Ctct\Components\Contacts\Contact;
 use Ctct\Components\Contacts\Address;
