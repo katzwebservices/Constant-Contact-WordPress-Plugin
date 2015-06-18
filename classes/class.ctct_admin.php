@@ -18,7 +18,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 			delete_option('ccStats_ga_profile_id');
 		}
 		if(isset($_GET['delete-settings']) && wp_verify_nonce( $_GET['delete-settings'], 'delete-settings' )) {
-			CTCT_Settings::flush_transients();
+			CTCT_Global::flush_transients();
 			$this->oauth->deleteToken();
 			delete_option('ccStats_ga_token');
 			delete_option('ccStats_ga_profile_id');
