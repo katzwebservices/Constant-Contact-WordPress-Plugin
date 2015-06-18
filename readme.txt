@@ -80,6 +80,7 @@ To install the plugin follow the steps below:
 * Fixed: Issue with Add Event button preventing Edit Post/Page functionality is fully solved. Sorry for the frustration!
 * Fixed: Re-enable caching events data
 * Fixed: When switching accounts, delete all cached data
+* Tweak: Improve Admin tab styles
 
 = 3.1.8 on June 10 =
 * Fixed: Fatal error in "Add Event" button that would prevent Edit Post/Page pages from loading
