@@ -98,6 +98,8 @@ final class WP_CTCT {
 
 		require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
+		include_once CTCT_DIR_PATH.'classes/class.ctct_global.php';
+
 		if( !class_exists( 'KWSOAuth2' ) ) {
 
 			include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';

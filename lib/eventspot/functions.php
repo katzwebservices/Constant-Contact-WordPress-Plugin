@@ -10,7 +10,7 @@ function constant_contact_cache_key($string, $passed = null) {
 	if(!empty($passed) && isset($passed->link)) {
 		$key = $string.$passed->link;
 	}
-	$key = 'cc_'.sha1($key);
+	$key = 'ctct_'.sha1($key);
 	return $key;
 }
 

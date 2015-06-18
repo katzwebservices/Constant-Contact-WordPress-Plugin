@@ -42,8 +42,6 @@ class CTCT_Settings extends CTCT_Admin_Page {
 
     	add_action('admin_init', array(&$this, 'settings_init') );
 
-    	add_action('ctct_token_updated', array( __CLASS__, 'flush_transients') );
-
     }
 
     function print_styles() {
@@ -51,18 +49,6 @@ class CTCT_Settings extends CTCT_Admin_Page {
 
     	parent::print_styles();
     }
-
-    /**
-	 * When settings are changed, delete the CTCT transients
-	 *
-	 * This is a bit better for data security, as it were.
-	 *
-	 */
-	static function flush_transients($token = array()) {
-		global $wpdb;
-		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", '%transient_ctct%', '%transient_timeout_ctct%');
-		$wpdb->query($query);
-	}
 
 	/**
 	 * Override settings if logged in as admin by passing URL args

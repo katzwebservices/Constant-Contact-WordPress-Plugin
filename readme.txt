@@ -77,6 +77,8 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Fixed: When switching accounts, delete cached data
+
 = 3.1.8 on June 10 =
 * Fixed: Fatal error in "Add Event" button that would prevent Edit Post/Page pages from loading
 * Fixed: Restored ability to embed single Events using the "Add Event" button
