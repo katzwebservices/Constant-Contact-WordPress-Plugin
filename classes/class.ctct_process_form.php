@@ -19,20 +19,22 @@ class CTCT_Process_Form {
 	private $is_processed = false;
 
 	function __construct() {
+		$this->add_hooks();
+	}
 
-		add_action('template_redirect', array(&$this, 'process'));
-
-		self::$instance = &$this;
+	private function add_hooks() {
+		add_action( 'template_redirect', array( &$this, 'process' ) );
 	}
 
 	/**
 	 * Get an instance of the object
+	 *
 	 * @return CTCT_Process_Form
 	 */
 	static function &getInstance() {
 
-		if( empty( self::$instance ) ) {
-			self::$instance = new CTCT_Process_Form;
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self;
 		}
 
 		return self::$instance;
@@ -47,7 +49,17 @@ class CTCT_Process_Form {
 	}
 
 	/**
-	 * Process the form if there is a $_POST['uniqueformid'] set
+	 * Return errors array
+	 *
+	 * @since 3.2.0
+	 * @return array
+	 */
+	public function get_errors() {
+		return $this->errors;
+	}
+
+	/**
+	 * Process the form for backend and frontend
 	 *
 	 * 1. Validates the data
 	 * 2. Creates a KWSContact contact object
@@ -60,10 +72,23 @@ class CTCT_Process_Form {
 	 */
 	function process() {
 
-		// Check that the form was submitted and we have an email value, otherwise return false
-		if(!isset($_POST['uniqueformid'])) { return false; }
+		$this->id = NULL;
 
-		$this->id = esc_attr( $_POST['uniqueformid'] );
+		// Check that the form was submitted
+		if ( is_admin() ) {
+
+			// Validate nonce from the Profile page
+			$valid_nonce = wp_verify_nonce( $_POST['_wpnonce'], 'update-user_' . $_POST['user_id'] );
+
+			$this->id = ( ! empty( $_POST['user_id'] ) && $valid_nonce ) ? $_POST['user_id'] : false;
+
+		} else {
+			$this->id = isset( $_POST['uniqueformid'] ) ? esc_attr( $_POST['uniqueformid'] ) : false;
+		}
+
+		if ( empty( $this->id ) ) {
+			return false;
+		}
 
 		// Validate the POST data
 		$this->data = $this->sanitizePost();
@@ -76,19 +101,19 @@ class CTCT_Process_Form {
 		$this->validatePhone( $KWSContact );
 
 		// Check If Email Is Real
-		$this->validateEmail($KWSContact);
+		$this->validateEmail( $KWSContact );
 
 		$this->is_processed = true;
 
 		// If validation failed, stop processing
-		if( !empty( $this->errors ) ) {
+		if ( ! empty( $this->errors ) ) {
 			return;
 		}
 
 		// Otherwise, let's Add/Update
 		$result = KWSConstantContact::getInstance()->addUpdateContact( $KWSContact );
 
-		if( is_wp_error( $result ) ) {
+		if ( is_wp_error( $result ) ) {
 
 			$this->errors[] = $result;
 
@@ -100,11 +125,12 @@ class CTCT_Process_Form {
 
 		}
 
-		if( empty( $this->results ) ) {
+		if ( empty( $this->results ) ) {
 			return;
 		}
 
 		$this->maybe_redirect();
+
 
 	}
 
@@ -116,7 +142,7 @@ class CTCT_Process_Form {
 	 */
 	function maybe_redirect() {
 
-		if( !empty( $_POST['cc_redirect_url'] ) ) {
+		if ( ! empty( $_POST['cc_redirect_url'] ) ) {
 
 			$safe_redirect = false;
 
@@ -130,20 +156,17 @@ class CTCT_Process_Form {
 			 *
 			 * We use wp_safe_redirect() because it's definitely local.
 			 */
-			if( !empty( $parsed['path'] ) && empty( $parsed['host'] ) && empty( $parsed['scheme'] ) ) {
+			if ( ! empty( $parsed['path'] ) && empty( $parsed['host'] ) && empty( $parsed['scheme'] ) ) {
 
 				// Generate the URL based on the path
 				$redirect_url = site_url( $parsed['path'] );
 
-				if( !empty( $parsed['query'] ) ) {
-					$redirect_url .= '?'.$parsed['query'];
+				if ( ! empty( $parsed['query'] ) ) {
+					$redirect_url .= '?' . $parsed['query'];
 				}
 
 				$safe_redirect = true;
-			}
-
-
-			/**
+			} /**
 			 * If there's a query, it might include some url-encoded `'"`s that will get stripped if just sanitized.
 			 * Instead, let's parse out the query, sanitize the URL, then add back in the query.
 			 *
@@ -152,7 +175,7 @@ class CTCT_Process_Form {
 			 *
 			 * Note the missing ' and "
 			 */
-			else if( !empty( $parsed['query'] ) && !empty( $parsed['scheme'] ) && !empty( $parsed['host'] ) ) {
+			else if ( ! empty( $parsed['query'] ) && ! empty( $parsed['scheme'] ) && ! empty( $parsed['host'] ) ) {
 
 				$path = isset( $parsed['path'] ) ? $parsed['path'] : '';
 
@@ -160,7 +183,7 @@ class CTCT_Process_Form {
 
 				$temp_url = esc_url_raw( $temp_url );
 
-				$redirect_url = $temp_url . '?'.$parsed['query'];
+				$redirect_url = $temp_url . '?' . $parsed['query'];
 
 			} else {
 
@@ -170,13 +193,14 @@ class CTCT_Process_Form {
 
 			/**
 			 * Set whether to use wp_safe_redirect() for a request. If local URL, defaults to yes. If not, defaults to no.
+			 *
 			 * @var boolean
 			 */
 			$safe_redirect = apply_filters( 'constant_contact_force_use_safe_redirect', $safe_redirect, $this );
 
-			do_action('ctct_activity', 'Redirecting User after processing', $redirect_url );
+			do_action( 'ctct_activity', 'Redirecting User after processing', $redirect_url );
 
-			if( $safe_redirect ) {
+			if ( $safe_redirect ) {
 
 				wp_safe_redirect( $redirect_url );
 
@@ -193,14 +217,15 @@ class CTCT_Process_Form {
 
 	/**
 	 * Check to make sure required fields are not empty
+	 *
 	 * @return void
 	 */
 	function checkRequired() {
 
 		foreach ( $_POST['fields'] as $key => $field ) {
 
-			if( !empty( $field['req'] ) && (!isset( $field['value'] ) || $field['value'] === '') ) {
-				$this->errors[] = new WP_Error('empty_field', sprintf( _x('The %s field is required.', 'Failed user form submission error', 'ctct'), esc_html( $field['label'] ) ), $key );
+			if ( ! empty( $field['req'] ) && ( ! isset( $field['value'] ) || $field['value'] === '' ) ) {
+				$this->errors[] = new WP_Error( 'empty_field', sprintf( _x( 'The %s field is required.', 'Failed user form submission error', 'ctct' ), esc_html( $field['label'] ) ), $key );
 			}
 		}
 
@@ -210,16 +235,17 @@ class CTCT_Process_Form {
 
 		/**
 		 * Whether to validate phone numbers at all.
+		 *
 		 * @var boolean
 		 */
 		$validate = apply_filters( 'constant_contact_validate_phone_number', true );
 
-		if( !$validate ) {
+		if ( ! $validate ) {
 			return;
 		}
 
-		if(!class_exists('libphonenumber\PhoneNumberUtil')) {
-			include_once(CTCT_DIR_PATH.'vendor/giggsey/libphonenumber-for-php/src/libphonenumber/PhoneNumberUtil.php');
+		if ( ! class_exists( 'libphonenumber\PhoneNumberUtil' ) ) {
+			include_once( CTCT_DIR_PATH . 'vendor/giggsey/libphonenumber-for-php/src/libphonenumber/PhoneNumberUtil.php' );
 		}
 
 
@@ -227,7 +253,7 @@ class CTCT_Process_Form {
 		$locale_pieces = explode( '_', get_locale() );
 
 		// If only one piece, use that. If two, use the second piece.
-		$locale = isset( $locale_pieces[ 1 ] ) ? $locale_pieces[ 1 ] : $locale_pieces[ 0 ];
+		$locale = isset( $locale_pieces[1] ) ? $locale_pieces[1] : $locale_pieces[0];
 
 		$phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
 
@@ -241,16 +267,19 @@ class CTCT_Process_Form {
 
 		/**
 		 * Modify the field IDs to check when validating phone numbers
+		 *
 		 * @var array
 		 */
 		$phone_numbers = apply_filters( 'constant_contact_validate_phone_number_fields', $phone_numbers );
 
-		foreach ( (array)$phone_numbers as $key ) {
+		foreach ( (array) $phone_numbers as $key ) {
 
 			// Get the number
 			$phone = $Contact->get( $key );
 
-			if( empty( $phone ) ) { continue; }
+			if ( empty( $phone ) ) {
+				continue;
+			}
 
 			try {
 
@@ -258,9 +287,10 @@ class CTCT_Process_Form {
 
 				/**
 				 * Do you want to check for a number being valid (more strict), or just possible (less strict)
+				 *
 				 * @var string 'possible' or 'valid'
 				 */
-				$valid_or_possible = apply_filters('constant_contact_phone_number_validation', 'possible' );
+				$valid_or_possible = apply_filters( 'constant_contact_phone_number_validation', 'possible' );
 
 				switch ( $valid_or_possible ) {
 
@@ -274,11 +304,11 @@ class CTCT_Process_Form {
 						break;
 				}
 
-			} catch (\libphonenumber\NumberParseException $e) {
+			} catch ( \libphonenumber\NumberParseException $e ) {
 
-				do_action('ctct_activity', 'Invalid phone number', $e->getMessage() );
+				do_action( 'ctct_activity', 'Invalid phone number', $e->getMessage() );
 
-			    $this->errors[] = new WP_Error('invalid_phone_number', __('Please enter a valid phone number.', 'ctct'), $key );
+				$this->errors[] = new WP_Error( 'invalid_phone_number', __( 'Please enter a valid phone number.', 'ctct' ), $key );
 
 			}
 
@@ -288,22 +318,28 @@ class CTCT_Process_Form {
 
 	/**
 	 * Add key/value pair to results output
-	 * @param string $key   The key of the pair
+	 *
+	 * @param string $key The key of the pair
 	 * @param mixed $value The value to set
 	 */
-	private function setResults($key = '', $value) {
-		$this->results[$this->id][$key] = $value;
+	private function setResults( $key = '', $value ) {
+		$this->results[ $this->id ][ $key ] = $value;
 	}
 
 	/**
 	 * Get results for a form based on the form key
+	 *
 	 * @see  constant_contact_public_signup_form() for how the key is generated (sha1 of form settings array)
+	 *
 	 * @param  string $key The key of the form (its unique id)
+	 *
 	 * @return array|false      If a form with unique ID `$key` has been processed, return the form results array. Otherwise, return false.
 	 */
-	public function getResults($key = '') {
+	public function getResults( $key = '' ) {
 
-		if(empty($this->id)) { return NULL; }
+		if ( empty( $this->id ) ) {
+			return NULL;
+		}
 
 		return $this->results;
 	}
@@ -314,32 +350,46 @@ class CTCT_Process_Form {
 
 	/**
 	 * Sanitize the post data array before working with it
+	 *
 	 * @return array Sanitized $_POST array
 	 */
 	private function sanitizePost() {
 
 		$post = isset( $_POST ) ? $_POST : array();
 
-		unset($post['fields']['lists']);
+		if ( is_admin() ) {
 
-		foreach($post['fields'] as $key => $value) {
-			if(isset($value['value'])) {
-				$output[$key] = esc_attr($value['value']);
+			$post['fields'] = array(
+				'email_address' => isset( $post['email'] ) ? $post['email'] : NULL,
+				'first_name'    => isset( $post['first_name'] ) ? $post['first_name'] : NULL,
+				'last_name'     => isset( $post['last_name'] ) ? $post['last_name'] : NULL,
+			);
+
+			unset( $post['email'] );
+		}
+
+		unset( $post['fields']['lists'] );
+
+		foreach ( $post['fields'] as $key => $value ) {
+			if ( isset( $value['value'] ) ) {
+				$output[ $key ] = esc_attr( $value['value'] );
 			} else {
-				$output[$key] = esc_attr($value);
+				$output[ $key ] = esc_attr( $value );
 			}
 		}
 
 		// Make sure lists are IDs
-		if(!empty($post['lists'])) {
-			foreach($post['lists'] as $list) {
-				if(!is_numeric($list)) { continue; }
+		if ( ! empty( $post['lists'] ) ) {
+			foreach ( $post['lists'] as $list ) {
+				if ( ! is_numeric( $list ) ) {
+					continue;
+				}
 				// Constant Contact requires list IDs to be strings of numbers...
-				$output['lists'][] = (string)intval($list);
+				$output['lists'][] = (string) intval( $list );
 			}
 		}
 
-		unset($output['constant-contact-signup-submit']);
+		unset( $output['constant-contact-signup-submit'] );
 
 		return $output;
 	}
@@ -352,93 +402,102 @@ class CTCT_Process_Form {
 	 * Then, process email validation based on settings.
 	 *
 	 * @param  KWSContact $Contact Contact object
-	 * @return WP_Error|boolean 	If valid, return `true`, otherwise return a WP_Error object.
+	 *
+	 * @return WP_Error|boolean    If valid, return `true`, otherwise return a WP_Error object.
 	 */
-	function validateEmail(KWSContact &$Contact) {
+	function validateEmail( KWSContact &$Contact ) {
 
-		if(!class_exists('DataValidation')) {
-			include_once(CTCT_DIR_PATH.'lib/class.datavalidation.php');
+		if ( ! class_exists( 'DataValidation' ) ) {
+			include_once( CTCT_DIR_PATH . 'lib/class.datavalidation.php' );
 		}
 
-		if(!class_exists('SMTP_validateEmail')) {
-			include_once(CTCT_DIR_PATH.'lib/mail/smtp_validateEmail.class.php');
+		if ( ! class_exists( 'SMTP_validateEmail' ) ) {
+			include_once( CTCT_DIR_PATH . 'lib/mail/smtp_validateEmail.class.php' );
 		}
 
-		$email = $Contact->get('email');
+		$email = $Contact->get( 'email' );
 
 		$is_valid = array();
 
 		// 1: Check if it's an email at all
-		if(empty($email)) {
-			do_action('ctct_activity', 'Empty email address', $email );
-			$this->errors[] = new WP_Error('empty_email', __('Please enter your email address.', 'ctct'), 'email_address');
+		if ( empty( $email ) ) {
+			do_action( 'ctct_activity', 'Empty email address', $email );
+			$this->errors[] = new WP_Error( 'empty_email', __( 'Please enter your email address.', 'ctct' ), 'email_address' );
+
 			return;
-		} else if(!is_email($email)) {
-			do_action('ctct_activity', 'Invalid email address', $email);
-			$this->errors[] = new WP_Error('not_email', __('Invalid email address.', 'ctct'), 'email_address');
+		} else if ( ! is_email( $email ) ) {
+			do_action( 'ctct_activity', 'Invalid email address', $email );
+			$this->errors[] = new WP_Error( 'not_email', __( 'Invalid email address.', 'ctct' ), 'email_address' );
+
 			return;
 		}
 
-		$methods = (array)CTCT_Settings::get('spam_methods');
+		$methods = (array) CTCT_Settings::get( 'spam_methods' );
 
 		// 2: Akismet validation
-		if(in_array('akismet', $methods)) {
-			$akismetCheck = $this->akismetCheck($Contact);
-			if(is_wp_error($akismetCheck)) {
+		if ( in_array( 'akismet', $methods ) ) {
+			$akismetCheck = $this->akismetCheck( $Contact );
+			if ( is_wp_error( $akismetCheck ) ) {
 				$this->errors[] = $akismetCheck;
+
 				return;
 			}
 		}
 
 		// 3: WangGuard validation
-		if(in_array('wangguard', $methods) && function_exists('wangguard_verify_email') && wangguard_server_connectivity_ok()) {
+		if ( in_array( 'wangguard', $methods ) && function_exists( 'wangguard_verify_email' ) && wangguard_server_connectivity_ok() ) {
 			global $wangguard_api_host;
 
 			// If WangGuard isn't set up yet, set'er up!
-			if(empty($wangguard_api_host)) { wangguard_init(); }
+			if ( empty( $wangguard_api_host ) ) {
+				wangguard_init();
+			}
 
-			$return = wangguard_verify_email($email , wangguard_getRemoteIP() ,  wangguard_getRemoteProxyIP());
+			$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
 
-			if($return == 'checked' || $return == 'not-checked') {
-				do_action('ctct_activity', 'WangGuard validation passed.', $email, $return);
+			if ( $return == 'checked' || $return == 'not-checked' ) {
+				do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
 			} else {
-				$this->errors[] = new WP_Error('wangguard', __('Email validation failed.', 'ctct'), $email, $return);
+				$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'ctct' ), $email, $return );
+
 				return;
 			}
 		}
 
 		// 4: DataValidation.com validation
-		if(in_array('datavalidation', $methods) && class_exists('DataValidation')) {
+		if ( in_array( 'datavalidation', $methods ) && class_exists( 'DataValidation' ) ) {
 
-			$Validate = new DataValidation(CTCT_Settings::get('datavalidation_api_key'));
+			$Validate = new DataValidation( CTCT_Settings::get( 'datavalidation_api_key' ) );
 
-			$validation = $Validate->validate($email);
+			$validation = $Validate->validate( $email );
 
 			$process_inconclusive = apply_filters( 'ctct_process_inconclusive_emails', true );
 
-			if( is_wp_error( $validation ) ) {
+			if ( is_wp_error( $validation ) ) {
 
-				do_action('ctct_activity', 'DataValidation.com error', 'The email was not processed because of the error: '.$validation->get_error_message() );
+				do_action( 'ctct_activity', 'DataValidation.com error', 'The email was not processed because of the error: ' . $validation->get_error_message() );
 
 				return;
 
-			} elseif( $validation === false || ($validation === null && !$process_inconclusive) ) {
+			} elseif ( $validation === false || ( $validation === NULL && ! $process_inconclusive ) ) {
 
-				do_action('ctct_activity', 'DataValidation validation failed.', $email, $Validate);
+				do_action( 'ctct_activity', 'DataValidation validation failed.', $email, $Validate );
 
-				$message = isset($Validate->message) ? $Validate->message : __('Not a valid email.', 'ctct');
-				$this->errors[] = new WP_Error('datavalidation', $message, $email, $Validate);
+				$message        = isset( $Validate->message ) ? $Validate->message : __( 'Not a valid email.', 'ctct' );
+				$this->errors[] = new WP_Error( 'datavalidation', $message, $email, $Validate );
+
 				return;
 
-			} if($validation === null) {
-				do_action('ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate);
-			} elseif($validation === true) {
-				do_action('ctct_activity', 'DataValidation validation passed.', $email, $Validate);
+			}
+			if ( $validation === NULL ) {
+				do_action( 'ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate );
+			} elseif ( $validation === true ) {
+				do_action( 'ctct_activity', 'DataValidation validation passed.', $email, $Validate );
 			}
 		}
 
 		// 5: SMTP validation
-		if(in_array('smtp', $methods) && class_exists('SMTP_validateEmail')) {
+		if ( in_array( 'smtp', $methods ) && class_exists( 'SMTP_validateEmail' ) ) {
 
 			try {
 
@@ -447,27 +506,27 @@ class CTCT_Process_Form {
 				// Timeout after 1 second
 				$SMTP_Validator->max_conn_time = 1;
 				$SMTP_Validator->max_read_time = 1;
-				$SMTP_Validator->debug = 0;
+				$SMTP_Validator->debug         = 0;
 
 				// Prevent PHP notices about timeouts
 				ob_start();
-				$results = $SMTP_Validator->validate( array($email), get_option( 'admin_email' ));
+				$results = $SMTP_Validator->validate( array( $email ), get_option( 'admin_email' ) );
 				ob_clean();
 
-				if( isset( $results[ $email ] ) ) {
+				if ( isset( $results[ $email ] ) ) {
 
 					// True = passed
-					if( $results[ $email ] ) {
+					if ( $results[ $email ] ) {
 
-						do_action('ctct_activity', 'SMTP validation passed.', $email, $results);
+						do_action( 'ctct_activity', 'SMTP validation passed.', $email, $results );
 
 						return true;
 
 					} else {
 
-						do_action('ctct_activity', 'SMTP validation failed.', $email, $results);
+						do_action( 'ctct_activity', 'SMTP validation failed.', $email, $results );
 
-						$this->errors[] = new WP_Error('smtp', __('Email validation failed.', 'ctct'), $email, $results);
+						$this->errors[] = new WP_Error( 'smtp', __( 'Email validation failed.', 'ctct' ), $email, $results );
 
 						return false;
 					}
@@ -475,14 +534,14 @@ class CTCT_Process_Form {
 
 				} else {
 
-					do_action('ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out?' );
+					do_action( 'ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out?' );
 
 					return true;
 				}
 
-			} catch( Exception $e ) {
+			} catch ( Exception $e ) {
 
-				do_action('ctct_error', 'SMTP validation broke.', $e );
+				do_action( 'ctct_error', 'SMTP validation broke.', $e );
 
 				return;
 			}
@@ -506,62 +565,66 @@ class CTCT_Process_Form {
 
 
 		// Disable using a filter
-		if( apply_filters('disable_constant_contact_akismet', false) ) {
+		if ( apply_filters( 'disable_constant_contact_akismet', false ) ) {
 			return true;
 		}
 
 		// Akismet not activated
-		if( !class_exists( 'Akismet' ) ) {
-			do_action('ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
+		if ( ! class_exists( 'Akismet' ) ) {
+			do_action( 'ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
+
 			return true;
 		}
 
 		$key = Akismet::get_api_key();
 
-		if( empty( $key ) ) {
+		if ( empty( $key ) ) {
 
-			do_action('ctct_activity', 'Empty Akismet API key. Not processing.' );
+			do_action( 'ctct_activity', 'Empty Akismet API key. Not processing.' );
 
 			return true;
 		}
 
 		/** Disable nonce verification */
-		add_filter('akismet_comment_nonce', function() { return 'inactive'; });
+		add_filter( 'akismet_comment_nonce', function () {
+			return 'inactive';
+		} );
 
 		ob_start();
 
 		$comment_data = array(
-	    	'user_ID' => get_current_user_id(),
-	    	'comment_post_ID' => isset( $_POST['cc_referral_post_id'] ) ? intval( $_POST['cc_referral_post_id'] ) : NULL,
-	    	'comment_author' => $Contact->get('name'),
-	    	'comment_author_email' => $Contact->get('email'),
-	    	'is_test' => apply_filters( 'constant_contact_akismet_is_test', false )
-	    );
+			'user_ID'              => get_current_user_id(),
+			'comment_post_ID'      => isset( $_POST['cc_referral_post_id'] ) ? intval( $_POST['cc_referral_post_id'] ) : NULL,
+			'comment_author'       => $Contact->get( 'name' ),
+			'comment_author_email' => $Contact->get( 'email' ),
+			'is_test'              => apply_filters( 'constant_contact_akismet_is_test', false )
+		);
 
-	    $check = Akismet::auto_check_comment( $comment_data );
+		$check = Akismet::auto_check_comment( $comment_data );
 
-	    ob_clean();
+		ob_clean();
 
-	    if( empty( $check ) || empty( $check['akismet_result'] ) ) {
+		if ( empty( $check ) || empty( $check['akismet_result'] ) ) {
 
-	    	do_action('ctct_activity', 'There was an issue with Akismet: the response was invalid.', $check);
+			do_action( 'ctct_activity', 'There was an issue with Akismet: the response was invalid.', $check );
 
-	    } else {
-		    switch($check['akismet_result']) {
-		    	case 'true':
-		    		do_action('ctct_activity', __('Akismet caught this entry as spam'), $check);
-		    		return new WP_Error('akismet', __('Your entry was flagged as spam.'), $check);
-		    		break;
-		    	case 'false':
-		    		do_action('ctct_activity', __('Akismet cleared this comment'), $check);
-		    		break;
-		    	default:
-		    		do_action('ctct_error', sprintf(__('Akismet was unable to check this entry (response: %s), will automatically retry again later.'), substr($check['akismet_result'], 0, 50)), $check);
-		    }
+		} else {
+			switch ( $check['akismet_result'] ) {
+				case 'true':
+					do_action( 'ctct_activity', __( 'Akismet caught this entry as spam' ), $check );
+
+					return new WP_Error( 'akismet', __( 'Your entry was flagged as spam.' ), $check );
+					break;
+				case 'false':
+					do_action( 'ctct_activity', __( 'Akismet cleared this comment' ), $check );
+					break;
+				default:
+					do_action( 'ctct_error', sprintf( __( 'Akismet was unable to check this entry (response: %s), will automatically retry again later.' ), substr( $check['akismet_result'], 0, 50 ) ), $check );
+			}
 		}
 
-	    return true;
+		return true;
 	}
 }
 
-new CTCT_Process_Form;
+CTCT_Process_Form::getInstance();

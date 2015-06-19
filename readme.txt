@@ -77,6 +77,13 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+= 3.1.9 on June 18 =
+* Fixed: Issue with Add Event button (affecting users with no events) that prevented Edit Post/Page functionality is now **fully solved**. Sorry for the frustration!
+* Fixed: Error when saving user profile forms
+* Fixed: Re-enable caching events data
+* Fixed: When switching accounts, delete all cached data
+* Tweak: Improve Admin tab styles
+
 = 3.1.8 on June 10 =
 * Fixed: Fatal error in "Add Event" button that would prevent Edit Post/Page pages from loading
 * Fixed: Restored ability to embed single Events using the "Add Event" button

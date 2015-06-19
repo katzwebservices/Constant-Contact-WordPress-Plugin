@@ -18,7 +18,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 			delete_option('ccStats_ga_profile_id');
 		}
 		if(isset($_GET['delete-settings']) && wp_verify_nonce( $_GET['delete-settings'], 'delete-settings' )) {
-			CTCT_Settings::flush_transients();
+			CTCT_Global::flush_transients();
 			$this->oauth->deleteToken();
 			delete_option('ccStats_ga_token');
 			delete_option('ccStats_ga_profile_id');
@@ -62,22 +62,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 	public function admin_notice() {
 
 	    if( !empty( $this->notices ) ) {
-
-	        echo '<div class="updated">';
-	        foreach ( (array)$this->notices as $key => $notice ) {
-
-	        	if( is_wp_error( $notice ) ) {
-
-	        		echo '<h3>'.esc_html( sprintf( __('Error: %s', 'ctct'), $notice->get_error_code() ) ).'</h3>';
-
-	        		echo wpautop( esc_html( $notice->get_error_message() ) );
-
-	        	} else {
-	        		echo wpautop( esc_html( $notice ) );
-	        	}
-
-	        }
-	        echo '</div>';
+		    kws_print_notices( $this->notices );
 	    }
 
 	    $this->notices = array();

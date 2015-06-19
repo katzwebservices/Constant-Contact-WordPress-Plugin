@@ -10,19 +10,31 @@ function constant_contact_cache_key($string, $passed = null) {
 	if(!empty($passed) && isset($passed->link)) {
 		$key = $string.$passed->link;
 	}
-	$key = 'cc_'.sha1($key);
+	$key = 'ctct_'.sha1($key);
 	return $key;
 }
 
-function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = null, &$return = array(), $page = null) {
+/**
+ * @param string $type
+ * @param $api
+ * @param null $passed
+ * @param array $return
+ * @param null $page
+ * @param bool $return_error Whether to return exception object
+ *
+ * @return array|bool
+ */
+function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = null, &$return = array(), $page = null, $return_error = false ) {
 
 	$key = constant_contact_cache_key('all_'.$type, $passed);
 
-	if(!constant_contact_refresh_cache($type) && $cached = get_transient($key)) {
-		#return $cached;
+	if( ! constant_contact_refresh_cache( $type ) && $cached = get_transient( $key ) ) {
+		return $cached;
 	}
 
 	try {
+
+		ob_start();
 
 		if(!empty($passed)) {
 			$items = $api->{"get{$type}"}($passed, $page);
@@ -30,10 +42,15 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 			$items = $api->{"get{$type}"}($page);
 		}
 
+		$error = ob_get_clean();
+
+		if( $error ){
+			do_action('ctct_error', 'Get All Events Exception', $error );
+		}
+
 		// If no results
 		if(empty($items[strtolower($type)])) {
 			return $return;
-
 		}
 		// Results
 		else {
@@ -41,7 +58,7 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 			// Otherwise, add items using the startdate time as the key for sorting below
 			foreach($items[strtolower($type)] as $item) {
 				$allkey = isset($item->startDate) ? strtotime($item->startDate) : null;
-				$return[$allkey] = $item;
+				$return[ $allkey ] = $item;
 			}
 
 			// Sort by event date
@@ -59,7 +76,7 @@ function constant_contact_old_api_get_all($type = 'Events', &$api, $passed = nul
 
 		do_action('ctct_error', 'Get All Events Exception', $e->getMessage() );
 
-		$return = false;
+		$return = $return_error ? $e : false;
 	}
 
 	return $return;
