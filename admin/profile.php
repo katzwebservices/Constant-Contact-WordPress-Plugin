@@ -36,57 +36,9 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 	 */
 	function update($user) {
 
-		r($_POST, true, 'profile.php line 39');
+		CTCT_Process_Form::getInstance()->process();
 
-		$email = get_user_option( 'user_email', $user );
-
-		$selected_lists = array();
-
-		if(isset($_POST['cc_newsletter'])) {
-			$lists = (is_array($_POST['cc_newsletter'])) ? $_POST['cc_newsletter'] : array();
-			$fields = get_option('cc_extra_fields');
-			$field_mappings = constant_contact_build_field_mappings();
-
-			// get contact and selected lists
-			$contact = $cc->query_contacts($email);
-
-			if($subscribe_method == 'checkbox' && isset($_POST['cc_newsletter']) && !is_array($_POST['cc_newsletter'])) {
-				$lists = get_option('cc_lists');
-			}
-
-			// parse custom fields
-			$extra_fields = array();
-			if(is_array($fields)) {
-				foreach($fields as $field) {
-					$fieldname = str_replace(' ','', $field);
-					if(isset($field_mappings[$fieldname]) && isset($_POST[$field_mappings[$fieldname]])) {
-						$extra_fields[$fieldname] = $_POST[$field_mappings[$fieldname]];
-					}
-				}
-			}
-
-			// Kind of sanitize the input
-			foreach($lists as $key => $list) { if(!is_numeric($list)) { unset($lists["{$key}"]); } }
-
-			$cc->set_action_type('contact');
-
-			if($contact) {
-				$status = $cc->update_contact($contact['id'], $email, $lists, $extra_fields);
-			} else {
-				$status = $cc->create_contact($email, $lists, $extra_fields);
-			}
-			if(!$status):
-				//echo constant_contact_last_error($cc->http_response_code);
-				return;
-			endif;
-		} else {
-			$contact = $cc->query_contacts($email);
-			$cc->set_action_type('contact');
-
-			if($contact) {
-				$status = $cc->update_contact($contact['id'], $email, array());
-			}
-		}
+		$this->errors = CTCT_Process_Form::getInstance()->get_errors();
 	}
 
 	/**
@@ -129,7 +81,9 @@ class CTCT_Admin_User_Profile extends CTCT_Admin_Page {
 		<p><?php
 
 			$lists = (array)$Contact->get('lists', true);
-			echo KWSContactList::outputHTML('all', array('checked' => $lists));
+			echo KWSContactList::outputHTML('all', array(
+				'checked' => $lists,
+			));
 		?></p>
 		<br />
 	<?php

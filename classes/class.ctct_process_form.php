@@ -19,10 +19,13 @@ class CTCT_Process_Form {
 	private $is_processed = false;
 
 	function __construct() {
+		$this->add_hooks();
+	}
+
+	private function add_hooks() {
 
 		add_action('template_redirect', array(&$this, 'process'));
 
-		self::$instance = &$this;
 	}
 
 	/**
@@ -32,7 +35,7 @@ class CTCT_Process_Form {
 	static function &getInstance() {
 
 		if( empty( self::$instance ) ) {
-			self::$instance = new CTCT_Process_Form;
+			self::$instance = new self;
 		}
 
 		return self::$instance;
@@ -47,7 +50,16 @@ class CTCT_Process_Form {
 	}
 
 	/**
-	 * Process the form if there is a $_POST['uniqueformid'] set
+	 * Return errors array
+	 * @since 3.2.0
+	 * @return array
+	 */
+	public function get_errors() {
+		return $this->errors;
+	}
+
+	/**
+	 * Process the form for backend and frontend
 	 *
 	 * 1. Validates the data
 	 * 2. Creates a KWSContact contact object
@@ -60,10 +72,23 @@ class CTCT_Process_Form {
 	 */
 	function process() {
 
-		// Check that the form was submitted and we have an email value, otherwise return false
-		if(!isset($_POST['uniqueformid'])) { return false; }
+		$this->id = null;
 
-		$this->id = esc_attr( $_POST['uniqueformid'] );
+		// Check that the form was submitted
+		if( is_admin() ) {
+
+			// Validate nonce from the Profile page
+			$valid_nonce = wp_verify_nonce( $_POST['_wpnonce'], 'update-user_' . $_POST['user_id'] );
+
+			$this->id = ( !empty( $_POST['user_id'] ) && $valid_nonce ) ? $_POST['user_id'] : false;
+
+		} else {
+			$this->id = isset( $_POST['uniqueformid'] ) ? esc_attr( $_POST['uniqueformid'] ) : false;
+		}
+
+		if( empty( $this->id ) ) {
+			return false;
+		}
 
 		// Validate the POST data
 		$this->data = $this->sanitizePost();
@@ -105,6 +130,7 @@ class CTCT_Process_Form {
 		}
 
 		$this->maybe_redirect();
+
 
 	}
 
@@ -319,6 +345,17 @@ class CTCT_Process_Form {
 	private function sanitizePost() {
 
 		$post = isset( $_POST ) ? $_POST : array();
+
+		if( is_admin() ) {
+
+			$post['fields'] = array(
+				'email_address' => isset( $post['email'] ) ? $post['email'] : null,
+				'first_name' => isset( $post['first_name'] ) ? $post['first_name'] : null,
+				'last_name' => isset( $post['last_name'] ) ? $post['last_name'] : null,
+			);
+
+			unset( $post['email'] );
+		}
 
 		unset($post['fields']['lists']);
 
@@ -564,4 +601,4 @@ class CTCT_Process_Form {
 	}
 }
 
-new CTCT_Process_Form;
+CTCT_Process_Form::getInstance();
