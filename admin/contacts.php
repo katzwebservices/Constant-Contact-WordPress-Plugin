@@ -11,146 +11,151 @@ use Ctct\Exceptions\CtctException;
 
 class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
-    var $errors;
-    var $id;
-    var $can_edit = true;
-    var $can_add = true;
-    var $component = 'Contact';
+	var $errors;
+	var $id;
+	var $can_edit = true;
+	var $can_add = true;
+	var $component = 'Contact';
 
-    protected function getKey() {
-        return "constant-contact-contacts";
-    }
+	protected function getKey() {
+		return "constant-contact-contacts";
+	}
 
-    protected function getTitle($value = '') {
-        if(empty($value) && $this->isEdit() || $value == 'edit')
-            return __("Edit Contact", 'ctct');
-        if(empty($value) && $this->isSingle() || $value == 'single')
-            return __('Contact', 'ctct');
-        if(empty($value) && $this->isAdd() || $value == 'add')
-            return __('Add a Contact', 'ctct');
+	protected function getTitle( $value = '' ) {
+		if ( empty( $value ) && $this->isEdit() || $value == 'edit' ) {
+			return __( "Edit Contact", 'ctct' );
+		}
+		if ( empty( $value ) && $this->isSingle() || $value == 'single' ) {
+			return __( 'Contact', 'ctct' );
+		}
+		if ( empty( $value ) && $this->isAdd() || $value == 'add' ) {
+			return __( 'Add a Contact', 'ctct' );
+		}
 
-        return __('Contacts', 'ctct');
-    }
+		return __( 'Contacts', 'ctct' );
+	}
 
-    protected function getNavTitle() {
-        return __('Contacts', 'ctct');
-    }
+	protected function getNavTitle() {
+		return __( 'Contacts', 'ctct' );
+	}
 
 	protected function add() {
 
-		$data = esc_attr_recursive( (array)$_POST );
+		$data = esc_attr_recursive( (array) $_POST );
 
-        $Contact = new KWSContact( $data );
+		$Contact = new KWSContact( $data );
 
-        include(CTCT_DIR_PATH.'views/admin/view.contact-addedit.php');
+		include( CTCT_DIR_PATH . 'views/admin/view.contact-addedit.php' );
 	}
 
-    protected function processForms() {
+	protected function processForms() {
 
-        // check if the form was submitted
-        if (isset($_POST['email_addresses']) && !empty($_POST['email_addresses'])) {
+		// check if the form was submitted
+		if ( isset( $_POST['email_addresses'] ) && ! empty( $_POST['email_addresses'] ) ) {
 
-            $action = "Getting Contact By Email Address";
+			$action = "Getting Contact By Email Address";
 
-            try {
+			try {
 
-                $data = $_POST;
+				$data = $_POST;
 
-                $returnContact = $this->cc->addUpdateContact( $data );
+				$returnContact = $this->cc->addUpdateContact( $data );
 
-	            // create a new contact if one does not exist
-                if ( $returnContact && !is_wp_error( $returnContact ) ) {
+				// create a new contact if one does not exist
+				if ( $returnContact && ! is_wp_error( $returnContact ) ) {
 
-                    wp_redirect(add_query_arg(array(
-                        'page' => $this->getKey(),
-                        'view' => $returnContact->id
-                    ), admin_url('admin.php')));
+					wp_redirect( add_query_arg( array(
+						'page' => $this->getKey(),
+						'view' => $returnContact->id
+					), admin_url( 'admin.php' ) ) );
 
-                // update the existing contact if address already existed
-                } else {
-	                $this->errors[] = $returnContact;
-                }
+					// update the existing contact if address already existed
+				} else {
+					$this->errors[] = $returnContact;
+				}
 
-            // catch any exceptions thrown during the process and print the errors to screen
-            } catch (CtctException $ex) {
-                r($ex, true, $action.' Exception');
-	            $this->errors = $ex;
-            }
-        }
-    }
+				// catch any exceptions thrown during the process and print the errors to screen
+			} catch ( CtctException $ex ) {
+				r( $ex, true, $action . ' Exception' );
+				$this->errors = $ex;
+			}
+		}
+	}
 
-    protected function edit() {
+	protected function edit() {
 
-        if( empty( $this->id ) ) {
-            esc_html_e('You have not specified a Contact to edit', 'ctct');
-            return;
-        }
+		if ( empty( $this->id ) ) {
+			esc_html_e( 'You have not specified a Contact to edit', 'ctct' );
 
-        $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $this->id );
+			return;
+		}
 
-        // The fetching of the contact failed.
-        if( is_null( $Contact->id ) ) {
-            return;
-        }
+		$Contact = $this->cc->getContact( CTCT_ACCESS_TOKEN, $this->id );
 
-        $Contact = new KWSContact($Contact);
+		// The fetching of the contact failed.
+		if ( is_null( $Contact->id ) ) {
+			return;
+		}
 
-        include(CTCT_DIR_PATH.'views/admin/view.contact-addedit.php');
-    }
+		$Contact = new KWSContact( $Contact );
 
-    protected function single() {
+		include( CTCT_DIR_PATH . 'views/admin/view.contact-addedit.php' );
+	}
 
-        $id = $this->id;
+	protected function single() {
 
-        if( empty( $id ) ) {
-            esc_html_e('You have not specified a Contact to view', 'ctct');
-            return;
-        }
+		$id = $this->id;
 
-        if($refresh = get_option( 'ctct_refresh_contact_'.$id)) {
-            delete_option( 'ctct_refresh_contact_'.$id);
-            add_filter('ctct_cache', '__return_false');
-        }
+		if ( empty( $id ) ) {
+			esc_html_e( 'You have not specified a Contact to view', 'ctct' );
 
-        $Contact = $this->cc->getContact(CTCT_ACCESS_TOKEN, $id);
+			return;
+		}
 
-        // The fetching of the contact failed.
-        if( is_null( $Contact->id ) ) {
-            return;
-        }
+		if ( $refresh = get_option( 'ctct_refresh_contact_' . $id ) ) {
+			delete_option( 'ctct_refresh_contact_' . $id );
+			add_filter( 'ctct_cache', '__return_false' );
+		}
 
-        $Contact = new KWSContact($Contact);
-        $summary = $this->cc->getContactSummaryReport(CTCT_ACCESS_TOKEN, $Contact->get('id'));
-        include(CTCT_DIR_PATH.'views/admin/view.contact-view.php');
-    }
+		$Contact = $this->cc->getContact( CTCT_ACCESS_TOKEN, $id );
 
-    protected function view() {
+		// The fetching of the contact failed.
+		if ( is_null( $Contact->id ) ) {
+			return;
+		}
 
-        add_filter('ctct_cachekey', function() {
-            return isset($_GET['status']) ? false : 'ctct_all_contacts';
-        });
+		$Contact = new KWSContact( $Contact );
+		$summary = $this->cc->getContactSummaryReport( CTCT_ACCESS_TOKEN, $Contact->get( 'id' ) );
+		include( CTCT_DIR_PATH . 'views/admin/view.contact-view.php' );
+	}
 
-	    if( !empty($_GET['refresh']) && $_GET['refresh'] === 'contacts' ) {
-		    do_action( 'ctct_flush_contacts' );
-	    }
+	protected function view() {
 
-        $Contacts = $this->cc->getAllContacts();
+		add_filter( 'ctct_cachekey', function () {
+			return isset( $_GET['status'] ) ? false : 'ctct_all_contacts';
+		} );
 
-        kws_print_subsub('status', array(
-            array('val' => '', 'text' => 'All'),
-            array('val' => 'ACTIVE', 'text' => 'Active'),
-            array('val' => 'UNCONFIRMED', 'text' => 'Unconfirmed'),
-            array('val' => 'OPTOUT', 'text' => 'Opt-Out'),
-            array('val' => 'REMOVED', 'text' => 'Removed'),
-            array('val' => 'NON_SUBSCRIBER', 'text' => 'Non-Subscriber'),
-        ));
+		if ( ! empty( $_GET['refresh'] ) && $_GET['refresh'] === 'contacts' ) {
+			do_action( 'ctct_flush_contacts' );
+		}
 
-    	if(empty($Contacts)) {
-    		esc_html_e( 'Your account has no contacts.', 'ctct');
-    	} else {
-    		include(CTCT_DIR_PATH.'views/admin/view.contacts-view.php');
-    	}
-    }
+		$Contacts = $this->cc->getAllContacts();
+
+		kws_print_subsub( 'status', array(
+			array( 'val' => '', 'text' => 'All' ),
+			array( 'val' => 'ACTIVE', 'text' => 'Active' ),
+			array( 'val' => 'UNCONFIRMED', 'text' => 'Unconfirmed' ),
+			array( 'val' => 'OPTOUT', 'text' => 'Opt-Out' ),
+			array( 'val' => 'REMOVED', 'text' => 'Removed' ),
+			array( 'val' => 'NON_SUBSCRIBER', 'text' => 'Non-Subscriber' ),
+		) );
+
+		if ( empty( $Contacts ) ) {
+			esc_html_e( 'Your account has no contacts.', 'ctct' );
+		} else {
+			include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
+		}
+	}
 }
 
 new CTCT_Admin_Contacts;
