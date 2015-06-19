@@ -223,3 +223,4 @@ function constant_contact_generate_rows(array $data) {
 		$reg .= '<tr '.$alt.'><th scope="row" id="'.sanitize_title($key).'" class="manage-column column-name" style=""><span>'.$key.'</span></th><td>'.get_if_not_empty($val, '<span class="description">(Empty)</span>').'</td></tr>';
 	}
 	return $reg;
+}
