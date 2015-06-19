@@ -118,6 +118,40 @@ function kws_print_subsub($key, $array) {
 }
 
 /**
+ * Print an array of notices
+ * @param WP_Error[]|array $notices
+ * @param string $class
+ * @param bool $echo
+ *
+ * @return string
+ */
+function kws_print_notices( $notices = array(), $class = 'updated', $echo = true ) {
+
+	$output = '<div class="' . esc_attr( $class ) . '">';
+
+	foreach ( (array)$this->notices as $key => $notice ) {
+
+		if( is_wp_error( $notice ) ) {
+
+			$output .= '<h3>'.esc_html( sprintf( __('Error: %s', 'ctct'), $notice->get_error_code() ) ).'</h3>';
+
+			$output .= wpautop( esc_html( $notice->get_error_message() ) );
+
+		} else {
+			$output .= wpautop( esc_html( $notice ) );
+		}
+
+	}
+	$output .= '</div>';
+
+	if( $echo ) {
+		echo $output;
+	}
+
+	return $output;
+}
+
+/**
  * Recursively remove empty items from an array
  * @param  mixed $haystack
  * @return array
