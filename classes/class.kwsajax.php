@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
+/**
+ * Handle AJAX calls, mainly for inline admin editing
+ */
 class KWSAJAX {
 
 	function __construct() {
@@ -23,7 +30,7 @@ class KWSAJAX {
 
 		if(!isset($_REQUEST['_wpnonce']) || isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'ctct') && !defined('DOING_AJAX')) {
 			$response['errors'] = __('You\'re not authorized to be here.', 'ctct');
-		} else if(empty($field)) {
+		} elseif(empty($field)) {
 			$response['errors'] = __('There is no field defined.', 'ctct');
 		} elseif(!isset($_REQUEST['value'])) {
 			$response['errors'] = __('There is no value defined.', 'ctct');
@@ -124,4 +131,4 @@ class KWSAJAX {
 
 }
 
-$KWSAJAX = new KWSAJAX();
+new KWSAJAX();

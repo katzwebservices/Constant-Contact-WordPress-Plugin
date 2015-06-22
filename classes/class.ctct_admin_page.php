@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 abstract class CTCT_Admin_Page {
 
@@ -165,9 +168,9 @@ abstract class CTCT_Admin_Page {
 	protected function content() {
 		if ( $this->isAdd() ) {
 			$this->add();
-		} else if ( $this->isEdit() ) {
+		} elseif ( $this->isEdit() ) {
 			$this->edit();
-		} else if ( $this->isSingle() ) {
+		} elseif ( $this->isSingle() ) {
 			$this->single();
 		} else {
 			$this->view();

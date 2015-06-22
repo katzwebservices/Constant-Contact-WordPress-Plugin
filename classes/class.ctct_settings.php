@@ -657,9 +657,9 @@ class CTCT_Settings extends CTCT_Admin_Page {
 	 					if(is_array($option) && isset($option['label'])) {
 	 						$optiontitle = $option['label'];
 	 						$optiondesc = isset($option['desc']) ? sprintf('<span class="howto" style="margin-left:1.25em; font-style:normal;">%s</span>', $option['desc']) : '';
-	 					} else if(is_string($option)) {
+	 					} elseif(is_string($option)) {
 	 						$optiontitle = $option;
-	 					} else if(is_a($option, 'Ctct\Components\Contacts\ContactList') ) {
+	 					} elseif(is_a($option, 'Ctct\Components\Contacts\ContactList') ) {
 	 						$optiontitle = $option->name;
 	 						$key = $option->id;
 	 					}

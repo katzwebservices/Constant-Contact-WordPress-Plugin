@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 /**
  * Handle all plugin form submissions.
@@ -175,7 +179,7 @@ class CTCT_Process_Form {
 			 *
 			 * Note the missing ' and "
 			 */
-			else if ( ! empty( $parsed['query'] ) && ! empty( $parsed['scheme'] ) && ! empty( $parsed['host'] ) ) {
+			elseif ( ! empty( $parsed['query'] ) && ! empty( $parsed['scheme'] ) && ! empty( $parsed['host'] ) ) {
 
 				$path = isset( $parsed['path'] ) ? $parsed['path'] : '';
 
@@ -403,7 +407,7 @@ class CTCT_Process_Form {
 	 *
 	 * @param  KWSContact $Contact Contact object
 	 *
-	 * @return WP_Error|boolean    If valid, return `true`, otherwise return a WP_Error object.
+	 * @return WP_Error|boolean|void    If valid, return `true`, otherwise return a WP_Error object.
 	 */
 	function validateEmail( KWSContact &$Contact ) {
 
@@ -425,7 +429,7 @@ class CTCT_Process_Form {
 			$this->errors[] = new WP_Error( 'empty_email', __( 'Please enter your email address.', 'ctct' ), 'email_address' );
 
 			return;
-		} else if ( ! is_email( $email ) ) {
+		} elseif ( ! is_email( $email ) ) {
 			do_action( 'ctct_activity', 'Invalid email address', $email );
 			$this->errors[] = new WP_Error( 'not_email', __( 'Invalid email address.', 'ctct' ), 'email_address' );
 

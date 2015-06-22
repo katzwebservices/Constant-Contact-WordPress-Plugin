@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 use Ctct\ConstantContact;
 use Ctct\Util\Config;

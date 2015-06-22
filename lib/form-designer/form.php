@@ -82,7 +82,7 @@ class CTCT_Form_Designer_Output {
 		}
 
 		// Some very basic verification. Not secure, but better than nothing.
-		else if( $data['verify'] !== ( $data['rand'] . $data['cc-form-id'] . $data['date'] ) ) {
+		elseif( $data['verify'] !== ( $data['rand'] . $data['cc-form-id'] . $data['date'] ) ) {
 			$valid = false;
 		}
 
@@ -185,7 +185,7 @@ class CTCT_Form_Designer_Output {
 		$placeholder = '';
 		if( !empty( $this->form['cc_request'] ) && isset($this->form['cc_request']['fields'][$field['id']]['value']) && $this->is_current_form() ) {
 			$val = esc_html( $this->form['cc_request']['fields'][$field['id']]['value'] );
-		} else if( !empty( $field['val'] ) ) {
+		} elseif( !empty( $field['val'] ) ) {
 			$placeholder = " placeholder='".esc_attr( $field['val'] )."'";
 		}
 

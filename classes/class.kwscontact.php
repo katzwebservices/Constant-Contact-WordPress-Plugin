@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 use Ctct\ConstantContact;
 use Ctct\Components\Contacts\Contact;
@@ -55,7 +59,7 @@ class KWSContact extends Contact {
 	private static function prepareValue( $value ) {
 		if ( empty( $value ) || is_numeric( $value ) ) {
 			return $value;
-		} else if ( is_string( $value ) ) {
+		} elseif ( is_string( $value ) ) {
 			$value = stripslashes( $value );
 		} else {
 			if ( ! empty( $value ) ) {

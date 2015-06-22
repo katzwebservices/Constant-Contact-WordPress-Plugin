@@ -1,4 +1,9 @@
 <?php
+/**
+ * This file is here for backward compatibility.
+ *
+ * In 3.1.4, the main plugin file changed from `constant-contact-api.php` to `ctct.php` in 3.1. This changes it back.
+ */
 
 /** If this file is called directly, abort. */
 if ( ! defined( 'ABSPATH' ) ) {

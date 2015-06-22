@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 /**
  * General class that runs globally (admin/frontend)
