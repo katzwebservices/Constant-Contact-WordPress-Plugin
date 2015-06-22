@@ -77,7 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-= 3.1.9 on June 22 =
+= 3.1.10 on June 22 =
 * Fixed: Invalid Header issue on activation for certain server configurations
 
 = 3.1.9 on June 19 =
