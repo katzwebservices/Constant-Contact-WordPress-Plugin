@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
+/**
+ * Migrate users from previous version of plugin (stored plaintext username/password) to OAuth token
+ */
 final class CTCT_OAuth_Migration {
 
 	function __construct() {

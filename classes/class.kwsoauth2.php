@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
+
 use Ctct\Util\Config;
 use Ctct\Auth;
 use Ctct\Auth\CtctOAuth2;

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 class CTCT_Admin extends CTCT_Admin_Page {
 

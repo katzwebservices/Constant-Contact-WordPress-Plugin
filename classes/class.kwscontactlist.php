@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 use Ctct\Components\Contacts\ContactList;
 use Ctct\Components\EmailMarketing\MessageFooter;

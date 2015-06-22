@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 abstract class CTCT_Admin_Page {
 

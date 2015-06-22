@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
 add_action('admin_print_styles', 'ctct_compatibility_styles');
 add_action('admin_notices', 'ctct_compatibility_notice');

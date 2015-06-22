@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package CTCT
+ * @version 3.0
+ */
 
+/**
+ * Handle AJAX calls, mainly for inline admin editing
+ */
 class KWSAJAX {
 
 	function __construct() {
