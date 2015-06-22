@@ -137,7 +137,6 @@ final class WP_CTCT {
 
 		/** Helpers */
 		include_once CTCT_DIR_PATH.'lib/cache-http.php';
-		include_once CTCT_DIR_PATH.'inc/table.php';
 		include_once CTCT_DIR_PATH.'inc/functions.php';
 
 		// TODO: Flesh out the help tabs
