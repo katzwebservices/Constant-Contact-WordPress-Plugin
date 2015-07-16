@@ -129,7 +129,8 @@ EOD;
 
 $css = <<<EOD
 
-.has_errors .cc_intro { display:none;}
+.cc-input-type-hidden,
+.has_errors .cc_intro { display:none }
 
 {$selector} .cc_success {
 	margin:0!important;
@@ -271,10 +272,5 @@ $selector .cc_intro * {
 .kws_clear { clear:both; }
 
 EOD;
-
-// If lists are hidden, hide the container.
-if( isset( $list_format ) && $list_format === 'hidden' ) {
-	$css .= "{$selector} .cc_lists { display: none; }";
-}
 
 echo $css;

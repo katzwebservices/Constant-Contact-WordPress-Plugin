@@ -79,6 +79,7 @@ To install the plugin follow the steps below:
 
 * Fixed: Submissions not being processed properly for lists being selected using `<select>` inputs
 * Fixed (second try!): Invalid Header issue on activation
+* Fixed: List selection inputs were sometimes being hidden in the form
 = 3.1.10 on June 22 =
 * Fixed: Invalid Header issue on activation for certain server configurations
 
