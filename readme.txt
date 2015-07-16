@@ -77,6 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Fixed: Submissions not being processed properly for lists being selected using `<select>` inputs
 = 3.1.10 on June 22 =
 * Fixed: Invalid Header issue on activation for certain server configurations
 
