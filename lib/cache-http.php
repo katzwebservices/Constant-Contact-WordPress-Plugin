@@ -1,13 +1,15 @@
 <?php
-/*
-Plugin Name: Cache Requests
-Plugin URI: http://wordpress.org/extend/plugins/cache-http/
-Description: Easily cache requests made using the WordPress HTTP API
-Version: 1.0.1
-Author: Katz Web Services, Inc.
-Author URI: http://www.katzwebservices.com
-*/
+/**
+ * Easily cache requests made using the WordPress HTTP API
+ *
+ * @package CTCT
+ * @version 3.0
+ */
 
+
+/**
+ * Handle caching and flushing caches for requests
+ */
 class Cache_WP_HTTP {
 
 	private $debug = false;
@@ -154,4 +156,4 @@ class Cache_WP_HTTP {
 	}
 }
 
-$Cache_WP_HTTP = new Cache_WP_HTTP();
+new Cache_WP_HTTP;
