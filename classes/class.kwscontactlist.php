@@ -207,9 +207,10 @@ class KWSContactList extends ContactList {
 			}
 		}
 
+		$before = $before_item = $after_item = $after = '';
+
 		switch ( $type ) {
 			case 'hidden':
-				$before = $before_item = $after_item = $after = '';
 				$format = '<input type="hidden" value="%%id%%" name="%%name_attr%%[]" />';
 				break;
 			case 'ul':
@@ -266,8 +267,6 @@ class KWSContactList extends ContactList {
 
 			$tmp_output = $before_item . $item_content . $after_item . "\n";
 
-			$tmp_output = str_replace( '%%name_attr%%', $name_attr, $tmp_output );
-			$tmp_output = str_replace( '%%id_attr%%', $id_attr, $tmp_output );
 			$tmp_output = str_replace( '%%id%%', sanitize_title( $item->get( 'id' ) ), $tmp_output );
 			$tmp_output = str_replace( '%%name%%', $item->get( 'name', false ), $tmp_output );
 			$tmp_output = str_replace( '%%status%%', $item->get( 'status', false ), $tmp_output );
@@ -281,6 +280,9 @@ class KWSContactList extends ContactList {
 		$output .= $items_output;
 
 		$output .= $after;
+
+		$output = str_replace( '%%name_attr%%', $name_attr, $output );
+		$output = str_replace( '%%id_attr%%', $id_attr, $output );
 
 		return $output;
 	}
