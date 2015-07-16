@@ -267,6 +267,8 @@ class KWSContactList extends ContactList {
 
 			$tmp_output = $before_item . $item_content . $after_item . "\n";
 
+			$tmp_output = str_replace( '%%name_attr%%', $name_attr, $tmp_output );
+			$tmp_output = str_replace( '%%id_attr%%', $id_attr, $tmp_output );
 			$tmp_output = str_replace( '%%id%%', sanitize_title( $item->get( 'id' ) ), $tmp_output );
 			$tmp_output = str_replace( '%%name%%', $item->get( 'name', false ), $tmp_output );
 			$tmp_output = str_replace( '%%status%%', $item->get( 'status', false ), $tmp_output );
