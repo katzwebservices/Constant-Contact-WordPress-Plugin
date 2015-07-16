@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.2.2
-Stable tag: 3.1.10
+Stable tag: 3.1.11
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
