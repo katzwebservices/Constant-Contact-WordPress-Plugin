@@ -25,7 +25,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 		);
 
         /* Create the widget. */
-        $this->WP_Widget('CTCT_Form_Designer_Widget', __('Constant Contact Form Designer Widget', 'ctct'), $widget_options, array('width'=>690));
+        parent::__construct('CTCT_Form_Designer_Widget', __('Constant Contact Form Designer Widget', 'ctct'), $widget_options, array('width'=>690));
 
         add_action('wp_print_styles', array(&$this, 'print_styles'));
     }
