@@ -173,7 +173,7 @@ function cc_form_meta_box_formfields($_form_object) {
 
 				$default = isset($_form_object['f'][0]['val']) ? html_entity_decode( stripslashes($_form_object['f'][0]['val'])) :  __('Custom Text Placeholder', 'ctct');
 
-				echo wp_editor(
+				wp_editor(
  				    $default,
  					'form_text', // #id
  					apply_filters('ctct_admin_wp_editor_settings', array(

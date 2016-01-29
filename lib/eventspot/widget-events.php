@@ -28,7 +28,7 @@ class constant_contact_events_widget extends WP_Widget {
 			'classname' => 'constant-contact-events',
 		);
 		$control_options = array('width'=>690); // Min-width of widgets config with expanded sidebar
-        parent::WP_Widget(false, $name = 'Constant Contact Events', $widget_options, $control_options);
+        parent::__construct( false, __('Constant Contact Events', 'ctct'), $widget_options, $control_options);
 		if (is_active_widget(false, false, $this->id_base, true) ) {
         	add_action('wp_print_styles', array(&$this, 'styles'));
         }
@@ -143,7 +143,7 @@ class constant_contact_events_widget extends WP_Widget {
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('limit');?>"><span><?php _e('<span title="Number">#</span> of Events Shown', 'consatant-contact-api'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('limit');?>"><span><?php _e('<span title="Number">#</span> of Events Shown', 'ctct'); ?></span></label></p></th>
 			<td>
 				<?php $limit = isset($limit) ? $limit : null; ?>
 				<select class="select" name="<?php echo $this->get_field_name('limit');?>" id="<?php echo $this->get_field_id('limit');?>">
