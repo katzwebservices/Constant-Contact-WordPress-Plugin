@@ -294,29 +294,7 @@ abstract class CTCT_Admin_Page {
 			</h2>
 			<?php
 
-			if ( ! $this->isView() ) {
-				$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( array(
-						'view',
-						'edit',
-						'add'
-					) ) ) . '">' . $this->getNavTitle() . '</a>';
-			}
-
-			if ( $this->isEdit() ) {
-				$breadcrumb[] = '<a href="' . esc_url( add_query_arg( array( 'view' => $_GET['edit'] ), remove_query_arg( array( 'edit' ) ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
-			}
-
-			$breadcrumb[] = $this->getTitle();
-
-			$button = '';
-			if ( $this->isSingle() && $this->can_edit ) {
-				$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'ctct' ) . '</a>';
-			}
-			if ( $this->isView() && $this->can_add ) {
-				$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct' ), $this->getTitle( 'single' ) ) . '</a>';
-			}
-
-			echo '<h2 class="ctct-page-name">' . implode( ' &raquo; ', $breadcrumb ) . $button . '</h2>';
+			echo '<h2 class="ctct-page-name">' . $this->get_page_heading() . '</h2>';
 
 			$this->print_errors();
 
@@ -330,5 +308,39 @@ abstract class CTCT_Admin_Page {
 			?>
 		</div>
 	<?php
+	}
+
+	/**
+	 * Generate the content inside the .ctct-page-name page heading (breadcrumbs and button)
+	 * @since 3.1.13
+	 * @return string HTML output for breadcrumbs and button
+	 */
+	private function get_page_heading() {
+
+		$breadcrumb = array();
+
+		if ( ! $this->isView() ) {
+			$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( array(
+					'view',
+					'edit',
+					'add'
+				) ) ) . '">' . $this->getNavTitle() . '</a>';
+		}
+
+		if ( $this->isEdit() ) {
+			$breadcrumb[] = '<a href="' . esc_url( add_query_arg( array( 'view' => $_GET['edit'] ), remove_query_arg( array( 'edit' ) ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
+		}
+
+		$breadcrumb[] = $this->getTitle();
+
+		$button = '';
+		if ( $this->isSingle() && $this->can_edit ) {
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'ctct' ) . '</a>';
+		}
+		if ( $this->isView() && $this->can_add ) {
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct' ), $this->getTitle( 'single' ) ) . '</a>';
+		}
+
+		return implode( ' &raquo; ', $breadcrumb ) . $button;
 	}
 }
