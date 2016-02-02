@@ -26,7 +26,7 @@ return array (
               45|
               82
             )\\d|
-            25[0-46]
+            25[0-4]
           )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{10}',

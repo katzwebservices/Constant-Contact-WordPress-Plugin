@@ -29,8 +29,7 @@ return array (
             8[1-79]|
             9[145]
           )\\d{7}|
-          [12]2\\d{5}|
-          261\\d{6}
+          [12]2\\d{5}
         ',
     'PossibleNumberPattern' => '\\d{6,9}',
     'ExampleNumber' => '123456789',
@@ -131,8 +130,7 @@ return array (
       'leadingDigitsPatterns' => 
       array (
         0 => '
-            [14]|
-            2[0-57-9]|
+            [124]|
             3[2-4]|
             5[24-689]|
             6[1-3578]|
@@ -162,7 +160,6 @@ return array (
       'leadingDigitsPatterns' => 
       array (
         0 => '
-            261|
             39|
             5[0137]|
             6[0469]|

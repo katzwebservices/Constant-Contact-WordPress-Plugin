@@ -21,7 +21,6 @@ return array (
   92313 => 'Zong',
   92314 => 'Zong',
   92315 => 'Zong',
-  92316 => 'Zong',
   9232 => 'Warid',
   92330 => 'Ufone',
   92331 => 'Ufone',
@@ -39,5 +38,4 @@ return array (
   92345 => 'Telenor',
   92346 => 'Telenor',
   92347 => 'Telenor',
-  92348 => 'Telenor',
 );

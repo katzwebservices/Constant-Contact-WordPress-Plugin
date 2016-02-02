@@ -16,7 +16,7 @@ return array (
     'NationalNumberPattern' => '
           868(?:
             2(?:
-              [03]1|
+              01|
               2[1-5]
             )|
             6(?:

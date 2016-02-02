@@ -17,6 +17,5 @@ return array (
   97363 => 'VIVA',
   973663 => 'zain BH',
   973666 => 'zain BH',
-  973667 => 'Batelco',
   973669 => 'zain BH',
 );

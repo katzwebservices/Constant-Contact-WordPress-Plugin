@@ -40,7 +40,7 @@ return array (
           (?:
             5(?:
               [05]\\d|
-              1[0-7]
+              1[0-6]
             )|
             6(?:
               0[034679]|
@@ -51,12 +51,11 @@ return array (
             )|
             9(?:
               0[09]|
-              22|
               4[049]|
               55|
               6[069]|
               [79]\\d|
-              8[07-9]
+              8[089]
             )
           )\\d{5}
         ',
@@ -140,24 +139,18 @@ return array (
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '
-            [126]|
-            9[04-9]
-          ',
+        0 => '[1269]',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
     ),
     1 => 
     array (
-      'pattern' => '(\\d{3})(\\d{5})',
+      'pattern' => '(5[015]\\d)(\\d{5})',
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '
-            5[015]|
-            92
-          ',
+        0 => '5',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

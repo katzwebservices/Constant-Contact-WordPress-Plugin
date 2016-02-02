@@ -102,9 +102,8 @@ return array (
   ),
   'voip' => 
   array (
-    'NationalNumberPattern' => '249\\d{6}',
-    'PossibleNumberPattern' => '\\d{9}',
-    'ExampleNumber' => '249123456',
+    'NationalNumberPattern' => 'NA',
+    'PossibleNumberPattern' => 'NA',
   ),
   'pager' => 
   array (

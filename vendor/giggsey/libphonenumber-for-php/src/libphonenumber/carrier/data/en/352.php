@@ -9,8 +9,7 @@ return array (
   352628 => 'POST',
   352661 => 'Orange',
   352668 => 'Orange',
-  352671 => 'JOIN',
-  352678 => 'JOIN',
+  352671 => 'Join',
   352691 => 'Tango',
   352698 => 'Tango',
 );

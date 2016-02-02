@@ -233,7 +233,6 @@ return array (
   2348887 => 'Starcomms',
   234902 => 'Airtel',
   234903 => 'MTN',
-  234905 => 'Glo',
   234909 => 'Etisalat',
   234980 => 'Starcomms',
   234987 => 'Starcomms',

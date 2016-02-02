@@ -83,6 +83,7 @@ __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
 * Tweak: Refactor LESS files for admin CSS
+* Updated: Phone number validation library
 
 = 3.1.12 on August 21 =
 * Fixed: Compatibility with WordPress 4.3

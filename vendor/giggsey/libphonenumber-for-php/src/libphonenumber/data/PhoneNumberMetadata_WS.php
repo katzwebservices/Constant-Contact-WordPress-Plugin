@@ -128,17 +128,6 @@ return array (
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
     ),
-    2 => 
-    array (
-      'pattern' => '(\\d{5})',
-      'format' => '$1',
-      'leadingDigitsPatterns' => 
-      array (
-        0 => '[2-6]',
-      ),
-      'nationalPrefixFormattingRule' => '',
-      'domesticCarrierCodeFormattingRule' => '',
-    ),
   ),
   'intlNumberFormat' => 
   array (

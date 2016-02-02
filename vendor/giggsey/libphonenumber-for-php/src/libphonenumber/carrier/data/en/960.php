@@ -6,5 +6,5 @@
 
 return array (
   9607 => 'Dhiraagu',
-  9609 => 'Ooredoo',
+  9609 => 'Wataniya',
 );

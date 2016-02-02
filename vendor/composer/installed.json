@@ -87,17 +87,17 @@
     },
     {
         "name": "giggsey/libphonenumber-for-php",
-        "version": "7.0.6",
-        "version_normalized": "7.0.6.0",
+        "version": "7.0.1",
+        "version_normalized": "7.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-            "reference": "88554d43fcb2a686949f01a1c8f364962551ba24"
+            "reference": "82dbb587f2682ed389295293f1a511e2e778cbcf"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/88554d43fcb2a686949f01a1c8f364962551ba24",
-            "reference": "88554d43fcb2a686949f01a1c8f364962551ba24",
+            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/82dbb587f2682ed389295293f1a511e2e778cbcf",
+            "reference": "82dbb587f2682ed389295293f1a511e2e778cbcf",
             "shasum": ""
         },
         "require": {
@@ -112,7 +112,7 @@
         "suggest": {
             "ext-intl": "To use the geocoder and carrier mapping"
         },
-        "time": "2015-06-01 13:53:38",
+        "time": "2014-11-25 13:22:15",
         "type": "library",
         "extra": {
             "branch-alias": {

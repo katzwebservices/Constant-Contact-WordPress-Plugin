@@ -6,11 +6,8 @@
 
 return array (
   94117 => 'Dialog',
-  9470 => 'Mobitel',
   9471 => 'Mobitel',
   9472 => 'Etisalat',
   9475 => 'Airtel',
-  9476 => 'Dialog',
   9477 => 'Dialog',
-  9478 => 'Hutch',
 );

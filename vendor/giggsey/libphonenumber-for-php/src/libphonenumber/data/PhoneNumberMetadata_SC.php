@@ -8,7 +8,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[2468]\\d{5,6}',
+    'NationalNumberPattern' => '[24689]\\d{5,6}',
     'PossibleNumberPattern' => '\\d{6,7}',
   ),
   'fixedLine' => 
@@ -31,8 +31,9 @@ return array (
   ),
   'premiumRate' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
+    'NationalNumberPattern' => '98\\d{4}',
+    'PossibleNumberPattern' => '\\d{6}',
+    'ExampleNumber' => '981234',
   ),
   'sharedCost' => 
   array (
@@ -103,7 +104,7 @@ return array (
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '8',
+        0 => '[89]',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
