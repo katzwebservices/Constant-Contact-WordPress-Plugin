@@ -93,6 +93,9 @@ class CTCT_Form_Designer_Output {
 
 		$form = array();
 
+		/**
+		 * Convert $form[field][name],$form[field][value] pairs into $form[$field] = $value
+		 */
 		if( isset( $data['form'] ) && is_array( $data['form'] ) ) {
 			foreach ( $data['form'] as $key => $value) {
 

@@ -21,6 +21,11 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 		return "constant-contact-contacts";
 	}
 
+	/**
+	 * @param string $value
+	 *
+	 * @return mixed
+	 */
 	protected function getTitle( $value = '' ) {
 		if ( empty( $value ) && $this->isEdit() || $value == 'edit' ) {
 			return __( "Edit Contact", 'ctct' );
@@ -99,6 +104,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 		$Contact = new KWSContact( $Contact );
 
+		/** @define "CTCT_DIR_PATH" "../" */
 		include( CTCT_DIR_PATH . 'views/admin/view.contact-addedit.php' );
 	}
 

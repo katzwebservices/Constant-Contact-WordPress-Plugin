@@ -22,6 +22,8 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		global $pagenow, $plugin_page;
 
 		define('CC_FORM_GEN_URL', plugin_dir_url(__FILE__));
+
+		/** @define "CC_FORM_GEN_PATH" "./" */
 		define('CC_FORM_GEN_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
 
 		require_once( CC_FORM_GEN_PATH . 'form.php' );

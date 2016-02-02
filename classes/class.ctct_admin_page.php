@@ -144,10 +144,18 @@ abstract class CTCT_Admin_Page {
 		return $this->key;
 	}
 
+	/**
+	 * Get the title of the page
+	 * @return string
+	 */
 	protected function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Get the title of the page to show in the Admin Menu
+	 * @return string
+	 */
 	protected function getNavTitle() {
 		return $this->title;
 	}
@@ -160,6 +168,10 @@ abstract class CTCT_Admin_Page {
 
 	abstract protected function single();
 
+	/**
+	 * Process any forms the page has added
+	 * @return mixed
+	 */
 	abstract protected function processForms();
 
 	protected function addActions() {
@@ -234,6 +246,10 @@ abstract class CTCT_Admin_Page {
 		$this->notices = array();
 	}
 
+	/**
+	 * Print errors for the page
+	 * @return void
+	 */
 	protected function print_errors() {
 
 		if ( empty( $this->errors ) ) {
@@ -262,7 +278,15 @@ abstract class CTCT_Admin_Page {
 	}
 
 
-	// Common method
+	/**
+	 * Print output for the page
+	 *
+	 * @uses print_errors
+	 * @uses print_notices
+	 * @uses content
+	 *
+	 * @return void
+	 */
 	public function page() { ?>
 		<div class="wrap">
 			<h2 class="cc_logo"><a class="cc_logo"
