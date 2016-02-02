@@ -56,9 +56,14 @@
                 break;
             }
         } else {
-            if(!is_string($Campaign->get($key))) { continue; }
-            $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
-                <td>%s</td>', esc_html( $Campaign->getLabel($key) ), esc_html( $Campaign->get($key, true) ));
+
+            // Make sure we're dealing with text
+            if ( ! is_string( $Campaign->get( $key ) ) ) {
+                continue;
+            }
+
+            $html .= sprintf( '<th scope="row" valign="top" class="column-name">%s</th>
+                <td>%s</td>', esc_html( $Campaign->getLabel( $key ) ), make_clickable( esc_html( $Campaign->get( $key, true ) ) ) );
         }
         $html .= '
         </tr>';

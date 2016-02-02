@@ -77,6 +77,7 @@ To install the plugin follow the steps below:
 
 * The Admin now looks great on mobile devices!
 * Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
+* Improved: URLs and emails are now links in the single Campaign page
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Tweak: Only "Active" users now shown by default in Contacts
