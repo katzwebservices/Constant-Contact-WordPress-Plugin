@@ -1,0 +1,91 @@
+.component-summary {
+  color: white;
+  margin: 2em 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+.component-summary dl {
+  display: block;
+  float: left;
+  position: relative;
+  flex: 1 1 auto;
+  margin-right: .6%;
+  font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
+  font-weight: 100;
+  padding: 30px 1% 0px .75%;
+  min-width: 120px;
+  align-self: stretch;
+}
+.component-summary dl:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  display: block;
+  width: 0;
+  -webkit-border-bottom-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+  -moz-border-radius: 0 0 0 1px;
+  border-radius: 0 0 0 1px;
+}
+.component-summary dt,
+.component-summary dd {
+  font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
+  font-weight: 100;
+  font-size: 24px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+.component-summary dd {
+  font-weight: 500;
+}
+.component-summary .summary-1 {
+  background-color: #174886;
+}
+.component-summary .summary-1:before {
+  border-color: #081e3a #f1f1f1;
+}
+.component-summary .summary-2 {
+  background-color: #facd69;
+  color: black;
+}
+.component-summary .summary-2:before {
+  border-color: #9b8044 #f1f1f1;
+}
+.component-summary .summary-3 {
+  background-color: #86a0c1;
+}
+.component-summary .summary-3:before {
+  border-color: #4b5b6f #f1f1f1;
+}
+.component-summary .summary-4 {
+  background-color: #e99e23;
+}
+.component-summary .summary-4:before {
+  border-color: #936414 #f1f1f1;
+}
+.component-summary .summary-5 {
+  background-color: #164989;
+}
+.component-summary .summary-5:before {
+  border-color: #0a2546 #f1f1f1;
+}
+.component-summary .summary-6 {
+  background-color: #eea520;
+  color: black;
+}
+.component-summary .summary-6:before {
+  border-color: #764e11 #f1f1f1;
+}
+.component-summary .summary-7 {
+  background-color: #facd69;
+  color: black;
+}
+.component-summary .summary-7:before {
+  border-color: #9b8044 #f1f1f1;
+}
