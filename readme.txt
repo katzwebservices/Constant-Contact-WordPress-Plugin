@@ -84,6 +84,7 @@ __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
 * Fixed: Prevent logs from being written during Form Designer AJAX
+* Fixed: Removed deprecated `wp_clone()` function
 * Tweak: Refactor LESS files for admin CSS
 * Updated: Phone number validation library
 

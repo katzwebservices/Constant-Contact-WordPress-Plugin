@@ -92,7 +92,7 @@ class KWSContact extends Contact {
 
 	public function update( $new_contact_array ) {
 
-		$existing_contact = wp_clone( $this );
+		$existing_contact = clone( $this );
 
 		$new_contact = new KWSContact( $new_contact_array, true );
 

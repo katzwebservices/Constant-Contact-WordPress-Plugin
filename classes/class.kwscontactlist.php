@@ -38,7 +38,7 @@ class KWSContactList extends ContactList {
 
 	public function update( array $new_contact_array ) {
 
-		$existing_contact = wp_clone( $this );
+		$existing_contact = clone( $this );
 
 		$new_contact = new KWSContactList( $new_contact_array, true );
 

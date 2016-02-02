@@ -45,7 +45,7 @@ class KWSCampaign extends Campaign {
 
     public function update(array $new_contact_array) {
 
-    	$existing_contact = wp_clone($this);
+    	$existing_contact = clone($this);
 
     	$new_contact = new KWSCampaign($new_contact_array, true);
 
