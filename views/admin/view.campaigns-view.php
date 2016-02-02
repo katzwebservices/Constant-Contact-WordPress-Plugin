@@ -1,3 +1,5 @@
+<div class="alignright"><a href="<?php echo esc_url( add_query_arg('refresh', 'campaigns') ); ?>" class="button button-secondary alignright button-small"><?php esc_html_e('Refresh Campaigns', 'ctct'); ?></a></div>
+
 <table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
         <tr>

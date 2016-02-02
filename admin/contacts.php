@@ -135,14 +135,12 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 		include( CTCT_DIR_PATH . 'views/admin/view.contact-view.php' );
 	}
 
-	protected function view() {
 
-		add_filter( 'ctct_cachekey', function () {
-			return isset( $_GET['status'] ) ? false : 'ctct_all_contacts';
-		} );
+	protected function view() {
 
 		if ( ! empty( $_GET['refresh'] ) && $_GET['refresh'] === 'contacts' ) {
 			do_action( 'ctct_flush_contacts' );
+			add_filter( 'ctct_cache', '__return_false' );
 		}
 
 		$_GET['status'] = isset( $_GET['status'] ) ? esc_attr( $_GET['status'] ) : 'ACTIVE';

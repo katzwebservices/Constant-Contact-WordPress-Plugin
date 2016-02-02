@@ -50,6 +50,38 @@ function kws_format_date($date, $include_time = false) {
 	return $include_time ? $date = date_i18n(get_option('date_format').' '.get_option('time_format'), strtotime($date), true) : $date;
 }
 
+/**
+ * Convert a CTCT Tracking Summary object in to the sheets we know and love.
+ *
+ * @since 3.2
+ *
+ * @param Ctct\Components\Tracking\TrackingSummary $summary
+ *
+ * @return string HTML output <dl>
+ */
+function kws_generate_tracking_summary_report( $summary ) {
+
+	$output = '';
+
+	$i = 1;
+
+	// Create summary "Sheets"
+	foreach( $summary as $k => $v ) {
+
+		// Spam Count may be null
+		if( is_null( $v ) ) { continue; }
+
+		$output .= '
+			<dl class="'.$k.' summary-'.$i.'">
+                <dt>'.esc_html( ucwords(str_replace('_', ' ', $k)) ).'</dt>
+                <dd>'.esc_html( $v ).'</dd>
+            </dl>';
+		$i++;
+	}
+
+	return $output;
+}
+
 function kws_has_avatar( $email ) {
 	$request = wp_remote_get( 'http://www.gravatar.com/avatar/' . md5($email) . '?d=404', array('limit-response-size' => 1));
 	return $request['response']['code'] !== 404;

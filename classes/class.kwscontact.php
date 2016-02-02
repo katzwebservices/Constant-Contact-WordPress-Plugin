@@ -35,6 +35,17 @@ class KWSContact extends Contact {
 		'notes'
 	);
 
+	/**
+	 * The statuses that are supported for a Contact
+	 * @var array
+	 */
+	public static $statii = array(
+		'ACTIVE',
+		'UNCONFIRMED',
+		'OPTOUT',
+		'REMOVED',
+	);
+
 	function __construct( $Contact = '' ) {
 
 		if ( is_array( $Contact ) ) {
@@ -354,14 +365,7 @@ class KWSContact extends Contact {
 			}
 		}
 
-		if ( $add || ! in_array( $Contact['status'], array(
-				'ACTIVE',
-				'UNCONFIRMED',
-				'OPTOUT',
-				'REMOVED',
-				'NON_SUBSCRIBER',
-				'VISITOR'
-			) )
+		if ( $add || ! in_array( $Contact['status'], self::$statii )
 		) {
 			unset( $Contact['status'] );
 		}

@@ -96,9 +96,10 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 		$status = isset( $_GET['status'] ) ? $_GET['status'] : NULL;
 
-		add_filter( 'ctct_cachekey', function () {
-			return isset( $_GET['status'] ) ? false : 'ctct_all_campaigns';
-		} );
+		if ( ! empty( $_GET['refresh'] ) && $_GET['refresh'] === 'campaigns' ) {
+			do_action( 'ctct_flush_campaigns' );
+			add_filter( 'ctct_cache', '__return_false' );
+		}
 
 		$Campaigns = $this->cc->getAllEmailCampaigns( $status );
 
