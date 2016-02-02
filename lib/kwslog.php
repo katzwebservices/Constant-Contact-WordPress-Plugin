@@ -198,8 +198,8 @@ class KWSLog {
 		}
 
 		$log_data = array(
-			'post_title'   => is_string( $title ) ? $title : NULL, // Just in case.
-			'post_content' => is_string( $message ) ? $message : NULL,
+			'post_title'   => is_string( $title ) ? $title : '', // Just in case.
+			'post_content' => is_string( $message ) ? $message : '',
 			'log_type'     => 'ctct_'.$type,
 		);
 
