@@ -2,9 +2,9 @@
 	<thead>
 		<tr>
 			<th scope="col" class="name column-primary manage-column column-name"><?php _e('Name', 'ctct'); ?></th>
-			<th scope="col" class="id manage-column column-name"><?php _e('List ID', 'ctct'); ?></th>
+			<th scope="col" class="id manage-column column-id"><?php _e('List ID', 'ctct'); ?></th>
 			<th scope="col" class="count manage-column column-name"><?php _e('Contact Count', 'ctct'); ?></th>
-			<th scope="col" class="view manage-column column-name"><?php _e('View List Contacts', 'ctct'); ?></th>
+			<th scope="col" class="view manage-column column-tags"><?php _e('View List Contacts', 'ctct'); ?></th>
 		</tr>
 	</thead>
 	<tbody>

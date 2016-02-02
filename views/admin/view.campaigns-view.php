@@ -3,7 +3,7 @@
         <tr>
             <th scope="col" id="date" class="manage-column column-primary column-name" style=""><?php esc_html_e('Name', 'ctct'); ?></th>
             <th scope="col" id="contact-count" class="manage-column column-name" style=""><?php esc_html_e('Modified Date', 'ctct'); ?></th>
-            <th scope="col" id="view" class="manage-column column-name" style=""><?php esc_html_e('View Campaign', 'ctct'); ?></th>
+            <th scope="col" id="view" class="manage-column column-tags" style=""><?php esc_html_e('View Campaign', 'ctct'); ?></th>
         </tr>
     </thead>
     <tbody>
