@@ -3,16 +3,19 @@
   margin: 2em 0;
   display: flex;
   flex-flow: row wrap;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 .component-summary dl {
   display: block;
   float: left;
   position: relative;
   flex: 1 1 auto;
-  margin-right: .6%;
+  margin-right: 1%;
   font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
   font-weight: 100;
-  padding: 30px 1% 0px .75%;
+  padding: 30px 10px 10px;
+  min-height: 120px;
   min-width: 120px;
   align-self: stretch;
 }
@@ -29,6 +32,9 @@
   border-bottom-left-radius: 1px;
   -moz-border-radius: 0 0 0 1px;
   border-radius: 0 0 0 1px;
+}
+.component-summary dl:last-child {
+  margin-right: 0;
 }
 .component-summary dt,
 .component-summary dd {
