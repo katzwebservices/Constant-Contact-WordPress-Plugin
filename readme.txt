@@ -79,6 +79,10 @@ To install the plugin follow the steps below:
 
 * Fixed: Fix fatal error when updating lists in User Profiles
 
+__Developer Notes:__
+
+* Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+
 = 3.1.12 on August 21 =
 * Fixed: Compatibility with WordPress 4.3
 

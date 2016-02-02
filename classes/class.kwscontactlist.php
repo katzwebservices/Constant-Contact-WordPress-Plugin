@@ -5,7 +5,6 @@
  */
 
 use Ctct\Components\Contacts\ContactList;
-use Ctct\Components\EmailMarketing\MessageFooter;
 
 class KWSContactList extends ContactList {
 
@@ -245,7 +244,7 @@ class KWSContactList extends ContactList {
 			case 'checkbox':
 			case 'checkboxes':
 				$before      = '<ul class="ctct-lists ctct-checkboxes ' . esc_attr( $class ) . '">';
-				$before_item = '<li><label for="%%id_attr%%"><input type="checkbox" id="%%id_attr%%" value="%%id%%" name="%%name_attr%%[]" %%checked%% /> ';
+				$before_item = '<li><label><input type="checkbox" id="%%id_attr%%" value="%%id%%" name="%%name_attr%%[]" %%checked%% /> ';
 				$after_item  = '</label></li>';
 				$after       = '</ul>';
 				break;
@@ -263,10 +262,11 @@ class KWSContactList extends ContactList {
 
 			$item = new KWSContactList( $item );
 
-			$item_content = ( ! empty( $format ) || is_null( $format ) ) ? $format : $item->name;
+			$item_content = ( ! empty( $format ) || is_null( $format ) ) ? $format : esc_attr( $item->name );
 
 			$tmp_output = $before_item . $item_content . $after_item . "\n";
 
+			$tmp_output = str_replace( '%%id_attr%%', $id_attr, $tmp_output );
 			$tmp_output = str_replace( '%%id%%', sanitize_title( $item->get( 'id' ) ), $tmp_output );
 			$tmp_output = str_replace( '%%name%%', $item->get( 'name', false ), $tmp_output );
 			$tmp_output = str_replace( '%%status%%', $item->get( 'status', false ), $tmp_output );
