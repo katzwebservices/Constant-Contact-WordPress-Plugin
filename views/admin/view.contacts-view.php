@@ -1,9 +1,9 @@
-<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'contacts') ); ?>" class="button-secondary alignright"><?php esc_html_e('Refresh Contacts', 'ctct'); ?></a></p>
+<div class="alignright"><a href="<?php echo esc_url( add_query_arg('refresh', 'contacts') ); ?>" class="button button-secondary alignright button-small"><?php esc_html_e('Refresh Contacts', 'ctct'); ?></a></div>
 
-<table class="widefat fixed users ctct_table" cellspacing="0">
+<table class="wp-list-table widefat fixed striped users ctct_table" cellspacing="0">
     <thead>
         <tr>
-            <th scope="col" id="email" class="manage-column column-name" style=""><?php _e('Email Address', 'ctct'); ?></th>
+            <th scope="col" id="email" class="manage-column column-name column-primary" style=""><?php _e('Email Address', 'ctct'); ?></th>
             <th scope="col" id="name" class="manage-column column-name" style=""><?php _e('Name', 'ctct'); ?></th>
             <th scope="col" id="status" class="manage-column column-name" style=""><?php _e('Status', 'ctct'); ?></th>
             <th scope="col" id="id" class="manage-column column-name" style=""><?php _e('View or Edit', 'ctct'); ?></th>
@@ -19,7 +19,7 @@ foreach ($Contacts as $Contact ) {
         $alt = empty( $alt ) ? 'class="alt"' : '';
     ?>
         <tr <?php echo $alt; ?>>
-            <td class="email column-email">
+            <td class="email column-email column-primary">
                 <a href="<?php
                     echo esc_url( add_query_arg(array(
                         'page' => $Admin_Contacts->getKey(),
@@ -27,16 +27,18 @@ foreach ($Contacts as $Contact ) {
                     ), admin_url('admin.php')) );
 
                 ?>" title="<?php _e('View Contact', 'ctct'); ?>"><?php echo $Contact->get('email_address');?></a>
+
+                <button type="button" class="toggle-row"><span class="screen-reader-text"><?php esc_html_e('Show more details', 'ctct'); ?></span></button>
             </td>
-            <td class="column-name">
+            <td class="column-name" data-colname="<?php esc_attr_e( 'Name', 'ctct' ); ?>">
                 <?php echo $Contact->get('name'); ?>
             </td>
-            <td class="column-status">
+            <td class="column-status" data-colname="<?php esc_attr_e( 'Status', 'ctct' ); ?>">
                 <?php
                     echo $Contact->get('status');
                 ?>
             </td>
-            <td class="column-edit">
+            <td class="column-edit" data-colname="<?php esc_attr_e( 'Actions', 'ctct' ); ?>">
             	<div class="button-group">
 	                <a href="<?php
 	                    echo esc_url( add_query_arg(array('page' => $Admin_Contacts->getKey(), 'view' => $Contact->id), admin_url('admin.php')) );

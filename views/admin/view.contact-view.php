@@ -4,30 +4,26 @@
 ?>
     <?php echo $Contact->get('full_name'); ?>
 </h2>
+<?php
+
+    echo $user_details;
+
+?>
 
 <div class="clear component-summary">
 <?php
-$i = 1;
-
-// Create summary "Sheets"
-foreach($summary as $k => $v) {
-
-    // Spam Count may be null
-    if( is_null( $v ) ) { continue; }
-
-    echo '<dl class="'.$k.' summary-'.$i.'">
-            <dt>'.ucwords(str_replace('_', ' ', $k)).'</dt>
-            <dd>'.$v.'</dd>
-        </dl>';
-    $i++;
-}
+    /**
+     * @global string $summary_report HTML of opens/bounces/clicks/etc.
+     * @see CTCT_Admin_Contacts::generate_summary_report
+     */
+    echo $summary_report;
 ?>
 </div>
 
-<table class="widefat clear fixed ctct_table" cellspacing="0">
+<table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Name', 'ctct'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Data', 'ctct'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -39,7 +35,7 @@ foreach($summary as $k => $v) {
         #if(!$Contact->is_editable($key)) { continue; }
 
         $html .= '<tr'.$alt.'>';
-        $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>', $Contact->getLabel($key));
+        $html .= sprintf('<th scope="row" valign="top" class="manage-column column-title">%s</th>', $Contact->getLabel($key));
         $html .= '<td>';
 
         if(is_array($value)) {

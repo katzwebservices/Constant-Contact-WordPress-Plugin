@@ -288,7 +288,7 @@ abstract class CTCT_Admin_Page {
 	 * @return void
 	 */
 	public function page() { ?>
-		<div class="wrap">
+		<div class="wrap ctct-wrap">
 			<h2 class="cc_logo"><a class="cc_logo"
 			                       href="<?php echo admin_url( 'admin.php?page=constant-contact-api' ); ?>"><?php esc_html_e( 'Constant Contact', 'ctct' ); ?></a>
 			</h2>

@@ -75,12 +75,15 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* The Admin now looks great on mobile devices!
 * Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
 * Fixed: Fix fatal error when updating lists in User Profiles
+* Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 
 __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+* Fixed: Prevent logs from being written during Form Designer AJAX
 * Tweak: Refactor LESS files for admin CSS
 * Updated: Phone number validation library
 

@@ -1,7 +1,7 @@
 <form method="post">
-    <table class="widefat clear fixed ctct_table" cellspacing="0">
+    <table class="form-table widefat clear striped ctct_table" cellspacing="0">
         <thead>
-            <th scope="col" class="column-name" style="width:30%"><?php _e('Field Name', 'ctct'); ?></th>
+            <th scope="col" class="column-name"><?php _e('Field Name', 'ctct'); ?></th>
             <th scope="col" class="column-title"><?php _e('Field Values', 'ctct'); ?></th>
         </thead>
         <tbody>

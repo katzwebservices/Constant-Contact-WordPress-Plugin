@@ -1,0 +1,17 @@
+.ctct_table.form-table th {
+  padding-left: 10px;
+}
+.ctct_table .column-shortcode input {
+  font-size: .9em;
+  padding: 5px 2px;
+  white-space: nowrap;
+}
+.ctct_table .ctct-lists {
+  width: 100%;
+}
+.ctct_table .button .dashicons-external {
+  font-size: 1rem;
+  opacity: .6;
+  margin-top: .25em;
+  /*line-height: 1.666;*/
+}
