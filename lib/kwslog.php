@@ -217,8 +217,9 @@ class KWSLog {
 	}
 
 	function debug( $title = NULL, $message = NULL, $data = NULL ) {
-
-		$this->insert_log( 'debug', $title, $message, $data );
+		if( ! defined('DOING_AJAX') || ! DOING_AJAX ) {
+			$this->insert_log( 'debug', $title, $message, $data );
+		}
 	}
 
 	function error( $title = NULL, $message = NULL, $data = NULL ) {
