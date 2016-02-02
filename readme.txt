@@ -77,6 +77,8 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Fixed: Fix fatal error when updating lists in User Profiles
+
 = 3.1.12 on August 21 =
 * Fixed: Compatibility with WordPress 4.3
 

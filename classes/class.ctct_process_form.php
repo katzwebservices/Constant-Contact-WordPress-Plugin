@@ -226,6 +226,10 @@ class CTCT_Process_Form {
 	 */
 	function checkRequired() {
 
+		if( ! isset( $_POST['fields'] ) || ! is_array( $_POST['fields'] ) ) {
+			return;
+		}
+
 		foreach ( $_POST['fields'] as $key => $field ) {
 
 			if ( ! empty( $field['req'] ) && ( ! isset( $field['value'] ) || $field['value'] === '' ) ) {
