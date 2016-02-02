@@ -145,19 +145,19 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 			do_action( 'ctct_flush_contacts' );
 		}
 
-		$Contacts = $this->cc->getAllContacts();
+		$_GET['status'] = isset( $_GET['status'] ) ? esc_attr( $_GET['status'] ) : 'ACTIVE';
+
+		$Contacts = $this->cc->getAllContacts( $_GET['status'] );
 
 		kws_print_subsub( 'status', array(
-			array( 'val' => '', 'text' => 'All' ),
-			array( 'val' => 'ACTIVE', 'text' => 'Active' ),
-			array( 'val' => 'UNCONFIRMED', 'text' => 'Unconfirmed' ),
-			array( 'val' => 'OPTOUT', 'text' => 'Opt-Out' ),
-			array( 'val' => 'REMOVED', 'text' => 'Removed' ),
-			array( 'val' => 'NON_SUBSCRIBER', 'text' => 'Non-Subscriber' ),
+			array( 'val' => 'ACTIVE', 'text' => __('Active', 'ctct') ),
+			array( 'val' => 'UNCONFIRMED', 'text' => __('Unconfirmed', 'ctct') ),
+			array( 'val' => 'OPTOUT', 'text' => __('Opt-Out', 'ctct') ),
+			array( 'val' => 'REMOVED', 'text' => __('Removed', 'ctct') ),
 		) );
 
 		if ( empty( $Contacts ) ) {
-			esc_html_e( 'Your account has no contacts.', 'ctct' );
+			printf( '<div class="no-results"><p>%s</p></div>', esc_html__( 'No contacts match this status.', 'ctct' ) );
 		} else {
 			include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
 		}

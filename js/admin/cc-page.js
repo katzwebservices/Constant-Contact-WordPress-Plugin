@@ -111,28 +111,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	$('.constant-contact_page_constant-contact-contacts .subsubsub a').click(function(e) {
-		e.preventDefault();
-
-		// Hide the "no contacts with this status" message
-		$('.show-if-empty').hide();
-
-		$('.subsubsub li a').removeClass('current');
-		$(this).addClass('current');
-
-		$('.ctct_table tr:not(.show-if-empty)').show();
-
-		var text = $(this).text().toUpperCase();
-
-		// The first link ("all") is always show all.
-		if($('.subsubsub li a').index(this) > 0) {
-			$('.ctct_table td.column-status').not(':contains('+text+')').not(':contains('+text.replace('-', '_')+')').not(':contains('+text.replace('-', '')+')').parents('tr').hide();
-		}
-		if($('.ctct_table td.column-status:visible').length === 0) {
-			$('.show-if-empty').show();
-		}
-	});
-
 	$(".select2").select2();
 
 	$('#constant-contact_page_constant-contact-forms').ready(function() {

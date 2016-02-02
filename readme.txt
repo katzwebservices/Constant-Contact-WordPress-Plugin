@@ -79,6 +79,8 @@ To install the plugin follow the steps below:
 * Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
+* Tweak: Only "Active" users now shown by default in Contacts
+* Tweak: Filtering Contacts by status now loads new request
 
 __Developer Notes:__
 
