@@ -28,8 +28,6 @@ The plugin features [Constant Contact Event Marketing](http://wordpress.constant
 
 __The Form Designer__ is a form generation and design tool. The Form Designer allows users to generate unlimited number of unique forms and gives a wide variety of options that can be configured, including what fields to show in the signup form. There and tons of design options, including custom background images, border width, colors, fonts and much more.
 
-### Constant Analytics: In-Depth Google Analytics
-View your Google Analytics data in your dashboard with Constant Analytics. View traffic by source, geography, and popularity. See the impact of blog posts and email campaigns with the great graphing tools.
 
 #### Plugin features:
 * Add signup checkbox and list selection to your register page and update profile page
@@ -77,6 +75,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
 * Fixed: Fix fatal error when updating lists in User Profiles
 
 __Developer Notes:__
@@ -403,11 +402,6 @@ __Some example filters:__
 * Form description text: `constant_contact_form_description` (after it has been modified by `wpautop()`)
 * Error message: `constant_contact_form_errors`
 * Submit button: `constant_contact_form_submit` (includes entire `input` string)
-
-= My email campaign click data isn't being tracked in Constant Analytics =
-Constant Contact does not have built-in Google Analytics "tagging" that would track the click data. When you create links in your Constant Contact campaigns, <strong><a href="http://www.google.com/support/analytics/bin/answer.py?answer=55578" rel="nofollow">use the Google URL Builder</a></strong> to add tags to your links. <strong>Make sure to set the Campaign Medium to `email`!</strong>
-
-When you do that, email click stats will be segmented for you in the Site Traffic box.
 
 = How do I use the Form Designer? =
 
