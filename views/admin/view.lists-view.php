@@ -17,18 +17,18 @@ foreach ( (array)$Lists as $List ) {
 	?>
 		<tr <?php echo $alt; ?>>
 			<td class="column-id">
-				<?php echo $List->get('id'); ?>
+				<?php echo esc_html( $List->get('id') ); ?>
 			</td>
 			<td class="column-name">
-				<?php echo $List->get('name', true);?>
+				<?php echo esc_html( $List->get('name', true) );?>
 			</td>
 			<td class="column-name">
-				<?php echo $List->get('contact_count');?>
+				<?php echo esc_html( $List->get('contact_count') );?>
 			</td>
 			<td class="column-name">
 				<a href="<?php
 					echo esc_url( add_query_arg(array('view' => $List->id), remove_query_arg('add')) );
-				?>" class="button view-new-h2" title="view"><?php _e('View Contacts', 'ctct'); ?></a>
+				?>" class="button view-new-h2" title="view"><?php esc_html_e('View Contacts', 'ctct'); ?></a>
 			</td>
 		</tr>
 	<?php

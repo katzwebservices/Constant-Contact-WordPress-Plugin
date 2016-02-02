@@ -395,19 +395,19 @@ class KWSContact extends Contact {
 
 		switch ( $key ) {
 			case 'id':
-				return 'ID';
+				return __('ID', 'ctct');
 				break;
 			case 'email_addresses':
-				return 'Email Address';
+				return __('Email Address', 'ctct');
 				break;
 			case 'line1':
-				return 'Address';
+				return __('Address', 'ctct');
 				break;
 			case 'line2':
-				return 'Address Line 2';
+				return __('Address Line 2', 'ctct');
 				break;
 			case 'line3':
-				return 'Address Line 3';
+				return __('Address Line 3', 'ctct');
 				break;
 		}
 
