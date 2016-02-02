@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackk
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 3.1.12
+Stable tag: 3.1.13
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -82,6 +82,7 @@ To install the plugin follow the steps below:
 __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+* Tweak: Refactor LESS files for admin CSS
 
 = 3.1.12 on August 21 =
 * Fixed: Compatibility with WordPress 4.3
