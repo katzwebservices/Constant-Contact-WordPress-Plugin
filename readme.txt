@@ -77,6 +77,7 @@ To install the plugin follow the steps below:
 
 * The Admin now looks great on mobile devices!
 * Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
+* Added: If a contact exists in the site, link to their profile page from their single Contact page
 * Improved: URLs and emails are now links in the single Campaign page
 * Added: Campaign summary to the top of single Campaign pages
 * Fixed: Fix fatal error when updating lists in User Profiles

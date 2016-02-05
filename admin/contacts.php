@@ -131,10 +131,59 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 		}
 
 		$Contact = new KWSContact( $Contact );
-		$summary = $this->cc->getContactSummaryReport( CTCT_ACCESS_TOKEN, $Contact->get( 'id' ) );
+
+		$summary_report = $this->generate_summary_report( $Contact );
+		$user_details = $this->generate_user_details( $Contact );
+
 		include( CTCT_DIR_PATH . 'views/admin/view.contact-view.php' );
 	}
 
+	/**
+	 * @param KWSContact $Contact
+	 *
+	 * @since 3.2
+	 *
+	 * @return string
+	 */
+	private function generate_user_details( $Contact ) {
+
+		$output = null;
+
+		$email_address = $Contact->get('email_address');
+
+		if( $user = get_user_by('email', $email_address ) ) {
+
+			$edit_url = add_query_arg( 'wp_http_referer', urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ), get_edit_user_link( $user->ID ) );
+
+			$edit_link = sprintf( '<a href="%s">%s</a>', esc_url( $edit_url ), esc_html__('View their profile', 'ctct' ) );
+
+			$first_name = $Contact->get( 'first_name' );
+
+			/** translators: %s is a link to "View their profile" */
+			$user_details_text = sprintf( esc_html__('%s is a user on this site. %s.', 'ctct'), $first_name, $edit_link );
+
+			$output = '<div class="user-details"><h3>' . $user_details_text . '</h3></div>';
+		}
+
+		return $output;
+	}
+
+	/**
+	 * @param KWSContact $Contact
+	 *
+	 * @since 3.2
+	 *
+	 * @return string
+	 */
+	private function generate_summary_report( $Contact ) {
+
+		/**
+		 * @var Ctct\Components\Tracking\TrackingSummary $summary
+		 */
+		$summary = $this->cc->getContactSummaryReport( CTCT_ACCESS_TOKEN, $Contact->get( 'id' ) );
+
+		return kws_generate_tracking_summary_report( $summary );
+	}
 
 	protected function view() {
 

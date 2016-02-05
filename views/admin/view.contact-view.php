@@ -6,6 +6,11 @@
 </h2>
 <?php
 
+    /**
+     * @global string|null $user_details If user exists in system, HTML link to their site profile in WordPress. Otherwise, `NULL`
+     * @see CTCT_Admin_Contacts::generate_user_details
+     * @since 3.2
+     */
     echo $user_details;
 
 ?>
@@ -15,6 +20,7 @@
     /**
      * @global string $summary_report HTML of opens/bounces/clicks/etc.
      * @see CTCT_Admin_Contacts::generate_summary_report
+     * @since 3.2
      */
     echo $summary_report;
 ?>
