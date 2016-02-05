@@ -22,4 +22,25 @@
     margin-top: .25em;
     /*line-height: 1.666;*/
   }
+
+  // On responsive screens, convert the buttons to links
+  .is-expanded .button-group .button {
+    background: none 0;
+    border: 0;
+    padding: 0;
+
+    // Code below is default WP link style
+    color: #0073aa;
+    -webkit-transition-property: border, background, color;
+    transition-property: border, background, color;
+    -webkit-transition-duration: .05s;
+    transition-duration: .05s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+
+    &:hover,
+    &:active {
+      color: #00a0d2;
+    }
+  }
 }
