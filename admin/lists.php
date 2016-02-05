@@ -27,13 +27,24 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
 	protected function getTitle( $type = '' ) {
 		if ( $this->isEdit() ) {
-			return "Edit Lists";
-		}
-		if ( $this->isSingle() || $type === 'single' ) {
-			return "List #" . intval( @$_GET['view'] );
+			$title = __("Edit Lists", 'ctct');
+		} elseif ( $this->isSingle() || $type === 'single' ) {
+
+			$id = intval( $_GET['view'] );
+			$List = $this->cc->getList( CTCT_ACCESS_TOKEN, $id );
+
+			if( is_object( $List ) && ! empty( $List->name ) ) {
+				/** translators: %s is the list name, %d is the list ID */
+				$title = sprintf( __( 'List: "%s" (#%d)', 'ctct' ), esc_html( $List->name ), intval( $List->id ) );
+			} else {
+				/** translators: %d is the list ID */
+				$title = sprintf( __( 'List #%d', 'ctct' ), $id );
+			}
+		} else {
+			$title = __( 'Lists', 'ctct' );
 		}
 
-		return __( 'Lists', 'ctct' );
+		return $title;
 	}
 
 	protected function add() {
