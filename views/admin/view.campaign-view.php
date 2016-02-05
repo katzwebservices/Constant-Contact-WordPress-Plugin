@@ -1,15 +1,21 @@
 <h2 class="fittext"><?php echo $Campaign->get('name'); ?></h2>
 <div class="clear component-summary">
-    <dl class="summary-1" style="width:20%; max-width:275px;">
+    <dl class="summary-1">
         <dt><?php echo esc_html( $Campaign->getLabel('status') ); ?></dt>
         <dd><?php echo esc_html( $Campaign->get('status', true) ); ?></dd>
     </dl>
-    <dl class="summary-2" style="width:40%; max-width:475px;">
+    <dl class="summary-2">
         <dt><?php echo esc_html( $Campaign->getLabel('created_date') ); ?></dt>
         <dd><?php echo esc_html( kws_format_date($Campaign->get('created_date')) ); ?></dd>
     </dl>
 </div>
-<table class="widefat fixed ctct_table" cellspacing="0">
+
+
+<div class="clear component-summary"><?php
+    echo kws_generate_tracking_summary_report( $Campaign->get('tracking_summary') );
+?></div>
+
+<table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
         <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
         <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
@@ -17,6 +23,7 @@
     <tbody>
         <?php
     $alt = ''; $html = '';
+
     foreach ($Campaign as $key => $value) {
 
         if(empty($value)) { continue; }
