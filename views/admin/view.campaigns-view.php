@@ -4,6 +4,7 @@
     <thead>
         <tr>
             <th scope="col" id="date" class="manage-column column-primary column-name" style=""><?php esc_html_e('Name', 'ctct'); ?></th>
+            <th scope="col" id="status" class="manage-column" style=""><?php esc_html_e('Status', 'ctct'); ?></th>
             <th scope="col" id="contact-count" class="manage-column column-name" style=""><?php esc_html_e('Modified Date', 'ctct'); ?></th>
             <th scope="col" id="view" class="manage-column column-tags" style=""><?php esc_html_e('View Campaign', 'ctct'); ?></th>
         </tr>
@@ -24,8 +25,9 @@ if(empty($Campaigns)) {
                     <strong><a href="<?php echo esc_url( add_query_arg(array('view' => $result->id), remove_query_arg('add'))); ?>"><?php echo esc_html($result->name); ?></a></strong>
                     <button type="button" class="toggle-row"><span class="screen-reader-text"><?php esc_html_e('Show more details', 'ctct'); ?></span></button>
                 </td>
+                <td class="manage-column" data-colname="<?php esc_attr_e( 'Status', 'ctct' ); ?>"><?php echo ucwords( strtolower( esc_html( $result->status ) ) ); ?></td>
                 <td class="manage-column" data-colname="<?php esc_attr_e( 'Modified Date', 'ctct' ); ?>"><?php echo esc_html( kws_format_date($result->modified_date) ); ?></td>
-                <td class="manage-column">
+                <td class="manage-column" data-colname="<?php esc_attr_e( 'View ', 'ctct' ); ?>">
 		            <div class="button-group">
                         <a href="https://ui.constantcontact.com/rnavmap/evaluate.rnav/?activepage=ecampaign.view&amp;pageName=ecampaign.view&amp;agent.uid=<?php echo esc_attr( $result->id ); ?>&amp;action=edit" class="button button-secondary" target="_blank" title="<?php printf(esc_html__('View "%s" on ConstantContact.com', 'ctct'), $result->name ); ?>" rel="external"><?php esc_html_e( 'View', 'ctct'); ?> <span class="dashicons dashicons-external"></span></a>
 		            </div>

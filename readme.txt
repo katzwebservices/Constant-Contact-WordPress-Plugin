@@ -81,6 +81,7 @@ To install the plugin follow the steps below:
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
+* Tweak: Add "Status" column to Campaigns table
 * Tweak: Only "Active" users now shown by default in Contacts
 * Tweak: Filtering Contacts by status now loads new request
 
