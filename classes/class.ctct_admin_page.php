@@ -229,8 +229,7 @@ abstract class CTCT_Admin_Page {
 			return;
 		}
 
-		echo '
-            <div id="message" class="container alert-error errors error notice-dismiss">';
+		echo '<div class="inline errors error notice is-dismissable">';
 		foreach ( $this->notices as $key => $notice ) {
 
 			/** @var WP_Error $notice */

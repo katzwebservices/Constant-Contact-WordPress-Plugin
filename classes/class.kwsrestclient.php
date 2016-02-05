@@ -76,7 +76,7 @@ class KWSRestClient implements RestClientInterface
 	 * @param array $headers - array of all http headers to send
 	 * @param $data - data to send with the request
 	 * @throws CtctException - if any errors are contained in the returned payload
-	 * @return CurlResponse
+	 * @return Ctct\Util\CurlResponse
 	 */
 	private static function httpRequest($url, $method, array $headers = array(), $data = null)
 	{
@@ -159,8 +159,14 @@ class KWSRestClient implements RestClientInterface
 
 				do_action( 'constant_contact_add_notice', $WP_Error );
 
-				return false;
+				do_action( 'ctct_log', 'REST Client Error', $WP_Error );
 			}
+
+			/**
+			 * Prevent errors when building an empty ResultSet
+			 * @see Ctct\Components\ResultSet
+			 */
+			$response['body'] = json_encode( array( 'results' => array(), 'meta' => array('pagination' => array()) ) );
 		}
 
 		$responseClass = new stdClass();
