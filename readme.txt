@@ -80,6 +80,7 @@ To install the plugin follow the steps below:
 * Improved: URLs and emails are now links in the single Campaign page
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
+* Fixed: Admin pages now only process when they're supposed to
 * Tweak: Only "Active" users now shown by default in Contacts
 * Tweak: Filtering Contacts by status now loads new request
 

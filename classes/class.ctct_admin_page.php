@@ -120,7 +120,7 @@ abstract class CTCT_Admin_Page {
 	}
 
 	protected function isSingle() {
-		return isset( $_GET['view'] );
+		return isset( $_GET['view'] ) && isset( $_GET['page'] ) && $_GET['page'] === $this->getKey();
 	}
 
 	protected function isView() {
@@ -312,7 +312,7 @@ abstract class CTCT_Admin_Page {
 
 	/**
 	 * Generate the content inside the .ctct-page-name page heading (breadcrumbs and button)
-	 * @since 3.1.13
+	 * @since 3.2
 	 * @return string HTML output for breadcrumbs and button
 	 */
 	private function get_page_heading() {
