@@ -77,7 +77,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 	protected function single() {
 
-		$id = intval( @$_GET['view'] );
+		$id = isset( $_GET['view'] ) ? intval( $_GET['view'] ) : 0;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
 			esc_html_e( 'You have not specified a Campaign to view', 'ctct' );
