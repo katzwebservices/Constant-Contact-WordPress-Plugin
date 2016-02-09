@@ -50,9 +50,7 @@ class CTCT_Form_Designer_Output {
 
 		$this->process_request();
 
-		if( empty( $this->form ) ) {
-			return;
-		}
+		$this->validate_request();
 
 		$this->json();
 	}
@@ -67,24 +65,9 @@ class CTCT_Form_Designer_Output {
 
 		$data = stripslashes_deep( $data );
 
-
-		$valid = true;
-
-		// Make sure required fields are set
-		if( empty( $data['verify'] ) || empty( $data['rand'] ) || empty( $data['cc-form-id'] ) || empty( $data['date'] ) ) {
-			$valid = false;
-		}
-
-		// Some very basic verification. Not secure, but better than nothing.
-		elseif( $data['verify'] !== ( $data['rand'] . $data['cc-form-id'] . $data['date'] ) ) {
-			$valid = false;
-		}
 		$data = json_decode( $data, true );
 
 		$this->output_type = ( !empty( $data['output'] ) && $data['output'] === 'html' ) ? 'html' : 'json';
-
-		// @TODO - VALIDATE REQUEST USING NONCE
-		$this->valid_request = true; ///// $valid;
 
 		$form = array();
 
@@ -133,7 +116,36 @@ class CTCT_Form_Designer_Output {
 		unset( $data['form'], $form );
 
 		$this->request = $data;
+	}
 
+	/**
+	 * Check to make sure the request is valid: form ID is set, random string + date string = expected combination
+	 *
+	 * @since 3.2
+	 * @return boolean True: request matches expected structure. False: something's smelly.
+	 */
+	function validate_request() {
+
+		$valid = ! empty( $this->form );
+
+		// No form ID? No soup for you!
+		if( empty( $this->form['cc-form-id'] ) ) {
+			$valid = false;
+		}
+
+		// Make sure required fields are set
+		elseif( empty( $this->request['verify'] ) || empty( $this->request['rand'] ) || empty( $this->request['date'] ) ) {
+			$valid = false;
+		}
+
+		// Some very basic verification. Not secure, but better than nothing.
+		elseif( $this->request['verify'] !== ( $this->request['rand'] . $this->form['cc-form-id'] . $this->request['date'] ) ) {
+			$valid = false;
+		}
+
+		$this->valid_request = $valid;
+
+		return $valid;
 	}
 
 	static function get_field_id( $passed_form_id = NULL, $field_name ) {
