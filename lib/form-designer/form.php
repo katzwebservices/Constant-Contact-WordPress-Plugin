@@ -61,18 +61,12 @@ class CTCT_Form_Designer_Output {
 
 		if( empty( $data ) ) {
 
-			$data = $this->debug ? $_REQUEST : $_POST;
+			$data = $this->debug ? $_REQUEST : file_get_contents( 'php://input' );
 
 		}
 
 		$data = stripslashes_deep( $data );
 
-		if( !empty( $data['data'] ) ) {
-
-			$data = $data['data'];
-
-			$data = json_decode( $data, true );
-		}
 
 		$valid = true;
 
@@ -85,6 +79,7 @@ class CTCT_Form_Designer_Output {
 		elseif( $data['verify'] !== ( $data['rand'] . $data['cc-form-id'] . $data['date'] ) ) {
 			$valid = false;
 		}
+		$data = json_decode( $data, true );
 
 		$this->output_type = ( !empty( $data['output'] ) && $data['output'] === 'html' ) ? 'html' : 'json';
 
