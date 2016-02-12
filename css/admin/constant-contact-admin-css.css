@@ -268,6 +268,7 @@ h2 + .user-details h3 {
 .component-summary {
   color: white;
   margin: 2em 0;
+  -js-display: flex;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
