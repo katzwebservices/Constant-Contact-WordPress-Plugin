@@ -1,0 +1,8 @@
+div.ctct-embed-shortcode {
+  max-width: 99%;
+  margin: 1.25em 0 10px;
+  float: right;
+}
+div.ctct-embed-shortcode input {
+  max-width: 100%;
+}
