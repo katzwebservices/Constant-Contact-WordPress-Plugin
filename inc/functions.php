@@ -55,7 +55,7 @@ function kws_format_date($date, $include_time = false) {
  *
  * @since 3.2
  *
- * @param Ctct\Components\Tracking\TrackingSummary $summary
+ * @param \Ctct\Components\Tracking\TrackingSummary $summary
  *
  * @return string HTML output <dl>
  */
@@ -211,7 +211,10 @@ EOD;
 }
 
 /**
+ * Generate a HTML table for a component
+ *
  * @param \Ctct\Components\Component $Component
+ * @return string Table output of component variables and values
  */
 function ctct_generate_component_table( $Component, $recursive = 0 ) {
 
@@ -229,6 +232,8 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 		default:
 			$class .= ' ctct-light-border striped';
 	}
+
+	ob_start();
 	?>
 	<table class="ctct_table wp-list-table widefat <?php echo $class; ?>">
 		<tbody>
@@ -251,7 +256,7 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 			echo '<th scope="row" style="vertical-align: top"><span>'.$label.'</span></th>';
 			echo '<td>';
 			if( is_a( $value, '\Ctct\Components\Component' ) ) {
-				ctct_generate_component_table( $value, $recursive + 1 );
+				echo ctct_generate_component_table( $value, $recursive + 1 );
 			} elseif( is_array( $value ) ) {
 				foreach ( $value as $item ) {
 					if( is_null( $item ) ) {
@@ -260,7 +265,7 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 					if( is_a( $item, '\Ctct\Components\EventSpot\Address' ) || is_a( $item, '\Ctct\Components\Contacts\Address' ) ) {
 						echo constant_contact_create_location( $item );
 					} if( is_a( $item, '\Ctct\Components\Component' ) ) {
-						ctct_generate_component_table( $item, $recursive + 1 );
+						echo ctct_generate_component_table( $item, $recursive + 1 );
 					} else {
 						echo '<p>'.$item.'</p>';
 					}
@@ -275,6 +280,8 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 		</tbody>
 	</table>
 	<?php
+
+	return ob_get_contents();
 }
 
 /**

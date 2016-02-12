@@ -34,7 +34,7 @@ class KWSCampaign extends Campaign {
 	/**
      * Factory method to create a Contact object from an array
      * @param array $props - Associative array of initial properties to set
-     * @return Contact
+     * @return KWSCampaign
      */
     public static function create(array $props)
     {
@@ -156,10 +156,12 @@ class KWSCampaign extends Campaign {
 			default:
 				if( is_bool( $this->{$key} ) ) {
 					return $this->{$key} ? __('True', 'ctct') : __('False', 'ctct');
-				} elseif ( ! isset( $this->{$key} ) ) {
-					return '';
-				} elseif ( is_null( $this->{$key} ) ) {
+				} elseif ( ! isset( $this->{$key} ) || is_null( $this->{$key} ) ) {
 					return __('(Empty)');
+				} elseif( is_string( $this->{$key}) ) {
+					return $this->{$key};
+				} elseif( is_a( $this->{$key}, 'Ctct\Components\Component') ) {
+					return $format ? ctct_generate_component_table( $this->{$key} ) : $this->{$key};
 				}
 				break;
 		}
