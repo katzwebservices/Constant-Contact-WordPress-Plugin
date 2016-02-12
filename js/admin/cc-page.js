@@ -249,7 +249,21 @@ jQuery(document).ready(function($) {
 
 		if(parseInt(responseText.code, 10) === 400) {
 			$object.effect("highlight", {color: 'red'}, 2000);
-			alertify.alert('<h3>The request failed.</h3><p>Error ' + responseText.code + ': '+responseText.message[0].error_message.replace(/^.*?:/ig, '')+'</p>');
+
+			var error_template = '<h3>{heading}</h3><p>{error_message}</p>';
+
+			var request_error = CTCT.text.request_error
+				.replace('{code}', responseText.code )
+				.replace('{message}', responseText.message[0].error_message.replace(/^.*?:/ig, '') );
+
+			error_template = error_template
+				.replace('{heading}', CTCT.text.request_failed_heading )
+				.replace('{error_message}', request_error );
+
+			alertify.alert( error_template );
+
+			delete ( request_error, error_template, responseText );
+
 			return false;
 		}
 
@@ -266,13 +280,6 @@ jQuery(document).ready(function($) {
 	        }
 	    });
      });
-
-	// For component summary boxes
-	$('.fittext').fitText(1.2, {maxFontSize: 50});
-	$(window).on('resize ready', function() {
-		$(".component-summary dd").fitText('.9', {maxFontSize: 120, minFontSize: 48});
-		$('.component-summary').equalize({children: 'dl', reset: true});
-	});
 
 
 	$('.constant-contact-api-toggle[rel]').on('click ready ctct_ready save', function(e) {

@@ -189,7 +189,7 @@ class CTCT_Form_Designer_Output {
 		// Unique ID for labels, etc.
 		$field_id = self::get_field_id( $unique_form_id, $field['id'] );
 
-		do_action('ctct_debug', 'render_field', $field);
+		do_action( 'ctct_debug', 'render_field', $field );
 
 		$val = isset( $field['val'] ) ? $field['val'] : '';
 		$placeholder = '';
@@ -200,6 +200,7 @@ class CTCT_Form_Designer_Output {
 		}
 
 		$label = empty( $field['label'] ) ? '' : esc_html( $field['label'] );
+
 
 		// If this is the submit button, we add list selection
 		$return = "<div class='cc_{$field['id']} kws_input_container gfield'>";
@@ -676,8 +677,8 @@ $form = <<<EOD
 EOD;
 
 		if( !$this->debug ) {
-			$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
-			$form = preg_replace('/\s\s/ism', ' ', $form);
+		#	$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
+		#	$form = preg_replace('/\s\s/ism', ' ', $form);
 		}
 
 		return $form;

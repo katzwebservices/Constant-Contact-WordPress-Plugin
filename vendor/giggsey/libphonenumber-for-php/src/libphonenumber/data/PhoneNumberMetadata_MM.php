@@ -32,7 +32,11 @@ return array (
             [89][0-6]\\d
           )\\d{4}|
           2(?:
-            [236-9]\\d{4}|
+            2(?:
+              000\\d{3}|
+              \\d{4}
+            )|
+            3\\d{4}|
             4(?:
               0\\d{5}|
               \\d{4}
@@ -40,7 +44,8 @@ return array (
             5(?:
               1\\d{3,6}|
               [02-9]\\d{3,5}
-            )
+            )|
+            [6-9]\\d{4}
           )|
           4(?:
             2[245-8]|
@@ -87,15 +92,22 @@ return array (
           )\\d{4}|
           8(?:
             1(?:
-              2\\d?|
-              [3-689]
+              2\\d{1,2}|
+              [3-689]\\d
             )|
-            2[2-8]|
-            3[24]|
-            4[24-7]|
-            5[245]|
-            6[23]
-          )\\d{4}
+            2(?:
+              2\\d|
+              3(?:
+                \\d|
+                20
+              )|
+              [4-8]\\d
+            )|
+            3[24]\\d|
+            4[24-7]\\d|
+            5[245]\\d|
+            6[23]\\d
+          )\\d{3}
         ',
     'PossibleNumberPattern' => '\\d{5,9}',
     'ExampleNumber' => '1234567',
@@ -107,13 +119,15 @@ return array (
           9(?:
             2(?:
               [0-4]|
-              5\\d{2}
+              5\\d{2}|
+              6[0-5]\\d
             )|
-            3[136]\\d|
+            3[0-36]\\d|
             4(?:
               0[0-4]\\d|
               [1379]\\d|
-              [24][0-589]\\d|
+              2\\d{2}|
+              4[0-589]\\d|
               5\\d{2}|
               88
             )|
@@ -121,12 +135,12 @@ return array (
             61?\\d|
             7(?:
               3\\d|
-              9\\d{2}
+              [789]\\d{2}
             )|
             8\\d|
             9(?:
               1\\d|
-              7\\d{2}|
+              [67]\\d{2}|
               [089]
             )
           )\\d{5}
@@ -216,7 +230,7 @@ return array (
       array (
         0 => '
             1|
-            2[45]
+            2[245]
           ',
       ),
       'nationalPrefixFormattingRule' => '0$1',
@@ -282,7 +296,7 @@ return array (
             9(?:
               2[0-4]|
               [35-9]|
-              4[13789]
+              4[137-9]
             )
           ',
       ),
@@ -291,11 +305,16 @@ return array (
     ),
     6 => 
     array (
-      'pattern' => '(9)(4\\d{4})(\\d{4})',
+      'pattern' => '(9)([34]\\d{4})(\\d{4})',
       'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (
-        0 => '94[0245]',
+        0 => '
+            9(?:
+              3[0-36]|
+              4[0-57-9]
+             )
+          ',
       ),
       'nationalPrefixFormattingRule' => '0$1',
       'domesticCarrierCodeFormattingRule' => '',
@@ -306,7 +325,18 @@ return array (
       'format' => '$1 $2 $3 $4',
       'leadingDigitsPatterns' => 
       array (
-        0 => '925',
+        0 => '92[56]',
+      ),
+      'nationalPrefixFormattingRule' => '0$1',
+      'domesticCarrierCodeFormattingRule' => '',
+    ),
+    8 => 
+    array (
+      'pattern' => '(9)(\\d{3})(\\d{3})(\\d{2})',
+      'format' => '$1 $2 $3 $4',
+      'leadingDigitsPatterns' => 
+      array (
+        0 => '93',
       ),
       'nationalPrefixFormattingRule' => '0$1',
       'domesticCarrierCodeFormattingRule' => '',

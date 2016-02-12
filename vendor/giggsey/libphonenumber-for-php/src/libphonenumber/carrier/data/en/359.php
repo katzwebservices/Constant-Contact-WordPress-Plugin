@@ -9,4 +9,5 @@ return array (
   35988 => 'M-Tel',
   35989 => 'GLOBUL',
   35998 => 'GLOBUL',
+  359999 => 'MAX',
 );

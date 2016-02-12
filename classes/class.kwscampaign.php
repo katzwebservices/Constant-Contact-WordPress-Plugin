@@ -154,10 +154,12 @@ class KWSCampaign extends Campaign {
 				return $format ? ucfirst(strtolower($this->{$key})) : $this->{$key};
 				break;
 			default:
-				if(isset($this->{$key})) {
-					return $this->{$key};
-				} else {
+				if( is_bool( $this->{$key} ) ) {
+					return $this->{$key} ? __('True', 'ctct') : __('False', 'ctct');
+				} elseif ( ! isset( $this->{$key} ) ) {
 					return '';
+				} elseif ( is_null( $this->{$key} ) ) {
+					return __('(Empty)');
 				}
 				break;
 		}
@@ -183,9 +185,6 @@ class KWSCampaign extends Campaign {
 	        case 'opt_in_date':
 	        case 'confirm_status':
 	            return false;
-	            break;
-	        case 'email_addresses':
-	            $this->email_addresses[0]->email_address = $value;
 	            break;
 	        default:
 	            $this->{$key} = $value;

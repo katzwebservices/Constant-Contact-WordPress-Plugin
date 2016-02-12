@@ -1,25 +1,49 @@
-<div class="alignright"><a href="<?php echo esc_url( add_query_arg('refresh', 'contacts') ); ?>" class="button button-secondary alignright button-small"><?php esc_html_e('Refresh Contacts', 'ctct'); ?></a></div>
+<?php
+/**
+ * @uses CTCT_Admin_Lists::single
+ * @global Ctct\Components\Contacts\Contact[] $Contacts
+ */
+?>
+<div class="tablenav top">
+    <div class="alignleft actions">
+        <?php kws_print_modified_since_filter( __('Date Modified', 'ctct') ); ?>
+    </div>
+    <div class="alignright">
+        <a href="<?php echo esc_url( add_query_arg('refresh', 'contacts') ); ?>" class="button button-secondary alignright button-small"><?php esc_html_e('Refresh Contacts', 'ctct'); ?></a>
+    </div>
+</div>
 
-<table class="wp-list-table widefat fixed striped users ctct_table" cellspacing="0">
+<table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
         <tr>
-            <th scope="col" id="email" class="manage-column column-name column-primary" style=""><?php _e('Email Address', 'ctct'); ?></th>
-            <th scope="col" id="name" class="manage-column column-name" style=""><?php _e('Name', 'ctct'); ?></th>
-            <th scope="col" id="status" class="manage-column column-name" style=""><?php _e('Status', 'ctct'); ?></th>
-            <th scope="col" id="id" class="manage-column column-name" style=""><?php _e('View or Edit', 'ctct'); ?></th>
+            <th scope="col" id="email" class="manage-column column-name column-primary" style=""><?php esc_html_e('Email Address', 'ctct'); ?></th>
+            <th scope="col" id="name" class="manage-column column-name" style=""><?php esc_html_e('Name', 'ctct'); ?></th>
+            <th scope="col" id="name" class="manage-column column-name" style=""><?php esc_html_e('Date Added', 'ctct'); ?></th>
+            <th scope="col" id="status" class="manage-column column-name" style=""><?php esc_html_e('Status', 'ctct'); ?></th>
+            <th scope="col" id="id" class="manage-column column-name" style=""><?php esc_html_e('View or Edit', 'ctct'); ?></th>
         </tr>
     </thead>
     <tbody>
 
 <?php
 
-foreach ($Contacts as $Contact ) {
+    if( empty( $Contacts ) ) {
+        printf( '<tr><td colspan="5"><div class="no-results"><h3>%s</h3></div></td></tr>', esc_html__( 'No contacts match this status.', 'ctct' ) );
+    }
+
+/**
+ * @var Ctct\Components\Contacts\Contact[] $Contacts
+ */
+foreach ( $Contacts as $Contact ) {
+#    var_dump( $Contact );
+
+        /** @var KWSContact $Contact */
         $Contact = new KWSContact($Contact);
         $Admin_Contacts = new CTCT_Admin_Contacts;
         $alt = empty( $alt ) ? 'class="alt"' : '';
     ?>
         <tr <?php echo $alt; ?>>
-            <td class="email column-email column-primary">
+            <td class="manage-column column-title column-primary">
                 <a href="<?php
                     echo esc_url( add_query_arg(array(
                         'page' => $Admin_Contacts->getKey(),
@@ -30,15 +54,18 @@ foreach ($Contacts as $Contact ) {
 
                 <button type="button" class="toggle-row"><span class="screen-reader-text"><?php esc_html_e('Show more details', 'ctct'); ?></span></button>
             </td>
-            <td class="column-name" data-colname="<?php esc_attr_e( 'Name', 'ctct' ); ?>">
+            <td class="manage-column column-name" data-colname="<?php esc_attr_e( 'Name', 'ctct' ); ?>">
                 <?php echo $Contact->get('name'); ?>
             </td>
-            <td class="column-status" data-colname="<?php esc_attr_e( 'Status', 'ctct' ); ?>">
+            <td class="manage-column column-name" data-colname="<?php esc_attr_e( 'Date Added', 'ctct' ); ?>">
+                <?php echo $Contact->get('created_date', true ); ?>
+            </td>
+            <td class="manage-column column-name" data-colname="<?php esc_attr_e( 'Status', 'ctct' ); ?>">
                 <?php
                     echo $Contact->get('status');
                 ?>
             </td>
-            <td class="column-edit" data-colname="<?php esc_attr_e( 'Actions', 'ctct' ); ?>">
+            <td class="manage-column column-edit" data-colname="<?php esc_attr_e( 'Actions', 'ctct' ); ?>">
             	<div class="button-group">
 	                <a href="<?php
 	                    echo esc_url( add_query_arg(array('page' => $Admin_Contacts->getKey(), 'view' => $Contact->id), admin_url('admin.php')) );

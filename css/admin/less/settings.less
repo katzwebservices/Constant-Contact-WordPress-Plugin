@@ -18,6 +18,11 @@
 	margin-top: -4px;
 	padding: 10px 1%;
 	border: 1px solid #ccc;
+
+
+	.nopadding {
+	  padding: 0!important;
+	}
   }
 
   .nav-tab-wrapper {
@@ -25,12 +30,20 @@
 	padding-left: 0;
 	border:none;
   }
-  .ui-tabs-nav li a {
-	font-size: 16px;
-	line-height: 28px;
-	font-weight: 100;
-	padding: .5em 1em .333em .75em;
-	border-bottom: 1px solid #ccc;
+  .ui-tabs-nav li {
+	&:first-child a {
+	  margin-left: 0;
+	}
+	a {
+	  font-size: 16px;
+	  line-height: 28px;
+	  font-weight: 100;
+	  padding: .5em 1em .333em .75em;
+	  border-bottom: 1px solid #ccc;
+	}
+	&.ui-state-active a {
+	  border-bottom: 1px solid white;
+	}
   }
   .ui-tabs-nav .dashicons {
 	line-height:28px;
@@ -78,7 +91,7 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  border-color: #ccc #ccc white;
+  //border-color: #ccc #ccc white;
   border-top-color: #ccc;
   border-right-color: #ccc;
   border-bottom-color: white;

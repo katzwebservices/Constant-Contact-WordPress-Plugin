@@ -80,6 +80,8 @@ To install the plugin follow the steps below:
 * Added: If a contact exists in the site, link to their profile page from their single Contact page
 * Improved: URLs and emails are now links in the single Campaign page
 * Added: Campaign summary to the top of single Campaign pages
+* EventSpot:
+    - Embedding single events using the shortcode with `onlyactive` enabled now shows a "The "{title}" event is no longer active." message.
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to

@@ -69,6 +69,9 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 				// create a new contact if one does not exist
 				if ( $returnContact && ! is_wp_error( $returnContact ) ) {
 
+					// Force getAll() to clear
+					add_option( 'ctct_flush_contacts', 'flush!', '', 'no' );
+
 					wp_redirect( add_query_arg( array(
 						'page' => $this->getKey(),
 						'view' => $returnContact->id
@@ -118,6 +121,10 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 			return;
 		}
 
+		/**
+		 * When the contact is updated using AJAX, we add an option to enforce a refresh
+		 * @see KWSAJAX::processAjax
+		 */
 		if ( $refresh = get_option( 'ctct_refresh_contact_' . $id ) ) {
 			delete_option( 'ctct_refresh_contact_' . $id );
 			add_filter( 'ctct_cache', '__return_false' );
@@ -178,36 +185,42 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 	private function generate_summary_report( $Contact ) {
 
 		/**
-		 * @var Ctct\Components\Tracking\TrackingSummary $summary
+		 * @var Ctct\Components\Tracking\TrackingSummary
 		 */
-		$summary = $this->cc->getContactSummaryReport( CTCT_ACCESS_TOKEN, $Contact->get( 'id' ) );
+		$summary = $this->cc->contactTrackingService->getSummary( CTCT_ACCESS_TOKEN, $Contact->get( 'id' ) );
 
 		return kws_generate_tracking_summary_report( $summary );
 	}
 
 	protected function view() {
 
-		if ( ! empty( $_GET['refresh'] ) && $_GET['refresh'] === 'contacts' ) {
-			do_action( 'ctct_flush_contacts' );
-			add_filter( 'ctct_cache', '__return_false' );
-		}
-
-		$_GET['status'] = isset( $_GET['status'] ) ? esc_attr( $_GET['status'] ) : 'ACTIVE';
-
-		$Contacts = $this->cc->getAllContacts( $_GET['status'] );
 
 		kws_print_subsub( 'status', array(
+			array( 'val' => '', 'text' => __('Recently Updated', 'ctct') ),
 			array( 'val' => 'ACTIVE', 'text' => __('Active', 'ctct') ),
 			array( 'val' => 'UNCONFIRMED', 'text' => __('Unconfirmed', 'ctct') ),
 			array( 'val' => 'OPTOUT', 'text' => __('Opt-Out', 'ctct') ),
 			array( 'val' => 'REMOVED', 'text' => __('Removed', 'ctct') ),
 		) );
 
-		if ( empty( $Contacts ) ) {
-			printf( '<div class="no-results"><p>%s</p></div>', esc_html__( 'No contacts match this status.', 'ctct' ) );
+
+		$params = array();
+		$since = false;
+		if( isset( $_GET['status'] ) ) {
+			$params['status'] = esc_attr( $_GET['status'] );
 		} else {
-			include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
+			$since = '-1 month';
 		}
+		$since = isset( $_GET['modified_since'] ) ? esc_attr( $_GET['modified_since'] ) : $since;
+		if( $since = strtotime( $since ) ) {
+			$params['modified_since'] = date( 'c', $since );
+		}
+
+		$Contacts = $this->cc->getAllContacts( $params );
+
+		/** @var Contact[] $Contacts Get them in chronological order */
+		$Contacts = array_reverse( $Contacts, true );
+		include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
 	}
 }
 

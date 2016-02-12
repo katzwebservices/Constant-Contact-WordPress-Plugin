@@ -10,7 +10,7 @@ class KWSContactList extends ContactList {
 
 	private static $read_only = array( 'contact_count', 'id' );
 
-	function __construct( $List = '' ) {
+	public function __construct( $List = null ) {
 
 		if ( is_array( $List ) ) {
 			$List = $this->prepare( $List, true );
@@ -20,7 +20,11 @@ class KWSContactList extends ContactList {
 			foreach ( $List as $k => &$v ) {
 				$this->{$k} = $v;
 			}
+		} elseif( ! is_null( $List ) ) {
+			parent::__construct( $List );
 		}
+
+		return $this;
 	}
 
 	/**
@@ -49,42 +53,6 @@ class KWSContactList extends ContactList {
 		}
 
 		return $existing_contact;
-	}
-
-	private function prepareAddress( array $address ) {
-		return wp_parse_args( $address, array( 'line1'           => '',
-		                                       'line2'           => '',
-		                                       'line3'           => '',
-		                                       'city'            => '',
-		                                       'address_type'    => 'PERSONAL',
-		                                       'state_code'      => '',
-		                                       'country_code'    => '',
-		                                       'postal_code'     => '',
-		                                       'sub_postal_code' => ''
-		) );
-	}
-
-
-	private function prepareMessageFooter( $message_footer_array ) {
-		$defaults                  = array(
-			"city"                    => '',
-			"state"                   => '',
-			"country"                 => '',
-			"organization_name"       => '',
-			"address_line_1"          => '',
-			"address_line_2"          => '',
-			"address_line_3"          => '',
-			"international_state"     => '',
-			"postal_code"             => '',
-			"include_forward_email"   => false,
-			"forward_email_link_text" => '',
-			"include_subscribe_link"  => true,
-			"subscribe_link_text"     => ''
-		);
-		$message_footer            = wp_parse_args( $message_footer_array, $defaults );
-		$message_footer['country'] = strtoupper( $message_footer['country'] );
-
-		return $message_footer;
 	}
 
 	private function prepare( array $list_array, $add = false ) {
@@ -174,13 +142,6 @@ class KWSContactList extends ContactList {
 
 		$items = array();
 
-		// Tell the cache that if the current requests are forced to be
-		// refreshed, the cache should also reset this key.
-		// See Cache_WP_HTTP
-		add_filter( 'flush_key', function () {
-			return 'ctct_all_lists';
-		} );
-
 		if ( $passed_items === 'all' ) {
 			$items = WP_CTCT::getInstance()->cc->getAllLists();
 		} elseif ( ! empty( $passed_items ) && is_array( $passed_items ) ) {
@@ -192,21 +153,13 @@ class KWSContactList extends ContactList {
 
 					$list_id = esc_attr( $list_id );
 
-					// Tell Cache_WP_HTTP to use the following key
-					// as the transient name
-					add_filter( 'ctct_cachekey', function () {
-						global $list_id;
-
-						return 'ctct_list_' . $list_id;
-					} );
-
 					$item = WP_CTCT::getInstance()->cc->getList( CTCT_ACCESS_TOKEN, $list_id );
 				}
 				$items[] = $item;
 			}
 		}
 
-		$before = $before_item = $after_item = $after = '';
+		$before = $before_item = $after_item = $after = $format = $id_attr = '';
 
 		switch ( $type ) {
 			case 'hidden':

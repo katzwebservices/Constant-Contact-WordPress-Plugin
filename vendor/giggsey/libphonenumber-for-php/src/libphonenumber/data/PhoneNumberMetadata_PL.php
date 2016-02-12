@@ -10,7 +10,7 @@ return array (
   array (
     'NationalNumberPattern' => '
           [12]\\d{6,8}|
-          [3-57-9]\\d{8}|
+          (?:[3-5]|[7-9])\\d{8}|
           6\\d{5,8}
         ',
     'PossibleNumberPattern' => '\\d{6,9}',
@@ -20,7 +20,7 @@ return array (
     'NationalNumberPattern' => '
           (?:
             1[2-8]|
-            2[2-59]|
+            2[2-69]|
             3[2-4]|
             4[1-468]|
             5[24-689]|
@@ -130,7 +130,8 @@ return array (
       'leadingDigitsPatterns' => 
       array (
         0 => '
-            [124]|
+            [14]|
+            2[0-57-9]|
             3[2-4]|
             5[24-689]|
             6[1-3578]|
@@ -160,6 +161,7 @@ return array (
       'leadingDigitsPatterns' => 
       array (
         0 => '
+            26|
             39|
             5[0137]|
             6[0469]|

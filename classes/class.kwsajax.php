@@ -17,22 +17,20 @@ class KWSAJAX {
 	function processAjax() {
 		global $wpdb; // this is how you get access to the database
 
-		// Remove the cache for this whole joint
-		add_filter('ctct_cache', '__return_false');
+		$request = stripslashes_deep( $_REQUEST );
 
-		$id = (int)@$_REQUEST['id'];
-		$component = esc_html(@$_REQUEST['component']);
-		$field = esc_attr(@$_REQUEST['field']);
-		$value = @$_REQUEST['value'];
-		$value = is_array($value) ? $value : esc_attr($value);
-		$parent = esc_attr(@$_REQUEST['parent']);
+		$id = isset( $request['id'] ) ? intval( $request['id'] ) : NULL;
+		$component = isset( $request['component'] ) ? esc_html( $request['component'] ) : NULL;
+		$field = isset( $request['field'] ) ? esc_attr( $request['field'] ) : NULL;
+		$value = isset( $request['value'] ) ? $request['value'] : NULL;
+		$parent = isset( $request['parent'] ) ? esc_attr( $request['parent'] ) : NULL;
 		$parent = !empty($parent) ? $parent.'_' : NULL;
 
-		if(!isset($_REQUEST['_wpnonce']) || isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'ctct') && !defined('DOING_AJAX')) {
+		if(!isset($request['_wpnonce']) || isset($request['_wpnonce']) && !wp_verify_nonce($request['_wpnonce'], 'ctct') && !defined('DOING_AJAX')) {
 			$response['errors'] = __('You\'re not authorized to be here.', 'ctct');
 		} elseif(empty($field)) {
 			$response['errors'] = __('There is no field defined.', 'ctct');
-		} elseif(!isset($_REQUEST['value'])) {
+		} elseif(!isset($request['value'])) {
 			$response['errors'] = __('There is no value defined.', 'ctct');
 		} else {
 			$KWSConstantContact = new KWSConstantContact();
@@ -55,6 +53,7 @@ class KWSAJAX {
 
 							$items = $value;
 							$value = array();
+							$compareLists = array();
 							foreach ($items as $key => $item) {
 								$value[] = new KWSContactList(array('id' => $item['value']));
 								$compareLists[] = $item['value'];
@@ -114,7 +113,7 @@ class KWSAJAX {
 								delete_transient('ctct_all_lists');
 							}
 						}
-					} catch(Exception $e) {
+					} catch(\Ctct\Exceptions\CtctException $e) {
 						$response['message'] = $e->getErrors();
 						$response['code'] = 400;
 					}

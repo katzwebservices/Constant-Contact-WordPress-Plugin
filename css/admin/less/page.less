@@ -10,10 +10,9 @@ a.toplevel_page_constant-contact-api {
 
 .ctct-wrap {
 
-  h2.fittext {
+  h2.ctct-page-name {
     line-height: 1.2em;
-    font-weight: 100;
-    font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
+    font-weight: 200;
     color: #444;
   }
 
@@ -56,7 +55,7 @@ a.toplevel_page_constant-contact-api {
     margin-bottom: .5em;
 
     .button {
-      margin-top: -.25em;
+      margin-top: .2em;
       margin-left: .5em;
     }
   }
@@ -66,5 +65,26 @@ a.toplevel_page_constant-contact-api {
     display: block;
     float: left;
     padding-top: 1em;
+  }
+
+
+  @media screen and ( max-width: 782px ) {
+    .tablenav.top {
+
+      // Sorting hidden in responsive screen
+      .actions {
+        display: block;
+      }
+
+      // Make the buttons look better
+      .alignleft, .alignright {
+        float: none;
+        text-align: center;
+      }
+      // Give them some space!
+      .button, select, input {
+        margin: 10px 0;
+      }
+    }
   }
 }

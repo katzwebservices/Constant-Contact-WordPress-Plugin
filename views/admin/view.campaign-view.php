@@ -1,4 +1,3 @@
-<h2 class="fittext"><?php echo $Campaign->get('name'); ?></h2>
 <div class="clear component-summary">
     <dl class="summary-1">
         <dt><?php echo esc_html( $Campaign->getLabel('status') ); ?></dt>
@@ -13,20 +12,25 @@
 
 <div class="clear component-summary"><?php
     echo kws_generate_tracking_summary_report( $Campaign->get('tracking_summary') );
-?></div>
+    ?></div>
 
 <table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
-        <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
+    <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
+    <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
     </thead>
     <tbody>
-        <?php
+    <?php
     $alt = ''; $html = '';
 
+    /**
+     * @var KWSCampaign $Campaign
+     * @var string $key
+     * @var $value
+     */
     foreach ($Campaign as $key => $value) {
 
-        if(empty($value)) { continue; }
+        if( is_null( $value ) ) { continue; }
 
         $alt = empty($alt) ? ' class="alt"' : '';
 
@@ -60,12 +64,15 @@
                 default:
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
                         <td>%s</td>', esc_html( $Campaign->getLabel($key) ), esc_html( print_r( $Campaign->get($key), true) ) );
-                break;
+                    break;
             }
         } else {
 
             // Make sure we're dealing with text
             if ( ! is_string( $Campaign->get( $key ) ) ) {
+                var_dump( $key );
+                var_dump( $value );
+                var_dump( $Campaign->get( $key ) );
                 continue;
             }
 
@@ -77,6 +84,6 @@
     }
 
     echo $html;
-?>
-</tbody>
+    ?>
+    </tbody>
 </table>

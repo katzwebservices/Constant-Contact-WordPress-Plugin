@@ -1,2 +1,4 @@
 .sublime-project
-/vendor/
+**/vendor/**/test/**
+**/vendor/**/tests/**
+**/vendor/**/docs/**

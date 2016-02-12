@@ -7,10 +7,9 @@ a.toplevel_page_constant-contact-api {
 .toplevel_page_constant-contact-api .widefat .wrap {
   padding: 10px;
 }
-.ctct-wrap h2.fittext {
+.ctct-wrap h2.ctct-page-name {
   line-height: 1.2em;
-  font-weight: 100;
-  font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, "Open Sans", sans-serif;
+  font-weight: 200;
   color: #444;
 }
 .ctct-wrap h2.cc_logo,
@@ -49,7 +48,7 @@ a.toplevel_page_constant-contact-api {
   margin-bottom: .5em;
 }
 .ctct-wrap .ctct-page-name .button {
-  margin-top: -0.25em;
+  margin-top: .2em;
   margin-left: .5em;
 }
 .ctct-wrap .no-results {
@@ -57,4 +56,19 @@ a.toplevel_page_constant-contact-api {
   display: block;
   float: left;
   padding-top: 1em;
+}
+@media screen and (max-width: 782px) {
+  .ctct-wrap .tablenav.top .actions {
+    display: block;
+  }
+  .ctct-wrap .tablenav.top .alignleft,
+  .ctct-wrap .tablenav.top .alignright {
+    float: none;
+    text-align: center;
+  }
+  .ctct-wrap .tablenav.top .button,
+  .ctct-wrap .tablenav.top select,
+  .ctct-wrap .tablenav.top input {
+    margin: 10px 0;
+  }
 }

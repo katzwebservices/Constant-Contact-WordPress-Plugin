@@ -1,3 +1,8 @@
+<?php
+/**
+ * @global KWSContact $Contact
+ */
+?>
 <form method="post">
     <table class="form-table widefat clear striped ctct_table" cellspacing="0">
         <thead>
@@ -35,7 +40,7 @@
                     </label>
                     <input name="addresses[%%id%%][city]" type="text" class="" value="'.$Contact->get('personal_city').'" placeholder="'.esc_attr($Contact->getLabel('city')).'" title="'.esc_attr($Contact->getLabel('city')).'" />
                     <input name="addresses[%%id%%][state_code]" size="2" type="text" class="" value="'.$Contact->get('personal_state_code').'" placeholder="'.esc_attr($Contact->getLabel('state_code')).'" title="'.esc_attr($Contact->getLabel('state_code')).'" />
-                    <input name="addresses[%%id%%][postal_code]" size="10" type="text" class="" value="'.$Contact->get('personal_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('postal_code')).'"  title="'.esc_attr($Contact->getLabel('postal_code')).'" size="8" />
+                    <input name="addresses[%%id%%][postal_code]" size="10" type="text" class="" value="'.$Contact->get('personal_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('postal_code')).'"  title="'.esc_attr($Contact->getLabel('postal_code')).'" />
                     <input name="addresses[%%id%%][sub_postal_code]" type="text" class="" value="'.$Contact->get('personal_sub_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('sub_postal_code')).'" title="'.esc_attr($Contact->getLabel('sub_postal_code')).'" size="6" /><br />
                     <input name="addresses[%%id%%][address_type]" type="hidden" value="%%name%%" />
                     ';
@@ -72,6 +77,6 @@
     </table>
 
     <div class="submit">
-        <input type="submit" class="button button-primary button-large" value="<?php _e('Submit', 'consatnt-contact-apo'); ?>" />
+        <input type="submit" class="button button-primary button-hero" value="<?php _e('Submit', 'consatnt-contact-apo'); ?>" />
     </div>
 </form>

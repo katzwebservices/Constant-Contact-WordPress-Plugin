@@ -1,4 +1,4 @@
-<?php r($Campaign);
+<?php r($Event);
     return;
 ?>
 

@@ -184,6 +184,14 @@ class KWSLog {
 		}
 	}
 
+	/**
+	 * @param string $type Either `debug` or `error`
+	 * @param string $title Title of the log post
+	 * @param string $message String content of the log
+	 * @param null $data
+	 *
+	 * @return      int The ID of the newly created log item
+	 */
 	function insert_log( $type = 'debug', $title = NULL, $message = NULL, $data = NULL ) {
 		global $wp_rewrite;
 
@@ -214,8 +222,14 @@ class KWSLog {
 		// Use instead of add(); so we get access to meta.
 		$debug_post_id = WP_Logging::insert_log( $log_data, $meta );
 
+		return $debug_post_id;
 	}
 
+	/**
+	 * @param null $title
+	 * @param null $message
+	 * @param null $data
+	 */
 	function debug( $title = NULL, $message = NULL, $data = NULL ) {
 		if( ! defined('DOING_AJAX') || ! DOING_AJAX ) {
 			$this->insert_log( 'debug', $title, $message, $data );

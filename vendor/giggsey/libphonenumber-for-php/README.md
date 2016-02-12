@@ -1,11 +1,11 @@
-# libphonenumber for PHP [![Build Status](https://travis-ci.org/giggsey/libphonenumber-for-php.svg?branch=master)](https://travis-ci.org/giggsey/libphonenumber-for-php) [![Coverage Status](https://img.shields.io/coveralls/giggsey/libphonenumber-for-php.svg)](https://coveralls.io/r/giggsey/libphonenumber-for-php?branch=master)
+# libphonenumber for PHP [![Build Status](https://img.shields.io/travis/giggsey/libphonenumber-for-php.svg?style=flat-square)](https://travis-ci.org/giggsey/libphonenumber-for-php) [![Coverage Status](https://img.shields.io/coveralls/giggsey/libphonenumber-for-php.svg?style=flat-square)](https://coveralls.io/r/giggsey/libphonenumber-for-php?branch=master)
 
-[![Total Downloads](https://poser.pugx.org/giggsey/libphonenumber-for-php/downloads.svg)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
-[![Latest Stable Version](https://poser.pugx.org/giggsey/libphonenumber-for-php/v/stable.svg)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
-[![License](https://poser.pugx.org/giggsey/libphonenumber-for-php/license.svg)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/giggsey/libphonenumber-for-php.svg?style=flat-square)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/giggsey/libphonenumber-for-php.svg?style=flat-square)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
+[![License](http://img.shields.io/badge/license-Apache%202.0-red.svg?style=flat-square)](https://packagist.org/packages/giggsey/libphonenumber-for-php)
 
 ## What is it?
-A PHP library for parsing, formatting, storing and validating international phone numbers. This library is based on Google's [libphonenumber](https://code.google.com/p/libphonenumber/) and was forked from a version by [Davide Mendolia](https://github.com/davideme/libphonenumber-for-PHP).
+A PHP library for parsing, formatting, storing and validating international phone numbers. This library is based on Google's [libphonenumber](https://github.com/googlei18n/libphonenumber).
 
 
 # Highlights of functionality
@@ -20,17 +20,15 @@ A PHP library for parsing, formatting, storing and validating international phon
 
 ## Installation
 
-The library can be installed via [composer](http://getcomposer.org/). You can also use any other [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) compliant autoloader.
+The PECL [mbstring](http://php.net/mbstring) extension is required.
 
-The PECL [mbstring](http://php.net/mbstring) extension is required for this library to be used.
+It is recommended to use [composer](https://getcomposer.org) to install the library.
 
-```json
-{
-    "require": {
-        "giggsey/libphonenumber-for-php": "~7.0"
-    }
-}
+```bash
+$ composer require giggsey/libphonenumber-for-php
 ```
+
+You can also use any other [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) compliant autoloader.
 
 ## Versioning
 
@@ -87,13 +85,13 @@ There are a few formats supported by the formatting method, as illustrated below
 
 ```php
 // Produces "+41446681800"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::E164);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::E164);
 
 // Produces "044 668 18 00"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::NATIONAL);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::NATIONAL);
 
 // Produces "+41 44 668 18 00"
-echo $phoneUtil->format($swissNumberProto, PhoneNumberFormat::INTERNATIONAL);
+echo $phoneUtil->format($swissNumberProto, \libphonenumber\PhoneNumberFormat::INTERNATIONAL);
 ```
 
 You could also choose to format the number in the way it is dialled from another country:
@@ -199,21 +197,33 @@ $timeZones = $timeZoneMapper->getTimeZonesForNumber($swissNumberProto);
 
 ```
 
+## FAQ
+
+#### Problems with Invalid Numbers?
+
+This library uses phone number metadata from Google's [libphonenumber](https://github.com/googlei18n/libphonenumber). If this library is working as intended, it should provide the same result as the Java version of Google's project.
+
+If you believe that a phone number is returning an incorrect result, first test it with [libphonenumber](https://github.com/googlei18n/libphonenumber) via their [Online Demo](https://libphonenumber.appspot.com/). If that returns the same result as this project, and you feel it is in error, raise it as an Issue with the libphonenumber project.
+
+If Google's [Online Demo](https://libphonenumber.appspot.com/) gives a different result to the [libphonenumber-for-php demo](http://giggsey.com/libphonenumber/), then please raise an Issue here.
+
 ## Generating data
 
-Phing is used to 'compile' the metadata.
+Generating the data is not normally needed, as this repository will generally always have the up to data metadata.
 
-Ensure you have all the dev composer dependencies installed, then run
+If you do need to generate the data, the commands are provided by [Phing](https://www.phing.info). Ensure you have all the dev composer dependencies installed, then run
 
 ```bash
-vendor/bin/phing compile
+$ vendor/bin/phing compile
 ```
+
+This compile process clones the [libphonenumber](https://github.com/googlei18n/libphonenumber) project at the version specified in [METADATA-VERSION.txt](METADATA-VERSION.txt).
 
 ## Integration with frameworks
 
 Other packages exist that integrate libphonenumber-for-php into frameworks.
 
-These packages are supplied by third parties, and their quality can not be guaranteed.
-
  - Symfony: [PhoneNumberBundle](https://github.com/misd-service-development/phone-number-bundle)
+ - Laravel: [Laravel Phone](https://github.com/Propaganistas/Laravel-Phone)
 
+These packages are supplied by third parties, and their quality can not be guaranteed.

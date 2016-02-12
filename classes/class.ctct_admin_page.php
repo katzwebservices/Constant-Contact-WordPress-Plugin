@@ -46,6 +46,7 @@ abstract class CTCT_Admin_Page {
 
 			add_action( 'admin_menu', array( &$this, 'add_menu' ) );
 			add_action( 'admin_notices', array( &$this, 'print_notices' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'registerScripts' ) );
 			add_action( 'admin_print_scripts', array( &$this, 'print_scripts' ) );
 			add_action( 'admin_print_scripts', array( &$this, 'addScripts' ), 11 );
 			add_action( 'admin_print_styles', array( &$this, 'print_styles' ) );
@@ -66,26 +67,52 @@ abstract class CTCT_Admin_Page {
 			return;
 		}
 
-		wp_enqueue_style( 'constant-contact-api-admin', CTCT_FILE_URL . 'css/admin/constant-contact-admin-css.css', array( 'thickbox' ) );
+		wp_enqueue_style( 'constant-contact-api-admin' );
 		wp_enqueue_style( 'dashicons' ); // For the plugin status checkboxes
-		wp_enqueue_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
-		wp_enqueue_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
-		wp_enqueue_style( 'select2', CTCT_FILE_URL . 'vendor/nineinchnick/select2/assets/select2.css' );
+		wp_enqueue_style( 'alertify-core' );
+		wp_enqueue_style( 'alertify-default' );
+		wp_enqueue_style( 'select2' );
 	}
 
 	public function print_scripts() {
 		global $plugin_page;
 
 		// If the current page isn't the page being requested, we don't print those scripts
-		if ( empty( $_GET['page'] ) || $this->key !== $_GET['page'] ) {
+		if ( empty( $_GET['page'] ) || isset( $this->key ) && $this->key !== $_GET['page'] ) {
 			return;
 		}
 
-		wp_enqueue_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
-		wp_enqueue_script( 'select2', CTCT_FILE_URL . 'vendor/nineinchnick/select2/assets/select2.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'alertify' );
+		wp_enqueue_script( 'jquery-cookie' );
+		wp_enqueue_script( 'ctct-admin-page' );
 
-		wp_enqueue_script( 'ctct-admin-page', CTCT_FILE_URL . 'js/admin/cc-page.js', array(
+		wp_localize_script( 'ctct-admin-page', 'CTCT', array(
+			'component' => $this->component,
+			'_wpnonce'  => wp_create_nonce( 'ctct' ),
+			'id'        => $this->id,
+			'text'      => array(
+				'editable' => esc_js( __( 'Click to Edit', 'ctct' ) ),
+				'request_failed_heading' => __('The request failed.', 'ctct'),
+
+				/** translators: {code} and {message} will be dynamically replaced with error details */
+				'request_error' => __( 'Error {code}: {message}', 'ctct'),
+			),
+		) );
+
+		wp_enqueue_script( 'ctct-admin-inlineedit' );
+	}
+
+	public function registerScripts() {
+		wp_register_style( 'constant-contact-api-admin', CTCT_FILE_URL . 'css/admin/constant-contact-admin-css.css', array( 'thickbox' ) );
+		wp_register_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
+		wp_register_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
+		wp_register_style( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/css/select2.min.css' );
+
+		wp_register_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
+		wp_register_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
+		wp_register_script( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/js/select2.min.js', array( 'jquery' ) );
+
+		wp_register_script( 'ctct-admin-page', CTCT_FILE_URL . 'js/admin/cc-page.js', array(
 			'jquery',
 			'jquery-effects-highlight',
 			'jquery-ui-tooltip',
@@ -94,18 +121,7 @@ abstract class CTCT_Admin_Page {
 			'thickbox'
 		) );
 
-		wp_localize_script( 'ctct-admin-page', 'CTCT', array(
-			'component' => $this->component,
-			'_wpnonce'  => wp_create_nonce( 'ctct' ),
-			'id'        => $this->id,
-			'text'      => array(
-				'editable' => esc_js( __( 'Click to Edit', 'ctct' ) ),
-			),
-		) );
-
-		wp_enqueue_script( 'ctct-admin-fittext', CTCT_FILE_URL . 'js/admin/jquery.fittext.js', array( 'ctct-admin-page' ) );
-		wp_enqueue_script( 'ctct-admin-equalize', CTCT_FILE_URL . 'js/admin/jquery.equalize.min.js', array( 'ctct-admin-page' ) );
-		wp_enqueue_script( 'ctct-admin-inlineedit', CTCT_FILE_URL . 'js/admin/jquery.inlineedit.js', array( 'ctct-admin-page' ) );
+		wp_register_script( 'ctct-admin-inlineedit', CTCT_FILE_URL . 'js/admin/jquery.inlineedit.js', array( 'ctct-admin-page' ) );
 	}
 
 	public function addScripts() {
@@ -116,7 +132,11 @@ abstract class CTCT_Admin_Page {
 	}
 
 	protected function isEdit() {
-		return isset( $_GET['edit'] );
+		return isset( $_GET['edit'] ) && isset( $_GET['page'] ) && $_GET['page'] === $this->getKey();
+	}
+
+	protected function isNested() {
+		return false;
 	}
 
 	protected function isSingle() {
@@ -326,8 +346,16 @@ abstract class CTCT_Admin_Page {
 				) ) ) . '">' . $this->getNavTitle() . '</a>';
 		}
 
-		if ( $this->isEdit() ) {
-			$breadcrumb[] = '<a href="' . esc_url( add_query_arg( array( 'view' => $_GET['edit'] ), remove_query_arg( array( 'edit' ) ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
+		if ( $this->isEdit() || $this->isNested() ) {
+			if( $this->isEdit() ) {
+				$add_args = array( 'view' => $_GET['edit'] );
+				$remove_args = array( 'edit' );
+			} else {
+				$add_args = array();
+				$nested = $this->isNested();
+				$remove_args = array( $nested );
+			}
+			$breadcrumb[] = '<a href="' . esc_url( add_query_arg( $add_args, remove_query_arg( $remove_args ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
 		}
 
 		$breadcrumb[] = $this->getTitle();

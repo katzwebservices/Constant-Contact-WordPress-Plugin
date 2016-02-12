@@ -8,6 +8,10 @@
 		<option value="">  <?php _e("Show Multiple Events", 'ctct'); ?>  </option>
 		<?php
 
+		/**
+		 * @var array $events
+		 * @var \Ctct\Components\EventSpot\EventSpot $event
+		 */
 		foreach( $events as $event ){
 
 			// Make sure it's an Event object
@@ -15,7 +19,7 @@
 				continue;
 			}
 			?>
-			<option value="<?php echo constant_contact_get_id_from_object($event); ?>"><?php printf('%s (%s)', esc_html($event->title), apply_filters('cc_event_date', apply_filters('cc_event_startdate', $event->startDate)));  ?></option>
+			<option value="<?php echo esc_attr( $event->id ); ?>"><?php printf('%s (%s)', esc_html($event->title), apply_filters('cc_event_date', apply_filters('cc_event_startdate', $event->start_date)));  ?></option>
 		<?php
 		}
 		?>

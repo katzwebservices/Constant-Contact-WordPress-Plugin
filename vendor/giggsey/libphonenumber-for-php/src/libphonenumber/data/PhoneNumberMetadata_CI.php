@@ -8,7 +8,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[02-7]\\d{7}',
+    'NationalNumberPattern' => '[02-8]\\d{7}',
     'PossibleNumberPattern' => '\\d{8}',
   ),
   'fixedLine' => 
@@ -38,10 +38,11 @@ return array (
     'NationalNumberPattern' => '
           (?:
             0[1-9]|
-            4[0-24-9]|
+            4\\d|
             5[4-9]|
             6[015-79]|
-            7[57]
+            7[578]|
+            87
           )\\d{6}
         ',
     'PossibleNumberPattern' => '\\d{8}',

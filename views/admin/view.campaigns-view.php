@@ -4,9 +4,9 @@
     <thead>
         <tr>
             <th scope="col" id="date" class="manage-column column-primary column-name" style=""><?php esc_html_e('Name', 'ctct'); ?></th>
-            <th scope="col" id="status" class="manage-column" style=""><?php esc_html_e('Status', 'ctct'); ?></th>
-            <th scope="col" id="contact-count" class="manage-column column-name" style=""><?php esc_html_e('Modified Date', 'ctct'); ?></th>
-            <th scope="col" id="view" class="manage-column column-tags" style=""><?php esc_html_e('View Campaign', 'ctct'); ?></th>
+            <th scope="col" id="status" class="manage-column column-status" style=""><?php esc_html_e('Status', 'ctct'); ?></th>
+            <th scope="col" id="contact-count" class="manage-column column-modified-date" style=""><?php esc_html_e('Modified Date', 'ctct'); ?></th>
+            <th scope="col" id="view" class="manage-column column-view" style=""><?php esc_html_e('View Campaign', 'ctct'); ?></th>
         </tr>
     </thead>
     <tbody>

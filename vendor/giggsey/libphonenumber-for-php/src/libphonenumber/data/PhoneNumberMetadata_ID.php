@@ -8,8 +8,13 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[1-9]\\d{6,10}',
-    'PossibleNumberPattern' => '\\d{5,11}',
+    'NationalNumberPattern' => '
+          (?:
+           [1-79]\\d{6,10}|
+           8\\d{7,11}
+          )
+        ',
+    'PossibleNumberPattern' => '\\d{5,12}',
   ),
   'fixedLine' => 
   array (
@@ -34,12 +39,11 @@ return array (
             )|
             3(?:
               1|
-              2[1-578]|
+              [25][1-8]|
               3[1-68]|
               4[1-3]|
-              5[1-8]|
               6[1-3568]|
-              7[0-46]|
+              7[0-469]|
               8\\d
             )|
             4(?:
@@ -47,6 +51,7 @@ return array (
               1[01347-9]|
               2[0-36-8]|
               3[0-24-68]|
+              43|
               5[1-378]|
               6[1-5]|
               7[134]|
@@ -55,7 +60,7 @@ return array (
             5(?:
               1[1-35-9]|
               2[25-8]|
-              3[1246-9]|
+              3[124-9]|
               4[1-3589]|
               5[1-46]|
               6[1-8]
@@ -63,15 +68,14 @@ return array (
             6(?:
               19?|
               [25]\\d|
-              3[1-469]|
+              3[1-69]|
               4[1-6]
             )|
             7(?:
-              1[1-9]|
-              2[14-9]|
+              02|
+              [125][1-9]|
               [36]\\d|
               4[1-8]|
-              5[1-9]|
               7[0-36-9]
             )|
             9(?:
@@ -165,9 +169,9 @@ return array (
               7[178]9
             )
           )\\d{5,6}|
-          8[1-35-9]\\d{7,9}
+          8[1-35-9]\\d{7,10}
         ',
-    'PossibleNumberPattern' => '\\d{9,11}',
+    'PossibleNumberPattern' => '\\d{9,12}',
     'ExampleNumber' => '812345678',
   ),
   'tollFree' => 
@@ -187,8 +191,9 @@ return array (
   ),
   'sharedCost' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
+    'NationalNumberPattern' => '804\\d{7}',
+    'PossibleNumberPattern' => '\\d{10}',
+    'ExampleNumber' => '8041234567',
   ),
   'personalNumber' => 
   array (
@@ -207,8 +212,11 @@ return array (
   ),
   'uan' => 
   array (
-    'NationalNumberPattern' => '8071\\d{6}',
-    'PossibleNumberPattern' => '\\d{10}',
+    'NationalNumberPattern' => '
+          1500\\d{3}|
+          8071\\d{6}
+        ',
+    'PossibleNumberPattern' => '\\d{7,10}',
     'ExampleNumber' => '8071123456',
   ),
   'emergency' => 
@@ -281,7 +289,7 @@ return array (
     ),
     2 => 
     array (
-      'pattern' => '(8\\d{2})(\\d{3,4})(\\d{3,4})',
+      'pattern' => '(8\\d{2})(\\d{3,4})(\\d{3,5})',
       'format' => '$1-$2-$3',
       'leadingDigitsPatterns' => 
       array (
@@ -292,16 +300,27 @@ return array (
     ),
     3 => 
     array (
+      'pattern' => '(1)(500)(\\d{3})',
+      'format' => '$1 $2 $3',
+      'leadingDigitsPatterns' => 
+      array (
+        0 => '15',
+      ),
+      'nationalPrefixFormattingRule' => '$1',
+      'domesticCarrierCodeFormattingRule' => '',
+    ),
+    4 => 
+    array (
       'pattern' => '(177)(\\d{6,8})',
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '1',
+        0 => '17',
       ),
       'nationalPrefixFormattingRule' => '0$1',
       'domesticCarrierCodeFormattingRule' => '',
     ),
-    4 => 
+    5 => 
     array (
       'pattern' => '(800)(\\d{5,7})',
       'format' => '$1 $2',
@@ -312,7 +331,18 @@ return array (
       'nationalPrefixFormattingRule' => '0$1',
       'domesticCarrierCodeFormattingRule' => '',
     ),
-    5 => 
+    6 => 
+    array (
+      'pattern' => '(804)(\\d{3})(\\d{4})',
+      'format' => '$1 $2 $3',
+      'leadingDigitsPatterns' => 
+      array (
+        0 => '804',
+      ),
+      'nationalPrefixFormattingRule' => '0$1',
+      'domesticCarrierCodeFormattingRule' => '',
+    ),
+    7 => 
     array (
       'pattern' => '(80\\d)(\\d)(\\d{3})(\\d{3})',
       'format' => '$1 $2 $3 $4',

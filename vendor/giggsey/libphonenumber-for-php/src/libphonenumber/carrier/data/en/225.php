@@ -17,6 +17,7 @@ return array (
   22540 => 'Moov',
   22541 => 'Moov',
   22542 => 'Moov',
+  22543 => 'Moov',
   22544 => 'MTN',
   22545 => 'MTN',
   22546 => 'MTN',
@@ -37,4 +38,6 @@ return array (
   22569 => 'Aircom',
   22575 => 'MTN',
   22577 => 'Orange',
+  22578 => 'Orange',
+  22587 => 'Orange',
 );

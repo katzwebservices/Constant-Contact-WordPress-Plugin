@@ -8,4 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'libphonenumber' => array($vendorDir . '/giggsey/libphonenumber-for-php/src'),
     'Ctct' => array($vendorDir . '/constantcontact/constantcontact/src'),
+    'ComponentInstaller' => array($vendorDir . '/robloach/component-installer/src'),
+    'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
 );

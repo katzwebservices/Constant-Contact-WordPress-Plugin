@@ -140,9 +140,11 @@ function kws_print_subsub($key, $array) {
 
 		$link = add_query_arg(array($key => (empty($item['val']) ? NULL : $item['val'])));
 
-		$link = remove_query_arg( array( 'paged', 'refresh' ), $link );
+		$link = remove_query_arg( array( 'paged', 'refresh', 'modified_since' ), $link );
 
-		$output .= '<li><a '.kws_current_class($key, $item['val']).' href="'.esc_url( $link ).'">'. esc_attr($item['text']).'</a>';
+		$title = isset( $item['title'] ) ? ' title="'.esc_attr( $item['title'] ).'"' : '';
+
+		$output .= '<li><a '.kws_current_class($key, $item['val']).' href="'.esc_url( $link ).'" '.$title.'>'. esc_attr($item['text']).'</a>';
 		if(sizeof($array) !== $i) { $output .= ' |'; }
 		$output .= '</li>';
 		$i++;
@@ -151,6 +153,158 @@ function kws_print_subsub($key, $array) {
 	$output .= '</ul>';
 
 	echo $output;
+}
+
+function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
+	$modified_since = !empty( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( isset( $_GET['status'])  ? '' : $default );
+	?>
+<form action="<?php echo admin_url('admin.php'); ?>" method="get">
+	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
+	<label for="ctct_modified_since" class="screen-reader-text"><?php echo esc_html( $label ); ?></label>
+	<select name="modified_since" id="ctct_modified_since">
+		<option value="" <?php selected( empty( $modified_since ) ); ?>><?php esc_html_e('Date modified&hellip;', 'ctct' ); ?></option>
+		<option value="-1 day" <?php selected( '-1 day', $modified_since ); ?>><?php esc_html_e('In the last day', 'ctct' ); ?></option>
+		<option value="-1 week"<?php selected( '-1 week', $modified_since, true ); ?>><?php esc_html_e('In the last week', 'ctct' ); ?></option>
+		<option value="-1 month"<?php selected( '-1 month', $modified_since, true ); ?>><?php esc_html_e('In the last month', 'ctct' ); ?></option>
+		<option value="-3 months"<?php selected( '-3 months', $modified_since, true ); ?>><?php esc_html_e('In the last 3 months', 'ctct' ); ?></option>
+		<option value="-1 year"<?php selected( '-1 year', $modified_since, true ); ?>><?php esc_html_e('In the last year', 'ctct' ); ?></option>
+	</select>
+	<?php if( isset( $_GET['status'] ) ) { ?><input type="hidden" name="status" value="<?php echo esc_attr( $_GET['status'] ); ?>" /><?php } ?>
+	<input type="submit" class="button button-secondary button-small" value="Filter">
+</form>
+<?php
+}
+
+/**
+ * @param \Ctct\Components\EventSpot\Address|\Ctct\Components\Contacts\Address $address
+ * @param string $location
+ *
+ * @return mixed|string|void
+ */
+function constant_contact_create_location( $address = array(), $location = '' ) {
+
+	$address->location = $location;
+
+	$address_template = <<<EOD
+{{location}}
+{{line1}}
+{{city}}, {{state_code}} {{postal_code}}
+{{country}}
+EOD;
+
+	/*if( !empty( $address_array['latitude'] ) && !empty( $address_array['longitude'] ) ) {
+		$address_array['map_link'] = sprintf( 'https://www.google.com/maps?q=loc:%s,%s', $address_array['latitude'], $address_array['longitude'] );
+		$address_template .= sprintf( "\n<a href='{{map_link}}' target='_blank'>%s</a>", __( 'Map this address', 'ctct' ) );
+	}*/
+
+	$address_string = $address_template;
+
+	foreach( $address as $key => $value ) {
+		$address_string = str_replace( '{{' . $key . '}}', $value, $address_string );
+	}
+
+	$address_string = normalize_whitespace( $address_string );
+	$address_string = wpautop( $address_string );
+
+
+	return apply_filters( 'constant_contact_create_location', rtrim( trim( $address_string ) ) );
+}
+
+/**
+ * @param \Ctct\Components\Component $Component
+ */
+function ctct_generate_component_table( $Component, $recursive = 0 ) {
+
+	$class = ' ctct-component-level-'.$recursive;
+	$component_class_name = str_replace('\\', '-', strtolower( get_class( $Component ) ) );
+	$class .= ' '.sanitize_title( $component_class_name );
+
+	switch( $recursive ) {
+		case 0:
+			$class .= ' striped';
+			break;
+		case 1:
+			$class .= '';
+			break;
+		default:
+			$class .= ' ctct-light-border striped';
+	}
+	?>
+	<table class="ctct_table wp-list-table widefat <?php echo $class; ?>">
+		<tbody>
+		<?php
+		foreach ( $Component as $key => $value ) {
+
+			if( is_null( $value ) ) {
+				continue;
+			}
+
+			$label = ucwords( implode(' ', explode( '_', $key ) ) );
+
+			if( ! $recursive ) {
+				$label = '<h4>'.$label.'</h4>';
+			} else {
+				$label = '<strong>'.$label.'</strong>';
+			}
+
+			echo '<tr class="ctct-component-key-'.sanitize_title( $key ).'">';
+			echo '<th scope="row" style="vertical-align: top"><span>'.$label.'</span></th>';
+			echo '<td>';
+			if( is_a( $value, '\Ctct\Components\Component' ) ) {
+				ctct_generate_component_table( $value, $recursive + 1 );
+			} elseif( is_array( $value ) ) {
+				foreach ( $value as $item ) {
+					if( is_null( $item ) ) {
+						continue;
+					}
+					if( is_a( $item, '\Ctct\Components\EventSpot\Address' ) || is_a( $item, '\Ctct\Components\Contacts\Address' ) ) {
+						echo constant_contact_create_location( $item );
+					} if( is_a( $item, '\Ctct\Components\Component' ) ) {
+						ctct_generate_component_table( $item, $recursive + 1 );
+					} else {
+						echo '<p>'.$item.'</p>';
+					}
+				}
+			} else {
+				echo $value;
+			}
+			echo '</td>';
+			echo '</tr>';
+		}
+		?>
+		</tbody>
+	</table>
+	<?php
+}
+
+/**
+ * Should the request be refreshed?
+ *
+ * If DOING_AJAX or $_GET['refresh'] === strtolower( $type ), returns true
+ *
+ * @param string $type Type name; ie Contacts
+ *
+ * @return bool
+ */
+function constant_contact_refresh_cache($type) {
+	return ( ( defined('DOING_AJAX') && DOING_AJAX ) || (isset($_GET['refresh']) && strtolower($_GET['refresh']) === strtolower($type) ) );
+}
+
+function kws_paginate_results( \Ctct\Components\ResultSet $resultSet, $limit = 50 ) {
+
+	$output = '';
+
+	if( ! empty( $resultSet->next ) ) {
+		$next_results = sprintf( esc_html__('Next %d Results', 'ctct'), $limit );
+		$output = sprintf( '<ul class="page-numbers"><li class="page-number"><a href="%s">%s</a></li><li class="page-number view-all"><a href="%s">%s</a></li></ul>',
+			add_query_arg( array( 'next' => $resultSet->next ), remove_query_arg( array( 'status', 'limit' ) ) ),
+			$next_results,
+			add_query_arg( array( 'all' => 1 ), remove_query_arg( array( 'next', 'limit' ) ) ),
+			esc_html__('View All Results', 'ctct')
+		);
+	}
+
+	return $output;
 }
 
 /**

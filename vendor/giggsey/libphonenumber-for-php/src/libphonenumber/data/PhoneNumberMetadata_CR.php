@@ -13,7 +13,7 @@ return array (
   ),
   'fixedLine' => 
   array (
-    'NationalNumberPattern' => '2[24-7]\\d{6}',
+    'NationalNumberPattern' => '2[0-24-7]\\d{6}',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '22123456',
   ),
@@ -24,12 +24,10 @@ return array (
             0[01]|
             7[0-3]
           )\\d{5}|
-          6(?:
-            [0-2]\\d|
-            30
-          )\\d{5}|
-          7[0-3]\\d{6}|
-          8[3-9]\\d{6}
+          (?:
+            [67][0-3]|
+            8[3-9]
+          )\\d{6}
         ',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '83123456',
@@ -60,26 +58,7 @@ return array (
   array (
     'NationalNumberPattern' => '
           210[0-6]\\d{4}|
-          4(?:
-            0(?:
-              0[01]\\d{4}|
-              10[0-3]\\d{3}|
-              2(?:
-                00\\d{3}|
-                900\\d{2}
-              )|
-              3[01]\\d{4}|
-              40\\d{4}|
-              5\\d{5}|
-              60\\d{4}|
-              70[01]\\d{3}|
-              8[0-2]\\d{4}
-            )|
-            1[01]\\d{5}|
-            20[0-3]\\d{4}|
-            400\\d{4}|
-            70[0-2]\\d{4}
-          )|
+          4\\d{7}|
           5100\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{8}',

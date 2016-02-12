@@ -39,25 +39,30 @@ return array (
     'NationalNumberPattern' => '
           (?:
             5(?:
-              [05]\\d|
-              1[0-6]
+              [05]\\d{2}|
+              1[0-7]\\d|
+              2(?:
+                22|
+                55
+              )
             )|
             6(?:
-              0[034679]|
-              5[015-9]|
-              6\\d|
-              7[067]|
-              9[0369]
+              0[034679]\\d|
+              5[015-9]\\d|
+              6\\d{2}|
+              7[067]\\d|
+              9[0369]\\d
             )|
             9(?:
-              0[09]|
-              4[049]|
-              55|
-              6[069]|
-              [79]\\d|
-              8[089]
+              0[09]\\d|
+              22\\d|
+              4[01479]\\d|
+              55\\d|
+              6[0679]\\d|
+              [79]\\d{2}|
+              8[057-9]\\d
             )
-          )\\d{5}
+          )\\d{4}
         ',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '50012345',
@@ -139,18 +144,25 @@ return array (
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '[1269]',
+        0 => '
+            [126]|
+            9[04-9]|
+            52[25]
+          ',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
     ),
     1 => 
     array (
-      'pattern' => '(5[015]\\d)(\\d{5})',
+      'pattern' => '(\\d{3})(\\d{5})',
       'format' => '$1 $2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '5',
+        0 => '
+            5[015]|
+            92
+          ',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

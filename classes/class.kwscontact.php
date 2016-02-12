@@ -40,12 +40,25 @@ class KWSContact extends Contact {
 	 * @var array
 	 */
 	public static $statii = array(
+		/** Contact is an active member of a contactlist */
 		'ACTIVE',
+		/** Contact has not confirmed their email address */
 		'UNCONFIRMED',
+		/** Contact has unsubscribed from the contact list and is on the Do Not Mail list; they cannot be manually added to any contactlist */
 		'OPTOUT',
+		/** Contact has been taken off all contactlists, and can be added to a contactlist */
 		'REMOVED',
+		/** someone who is not a contact, but has registered for one of the account's events */
+		'NON_SUBSCRIBER',
+		/** a person who has "liked" one of the account's social campaign pages */
+		'VISITOR',
 	);
 
+	/**
+	 * KWSContact constructor.
+	 *
+	 * @param string $Contact
+	 */
 	function __construct( $Contact = '' ) {
 
 		if ( is_array( $Contact ) ) {
@@ -61,8 +74,14 @@ class KWSContact extends Contact {
 				$this->{$k} = self::prepareValue( $v );
 			}
 		}
+
+		return $this;
 	}
 
+	/**
+	 * Get the array of read-only fields for a Contact
+	 * @return array
+	 */
 	public static function getReadOnly() {
 		return self::$read_only;
 	}
@@ -118,6 +137,13 @@ class KWSContact extends Contact {
 		return $existing_contact;
 	}
 
+	/**
+	 * Make sure addresses have all the required keys set
+	 *
+	 * @param array $address
+	 *
+	 * @return array
+	 */
 	private function prepareAddress( array $address ) {
 		return wp_parse_args( $address, array(
 			'line1'           => '',
@@ -190,8 +216,8 @@ class KWSContact extends Contact {
 			'first_name'              => NULL,
 			'middle_name'             => NULL,
 			'last_name'               => NULL,
-			'source'                  => NULL,
 			'email_addresses'         => array(),
+			'source'                  => NULL,
 			'email'                   => NULL,
 			'email_address'           => NULL,
 			'user_email'              => NULL,

@@ -28,7 +28,7 @@ class KWSOAuth2 extends CtctOAuth2 {
 
 		$this->redirect_uri = $this->getRedirectUri(false);
 
-		parent::__construct(CTCT_APIKEY, CTCT_APISECRET, $this->redirect_uri, new KWSRestClient(CTCT_APIKEY));
+		parent::__construct(CTCT_APIKEY, CTCT_APISECRET, $this->redirect_uri );
 
 		if($processResponse) {
 			$this->processResponse();

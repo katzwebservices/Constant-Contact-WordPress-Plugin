@@ -1,4 +1,4 @@
-<h2 class="fittext">
+<h2 class="ctct-page-name">
 <?php
     echo kws_has_avatar($Contact->get('email_address')) ? '<span style="float:left; margin-right:10px;">'.get_avatar($Contact->get('email_address'), 50, '404', $Contact->get('name')).'</span>' : '';
 ?>
@@ -23,6 +23,7 @@
      * @since 3.2
      */
     echo $summary_report;
+
 ?>
 </div>
 
@@ -83,6 +84,8 @@
                     $html .= $Contact->get($key, true);
                     break;
             }
+        } else if( is_bool( $value ) ) {
+            $html .= $value ? esc_html__('Yes', 'ctct') : esc_html__('No', 'ctct');
         } else {
             $html .= sprintf('<span%s>%s</span></td>', ($Contact->is_editable($key) ? ' class="editable" data-name="'.$key.'"' : ' class="not-editable"'), $Contact->get($key));
         }

@@ -1,4 +1,5 @@
 <?php
+/** @define "CTCT_DIR_PATH" "../" */
 
 use Ctct\ConstantContact;
 use Ctct\Components\Contacts\Contact;
@@ -8,6 +9,7 @@ use Ctct\Components\Contacts\Note;
 use Ctct\Components\Contacts\ContactList;
 use Ctct\Components\Contacts\EmailAddress;
 use Ctct\Exceptions\CtctException;
+
 
 class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
@@ -24,21 +26,34 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		return $this->getTitle( 'views' );
 	}
 
-	protected function getTitle( $value = '' ) {
-		if ( empty( $value ) && $this->isEdit() || $value == 'edit' ) {
-			return "Edit Campaign";
-		}
-		if ( empty( $value ) && $this->isSingle() || $value == 'single' ) {
-			return sprintf( 'Campaign #%s', $_GET['view'] );
+	protected function getTitle( $type = '' ) {
+
+		$title = __( 'Campaigns', 'ctct' );
+
+		if ( empty( $type ) && $this->isEdit() || $type == 'edit' ) {
+			$title = __('Edit Campaign', 'ctct');
+		} elseif ( ( $this->isSingle() && empty( $type ) ) || $type === 'single' ) {
+
+			$id = intval( $_GET['view'] );
+			$emailCampaign = $this->cc->getEmailCampaign( CTCT_ACCESS_TOKEN, $id );
+
+			if( is_object( $emailCampaign ) && ! empty( $emailCampaign->name ) ) {
+				/** translators: %s is the campaign name, %d is the list ID */
+				$title = sprintf( __( 'Campaign: "%s"', 'ctct' ), esc_html( $emailCampaign->name ) );
+			} else {
+				/** translators: %d is the campaign ID */
+				$title = sprintf( __( 'Campaign #%s', 'ctct' ), $id );
+			}
 		}
 
-		return 'Campaigns';
+		return $title;
 	}
 
 	/**
 	 * @todo Implement adding campaigns. Needs better CTCT support.
 	 */
 	protected function add() {
+
 	}
 
 	protected function processForms() {
@@ -96,17 +111,12 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 		$status = isset( $_GET['status'] ) ? $_GET['status'] : NULL;
 
-		if ( ! empty( $_GET['refresh'] ) && $_GET['refresh'] === 'campaigns' ) {
-			do_action( 'ctct_flush_campaigns' );
-			add_filter( 'ctct_cache', '__return_false' );
-		}
-
 		$Campaigns = $this->cc->getAllEmailCampaigns( $status );
 
 		kws_print_subsub( 'status', array(
 			array( 'val' => '', 'text' => 'All' ),
-			array( 'val' => 'DRAFT', 'text' => 'Draft' ),
 			array( 'val' => 'RUNNING', 'text' => 'Running' ),
+			array( 'val' => 'DRAFT', 'text' => 'Draft' ),
 			array( 'val' => 'SCHEDULED', 'text' => 'Scheduled' ),
 			array( 'val' => 'SENT', 'text' => 'Sent' ),
 		) );

@@ -23,9 +23,8 @@ return array (
             3(?:
               1[0235-9]|
               55|
-              6\\d|
-              7[01]|
-              9[0-57]
+              [69]\\d|
+              7[01]
             )|
             4(?:
               6[03]|
@@ -53,9 +52,8 @@ return array (
   array (
     'NationalNumberPattern' => '
           7(?:
-            [1-356]\\d|
-            4[0-7]|
-            7[014-7]
+            [1-6]\\d|
+            7[014-8]
           )\\d{5}
         ',
     'PossibleNumberPattern' => '\\d{8}',

@@ -4,7 +4,7 @@ Plugin Name: 		Constant Contact Plugin for WordPress
 Plugin URI: 		https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
 Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: 			Katz Web Services, Inc.
-Version: 			3.1.12
+Version: 			3.1.13
 Author URI: 		http://katz.co
 Text Domain: 		ctct
 Domain Path: 		/languages
@@ -29,8 +29,13 @@ final class WP_CTCT {
 	 */
 	public $cc = NULL;
 
+	/**
+	 * @var KWSOAuth2
+	 */
 	public $oauth = NULL;
+
 	public $log = NULL;
+
 	private static $instance = NULL;
 
 	function __construct() {
@@ -59,7 +64,7 @@ final class WP_CTCT {
 			/**
 			 * If the server doesn't support PHP 5.3, sorry, but you're outta luck.
 			 */
-			if(version_compare(phpversion(), '5.3') <= 0) {
+			if(version_compare(phpversion(), '5.4') <= 0) {
 				include CTCT_DIR_PATH.'inc/incompatible.php';
 				return;
 			}
@@ -98,14 +103,18 @@ final class WP_CTCT {
 
 	function setup() {
 
+		require_once CTCT_DIR_PATH.'vendor/katzwebservices/php-sdk/src/Ctct/autoload.php';
 		require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
 		include_once CTCT_DIR_PATH.'classes/class.ctct_global.php';
 
 		if( !class_exists( 'KWSOAuth2' ) ) {
 
-			include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
+			#include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
 			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpot.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotService.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotList.php';
 			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
 
 			$this->oauth = new KWSOAuth2();
@@ -167,12 +176,11 @@ final class WP_CTCT {
 
 		/** Modules */
 		include_once CTCT_DIR_PATH.'lib/registration.php';
-		include_once CTCT_DIR_PATH.'lib/constant-analytics/constant-analytics.php';
 		include_once CTCT_DIR_PATH.'lib/comment-form-signup.php';
 		include_once CTCT_DIR_PATH.'lib/simple-widget.php';
 
 		if( CTCT_Settings::get('eventspot') ) {
-			include_once CTCT_DIR_PATH.'lib/eventspot/eventspot.php';
+			include_once CTCT_DIR_PATH . 'lib/eventspot/eventspot.php';
 		}
 
 		include_once CTCT_DIR_PATH.'lib/form-designer/form-designer.php';
