@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
     function ctct_pointer(pointer) {
 
     	hide_pointers = $.cookie('ctct_hide_pointers');
-    	hide_pointers_array = hide_pointers ? hide_pointers.split(/,/) : new Array();
+    	hide_pointers_array = hide_pointers ? hide_pointers.split(/,/) : [];
 
     	if($.inArray(pointer.pointer_id, hide_pointers_array) >= 0) { return; }
 
@@ -261,8 +261,6 @@ jQuery(document).ready(function($) {
 				.replace('{error_message}', request_error );
 
 			alertify.alert( error_template );
-
-			delete ( request_error, error_template, responseText );
 
 			return false;
 		}
