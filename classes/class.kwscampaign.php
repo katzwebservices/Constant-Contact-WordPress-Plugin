@@ -156,8 +156,8 @@ class KWSCampaign extends Campaign {
 			default:
 				if( is_bool( $this->{$key} ) ) {
 					return $this->{$key} ? __('True', 'ctct') : __('False', 'ctct');
-				} elseif ( ! isset( $this->{$key} ) || is_null( $this->{$key} ) ) {
-					return __('(Empty)');
+				} elseif ( ! isset( $this->{$key} ) || is_null( $this->{$key} ) || '' === $this->{$key} ) {
+					return $format ? __('(Empty)', 'ctct') : ( isset( $this->{$key} ) ? $this->{$key} : null );
 				} elseif( is_string( $this->{$key}) ) {
 					return $this->{$key};
 				} elseif( is_a( $this->{$key}, 'Ctct\Components\Component') ) {
