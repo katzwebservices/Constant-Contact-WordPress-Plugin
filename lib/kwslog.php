@@ -187,16 +187,25 @@ class KWSLog {
 	/**
 	 * @param string $type Either `debug` or `error`
 	 * @param string $title Title of the log post
-	 * @param string $message String content of the log
+	 * @param string $passed_message String content of the log
 	 * @param null $data
 	 *
 	 * @return      int The ID of the newly created log item
 	 */
-	function insert_log( $type = 'debug', $title = NULL, $message = NULL, $data = NULL ) {
+	function insert_log( $type = 'debug', $title = NULL, $passed_message = NULL, $passed_data = NULL ) {
 		global $wp_rewrite;
 
 		// If we're not logging for certain types, then do not insert log.
 		if( !in_array( $type, self::$methods) ) { return; }
+
+		$message = $passed_message;
+		$data = $passed_data;
+
+		if( is_a( $message, 'Ctct\Exceptions\CtctException' ) ) {
+			/** @var Ctct\Exceptions\CtctException $passed_message */
+			$data = $passed_message->getTraceAsString();
+			$message = new WP_Error( $passed_message->getCode(), $passed_message->getMessage(), $passed_message->getErrors() );
+		}
 
 		// This debug call is being called before a bunch of necessary stuff is loaded.
 		// We store it, then call it later.
