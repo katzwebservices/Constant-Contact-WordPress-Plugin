@@ -110,8 +110,8 @@ abstract class CTCT_Admin_Page {
 	}
 
 	public function registerScripts() {
-		wp_register_style( 'ctct-admin-global', CTCT_FILE_URL . 'css/admin/global.css' );
-		wp_register_style( 'ctct-admin', CTCT_FILE_URL . 'css/admin/constant-contact-admin-css.css', array( 'thickbox' ) );
+		wp_register_style( 'ctct-admin-global', CTCT_FILE_URL . 'css/admin/ctct-admin-global.css' );
+		wp_register_style( 'ctct-admin', CTCT_FILE_URL . 'css/admin/ctct-admin.css', array( 'thickbox' ) );
 		wp_register_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
 		wp_register_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
 		wp_register_style( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/css/select2.min.css' );
