@@ -247,7 +247,7 @@ class CTCT_Form_Designer_Helper {
         }
 
         return '<li'.$style.'>
-            <label class="menu-item-title"><input type="checkbox" class="menu-item-checkbox" name="'.$name.'['.$id.']" value="'.$id.'"'.$checked.' /> '.$title.'</label>
+            <label class="menu-item-title"><input type="checkbox" class="menu-item-checkbox" name="'.esc_attr($name).'['.esc_attr( $id ).']" value="'.esc_attr($id).'"'.$checked.' /> '.esc_html($title).'</label>
         </li>';
     }
 
@@ -272,6 +272,8 @@ class CTCT_Form_Designer_Helper {
 
         $hideinputs = false;
         $hide_value_input = false;
+        $field_label = $field_desc = '';
+        $input_type = 't';
 
         switch ( $type ) {
             case 'text':

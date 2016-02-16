@@ -606,8 +606,6 @@ class CTCT_Form_Designer_Output {
 
 		if( is_array( $this->form['f'] ) ) {
 
-			$position = array();
-
 			// Make sure they're in the right order
 			$fields = $this->sort_fields( $this->form['f'] );
 
