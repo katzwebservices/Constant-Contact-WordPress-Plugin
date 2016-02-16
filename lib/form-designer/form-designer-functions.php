@@ -114,7 +114,7 @@ class CTCT_Form_Designer_Helper {
      * @return WP_Error|integer     If form update failed, `WP_Error`; otherwise, the saved/updated form ID
      */
     static function update_form_object( $form_id = -1, $data = array()) {
-        $form_id = floatval($form_id);
+        $form_id = intval($form_id);
 
         // Get existing forms
         $forms = self::get_forms();
@@ -123,12 +123,12 @@ class CTCT_Form_Designer_Helper {
         $form = self::generate_form_from_request($data, $forms);
 
         // form doesn't already exist, so create a new form
-        if ($form_id == -1 || $form_id == '-1' || $form_id === '' || !isset($form['cc-form-id']) || $form['cc-form-id']  === '') {
+        if ( in_array( $form_id, array( -1, 0 ) ) || ! isset($form['cc-form-id']) || '' === $form['cc-form-id'] ) {
 
             // Get the new form id, set in self::generate_form_from_request()
             $form_id = get_option('cc_form_increment');
 
-        } elseif(isset($forms[$form_id])) {
+        } elseif(isset($forms["{$form_id}"])) {
 
             // Hook into the form saving process if you want
             $form = apply_filters("wp_update_cc_form_$form_id", $form );
@@ -141,16 +141,16 @@ class CTCT_Form_Designer_Helper {
         }
 
         // Add the form to the forms array
-        $forms[$form_id] = $form;
+        $forms["{$form_id}"] = $form;
 
         // That cached version's gotta go.
-        delete_transient("cc_form_$form_id");
+        delete_transient("cc_form_{$form_id}");
 
         // Update forms array to DB
         self::set_forms($forms);
 
         // Return the new form id
-        return floatval($form['cc-form-id']);
+        return intval($form['cc-form-id']);
 
     }
 
