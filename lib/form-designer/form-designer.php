@@ -337,40 +337,7 @@ function constant_contact_retrieve_form($formid, $force_update=false, $unique_id
 
 	$form_html = new CTCT_Form_Designer_Output( $form );
 
-
 	return $form_html->html();
-
-
-	// Get the form from form.php
-	$response = wp_remote_request( admin_url('admin-ajax.php'), array(
-       'method' => 'POST',
-       'timeout' => 20,
-       'body' => $form,
-       'sslverify' => false,
-       'compress' => true,
-       'local' => true
-   ));
-
-	do_action('ctct_debug', 'Requesting Form Data for Form #'.$formid, array('POST body' => $form, 'POST response:' => $response));
-
-	if( is_wp_error( $response ) ) {
-		do_action('ctct_log', $response, 'error');
-		if(current_user_can('manage_options')) {
-			echo '<!-- Constant Contact API Error: `wp_remote_post` failed with this error: '.$response->get_error_message().' -->';
-		}
-		return false;
-	} else {
-		$form = $response['body'];
-		if(empty($_POST) && !$success) {
-			// Save the array into the cc_form_id transient with a 30 day expiration
-			$set = set_transient("cc_form_$formid", $form, 60*60*24*30);
-			if(!$set) {
-				do_action('ctct_log', 'Setting cc_form_'.$formid.' Transient failed', $form);
-			}
-		}
-
-		return $form;
-	}
 }
 
 function cc_form_get_selected_id($allForms = array()) {
