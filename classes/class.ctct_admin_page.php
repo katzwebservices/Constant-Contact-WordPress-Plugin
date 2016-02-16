@@ -98,11 +98,11 @@ abstract class CTCT_Admin_Page {
 			'_wpnonce'  => wp_create_nonce( 'ctct' ),
 			'id'        => $this->id,
 			'text'      => array(
-				'editable' => esc_js( __( 'Click to Edit', 'ctct' ) ),
-				'request_failed_heading' => __('The request failed.', 'ctct'),
+				'editable' => esc_js( __( 'Click to Edit', 'constant-contact-api' ) ),
+				'request_failed_heading' => __('The request failed.', 'constant-contact-api'),
 
 				/** translators: {code} and {message} will be dynamically replaced with error details */
-				'request_error' => __( 'Error {code}: {message}', 'ctct'),
+				'request_error' => __( 'Error {code}: {message}', 'constant-contact-api'),
 			),
 		) );
 
@@ -287,7 +287,7 @@ abstract class CTCT_Admin_Page {
 		echo '
             <div id="message" class="container alert-error errors error">
                 <h3>';
-		_e( sprintf( '%s occurred:', _n( 'An error', 'Errors', sizeof( $this->errors ), 'ctct' ) ), 'ctct' );
+		_e( sprintf( '%s occurred:', _n( 'An error', 'Errors', sizeof( $this->errors ), 'constant-contact-api' ) ), 'ctct' );
 		echo ' </h3>
                 <ul class="ul-square">
         ';
@@ -319,7 +319,7 @@ abstract class CTCT_Admin_Page {
 	public function page() { ?>
 		<div class="wrap ctct-wrap">
 			<h2 class="cc_logo"><a class="cc_logo"
-			                       href="<?php echo admin_url( 'admin.php?page=constant-contact-api' ); ?>"><?php esc_html_e( 'Constant Contact', 'ctct' ); ?></a>
+			                       href="<?php echo admin_url( 'admin.php?page=constant-contact-api' ); ?>"><?php esc_html_e( 'Constant Contact', 'constant-contact-api' ); ?></a>
 			</h2>
 			<?php
 
@@ -372,10 +372,10 @@ abstract class CTCT_Admin_Page {
 
 		$button = '';
 		if ( $this->isSingle() && $this->can_edit ) {
-			$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'ctct' ) . '</a>';
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'constant-contact-api' ) . '</a>';
 		}
 		if ( $this->isView() && $this->can_add ) {
-			$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct' ), $this->getTitle( 'single' ) ) . '</a>';
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'constant-contact-api' ), $this->getTitle( 'single' ) ) . '</a>';
 		}
 
 		return implode( ' &raquo; ', $breadcrumb ) . $button;

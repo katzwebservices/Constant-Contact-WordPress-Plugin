@@ -27,11 +27,11 @@ class KWSAJAX {
 		$parent = !empty($parent) ? $parent.'_' : NULL;
 
 		if(!isset($request['_wpnonce']) || isset($request['_wpnonce']) && !wp_verify_nonce($request['_wpnonce'], 'ctct') && !defined('DOING_AJAX')) {
-			$response['errors'] = __('You\'re not authorized to be here.', 'ctct');
+			$response['errors'] = __('You\'re not authorized to be here.', 'constant-contact-api');
 		} elseif(empty($field)) {
-			$response['errors'] = __('There is no field defined.', 'ctct');
+			$response['errors'] = __('There is no field defined.', 'constant-contact-api');
 		} elseif(!isset($request['value'])) {
-			$response['errors'] = __('There is no value defined.', 'ctct');
+			$response['errors'] = __('There is no value defined.', 'constant-contact-api');
 		} else {
 			$KWSConstantContact = new KWSConstantContact();
 
@@ -66,16 +66,16 @@ class KWSAJAX {
 						}
 
 						if($nothingChanged) {
-							$response['message'] = __('Nothing changed.', 'ctct');
+							$response['message'] = __('Nothing changed.', 'constant-contact-api');
 							$response['code'] = 204;
 						} else {
 							$updatable = $KWSContact->set($parent.$field, $value);
 							if(!$updatable) {
-								$response['message'] = __('This field is not updatable.', 'ctct');
+								$response['message'] = __('This field is not updatable.', 'constant-contact-api');
 								$response['code'] = 400;
 							} else {
 								$fetch = $KWSConstantContact->updateContact(CTCT_ACCESS_TOKEN, $KWSContact);
-								$response['message'] = __('Successfully updated.', 'ctct');
+								$response['message'] = __('Successfully updated.', 'constant-contact-api');
 								$response['code'] = 200;
 
 								delete_transient('ctct_all_contacts');
@@ -98,16 +98,16 @@ class KWSAJAX {
 					try {
 						$KWSList = new KWSContactList($KWSConstantContact->getList(CTCT_ACCESS_TOKEN, $id));
 						if($value === $KWSList->get($field)) {
-							$response['message'] = __('Nothing changed.', 'ctct');
+							$response['message'] = __('Nothing changed.', 'constant-contact-api');
 							$response['code'] = 204;
 						} else {
 							$updatable = $KWSList->set($field, $value);
 							if(!$updatable) {
-								$response['message'] = __('This field is not updatable.', 'ctct');
+								$response['message'] = __('This field is not updatable.', 'constant-contact-api');
 								$response['code'] = 400;
 							} else {
 								$fetch = $KWSConstantContact->updateList(CTCT_ACCESS_TOKEN, $KWSList);
-								$response['message'] = __('Successfully updated.', 'ctct');
+								$response['message'] = __('Successfully updated.', 'constant-contact-api');
 								$response['code'] = 200;
 
 								delete_transient('ctct_all_lists');
@@ -119,7 +119,7 @@ class KWSAJAX {
 					}
 					break;
 				default:
-					$response['message'] = __('There is no component defined.', 'ctct');
+					$response['message'] = __('There is no component defined.', 'constant-contact-api');
 					$response['code'] = 400;
 					break;
 			}

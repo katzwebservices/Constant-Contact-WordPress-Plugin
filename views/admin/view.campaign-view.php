@@ -17,8 +17,8 @@
 <table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
         <tr>
-            <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
-            <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
+            <th scope="col" class="column-name"><?php esc_html_e('Name', 'constant-contact-api'); ?></th>
+            <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'constant-contact-api'); ?></th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +52,7 @@
                         foreach((array)$value as $click) {
                             $clickThroughOutput .= '<li>';
                             $clickThroughOutput .= '<a class="block" href="'.esc_js( $click->url ).'">'.esc_html( $click->url ).'</a>';
-                            $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'ctct'), __('Clicks', 'ctct'), $click->click_count)).'</strong>';
+                            $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'constant-contact-api'), __('Clicks', 'constant-contact-api'), $click->click_count)).'</strong>';
                             $clickThroughOutput .= '</li>';
                         }
 

@@ -22,13 +22,13 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 	}
 
 	protected function getNavTitle() {
-		return __( 'Lists', 'ctct' );
+		return __( 'Lists', 'constant-contact-api' );
 	}
 
 	protected function getTitle( $type = '' ) {
 
 		if ( $this->isEdit() ) {
-			$title = __("Edit Lists", 'ctct');
+			$title = __("Edit Lists", 'constant-contact-api');
 		} elseif ( $this->isSingle() || $type === 'single' ) {
 
 			$id = intval( $_GET['view'] );
@@ -36,13 +36,13 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
 			if( is_object( $List ) && ! empty( $List->name ) ) {
 				/** translators: %s is the list name, %d is the list ID */
-				$title = sprintf( __( 'Contacts from List: "%s" (#%d)', 'ctct' ), esc_html( $List->name ), intval( $List->id ) );
+				$title = sprintf( __( 'Contacts from List: "%s" (#%d)', 'constant-contact-api' ), esc_html( $List->name ), intval( $List->id ) );
 			} else {
 				/** translators: %d is the list ID */
-				$title = sprintf( __( 'Contacts from List #%d', 'ctct' ), $id );
+				$title = sprintf( __( 'Contacts from List #%d', 'constant-contact-api' ), $id );
 			}
 		} else {
-			$title = __( 'Lists', 'ctct' );
+			$title = __( 'Lists', 'constant-contact-api' );
 		}
 
 		return $title;
@@ -60,7 +60,7 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 		$id = isset( $_GET['edit'] ) ? intval( $_GET['edit'] ) : NULL;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a List to edit', 'ctct' );
+			esc_html_e( 'You have not specified a List to edit', 'constant-contact-api' );
 
 			return;
 		}
@@ -81,7 +81,7 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 		$id = isset( $_GET['view'] ) ? intval( $_GET['view'] ) : NULL;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a List to view.', 'ctct' );
+			esc_html_e( 'You have not specified a List to view.', 'constant-contact-api' );
 
 			return;
 		}
@@ -97,7 +97,7 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 		$Lists = $this->cc->getAllLists();
 
 		if ( empty( $Lists ) ) {
-			esc_html_e( 'Your account has no lists.', 'ctct' );
+			esc_html_e( 'Your account has no lists.', 'constant-contact-api' );
 		} else {
 
 			include( CTCT_DIR_PATH . 'views/admin/view.lists-view.php' );

@@ -168,7 +168,7 @@ class KWSLog {
 	 * Add the admin menu to the Tools menu
 	 */
 	function log_menu() {
-		$menu_title = __('Activity Log', 'ctct');
+		$menu_title = __('Activity Log', 'constant-contact-api');
 		add_submenu_page( 'constant-contact-api', $menu_title, $menu_title, 'manage_options', 'constant-contact-log', array(&$this, 'log_page'));
 	}
 
@@ -260,10 +260,10 @@ class KWSLog {
 	function print_navigation() {
 
 		$methods_text = array(
-			'activity' => __('Constant Contact Activity', 'ctct'),
-			'debug' => __('Debugging Logs', 'ctct'),
-			'error' => __('Errors or Exceptions', 'ctct'),
-			'log' => __('Notices', 'ctct'),
+			'activity' => __('Constant Contact Activity', 'constant-contact-api'),
+			'debug' => __('Debugging Logs', 'constant-contact-api'),
+			'error' => __('Errors or Exceptions', 'constant-contact-api'),
+			'log' => __('Notices', 'constant-contact-api'),
 		);
 
 		$navigation = array();
@@ -290,7 +290,7 @@ class KWSLog {
 
 		<?php
 
-			$translated = __( 'Page', 'ctct');
+			$translated = __( 'Page', 'constant-contact-api');
 
 			echo paginate_links( array(
 				'base' => esc_url_raw( add_query_arg( array( 'paged' => '%#%' ) ) ),
@@ -331,7 +331,7 @@ class KWSLog {
 	?>
 		<div class="wrap">
 
-			<h2><?php esc_html_e('Constant Contact Log', 'ctct'); ?></h2>
+			<h2><?php esc_html_e('Constant Contact Log', 'constant-contact-api'); ?></h2>
 
 			<?php
 
@@ -343,9 +343,9 @@ class KWSLog {
 			 <table class="ctct_table widefat">
 				<thead>
 				<tr>
-					<th class="title"><?php esc_html_e('Title', 'kwslog'); ?></th>
-					<th class="" style="width: 30%"><?php esc_html_e('Content', 'kwslog'); ?></th>
-					<th class="column column-post_date"><?php esc_html_e('Date', 'kwslog'); ?></th>
+					<th class="title"><?php esc_html_e('Title', 'kwslog', 'constant-contact-api'); ?></th>
+					<th class="" style="width: 30%"><?php esc_html_e('Content', 'kwslog', 'constant-contact-api'); ?></th>
+					<th class="column column-post_date"><?php esc_html_e('Date', 'kwslog', 'constant-contact-api'); ?></th>
 				</tr>
 				</thead>
 					<tbody>
@@ -389,7 +389,7 @@ class KWSLog {
 					?>
 					<tr>
 						<td colspan="3" style="text-align:center;">
-						<h4><?php esc_html_e('No activity has been logged.'); ?></h4>
+						<h4><?php esc_html_e('No activity has been logged.', 'constant-contact-api'); ?></h4>
 						</td>
 					</tr>
 					<?php

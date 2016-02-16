@@ -162,12 +162,12 @@ function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
 	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
 	<label for="ctct_modified_since" class="screen-reader-text"><?php echo esc_html( $label ); ?></label>
 	<select name="modified_since" id="ctct_modified_since">
-		<option value="" <?php selected( empty( $modified_since ) ); ?>><?php esc_html_e('Date modified&hellip;', 'ctct' ); ?></option>
-		<option value="-1 day" <?php selected( '-1 day', $modified_since ); ?>><?php esc_html_e('In the last day', 'ctct' ); ?></option>
-		<option value="-1 week"<?php selected( '-1 week', $modified_since, true ); ?>><?php esc_html_e('In the last week', 'ctct' ); ?></option>
-		<option value="-1 month"<?php selected( '-1 month', $modified_since, true ); ?>><?php esc_html_e('In the last month', 'ctct' ); ?></option>
-		<option value="-3 months"<?php selected( '-3 months', $modified_since, true ); ?>><?php esc_html_e('In the last 3 months', 'ctct' ); ?></option>
-		<option value="-1 year"<?php selected( '-1 year', $modified_since, true ); ?>><?php esc_html_e('In the last year', 'ctct' ); ?></option>
+		<option value="" <?php selected( empty( $modified_since ) ); ?>><?php esc_html_e('Date modified&hellip;', 'constant-contact-api' ); ?></option>
+		<option value="-1 day" <?php selected( '-1 day', $modified_since ); ?>><?php esc_html_e('In the last day', 'constant-contact-api' ); ?></option>
+		<option value="-1 week"<?php selected( '-1 week', $modified_since, true ); ?>><?php esc_html_e('In the last week', 'constant-contact-api' ); ?></option>
+		<option value="-1 month"<?php selected( '-1 month', $modified_since, true ); ?>><?php esc_html_e('In the last month', 'constant-contact-api' ); ?></option>
+		<option value="-3 months"<?php selected( '-3 months', $modified_since, true ); ?>><?php esc_html_e('In the last 3 months', 'constant-contact-api' ); ?></option>
+		<option value="-1 year"<?php selected( '-1 year', $modified_since, true ); ?>><?php esc_html_e('In the last year', 'constant-contact-api' ); ?></option>
 	</select>
 	<?php if( isset( $_GET['status'] ) ) { ?><input type="hidden" name="status" value="<?php echo esc_attr( $_GET['status'] ); ?>" /><?php } ?>
 	<input type="submit" class="button button-secondary button-small" value="Filter">
@@ -302,12 +302,12 @@ function kws_paginate_results( \Ctct\Components\ResultSet $resultSet, $limit = 5
 	$output = '';
 
 	if( ! empty( $resultSet->next ) ) {
-		$next_results = sprintf( esc_html__('Next %d Results', 'ctct'), $limit );
+		$next_results = sprintf( esc_html__('Next %d Results', 'constant-contact-api'), $limit );
 		$output = sprintf( '<ul class="page-numbers"><li class="page-number"><a href="%s">%s</a></li><li class="page-number view-all"><a href="%s">%s</a></li></ul>',
 			add_query_arg( array( 'next' => $resultSet->next ), remove_query_arg( array( 'status', 'limit' ) ) ),
 			$next_results,
 			add_query_arg( array( 'all' => 1 ), remove_query_arg( array( 'next', 'limit' ) ) ),
-			esc_html__('View All Results', 'ctct')
+			esc_html__('View All Results', 'constant-contact-api')
 		);
 	}
 
@@ -330,7 +330,7 @@ function kws_print_notices( $notices = array(), $class = 'updated', $echo = true
 
 		if( is_wp_error( $notice ) ) {
 
-			$output .= '<h3>'.esc_html( sprintf( __('Error: %s', 'ctct'), $notice->get_error_code() ) ).'</h3>';
+			$output .= '<h3>'.esc_html( sprintf( __('Error: %s', 'constant-contact-api'), $notice->get_error_code() ) ).'</h3>';
 
 			$output .= wpautop( esc_html( $notice->get_error_message() ) );
 

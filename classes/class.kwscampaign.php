@@ -134,8 +134,8 @@ class KWSCampaign extends Campaign {
 		}
 
 		$key = ucwords(preg_replace('/\_/ism', ' ', $key));
-	    $key = preg_replace('/Addr([0-9])/', __('Address $1', 'ctct'), $key);
-	    $key = preg_replace('/Field([0-9])/', __('Field $1', 'ctct'), $key);
+	    $key = preg_replace('/Addr([0-9])/', __('Address $1', 'constant-contact-api'), $key);
+	    $key = preg_replace('/Field([0-9])/', __('Field $1', 'constant-contact-api'), $key);
 
 		return $key;
 	}
@@ -155,9 +155,9 @@ class KWSCampaign extends Campaign {
 				break;
 			default:
 				if( is_bool( $this->{$key} ) ) {
-					return $this->{$key} ? __('True', 'ctct') : __('False', 'ctct');
+					return $this->{$key} ? __('True', 'constant-contact-api') : __('False', 'constant-contact-api');
 				} elseif ( ! isset( $this->{$key} ) || is_null( $this->{$key} ) || '' === $this->{$key} ) {
-					return $format ? __('(Empty)', 'ctct') : ( isset( $this->{$key} ) ? $this->{$key} : null );
+					return $format ? __('(Empty)', 'constant-contact-api') : ( isset( $this->{$key} ) ? $this->{$key} : null );
 				} elseif( is_string( $this->{$key}) ) {
 					return $this->{$key};
 				} elseif( is_a( $this->{$key}, 'Ctct\Components\Component') ) {

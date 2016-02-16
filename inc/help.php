@@ -19,17 +19,17 @@ class CTCT_Help_Menu {
 
 		$tabs[] = array(
 			'id'	=> 'ctct-insert-form',
-			'title'	=> __('Constant Contact: Add a Form to Post or Page', 'ctct'),
+			'title'	=> __('Constant Contact: Add a Form to Post or Page', 'constant-contact-api'),
 			'content'	=> kws_ob_include( CTCT_DIR_PATH.'views/help/insert-form.html')
 		);
 		$tabs[] = array(
 			'id'	=> 'ctct-insert-event',
-			'title'	=> __('Constant Contact: Add an Event', 'ctct'),
+			'title'	=> __('Constant Contact: Add an Event', 'constant-contact-api'),
 			'content'	=> kws_ob_include( CTCT_DIR_PATH.'views/help/insert-event.html')
 		);
 		$tabs[] = array(
 		    'id'    => 'ctct-insert-settings-spam',
-		    'title' => __('Constant Contact: Settings > Spam Prevention', 'ctct'),
+		    'title' => __('Constant Contact: Settings > Spam Prevention', 'constant-contact-api'),
 		    'content'   => kws_ob_include( CTCT_DIR_PATH.'views/help/settings-spam.phtml')
 		);
 

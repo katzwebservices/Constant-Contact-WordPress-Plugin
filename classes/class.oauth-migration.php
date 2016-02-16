@@ -51,9 +51,9 @@ final class CTCT_OAuth_Migration {
 		?>
 		<div class="error">
 			<p><img src="<?php echo plugins_url('images/admin/logo-horizontal.png', CTCT_FILE); ?>" width="225" height="33" alt="" /></p>
-			<h3><?php esc_html_e('The Constant Contact plugin isn\'t connected.', 'ctct'); ?></h3>
-			<p><?php esc_html_e('Please log in to Constant Contact using the button below and your site will be connected.', 'ctct'); ?></p>
-			<p><a href="<?php echo $CTCT->oauth->getAuthorizationUrl(); ?>" class="button button-primary button-hero"><?php esc_html_e('Authorize the Plugin on ConstantContact.com', 'ctct'); ?></a></p>
+			<h3><?php esc_html_e('The Constant Contact plugin isn\'t connected.', 'constant-contact-api'); ?></h3>
+			<p><?php esc_html_e('Please log in to Constant Contact using the button below and your site will be connected.', 'constant-contact-api'); ?></p>
+			<p><a href="<?php echo $CTCT->oauth->getAuthorizationUrl(); ?>" class="button button-primary button-hero"><?php esc_html_e('Authorize the Plugin on ConstantContact.com', 'constant-contact-api'); ?></a></p>
 		</div>
 		<?php
 	}

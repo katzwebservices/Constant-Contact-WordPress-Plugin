@@ -45,7 +45,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * @return string "Events"
 	 */
 	protected function getNavTitle() {
-		return __('Events', 'ctct');
+		return __('Events', 'constant-contact-api');
 	}
 
 	function add() {}
@@ -113,7 +113,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 				$events = ${$_GET['status']};
 			}
 
-			$this->make_table($events, __('Events', 'ctct'));
+			$this->make_table($events, __('Events', 'constant-contact-api'));
 			?>
 			<?php
 		}
@@ -169,10 +169,10 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 	protected function getTitle($value = '') {
 
-		$title = __('Events', 'ctct');
+		$title = __('Events', 'constant-contact-api');
 
 		if(empty($value) && $this->isEdit() || $value == 'edit') {
-			$title = __("Edit Event", 'ctct');
+			$title = __("Edit Event", 'constant-contact-api');
 		}
 
 		if(empty($value) && $this->isSingle() || $value == 'single') {
@@ -182,15 +182,15 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 			if( is_object( $event ) && ! empty( $event->title ) ) {
 				/** translators: %s is the campaign name, %d is the list ID */
-				$title = sprintf( __( 'Event: "%s"', 'ctct' ), esc_html( $event->title ) );
+				$title = sprintf( __( 'Event: "%s"', 'constant-contact-api' ), esc_html( $event->title ) );
 			} else {
 				/** translators: %d is the campaign ID */
-				$title = sprintf( __( 'Event #%s', 'ctct' ), $id );
+				$title = sprintf( __( 'Event #%s', 'constant-contact-api' ), $id );
 			}
 		}
 
 		if( $this->isNested() && $value === '' ) {
-			$title = __('Event Registrant', 'ctct');
+			$title = __('Event Registrant', 'constant-contact-api');
 		}
 
 		return $title;
@@ -246,7 +246,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			'sidebar' => false,
 			'mobile' => true,
 			'class' => 'cc_event',
-			'no_events_text' => __('There are no active events.', 'ctct'),
+			'no_events_text' => __('There are no active events.', 'constant-contact-api'),
 		), $args);
 
 		foreach($settings as $key => $arg) {
@@ -288,7 +288,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * Add the WP Admin dashboard widget with upcoming events details
 	 */
 	function dashboard_setup() {
-		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot', 'ctct'), array( $this, 'events_dashboard') );
+		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot', 'constant-contact-api'), array( $this, 'events_dashboard') );
 	}
 
 	/**
@@ -307,7 +307,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 
 		$hidden = get_hidden_meta_boxes( 'dashboard' );
 		if( in_array( 'constant_contact_events_dashboard', $hidden ) ) {
-			esc_html_e( 'The widget is hidden. Un-hide the widget by going to the top of the page, clicking "Screen Options", then checking the "EventSpot" checkbox. Once you have done that, refresh the page to view this widget.', 'ctct' );
+			esc_html_e( 'The widget is hidden. Un-hide the widget by going to the top of the page, clicking "Screen Options", then checking the "EventSpot" checkbox. Once you have done that, refresh the page to view this widget.', 'constant-contact-api' );
 			return;
 		}
 
@@ -319,19 +319,19 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			$draft = wp_list_filter( $events, array( 'status' => 'DRAFT' ) );
 
 			if ( ! empty( $active ) ) {
-				$this->dashboard_make_table( __( 'Active Events', 'ctct' ), $active );
+				$this->dashboard_make_table( __( 'Active Events', 'constant-contact-api' ), $active );
 			}
 			if ( ! empty( $draft ) ) {
-				$this->dashboard_make_table( __( 'Draft Events', 'ctct' ), $draft );
+				$this->dashboard_make_table( __( 'Draft Events', 'constant-contact-api' ), $draft );
 			}
 			?>
 			<p class="textright">
-				<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=constant-contact-events' ) ); ?>"><?php _e( 'View All Events', 'ctct' ); ?></a>
+				<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=constant-contact-events' ) ); ?>"><?php _e( 'View All Events', 'constant-contact-api' ); ?></a>
 			</p>
 			<?php
 		} else {
 	?>
-		<p><?php _e(sprintf("You don't have any active or draft events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://katz.si/4o" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api'); ?></p>
+		<p><?php _e(sprintf("You don't have any active or draft events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://katz.si/4o" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api', 'constant-contact-api'); ?></p>
 	<?php
 		}
 		return true;

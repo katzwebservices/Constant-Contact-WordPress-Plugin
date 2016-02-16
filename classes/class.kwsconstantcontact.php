@@ -48,7 +48,7 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd', 'constant-contact-api' ), '1.6' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd', 'constant-contact-api' ), '1.6' );
 	}
 
 
@@ -264,7 +264,7 @@ final class KWSConstantContact extends ConstantContact {
 
             		$action .= ' Failed';
             		do_action('ctct_error', 'The contact has opted out; cannot add or update.', $existingContact );
-            		$returnContact = new WP_Error('optout', __('You have opted out of our newsletters and cannot re-subscribe.') );
+            		$returnContact = new WP_Error('optout', __('You have opted out of our newsletters and cannot re-subscribe.', 'constant-contact-api') );
 
             	} else {
 
@@ -313,7 +313,7 @@ final class KWSConstantContact extends ConstantContact {
 	    }
 
 		if( empty( $contact->lists ) ) {
-			return new WP_Error('nolists', __('A contact cannot be added without lists.', 'ctct') );
+			return new WP_Error('nolists', __('A contact cannot be added without lists.', 'constant-contact-api') );
 		}
 
 		return $this->contactService->addContact($accessToken, $contact, $params);

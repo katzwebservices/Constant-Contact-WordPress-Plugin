@@ -25,7 +25,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 		);
 
         /* Create the widget. */
-        parent::__construct('CTCT_Form_Designer_Widget', __('Constant Contact Form Designer Widget', 'ctct'), $widget_options, array('width'=>690));
+        parent::__construct('CTCT_Form_Designer_Widget', __('Constant Contact Form Designer Widget', 'constant-contact-api'), $widget_options, array('width'=>690));
 
         add_action('wp_print_styles', array(&$this, 'print_styles'));
     }
@@ -69,9 +69,9 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 				   <p>The Form Designer is not working.</p>
 				   <p>Your form may not exist. The widget is trying to find a form with the ID "<code>%s</code>" (that should be a number!). Please visit your <a href="%s">Widgets page</a> and re-save the widget.</p>
 				   <p>Alternatively, this may be because of server configuration issues. Contact your web host and request that they "whitelist your domain for ModSecurity".</p>
-				  </div>', $instance['formid'], admin_url('widgets.php')));
+				  </div>', $instance['formid'], admin_url('widgets.php')), 'constant-contact-api');
 			} else {
-				_e('<!-- Form triggered error. Log in and refresh to see additional information. -->');
+				_e('<!-- Form triggered error. Log in and refresh to see additional information. -->', 'constant-contact-api');
 			}
 			return false;
 		}
@@ -138,7 +138,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 
 		$output = '';
 		$output .= '<select name="'.$this->get_field_name('formid').'" id="'.$this->get_field_id('formid').'">';
-		$output .= '<option value="">'.__('Select a Form Design', 'ctct').'</option>';
+		$output .= '<option value="">'.__('Select a Form Design', 'constant-contact-api').'</option>';
 
 		if(!empty($forms)) {
 			$previous_names = array();
@@ -174,7 +174,7 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 			'show_firstname' => 1,
 			'show_lastname' => 1,
 			'description' => false,
-			'title' => __('Sign Up for Our Newsletter', 'ctct'),
+			'title' => __('Sign Up for Our Newsletter', 'constant-contact-api'),
 			'list_selection_title' => 'Sign me up for:',
 			'list_selection_format' => 'checkbox',
 			'formid' => 0,
@@ -189,41 +189,41 @@ class CTCT_Form_Designer_Widget extends WP_Widget {
 	 */
 	if(!get_option('cc_form_design')) {
 	?>
-	<h2><?php _e("You're in the right spot, but&hellip;", 'ctct'); ?></h2>
-	<h3><?php echo sprintf(__('You must create a form on the <a href="%s">Form Design page</a> first.', 'ctct'), admin_url('admin.php?page=constant-contact-forms')); ?></h3>
-	<p class="description"><?php echo sprintf(__('This widget displays forms created on the <a href="%s">Form Design page</a>. Go there, create a form, then come back here.', 'ctct'), admin_url('admin.php?page=constant-contact-forms')); ?></p>
+	<h2><?php _e("You're in the right spot, but&hellip;", 'constant-contact-api'); ?></h2>
+	<h3><?php echo sprintf(__('You must create a form on the <a href="%s">Form Design page</a> first.', 'constant-contact-api'), admin_url('admin.php?page=constant-contact-forms')); ?></h3>
+	<p class="description"><?php echo sprintf(__('This widget displays forms created on the <a href="%s">Form Design page</a>. Go there, create a form, then come back here.', 'constant-contact-api'), admin_url('admin.php?page=constant-contact-forms')); ?></p>
 	<?php
 	return;
 	}
 	?>
-	<h3><?php _e('Signup Widget Settings', 'ctct'); ?></h3>
+	<h3><?php _e('Signup Widget Settings', 'constant-contact-api'); ?></h3>
 	<table class="form-table">
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Signup Widget Title', 'ctct'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('title');?>"><span><?php _e('Signup Widget Title', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title');?>" value="<?php echo $title; ?>" size="50" />
-			<p class="description"><?php _e('The title text for the this widget.', 'ctct'); ?></p>
+			<p class="description"><?php _e('The title text for the this widget.', 'constant-contact-api'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Signup Widget Description', 'ctct'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('description');?>"><span><?php _e('Signup Widget Description', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
 			<textarea class="widefat" name="<?php echo $this->get_field_name('description');?>" id="<?php echo $this->get_field_id('description');?>" cols="50" rows="4"><?php echo $description; ?></textarea>
-			<p class="description"><?php _e('The description text displayed in the sidebar widget before the form. HTML allowed. Paragraphs will be added automatically like in posts.', 'ctct'); ?></p>
+			<p class="description"><?php _e('The description text displayed in the sidebar widget before the form. HTML allowed. Paragraphs will be added automatically like in posts.', 'constant-contact-api'); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('formid');?>"><span><?php _e('Form Fields &amp; Design', 'ctct'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('formid');?>"><span><?php _e('Form Fields &amp; Design', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
 			<?php echo $this->get_form_list_select($instance); ?>
-			<p class="description"><?php echo sprintf(__('Create your form on the <a href="%s">Form Design page</a>, then select it here.', 'ctct'), admin_url('admin.php?page=constant-contact-forms')); ?></p>
+			<p class="description"><?php echo sprintf(__('Create your form on the <a href="%s">Form Design page</a>, then select it here.', 'constant-contact-api'), admin_url('admin.php?page=constant-contact-forms')); ?></p>
 			</td>
 		</tr>
 		<tr valign="top">
-			<th scope="row"><p><label for="<?php echo $this->get_field_id('redirect_url');?>"><span><?php _e('Signup Widget Thanks Page', 'ctct'); ?></span></label></p></th>
+			<th scope="row"><p><label for="<?php echo $this->get_field_id('redirect_url');?>"><span><?php _e('Signup Widget Thanks Page', 'constant-contact-api'); ?></span></label></p></th>
 			<td>
 			<input type="text" class="widefat code" name="<?php echo $this->get_field_name('redirect_url');?>"  id="<?php echo $this->get_field_id('redirect_url');?>" value="<?php echo $this->get_value('redirect_url', $instance); ?>" size="50" />
-			<p class="description"><?php _e('Enter a url above to redirect new registrants to a thank you page upon successfully submitting the signup form. You can use either the full URL, including `http://`, or you can use a relative path on this site, such as `/post-name/`. Leave this blank for no redirection (page will reload with success message inside widget).', 'ctct'); ?></p>
+			<p class="description"><?php _e('Enter a url above to redirect new registrants to a thank you page upon successfully submitting the signup form. You can use either the full URL, including `http://`, or you can use a relative path on this site, such as `/post-name/`. Leave this blank for no redirection (page will reload with success message inside widget).', 'constant-contact-api'); ?></p>
 			</td>
 		</tr>
 	</table>

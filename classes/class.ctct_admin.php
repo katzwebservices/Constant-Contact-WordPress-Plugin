@@ -37,7 +37,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 
 	function add_menu() {
 		// create new top-level menu
-		add_menu_page(__('Constant Contact API', 'ctct'), __('Constant Contact', 'ctct'), 'manage_options', 'constant-contact-api', array(&$this, 'page'), CTCT_FILE_URL.'images/admin/constant-contact-admin-icon.png');
+		add_menu_page(__('Constant Contact API', 'constant-contact-api'), __('Constant Contact', 'constant-contact-api'), 'manage_options', 'constant-contact-api', array(&$this, 'page'), CTCT_FILE_URL.'images/admin/constant-contact-admin-icon.png');
 	}
 
 	function addActions() {

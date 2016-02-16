@@ -2,15 +2,15 @@
 	<table class="wp-list-table widefat striped ctct_table stuffbox">
 		<thead>
 			<tr>
-				<th class="manage-column column-primary"><?php esc_html_e('Event Name', 'ctct'); ?></th>
-				<th class="manage-column column-tags"><?php esc_html_e('# Registered', 'ctct' ); ?></th>
+				<th class="manage-column column-primary"><?php esc_html_e('Event Name', 'constant-contact-api'); ?></th>
+				<th class="manage-column column-tags"><?php esc_html_e('# Registered', 'constant-contact-api' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
 			if(empty($events)) {?>
 				<tr><td colspan="6">
-				<h3><?php esc_html_e('No events found.'); ?></h3>
+				<h3><?php esc_html_e('No events found.', 'constant-contact-api'); ?></h3>
 				</td></tr></table>
 			<?php
 				return;

@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 								'https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin',
 								'Katz Web Services, Inc.',
 								'http://katz.co',
-							    'ctct',
+							    'constant-contact-api',
 							    '/languages',
 							    'GPLv2 or later',
 							    'http://www.gnu.org/licenses/gpl-2.0.html'

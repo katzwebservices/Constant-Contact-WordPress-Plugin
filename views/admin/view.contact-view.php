@@ -29,8 +29,8 @@
 
 <table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="manage-column column-title"><?php _e('Name', 'ctct'); ?></th>
-        <th scope="col" class="manage-column column-title"><?php _e('Data', 'ctct'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Name', 'constant-contact-api'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Data', 'constant-contact-api'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -57,11 +57,11 @@
                     break;
                 case 'addresses':
                     if($personal = $Contact->get('personal_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'ctct'), $personal);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'constant-contact-api'), $personal);
                     }
 
                     if($business = $Contact->get('business_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'ctct'), $business);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'constant-contact-api'), $business);
                     }
                     break;
                 case 'email_addresses':
@@ -85,7 +85,7 @@
                     break;
             }
         } else if( is_bool( $value ) ) {
-            $html .= $value ? esc_html__('Yes', 'ctct') : esc_html__('No', 'ctct');
+            $html .= $value ? esc_html__('Yes', 'constant-contact-api') : esc_html__('No', 'constant-contact-api');
         } else {
             $html .= sprintf('<span%s>%s</span></td>', ($Contact->is_editable($key) ? ' class="editable" data-name="'.$key.'"' : ' class="not-editable"'), $Contact->get($key));
         }

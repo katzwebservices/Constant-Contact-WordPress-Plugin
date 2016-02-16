@@ -28,10 +28,10 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 	protected function getTitle( $type = '' ) {
 
-		$title = __( 'Campaigns', 'ctct' );
+		$title = __( 'Campaigns', 'constant-contact-api' );
 
 		if ( empty( $type ) && $this->isEdit() || $type == 'edit' ) {
-			$title = __('Edit Campaign', 'ctct');
+			$title = __('Edit Campaign', 'constant-contact-api');
 		} elseif ( ( $this->isSingle() && empty( $type ) ) || $type === 'single' ) {
 
 			$id = intval( $_GET['view'] );
@@ -39,10 +39,10 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 			if( is_object( $emailCampaign ) && ! empty( $emailCampaign->name ) ) {
 				/** translators: %s is the campaign name, %d is the list ID */
-				$title = sprintf( __( 'Campaign: "%s"', 'ctct' ), esc_html( $emailCampaign->name ) );
+				$title = sprintf( __( 'Campaign: "%s"', 'constant-contact-api' ), esc_html( $emailCampaign->name ) );
 			} else {
 				/** translators: %d is the campaign ID */
-				$title = sprintf( __( 'Campaign #%s', 'ctct' ), $id );
+				$title = sprintf( __( 'Campaign #%s', 'constant-contact-api' ), $id );
 			}
 		}
 
@@ -64,7 +64,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		$id = intval( @$_GET['edit'] );
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a Campaign to edit', 'ctct' );
+			esc_html_e( 'You have not specified a Campaign to edit', 'constant-contact-api' );
 
 			return;
 		}
@@ -95,7 +95,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		$id = isset( $_GET['view'] ) ? intval( $_GET['view'] ) : 0;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a Campaign to view', 'ctct' );
+			esc_html_e( 'You have not specified a Campaign to view', 'constant-contact-api' );
 
 			return;
 		}

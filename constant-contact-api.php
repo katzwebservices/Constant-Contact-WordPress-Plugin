@@ -6,7 +6,7 @@ Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">
 Author: 			Katz Web Services, Inc.
 Version: 			3.1.13
 Author URI: 		http://katz.co
-Text Domain: 		ctct
+Text Domain: 		constant-contact-api
 Domain Path: 		/languages
 License:           	GPLv2 or later
 License URI: 		http://www.gnu.org/licenses/gpl-2.0.html

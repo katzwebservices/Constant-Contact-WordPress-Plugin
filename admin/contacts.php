@@ -28,20 +28,20 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 	 */
 	protected function getTitle( $value = '' ) {
 		if ( empty( $value ) && $this->isEdit() || $value == 'edit' ) {
-			return __( "Edit Contact", 'ctct' );
+			return __( "Edit Contact", 'constant-contact-api' );
 		}
 		if ( empty( $value ) && $this->isSingle() || $value == 'single' ) {
-			return __( 'Contact', 'ctct' );
+			return __( 'Contact', 'constant-contact-api' );
 		}
 		if ( empty( $value ) && $this->isAdd() || $value == 'add' ) {
-			return __( 'Add a Contact', 'ctct' );
+			return __( 'Add a Contact', 'constant-contact-api' );
 		}
 
-		return __( 'Contacts', 'ctct' );
+		return __( 'Contacts', 'constant-contact-api' );
 	}
 
 	protected function getNavTitle() {
-		return __( 'Contacts', 'ctct' );
+		return __( 'Contacts', 'constant-contact-api' );
 	}
 
 	protected function add() {
@@ -93,7 +93,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 	protected function edit() {
 
 		if ( empty( $this->id ) ) {
-			esc_html_e( 'You have not specified a Contact to edit', 'ctct' );
+			esc_html_e( 'You have not specified a Contact to edit', 'constant-contact-api' );
 
 			return;
 		}
@@ -116,7 +116,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 		$id = $this->id;
 
 		if ( empty( $id ) ) {
-			esc_html_e( 'You have not specified a Contact to view', 'ctct' );
+			esc_html_e( 'You have not specified a Contact to view', 'constant-contact-api' );
 
 			return;
 		}
@@ -162,12 +162,12 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 			$edit_url = add_query_arg( 'wp_http_referer', urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ), get_edit_user_link( $user->ID ) );
 
-			$edit_link = sprintf( '<a href="%s">%s</a>', esc_url( $edit_url ), esc_html__('View their profile', 'ctct' ) );
+			$edit_link = sprintf( '<a href="%s">%s</a>', esc_url( $edit_url ), esc_html__('View their profile', 'constant-contact-api' ) );
 
 			$first_name = $Contact->get( 'first_name' );
 
 			/** translators: %s is a link to "View their profile" */
-			$user_details_text = sprintf( esc_html__('%s is a user on this site. %s.', 'ctct'), $first_name, $edit_link );
+			$user_details_text = sprintf( esc_html__('%s is a user on this site. %s.', 'constant-contact-api'), $first_name, $edit_link );
 
 			$output = '<div class="user-details"><h3>' . $user_details_text . '</h3></div>';
 		}
@@ -196,11 +196,11 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 
 		kws_print_subsub( 'status', array(
-			array( 'val' => '', 'text' => __('Recently Updated', 'ctct') ),
-			array( 'val' => 'ACTIVE', 'text' => __('Active', 'ctct') ),
-			array( 'val' => 'UNCONFIRMED', 'text' => __('Unconfirmed', 'ctct') ),
-			array( 'val' => 'OPTOUT', 'text' => __('Opt-Out', 'ctct') ),
-			array( 'val' => 'REMOVED', 'text' => __('Removed', 'ctct') ),
+			array( 'val' => '', 'text' => __('Recently Updated', 'constant-contact-api') ),
+			array( 'val' => 'ACTIVE', 'text' => __('Active', 'constant-contact-api') ),
+			array( 'val' => 'UNCONFIRMED', 'text' => __('Unconfirmed', 'constant-contact-api') ),
+			array( 'val' => 'OPTOUT', 'text' => __('Opt-Out', 'constant-contact-api') ),
+			array( 'val' => 'REMOVED', 'text' => __('Removed', 'constant-contact-api') ),
 		) );
 
 
