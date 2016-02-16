@@ -14,7 +14,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 	protected function single() {}
 	protected function processForms() {
 		if(isset($_GET['error']) && isset($_GET['error_description'])) {
-			$this->errors[] = new WP_Error($_GET['error'], $_GET['error_description']);
+			$this->errors[] = new WP_Error( esc_attr( $_GET['error'] ), $_GET['error_description']);
 		}
 		if(isset($_GET['de-authenticate']) && wp_verify_nonce( $_GET['de-authenticate'], 'de-authenticate' )) {
 			$this->oauth->deleteToken();

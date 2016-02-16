@@ -12,12 +12,14 @@
 
 <div class="clear component-summary"><?php
     echo kws_generate_tracking_summary_report( $Campaign->get('tracking_summary') );
-    ?></div>
+?></div>
 
 <table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
-    <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
-    <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
+        <tr>
+            <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
+            <th scope="col" class="column-title"><?php esc_html_e( 'Data', 'ctct'); ?></th>
+        </tr>
     </thead>
     <tbody>
     <?php
@@ -41,7 +43,7 @@
                 case 'sent_to_contact_lists':
                 case 'lists':
                     $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>
-                        <td>%s</td>', esc_html( $Campaign->getLabel($key) ), KWSContactList::outputHTML($Campaign->get($key), array('type' => 'ul')));
+                        <td>%s</td>', esc_html( $Campaign->getLabel($key) ), KWSContactList::outputHTML($value, array('type' => 'ul')));
                     break;
                 case 'click_through_details':
                     $clickThroughOutput = '';
@@ -49,7 +51,7 @@
                         $clickThroughOutput = '<ul class="ul-disc">';
                         foreach((array)$value as $click) {
                             $clickThroughOutput .= '<li>';
-                            $clickThroughOutput .= '<a class="block" href="'.$click->url.'">'.$click->url.'</a>';
+                            $clickThroughOutput .= '<a class="block" href="'.esc_js( $click->url ).'">'.esc_html( $click->url ).'</a>';
                             $clickThroughOutput .= '<strong>'.sprintf('%d %s', $click->click_count, _n(__('Click', 'ctct'), __('Clicks', 'ctct'), $click->click_count)).'</strong>';
                             $clickThroughOutput .= '</li>';
                         }
@@ -70,9 +72,6 @@
 
             // Make sure we're dealing with text
             if ( ! is_string( $Campaign->get( $key ) ) ) {
-                var_dump( $key );
-                var_dump( $value );
-                var_dump( $Campaign->get( $key ) );
                 continue;
             }
 
