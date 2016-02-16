@@ -294,6 +294,7 @@ abstract class CTCT_Admin_Page {
 		foreach ( $this->errors as $key => $error ) {
 
 			if ( is_wp_error( $error ) ) {
+				/** @var WP_Error $error */
 				$message = esc_html( $error->get_error_message() ) . ' (<code>error code: ' . esc_html( $error->get_error_code() ) . '</code>)';
 			} else {
 				continue;
