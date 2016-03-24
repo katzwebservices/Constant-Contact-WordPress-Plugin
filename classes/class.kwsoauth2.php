@@ -111,6 +111,13 @@ class KWSOAuth2 extends CtctOAuth2 {
 		$site_url = trailingslashit( get_bloginfo('url') );
 		$site_domain = str_replace(array('http://', 'https://'), '', $site_url );
 
+		/**
+		 * @filter `ctct_oauth_uri_base` Modify the URL used for the redirect.
+		 * @see https://ctct.katz.co/?view_source to view the currently running code
+		 * @since 4.0
+		 */
+		$redirect_uri_base = apply_filters( 'ctct_oauth_uri_base', '' . self::CTCT_OAUTH_URI . '' );
+
 		$url = add_query_arg(array(
 		    	'_wpnonce'	=> wp_create_nonce('ctct_oauth'),
 		    	'prefix'	=> is_ssl() ? 'https' : 'http',

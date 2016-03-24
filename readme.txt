@@ -97,6 +97,7 @@ __Developer Notes:__
 * Fixed: Removed deprecated `wp_clone()` function
 * Tweak: Improved error handling for errors returned by Constant Contact
 * Tweak: Refactor LESS files for admin CSS
+* Added: `ctct_oauth_uri_base` filter to use your own oAuth domain. See the filter inline docs for more information.
 * Updated: Phone number validation library
 
 = 3.1.12 on August 21 =
