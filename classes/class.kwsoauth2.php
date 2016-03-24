@@ -24,6 +24,15 @@ class KWSOAuth2 extends CtctOAuth2 {
 	private static $error;
 	private static $instance;
 
+	/** Option name for whether plugin has been configured */
+	const CTCT_CONFIGURED = 'ctct_configured';
+
+	/** Option name for storing the OAuth token in the DB */
+	const CTCT_TOKEN_RESPONSE = 'ctct_token_response';
+
+	/** Default URL for redirecting the OAuth request */
+	const CTCT_OAUTH_URI = 'https://ctct.katz.co/';
+
 	public function __construct($processResponse = true) {
 
 		$this->redirect_uri = $this->getRedirectUri(false);
@@ -119,11 +128,11 @@ class KWSOAuth2 extends CtctOAuth2 {
 		$redirect_uri_base = apply_filters( 'ctct_oauth_uri_base', '' . self::CTCT_OAUTH_URI . '' );
 
 		$url = add_query_arg(array(
-		    	'_wpnonce'	=> wp_create_nonce('ctct_oauth'),
+		    	'_wpnonce'	=> wp_create_nonce('ctct_oauth'), // This will be validated when receiving the oAuth token
 		    	'prefix'	=> is_ssl() ? 'https' : 'http',
 		    	'domain'	=> $site_domain,
 		    	'action'	=> 'ctct_oauth'
-		    ), 'http://ctct.katz.co/');
+		    ), trailingslashit( $redirect_uri_base ) );
 
 		return $urlencode ? urlencode($url) : $url;
 	}
@@ -138,12 +147,12 @@ class KWSOAuth2 extends CtctOAuth2 {
 	public function saveToken($token, $configured = false) {
 
 		if( !$configured ) {
-			delete_site_option( 'ctct_configured' );
+			delete_site_option( self::CTCT_CONFIGURED );
 		} else {
-			update_site_option( 'ctct_configured', 1 );
+			update_site_option( self::CTCT_CONFIGURED, 1 );
 		}
 
-		update_site_option( 'ctct_token_response', $token );
+		update_site_option( self::CTCT_TOKEN_RESPONSE , $token );
 	}
 
 	/**
@@ -155,7 +164,7 @@ class KWSOAuth2 extends CtctOAuth2 {
 	 */
 	public function getToken($key = 'access_token') {
 
-		$site_token = get_site_option( 'ctct_token_response', 'error_No_Token_In_Database');
+		$site_token = get_site_option( self::CTCT_TOKEN_RESPONSE, 'error_No_Token_In_Database');
 
 		$token = maybe_unserialize( $site_token );
 
@@ -179,8 +188,8 @@ class KWSOAuth2 extends CtctOAuth2 {
 
 	public function deleteToken() {
 		if( current_user_can('manage_options') ) {
-			delete_site_option( 'ctct_configured' );
-			delete_site_option( 'ctct_token_response' );
+			delete_site_option( self::CTCT_CONFIGURED );
+			delete_site_option( self::CTCT_TOKEN_RESPONSE );
 		}
 	}
 
