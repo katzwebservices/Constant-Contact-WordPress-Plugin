@@ -181,22 +181,19 @@ function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
  *
  * @return mixed|string|void
  */
-function constant_contact_create_location( $address = array(), $location = '' ) {
+function constant_contact_create_location( $address = array(), $location = '', $wpautop = false ) {
 
-	$address->location = $location;
+	if( '' !== $location ) {
+		$address->location = $location;
+	}
 
-	$address_template = <<<EOD
-{{location}}
+	$address_template = '{{location}}
 {{line1}}
+{{line2}}
+{{line3}}
 {{city}}, {{state_code}} {{postal_code}}
-{{country}}
-EOD;
-
-	/*if( !empty( $address_array['latitude'] ) && !empty( $address_array['longitude'] ) ) {
-		$address_array['map_link'] = sprintf( 'https://www.google.com/maps?q=loc:%s,%s', $address_array['latitude'], $address_array['longitude'] );
-		$address_template .= sprintf( "\n<a href='{{map_link}}' target='_blank'>%s</a>", __( 'Map this address', 'ctct' ) );
-	}*/
-
+{{country}}';
+	
 	$address_string = $address_template;
 
 	foreach( $address as $key => $value ) {
@@ -204,10 +201,34 @@ EOD;
 	}
 
 	$address_string = normalize_whitespace( $address_string );
-	$address_string = wpautop( $address_string );
 
+	if( $wpautop ) {
+		$address_string = wpautop( $address_string );
+	}
 
-	return apply_filters( 'constant_contact_create_location', rtrim( trim( $address_string ) ) );
+	return apply_filters( 'constant_contact_create_location', $address_string );
+}
+
+/**
+ * @param \Ctct\Components\EventSpot\Address|\Ctct\Components\Contacts\Address $address
+ * @param string $title
+ */
+function constant_contact_get_map_url_from_address( $address ) {
+
+	$address_array = array(
+		$address->line1,
+		$address->line2,
+		$address->line3,
+		$address->city,
+		$address->state,
+		$address->country
+	);
+
+	$address_string = implode( ', ', array_filter( $address_array ) );
+
+	$address_qs = urlencode( trim( rtrim( $address_string, ',' ) ) );
+
+	return sprintf( 'https://maps.google.com/maps?q=%s', $address_qs );
 }
 
 /**

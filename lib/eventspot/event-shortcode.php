@@ -80,24 +80,23 @@
 					';
 				}
 				if(!empty($CTCT->settings['location'])) {
-					$locationText = constant_contact_create_location($event->address);
-					if(!empty($locationText)) {
-						if(!empty($CTCT->settings['map'])) {
-							if(isset($event->location)) {
-								$new_location = '('.$event->location.')';
-							}
+					if(!empty($event->address)) {
 
-							$locationformap = $event->location;
-							$address_qs = str_replace("<br />", ", ", $locationformap.'<br />'.$new_location); //replacing <br/> with spaces
-							$address_qs = urlencode($address_qs);
+						$locationText = constant_contact_create_location($event->address, $event->location, false );
+
+						if(!empty($CTCT->settings['map'])) {
+
+							$address_url = constant_contact_get_map_url_from_address( $event->address );
 
 							/**
-							 * Modify the map link format. Passes the eventLocation object and the address query string.
+							 * Modify the map link format. Passes the event object and the address query string.
 							 */
-							$locationText .= "<br/>".apply_filters('cc_event_map_link', "<a href='http://maps.google.com/maps?q=$address_qs'".$target." class='cc_event_map_link'>".esc_html__('Map Location', 'constant-contact-api')."</a>", $event->eventLocation, $address_qs);
+							$locationText .= "\n".apply_filters('cc_event_map_link', "<a href='$address_url'".$target." class='cc_event_map_link'>".esc_html__('Map Location', 'constant-contact-api')."</a>", $event );
 						}
 
-					$locationOut = '
+						$locationText = wpautop( $locationText );
+
+						$locationOut = '
 					<dt class="cc_event_location cc_event_location_dt">'.apply_filters('cc_event_location_dt', esc_html__('Location: ', 'constant-contact-api')).'</dt>
 						<dd class="cc_event_location_dd cc_event_location">'.apply_filters('cc_event_location', $locationText).'</dd>';
 					}

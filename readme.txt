@@ -82,6 +82,8 @@ To install the plugin follow the steps below:
 * Added: Campaign summary to the top of single Campaign pages
 * EventSpot:
     - Embedding single events using the shortcode with `onlyactive` enabled now shows a "The "{title}" event is no longer active." message.
+    - Maps now link to Google Maps SSL
+    - Location output includes Address 2 and Address 3, if set
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
@@ -98,6 +100,8 @@ __Developer Notes:__
 * Fixed: Removed deprecated `wp_clone()` function
 * Tweak: Improved error handling for errors returned by Constant Contact
 * Tweak: Refactor LESS files for admin CSS
+* Modified: Second parameter passed to `cc_event_map_link` is now a `\Ctct\Components\EventSpot\EventSpot` object
+* Modified: Removed third parameter passed to `cc_event_map_link`
 * Added: `ctct_oauth_uri_base` filter to use your own oAuth domain. See the filter inline docs for more information.
 * Updated: Phone number validation library
 
