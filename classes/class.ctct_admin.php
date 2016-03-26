@@ -17,6 +17,7 @@ class CTCT_Admin extends CTCT_Admin_Page {
 			$this->errors[] = new WP_Error( esc_attr( $_GET['error'] ), $_GET['error_description']);
 		}
 		if(isset($_GET['de-authenticate']) && wp_verify_nonce( $_GET['de-authenticate'], 'de-authenticate' )) {
+			CTCT_Global::flush_transients();
 			$this->oauth->deleteToken();
 			delete_option('ccStats_ga_token');
 			delete_option('ccStats_ga_profile_id');

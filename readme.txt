@@ -91,6 +91,7 @@ To install the plugin follow the steps below:
 * Tweak: Add "Status" column to Campaigns table
 * Tweak: Only "Active" users now shown by default in Contacts
 * Tweak: Filtering Contacts by status now loads new request
+* Fixed: Delete caches when de-authenticating plugin
 * Tweak: Allow Draft events to be visible to administrators
 
 __Developer Notes:__
