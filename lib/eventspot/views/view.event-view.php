@@ -44,7 +44,9 @@ if( $Event && in_array( $Event->status, array( 'ACTIVE', 'DRAFT' ) ) && ! empty(
 		<?php if( !empty( $Event->registration_url ) ) { ?>
 		<tr><th scope="row" id="registrationurl" class="manage-column column-name"><?php _e('Registration URL', 'constant-contact-api'); ?></th><td><?php echo_if_not_empty($Event->registration_url, '', '<a href="' . esc_url( $Event->registration_url ) . '">' . $Event->registration_url . '</a>'); ?></td></tr>
 		<?php } ?>
+		<?php if( !empty( $Event->twitter_hash_tag ) ) { ?>
 		<tr class="alt"><th scope="row" id="location" class="manage-column column-name"><?php _e('Twitter Hashtag', 'constant-contact-api'); ?></th><td><?php printf( '<a href="https://twitter.com/hashtag/%s">%s</a>', str_replace( array( '#', '%23' ), '', $Event->twitter_hash_tag ), $Event->twitter_hash_tag ); ?></td></tr>
+		<?php } ?>
 		<tr class="alt"><th scope="row" id="location" class="manage-column column-name"><?php _e('Location', 'constant-contact-api'); ?></th><td><?php  echo constant_contact_create_location( $Event->address, $Event->location ); ?></td></tr>
 	</tbody>
 </table>
