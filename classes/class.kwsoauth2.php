@@ -40,7 +40,7 @@ class KWSOAuth2 extends CtctOAuth2 {
 		parent::__construct(CTCT_APIKEY, CTCT_APISECRET, $this->redirect_uri );
 
 		if($processResponse) {
-			$this->processResponse();
+			self::processResponse();
 		}
 	}
 
