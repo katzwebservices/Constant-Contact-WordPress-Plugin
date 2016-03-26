@@ -20,11 +20,17 @@
 			$startOut = $descriptionOut = $dateOut = $calendarOut = $locationOut = $titleOut = $endOut = '';
 
 
+
 			if( empty($event) || ( !empty( $CTCT->settings['onlyactive'] ) && $event->status !== 'ACTIVE' ) ) {
-				if( !empty( $CTCT->settings['id'] ) ) {
-					$output .= wpautop( sprintf( esc_html__('The event "%s" is no longer active.', 'constant-contact-api'), esc_html( $event->title ) ) );
+				// If the user is an admin and it's a draft event, allow them to see it.
+				if( 'DRAFT' === $event->status && current_user_can('manage_options') ) {
+					$output .= wpautop( '<strong>'.esc_html__( 'This is a draft event and is only visible because you are logged-in as an administrator.', 'constant-contact-api' ).'</strong>' );
+				} else {
+					if( !empty( $CTCT->settings['id'] ) ) {
+						$output .= wpautop( sprintf( esc_html__( 'The event "%s" is no longer active.', 'constant-contact-api' ), esc_html( $event->title ) ) );
+					}
+					continue;
 				}
-				continue;
 			}
 
 			$link = $event->registration_url;
