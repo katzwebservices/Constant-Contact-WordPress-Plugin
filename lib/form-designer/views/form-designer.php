@@ -72,7 +72,7 @@
 
 	?>
 
-	<form id="cc-form-settings" action="<?php echo admin_url( 'admin.php?page=constant-contact-forms'.$formURL ); ?>" method="post" enctype="multipart/form-data" class="hide-if-no-js">
+	<form id="cc-form-settings" action="<?php echo esc_url( admin_url( 'admin.php?page=constant-contact-forms'.$formURL ) ); ?>" method="post" enctype="multipart/form-data" class="hide-if-no-js">
 	<div id="nav-menus-frame">
 	<div id="menu-settings-column" class="metabox-holder">
 
@@ -87,6 +87,12 @@
 	<div id="menu-management-liquid">
 
 		<div id="menu-management">
+			<div id="examplewrapper">
+				<h3 class="legend"><?php _e('Form Preview', 'constant-contact-api'); ?></h3>
+				<div class="grabber"></div>
+
+				<a href="#" id="togglePreview"><?php _e('Toggle Preview', 'constant-contact-api'); ?><span class="spinner" id="ctct-loading-spinner" aria-live="assertive" aria-label="<?php esc_attr_e( 'Form is being updated.', 'constant-contact-api' ); ?>"></span></a>
+			</div><!-- end ExampleWrapper -->
 			<div class="menu-edit">
 				<div id="form-fields">
 					<div id="nav-menu-header">
@@ -100,7 +106,7 @@
 
 						<div class="major-publishing-actions">
 							<label class="menu-name-label howto open-label" for="menu-name">
-								<span><?php esc_html_e('Form Name', 'constant-contact-api'). constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), false ); ?></span>
+								<span><?php esc_html_e('Form Name', 'constant-contact-api'); constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), true ); ?></span>
 
 								<?php $title = esc_attr__('Enter form name here', 'constant-contact-api'); ?>
 								<input name="form-name" id="menu-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
@@ -119,12 +125,6 @@
 								cc_form_meta_box_formfields($form);
 							?>
 						</div><!-- /#post-body-content -->
-						<div id="examplewrapper">
-							<h3 class="legend"><?php _e('Form Preview', 'constant-contact-api'); ?></h3>
-							<div class="grabber"></div>
-
-							<a href="#" id="togglePreview"><?php _e('Toggle Preview', 'constant-contact-api'); ?></a>
-						</div><!-- end ExampleWrapper -->
 					</div><!-- /#post-body -->
 
 					<div id="nav-menu-footer">
