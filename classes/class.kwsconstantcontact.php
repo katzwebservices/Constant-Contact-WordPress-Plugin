@@ -103,6 +103,36 @@ final class KWSConstantContact extends ConstantContact {
 		return $this->configured;
 	}
 
+	/**
+	 * Check whether connected account has EventSpot
+	 *
+	 * @since 4.0
+	 *
+	 * @param bool $force True: Force refresh; false: use cached check value
+	 *
+	 * @return bool True: has eventspot; false: nope
+	 */
+	public function hasEvents( $force = false ) {
+
+		$has_events = get_site_transient( 'ctct_eventspot' );
+
+		if( false === $has_events || $force ) {
+
+			$check_has_events = $this->getEvents( CTCT_ACCESS_TOKEN, array( 'limit' => 1 ) );
+
+			if ( is_a( $check_has_events, 'Exception' ) || empty( $check_has_events->results ) ) {
+				$has_events = false;
+			} else {
+				$has_events = true;
+			}
+
+			// Check again every month or so
+			set_site_transient( 'ctct_eventspot', intval( $has_events ), DAY_IN_SECONDS * 30 );
+		}
+
+		return $has_events;
+	}
+
 	function getContacts( $accessToken, Array $params = array() ) {
 		return $this->contactService->getContacts( $accessToken, $params );
 	}

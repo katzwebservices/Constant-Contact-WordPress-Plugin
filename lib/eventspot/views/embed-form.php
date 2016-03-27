@@ -50,9 +50,9 @@
 
 		<?php
 
-			$has_events = KWSConstantContact::getInstance()->getEvents( CTCT_ACCESS_TOKEN, array('limit' => 1 ) );
+			$has_events = KWSConstantContact::getInstance()->hasEvents();
 
-			if( empty( $has_events->results ) ) {
+			if( ! $has_events ) {
 				include( EVENTSPOT_FILE_PATH . '/views/promo.php');
 			} else {
 				$events = KWSConstantContact::getInstance()->getAll('Events');
