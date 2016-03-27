@@ -8,7 +8,7 @@
 	extract($data);
 
 	if(isset($form)) {
-		$selector = '#cc_form_'.$form;
+		$selector = 'html body #cc_form_'.$form;
 	} else {
 		$selector = 'html body div.kws_form';
 	}
@@ -127,6 +127,8 @@ EOD;
 
 	$lpadbottom = round($lpad/3, 3);
 
+
+
 $css = <<<EOD
 
 .cc-input-type-hidden,
@@ -168,7 +170,7 @@ $css = <<<EOD
 
 {$selector} {
 	{$bgcss}
-	padding: {$paddingwidth}px!important;
+	padding: {$paddingwidth}px;
 	margin-bottom: 1em; margin-top: 1em;
 	{$formalign}
 	-webkit-background-clip: border-box;
