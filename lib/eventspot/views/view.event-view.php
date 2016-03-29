@@ -47,7 +47,7 @@ if( $Event && in_array( $Event->status, array( 'ACTIVE', 'DRAFT' ) ) && ! empty(
 		<?php if( !empty( $Event->twitter_hash_tag ) ) { ?>
 		<tr class="alt"><th scope="row" id="location" class="manage-column column-name"><?php _e('Twitter Hashtag', 'constant-contact-api'); ?></th><td><?php printf( '<a href="https://twitter.com/hashtag/%s">%s</a>', str_replace( array( '#', '%23' ), '', $Event->twitter_hash_tag ), $Event->twitter_hash_tag ); ?></td></tr>
 		<?php } ?>
-		<tr class="alt"><th scope="row" id="location" class="manage-column column-name"><?php _e('Location', 'constant-contact-api'); ?></th><td><?php  echo constant_contact_create_location( $Event->address, $Event->location ); ?></td></tr>
+		<tr class="alt"><th scope="row" id="location" class="manage-column column-name"><?php _e('Location', 'constant-contact-api'); ?></th><td><?php  echo constant_contact_create_location( $Event->address, $Event->location, true ); ?></td></tr>
 	</tbody>
 </table>
 <p class="submit"><a href="<?php echo remove_query_arg(array('view','refresh')); ?>" class="button-primary"><?php _e('Return to Events', 'constant-contact-api'); ?> <a href="<?php echo add_query_arg('refresh', 'event'); ?>" class="button-secondary alignright" title="<?php _e('Refresh Event data now.', 'constant-contact-api'); ?>"><?php _e('Refresh Event', 'constant-contact-api'); ?></a></a>
