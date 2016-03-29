@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 					paths: ["css/admin/less"]
 				},
 				files: {
+					'lib/form-designer/css/style.css': 'lib/form-designer/css/less/style.less',
 					'css/admin/ctct-admin.css': 'css/admin/less/ctct-admin.less',
 					'css/admin/ctct-admin-global.css': 'css/admin/less/ctct-admin-global.less',
 				}
@@ -60,8 +61,8 @@ module.exports = function(grunt) {
 				tasks: ['uglify:main','jshint']
 			},
 			less: {
-				files: ['css/admin/less/*.less'],
-				tasks: ['less:dist']
+				files: ['css/admin/less/*.less', 'lib/*/css/less/*.less'],
+				tasks: ['less']
 			}
 		},
 
