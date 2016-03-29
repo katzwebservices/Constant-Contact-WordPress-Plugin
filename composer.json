@@ -22,6 +22,7 @@
 	],
 	"require": {
 		"constantcontact/constantcontact": "dev-eventspot",
+		"guzzlehttp/guzzle": "^6.1.1",
 		"giggsey/libphonenumber-for-php": "~7.0",
 		"select2/select2": "dev-master",
 		"php": ">=5.3.0",
