@@ -14,11 +14,9 @@ function eventspot_add_form_button(){
 	global $pagenow;
 
     $is_post_edit_page = in_array($pagenow, array('post.php', 'page.php', 'page-new.php', 'post-new.php'));
-    if(!$is_post_edit_page)
+    if(!$is_post_edit_page) {
         return;
-
-    // do a version check for the new 3.5 UI
-    $version = get_bloginfo('version');
+    }
 
     // display button matching new UI
     echo '<style>
