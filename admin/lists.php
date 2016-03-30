@@ -86,7 +86,10 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 			return;
 		}
 
-		$Contacts = $this->cc->getAll( 'ContactsFromList', array( 'id' => $id ) );
+		$params = kws_get_contacts_view_params();
+		$params['id'] = $id;
+
+		$Contacts = $this->cc->getAll( 'ContactsFromList', $params );
 
 		include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
 

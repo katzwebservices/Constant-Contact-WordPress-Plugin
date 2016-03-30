@@ -209,18 +209,7 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 			array( 'val' => 'REMOVED', 'text' => __('Removed', 'constant-contact-api') ),
 		) );
 
-
-		$params = array();
-		$since = false;
-		if( isset( $_GET['status'] ) ) {
-			$params['status'] = esc_attr( $_GET['status'] );
-		} else {
-			$since = '-1 month';
-		}
-		$since = isset( $_GET['modified_since'] ) ? esc_attr( $_GET['modified_since'] ) : $since;
-		if( $since = strtotime( $since ) ) {
-			$params['modified_since'] = date( 'c', $since );
-		}
+		$params = kws_get_contacts_view_params();
 
 		$Contacts = $this->cc->getAllContacts( $params );
 

@@ -154,9 +154,32 @@ function kws_print_subsub($key, $array) {
 
 	echo $output;
 }
+/**
+ * Get status and modified_since parameters for the current Contacts view
+ *
+ * @since 4.0
+ *
+ * @return array Array with `modified_since` and `status` params, if set
+ */
+function kws_get_contacts_view_params() {
+	$params = array();
+
+	if( isset( $_GET['status'] ) ) {
+		$params['status'] = esc_attr( $_GET['status'] );
+	}
+
+	$since = ! empty( $_GET['modified_since'] ) ? esc_attr( $_GET['modified_since'] ) : ( isset( $_GET['view'] ) ? false : '-1 month' );
+
+	if( $since && $since = strtotime( $since ) ) {
+		$params['modified_since'] = date( 'c', $since );
+	}
+
+	return $params;
+}
 
 function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
-	$modified_since = !empty( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( isset( $_GET['status'])  ? '' : $default );
+	$params = kws_get_contacts_view_params();
+	$modified_since = !empty( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( empty( $params ) ? '' : $default );
 	?>
 <form action="<?php echo admin_url('admin.php'); ?>" method="get">
 	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
