@@ -261,11 +261,9 @@ function constant_contact_get_map_url_from_address( $address ) {
  * @return string Table output of component variables and values
  */
 function ctct_generate_component_table( $Component, $recursive = 0 ) {
-
 	$class = ' ctct-component-level-'.$recursive;
 	$component_class_name = str_replace('\\', '-', strtolower( get_class( $Component ) ) );
 	$class .= ' '.sanitize_title( $component_class_name );
-
 	switch( $recursive ) {
 		case 0:
 			$class .= ' striped';
@@ -276,8 +274,6 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 		default:
 			$class .= ' ctct-light-border striped';
 	}
-
-	ob_start();
 	?>
 	<table class="ctct_table wp-list-table widefat <?php echo $class; ?>">
 		<tbody>
@@ -286,33 +282,30 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 			if( is_null( $value ) || in_array( $key, array( 'id' ) ) ) {
 				continue;
 			}
-
 			$label = ucwords( implode(' ', explode( '_', $key ) ) );
-
 			if( ! $recursive ) {
 				$label = '<h4>'.$label.'</h4>';
 			} else {
 				$label = '<strong>'.$label.'</strong>';
 			}
-
 			echo '<tr class="ctct-component-key-'.sanitize_title( $key ).'">';
 			echo '<th scope="row" style="vertical-align: top"><span>'.$label.'</span></th>';
 			echo '<td>';
 			if( is_a( $value, '\Ctct\Components\Component' ) ) {
-				echo ctct_generate_component_table( $value, $recursive + 1 );
+				ctct_display_component_item( $value, $recursive + 1 );
 			} elseif( is_array( $value ) ) {
 				foreach ( $value as $item ) {
 					if( is_null( $item ) ) {
 						continue;
 					}
-					if( is_a( $item, '\Ctct\Components\EventSpot\Address' ) || is_a( $item, '\Ctct\Components\Contacts\Address' ) ) {
-						echo constant_contact_create_location( $item );
-					} if( is_a( $item, '\Ctct\Components\Component' ) ) {
-						echo ctct_generate_component_table( $item, $recursive + 1 );
+					if( is_a( $item, '\Ctct\Components\Component' ) ) {
+						ctct_display_component_item( $item, $recursive + 1 );
 					} else {
 						echo '<p>'.$item.'</p>';
 					}
 				}
+			} elseif( in_array( $key, array( 'date', 'registration_date' ) ) ) {
+				echo date_i18n( sprintf( '%s \a\t %s', get_option('date_format'), get_option('time_format') ), strtotime( $value ), false );
 			} else {
 				echo $value;
 			}
@@ -323,8 +316,142 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 		</tbody>
 	</table>
 	<?php
+}
 
-	return ob_get_contents();
+/**
+ * Process displaying different components in different ways!
+ *
+ * @since 4.0
+ * @param $Component
+ * @param $recursive
+ * @return void
+ */
+function ctct_display_component_item( $Component, $recursive ) {
+
+	$class = get_class( $Component );
+
+	switch ( $class ) {
+		case '\Ctct\Components\EventSpot\Address':
+		case '\Ctct\Components\Contacts\Address':
+			echo constant_contact_create_location( $Component );
+			break;
+		case 'Ctct\Components\EventSpot\PaymentSummary':
+			ctct_display_payment_summary( $Component );
+			break;
+		case 'Ctct\Components\EventSpot\Registrant\RegistrantSection':
+			ctct_display_component_section( $Component );
+			break;
+		case 'Ctct\Components\EventSpot\Guest':
+
+			$guest_sections = sizeof( $Component->guest_section ) === 1 ? array( $Component->guest_section ) : $Component->guest_section;
+
+			/** @var Ctct\Components\EventSpot\Guest $Component */
+			foreach ( $guest_sections as $section ) {
+				ctct_display_component_section( $section );
+			}
+			break;
+		case '\Ctct\Components\Component':
+		case 'Ctct\Components\EventSpot\Registrant\RegistrantFee':
+		default:
+			ctct_generate_component_table( $Component, $recursive + 1 );
+			break;
+	}
+}
+
+/**
+ * @param Ctct\Components\EventSpot\PaymentSummary $Component
+ */
+function ctct_display_payment_summary( $Component ) {
+
+	if( empty( $Component->order ) || 'NA' === $Component->payment_status ) {
+		esc_html_e( 'No Payment Details' );
+		return;
+	}
+
+	$output = '<dl class="ctct-component-section">
+		<dt>' . esc_html__( 'Order ID' ) . '</dt><dd>' . esc_html( $Component->order->order_id ) . '</dd>
+		<dt>' . esc_html__( 'Order Date' ) . '</dt><dd>' . esc_html( date_i18n( get_option( 'date_format' ), strtotime( $Component->order->order_date ) ) ) . '</dd>
+		<dt>' . esc_html__( 'Payment Status' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_status ) ) ) . '</dd>
+		<dt>' . esc_html__( 'Payment Type' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_type ) ) ) . '</dd>
+	</dl>';
+
+	$event_amount_string = esc_html__( 'Event Cost' );
+	$payment_details_string = esc_html__( 'Payment Details' );
+	$fees_string            = esc_html__( 'Fees' );
+	$fee_string            = esc_html__( 'Fee Name' );
+	$name_string            = esc_html__( 'Registrant' );
+	$quantity_string        = esc_html__( 'Quantity' );
+	$amount_string          = esc_html__( 'Amount' );
+
+	$subtotal = 0;
+	$fees_output = "<table class='ctct_table widefat'><thead><tr><th>{$fee_string}</th><th>{$name_string}</th><th>{$quantity_string}</th><th>{$amount_string}</th></tr></thead><tbody>";
+	foreach ( $Component->order->fees as $fee ) {
+		$subtotal = $subtotal + $fee->amount;
+		$fees_output .= "<tr><th scope='row'>{$fee->type}</th><td>{$fee->name}</td><td>{$fee->quantity}</td><td>{$fee->amount}</td></tr>";
+	}
+	$fees_output .= '</tbody></table>';
+
+	$event_cost = number_format_i18n( ( $Component->order->total - $subtotal ), 2 );
+	$event_row = ( $event_cost < 0 ) ? '' : "<tr><th colspan='2'><strong>{$event_amount_string}</strong></th><td colspan='2' style='text-align: right'>{$event_cost}</td></tr>";
+	$subtotal   = number_format_i18n( $subtotal, 2 );
+
+	$output .= <<<EOD
+	<h3>{$payment_details_string}</h3>
+	<table class='ctct_table widefat'>
+		<thead>
+		</thead>
+		<tbody>
+			{$event_row}
+			<tr><th><strong>{$fees_string}</strong></th><td colspan='3' style='text-align: right'>{$subtotal}</td></tr>
+			<tr><td colspan='4'>$fees_output</td></tr>
+		</tbody>
+EOD;
+
+	$output .= "
+		<tfoot>";
+
+	if ( isset( $Component->promo_code ) ) {
+		$promocode_info         = $Component->promo_code->promo_code_info;
+		$total_discount         = number_format_i18n( $Component->promo_code->total_discount, 2 );
+		$discount_amount        = ( 'PERCENT' === $promocode_info->discount_type ) ? $promocode_info->discount_percent . '%' : $promocode_info->discount_amount;
+		$discount_amount_string = sprintf( __( '%%%d off' ), $discount_amount );
+		$discount_string        = __( 'Discounts:' );
+		$output .= "<tr><th scope='row'><strong>{$discount_string}</strong></th><td><code>{$promocode_info->code_name}</code> ({$discount_amount_string})</td><td colspan='2' style='text-align: right'>{$total_discount}</td></tr>";
+	}
+
+	$total_string = esc_html__( 'Total:', 'constant-contact-api' );
+	$total        = number_format_i18n( $Component->order->total, 2 );
+
+	$output .= "
+			<tr><th><strong>{$total_string}</strong></th><td colspan='3' style='text-align: right'>{$Component->order->currency_type} {$total}</td></tr>
+		</tfoot>
+	</table>";
+
+	echo $output;
+}
+
+/**
+ * Display "Section" details about a Registrant or a Guest
+ * @since 4.0
+ * @param Ctct\Components\EventSpot\Registrant\RegistrantSection|Ctct\Components\EventSpot\GuestSection $section
+ * @return void
+ */
+function ctct_display_component_section( $section ) {
+
+	echo '<h3>' . esc_html( $section->label ) . '</h3>';
+
+	$output = '<dl class="ctct-component-section">';
+
+	foreach ( $section->fields as $field ) {
+		$value = is_null( $field->values ) ? $field->value : implode( ', ', $field->values );
+		$label = $field->label;
+
+		$output .= '<dt>' . esc_html( $label ) . '</dt><dd>' . esc_html( $value ) . '</dd>';
+	}
+
+	$output .= '</dl>';
+
+	echo $output;
 }
 
 /**
