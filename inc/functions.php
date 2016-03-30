@@ -177,12 +177,17 @@ function kws_get_contacts_view_params() {
 	return $params;
 }
 
+/**
+ * Display a "Modified Since" dropdown for views where you want to filter by modified date
+ * @since 4.0
+ * @param string $label
+ * @param string $default
+ */
 function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
 	$params = kws_get_contacts_view_params();
 	$modified_since = !empty( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( empty( $params ) ? '' : $default );
 	?>
 <form action="<?php echo admin_url('admin.php'); ?>" method="get">
-	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
 	<label for="ctct_modified_since" class="screen-reader-text"><?php echo esc_html( $label ); ?></label>
 	<select name="modified_since" id="ctct_modified_since">
 		<option value="" <?php selected( empty( $modified_since ) ); ?>><?php esc_html_e('Date modified&hellip;', 'constant-contact-api' ); ?></option>
@@ -192,8 +197,10 @@ function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
 		<option value="-3 months"<?php selected( '-3 months', $modified_since, true ); ?>><?php esc_html_e('In the last 3 months', 'constant-contact-api' ); ?></option>
 		<option value="-1 year"<?php selected( '-1 year', $modified_since, true ); ?>><?php esc_html_e('In the last year', 'constant-contact-api' ); ?></option>
 	</select>
+	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
+	<?php if( isset( $_GET['view'] ) ) { ?><input type="hidden" name="view" value="<?php echo esc_attr( $_GET['view'] ); ?>" /><?php } ?>
 	<?php if( isset( $_GET['status'] ) ) { ?><input type="hidden" name="status" value="<?php echo esc_attr( $_GET['status'] ); ?>" /><?php } ?>
-	<input type="submit" class="button button-secondary button-small" value="Filter">
+	<input type="submit" class="button button-secondary button-small" value="<?php esc_attr_e('Filter'); ?>">
 </form>
 <?php
 }

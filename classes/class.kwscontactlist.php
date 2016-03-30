@@ -32,7 +32,7 @@ class KWSContactList extends ContactList {
 	 *
 	 * @param array $props - Associative array of initial properties to set
 	 *
-	 * @return Contact
+	 * @return KWSContactList
 	 */
 	public static function create( array $props ) {
 		$List = new KWSContactList( $props );

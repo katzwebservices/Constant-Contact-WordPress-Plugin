@@ -1,4 +1,4 @@
-=== Constant Contact for Wordpress ===
+=== Constant Contact for WordPress ===
 Contributors: katzwebdesign, katzwebservices
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
@@ -85,6 +85,13 @@ To install the plugin follow the steps below:
     - Embedding single events using the shortcode with `onlyactive` enabled now shows a "The "{title}" event is no longer active." message.
     - Maps now link to Google Maps SSL
     - Location output includes Address 2 and Address 3, if set
+    - Fixed: Added caching for if Constant Contact account has access to EventSpot
+* Form Designer:
+    - Responsive design fits better to all screen sizes
+    - Visual feedback when the form is being updated
+    - MUCH improved speed when designing a form
+    - No longer slows down when processing an update
+    - Change background, border, padding settings live
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
@@ -329,14 +336,15 @@ __Developer Notes:__
 
 == Frequently Asked Questions ==
 
-= The plugin Requires PHP 5.3 =
-__Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+= The plugin Requires PHP 5.5 =
+__Version 4.0 changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
-Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.3. 
+Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.5.
 
-Ask your host about upgrading your server to 5.3. If they say no, chances are you should find a new host; 5.3 has long been available.
+Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available.
 
 = Do I need a Constant Contact account for this plugin? =
+
 This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com/index.jsp).
 
 Constant Contact is a great email marketing company -- their rates are determined by the number of contacts in your list, not how many emails you send. This means you can send unlimited emails per month for one fixed rate! [Give it a test run](http://wordpress.constantcontact.com/features/signup.jsp).
