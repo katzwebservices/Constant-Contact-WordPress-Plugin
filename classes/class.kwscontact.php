@@ -18,7 +18,7 @@ class KWSContact extends Contact {
 	/**
 	 * The items of the Contact object that aren't writeable.
 	 *
-	 * @todo  remove Notes when avaiable again.
+	 * @todo  remove Notes when available again.
 	 * @var array
 	 */
 	private static $read_only = array(
@@ -473,11 +473,31 @@ class KWSContact extends Contact {
 
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
 				$key                        = strtolower( str_ireplace( 'personal_', '', $key ) );
-				$this->addresses[0]->{$key} = $value;
+
+				$address_key = 0;
+				foreach( $this->addresses as $index => $address ) {
+					if( 'PERSONAL' === $address->address_type ) {
+						$address_key = $index;
+					}
+				}
+
+				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]->address_type = 'PERSONAL';
 				break;
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
 				$key                        = strtolower( str_ireplace( 'business_', '', $key ) );
-				$this->addresses[1]->{$key} = $value;
+
+				$address_key = 1;
+				foreach( $this->addresses as $index => $address ) {
+					if( 'BUSINESS' === $address->address_type ) {
+						$address_key = $index;
+					}
+				}
+
+				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]->address_type = 'BUSINESS';
 				break;
 			case ( preg_match( '/^customfield([0-9]+)/ism', $key, $matches ) ? true : false ):
 				// First, check whether it already exists.
@@ -567,12 +587,21 @@ class KWSContact extends Contact {
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'personal_', '', $key ) );
 
-				return isset( $this->addresses[0] ) ? $this->addresses[0]->{$key} : '';
+				foreach( $this->addresses as $address ) {
+					if( 'PERSONAL' === $address->address_type ) {
+						return isset( $address->{$key} ) ? $address->{$key} : '';
+					}
+				}
+
 				break;
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'business_', '', $key ) );
 
-				return isset( $this->addresses[1] ) ? $this->addresses[1]->{$key} : '';
+				foreach( $this->addresses as $address ) {
+					if( 'BUSINESS' === $address->address_type ) {
+						return isset( $address->{$key} ) ? $address->{$key} : '';
+					}
+				}
 				break;
 			case ( preg_match( '/^customfield/ism', $key ) ? true : false ):
 				foreach ( (array) $this->custom_fields as $customfield ) {
