@@ -33,8 +33,8 @@ final class CTCT_Global {
 
 		if( $component_type ) {
 			$component_type = strtolower( $component_type );
-			$transient_name = $wpdb->prepare( "transient_ctct_%s", esc_sql( $component_type ) );
-			$transient_timeout_name = $wpdb->prepare( "transient_timeout_ctct_%s", esc_sql( $component_type ) );
+			$transient_name = sprintf( "transient_ctct_%s", $component_type );
+			$transient_timeout_name = sprintf( "transient_timeout_ctct_%s", $component_type );
 		}
 
 		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", "%{$transient_name}%", "%{$transient_timeout_name}%");
