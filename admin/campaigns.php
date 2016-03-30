@@ -101,10 +101,14 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		}
 
 		$CC_Campaign = $this->cc->getEmailCampaign( CTCT_ACCESS_TOKEN, $id );
-		$Campaign    = new KWSCampaign( $CC_Campaign );
 
-		include( CTCT_DIR_PATH . 'views/admin/view.campaign-view.php' );
+		if( $CC_Campaign instanceof Exception ) {
+			$this->show_exception( $CC_Campaign );
+		} else {
+			$Campaign = new KWSCampaign( $CC_Campaign );
 
+			include( CTCT_DIR_PATH . 'views/admin/view.campaign-view.php' );
+		}
 	}
 
 	protected function view() {
@@ -112,6 +116,11 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		$status = isset( $_GET['status'] ) ? $_GET['status'] : NULL;
 
 		$Campaigns = $this->cc->getAllEmailCampaigns( $status );
+
+		if( $Campaigns instanceof CtctException ) {
+			$this->show_exception( $Campaigns );
+			return;
+		}
 
 		kws_print_subsub( 'status', array(
 			array( 'val' => '', 'text' => 'All' ),

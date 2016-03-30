@@ -219,6 +219,14 @@ abstract class CTCT_Admin_Page {
 		}
 	}
 
+	/**
+	 * Print exceptions
+	 * @param \Ctct\Exceptions\CtctException $e
+	 */
+	protected function show_exception( $e ) {
+		echo '<div class="error inline"><h3>' . sprintf( esc_html__( 'There was an error displaying this content: %s', 'constant-contact-api' ), $e->getMessage() ) . '</h3></div>';
+	}
+
 	public function help_tabs( $tabs ) {
 		global $pagenow;
 

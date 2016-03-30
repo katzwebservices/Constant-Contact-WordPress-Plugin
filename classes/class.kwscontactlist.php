@@ -208,6 +208,11 @@ class KWSContactList extends ContactList {
 		$items_output = '';
 		foreach ( $items as &$item ) {
 
+			// Error was thrown
+			if( is_a( $item, 'Ctct\Exceptions\CtctException' ) ) {
+				continue;
+			}
+
 			// If include was specified, then we need to skip lists not included
 			if ( is_array( $passed_items ) && ( ! empty( $include ) && ! in_array( $item->id, $include ) ) || ( $item->status === 'HIDDEN' && ! $showhidden ) ) {
 				#continue;

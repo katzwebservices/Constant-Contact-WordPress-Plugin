@@ -94,7 +94,7 @@ final class KWSConstantContact extends ConstantContact {
 			$this->configured = 1;
 			do_action('ctct_debug', 'isConfigured: getContactByEmail succeeded. Adding configured option.' );
 			update_site_option( 'ctct_configured', 1 );
-		} catch(Exception $e) {
+		} catch( CtctException $e ) {
 			$this->configured = 0;
 			do_action('ctct_debug', 'isConfigured: getContactByEmail failed. Deleting configured option.' );
 			delete_site_option( 'ctct_configured' );
@@ -138,22 +138,27 @@ final class KWSConstantContact extends ConstantContact {
 	}
 
 	function getContact( $accessToken, $contactId ) {
-		return $this->contactService->getContact( $accessToken, $contactId );
+		try {
+			return $this->contactService->getContact( $accessToken, $contactId );
+		} catch( Exception $e ) {
+			return $e;
+		}
 	}
 
 	/**
 	 * Update contact details for a specific contact
 	 * @param string $accessToken - Constant Contact OAuth2 access token
 	 * @param Contact $contact - Contact to be updated
-	 * @param array $params - associative array of query parameters and values to append to the request.
-	 *      Allowed parameters include:
-	 *      action_by - Whether the contact is taking the action, or the account owner. Must be one of
-	 *                  ACTION_BY_OWNER or ACTION_BY_VISITOR
-	 * @return Contact
+	 * @param boolean $actionByContact - true if the update is being made by the owner of the email address
+	 * @return Contact|CtctException
 	 * @throws CtctException
 	 */
-	public function updateContact( $accessToken, Contact $contact, Array $params = array() ) {
-		return $this->contactService->updateContact( $accessToken, $contact );
+	public function updateContact( $accessToken, Contact $contact, $actionByContact = true ) {
+		try {
+			return $this->contactService->updateContact( $accessToken, $contact, $actionByContact );
+		} catch( Exception $e ) {
+			return $e;
+		}
 	}
 
 	/**
@@ -162,33 +167,46 @@ final class KWSConstantContact extends ConstantContact {
 	 * @param array $params - associative array of query parameters and values to append to the request.
 	 *      Allowed parameters include:
 	 *      modified_since - ISO-8601 formatted timestamp.
-	 * @return \Ctct\Components\Contacts\ContactList[]
+	 * @return \Ctct\Components\Contacts\ContactList[]|CtctException
 	 * @throws CtctException
 	 */
 	public function getLists( $accessToken, Array $params = array() ) {
-		return $this->listService->getLists( $accessToken, $params );
+		try {
+			return $this->listService->getLists( $accessToken, $params );
+		} catch( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
 	 * Get an individual contact list
 	 * @param $accessToken - Constant Contact OAuth2 access token
 	 * @param $listId - list id
-	 * @return \Ctct\Components\Contacts\ContactList
+	 * @return \Ctct\Components\Contacts\ContactList|CtctException
 	 * @throws CtctException
 	 */
 	public function getList( $accessToken, $listId ) {
-		return $this->listService->getList( $accessToken, $listId );
+
+		try {
+			$list = $this->listService->getList( $accessToken, $listId );
+			return $list;
+		} catch( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
 	 * Update a Contact List
 	 * @param string $accessToken - Constant Contact OAuth2 access token
 	 * @param \Ctct\Components\Contacts\ContactList $list - ContactList to be updated
-	 * @return \Ctct\Components\Contacts\ContactList
-	 * @throws CtctException
+	 * @return \Ctct\Components\Contacts\ContactList|CtctException
 	 */
 	public function updateList( $accessToken, $list ) {
-		return $this->listService->updateList( $accessToken, $list );
+		try {
+			return $this->listService->updateList( $accessToken, $list );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
@@ -199,45 +217,68 @@ final class KWSConstantContact extends ConstantContact {
 	 *      limit - Specifies the number of results displayed per page of output, from 1 - 500, default = 50.
 	 *      modified_since - ISO-8601 formatted timestamp.
 	 *      next - the next link returned from a previous paginated call. May only be used by itself.
-	 * @return ResultSet
+	 * @return ResultSet|CtctException
 	 * @throws CtctException
 	 */
 	public function getEmailCampaigns( $accessToken, Array $params = array() ) {
-		return $this->emailMarketingService->getCampaigns( $accessToken, $params );
+		try {
+			return $this->emailMarketingService->getCampaigns( $accessToken, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
 	 * Get campaign details for a specific campaign
 	 * @param string $accessToken - Constant Contact OAuth2 access token
 	 * @param int $campaignId - Valid campaign id
-	 * @return Campaign
-	 * @throws CtctException
+	 * @return Campaign|CtctException
 	 */
 	public function getEmailCampaign( $accessToken, $campaignId ) {
-		return $this->emailMarketingService->getCampaign( $accessToken, $campaignId );
+		try {
+			return $this->emailMarketingService->getCampaign( $accessToken, $campaignId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
 	 * @param string $accessToken
 	 * @param array $params
 	 *
-	 * @return ResultSet
-	 * @throws CtctException
+	 * @return ResultSet|CtctException
 	 */
 	public function getEvents( $accessToken, Array $params = array() ) {
-		return $this->eventService->getEvents( $accessToken, $params );
+		try {
+			return $this->eventService->getEvents( $accessToken, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	public function getEvent( $accessToken, $eventId ) {
-		return $this->eventService->getEvent( $accessToken, $eventId );
+		try {
+			return $this->eventService->getEvent( $accessToken, $eventId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	public function updateEvent( $accessToken, EventSpot $event ) {
-		return $this->eventService->updateEvent( $accessToken, $event );
+		try{
+			return $this->eventService->updateEvent( $accessToken, $event );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+
 	}
 
 	public function getEventRegistrant( $accessToken, $eventId, $registrantId ) {
-		return $this->eventService->getRegistrant( $accessToken, $eventId, $registrantId );
+		try {
+			return $this->eventService->getRegistrant( $accessToken, $eventId, $registrantId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	public function getEventRegistrants( $accessToken, $eventId, Array $params = array() ) {
@@ -249,7 +290,11 @@ final class KWSConstantContact extends ConstantContact {
 
 		unset( $params['id'] );
 
-		return $this->eventService->getRegistrants( $accessToken, $id, $params );
+		try {
+			return $this->eventService->getRegistrants( $accessToken, $id, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
@@ -278,7 +323,7 @@ final class KWSConstantContact extends ConstantContact {
 		            $action .= ' Succeeded';
 	            }
 
-			} catch(Exception $e) {
+			} catch( CtctException $e ) {
 				$returnContact = false;
 				$action .= ' Failed';
         		do_action('ctct_error', 'Creating Contact Exception', $e->getMessage() );
@@ -307,7 +352,7 @@ final class KWSConstantContact extends ConstantContact {
 					unset( $modifiedContact );
             	}
 
-        	} catch(Exception $e) {
+        	} catch( CtctException $e ) {
         		$returnContact = false;
         		$action .= ' Failed';
         		do_action('ctct_error', 'Updating Contact Exception', $e);
@@ -331,11 +376,6 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function addContact($accessToken, Contact $contact, $actionByVisitor = false)
 	{
-	    $params = array();
-	    if ($actionByVisitor == true) {
-	        $params['action_by'] = "ACTION_BY_VISITOR";
-	    }
-
 	    // If you have set an `id` or `status`, it
 	    // makes everything screwy.
 	    foreach(KWSContact::getReadOnly() as $key) {
@@ -346,7 +386,7 @@ final class KWSConstantContact extends ConstantContact {
 			return new WP_Error('nolists', __('A contact cannot be added without lists.', 'constant-contact-api') );
 		}
 
-		return $this->contactService->addContact($accessToken, $contact, $params);
+		return $this->contactService->addContact($accessToken, $contact, $actionByVisitor);
 	}
 
 	/**
@@ -465,14 +505,18 @@ final class KWSConstantContact extends ConstantContact {
 
 		if( !$fetch ) {
 
-			ob_start();
-			$fetch = $this->{"get{$type}"}( CTCT_ACCESS_TOKEN, $params );
-			$errors = ob_get_clean();
+			try {
+				ob_start();
+				$fetch  = $this->{"get{$type}"}( CTCT_ACCESS_TOKEN, $params );
+				$errors = ob_get_clean();
 
-			echo $errors;
+				echo $errors;
 
-			if( $cache_time ) {
-				set_transient( $cache_key, $fetch, $cache_time );
+				if ( $cache_time && ! $fetch instanceof Exception ) {
+					set_transient( $cache_key, $fetch, $cache_time );
+				}
+			} catch ( CtctException $e ) {
+				$fetch = $e;
 			}
 		}
 
@@ -480,7 +524,7 @@ final class KWSConstantContact extends ConstantContact {
 
 			$results = $fetch;
 
-		} else {
+		} elseif( $fetch && ! $fetch instanceof Exception ) {
 
 			// Append the result to the existing results array
 			foreach ( $fetch->results as $r ) {
@@ -532,15 +576,22 @@ final class KWSConstantContact extends ConstantContact {
      * Get contacts with a specified email eaddress
      * @param string $email - contact email address to search for
      * @param string $null - placeholder for PHP 5.4 Strict standards to be compatible with the overridden getContactByEmail method
-     * @return KWSContact|false If contact, KWSContact object; if none, false
+     * @return KWSContact|false|CtctException If contact, KWSContact object; if none, false. If account is not configured, CtctException
      */
     public function getContactByEmail($email, $null = null ) {
-		$contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
 
-        if(!empty($contact->results)) {
-        	return new KWSContact($contact->results[0]);
-        }
-        return false;
+	    try {
+
+	        $contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
+
+		    if(!empty($contact->results)) {
+		        return new KWSContact($contact->results[0]);
+		    }
+
+		    return false;
+	    } catch ( CtctException $e ) {
+		    return $e;
+	    }
     }
 
 	/**
@@ -554,8 +605,7 @@ final class KWSConstantContact extends ConstantContact {
 	 *      next - the next link returned from a previous paginated call. May only be used by itself.
 	 *      email - full email address string to restrict results by
 	 *      status - a contact status to filter results by. Must be one of ACTIVE, OPTOUT, REMOVED, UNCONFIRMED.
-	 * @return ResultSet
-	 * @throws CtctException
+	 * @return ResultSet|CtctException
 	 */
 	public function getContactsFromList($accessToken, $list, $param = null)
 	{
@@ -569,11 +619,20 @@ final class KWSConstantContact extends ConstantContact {
 			unset( $list['id'] );
 			$param = $list;
 		} else{
-			$listId = $this->getArgumentId($list, 'ContactList');
+			try {
+				$listId = $this->getArgumentId( $list, 'ContactList' );
+			} catch ( CtctException $e ) {
+				return $e;
+			}
 		}
 
 		$param = $this->determineParam($param);
-		return $this->contactService->getContactsFromList($accessToken, $listId, $param);
+		try {
+			$contacts = $this->contactService->getContactsFromList( $accessToken, $listId, $param );
+			return $contacts;
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**

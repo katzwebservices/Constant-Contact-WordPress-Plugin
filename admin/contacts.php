@@ -50,7 +50,11 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 		$Contact = new KWSContact( $data );
 
-		include( CTCT_DIR_PATH . 'views/admin/view.contact-addedit.php' );
+		if( $Contact instanceof Exception ) {
+			$this->show_exception( $Contact );
+		} else {
+			include( CTCT_DIR_PATH . 'views/admin/view.contact-addedit.php' );
+		}
 	}
 
 	protected function processForms() {
@@ -132,8 +136,10 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 		$Contact = $this->cc->getContact( CTCT_ACCESS_TOKEN, $id );
 
-		// The fetching of the contact failed.
-		if ( is_null( $Contact->id ) ) {
+		if( $Contact instanceof Exception ) {
+			$this->show_exception( $Contact );
+			return;
+		} elseif ( is_null( $Contact->id ) ) {
 			return;
 		}
 
