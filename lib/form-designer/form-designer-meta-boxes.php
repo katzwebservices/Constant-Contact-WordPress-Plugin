@@ -14,7 +14,7 @@ function cc_form_meta_box_actions($post, $metabox=array()) {
 
 				<h4 class="smallmarginbottom"><?php _e('Form ID:', 'constant-contact-api'); ?> <tt class="large"><?php _e($cc_form_selected_id, 'constant-contact-api'); ?></tt></h4>
 				<p class="howto">
-					<span><?php printf(__('To embed this form in a post or page, add the following code. %s', 'constant-contact-api'), '<input type="text" class="code widefat block select-text" readonly="readonly" value="'.esc_attr('[constantcontactapi formid="'.(int)$cc_form_selected_id.'"]').'" />' ); ?> <a href="#tab-panel-ctct-insert-form" rel="wp-help"><?php esc_html_e('Learn More', 'constant-contact-api'); ?></a>
+					<span><?php printf(__('To embed this form in a post or page, add the following code. %s', 'constant-contact-api'), '<input type="text" class="code widefat block select-text" readonly="readonly" value="'.esc_attr('[constantcontactapi formid="'.(int)$cc_form_selected_id.'"]').'" />' ); ?> <a href="#tab-panel-ctct-insert-form" rel="wp-help" class="block"><?php esc_html_e('Learn More', 'constant-contact-api'); ?></a>
 					</span>
 				</p>
 
