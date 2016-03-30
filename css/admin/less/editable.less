@@ -26,7 +26,12 @@
 	max-width: 100%;
 	width: auto;
 	position: relative;
+  }
 
+  // Add the pencil
+  .editable:hover,
+  .edit-in-progress,
+  .edit-in-progress:hover {
 	&:before {
 	  content: "\f464";
 	  display: inline-block;
@@ -40,9 +45,10 @@
 	  right: -5px;
 	  top: 50%;
 	  margin-top: -10px;
-	}
 
+	}
   }
+
 
   .edit-in-progress input {
 	margin-bottom: .5em;
