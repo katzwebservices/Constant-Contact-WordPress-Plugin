@@ -347,13 +347,13 @@ abstract class CTCT_Admin_Page {
 	private function get_page_heading() {
 
 		$breadcrumb = array();
+		$nested = $this->isNested();
 
 		if ( ! $this->isView() ) {
-			$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( array(
-					'view',
-					'edit',
-					'add'
-				) ) ) . '">' . $this->getNavTitle() . '</a>';
+			$remove_args = array( 'view', 'edit', 'add' );
+			if( $nested ) { $remove_args[] = $nested; }
+
+			$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( $remove_args ) ) . '">' . $this->getNavTitle() . '</a>';
 		}
 
 		if ( $this->isEdit() || $this->isNested() ) {
@@ -362,7 +362,6 @@ abstract class CTCT_Admin_Page {
 				$remove_args = array( 'edit' );
 			} else {
 				$add_args = array();
-				$nested = $this->isNested();
 				$remove_args = array( $nested );
 			}
 			$breadcrumb[] = '<a href="' . esc_url( add_query_arg( $add_args, remove_query_arg( $remove_args ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
