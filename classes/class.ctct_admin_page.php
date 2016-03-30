@@ -100,6 +100,7 @@ abstract class CTCT_Admin_Page {
 			'text'      => array(
 				'editable' => esc_js( __( 'Click to Edit', 'constant-contact-api' ) ),
 				'request_failed_heading' => __('The request failed.', 'constant-contact-api'),
+				'request_nothing_changed' => __('Nothing changed.', 'constant-contact-api'),
 
 				/** translators: {code} and {message} will be dynamically replaced with error details */
 				'request_error' => __( 'Error {code}: {message}', 'constant-contact-api'),
