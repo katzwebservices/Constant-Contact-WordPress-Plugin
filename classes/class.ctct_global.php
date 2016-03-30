@@ -22,11 +22,22 @@ final class CTCT_Global {
 	 *
 	 * This is a bit better for data security, as it were.
 	 *
+	 * @see CTCT_Admin_Page::$component
+	 * @param string $component_type Pass a compenent type to flush, like `Lists`.
 	 */
-	public static function flush_transients($token = array()) {
+	public static function flush_transients( $component_type = null ) {
 		global $wpdb;
 
-		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", '%transient_ctct%', '%transient_timeout_ctct%');
+		$transient_name = "transient_ctct";
+		$transient_timeout_name = "transient_timeout_ctct";
+
+		if( $component_type ) {
+			$component_type = strtolower( $component_type );
+			$transient_name = $wpdb->prepare( "transient_ctct_%s", esc_sql( $component_type ) );
+			$transient_timeout_name = $wpdb->prepare( "transient_timeout_ctct_%s", esc_sql( $component_type ) );
+		}
+
+		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", "%{$transient_name}%", "%{$transient_timeout_name}%");
 		$wpdb->query($query);
 
 		$query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}options WHERE `option_name` LIKE %s OR `option_name` LIKE %s", '%transient_cc%', '%transient_timeout_cc%');

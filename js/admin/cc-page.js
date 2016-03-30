@@ -191,22 +191,21 @@ jQuery(document).ready(function($) {
 		cancelOnBlur: true,
 		placeholder: CTCT.text.editable,
 		editInProgress: 'edit-in-progress',
-		save: function(event, data) {
+		save: function(event, data, widget ) {
 			var $that = $(this);
 
 			$that.removeClass("edit-in-progress").addClass('saving-in-progress');
 
-			var success = ctct_ajax(data, $that);
+			ctct_ajax(data, $that).done(function ( success ) {
 
-			if(success) {
-				$('*[data-name='+$that.data('name')+'][data-id='+$that.data('id')+']').not($that).html(data.value).each(function() {
-					$(this).effect("highlight", {color: '#e99e23'}, 3000);
-				});
-			}
+				$that.removeClass('saving-in-progress');
 
-			$(this).removeClass('saving-in-progress');
-
-			return success;
+				if(success) {
+					$that.effect("highlight", {color: '#e99e23'}, 3000);
+				} else {
+					$that.effect("highlight", {color: 'red'}, 3000);
+				}
+			});
 		}
 	});
 
@@ -230,44 +229,62 @@ jQuery(document).ready(function($) {
 		var field = $object.data('name') ? $object.data('name') : data.field;
 		var parent = $object.data('parent') ? $object.data('parent') : data.parent;
 
-		var response = $.ajax({
+
+		var result = $.Deferred();
+
+		$.ajax({
+			method: 'POST',
+			async: true,
+			isLocal: true,
+			timeout: 15000, // 15 seconds is way more time than should be necessary.
 			data: {
 				'action': 'ctct_ajax',
 				'_wpnonce': CTCT._wpnonce,
 				'value': data.value,
 				'id': id,
-				'async': true,
 				'component': CTCT.component,
 				'field': field,
-				'parent': parent,
-				'isLocal': true,
-				'type': 'POST'
+				'parent': parent
 			}
-		});
+		})
+		.done( function ( data, textStatus, jqXHR ) {
 
-		var responseText = $.parseJSON(response.responseText);
+			var message = CTCT.text.request_nothing_changed;
 
-		if(parseInt(responseText.code, 10) === 400) {
-			$object.effect("highlight", {color: 'red'}, 2000);
+			// Content has changed.
+			if( 'nocontent' !== textStatus ) {
+				var responseText = $.parseJSON( data );
+				message = responseText.message;
+			}
+
+			// Just a friendly note it went well.
+			alertify.log( message );
+
+			result.resolve( true );
+		})
+		.fail( function ( data, textStatus, jqXHR ) {
+
+			var responseText = $.parseJSON( data.responseText );
 
 			var error_template = '<h3>{heading}</h3><p>{error_message}</p>';
 
+			// If a CtctException, it's a message array. Otherwise, it's a string.
+			var message = ( typeof( responseText.message ) === 'string' ) ? responseText.message : responseText.message[0].error_message.replace(/^.*?:/ig, '');
 			var request_error = CTCT.text.request_error
 				.replace('{code}', responseText.code )
-				.replace('{message}', responseText.message[0].error_message.replace(/^.*?:/ig, '') );
+				.replace('{message}', message );
 
 			error_template = error_template
 				.replace('{heading}', CTCT.text.request_failed_heading )
 				.replace('{error_message}', request_error );
 
-			alertify.alert( error_template );
+			// A full modal showing it didn't work.
+			alertify.alert( error_template ).set('basic', true);
 
-			return false;
-		}
+			result.resolve( false );
+		});
 
-		alertify.log(responseText.message);
-
-		return true;
+		return result.promise();
 	}
 
 	// Set up support tooltips
