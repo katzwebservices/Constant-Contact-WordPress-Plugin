@@ -31,7 +31,7 @@ class KWSOAuth2 extends CtctOAuth2 {
 	const CTCT_TOKEN_RESPONSE = 'ctct_token_response';
 
 	/** Default URL for redirecting the OAuth request */
-	const CTCT_OAUTH_URI = 'https://ctct.katz.co/';
+	const CTCT_OAUTH_URI = 'http://ctct.katz.co/';
 
 	public function __construct($processResponse = true) {
 
