@@ -283,8 +283,7 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 		<tbody>
 		<?php
 		foreach ( $Component as $key => $value ) {
-
-			if( is_null( $value ) ) {
+			if( is_null( $value ) || in_array( $key, array( 'id' ) ) ) {
 				continue;
 			}
 
