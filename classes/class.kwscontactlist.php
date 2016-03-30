@@ -214,8 +214,8 @@ class KWSContactList extends ContactList {
 			}
 
 			// If include was specified, then we need to skip lists not included
-			if ( is_array( $passed_items ) && ( ! empty( $include ) && ! in_array( $item->id, $include ) ) || ( $item->status === 'HIDDEN' && ! $showhidden ) ) {
-				#continue;
+			if ( ! empty( $include ) && ! in_array( $item->id, $include ) && ! ( $item->status === 'HIDDEN' && ! $showhidden ) ) {
+				continue;
 			}
 
 			$item = new KWSContactList( $item );

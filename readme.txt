@@ -107,6 +107,7 @@ __Developer Notes:__
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
 * Fixed: Prevent logs from being written during Form Designer AJAX
 * Fixed: Removed deprecated `wp_clone()` function
+* Fixed: `include` attribute wasn't respected in `KWSContactList::outputHTML()`
 * Tweak: Improved error handling for errors returned by Constant Contact
 * Tweak: Refactor LESS files for admin CSS
 * Modified: Second parameter passed to `cc_event_map_link` is now a `\Ctct\Components\EventSpot\EventSpot` object
