@@ -35,7 +35,6 @@ class CTCT_Comment_Form_Signup {
 			$data['email'] = $current_user->data->user_email;
 		}
 
-		$data['email'] = rand(0,10000000).$data['email'];
 		$data['lists'] = self::get_lists();
 
 		// Is the checkbox set? If so, add/update user
