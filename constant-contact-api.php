@@ -103,7 +103,6 @@ final class WP_CTCT {
 
 	function setup() {
 
-		require_once CTCT_DIR_PATH.'vendor/katzwebservices/php-sdk/src/Ctct/autoload.php';
 		require_once CTCT_DIR_PATH.'vendor/autoload.php';
 
 		include_once CTCT_DIR_PATH.'classes/class.ctct_global.php';
