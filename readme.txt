@@ -104,6 +104,7 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
+* Removed: Phone number validation. The phone number validator library was silly big.
 * Tweak: Show list name in single List page
 * Tweak: Add "Status" column to Campaigns table
 * Tweak: Only "Active" users now shown by default in Contacts
