@@ -15,6 +15,12 @@ class CTCT_Form_Designer_Output {
 	private $settings = array();
 	private $form;
 	private $request;
+
+	/**
+	 * @var string 'html' or 'json'
+	 */
+	private $output_type = 'html';
+
 	static private $instance = NULL;
 
 	function __construct( $form = array() ) {
@@ -442,7 +448,9 @@ class CTCT_Form_Designer_Output {
 	        // Set up error display
 	        $error_output .= '<div id="constant-contact-signup-errors" class="error">';
 	        $error_output .= '<ul>';
-	        foreach ($errors as $error ) {
+
+		    /** @var WP_Error $error */
+		    foreach ($errors as $error ) {
 
 	        	$error_data = $error->get_error_data();
 	        	$error_label_for = '';
@@ -552,7 +560,7 @@ class CTCT_Form_Designer_Output {
 
 		$output = array(
 			'css' => $this->strip_whitespace( $this->processStyle() ),
-			'form' => $this->strip_whitespace( $this->processForm() )
+			'form' => $this->strip_whitespace( $this->processForm() ),
 		);
 
 		exit( json_encode( $output ) );
