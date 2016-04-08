@@ -62,9 +62,9 @@ final class WP_CTCT {
 			load_plugin_textdomain( 'ctct', false, dirname( plugin_basename( CTCT_FILE ) ) . '/languages/' );
 
 			/**
-			 * If the server doesn't support PHP 5.5, sorry, but you're outta luck.
+			 * If the server doesn't support PHP 5.4, sorry, but you're outta luck.
 			 */
-			if(version_compare(phpversion(), '5.5') <= 0) {
+			if(version_compare(phpversion(), '5.4') <= 0) {
 				include CTCT_DIR_PATH.'inc/incompatible.php';
 				return;
 			}

@@ -8,15 +8,15 @@
         </td>
         <td>
             <?php
-                if(version_compare(phpversion(), '5.3.0', '>')){
+                if(version_compare(phpversion(), '5.4.0', '>')){
                     ?>
-                    <i title="<?php printf(__('You are running a compatible PHP version (%s). This plugin requires version 5.3.0 or higher.', 'constant-contact-api'), phpversion()); ?>"  class="dashicons dashicons-yes"></i>
+                    <i title="<?php printf(__('You are running a compatible PHP version (%s). This plugin requires version 5.4.0 or higher.', 'constant-contact-api'), phpversion()); ?>"  class="dashicons dashicons-yes"></i>
                     <?php
                 }
                 else{
                     ?>
                     <i class="dashicons dashicons-no"></i>
-                    <span class="installation_item_message"><?php echo sprintf(__("The %s requires PHP 5.3 or above.", 'constant-contact-api'), $version_info['Name']); ?></span>
+                    <span class="installation_item_message"><?php echo sprintf(__("The %s requires PHP 5.4 or above.", 'constant-contact-api'), $version_info['Name']); ?></span>
                     <?php
                 }
             ?>
