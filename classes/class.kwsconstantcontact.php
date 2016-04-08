@@ -365,6 +365,58 @@ final class KWSConstantContact extends ConstantContact {
 	}
 
 	/**
+	 * Convert a CtctException into a WP_Error 
+	 *
+	 * `error_message` key gets converted
+	 * From: "#/addresses/0/city: Value exceeds maximum length of 50."
+	 * To: "Address (City): Value exceeds maximum length of 50."
+	 *
+	 * @param CtctException $exception
+	 *
+	 * @return WP_Error|WP_Error[]
+	 */
+	public static function convertException( CtctException $exception ) {
+
+		$code = $exception->getCode();
+		$errors = $exception->getErrors();
+
+		ob_start();
+		$error_messages = wp_list_pluck( $errors, 'error_message' );
+		ob_clean();
+
+		/**
+		 * Format: Hash, field ID (eg: custom fields) or field group id (eg: addresses), sub-field index, sub-field ID
+		 * `#/custom_fields/2/value: Value exceeds maximum length of 50.`
+		 *
+		 * Format: Hash, field ID
+		 * `#/home_phone: Value exceeds maximum length of 50.`
+		 */
+		$regex = "/^#\/((?P<field>[a-z_]+)(?:\/?(?P<index>\d)?\/?(?P<subfield>[a-z_0-9]+))?)\:(?P<message>.+)?/ism";
+
+		$wp_errors = array();
+
+		foreach ( $error_messages as $key => $error_message ) {
+			$message_prefix = '';
+			$error_code = $code.$key;
+
+			preg_match( $regex, $error_message, $matches );
+
+			if ( ! empty( $matches['field'] ) ) {
+				$message_prefix .= ctct_get_label_from_field_id( $matches['field'] );
+			}
+			if ( ! empty( $matches['subfield'] ) ) {
+				$message_prefix .= sprintf( ' (%s)', ctct_get_label_from_field_id( $matches['subfield'] ) );
+			}
+			
+			$message = sprintf( '%s: %s', trim( $message_prefix ), trim( $matches['message'] ) );
+
+			$wp_errors[] = new WP_Error( $matches[1], $message );
+		}
+
+		return ( 1 === sizeof( $wp_errors ) ) ? $wp_errors[0] : $wp_errors;
+	}
+
+	/**
 	 * Add a new contact to an account
 	 *
 	 * Clone of the addContact, but it unsets the readOnly items.
