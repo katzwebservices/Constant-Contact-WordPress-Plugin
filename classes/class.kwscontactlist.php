@@ -78,20 +78,7 @@ class KWSContactList extends ContactList {
 	 */
 	function getLabel( $key ) {
 
-		switch ( $key ) {
-			case 'id':
-				return 'ID';
-				break;
-			case 'email_addresses':
-				return 'Email Address';
-				break;
-		}
-
-		$key = ucwords( preg_replace( '/\_/ism', ' ', $key ) );
-		$key = preg_replace( '/Addr([0-9])/', __( 'Address $1', 'constant-contact-api' ), $key );
-		$key = preg_replace( '/Field([0-9])/', __( 'Field $1', 'constant-contact-api' ), $key );
-
-		return $key;
+		return ctct_get_label_from_field_id( $key );
 	}
 
 	function set( $key, $value ) {

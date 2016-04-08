@@ -73,7 +73,7 @@ function kws_generate_tracking_summary_report( $summary ) {
 
 		$output .= '
 			<dl class="'.$k.' summary-'.$i.'">
-                <dt>'.esc_html( ucwords(str_replace('_', ' ', $k)) ).'</dt>
+                <dt>'.esc_html( ctct_get_label_from_field_id( $k ) ).'</dt>
                 <dd>'.esc_html( $v ).'</dd>
             </dl>';
 		$i++;
@@ -262,6 +262,47 @@ function constant_contact_get_map_url_from_address( $address ) {
 }
 
 /**
+ * Convert field ids to upper-cased words
+ *
+ * email_address => Email Address
+ * home_phone => Home Phone
+ *
+ * @since 4.0
+ *
+ * @param $field_id
+ *
+ * @return string
+ */
+function ctct_get_label_from_field_id( $field_id ) {
+
+	switch( $field_id ) {
+		case 'id':
+			return __('ID');
+			break;
+		case 'email_addresses':
+			return __('Email Address');
+			break;
+		case 'addresses':
+		case 'line1':
+			return __('Address', 'constant-contact-api');
+			break;
+		case 'line2':
+			return __('Address Line 2', 'constant-contact-api');
+			break;
+		case 'line3':
+			return __('Address Line 3', 'constant-contact-api');
+			break;
+	}
+
+	$label = $field_id;
+	$label = ucwords( implode(' ', explode( '_', $label ) ) );
+	$label = preg_replace('/Addr([0-9])/', __('Address $1', 'constant-contact-api'), $label);
+	$label = preg_replace('/Field([0-9])/', __('Field $1', 'constant-contact-api'), $label);
+
+	return $label;
+}
+
+/**
  * Generate a HTML table for a component
  *
  * @param \Ctct\Components\Component $Component
@@ -289,7 +330,7 @@ function ctct_generate_component_table( $Component, $recursive = 0 ) {
 			if( is_null( $value ) || in_array( $key, array( 'id' ) ) ) {
 				continue;
 			}
-			$label = ucwords( implode(' ', explode( '_', $key ) ) );
+			$label = ctct_get_label_from_field_id( $key );
 			if( ! $recursive ) {
 				$label = '<h4>'.$label.'</h4>';
 			} else {

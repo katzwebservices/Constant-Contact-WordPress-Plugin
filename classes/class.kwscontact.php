@@ -419,30 +419,7 @@ class KWSContact extends Contact {
 	}
 
 	function getLabel( $key ) {
-
-		switch ( $key ) {
-			case 'id':
-				return __('ID', 'constant-contact-api');
-				break;
-			case 'email_addresses':
-				return __('Email Address', 'constant-contact-api');
-				break;
-			case 'line1':
-				return __('Address', 'constant-contact-api');
-				break;
-			case 'line2':
-				return __('Address Line 2', 'constant-contact-api');
-				break;
-			case 'line3':
-				return __('Address Line 3', 'constant-contact-api');
-				break;
-		}
-
-		$key = ucwords( preg_replace( '/\_/ism', ' ', $key ) );
-		$key = preg_replace( '/Addr([0-9])/', __( 'Address $1', 'constant-contact-api' ), $key );
-		$key = preg_replace( '/Field([0-9])/', __( 'Field $1', 'constant-contact-api' ), $key );
-
-		return $key;
+		return ctct_get_label_from_field_id( $key );
 	}
 
 	function is_editable( $key, $check_status = true ) {
