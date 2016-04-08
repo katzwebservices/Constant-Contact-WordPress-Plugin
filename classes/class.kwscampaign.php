@@ -34,7 +34,7 @@ class KWSCampaign extends Campaign {
 	/**
      * Factory method to create a Contact object from an array
      * @param array $props - Associative array of initial properties to set
-     * @return Contact
+     * @return KWSCampaign
      */
     public static function create(array $props)
     {
@@ -45,7 +45,7 @@ class KWSCampaign extends Campaign {
 
     public function update(array $new_contact_array) {
 
-    	$existing_contact = wp_clone($this);
+    	$existing_contact = clone($this);
 
     	$new_contact = new KWSCampaign($new_contact_array, true);
 
@@ -123,21 +123,7 @@ class KWSCampaign extends Campaign {
 	}
 
 	function getLabel($key) {
-
-		switch($key) {
-			case 'id':
-				return 'ID';
-				break;
-			case 'email_addresses':
-				return 'Email Address';
-				break;
-		}
-
-		$key = ucwords(preg_replace('/\_/ism', ' ', $key));
-	    $key = preg_replace('/Addr([0-9])/', __('Address $1', 'ctct'), $key);
-	    $key = preg_replace('/Field([0-9])/', __('Field $1', 'ctct'), $key);
-
-		return $key;
+		return ctct_get_label_from_field_id( $key );
 	}
 
 	function get($key, $format = false) {
@@ -154,10 +140,14 @@ class KWSCampaign extends Campaign {
 				return $format ? ucfirst(strtolower($this->{$key})) : $this->{$key};
 				break;
 			default:
-				if(isset($this->{$key})) {
+				if( is_bool( $this->{$key} ) ) {
+					return $this->{$key} ? __('True', 'constant-contact-api') : __('False', 'constant-contact-api');
+				} elseif ( ! isset( $this->{$key} ) || is_null( $this->{$key} ) || '' === $this->{$key} ) {
+					return $format ? __('(Empty)', 'constant-contact-api') : ( isset( $this->{$key} ) ? $this->{$key} : null );
+				} elseif( is_string( $this->{$key}) ) {
 					return $this->{$key};
-				} else {
-					return '';
+				} elseif( is_a( $this->{$key}, 'Ctct\Components\Component') ) {
+					return $format ? ctct_generate_component_table( $this->{$key} ) : $this->{$key};
 				}
 				break;
 		}
@@ -183,9 +173,6 @@ class KWSCampaign extends Campaign {
 	        case 'opt_in_date':
 	        case 'confirm_status':
 	            return false;
-	            break;
-	        case 'email_addresses':
-	            $this->email_addresses[0]->email_address = $value;
 	            break;
 	        default:
 	            $this->{$key} = $value;

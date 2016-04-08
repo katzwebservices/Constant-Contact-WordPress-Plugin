@@ -1,0 +1,73 @@
+.not-editable { cursor: default;}
+
+.ctct_table {
+
+  .editable {
+	cursor: pointer;
+	padding: .5em;
+	margin-right: 25px;
+	border:1px dotted #CCC;
+	border-radius: 3px;
+	display:inline-block;
+  }
+
+  .editable:hover,
+  .edit-in-progress,
+  .saving-in-progress,
+  .edit-in-progress:hover {
+	margin-right: 0;
+	border:dotted 1px #333;
+	background:#facd69;
+	padding-right: 25px;
+	/*padding: 0;*/
+	border: none;
+	border:1px dotted rgba(100,100,100,0);
+	border-right: 10px solid transparent;
+	max-width: 100%;
+	width: auto;
+	position: relative;
+  }
+
+  // Add the pencil
+  .editable:hover,
+  .edit-in-progress,
+  .edit-in-progress:hover {
+	&:before {
+	  content: "\f464";
+	  display: inline-block;
+	  -webkit-font-smoothing: antialiased;
+	  font: normal 20px/1 'dashicons';
+
+	  // Customized
+	  color: #5a4e35;
+	  vertical-align: top;
+	  position: absolute;
+	  right: -5px;
+	  top: 50%;
+	  margin-top: -10px;
+
+	}
+  }
+
+
+  .edit-in-progress input {
+	margin-bottom: .5em;
+	width: 100%;
+  }
+
+  .saving-in-progress {
+	background:#cbcbcb url('../../../../../wp-includes/images/wpspin.gif') right center no-repeat;
+  }
+}
+
+.edit-in-progress input {
+  width:300px;
+}
+.editable button {
+  cursor:pointer;
+}
+.editable input {
+  padding: 10px .5em;
+  box-shadow: 0 0 3px rgba(100,200,200, .5);
+  margin-right: .5em;
+}

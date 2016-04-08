@@ -14,23 +14,21 @@ A PHP library for parsing, formatting, storing and validating international phon
 * `isNumberMatch` - gets a confidence level on whether two numbers could be the same.
 * `getExampleNumber`/`getExampleNumberByType` - provides valid example numbers for all countries/regions, with the option of specifying which type of example phone number is needed.
 * `isValidNumber` - full validation of a phone number for a region using length and prefix information.
-* PhoneNumberOfflineGeocoder - provides geographical information related to a phone number.
-* PhoneNumberToTimeZonesMapper - provides timezone information related to a phone number.
-* PhoneNumberToCarrierMapper - provides carrier information related to a phone number.
+* `PhoneNumberOfflineGeocoder` - provides geographical information related to a phone number.
+* `PhoneNumberToTimeZonesMapper` - provides timezone information related to a phone number.
+* `PhoneNumberToCarrierMapper` - provides carrier information related to a phone number.
 
 ## Installation
 
-The library can be installed via [composer](http://getcomposer.org/). You can also use any other [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) compliant autoloader.
+The PECL [mbstring](http://php.net/mbstring) extension is required.
 
-The PECL [mbstring](http://php.net/mbstring) extension is required for this library to be used.
+It is recommended to use [composer](https://getcomposer.org) to install the library.
 
-```json
-{
-    "require": {
-        "giggsey/libphonenumber-for-php": "~7.0"
-    }
-}
+```bash
+$ composer require giggsey/libphonenumber-for-php
 ```
+
+You can also use any other [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) compliant autoloader.
 
 ## Versioning
 
@@ -211,19 +209,23 @@ If Google's [Online Demo](https://libphonenumber.appspot.com/) gives a different
 
 ## Generating data
 
-Phing is used to 'compile' the metadata.
+Generating the data is not normally needed, as this repository will generally always have the up to data metadata.
 
-Ensure you have all the dev composer dependencies installed, then run
+If you do need to generate the data, the commands are provided by [Phing](https://www.phing.info). Ensure you have all the dev composer dependencies installed, then run
 
 ```bash
-vendor/bin/phing compile
+$ vendor/bin/phing compile
 ```
+
+This compile process clones the [libphonenumber](https://github.com/googlei18n/libphonenumber) project at the version specified in [METADATA-VERSION.txt](METADATA-VERSION.txt).
 
 ## Integration with frameworks
 
 Other packages exist that integrate libphonenumber-for-php into frameworks.
 
-These packages are supplied by third parties, and their quality can not be guaranteed.
-
  - Symfony: [PhoneNumberBundle](https://github.com/misd-service-development/phone-number-bundle)
+ - Laravel: [Laravel Phone](https://github.com/Propaganistas/Laravel-Phone)
+ - Yii2: [PhoneInput](https://github.com/Borales/yii2-phone-input)
+ - Kohana: [PhoneNumber](https://github.com/softmediadev/kohana-phonenumber)
 
+These packages are supplied by third parties, and their quality can not be guaranteed.

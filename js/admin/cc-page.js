@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
     function ctct_pointer(pointer) {
 
     	hide_pointers = $.cookie('ctct_hide_pointers');
-    	hide_pointers_array = hide_pointers ? hide_pointers.split(/,/) : new Array();
+    	hide_pointers_array = hide_pointers ? hide_pointers.split(/,/) : [];
 
     	if($.inArray(pointer.pointer_id, hide_pointers_array) >= 0) { return; }
 
@@ -108,28 +108,6 @@ jQuery(document).ready(function($) {
 			return true;
 		} else {
 			return false;
-		}
-	});
-
-	$('.constant-contact_page_constant-contact-contacts .subsubsub a').click(function(e) {
-		e.preventDefault();
-
-		// Hide the "no contacts with this status" message
-		$('.show-if-empty').hide();
-
-		$('.subsubsub li a').removeClass('current');
-		$(this).addClass('current');
-
-		$('.ctct_table tr:not(.show-if-empty)').show();
-
-		var text = $(this).text().toUpperCase();
-
-		// The first link ("all") is always show all.
-		if($('.subsubsub li a').index(this) > 0) {
-			$('.ctct_table td.column-status').not(':contains('+text+')').not(':contains('+text.replace('-', '_')+')').not(':contains('+text.replace('-', '')+')').parents('tr').hide();
-		}
-		if($('.ctct_table td.column-status:visible').length === 0) {
-			$('.show-if-empty').show();
 		}
 	});
 
@@ -213,22 +191,21 @@ jQuery(document).ready(function($) {
 		cancelOnBlur: true,
 		placeholder: CTCT.text.editable,
 		editInProgress: 'edit-in-progress',
-		save: function(event, data) {
+		save: function(event, data, widget ) {
 			var $that = $(this);
 
 			$that.removeClass("edit-in-progress").addClass('saving-in-progress');
 
-			var success = ctct_ajax(data, $that);
+			ctct_ajax(data, $that).done(function ( success ) {
 
-			if(success) {
-				$('*[data-name='+$that.data('name')+'][data-id='+$that.data('id')+']').not($that).html(data.value).each(function() {
-					$(this).effect("highlight", {color: '#e99e23'}, 3000);
-				});
-			}
+				$that.removeClass('saving-in-progress');
 
-			$(this).removeClass('saving-in-progress');
-
-			return success;
+				if(success) {
+					$that.effect("highlight", {color: '#e99e23'}, 3000);
+				} else {
+					$that.effect("highlight", {color: 'red'}, 3000);
+				}
+			});
 		}
 	});
 
@@ -252,32 +229,62 @@ jQuery(document).ready(function($) {
 		var field = $object.data('name') ? $object.data('name') : data.field;
 		var parent = $object.data('parent') ? $object.data('parent') : data.parent;
 
-		var response = $.ajax({
+
+		var result = $.Deferred();
+
+		$.ajax({
+			method: 'POST',
+			async: true,
+			isLocal: true,
+			timeout: 15000, // 15 seconds is way more time than should be necessary.
 			data: {
 				'action': 'ctct_ajax',
 				'_wpnonce': CTCT._wpnonce,
 				'value': data.value,
 				'id': id,
-				'async': true,
 				'component': CTCT.component,
 				'field': field,
-				'parent': parent,
-				'isLocal': true,
-				'type': 'POST'
+				'parent': parent
 			}
+		})
+		.done( function ( data, textStatus, jqXHR ) {
+
+			var message = CTCT.text.request_nothing_changed;
+
+			// Content has changed.
+			if( 'nocontent' !== textStatus ) {
+				var responseText = $.parseJSON( data );
+				message = responseText.message;
+			}
+
+			// Just a friendly note it went well.
+			alertify.log( message );
+
+			result.resolve( true );
+		})
+		.fail( function ( data, textStatus, jqXHR ) {
+
+			var responseText = $.parseJSON( data.responseText );
+
+			var error_template = '<h3>{heading}</h3><p>{error_message}</p>';
+
+			// If a CtctException, it's a message array. Otherwise, it's a string.
+			var message = ( typeof( responseText.message ) === 'string' ) ? responseText.message : responseText.message[0].error_message.replace(/^.*?:/ig, '');
+			var request_error = CTCT.text.request_error
+				.replace('{code}', responseText.code )
+				.replace('{message}', message );
+
+			error_template = error_template
+				.replace('{heading}', CTCT.text.request_failed_heading )
+				.replace('{error_message}', request_error );
+
+			// A full modal showing it didn't work.
+			alertify.alert( error_template ).set('basic', true);
+
+			result.resolve( false );
 		});
 
-		var responseText = $.parseJSON(response.responseText);
-
-		if(parseInt(responseText.code, 10) === 400) {
-			$object.effect("highlight", {color: 'red'}, 2000);
-			alertify.alert('<h3>The request failed.</h3><p>Error ' + responseText.code + ': '+responseText.message[0].error_message.replace(/^.*?:/ig, '')+'</p>');
-			return false;
-		}
-
-		alertify.log(responseText.message);
-
-		return true;
+		return result.promise();
 	}
 
 	// Set up support tooltips
@@ -288,13 +295,6 @@ jQuery(document).ready(function($) {
 	        }
 	    });
      });
-
-	// For component summary boxes
-	$('.fittext').fitText(1.2, {maxFontSize: 50});
-	$(window).on('resize ready', function() {
-		$(".component-summary dd").fitText('.9', {maxFontSize: 120, minFontSize: 48});
-		$('.component-summary').equalize({children: 'dl', reset: true});
-	});
 
 
 	$('.constant-contact-api-toggle[rel]').on('click ready ctct_ready save', function(e) {

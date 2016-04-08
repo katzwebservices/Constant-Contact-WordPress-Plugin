@@ -1,12 +1,12 @@
-<?php r($Campaign);
+<?php r($Event);
     return;
 ?>
 
-<h3><?php esc_html_e('Contact Details:', 'ctct' );?> <a href="<?php echo esc_url( add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view'))); ?>" class="button edit-new-h2" title="edit"><?php esc_html_e('edit', 'ctct'); ?></a></h3>
+<h3><?php esc_html_e('Contact Details:', 'constant-contact-api' );?> <a href="<?php echo esc_url( add_query_arg(array('edit' => $Contact->get('id')), remove_query_arg('view'))); ?>" class="button edit-new-h2" title="edit"><?php esc_html_e('edit', 'constant-contact-api'); ?></a></h3>
 <table class="widefat fixed ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php esc_html_e('Name', 'ctct'); ?></th>
-        <th scope="col" class="column-title"><?php esc_html_e('Data', 'ctct'); ?></th>
+        <th scope="col" class="column-name"><?php esc_html_e('Name', 'constant-contact-api'); ?></th>
+        <th scope="col" class="column-title"><?php esc_html_e('Data', 'constant-contact-api'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -35,12 +35,12 @@
 
                     if($personal = $Contact->getAddress('personal')) {
                         $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Personal Address', 'ctct'), $personal);
+                                         __('Personal Address', 'constant-contact-api'), $personal);
                     }
 
                     if($business = $Contact->getAddress('business')) {
                         $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                         __('Business Address', 'ctct'), $business);
+                                         __('Business Address', 'constant-contact-api'), $business);
                     }
                 break;
                 case 'email_addresses':

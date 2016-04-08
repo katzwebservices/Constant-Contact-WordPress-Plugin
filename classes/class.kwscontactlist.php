@@ -5,13 +5,12 @@
  */
 
 use Ctct\Components\Contacts\ContactList;
-use Ctct\Components\EmailMarketing\MessageFooter;
 
 class KWSContactList extends ContactList {
 
 	private static $read_only = array( 'contact_count', 'id' );
 
-	function __construct( $List = '' ) {
+	public function __construct( $List = null ) {
 
 		if ( is_array( $List ) ) {
 			$List = $this->prepare( $List, true );
@@ -21,7 +20,11 @@ class KWSContactList extends ContactList {
 			foreach ( $List as $k => &$v ) {
 				$this->{$k} = $v;
 			}
+		} elseif( ! is_null( $List ) ) {
+			parent::__construct( $List );
 		}
+
+		return $this;
 	}
 
 	/**
@@ -29,7 +32,7 @@ class KWSContactList extends ContactList {
 	 *
 	 * @param array $props - Associative array of initial properties to set
 	 *
-	 * @return Contact
+	 * @return KWSContactList
 	 */
 	public static function create( array $props ) {
 		$List = new KWSContactList( $props );
@@ -39,7 +42,7 @@ class KWSContactList extends ContactList {
 
 	public function update( array $new_contact_array ) {
 
-		$existing_contact = wp_clone( $this );
+		$existing_contact = clone( $this );
 
 		$new_contact = new KWSContactList( $new_contact_array, true );
 
@@ -50,42 +53,6 @@ class KWSContactList extends ContactList {
 		}
 
 		return $existing_contact;
-	}
-
-	private function prepareAddress( array $address ) {
-		return wp_parse_args( $address, array( 'line1'           => '',
-		                                       'line2'           => '',
-		                                       'line3'           => '',
-		                                       'city'            => '',
-		                                       'address_type'    => 'PERSONAL',
-		                                       'state_code'      => '',
-		                                       'country_code'    => '',
-		                                       'postal_code'     => '',
-		                                       'sub_postal_code' => ''
-		) );
-	}
-
-
-	private function prepareMessageFooter( $message_footer_array ) {
-		$defaults                  = array(
-			"city"                    => '',
-			"state"                   => '',
-			"country"                 => '',
-			"organization_name"       => '',
-			"address_line_1"          => '',
-			"address_line_2"          => '',
-			"address_line_3"          => '',
-			"international_state"     => '',
-			"postal_code"             => '',
-			"include_forward_email"   => false,
-			"forward_email_link_text" => '',
-			"include_subscribe_link"  => true,
-			"subscribe_link_text"     => ''
-		);
-		$message_footer            = wp_parse_args( $message_footer_array, $defaults );
-		$message_footer['country'] = strtoupper( $message_footer['country'] );
-
-		return $message_footer;
 	}
 
 	private function prepare( array $list_array, $add = false ) {
@@ -111,20 +78,7 @@ class KWSContactList extends ContactList {
 	 */
 	function getLabel( $key ) {
 
-		switch ( $key ) {
-			case 'id':
-				return 'ID';
-				break;
-			case 'email_addresses':
-				return 'Email Address';
-				break;
-		}
-
-		$key = ucwords( preg_replace( '/\_/ism', ' ', $key ) );
-		$key = preg_replace( '/Addr([0-9])/', __( 'Address $1', 'ctct' ), $key );
-		$key = preg_replace( '/Field([0-9])/', __( 'Field $1', 'ctct' ), $key );
-
-		return $key;
+		return ctct_get_label_from_field_id( $key );
 	}
 
 	function set( $key, $value ) {
@@ -175,13 +129,6 @@ class KWSContactList extends ContactList {
 
 		$items = array();
 
-		// Tell the cache that if the current requests are forced to be
-		// refreshed, the cache should also reset this key.
-		// See Cache_WP_HTTP
-		add_filter( 'flush_key', function () {
-			return 'ctct_all_lists';
-		} );
-
 		if ( $passed_items === 'all' ) {
 			$items = WP_CTCT::getInstance()->cc->getAllLists();
 		} elseif ( ! empty( $passed_items ) && is_array( $passed_items ) ) {
@@ -193,21 +140,13 @@ class KWSContactList extends ContactList {
 
 					$list_id = esc_attr( $list_id );
 
-					// Tell Cache_WP_HTTP to use the following key
-					// as the transient name
-					add_filter( 'ctct_cachekey', function () {
-						global $list_id;
-
-						return 'ctct_list_' . $list_id;
-					} );
-
 					$item = WP_CTCT::getInstance()->cc->getList( CTCT_ACCESS_TOKEN, $list_id );
 				}
 				$items[] = $item;
 			}
 		}
 
-		$before = $before_item = $after_item = $after = '';
+		$before = $before_item = $after_item = $after = $format = $id_attr = '';
 
 		switch ( $type ) {
 			case 'hidden':
@@ -245,7 +184,7 @@ class KWSContactList extends ContactList {
 			case 'checkbox':
 			case 'checkboxes':
 				$before      = '<ul class="ctct-lists ctct-checkboxes ' . esc_attr( $class ) . '">';
-				$before_item = '<li><label for="%%id_attr%%"><input type="checkbox" id="%%id_attr%%" value="%%id%%" name="%%name_attr%%[]" %%checked%% /> ';
+				$before_item = '<li><label><input type="checkbox" id="%%id_attr%%" value="%%id%%" name="%%name_attr%%[]" %%checked%% /> ';
 				$after_item  = '</label></li>';
 				$after       = '</ul>';
 				break;
@@ -256,18 +195,22 @@ class KWSContactList extends ContactList {
 		$items_output = '';
 		foreach ( $items as &$item ) {
 
+			// Error was thrown
+			if( is_a( $item, 'Ctct\Exceptions\CtctException' ) ) {
+				continue;
+			}
+
 			// If include was specified, then we need to skip lists not included
-			if ( is_array( $passed_items ) && ( ! empty( $include ) && ! in_array( $item->id, $include ) ) || ( $item->status === 'HIDDEN' && ! $showhidden ) ) {
-				#continue;
+			if ( ! empty( $include ) && ! in_array( $item->id, $include ) && ! ( $item->status === 'HIDDEN' && ! $showhidden ) ) {
+				continue;
 			}
 
 			$item = new KWSContactList( $item );
 
-			$item_content = ( ! empty( $format ) || is_null( $format ) ) ? $format : $item->name;
+			$item_content = ( ! empty( $format ) || is_null( $format ) ) ? $format : esc_attr( $item->name );
 
 			$tmp_output = $before_item . $item_content . $after_item . "\n";
 
-			$tmp_output = str_replace( '%%name_attr%%', $name_attr, $tmp_output );
 			$tmp_output = str_replace( '%%id_attr%%', $id_attr, $tmp_output );
 			$tmp_output = str_replace( '%%id%%', sanitize_title( $item->get( 'id' ) ), $tmp_output );
 			$tmp_output = str_replace( '%%name%%', $item->get( 'name', false ), $tmp_output );

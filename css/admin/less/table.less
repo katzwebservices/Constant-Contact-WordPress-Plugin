@@ -1,0 +1,98 @@
+.ctct_table {
+
+  .column-primary {
+	width: 33%;
+  }
+
+  h3, h4 {
+	margin: .25em 0 .5em;
+  }
+
+  td {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+  }
+
+  &.noborder,
+  &.noborder th,
+  &.noborder td {
+	border: none!important;
+  }
+
+  &.form-table {
+	th {
+	  padding-left: 10px;
+	}
+  }
+
+  .column-shortcode input {
+	font-size: .9em;
+	padding: 5px 2px;
+	white-space: nowrap;
+  }
+
+  .ctct-lists {
+	width: 100%;
+  }
+
+  .button .dashicons-external {
+	font-size: 1rem;
+	opacity: .6;
+	margin-top: .25em;
+	/*line-height: 1.666;*/
+  }
+
+  // On responsive screens, convert the buttons to links
+  .is-expanded .button-group .button {
+	background: none 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 0;
+
+	& + .button {
+	  margin-left: .5em;
+	  border-left: 1px solid #ccc;
+	  padding-left: .5em;
+	}
+
+	// Code below is default WP link style
+	color: #0073aa;
+	-webkit-transition-property: border, background, color;
+	transition-property: border, background, color;
+	-webkit-transition-duration: .05s;
+	transition-duration: .05s;
+	-webkit-transition-timing-function: ease-in-out;
+	transition-timing-function: ease-in-out;
+
+	&:hover,
+	&:active {
+	  color: #00a0d2;
+	}
+  }
+
+
+  @media screen and ( max-width: 782px ) {
+	&.wp-list-table thead th.column-primary,
+	& th,
+	& td {
+	  display: block;
+	  width: 95%;
+	  padding: 5px 2.5% 7px;
+	  font-size: 1.1em;
+	  word-break: break-all;
+	}
+
+	& thead th {
+	  text-transform: uppercase;
+	  font-weight: 600;
+	}
+
+	& tbody th {
+	  font-weight: 500;
+	  padding-top: 10px;
+	  border-top: 1px solid #ddd;
+	}
+  }
+}

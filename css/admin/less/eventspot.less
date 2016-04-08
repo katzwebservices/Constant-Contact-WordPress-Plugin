@@ -1,0 +1,24 @@
+// The "Embed Shortcode" box in the single Event view
+div.ctct-embed-shortcode {
+  max-width: 99%;
+  margin: 28px 0 20px;
+  float: right;
+  text-align: right;
+
+  .rtl & {
+    float: left;
+    text-align: left;
+  }
+
+  input {
+    max-width: 100%;
+  }
+
+  @media screen and ( max-width: 782px ) {
+    margin-top: 0;
+    text-align: left;
+    .rtl & {
+      text-align: right;
+    }
+  }
+}

@@ -22,18 +22,30 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 	}
 
 	protected function getNavTitle() {
-		return __( 'Lists', 'ctct' );
+		return __( 'Lists', 'constant-contact-api' );
 	}
 
 	protected function getTitle( $type = '' ) {
+
 		if ( $this->isEdit() ) {
-			return "Edit Lists";
-		}
-		if ( $this->isSingle() || $type === 'single' ) {
-			return "List #" . intval( @$_GET['view'] );
+			$title = __("Edit Lists", 'constant-contact-api');
+		} elseif ( $this->isSingle() || $type === 'single' ) {
+
+			$id = intval( $_GET['view'] );
+			$List = $this->cc->getList( CTCT_ACCESS_TOKEN, $id );
+
+			if( is_object( $List ) && ! empty( $List->name ) ) {
+				/** translators: %s is the list name, %d is the list ID */
+				$title = sprintf( __( 'Contacts from List: "%s" (#%d)', 'constant-contact-api' ), esc_html( $List->name ), intval( $List->id ) );
+			} else {
+				/** translators: %d is the list ID */
+				$title = sprintf( __( 'Contacts from List #%d', 'constant-contact-api' ), $id );
+			}
+		} else {
+			$title = __( 'Lists', 'constant-contact-api' );
 		}
 
-		return __( 'Lists', 'ctct' );
+		return $title;
 	}
 
 	protected function add() {
@@ -45,16 +57,17 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
 	protected function edit() {
 
-		$id = intval( @$_GET['edit'] );
+		$id = isset( $_GET['edit'] ) ? intval( $_GET['edit'] ) : NULL;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a List to edit', 'ctct' );
+			esc_html_e( 'You have not specified a List to edit', 'constant-contact-api' );
 
 			return;
 		}
 
 		$List = $this->cc->getList( CTCT_ACCESS_TOKEN, $id );
 
+		/** @define "CTCT_DIR_PATH" "../" */
 		include( CTCT_DIR_PATH . 'views/admin/view.list-edit.php' );
 	}
 
@@ -65,20 +78,18 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 	 */
 	protected function single() {
 
-		$id = intval( @$_GET['view'] );
+		$id = isset( $_GET['view'] ) ? intval( $_GET['view'] ) : NULL;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a List to view.', 'ctct' );
+			esc_html_e( 'You have not specified a List to view.', 'constant-contact-api' );
 
 			return;
 		}
 
-		// We define the transient key that is used so we can force-flush it
-		add_filter( 'ctct_cachekey', function () {
-			return 'ctct_contacts_from_list_' . intval( @$_GET['view'] );
-		} );
+		$params = kws_get_contacts_view_params();
+		$params['id'] = $id;
 
-		$Contacts = $this->cc->getAll( 'ContactsFromList', $id, 50 );
+		$Contacts = $this->cc->getAll( 'ContactsFromList', $params );
 
 		include( CTCT_DIR_PATH . 'views/admin/view.contacts-view.php' );
 
@@ -86,15 +97,10 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
 	protected function view() {
 
-		// We define the transient key that is used so we can force-flush it
-		add_filter( 'ctct_cachekey', function () {
-			return 'ctct_all_lists';
-		} );
-
 		$Lists = $this->cc->getAllLists();
 
 		if ( empty( $Lists ) ) {
-			esc_html_e( 'Your account has no lists.', 'ctct' );
+			esc_html_e( 'Your account has no lists.', 'constant-contact-api' );
 		} else {
 
 			include( CTCT_DIR_PATH . 'views/admin/view.lists-view.php' );

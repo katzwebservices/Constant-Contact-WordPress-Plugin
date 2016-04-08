@@ -11,14 +11,26 @@
         	}
 	],
 	"support": {
-        	"email": "support@katz.co",
-	        "issues": "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?state=open"
-    	},
+		"email": "support@katz.co",
+		"issues": "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?state=open"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/katzwebservices/php-sdk"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/zackkatz/WP-Logging"
+		}
+	],
 	"require": {
-		"constantcontact/constantcontact": "dev-master",
+		"constantcontact/constantcontact": "dev-eventspot",
+		"zackkatz/wp-logging": "dev-patch-2",
+		"guzzlehttp/guzzle": "^6.1.1",
 		"giggsey/libphonenumber-for-php": "~7.0",
-		"nineinchnick/select2": "dev-master",
-		"php": ">=5.3.0",
-	        "ext-curl": "*"
+		"select2/select2": "dev-master",
+		"php": ">=5.4.0",
+		"ext-curl": "*"
 	}
 }

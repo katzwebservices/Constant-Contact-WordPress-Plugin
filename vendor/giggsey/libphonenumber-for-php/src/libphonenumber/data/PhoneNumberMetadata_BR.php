@@ -38,13 +38,13 @@ return array (
           )\\d{7}|
           (?:
             2[12478]|
+            3[1-578]|
+            7[13-579]|
             [89][1-9]
           )9?[6-9]\\d{7}|
           (?:
-            3[1-578]|
             [46][1-9]|
-            5[1-5]|
-            7[13-579]
+            5[1-5]
           )[6-9]\\d{7}
         ',
     'PossibleNumberPattern' => '\\d{10,11}',
@@ -64,7 +64,15 @@ return array (
   ),
   'sharedCost' => 
   array (
-    'NationalNumberPattern' => '[34]00\\d{5}',
+    'NationalNumberPattern' => '
+          (?:
+           300\\d|
+           40(?:
+              0\\d|
+              20
+           )
+          )\\d{4}
+        ',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '40041234',
   ),
@@ -115,15 +123,23 @@ return array (
   ),
   'noInternationalDialling' => 
   array (
-    'NationalNumberPattern' => '[34]00\\d{5}',
+    'NationalNumberPattern' => '
+          (?:
+           300\\d|
+           40(?:
+              0\\d|
+              20
+           )
+          )\\d{4}
+        ',
     'PossibleNumberPattern' => '\\d{8}',
     'ExampleNumber' => '40041234',
   ),
   'id' => 'BR',
   'countryCode' => 55,
-  'internationalPrefix' => '00(?:1[45]|2[135]|31|4[13])',
+  'internationalPrefix' => '00(?:1[245]|2[1-35]|31|4[13]|[56]5|99)',
   'nationalPrefix' => '0',
-  'nationalPrefixForParsing' => '0(?:(1[245]|2[135]|31|4[13])(\\d{10,11}))?',
+  'nationalPrefixForParsing' => '0(?:(1[245]|2[1-35]|31|4[13]|[56]5|99)(\\d{10,11}))?',
   'nationalPrefixTransformRule' => '$2',
   'sameMobileAndFixedLinePattern' => false,
   'numberFormat' => 
@@ -180,7 +196,9 @@ return array (
         0 => '
             (?:
               [189][1-9]|
-              2[12478]
+              2[12478]|
+              3[1-578]|
+              7[13-579]
             )9
           ',
       ),
@@ -200,11 +218,19 @@ return array (
     ),
     5 => 
     array (
-      'pattern' => '([34]00\\d)(\\d{4})',
+      'pattern' => '(\\d{4})(\\d{4})',
       'format' => '$1-$2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '[34]00',
+        0 => '
+            (?:
+             300|
+             40(?:
+                0|
+                20
+             )
+            )
+          ',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
@@ -232,7 +258,9 @@ return array (
         0 => '
             (?:
               [189][1-9]|
-              2[12478]
+              2[12478]|
+              3[1-578]|
+              7[13-579]
             )9
           ',
       ),
@@ -252,11 +280,19 @@ return array (
     ),
     2 => 
     array (
-      'pattern' => '([34]00\\d)(\\d{4})',
+      'pattern' => '(\\d{4})(\\d{4})',
       'format' => '$1-$2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '[34]00',
+        0 => '
+            (?:
+             300|
+             40(?:
+                0|
+                20
+             )
+            )
+          ',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

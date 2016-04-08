@@ -4,6 +4,8 @@
  * @package CTCT
  */
 
+use \Ctct\Components\EventSpot\EventSpot;
+
 define('EVENTSPOT_FILE_PATH', dirname(__FILE__) . '/');
 define('EVENTSPOT_FILE_URL', plugin_dir_url(__FILE__));
 define('EVENTSPOT_FILE', __FILE__);
@@ -16,27 +18,21 @@ add_action('plugins_loaded', array('CTCT_EventSpot', 'setup'));
  */
 class CTCT_EventSpot extends CTCT_Admin_Page {
 
-	var $old_api;
-
 	var $settings;
 
 	static $instance;
 
-	function __construct() {
-
-		// Triggers addIncludes, etc
-		parent::__construct( true );
-
-		$this->old_api = new KWS_V1API('oauth2', CTCT_APIKEY, CTCT_USERNAME, CTCT_ACCESS_TOKEN);
-
+	/**
+	 * Instantiate the class
+	 */
+	static function setup() {
+		new self( true );
 	}
 
 	function addIncludes() {
 
-		require_once(EVENTSPOT_FILE_PATH.'functions.php');
-		require_once(EVENTSPOT_FILE_PATH.'ctct_php_library/ConstantContact.php');
-		require_once(EVENTSPOT_FILE_PATH.'class.kwsv1api.php');
-		include_once(EVENTSPOT_FILE_PATH.'embed.php');
+		require_once( EVENTSPOT_FILE_PATH . 'event-functions.php' );
+		include_once( EVENTSPOT_FILE_PATH . 'event-embed.php' );
 
 		if(!class_exists('constant_contact_events_widget')) {
 			require_once EVENTSPOT_FILE_PATH . 'widget-events.php';
@@ -49,7 +45,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * @return string "Events"
 	 */
 	protected function getNavTitle() {
-		return __('Events', 'ctct');
+		return __('Events', 'constant-contact-api');
 	}
 
 	function add() {}
@@ -72,6 +68,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		add_shortcode('ccevents', array(&$this, 'events_shortcode_output'));
 		add_shortcode('constantcontactevents', array(&$this, 'events_shortcode_output'));
 		add_shortcode('eventspot', array(&$this, 'events_shortcode_output'));
+
 		add_action('eventspot_output',  array(&$this, 'events_output'), 10, 3);
 
 		add_filter('cc_event_registrationdate', 'constant_contact_event_date');
@@ -95,14 +92,10 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 */
 	function view() {
 
-
-		$events = constant_contact_old_api_get_all('Events', $this->old_api);
+		$events = $this->cc->getAll( 'Events' );
 
 		if(empty($events) || !is_array($events)) {
-			include(EVENTSPOT_FILE_PATH.'/views/promo.php');
-			?>
-			<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'events') ); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
-			<?php
+			include( EVENTSPOT_FILE_PATH . '/views/promo.php' );
 		} else {
 
 			kws_print_subsub('status', array(
@@ -120,9 +113,8 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 				$events = ${$_GET['status']};
 			}
 
-			$this->make_table($events, __('Events', 'ctct'));
+			$this->make_table($events, __('Events', 'constant-contact-api'));
 			?>
-			<p class="submit"><a href="<?php echo esc_url( add_query_arg('refresh', 'events') ); ?>" class="button-secondary alignright" title="<?php echo sprintf( esc_attr__('Event registrants data is stored for %s hours. Refresh data now.', 'ctct'), round(KWS_V1API::$event_cache_age / 3600)); ?>"><?php esc_html_e('Refresh Events', 'ctct'); ?></a></p>
 			<?php
 		}
 
@@ -141,10 +133,13 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	}
 
 	function singleEvent() {
-		$v = $this->old_api->getEventDetails(new Event(array('link' => sprintf('/ws/customers/%s/events/%s', CTCT_USERNAME, $_GET['view']))));
-		$completed = strtotime($v->endDate) <= time();
+		$id = isset( $_GET['view'] ) ? esc_attr( $_GET['view'] ) : false;
 
-		include(EVENTSPOT_FILE_PATH.'views/event.php');
+		$Event = $this->cc->getEvent( CTCT_ACCESS_TOKEN, $id );
+
+		$completed = ( 'COMPLETE' === $Event->status );
+
+		include( EVENTSPOT_FILE_PATH . 'views/view.event-view.php' );
 	}
 
 	/**
@@ -152,10 +147,11 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 */
 	function singleRegistrant() {
 
-		$v = $this->old_api->getRegistrantDetails(new Registrant(array('link' => sprintf('/ws/customers/%s/events/%s/registrants/%s', CTCT_USERNAME, $_GET['view'], $_GET['registrant']))));
-		$event = $this->old_api->getEventDetails(new Event(array('link' => sprintf('/ws/customers/%s/events/%s', CTCT_USERNAME, $_GET['view']))));
+		$event_id = esc_attr( $_GET['view'] );
+		$Registrant = $this->cc->getEventRegistrant( CTCT_ACCESS_TOKEN, $event_id, esc_attr( $_GET['registrant'] ) );
+		$event = $this->cc->getEvent( CTCT_ACCESS_TOKEN, $event_id );
 
-		include(EVENTSPOT_FILE_PATH.'views/registrant.php');
+		include( EVENTSPOT_FILE_PATH . 'views/event-registrant.php' );
 	}
 
 	function processForms() { }
@@ -164,20 +160,40 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		return "constant-contact-events";
 	}
 
-	protected function getTitle($value = '') {
-		if(empty($value) && $this->isEdit() || $value == 'edit')
-			return "Edit Event";
-		if(empty($value) && $this->isSingle() || $value == 'single')
-			return 'Event';
-
-		return 'Events';
+	protected function isNested() {
+		if( ! empty( $_GET['registrant'] ) ) {
+			return 'registrant';
+		}
+		return false;
 	}
 
-	/**
-	 * Instantiate the class
-	 */
-	static function setup() {
-		$CTCT_EventSpot = new CTCT_EventSpot;
+	protected function getTitle($value = '') {
+
+		$title = __('Events', 'constant-contact-api');
+
+		if(empty($value) && $this->isEdit() || $value == 'edit') {
+			$title = __("Edit Event", 'constant-contact-api');
+		}
+
+		if(empty($value) && $this->isSingle() || $value == 'single') {
+
+			$id = esc_attr( $_GET['view'] );
+			$event = $this->cc->getEvent( CTCT_ACCESS_TOKEN, $id );
+
+			if( is_object( $event ) && ! empty( $event->title ) ) {
+				/** translators: %s is the campaign name, %d is the list ID */
+				$title = sprintf( __( 'Event: "%s"', 'constant-contact-api' ), esc_html( $event->title ) );
+			} else {
+				/** translators: %d is the campaign ID */
+				$title = sprintf( __( 'Event #%s', 'constant-contact-api' ), $id );
+			}
+		}
+
+		if( $this->isNested() && $value === '' ) {
+			$title = __('Event Registrant', 'constant-contact-api');
+		}
+
+		return $title;
 	}
 
 	/**
@@ -190,6 +206,65 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 */
 	function events_shortcode_output($args = array(), $content = null, $tag = '') {
 		return $this->events_output($args, false);
+	}
+
+	/**
+	 * Get the URL to the event registration page
+	 *
+	 * If there's a registration URL set in the event, use it. Otherwise, generate a link using the standard CTCT format.
+	 *
+	 * @param EventSpot $event
+	 * @param bool $registration Link directly to registration?
+	 * @param bool $mobile If true, return the mobile registration link. Otherwise, 'desktop' version.
+	 *
+	 * @return false|string False if $event->id isn't set. URL to the event registration page otherwise.
+	 */
+	public static function get_event_registration_url( $event, $registration = false, $mobile = false ) {
+
+		$return = false;
+
+		if( is_object( $event ) && isset( $event->id ) ){
+
+			// If set on the event level, use it.
+			if( ! empty( $event->registration_url ) ) {
+				$return = $event->registration_url;
+			} else {
+
+				$event_id = $event->id;
+
+				// Link to the form anchor on the mobile page (no direct link to registration form)
+				if( $mobile && $registration ) {
+					$event_id .= '#command';
+				}
+
+				// Otherwise, generate one
+				$format = $mobile ? 'm' : ( $registration ? 'eventReg' : 'event' );
+
+				$return = sprintf( 'http://events.constantcontact.com/register/%s?oeidk=%s', $format, $event_id );
+			}
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Get the URL to download the event calendar ICS file
+	 *
+	 * @since 4.0
+	 * 
+	 * @param EventSpot $event
+	 *
+	 * @return false|string False if $event->id isn't set. URL to the event registration page otherwise.
+	 */
+	public static function get_event_calendar_url( $event ) {
+
+		$return = false;
+
+		if( is_object( $event ) && isset( $event->id ) ){
+			$return = sprintf( 'http://events.constantcontact.com/register/addtocalendar?oeidk=%s', $event->id );
+		}
+
+		return $return;
 	}
 
 	/**
@@ -216,7 +291,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	function events_output($args = array(), $echo = false) {
 
 		$settings = shortcode_atts(array(
-			'limit' => 3,
+			'limit' => 5,
 			'showtitle' => true,
 			'showdescription' => true,
 			'datetime' => true,
@@ -230,7 +305,8 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			'sidebar' => false,
 			'mobile' => true,
 			'class' => 'cc_event',
-			'no_events_text' => __('There are no active events.', 'ctct'),
+			'directtoregistration' => false,
+			'no_events_text' => __('There are no active events.', 'constant-contact-api'),
 		), $args);
 
 		foreach($settings as $key => $arg) {
@@ -240,16 +316,35 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		}
 
 		if( empty( $settings['id'] ) ) {
-			$settings['events'] = constant_contact_old_api_get_all('Events', $this->old_api);
+
+			$events = KWSConstantContact::getInstance()->getAll( 'Events' );
+
+			if( $settings['onlyactive'] ) {
+				$events = wp_list_filter( $events, array( 'status' => 'ACTIVE' ) );
+			} else {
+				$events = wp_list_filter( $events, array( 'status' => 'DRAFT' ), 'NOT' );
+			}
+
+			if( ! empty( $limit ) ) {
+				$events = array_splice( $events, 0, intval( $settings['limit'] ) );
+			}
+
+			$settings['events'] = $events;
 			$settings['class'] .= ' multiple_events';
+
 		} else {
 			$settings['class'] .= ' single_event';
-			$settings['events'] = array(CTCT_EventSpot::getInstance()->old_api->getEventDetails(new Event(array('link' => sprintf('/ws/customers/%s/events/%s', CTCT_USERNAME, $settings['id'] )))));
+			$settings['events'] = array( KWSConstantContact::getInstance()->getEvent( CTCT_ACCESS_TOKEN, $settings['id'] ) );
 		}
 
 		$this->settings = $settings;
 
-		$output = kws_ob_include(EVENTSPOT_FILE_PATH.'shortcode.php', $this );
+		// Enqueue the style so that it prints in the footer once.
+		if( ! empty( $settings['style'] ) ) {
+			wp_enqueue_style( 'cc-events', plugin_dir_url( __FILE__ ) . 'css/events.css' );
+		}
+
+		$output = kws_ob_include(EVENTSPOT_FILE_PATH.'event-shortcode.php', $this );
 
 		if($echo) {
 			echo $output;
@@ -260,36 +355,10 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	}
 
 	/**
-	 * Get the date of the latest registration activity for an event.
-	 * @param  Event  $event         The event object
-	 * @return string                The date of the last registration activity
-	 */
-	function latest_registrant($event) {
-
-		$_registrants = $this->old_api->getRegistrants($event);
-
-		foreach($_registrants['registrants'] as $key => &$reg) {
-			$latest = 0;
-			if(isset($reg->registrationStatus) && strtolower($reg->registrationStatus) !== 'cancelled') {
-				$timestamp = strtotime($reg->registrationDate);
-				$reg->registrationTimestamp = $timestamp;
-				if($timestamp > $latest) { $latest = $timestamp; }
-			} else {
-				unset($_registrants['registrants'][$key]);
-			}
-		}
-		if(empty($timestamp)) {
-			return __('N/A', 'ctct');
-		} else {
-			return apply_filters('cc_event_registrationdate', $timestamp);
-		}
-	}
-
-	/**
 	 * Add the WP Admin dashboard widget with upcoming events details
 	 */
 	function dashboard_setup() {
-		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot', 'ctct'), array(&$this, 'events_dashboard') );
+		wp_add_dashboard_widget( 'constant_contact_events_dashboard', __( 'EventSpot', 'constant-contact-api'), array( $this, 'events_dashboard') );
 	}
 
 	/**
@@ -298,7 +367,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * @param array $events Array of events
 	 */
 	function dashboard_make_table($title = 'Events', $events = array()) {
-		include(EVENTSPOT_FILE_PATH.'views/dashboard-table.php');
+		include( EVENTSPOT_FILE_PATH . 'views/event-dashboard-table.php' );
 	}
 
 	/**
@@ -306,33 +375,39 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 */
 	function events_dashboard() {
 
-		$_events = constant_contact_old_api_get_all('Events', $this->old_api);
+		$hidden = get_hidden_meta_boxes( 'dashboard' );
+		if( in_array( 'constant_contact_events_dashboard', $hidden ) ) {
+			esc_html_e( 'The widget is hidden. Un-hide the widget by going to the top of the page, clicking "Screen Options", then checking the "EventSpot" checkbox. Once you have done that, refresh the page to view this widget.', 'constant-contact-api' );
+			return;
+		}
 
-		if(!empty($_events) && is_array($_events)) {
-			$draft = $active = array();
-			foreach($_events as $k => $v) {
-				if($v->status === 'ACTIVE') {
-					$active[$v->id] = $v;
-				} elseif($v->status === 'DRAFT') {
-					$draft[$v->id] = $v;
-				}
+		$events = $this->cc->getAll( 'Events' );
+
+		if( !empty( $events ) ) {
+
+			$active = wp_list_filter( $events, array( 'status' => 'ACTIVE' ) );
+			$draft = wp_list_filter( $events, array( 'status' => 'DRAFT' ) );
+
+			if ( ! empty( $active ) ) {
+				$this->dashboard_make_table( __( 'Active Events', 'constant-contact-api' ), $active );
 			}
-			if(!empty($active)) { $this->dashboard_make_table(__('Active Events', 'ctct'), $active); }
-			if(!empty($draft)) { $this->dashboard_make_table(__('Draft Events', 'ctct'), $draft); }
-		?>
+			if ( ! empty( $draft ) ) {
+				$this->dashboard_make_table( __( 'Draft Events', 'constant-contact-api' ), $draft );
+			}
+			?>
 			<p class="textright">
-				<a class="button" href="<?php echo admin_url('admin.php?page=constant-contact-events'); ?>"><?php _e('View All Events', 'ctct'); ?></a>
+				<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=constant-contact-events' ) ); ?>"><?php _e( 'View All Events', 'constant-contact-api' ); ?></a>
 			</p>
-	<?php
+			<?php
 		} else {
 	?>
-		<p><?php _e(sprintf("You don't have any events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://katz.si/4o" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api'); ?></p>
+		<p><?php _e(sprintf("You don't have any active or draft events. Did you know that Constant Contact offers %sEvent Marketing%s?", '<a href="http://katz.si/4o" title="Learn more about Constant Contact Event Marketing">', '</a>'), 'constant_contact_api', 'constant-contact-api'); ?></p>
 	<?php
 		}
 		return true;
 	}
 
 	function make_table($events = array(), $title = '') {
-		include(EVENTSPOT_FILE_PATH.'views/events.php');
+		include( EVENTSPOT_FILE_PATH . 'views/view.events-view.php' );
 	}
 }

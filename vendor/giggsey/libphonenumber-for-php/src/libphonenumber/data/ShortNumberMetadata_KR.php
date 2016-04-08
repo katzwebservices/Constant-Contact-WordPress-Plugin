@@ -8,23 +8,31 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '1\\d{2}',
-    'PossibleNumberPattern' => '\\d{3}',
+    'NationalNumberPattern' => '1\\d{2,3}',
+    'PossibleNumberPattern' => '\\d{3,4}',
   ),
   'fixedLine' => 
   array (
-    'NationalNumberPattern' => '1\\d{2}',
-    'PossibleNumberPattern' => '\\d{3}',
+    'NationalNumberPattern' => '1\\d{2,3}',
+    'PossibleNumberPattern' => '\\d{3,4}',
   ),
   'mobile' => 
   array (
-    'NationalNumberPattern' => '1\\d{2}',
-    'PossibleNumberPattern' => '\\d{3}',
+    'NationalNumberPattern' => '1\\d{2,3}',
+    'PossibleNumberPattern' => '\\d{3,4}',
   ),
   'tollFree' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
+    'NationalNumberPattern' => '
+          1(?:
+            1[78]|
+            28|
+            330|
+            82
+          )
+        ',
+    'PossibleNumberPattern' => '\\d{3,4}',
+    'ExampleNumber' => '118',
   ),
   'premiumRate' => 
   array (
@@ -59,7 +67,7 @@ return array (
   'emergency' => 
   array (
     'NationalNumberPattern' => '11[29]',
-    'PossibleNumberPattern' => '\\d{3}',
+    'PossibleNumberPattern' => '\\d{3,4}',
     'ExampleNumber' => '112',
   ),
   'voicemail' => 
@@ -69,8 +77,23 @@ return array (
   ),
   'shortCode' => 
   array (
-    'NationalNumberPattern' => '11[29]',
-    'PossibleNumberPattern' => '\\d{3}',
+    'NationalNumberPattern' => '
+         1(?:
+           0[01]|
+           1[027-9]|
+           2[01389]|
+           3(?:
+             2|
+             3[039]|
+             45|
+             66|
+             88|
+             9[18]
+           )|
+           82
+          )
+        ',
+    'PossibleNumberPattern' => '\\d{3,4}',
     'ExampleNumber' => '112',
   ),
   'standardRate' => 
@@ -80,8 +103,9 @@ return array (
   ),
   'carrierSpecific' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
+    'NationalNumberPattern' => '10[01]',
+    'PossibleNumberPattern' => '\\d{3}',
+    'ExampleNumber' => '100',
   ),
   'noInternationalDialling' => 
   array (

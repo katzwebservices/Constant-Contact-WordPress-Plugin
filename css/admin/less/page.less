@@ -1,0 +1,77 @@
+a.toplevel_page_constant-contact-api {
+  white-space: nowrap;
+}
+.toplevel_page_constant-contact-api div.widefat {
+  background-color: white;
+}
+.toplevel_page_constant-contact-api .widefat .wrap {
+  padding: 10px;
+}
+
+.ctct-wrap {
+
+  h2.ctct-page-name {
+    line-height: 1.2em;
+    font-weight: 200;
+    color: #444;
+  }
+
+  .subsubsub {
+    margin: .5em 0;
+  }
+
+  .constant-contact_page_constant-contact-contacts div.wrap {
+    margin-bottom: 3em;
+  }
+
+  .ctct-page-name {
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 300;
+    display: block;
+    clear: both;
+    padding: 0;
+    margin-bottom: .5em;
+
+    > .button {
+      margin-top: .2em;
+      margin-left: .5em;
+    }
+
+    > .block {
+      margin-top: .5em;
+    }
+  }
+
+  .no-results {
+    clear: both;
+    display: block;
+    float: left;
+    padding-top: 1em;
+  }
+
+  // For pre-4.4 WordPress, hide the responsive row toggle
+  .toggle-row {
+    display: none;
+  }
+
+  @media screen and ( max-width: 782px ) {
+    .tablenav.top {
+
+      // Sorting hidden in responsive screen
+      .actions {
+        display: block;
+      }
+
+      // Make the buttons look better
+      .alignleft, .alignright {
+        float: none;
+        text-align: center;
+      }
+      // Give them some space!
+      .button, select, input {
+        margin: 10px 0;
+      }
+    }
+  }
+}

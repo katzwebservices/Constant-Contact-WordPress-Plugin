@@ -84,6 +84,20 @@ class ShortNumberInfo
         return ($regionCodes === null) ? array() : $regionCodes;
     }
 
+    /**
+     * Helper method to check that the country calling code of the number matches the region it's
+     * being dialed from.
+     * @param PhoneNumber $number
+     * @param string $regionDialingFrom
+     * @return bool
+     */
+    private function regionDialingFromMatchesNumber(PhoneNumber $number, $regionDialingFrom)
+    {
+        $regionCodes = $this->getRegionCodesForCountryCode($number->getCountryCode());
+
+        return in_array($regionDialingFrom, $regionCodes);
+    }
+
     public function getSupportedRegions()
     {
         return ShortNumbersRegionCodeSet::$shortNumbersRegionCodeSet;
@@ -308,6 +322,11 @@ class ShortNumberInfo
 
         foreach ($regionCodes as $region) {
             $phoneMetadata = $this->getMetadataForRegion($region);
+
+            if ($phoneMetadata === null) {
+                continue;
+            }
+
             if ($this->matcherAPI->matchesPossibleNumber($shortNumber, $phoneMetadata->getGeneralDesc())) {
                 return true;
             }
@@ -327,6 +346,11 @@ class ShortNumberInfo
      */
     public function isPossibleShortNumberForRegion($shortNumber, $regionDialingFrom)
     {
+        if ($shortNumber instanceof PhoneNumber) {
+            if (!$this->regionDialingFromMatchesNumber($shortNumber, $regionDialingFrom)) {
+                return false;
+            }
+        }
         $phoneMetadata = $this->getMetadataForRegion($regionDialingFrom);
 
         if ($phoneMetadata === null) {
@@ -384,6 +408,11 @@ class ShortNumberInfo
      */
     public function isValidShortNumberForRegion($number, $regionDialingFrom)
     {
+        if ($number instanceof PhoneNumber) {
+            if (!$this->regionDialingFromMatchesNumber($number, $regionDialingFrom)) {
+                return false;
+            }
+        }
         $phoneMetadata = $this->getMetadataForRegion($regionDialingFrom);
 
         if ($phoneMetadata === null) {
@@ -438,6 +467,11 @@ class ShortNumberInfo
      */
     public function getExpectedCostForRegion($number, $regionDialingFrom)
     {
+        if ($number instanceof PhoneNumber) {
+            if (!$this->regionDialingFromMatchesNumber($number, $regionDialingFrom)) {
+                return ShortNumberCost::UNKNOWN_COST;
+            }
+        }
         // Note that regionDialingFrom may be null, in which case phoneMetadata will also be null.
         $phoneMetadata = $this->getMetadataForRegion($regionDialingFrom);
         if ($phoneMetadata === null) {

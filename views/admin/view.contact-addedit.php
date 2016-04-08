@@ -1,8 +1,13 @@
+<?php
+/**
+ * @global KWSContact $Contact
+ */
+?>
 <form method="post">
-    <table class="widefat clear fixed ctct_table" cellspacing="0">
+    <table class="form-table widefat clear striped ctct_table" cellspacing="0">
         <thead>
-            <th scope="col" class="column-name" style="width:30%"><?php _e('Field Name', 'ctct'); ?></th>
-            <th scope="col" class="column-title"><?php _e('Field Values', 'ctct'); ?></th>
+            <th scope="col" class="column-name"><?php _e('Field Name', 'constant-contact-api'); ?></th>
+            <th scope="col" class="column-title"><?php _e('Field Values', 'constant-contact-api'); ?></th>
         </thead>
         <tbody>
             <?php
@@ -35,20 +40,20 @@
                     </label>
                     <input name="addresses[%%id%%][city]" type="text" class="" value="'.$Contact->get('personal_city').'" placeholder="'.esc_attr($Contact->getLabel('city')).'" title="'.esc_attr($Contact->getLabel('city')).'" />
                     <input name="addresses[%%id%%][state_code]" size="2" type="text" class="" value="'.$Contact->get('personal_state_code').'" placeholder="'.esc_attr($Contact->getLabel('state_code')).'" title="'.esc_attr($Contact->getLabel('state_code')).'" />
-                    <input name="addresses[%%id%%][postal_code]" size="10" type="text" class="" value="'.$Contact->get('personal_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('postal_code')).'"  title="'.esc_attr($Contact->getLabel('postal_code')).'" size="8" />
+                    <input name="addresses[%%id%%][postal_code]" size="10" type="text" class="" value="'.$Contact->get('personal_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('postal_code')).'"  title="'.esc_attr($Contact->getLabel('postal_code')).'" />
                     <input name="addresses[%%id%%][sub_postal_code]" type="text" class="" value="'.$Contact->get('personal_sub_postal_code').'" placeholder="'.esc_attr($Contact->getLabel('sub_postal_code')).'" title="'.esc_attr($Contact->getLabel('sub_postal_code')).'" size="6" /><br />
                     <input name="addresses[%%id%%][address_type]" type="hidden" value="%%name%%" />
                     ';
                     $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                     __('Personal Address', 'ctct'), str_replace(array('%%name%%', '%%id%%'), array('personal', 0), $personal));
+                                     __('Personal Address', 'constant-contact-api'), str_replace(array('%%name%%', '%%id%%'), array('personal', 0), $personal));
                     $html .= sprintf('<h3>%s</h3> <div>%s</div>',
-                                     __('Business Address', 'ctct'), str_replace(array('%%name%%', '%%id%%'), array('business', 1), $personal));
+                                     __('Business Address', 'constant-contact-api'), str_replace(array('%%name%%', '%%id%%'), array('business', 1), $personal));
                     break;
                 case 'custom_fields':
                 	$i = 1;
                 	$html .= '<ul class="ctct-checkboxes">';
                 	while($i < 16) {
-                        $label = sprintf( esc_attr_x( 'Custom Field %d', 'Admin label for custom fields', 'ctct'), $i );
+                        $label = sprintf( esc_attr_x( 'Custom Field %d', 'Admin label for custom fields', 'constant-contact-api'), $i );
                 	    $html .= sprintf('<li><label class="wrap">%1$s <input title="" placeholder="%1$s" type="text" name="CustomField%2$d" class="input regular-text" value="%3$s" /></label></li>', $label, $i, $Contact->get('CustomField'.$i));
                 	    $i++;
                 	}
@@ -72,6 +77,6 @@
     </table>
 
     <div class="submit">
-        <input type="submit" class="button button-primary button-large" value="<?php _e('Submit', 'consatnt-contact-apo'); ?>" />
+        <input type="submit" class="button button-primary button-hero" value="<?php _e('Submit', 'consatnt-contact-apo', 'constant-contact-api'); ?>" />
     </div>
 </form>

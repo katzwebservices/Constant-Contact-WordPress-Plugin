@@ -10,11 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class CTCT_Form_Designer_Output {
 
 	private $debug = false;
-	private $valid_request = false;
+	private $valid_request = true;
 	private $data = array();
 	private $settings = array();
 	private $form;
 	private $request;
+
+	/**
+	 * @var string 'html' or 'json'
+	 */
+	private $output_type = 'html';
+
 	static private $instance = NULL;
 
 	function __construct( $form = array() ) {
@@ -50,9 +56,7 @@ class CTCT_Form_Designer_Output {
 
 		$this->process_request();
 
-		if( empty( $this->form ) ) {
-			return;
-		}
+		$this->validate_request();
 
 		$this->json();
 	}
@@ -61,38 +65,21 @@ class CTCT_Form_Designer_Output {
 
 		if( empty( $data ) ) {
 
-			$data = $this->debug ? $_REQUEST : $_POST;
+			$data = $this->debug ? $_REQUEST : file_get_contents( 'php://input' );
 
 		}
 
 		$data = stripslashes_deep( $data );
 
-		if( !empty( $data['data'] ) ) {
-
-			$data = $data['data'];
-
-			$data = json_decode( $data, true );
-		}
-
-		$valid = true;
-
-		// Make sure required fields are set
-		if( empty( $data['verify'] ) || empty( $data['rand'] ) || empty( $data['cc-form-id'] ) || empty( $data['date'] ) ) {
-			$valid = false;
-		}
-
-		// Some very basic verification. Not secure, but better than nothing.
-		elseif( $data['verify'] !== ( $data['rand'] . $data['cc-form-id'] . $data['date'] ) ) {
-			$valid = false;
-		}
+		$data = is_array( $data ) ? $data : json_decode( $data, true );
 
 		$this->output_type = ( !empty( $data['output'] ) && $data['output'] === 'html' ) ? 'html' : 'json';
 
-		// @TODO - VALIDATE REQUEST USING NONCE
-		$this->valid_request = true; ///// $valid;
-
 		$form = array();
 
+		/**
+		 * Convert $form[field][name],$form[field][value] pairs into $form[$field] = $value
+		 */
 		if( isset( $data['form'] ) && is_array( $data['form'] ) ) {
 			foreach ( $data['form'] as $key => $value) {
 
@@ -135,7 +122,36 @@ class CTCT_Form_Designer_Output {
 		unset( $data['form'], $form );
 
 		$this->request = $data;
+	}
 
+	/**
+	 * Check to make sure the request is valid: form ID is set, random string + date string = expected combination
+	 *
+	 * @since 3.2
+	 * @return boolean True: request matches expected structure. False: something's smelly.
+	 */
+	function validate_request() {
+
+		$valid = ! empty( $this->form );
+
+		// No form ID? No soup for you!
+		if( empty( $this->form['cc-form-id'] ) ) {
+			$valid = false;
+		}
+
+		// Make sure required fields are set
+		elseif( empty( $this->request['verify'] ) || empty( $this->request['rand'] ) || empty( $this->request['date'] ) ) {
+			$valid = false;
+		}
+
+		// Some very basic verification. Not secure, but better than nothing.
+		elseif( $this->request['verify'] !== ( $this->request['rand'] . $this->form['cc-form-id'] . $this->request['date'] ) ) {
+			$valid = false;
+		}
+
+		$this->valid_request = $valid;
+
+		return $valid;
 	}
 
 	static function get_field_id( $passed_form_id = NULL, $field_name ) {
@@ -179,7 +195,7 @@ class CTCT_Form_Designer_Output {
 		// Unique ID for labels, etc.
 		$field_id = self::get_field_id( $unique_form_id, $field['id'] );
 
-		do_action('ctct_debug', 'render_field', $field);
+		do_action( 'ctct_debug', 'render_field', $field );
 
 		$val = isset( $field['val'] ) ? $field['val'] : '';
 		$placeholder = '';
@@ -190,6 +206,7 @@ class CTCT_Form_Designer_Output {
 		}
 
 		$label = empty( $field['label'] ) ? '' : esc_html( $field['label'] );
+
 
 		// If this is the submit button, we add list selection
 		$return = "<div class='cc_{$field['id']} kws_input_container gfield'>";
@@ -202,7 +219,7 @@ class CTCT_Form_Designer_Output {
 		// The field is required
 		if( !empty( $field['required'] ) ) {
 			$required = " required";
-			$reqlabel = isset( $this->data['text']['reqlabel'] ) ? htmlentities($this->data['text']['reqlabel']) : __('The %s field is required', 'ctct');
+			$reqlabel = isset( $this->data['text']['reqlabel'] ) ? htmlentities($this->data['text']['reqlabel']) : __('The %s field is required', 'constant-contact-api');
 			$asterisk = !empty( $this->form['reqast'] ) ? '<span class="req gfield_required" title="'.esc_attr( sprintf($reqlabel, $label) ).'">*</span>' : '';
 		}
 
@@ -330,7 +347,7 @@ class CTCT_Form_Designer_Output {
 	        'exclude_lists' => array(),
 	        'description' => '',
 	        'show_list_selection' => false,
-	        'list_selection_title' => __('Add me to these lists:', 'ctct'),
+	        'list_selection_title' => __('Add me to these lists:', 'constant-contact-api'),
 	        'list_selection_format' => NULL,
 	        'list_format' => NULL, // Used by form
 	        'widget' => false, // is this request coming from the widget?
@@ -431,7 +448,9 @@ class CTCT_Form_Designer_Output {
 	        // Set up error display
 	        $error_output .= '<div id="constant-contact-signup-errors" class="error">';
 	        $error_output .= '<ul>';
-	        foreach ($errors as $error ) {
+
+		    /** @var WP_Error $error */
+		    foreach ($errors as $error ) {
 
 	        	$error_data = $error->get_error_data();
 	        	$error_label_for = '';
@@ -460,7 +479,7 @@ class CTCT_Form_Designer_Output {
 	    } elseif( is_a( $ProcessForm->getResults(), 'Ctct\Components\Contacts\Contact') ) {
 	        $process_class = ' has_success';
 	        $success = '<p class="success cc_success">';
-	        $success .= esc_html__('Success, you have been subscribed.', 'ctct');
+	        $success .= esc_html__('Success, you have been subscribed.', 'constant-contact-api');
 	        $success .= '</p>';
 	        $success = apply_filters('constant_contact_form_success', $success);
 
@@ -541,7 +560,7 @@ class CTCT_Form_Designer_Output {
 
 		$output = array(
 			'css' => $this->strip_whitespace( $this->processStyle() ),
-			'form' => $this->strip_whitespace( $this->processForm() )
+			'form' => $this->strip_whitespace( $this->processForm() ),
 		);
 
 		exit( json_encode( $output ) );
@@ -594,8 +613,6 @@ class CTCT_Form_Designer_Output {
 		$inputfields = '';
 
 		if( is_array( $this->form['f'] ) ) {
-
-			$position = array();
 
 			// Make sure they're in the right order
 			$fields = $this->sort_fields( $this->form['f'] );
@@ -666,8 +683,8 @@ $form = <<<EOD
 EOD;
 
 		if( !$this->debug ) {
-			$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
-			$form = preg_replace('/\s\s/ism', ' ', $form);
+		#	$form = str_replace(array("\n", "\r", "\t"), ' ', $form);
+		#	$form = preg_replace('/\s\s/ism', ' ', $form);
 		}
 
 		return $form;
@@ -712,10 +729,8 @@ EOD;
 	}
 
 	function strip_whitespace( $content ) {
-		$content = str_replace("\n", ' ', $content);
-		$content = str_replace("\r", ' ', $content);
-		$content = str_replace("\t", ' ', $content);
-		$content = str_replace('  ', ' ', $content);
+		$content = str_replace( array( "\n", "\r", "\t", '  ' ), ' ', $content);
+		$content = str_replace( '  ', ' ', $content);
 
 		return $content;
 	}

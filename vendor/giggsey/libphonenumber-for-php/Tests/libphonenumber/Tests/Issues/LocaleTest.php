@@ -50,14 +50,13 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped("{$regionCode} is not supported");
         }
 
-        $number = $this->phoneUtil->getExampleNumberForType($regionCode, PhoneNumberType::FIXED_LINE_OR_MOBILE);
-        $phoneNumber = $this->phoneUtil->parse($number, 'ZZ');
+        $phoneNumber = $this->phoneUtil->getExampleNumberForType($regionCode, PhoneNumberType::FIXED_LINE_OR_MOBILE);
 
         $this->assertContains($regionCode, CountryCodeToRegionCodeMap::$countryCodeToRegionCodeMap[$phoneNumber->getCountryCode()]);
 
-        $this->assertEquals($regionCode, $this->phoneUtil->getRegionCodeForNumber($number));
+        $this->assertEquals($regionCode, $this->phoneUtil->getRegionCodeForNumber($phoneNumber));
 
-        $this->assertEquals($countryName, $this->geocoder->getDescriptionForValidNumber($phoneNumber, 'en', 'ZZ'), "Checking {$number} is part of {$countryName}");
+        $this->assertEquals($countryName, $this->geocoder->getDescriptionForValidNumber($phoneNumber, 'en', 'ZZ'), "Checking {$phoneNumber} is part of {$countryName}");
     }
 
     public function localeList()
@@ -173,7 +172,6 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
             'GW' => 'Guinea-Bissau',
             'GY' => 'Guyana',
             'HT' => 'Haiti',
-            'VA' => 'Vatican City',
             'HN' => 'Honduras',
             'HK' => 'Hong Kong SAR China',
             'HU' => 'Hungary',

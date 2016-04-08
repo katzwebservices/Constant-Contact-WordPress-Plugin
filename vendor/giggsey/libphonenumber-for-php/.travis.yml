@@ -1,9 +1,10 @@
+sudo: false
+
 language: php
 
 matrix:
   allow_failures:
     - php: hhvm
-    - php: 7
 
 php:
   - 5.3
@@ -15,7 +16,7 @@ php:
 
 before_script:
  - wget http://getcomposer.org/composer.phar
- - php composer.phar install --dev --no-interaction
+ - php composer.phar install --no-interaction
  - mkdir -p build/logs
 
 script:

@@ -22,6 +22,8 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 		global $pagenow, $plugin_page;
 
 		define('CC_FORM_GEN_URL', plugin_dir_url(__FILE__));
+
+		/** @define "CC_FORM_GEN_PATH" "./" */
 		define('CC_FORM_GEN_PATH', plugin_dir_path(__FILE__)); // @ Added 2.0 The full URL to this file
 
 		require_once( CC_FORM_GEN_PATH . 'form.php' );
@@ -163,7 +165,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 					if ( is_wp_error($delete_cc_form) ) {
 						$messages[] = '<div class="error below-h2"><p>' . $delete_cc_form->get_error_message() . '</p></div>';
 					} else {
-						$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The form %s has been successfully deleted.', 'ctct'), $deleted_form['form-name'] ) . '</p></div>';
+						$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The form %s has been successfully deleted.', 'constant-contact-api'), $deleted_form['form-name'] ) . '</p></div>';
 						// Select the next available menu
 						$cc_form_selected_id = -1;
 						$_cc_forms = wp_get_cc_forms( array('orderby' => 'name') );
@@ -181,7 +183,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 					$cc_form_selected_id = -1;
 					unset( $_REQUEST['form'] );
 
-					$messages[] = '<div class="error below-h2"><p>'.__('The form could not be deleted. The form may have already been deleted.', 'ctct').'</p></div>';
+					$messages[] = '<div class="error below-h2"><p>'.__('The form could not be deleted. The form may have already been deleted.', 'constant-contact-api').'</p></div>';
 				}
 				break;
 
@@ -205,7 +207,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 						if ( is_wp_error( $cc_form_selected_id ) ) {
 							$messages[] = '<div class="error below-h2"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
 						} else {
-							$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The  form %s has been successfully created.', 'ctct'), '<strong>'.$new_form_title.'</strong>' ) . '</p></div>';
+							$messages[] = '<div class="updated below-h2"><p>' . sprintf( __('The  form %s has been successfully created.', 'constant-contact-api'), '<strong>'.$new_form_title.'</strong>' ) . '</p></div>';
 						}
 
 				// update existing form
@@ -213,7 +215,7 @@ class CTCT_Form_Designer extends CTCT_Admin_Page {
 					if(wp_get_cc_form($cc_form_selected_id)) {
 						$request = wp_update_cc_form_object($cc_form_selected_id, $_REQUEST);
 						if(!is_wp_error($request)) {
-							$messages[] = '<div class="below-h2 updated fade"><p>' . sprintf( __('The <strong>%s</strong> form has been updated.', 'ctct'), $request['form-name'] ) . '</p></div>';
+							$messages[] = '<div class="below-h2 updated fade"><p>' . sprintf( __('The <strong>%s</strong> form has been updated.', 'constant-contact-api'), $request['form-name'] ) . '</p></div>';
 						} else {
 							$messages[] = '<div class="error below-h2"><p>' . $cc_form_selected_id->get_error_message() . '</p></div>';
 						}
@@ -335,40 +337,7 @@ function constant_contact_retrieve_form($formid, $force_update=false, $unique_id
 
 	$form_html = new CTCT_Form_Designer_Output( $form );
 
-
 	return $form_html->html();
-
-
-	// Get the form from form.php
-	$response = wp_remote_request( admin_url('admin-ajax.php'), array(
-       'method' => 'POST',
-       'timeout' => 20,
-       'body' => $form,
-       'sslverify' => false,
-       'compress' => true,
-       'local' => true
-   ));
-
-	do_action('ctct_debug', 'Requesting Form Data for Form #'.$formid, array('POST body' => $form, 'POST response:' => $response));
-
-	if( is_wp_error( $response ) ) {
-		do_action('ctct_log', $response, 'error');
-		if(current_user_can('manage_options')) {
-			echo '<!-- Constant Contact API Error: `wp_remote_post` failed with this error: '.$response->get_error_message().' -->';
-		}
-		return false;
-	} else {
-		$form = $response['body'];
-		if(empty($_POST) && !$success) {
-			// Save the array into the cc_form_id transient with a 30 day expiration
-			$set = set_transient("cc_form_$formid", $form, 60*60*24*30);
-			if(!$set) {
-				do_action('ctct_log', 'Setting cc_form_'.$formid.' Transient failed', $form);
-			}
-		}
-
-		return $form;
-	}
 }
 
 function cc_form_get_selected_id($allForms = array()) {
@@ -415,7 +384,7 @@ if(!function_exists('wp_dequeue_style')) {
 
 function cc_form_text() {
 	return apply_filters('constant_contact_form_design_custom_text', array(
-		'reqlabel' => __('The %s field is required', 'ctct'),
+		'reqlabel' => __('The %s field is required', 'constant-contact-api'),
 	));
 }
 
@@ -447,13 +416,13 @@ function wp_cc_form_setup($form = false) {
 	// Backup $_GET in case it's modified by the metaboxes
 	$getHolder = $_GET;
 
-	add_meta_box( 'formbasics', __('Form Basics', 'ctct'), 'cc_form_meta_box_actions' , 'constant-contact-form', 'core', 'default', array($form));
+	add_meta_box( 'formbasics', __('Form Basics', 'constant-contact-api'), 'cc_form_meta_box_actions' , 'constant-contact-form', 'core', 'default', array($form));
 	add_meta_box( 'formlists_select', __( 'Signup Lists','constant-contact-api' ), 'cc_form_meta_box_formlists_select' , 'constant-contact-form', 'side', 'default', array($form));
 	add_meta_box( 'formfields_select', __( 'Form Fields','constant-contact-api' ), 'cc_form_meta_box_formfields_select' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'backgroundoptions', __('Background', 'ctct'), 'cc_form_meta_box_backgroundoptions' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'border', __('Border', 'ctct'), 'cc_form_meta_box_border' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'fontstyles', __('Text Styles & Settings', 'ctct'), 'cc_form_meta_box_fontstyles' , 'constant-contact-form', 'side', 'default', array($form));
-	add_meta_box( 'formdesign', __('Padding & Align', 'ctct'), 'cc_form_meta_box_formdesign' , 'constant-contact-form', 'side', 'default', array($form));
+	add_meta_box( 'backgroundoptions', __('Background', 'constant-contact-api'), 'cc_form_meta_box_backgroundoptions' , 'constant-contact-form', 'side', 'default', array($form));
+	add_meta_box( 'border', __('Border', 'constant-contact-api'), 'cc_form_meta_box_border' , 'constant-contact-form', 'side', 'default', array($form));
+	add_meta_box( 'fontstyles', __('Text Styles & Settings', 'constant-contact-api'), 'cc_form_meta_box_fontstyles' , 'constant-contact-form', 'side', 'default', array($form));
+	add_meta_box( 'formdesign', __('Padding & Align', 'constant-contact-api'), 'cc_form_meta_box_formdesign' , 'constant-contact-form', 'side', 'default', array($form));
 
 	// Restore $_GET to previous value
 	$_GET = $getHolder;
@@ -466,6 +435,6 @@ function constant_contact_get_form_title($form = false) {
 		$form = wp_get_cc_form( $cc_form_selected_id );
 	}
 
-	return !empty($form['form-name']) ? $form['form-name'] : apply_filters('constant_contact_default_form_name', __('Enter form name here', 'ctct'));
+	return !empty($form['form-name']) ? $form['form-name'] : apply_filters('constant_contact_default_form_name', __('Enter form name here', 'constant-contact-api'));
 }
 

@@ -140,10 +140,6 @@ class Cache_WP_HTTP {
 			delete_transient($r['flush_key']);
 		}
 
-#		$key = $this->getKey($url,  array('body' => NULL, 'method' => 'GET'));
-#		$this->r(sprintf('Flush URL: %s<br />Deleting transietnt with key %s', $url, $key), false, 'flushCache');
-#		delete_transient($key);
-
 	}
 
 	function r($data='', $die = false, $title = false) {

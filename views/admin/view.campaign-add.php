@@ -78,9 +78,9 @@ $campaign_details = array(
     )
 );
 r(json_encode($campaign_details), true);
-$Campaign = new KWSCampaign($campaign_details);
+$Event = new KWSCampaign($campaign_details);
 
-$Campaign->set('email_content_format', 'XHTML');
+$Event->set('email_content_format', 'XHTML');
 
 #$Campaign
 /*{

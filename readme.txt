@@ -1,10 +1,10 @@
-=== Constant Contact for Wordpress ===
+=== Constant Contact for WordPress ===
 Contributors: katzwebdesign, katzwebservices
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
+Donate link: http://wordpress.constantcontact.com
+Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
-Tested up to: 4.2.2
-Stable tag: 3.1.11
+Tested up to: 4.5
+Stable tag: 4.0
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -12,24 +12,24 @@ Integrate Constant Contact into your website with this full-featured plugin.
 == Description ==
 
 > __This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com).__  
-> *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing/index.jsp "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
+> *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
+
+**Requires PHP 5.5**
 
 #### Fully integrate Constant Contact with your WordPress website.
 
-The Constant Contact for Wordpress plugin is the best email marketing plugin for WordPress: integrate your website seamlessly with your Constant Contact account.
+The Constant Contact for WordPress plugin is the best email marketing plugin for WordPress: integrate your website seamlessly with your Constant Contact account.
 
 You can place a signup checkbox or list selection on your register page or use the signup widget anywhere in your website sidebar or PHP templates.
 
 ### Event Marketing
 
-The plugin features [Constant Contact Event Marketing](http://wordpress.constantcontact.com/event-marketing/index.jsp) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
+The plugin features [Constant Contact Event Marketing](http://wordpress.constantcontact.com/features/event-marketing) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
 
 ### Built-in Form Designer
 
 __The Form Designer__ is a form generation and design tool. The Form Designer allows users to generate unlimited number of unique forms and gives a wide variety of options that can be configured, including what fields to show in the signup form. There and tons of design options, including custom background images, border width, colors, fonts and much more.
 
-### Constant Analytics: In-Depth Google Analytics
-View your Google Analytics data in your dashboard with Constant Analytics. View traffic by source, geography, and popularity. See the impact of blog posts and email campaigns with the great graphing tools.
 
 #### Plugin features:
 * Add signup checkbox and list selection to your register page and update profile page
@@ -40,11 +40,11 @@ View your Google Analytics data in your dashboard with Constant Analytics. View 
 * Show contact list selection on register page with ability to exclude certain lists
 * Automatically subscribe your user to one or more contact lists on the register page
 * Customize the register page signup box (and list selection) title and description
-* Add / edit users from your constant contact account
+* Add / edit users from your Constant Contact account
 * Add a signup widget to your sidebar or anywhere in your template
 
 #### Plugin Support
-To obtain support please use this link to the [wordpress forums](http://wordpress.org/tags/constant-contact-api).
+To obtain support please use this link to the [WordPress forums](http://wordpress.org/tags/constant-contact-api).
 
 #### If you like the plugin...
 If you use the plugin and find it useful please make sure to come back and vote so other users know it works.
@@ -76,6 +76,56 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+== 4.0 on April 8, 2016 =
+
+__This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
+
+* The Admin now looks great on mobile devices!
+* Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
+* Added: If a contact exists in the site, link to their profile page from their single Contact page
+* Improved: URLs and emails are now links in the single Campaign page
+* Improved: Inline edit is much faster
+* Added: Campaign summary to the top of single Campaign pages
+* EventSpot:
+    - Embedding single events using the shortcode with `onlyactive` enabled now shows a "The "{title}" event is no longer active." message.
+    - Maps now link to Google Maps SSL
+    - Location output includes Address 2 and Address 3, if set
+    - Fixed: `directtoregistration` shortcode setting wasn't working ("Link directly to registration page, rather than event homepage")
+    - Fixed: Added caching for if Constant Contact account has access to EventSpot
+* Form Designer:
+    - New simple default form design
+    - Responsive design fits better to all screen sizes
+    - Visual feedback when the form is being updated
+    - MUCH improved speed when designing a form
+    - No longer slows down when processing an update
+    - Change background, border, padding settings live
+* Fixed: Logs not being pruned. This could lead to thousands of log posts in the database, slowing down the site.
+* Fixed: Fix fatal error when updating lists in User Profiles
+* Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
+* Fixed: Admin pages now only process when they're supposed to
+* Tweak: Show list name in single List page
+* Tweak: Add "Status" column to Campaigns table
+* Tweak: Only "Active" users now shown by default in Contacts
+* Tweak: Filtering Contacts by status now loads new request
+* Fixed: Delete caches when de-authenticating plugin
+* Tweak: Allow Draft events to be visible to administrators
+
+__Developer Notes:__
+
+* Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+* Fixed: Prevent logs from being written during Form Designer AJAX
+* Fixed: Removed deprecated `wp_clone()` function
+* Fixed: `include` attribute wasn't respected in `KWSContactList::outputHTML()`
+* Tweak: Improved error handling for errors returned by Constant Contact
+* Tweak: Refactor LESS files for admin CSS
+* Modified: Second parameter passed to `cc_event_map_link` is now a `\Ctct\Components\EventSpot\EventSpot` object
+* Modified: Removed third parameter passed to `cc_event_map_link`
+* Added: `ctct_oauth_uri_base` filter to use your own oAuth domain. See the filter inline docs for more information.
+* Updated: Phone number validation library
+
+= 3.1.12 on August 21 =
+* Fixed: Compatibility with WordPress 4.3
 
 = 3.1.11 on July 15 =
 * Fixed: Submissions not being processed properly for lists being selected using `<select>` inputs
@@ -296,14 +346,34 @@ To install the plugin follow the steps below:
 
 == Frequently Asked Questions ==
 
-= The plugin Requires PHP 5.3 =
-__Version 3.x changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
+= The plugin Requires PHP 5.5 =
+__Version 4.0 changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
-Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.3. 
+Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.5.
 
-Ask your host about upgrading your server to 5.3. If they say no, chances are you should find a new host; 5.3 has long been available.
+Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available, and [earlier versions of PHP are no longer secure](http://php.net/supported-versions.php).
+
+Starting with Version 4.0, **the Constant Contact Plugin requires PHP Version 5.5 or higher**. Please contact your hosting provider support and ask them to upgrade your server.
+
+**We apologize for the inconvenience, but technical requirements changed.**The good news? Once you upgrade your PHP version, your site will be faster [and more secure](http://php.net/supported-versions.php).
+
+#### Here’s how to upgrade your PHP version for popular web hosts:
+
+-   [InMotion Hosting](http://www.inmotionhosting.com/support/website/php/how-to-change-the-php-version-your-account-uses)
+-   [HostGator](http://support.hostgator.com/articles/cpanel/php-configuration-plugin)
+-   [Bluehost](https://my.bluehost.com/cgi/help/447)
+-   [GoDaddy](https://www.godaddy.com/help/view-or-change-your-php-version-16090)
+-   [SiteGround](https://www.siteground.com/kb/how_to_have_different_php__mysql_versions/)
+-   Running a local installation? Here's how to change your PHP version using:
+    -   [MAMP](http://wphosting.tv/how-to-switch-between-several-php-versions-in-mamp-2-x/) (Mac)
+    -   [WAMP](https://john-dugan.com/upgrade-php-wamp/) (Windows)
+
+#### If you can’t upgrade your PHP version
+
+You can use [Constant Contact's Sign-up Form](http://support2.constantcontact.com/articles/SupportFAQ/5367) and add the code to a widget or a page. This will allow your visitors to sign up for your newsletters.
 
 = Do I need a Constant Contact account for this plugin? =
+
 This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com/index.jsp).
 
 Constant Contact is a great email marketing company -- their rates are determined by the number of contacts in your list, not how many emails you send. This means you can send unlimited emails per month for one fixed rate! [Give it a test run](http://wordpress.constantcontact.com/features/signup.jsp).
@@ -392,11 +462,6 @@ __Some example filters:__
 * Form description text: `constant_contact_form_description` (after it has been modified by `wpautop()`)
 * Error message: `constant_contact_form_errors`
 * Submit button: `constant_contact_form_submit` (includes entire `input` string)
-
-= My email campaign click data isn't being tracked in Constant Analytics =
-Constant Contact does not have built-in Google Analytics "tagging" that would track the click data. When you create links in your Constant Contact campaigns, <strong><a href="http://www.google.com/support/analytics/bin/answer.py?answer=55578" rel="nofollow">use the Google URL Builder</a></strong> to add tags to your links. <strong>Make sure to set the Campaign Medium to `email`!</strong>
-
-When you do that, email click stats will be segmented for you in the Site Traffic box.
 
 = How do I use the Form Designer? =
 

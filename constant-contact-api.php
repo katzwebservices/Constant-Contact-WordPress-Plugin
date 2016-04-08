@@ -4,9 +4,9 @@ Plugin Name: 		Constant Contact Plugin for WordPress
 Plugin URI: 		https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
 Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: 			Katz Web Services, Inc.
-Version: 			3.1.11
-Author URI: 		http://katz.co
-Text Domain: 		ctct
+Version: 			4.0
+Author URI: 		https://katz.co
+Text Domain: 		constant-contact-api
 Domain Path: 		/languages
 License:           	GPLv2 or later
 License URI: 		http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,15 +22,26 @@ register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
 
 final class WP_CTCT {
 
-	const version = '3.1.11';
+	const version = '4.0';
+
+	/**
+	 * @var string The minimum version of PHP required for the plugin
+	 * @since 4.0
+	 */
+	const min_php_version = '5.5';
 
 	/**
 	 * @var KWSConstantContact
 	 */
 	public $cc = NULL;
 
+	/**
+	 * @var KWSOAuth2
+	 */
 	public $oauth = NULL;
+
 	public $log = NULL;
+
 	private static $instance = NULL;
 
 	function __construct() {
@@ -57,9 +68,9 @@ final class WP_CTCT {
 			load_plugin_textdomain( 'ctct', false, dirname( plugin_basename( CTCT_FILE ) ) . '/languages/' );
 
 			/**
-			 * If the server doesn't support PHP 5.3, sorry, but you're outta luck.
+			 * If the server doesn't support PHP 5.4, sorry, but you're outta luck.
 			 */
-			if(version_compare(phpversion(), '5.3') <= 0) {
+			if(version_compare(phpversion(), WP_CTCT::min_php_version ) <= 0) {
 				include CTCT_DIR_PATH.'inc/incompatible.php';
 				return;
 			}
@@ -104,8 +115,11 @@ final class WP_CTCT {
 
 		if( !class_exists( 'KWSOAuth2' ) ) {
 
-			include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
+			#include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
 			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpot.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotService.php';
+			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotList.php';
 			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
 
 			$this->oauth = new KWSOAuth2();
@@ -167,12 +181,11 @@ final class WP_CTCT {
 
 		/** Modules */
 		include_once CTCT_DIR_PATH.'lib/registration.php';
-		include_once CTCT_DIR_PATH.'lib/constant-analytics/constant-analytics.php';
 		include_once CTCT_DIR_PATH.'lib/comment-form-signup.php';
 		include_once CTCT_DIR_PATH.'lib/simple-widget.php';
 
 		if( CTCT_Settings::get('eventspot') ) {
-			include_once CTCT_DIR_PATH.'lib/eventspot/eventspot.php';
+			include_once CTCT_DIR_PATH . 'lib/eventspot/eventspot.php';
 		}
 
 		include_once CTCT_DIR_PATH.'lib/form-designer/form-designer.php';

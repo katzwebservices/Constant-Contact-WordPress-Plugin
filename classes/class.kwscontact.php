@@ -18,7 +18,7 @@ class KWSContact extends Contact {
 	/**
 	 * The items of the Contact object that aren't writeable.
 	 *
-	 * @todo  remove Notes when avaiable again.
+	 * @todo  remove Notes when available again.
 	 * @var array
 	 */
 	private static $read_only = array(
@@ -35,6 +35,30 @@ class KWSContact extends Contact {
 		'notes'
 	);
 
+	/**
+	 * The statuses that are supported for a Contact
+	 * @var array
+	 */
+	public static $statii = array(
+		/** Contact is an active member of a contactlist */
+		'ACTIVE',
+		/** Contact has not confirmed their email address */
+		'UNCONFIRMED',
+		/** Contact has unsubscribed from the contact list and is on the Do Not Mail list; they cannot be manually added to any contactlist */
+		'OPTOUT',
+		/** Contact has been taken off all contactlists, and can be added to a contactlist */
+		'REMOVED',
+		/** someone who is not a contact, but has registered for one of the account's events */
+		'NON_SUBSCRIBER',
+		/** a person who has "liked" one of the account's social campaign pages */
+		'VISITOR',
+	);
+
+	/**
+	 * KWSContact constructor.
+	 *
+	 * @param string $Contact
+	 */
 	function __construct( $Contact = '' ) {
 
 		if ( is_array( $Contact ) ) {
@@ -50,8 +74,14 @@ class KWSContact extends Contact {
 				$this->{$k} = self::prepareValue( $v );
 			}
 		}
+
+		return $this;
 	}
 
+	/**
+	 * Get the array of read-only fields for a Contact
+	 * @return array
+	 */
 	public static function getReadOnly() {
 		return self::$read_only;
 	}
@@ -92,7 +122,7 @@ class KWSContact extends Contact {
 
 	public function update( $new_contact_array ) {
 
-		$existing_contact = wp_clone( $this );
+		$existing_contact = clone( $this );
 
 		$new_contact = new KWSContact( $new_contact_array, true );
 
@@ -107,6 +137,13 @@ class KWSContact extends Contact {
 		return $existing_contact;
 	}
 
+	/**
+	 * Make sure addresses have all the required keys set
+	 *
+	 * @param array $address
+	 *
+	 * @return array
+	 */
 	private function prepareAddress( array $address ) {
 		return wp_parse_args( $address, array(
 			'line1'           => '',
@@ -179,8 +216,8 @@ class KWSContact extends Contact {
 			'first_name'              => NULL,
 			'middle_name'             => NULL,
 			'last_name'               => NULL,
-			'source'                  => NULL,
 			'email_addresses'         => array(),
+			'source'                  => NULL,
 			'email'                   => NULL,
 			'email_address'           => NULL,
 			'user_email'              => NULL,
@@ -209,9 +246,6 @@ class KWSContact extends Contact {
 		);
 
 		$Contact = wp_parse_args( $contact_array, $defaults );
-
-		# r($contact_array);
-		# r($Contact);
 
 		foreach ( $Contact as $k => $v ) {
 
@@ -354,14 +388,7 @@ class KWSContact extends Contact {
 			}
 		}
 
-		if ( $add || ! in_array( $Contact['status'], array(
-				'ACTIVE',
-				'UNCONFIRMED',
-				'OPTOUT',
-				'REMOVED',
-				'NON_SUBSCRIBER',
-				'VISITOR'
-			) )
+		if ( $add || ! in_array( $Contact['status'], self::$statii )
 		) {
 			unset( $Contact['status'] );
 		}
@@ -392,30 +419,7 @@ class KWSContact extends Contact {
 	}
 
 	function getLabel( $key ) {
-
-		switch ( $key ) {
-			case 'id':
-				return 'ID';
-				break;
-			case 'email_addresses':
-				return 'Email Address';
-				break;
-			case 'line1':
-				return 'Address';
-				break;
-			case 'line2':
-				return 'Address Line 2';
-				break;
-			case 'line3':
-				return 'Address Line 3';
-				break;
-		}
-
-		$key = ucwords( preg_replace( '/\_/ism', ' ', $key ) );
-		$key = preg_replace( '/Addr([0-9])/', __( 'Address $1', 'ctct' ), $key );
-		$key = preg_replace( '/Field([0-9])/', __( 'Field $1', 'ctct' ), $key );
-
-		return $key;
+		return ctct_get_label_from_field_id( $key );
 	}
 
 	function is_editable( $key, $check_status = true ) {
@@ -443,11 +447,31 @@ class KWSContact extends Contact {
 
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
 				$key                        = strtolower( str_ireplace( 'personal_', '', $key ) );
-				$this->addresses[0]->{$key} = $value;
+
+				$address_key = 0;
+				foreach( $this->addresses as $index => $address ) {
+					if( 'PERSONAL' === $address->address_type ) {
+						$address_key = $index;
+					}
+				}
+
+				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]->address_type = 'PERSONAL';
 				break;
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
 				$key                        = strtolower( str_ireplace( 'business_', '', $key ) );
-				$this->addresses[1]->{$key} = $value;
+
+				$address_key = 1;
+				foreach( $this->addresses as $index => $address ) {
+					if( 'BUSINESS' === $address->address_type ) {
+						$address_key = $index;
+					}
+				}
+
+				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]->address_type = 'BUSINESS';
 				break;
 			case ( preg_match( '/^customfield([0-9]+)/ism', $key, $matches ) ? true : false ):
 				// First, check whether it already exists.
@@ -537,12 +561,21 @@ class KWSContact extends Contact {
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'personal_', '', $key ) );
 
-				return isset( $this->addresses[0] ) ? $this->addresses[0]->{$key} : '';
+				foreach( $this->addresses as $address ) {
+					if( 'PERSONAL' === $address->address_type ) {
+						return isset( $address->{$key} ) ? $address->{$key} : '';
+					}
+				}
+
 				break;
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'business_', '', $key ) );
 
-				return isset( $this->addresses[1] ) ? $this->addresses[1]->{$key} : '';
+				foreach( $this->addresses as $address ) {
+					if( 'BUSINESS' === $address->address_type ) {
+						return isset( $address->{$key} ) ? $address->{$key} : '';
+					}
+				}
 				break;
 			case ( preg_match( '/^customfield/ism', $key ) ? true : false ):
 				foreach ( (array) $this->custom_fields as $customfield ) {

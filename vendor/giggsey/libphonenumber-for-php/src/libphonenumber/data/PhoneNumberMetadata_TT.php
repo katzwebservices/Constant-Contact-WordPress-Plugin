@@ -16,12 +16,13 @@ return array (
     'NationalNumberPattern' => '
           868(?:
             2(?:
-              [03]1|
-              2[1-5]
+              01|
+              2[1-6]|
+              3[1-5]
             )|
             6(?:
               0[79]|
-              1[02-9]|
+              1[02-8]|
               2[1-9]|
               [3-69]\\d|
               7[0-79]
@@ -37,7 +38,7 @@ return array (
     'NationalNumberPattern' => '
           868(?:
             2(?:
-              [89]\\d
+              [789]\\d
             )|
             3(?:
               0[1-9]|
@@ -94,7 +95,8 @@ return array (
             33|
             44|
             66|
-            77
+            77|
+            88
           )[2-9]\\d{6}
         ',
     'PossibleNumberPattern' => '\\d{10}',
@@ -122,8 +124,8 @@ return array (
   ),
   'voicemail' => 
   array (
-    'NationalNumberPattern' => 'NA',
-    'PossibleNumberPattern' => 'NA',
+    'NationalNumberPattern' => '868619\\d{4}',
+    'PossibleNumberPattern' => '\\d{10}',
   ),
   'shortCode' => 
   array (

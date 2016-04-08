@@ -174,7 +174,19 @@ class PhoneNumberUtil
      * ALL_PLUS_NUMBER_GROUPING_SYMBOLS.
      * @var array
      */
-    private static $asciiDigitMappings;
+    private static $asciiDigitMappings = array(
+        '0' => '0',
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+        '4' => '4',
+        '5' => '5',
+        '6' => '6',
+        '7' => '7',
+        '8' => '8',
+        '9' => '9',
+    );
+
     /**
      * Regexp of all possible ways to write extensions, for use when parsing. This will be run as a
      * case-insensitive regexp match. Wide character versions are also provided after each ASCII
@@ -182,7 +194,6 @@ class PhoneNumberUtil
      * @var String
      */
     private static $EXTN_PATTERNS_FOR_PARSING;
-    private static $EXTN_PATTERNS_FOR_MATCHING;
     private static $EXTN_PATTERN = null;
     private static $VALID_PHONE_NUMBER_PATTERN;
     private static $MIN_LENGTH_PHONE_NUMBER_PATTERN;
@@ -206,26 +217,52 @@ class PhoneNumberUtil
      * @var string
      */
     private static $VALID_PHONE_NUMBER;
-    private static $numericCharacters = array();
+    private static $numericCharacters = array(
+        "\xef\xbc\x90" => 0,
+        "\xef\xbc\x91" => 1,
+        "\xef\xbc\x92" => 2,
+        "\xef\xbc\x93" => 3,
+        "\xef\xbc\x94" => 4,
+        "\xef\xbc\x95" => 5,
+        "\xef\xbc\x96" => 6,
+        "\xef\xbc\x97" => 7,
+        "\xef\xbc\x98" => 8,
+        "\xef\xbc\x99" => 9,
 
-    /**
-     * The metadata loader used to inject alternative metadata sources.
-     * @var MetadataLoaderInterface
-     */
-    private $metadataLoader;
+        "\xd9\xa0" => 0,
+        "\xd9\xa1" => 1,
+        "\xd9\xa2" => 2,
+        "\xd9\xa3" => 3,
+        "\xd9\xa4" => 4,
+        "\xd9\xa5" => 5,
+        "\xd9\xa6" => 6,
+        "\xd9\xa7" => 7,
+        "\xd9\xa8" => 8,
+        "\xd9\xa9" => 9,
 
-    /**
-     * A mapping from a region code to the PhoneMetadata for that region.
-     * @var array
-     */
-    private $regionToMetadataMap = array();
-    /**
-     * A mapping from a country calling code for a non-geographical entity to the PhoneMetadata for
-     * that country calling code. Examples of the country calling codes include 800 (International
-     * Toll Free Service) and 808 (International Shared Cost Service).
-     * @var array
-     */
-    private $countryCodeToNonGeographicalMetadataMap = array();
+        "\xdb\xb0" => 0,
+        "\xdb\xb1" => 1,
+        "\xdb\xb2" => 2,
+        "\xdb\xb3" => 3,
+        "\xdb\xb4" => 4,
+        "\xdb\xb5" => 5,
+        "\xdb\xb6" => 6,
+        "\xdb\xb7" => 7,
+        "\xdb\xb8" => 8,
+        "\xdb\xb9" => 9,
+
+        "\xe1\xa0\x90" => 0,
+        "\xe1\xa0\x91" => 1,
+        "\xe1\xa0\x92" => 2,
+        "\xe1\xa0\x93" => 3,
+        "\xe1\xa0\x94" => 4,
+        "\xe1\xa0\x95" => 5,
+        "\xe1\xa0\x96" => 6,
+        "\xe1\xa0\x97" => 7,
+        "\xe1\xa0\x98" => 8,
+        "\xe1\xa0\x99" => 9,
+    );
+
     /**
      * The set of county calling codes that map to the non-geo entity region ("001").
      * @var array
@@ -236,11 +273,6 @@ class PhoneNumberUtil
      * @var array
      */
     private $supportedRegions = array();
-    /**
-     * The prefix of the metadata files from which region data is loaded.
-     * @var String
-     */
-    private $currentFilePrefix = self::META_DATA_FILE_PREFIX;
 
     /**
      * A mapping from a country calling code to the region codes which denote the region represented
@@ -257,16 +289,22 @@ class PhoneNumberUtil
     private $nanpaRegions = array();
 
     /**
-     * This class implements a singleton, so the only constructor is private.
+     * @var MetadataSourceInterface
      */
-    private function __construct($filePrefix, MetadataLoaderInterface $metadataLoader, $countryCallingCodeToRegionCodeMap)
+    private $metadataSource;
+
+    /**
+     * This class implements a singleton, so the only constructor is private.
+     * @param MetadataSourceInterface $metadataSource
+     * @param $countryCallingCodeToRegionCodeMap
+     */
+    private function __construct(MetadataSourceInterface $metadataSource, $countryCallingCodeToRegionCodeMap)
     {
-        $this->metadataLoader = $metadataLoader;
+        $this->metadataSource = $metadataSource;
         $this->countryCallingCodeToRegionCodeMap = $countryCallingCodeToRegionCodeMap;
-        $this->init($filePrefix);
+        $this->init();
         self::initCapturingExtnDigits();
         self::initExtnPatterns();
-        self::initAsciiDigitMappings();
         self::initExtnPattern();
         self::$PLUS_CHARS_PATTERN = "[" . self::PLUS_CHARS . "]+";
         self::$SEPARATOR_PATTERN = "[" . self::VALID_PUNCTUATION . "]+";
@@ -306,15 +344,13 @@ class PhoneNumberUtil
 
         self::$MIN_LENGTH_PHONE_NUMBER_PATTERN = "[" . self::DIGITS . "]{" . self::MIN_LENGTH_FOR_NSN . "}";
         self::$VALID_PHONE_NUMBER = "[" . self::PLUS_CHARS . "]*(?:[" . self::VALID_PUNCTUATION . self::STAR_SIGN . "]*[" . self::DIGITS . "]){3,}[" . self::VALID_PUNCTUATION . self::STAR_SIGN . self::VALID_ALPHA . self::DIGITS . "]*";
-        self::$VALID_PHONE_NUMBER_PATTERN = "%^" . self::$MIN_LENGTH_PHONE_NUMBER_PATTERN . "$|^" . self::$VALID_PHONE_NUMBER . "(?:" . self::$EXTN_PATTERNS_FOR_PARSING . ")?%" . self::REGEX_FLAGS;
+        self::$VALID_PHONE_NUMBER_PATTERN = "%^" . self::$MIN_LENGTH_PHONE_NUMBER_PATTERN . "$|^" . self::$VALID_PHONE_NUMBER . "(?:" . self::$EXTN_PATTERNS_FOR_PARSING . ")?$%" . self::REGEX_FLAGS;
 
         self::$UNWANTED_END_CHAR_PATTERN = "[^" . self::DIGITS . self::VALID_ALPHA . "#]+$";
 
         self::$MOBILE_TOKEN_MAPPINGS = array();
         self::$MOBILE_TOKEN_MAPPINGS['52'] = "1";
         self::$MOBILE_TOKEN_MAPPINGS['54'] = "9";
-
-        self::loadNumericCharacters();
     }
 
     /**
@@ -327,10 +363,11 @@ class PhoneNumberUtil
      *
      * @param string $baseFileLocation
      * @param array|null $countryCallingCodeToRegionCodeMap
-     * @param MetadataLoaderInterface $metadataLoader
+     * @param MetadataLoaderInterface|null $metadataLoader
+     * @param MetadataSourceInterface|null $metadataSource
      * @return PhoneNumberUtil instance
      */
-    public static function getInstance($baseFileLocation = self::META_DATA_FILE_PREFIX, array $countryCallingCodeToRegionCodeMap = null, MetadataLoaderInterface $metadataLoader = null)
+    public static function getInstance($baseFileLocation = self::META_DATA_FILE_PREFIX, array $countryCallingCodeToRegionCodeMap = null, MetadataLoaderInterface $metadataLoader = null, MetadataSourceInterface $metadataSource = null)
     {
         if (self::$instance === null) {
             if ($countryCallingCodeToRegionCodeMap === null) {
@@ -341,61 +378,17 @@ class PhoneNumberUtil
                 $metadataLoader = new DefaultMetadataLoader();
             }
 
-            self::$instance = new PhoneNumberUtil($baseFileLocation, $metadataLoader, $countryCallingCodeToRegionCodeMap);
+            if ($metadataSource === null) {
+                $metadataSource = new MultiFileMetadataSourceImpl($metadataLoader, __DIR__ . '/data/' . $baseFileLocation);
+            }
+
+            self::$instance = new PhoneNumberUtil($metadataSource, $countryCallingCodeToRegionCodeMap);
         }
         return self::$instance;
     }
 
-    private static function loadNumericCharacters()
+    private function init()
     {
-        self::$numericCharacters[pack("H*", 'efbc90')] = 0;
-        self::$numericCharacters[pack("H*", 'efbc91')] = 1;
-        self::$numericCharacters[pack("H*", 'efbc92')] = 2;
-        self::$numericCharacters[pack("H*", 'efbc93')] = 3;
-        self::$numericCharacters[pack("H*", 'efbc94')] = 4;
-        self::$numericCharacters[pack("H*", 'efbc95')] = 5;
-        self::$numericCharacters[pack("H*", 'efbc96')] = 6;
-        self::$numericCharacters[pack("H*", 'efbc97')] = 7;
-        self::$numericCharacters[pack("H*", 'efbc98')] = 8;
-        self::$numericCharacters[pack("H*", 'efbc99')] = 9;
-
-        self::$numericCharacters[pack("H*", 'd9a0')] = 0;
-        self::$numericCharacters[pack("H*", 'd9a1')] = 1;
-        self::$numericCharacters[pack("H*", 'd9a2')] = 2;
-        self::$numericCharacters[pack("H*", 'd9a3')] = 3;
-        self::$numericCharacters[pack("H*", 'd9a4')] = 4;
-        self::$numericCharacters[pack("H*", 'd9a5')] = 5;
-        self::$numericCharacters[pack("H*", 'd9a6')] = 6;
-        self::$numericCharacters[pack("H*", 'd9a7')] = 7;
-        self::$numericCharacters[pack("H*", 'd9a8')] = 8;
-        self::$numericCharacters[pack("H*", 'd9a9')] = 9;
-
-        self::$numericCharacters[pack("H*", 'dbb0')] = 0;
-        self::$numericCharacters[pack("H*", 'dbb1')] = 1;
-        self::$numericCharacters[pack("H*", 'dbb2')] = 2;
-        self::$numericCharacters[pack("H*", 'dbb3')] = 3;
-        self::$numericCharacters[pack("H*", 'dbb4')] = 4;
-        self::$numericCharacters[pack("H*", 'dbb5')] = 5;
-        self::$numericCharacters[pack("H*", 'dbb6')] = 6;
-        self::$numericCharacters[pack("H*", 'dbb7')] = 7;
-        self::$numericCharacters[pack("H*", 'dbb8')] = 8;
-        self::$numericCharacters[pack("H*", 'dbb9')] = 9;
-
-        self::$numericCharacters[pack("H*", 'e1a090')] = 0;
-        self::$numericCharacters[pack("H*", 'e1a091')] = 1;
-        self::$numericCharacters[pack("H*", 'e1a092')] = 2;
-        self::$numericCharacters[pack("H*", 'e1a093')] = 3;
-        self::$numericCharacters[pack("H*", 'e1a094')] = 4;
-        self::$numericCharacters[pack("H*", 'e1a095')] = 5;
-        self::$numericCharacters[pack("H*", 'e1a096')] = 6;
-        self::$numericCharacters[pack("H*", 'e1a097')] = 7;
-        self::$numericCharacters[pack("H*", 'e1a098')] = 8;
-        self::$numericCharacters[pack("H*", 'e1a099')] = 9;
-    }
-
-    private function init($filePrefix)
-    {
-        $this->currentFilePrefix = dirname(__FILE__) . '/data/' . $filePrefix;
         foreach ($this->countryCallingCodeToRegionCodeMap as $countryCode => $regionCodes) {
             // We can assume that if the country calling code maps to the non-geo entity region code then
             // that's the only region code it maps to.
@@ -432,7 +425,6 @@ class PhoneNumberUtil
         $singleExtnSymbolsForParsing = "," . $singleExtnSymbolsForMatching;
 
         self::$EXTN_PATTERNS_FOR_PARSING = self::createExtnPattern($singleExtnSymbolsForParsing);
-        self::$EXTN_PATTERNS_FOR_MATCHING = self::createExtnPattern($singleExtnSymbolsForMatching);
     }
 
     // The FIRST_GROUP_PATTERN was originally set to $1 but there are some countries for which the
@@ -463,24 +455,6 @@ class PhoneNumberUtil
             "[" . $singleExtnSymbols . "]|int|\xEF\xBD\x89\xEF\xBD\x8E\xEF\xBD\x94|anexo)" .
             "[:\\.\xEF\xBC\x8E]?[ \xC2\xA0\\t,-]*" . self::$CAPTURING_EXTN_DIGITS . "#?|" .
             "[- ]+(" . self::DIGITS . "{1,5})#");
-    }
-
-    private static function initAsciiDigitMappings()
-    {
-        // Simple ASCII digits map used to populate ALPHA_PHONE_MAPPINGS and
-        // ALL_PLUS_NUMBER_GROUPING_SYMBOLS.
-        self::$asciiDigitMappings = array(
-            '0' => '0',
-            '1' => '1',
-            '2' => '2',
-            '3' => '3',
-            '4' => '4',
-            '5' => '5',
-            '6' => '6',
-            '7' => '7',
-            '8' => '8',
-            '9' => '9',
-        );
     }
 
     private static function initExtnPattern()
@@ -637,12 +611,7 @@ class PhoneNumberUtil
             return null;
         }
 
-        if (!isset($this->regionToMetadataMap[$regionCode])) {
-            // The regionCode here will be valid and won't be '001', so we don't need to worry about
-            // what to pass in for the country calling code.
-            $this->loadMetadataFromFile($this->currentFilePrefix, $regionCode, 0, $this->metadataLoader);
-        }
-        return isset($this->regionToMetadataMap[$regionCode]) ? $this->regionToMetadataMap[$regionCode] : null;
+        return $this->metadataSource->getMetadataForRegion($regionCode);
     }
 
     /**
@@ -653,31 +622,6 @@ class PhoneNumberUtil
     private function isValidRegionCode($regionCode)
     {
         return $regionCode !== null && in_array($regionCode, $this->supportedRegions);
-    }
-
-    /**
-     * @param string $filePrefix
-     * @param string $regionCode
-     * @param int $countryCallingCode
-     * @param MetadataLoaderInterface $metadataLoader
-     * @throws \RuntimeException
-     */
-    public function loadMetadataFromFile($filePrefix, $regionCode, $countryCallingCode, MetadataLoaderInterface $metadataLoader)
-    {
-        $isNonGeoRegion = self::REGION_CODE_FOR_NON_GEO_ENTITY === $regionCode;
-        $fileName = $filePrefix . '_' . ($isNonGeoRegion ? $countryCallingCode : $regionCode) . '.php';
-        if (!is_readable($fileName)) {
-            throw new \RuntimeException('missing metadata: ' . $fileName);
-        } else {
-            $data = $metadataLoader->loadMetadata($fileName);
-            $metadata = new PhoneMetadata();
-            $metadata->fromArray($data);
-            if ($isNonGeoRegion) {
-                $this->countryCodeToNonGeographicalMetadataMap[$countryCallingCode] = $metadata;
-            } else {
-                $this->regionToMetadataMap[$regionCode] = $metadata;
-            }
-        }
     }
 
     /**
@@ -895,15 +839,7 @@ class PhoneNumberUtil
         if (!isset($this->countryCallingCodeToRegionCodeMap[$countryCallingCode])) {
             return null;
         }
-        if (!isset($this->countryCodeToNonGeographicalMetadataMap[$countryCallingCode])) {
-            $this->loadMetadataFromFile(
-                $this->currentFilePrefix,
-                self::REGION_CODE_FOR_NON_GEO_ENTITY,
-                $countryCallingCode,
-                $this->metadataLoader
-            );
-        }
-        return $this->countryCodeToNonGeographicalMetadataMap[$countryCallingCode];
+        return $this->metadataSource->getMetadataForNonGeographicalRegion($countryCallingCode);
     }
 
     /**

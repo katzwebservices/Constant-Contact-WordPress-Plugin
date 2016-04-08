@@ -96,10 +96,10 @@ class CTCT_Form_Designer_Helper {
             $r['cc-form-id'] = self::get_form_increment($forms);
         }
 
-        $using_default_form_name = empty( $r['form-name'] ) || ( $r['form-name'] === apply_filters('constant_contact_default_form_name', __('Enter form name here', 'ctct')) );
+        $using_default_form_name = empty( $r['form-name'] ) || ( $r['form-name'] === apply_filters('constant_contact_default_form_name', __('Enter form name here', 'constant-contact-api')) );
 
         if( $using_default_form_name ) {
-            $r['form-name'] = sprintf( esc_attr_x( 'Form #%d', 'Default form name when none is provided.', 'ctct') , $r['cc-form-id'] );
+            $r['form-name'] = sprintf( esc_attr_x( 'Form #%d', 'Default form name when none is provided.', 'constant-contact-api') , $r['cc-form-id'] );
         }
 
         return $r;
@@ -114,7 +114,7 @@ class CTCT_Form_Designer_Helper {
      * @return WP_Error|integer     If form update failed, `WP_Error`; otherwise, the saved/updated form ID
      */
     static function update_form_object( $form_id = -1, $data = array()) {
-        $form_id = floatval($form_id);
+        $form_id = intval($form_id);
 
         // Get existing forms
         $forms = self::get_forms();
@@ -123,12 +123,12 @@ class CTCT_Form_Designer_Helper {
         $form = self::generate_form_from_request($data, $forms);
 
         // form doesn't already exist, so create a new form
-        if ($form_id == -1 || $form_id == '-1' || $form_id === '' || !isset($form['cc-form-id']) || $form['cc-form-id']  === '') {
+        if ( in_array( $form_id, array( -1, 0 ) ) || ! isset($form['cc-form-id']) || '' === $form['cc-form-id'] ) {
 
             // Get the new form id, set in self::generate_form_from_request()
             $form_id = get_option('cc_form_increment');
 
-        } elseif(isset($forms[$form_id])) {
+        } elseif(isset($forms["{$form_id}"])) {
 
             // Hook into the form saving process if you want
             $form = apply_filters("wp_update_cc_form_$form_id", $form );
@@ -137,20 +137,20 @@ class CTCT_Form_Designer_Helper {
 
             do_action('ctct_log', $data, 'error');
 
-            return new WP_Error('update_form_object_failed', __('The form both does not exist and does exist. Can not process!', 'ctct'));
+            return new WP_Error('update_form_object_failed', __('The form both does not exist and does exist. Can not process!', 'constant-contact-api'));
         }
 
         // Add the form to the forms array
-        $forms[$form_id] = $form;
+        $forms["{$form_id}"] = $form;
 
         // That cached version's gotta go.
-        delete_transient("cc_form_$form_id");
+        delete_transient("cc_form_{$form_id}");
 
         // Update forms array to DB
         self::set_forms($forms);
 
         // Return the new form id
-        return floatval($form['cc-form-id']);
+        return intval($form['cc-form-id']);
 
     }
 
@@ -187,7 +187,7 @@ class CTCT_Form_Designer_Helper {
         $previous_names = array();
 
         foreach( (array) $cc_forms as $key => $_cc_form ) {
-            $name = !empty($_cc_form['form-name']) ? $_cc_form['form-name'] : sprintf(__('Form #%s', 'ctct'), $key);
+            $name = !empty($_cc_form['form-name']) ? $_cc_form['form-name'] : sprintf(__('Form #%s', 'constant-contact-api'), $key);
 
             $_cc_form['truncated_name'] = trim( wp_html_excerpt( $name, 30 ) );
             if ( isset($_cc_form['form-name']) && $_cc_form['truncated_name'] != $name)
@@ -209,10 +209,6 @@ class CTCT_Form_Designer_Helper {
 
 
     static function check_default($form, $name, $id, $value) {
-        $inputValue = '';
-        if(isset($value)) {
-        $inputValue = $value;
-        }
         if(isset($form[$name]) && is_array($form[$name])) {
             $inputValue = isset($form[$name][$id]) ? $form[$name][$id] : $value;
         } elseif(isset($form[$name]) && !is_array($form[$name])){
@@ -247,7 +243,7 @@ class CTCT_Form_Designer_Helper {
         }
 
         return '<li'.$style.'>
-            <label class="menu-item-title"><input type="checkbox" class="menu-item-checkbox" name="'.$name.'['.$id.']" value="'.$id.'"'.$checked.' /> '.$title.'</label>
+            <label class="menu-item-title"><input type="checkbox" class="menu-item-checkbox" name="'.esc_attr($name).'['.esc_attr( $id ).']" value="'.esc_attr($id).'"'.$checked.' /> '.esc_html($title).'</label>
         </li>';
     }
 
@@ -272,13 +268,15 @@ class CTCT_Form_Designer_Helper {
 
         $hideinputs = false;
         $hide_value_input = false;
+        $field_label = $field_desc = '';
+        $input_type = 't';
 
         switch ( $type ) {
             case 'text':
             case 't':
                 $input_type = 't';
-                $field_label = __('Label text', 'ctct');
-                $field_desc = __('Input placeholder text', 'ctct');
+                $field_label = __('Label text', 'constant-contact-api');
+                $field_desc = __('Input placeholder text', 'constant-contact-api');
                 $inputValue = self::check_default($_form_object, $name, $id, $value);
                 break;
 
@@ -287,31 +285,31 @@ class CTCT_Form_Designer_Helper {
             case 'b':
             case 's':
                 $input_type = 'b';
-                $field_label = __('Button label', 'ctct');
+                $field_label = __('Button label', 'constant-contact-api');
                 $inputValue = '';
-                $field_desc = __('Button text', 'ctct');
+                $field_desc = __('Button text', 'constant-contact-api');
                 break;
 
             case 'textarea':
             case 'ta':
                 $input_type = 'ta';
                 $hideinputs = true;
-                $field_label = __('Headline', 'ctct');
+                $field_label = __('Headline', 'constant-contact-api');
                 $default = $labeldefault;
                 $inputValue = self::check_default($_form_object,$name, $id, $value);
 
                 $field_desc  = '';
-                $field_desc .= '<h3>'.esc_html__('This is a Placeholder', 'ctct').'</h3>';
-                $field_desc .= '<p>'.esc_html__('This item will be replaced by the Custom Text entered above &uarr;', 'ctct').'</p>';
+                $field_desc .= '<h3>'.esc_html__('This is a Placeholder', 'constant-contact-api').'</h3>';
+                $field_desc .= '<p>'.esc_html__('This item will be replaced by the Custom Text entered above &uarr;', 'constant-contact-api').'</p>';
                 break;
 
             case 'lists':
                 $input_type = 'lists';
                 $hide_value_input = true;
-                $field_label = __('Subscribe Message', 'ctct');
+                $field_label = __('Subscribe Message', 'constant-contact-api');
                 $default = $labeldefault;
                 $inputValue = self::check_default($_form_object,$name, $id, $value);
-                $field_desc = __('The lists will be placed where this item is.', 'ctct');
+                $field_desc = __('The lists will be placed where this item is.', 'constant-contact-api');
                 break;
         }
 
@@ -334,13 +332,15 @@ class CTCT_Form_Designer_Helper {
             $inputValue = $labeldefault;
         }
 
+        $value = ( '' === $value ) ? ucwords( implode( ' ', explode( '_', $id ) ) )  : $value;
+
         $name = $name.'['.$formfield_num.']';
         $formfield_num++;
         $out .= '
             <li class="'.$class.'"'.$hide.'>
                 <dl class="menu-item-bar">
                     <dt class="menu-item-handle">
-                        <span class="item-title">'.$value.' <i class="dashicons dashicons-sort" title="'.esc_attr__('Drag and drop to re-order fields.', 'ctct').'"></i></span>
+                        <span class="item-title">'.esc_html( $value ).' <i class="dashicons dashicons-sort" title="'.esc_attr__('Drag and drop to re-order fields.', 'constant-contact-api').'"></i></span>
                         <span class="item-controls">
                             <span class="item-type"></span>
                             <input type="checkbox" name="'.$name.'[n]" id="'.$id.'" value="'.$name.'" '.$checked.' class="checkbox hide-if-js" rel="'.$type.'" />
@@ -357,17 +357,17 @@ class CTCT_Form_Designer_Helper {
             $out .= "\n".'<p><label for="'.$id.'_label" class="labelValue howto"><span class="description">'.$field_label.'</span><input name="'.$name.'[label]" type="text" id="'.$id.'_label" value="'.$inputValue.'" class="labelValue widefat"  /></label></p>
                             <div class="labelStyle">
                                 <label for="'.$id.'_bold" class="labelStyle mce_bold">
-                                    <span class="dashicons dashicons-editor-bold" title="'.esc_attr__('Make label bold', 'ctct').'"></span><input type="checkbox" name="'.$name.'[bold]" id="'.$id.'_bold" value="bold"'.$bold.' />
+                                    <span class="dashicons dashicons-editor-bold" title="'.esc_attr__('Make label bold', 'constant-contact-api').'"></span><input type="checkbox" name="'.$name.'[bold]" id="'.$id.'_bold" value="bold"'.$bold.' />
                                 </label>
                                 <label for="'.$id.'_italic"'.$italic.' class="labelStyle mce_italic">
-                                    <span class="dashicons dashicons-editor-italic" title="'.esc_attr__('Make label italic', 'ctct').'"></span>
+                                    <span class="dashicons dashicons-editor-italic" title="'.esc_attr__('Make label italic', 'constant-contact-api').'"></span>
                                     <input type="checkbox" name="'.$name.'[italic]" id="'.$id.'_italic" value="italic" />
                                 </label>';
                 if($id == 'email_address' || $input_type == 'b') {
                     $out .= '<input type="hidden" name="'.$name.'[required]" id="'.$id.'_required" value="required" />';
                 } else {
                     if(!$hide_value_input) {
-                    $out .= '<label for="'.$id.'_required" class="labelStyle checkbox"><span>'.__('Required', 'ctct').'</span>&nbsp;<input type="checkbox" name="'.$name.'[required]" id="'.$id.'_required" value="required"'.$required.' class="labelRequired"  /></label>';
+                    $out .= '<label for="'.$id.'_required" class="labelStyle checkbox"><span>'.__('Required', 'constant-contact-api').'</span>&nbsp;<input type="checkbox" name="'.$name.'[required]" id="'.$id.'_required" value="required"'.$required.' class="labelRequired"  /></label>';
                     }
                 }
             $out .= '<div class="clear"></div></div>';

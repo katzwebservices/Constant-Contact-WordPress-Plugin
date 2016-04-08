@@ -1,0 +1,155 @@
+/** Begin SETTINGS **/
+
+.installation_item_cell {
+  width: 120px;
+}
+#ctct-settings-tabs {
+  margin-top: 1em;
+
+  .ui-tabs-active a,
+  .ui-tabs-panel {
+	background: #fefefe;
+	background: rgba(255,255,255,.9);
+	border-bottom: 1px solid #fff;
+  }
+
+  .ui-tabs-panel {
+	width: 98%;
+	margin-top: -4px;
+	padding: 10px 1%;
+	border: 1px solid #ccc;
+
+
+	.nopadding {
+	  padding: 0!important;
+	}
+  }
+
+  .nav-tab-wrapper {
+	padding-top: 0;
+	padding-left: 0;
+	border:none;
+  }
+  .ui-tabs-nav li {
+	&:first-child a {
+	  margin-left: 0;
+	}
+	a {
+	  font-size: 16px;
+	  line-height: 28px;
+	  font-weight: 100;
+	  padding: .5em 1em .333em .75em;
+	  border-bottom: 1px solid #ccc;
+	}
+	&.ui-state-active a {
+	  border-bottom: 1px solid white;
+	}
+  }
+  .ui-tabs-nav .dashicons {
+	line-height:28px;
+	color: #666;
+	font-size: 28px;
+	width: 28px;
+	height: 28px;
+  }
+
+  .ui-state-hover .dashicons {
+	color: #555;
+  }
+  .ui-state-active .dashicons {
+	color: #333;
+  }
+
+}
+
+.ctct-closed { display: none; }
+
+.field_heading  {
+  font-size: 17px; margin-top: 20px; margin-bottom: 0;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.ui-tabs-nav,
+.ui-tabs-nav li {
+  list-style: none;
+  padding: 0;
+  margin:0;
+  display: inline-block;
+}
+
+.ui-tabs-nav li,
+.ui-tabs-nav li.ui-state-hover {
+  outline: none;
+  border: none;
+}
+
+.ui-tabs-nav li.ui-state-hover a,
+.ui-tabs-nav li.ui-state-focus a {
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  //border-color: #ccc #ccc white;
+  border-top-color: #ccc;
+  border-right-color: #ccc;
+  border-bottom-color: white;
+  border-left-color: #ccc;
+}
+.ui-tabs-nav li.ui-state-active a {
+  border: 1px solid #bbb;
+  border-bottom-color: white;
+  color: #464646;
+}
+
+
+h2.nav-tab-wrapper, h3.nav-tab-wrapper {
+  border-color: #bbb;
+}
+
+.button.button-danger {
+  color: #fff;
+  background: #da4f49;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #da4f49;
+  *background-color: #bd362f;
+  background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+  background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+
+}
+
+.button.button-danger:hover {
+  color: #ffffff;
+  background: #bd362f;
+  *background: #a9302a;
+}
+
+.button.btn-danger:active,
+.button.btn-danger.active {
+  background-color: #942a25 \9;
+}
+
+
+/**
+ * Plugin status table
+ */
+
+#ctct-plugin-status .dashicons {
+  font-size: 30px;
+  height: 30px;
+  width: 30px;
+  color: green;
+}
+
+#ctct-plugin-status .dashicons-no {
+  color: red;
+}

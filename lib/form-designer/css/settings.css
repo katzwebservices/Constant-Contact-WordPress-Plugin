@@ -1,0 +1,65 @@
+#settings tt {
+  padding-left: .5em;
+}
+#settings h4 {
+  margin: 0.5em 0;
+}
+#settings ul {
+  margin: 0;
+  padding: 0;
+}
+#settings legend {
+  display: block;
+}
+#settings fieldset li li li input,
+#settings fieldset li li li textarea {
+  width: 53%;
+}
+#settings input,
+#settings textarea {
+  margin-left: 10px;
+}
+#settings .ui-tabs-nav {
+  font-size: .8em;
+}
+#settings fieldset ul li {
+  list-style: none;
+  width: 100%;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#settings fieldset ul li li {
+  margin-left: 10px;
+  width: auto;
+  color: #333;
+}
+#settings ul.ui-sortable li li {
+  border: none;
+  padding: 0;
+}
+#settings ul.ui-sortable li {
+  padding: 5px;
+  margin: 2px 0;
+  position: relative;
+}
+#settings ul.ui-sortable li input.checkbox {
+  margin-left: 0;
+  margin-right: 1.5em;
+}
+#settings .menu-item-settings {
+  background: white;
+}
+#settings input.labelSize {
+  border: none;
+  display: inline;
+  width: 2em;
+  outline: none;
+  float: none;
+  clear: none;
+}
+#settings ul li li .handle {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}

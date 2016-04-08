@@ -46,6 +46,7 @@ abstract class CTCT_Admin_Page {
 
 			add_action( 'admin_menu', array( &$this, 'add_menu' ) );
 			add_action( 'admin_notices', array( &$this, 'print_notices' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'registerScripts' ) );
 			add_action( 'admin_print_scripts', array( &$this, 'print_scripts' ) );
 			add_action( 'admin_print_scripts', array( &$this, 'addScripts' ), 11 );
 			add_action( 'admin_print_styles', array( &$this, 'print_styles' ) );
@@ -61,31 +62,67 @@ abstract class CTCT_Admin_Page {
 	// TODO: Only load on CTCT pages.
 	public function print_styles() {
 
+		wp_enqueue_style( 'ctct-admin-global' );
+
 		// If the current page isn't the page being requested, we don't print those scripts
 		if ( empty( $_GET['page'] ) || $this->key !== $_GET['page'] ) {
 			return;
 		}
 
-		wp_enqueue_style( 'constant-contact-api-admin', CTCT_FILE_URL . 'css/admin/constant-contact-admin-css.css', array( 'thickbox' ) );
+		wp_enqueue_style( 'ctct-admin' );
 		wp_enqueue_style( 'dashicons' ); // For the plugin status checkboxes
-		wp_enqueue_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
-		wp_enqueue_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
-		wp_enqueue_style( 'select2', CTCT_FILE_URL . 'vendor/nineinchnick/select2/assets/select2.css' );
+		wp_enqueue_style( 'alertify-core' );
+		wp_enqueue_style( 'alertify-default' );
+		wp_enqueue_style( 'select2' );
 	}
 
 	public function print_scripts() {
 		global $plugin_page;
 
 		// If the current page isn't the page being requested, we don't print those scripts
-		if ( empty( $_GET['page'] ) || $this->key !== $_GET['page'] ) {
+		if ( empty( $_GET['page'] ) || isset( $this->key ) && $this->key !== $_GET['page'] ) {
 			return;
 		}
 
-		wp_enqueue_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
-		wp_enqueue_script( 'select2', CTCT_FILE_URL . 'vendor/nineinchnick/select2/assets/select2.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'alertify' );
+		wp_enqueue_script( 'jquery-cookie' );
+		wp_enqueue_script( 'ctct-admin-page' );
 
-		wp_enqueue_script( 'ctct-admin-page', CTCT_FILE_URL . 'js/admin/cc-page.js', array(
+		global $is_IE;
+		if( $is_IE ) {
+			wp_enqueue_script( 'flexibility' );
+		}
+
+		wp_localize_script( 'ctct-admin-page', 'CTCT', array(
+			'component' => $this->component,
+			'_wpnonce'  => wp_create_nonce( 'ctct' ),
+			'id'        => $this->id,
+			'text'      => array(
+				'editable' => esc_js( __( 'Click to Edit', 'constant-contact-api' ) ),
+				'request_failed_heading' => __('The request failed.', 'constant-contact-api'),
+				'request_nothing_changed' => __('Nothing changed.', 'constant-contact-api'),
+
+				/** translators: {code} and {message} will be dynamically replaced with error details */
+				'request_error' => __( 'Error {code}: {message}', 'constant-contact-api'),
+			),
+		) );
+
+		wp_enqueue_script( 'ctct-admin-inlineedit' );
+	}
+
+	public function registerScripts() {
+		wp_register_style( 'ctct-admin-global', CTCT_FILE_URL . 'css/admin/ctct-admin-global.css' );
+		wp_register_style( 'ctct-admin', CTCT_FILE_URL . 'css/admin/ctct-admin.css', array( 'thickbox' ) );
+		wp_register_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
+		wp_register_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
+		wp_register_style( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/css/select2.min.css' );
+
+		wp_register_script( 'flexibility', CTCT_FILE_URL . 'vendor/10up/flexibility/dist/flexibility.js' );
+		wp_register_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
+		wp_register_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
+		wp_register_script( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/js/select2.min.js', array( 'jquery' ) );
+
+		wp_register_script( 'ctct-admin-page', CTCT_FILE_URL . 'js/admin/cc-page.js', array(
 			'jquery',
 			'jquery-effects-highlight',
 			'jquery-ui-tooltip',
@@ -94,18 +131,7 @@ abstract class CTCT_Admin_Page {
 			'thickbox'
 		) );
 
-		wp_localize_script( 'ctct-admin-page', 'CTCT', array(
-			'component' => $this->component,
-			'_wpnonce'  => wp_create_nonce( 'ctct' ),
-			'id'        => $this->id,
-			'text'      => array(
-				'editable' => esc_js( __( 'Click to Edit', 'ctct' ) ),
-			),
-		) );
-
-		wp_enqueue_script( 'ctct-admin-fittext', CTCT_FILE_URL . 'js/admin/jquery.fittext.js', array( 'ctct-admin-page' ) );
-		wp_enqueue_script( 'ctct-admin-equalize', CTCT_FILE_URL . 'js/admin/jquery.equalize.min.js', array( 'ctct-admin-page' ) );
-		wp_enqueue_script( 'ctct-admin-inlineedit', CTCT_FILE_URL . 'js/admin/jquery.inlineedit.js', array( 'ctct-admin-page' ) );
+		wp_register_script( 'ctct-admin-inlineedit', CTCT_FILE_URL . 'js/admin/jquery.inlineedit.js', array( 'ctct-admin-page' ) );
 	}
 
 	public function addScripts() {
@@ -116,11 +142,15 @@ abstract class CTCT_Admin_Page {
 	}
 
 	protected function isEdit() {
-		return isset( $_GET['edit'] );
+		return isset( $_GET['edit'] ) && isset( $_GET['page'] ) && $_GET['page'] === $this->getKey();
+	}
+
+	protected function isNested() {
+		return false;
 	}
 
 	protected function isSingle() {
-		return isset( $_GET['view'] );
+		return isset( $_GET['view'] ) && isset( $_GET['page'] ) && $_GET['page'] === $this->getKey();
 	}
 
 	protected function isView() {
@@ -144,10 +174,18 @@ abstract class CTCT_Admin_Page {
 		return $this->key;
 	}
 
+	/**
+	 * Get the title of the page
+	 * @return string
+	 */
 	protected function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Get the title of the page to show in the Admin Menu
+	 * @return string
+	 */
 	protected function getNavTitle() {
 		return $this->title;
 	}
@@ -160,6 +198,10 @@ abstract class CTCT_Admin_Page {
 
 	abstract protected function single();
 
+	/**
+	 * Process any forms the page has added
+	 * @return mixed
+	 */
 	abstract protected function processForms();
 
 	protected function addActions() {
@@ -175,6 +217,14 @@ abstract class CTCT_Admin_Page {
 		} else {
 			$this->view();
 		}
+	}
+
+	/**
+	 * Print exceptions
+	 * @param \Ctct\Exceptions\CtctException $e
+	 */
+	protected function show_exception( $e ) {
+		echo '<div class="error inline"><h3>' . sprintf( esc_html__( 'There was an error displaying this content: %s', 'constant-contact-api' ), $e->getMessage() ) . '</h3></div>';
 	}
 
 	public function help_tabs( $tabs ) {
@@ -217,8 +267,7 @@ abstract class CTCT_Admin_Page {
 			return;
 		}
 
-		echo '
-            <div id="message" class="container alert-error errors error notice-dismiss">';
+		echo '<div class="inline errors error notice is-dismissable">';
 		foreach ( $this->notices as $key => $notice ) {
 
 			/** @var WP_Error $notice */
@@ -234,6 +283,10 @@ abstract class CTCT_Admin_Page {
 		$this->notices = array();
 	}
 
+	/**
+	 * Print errors for the page
+	 * @return void
+	 */
 	protected function print_errors() {
 
 		if ( empty( $this->errors ) ) {
@@ -243,13 +296,14 @@ abstract class CTCT_Admin_Page {
 		echo '
             <div id="message" class="container alert-error errors error">
                 <h3>';
-		_e( sprintf( '%s occurred:', _n( 'An error', 'Errors', sizeof( $this->errors ), 'ctct' ) ), 'ctct' );
+		_e( sprintf( '%s occurred:', _n( 'An error', 'Errors', sizeof( $this->errors ), 'constant-contact-api' ) ), 'ctct' );
 		echo ' </h3>
                 <ul class="ul-square">
         ';
 		foreach ( $this->errors as $key => $error ) {
 
 			if ( is_wp_error( $error ) ) {
+				/** @var WP_Error $error */
 				$message = esc_html( $error->get_error_message() ) . ' (<code>error code: ' . esc_html( $error->get_error_code() ) . '</code>)';
 			} else {
 				continue;
@@ -262,37 +316,23 @@ abstract class CTCT_Admin_Page {
 	}
 
 
-	// Common method
+	/**
+	 * Print output for the page
+	 *
+	 * @uses print_errors
+	 * @uses print_notices
+	 * @uses content
+	 *
+	 * @return void
+	 */
 	public function page() { ?>
-		<div class="wrap">
+		<div class="wrap ctct-wrap">
 			<h2 class="cc_logo"><a class="cc_logo"
-			                       href="<?php echo admin_url( 'admin.php?page=constant-contact-api' ); ?>"><?php _e( 'Constant Contact', 'ctct' ); ?></a>
+			                       href="<?php echo admin_url( 'admin.php?page=constant-contact-api' ); ?>"><?php esc_html_e( 'Constant Contact', 'constant-contact-api' ); ?></a>
 			</h2>
 			<?php
 
-			if ( ! $this->isView() ) {
-				$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( array(
-						'view',
-						'edit',
-						'add'
-					) ) ) . '">' . $this->getNavTitle() . '</a>';
-			}
-
-			if ( $this->isEdit() ) {
-				$breadcrumb[] = '<a href="' . esc_url( add_query_arg( array( 'view' => $_GET['edit'] ), remove_query_arg( array( 'edit' ) ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
-			}
-
-			$breadcrumb[] = $this->getTitle();
-
-			$button = '';
-			if ( $this->isSingle() && $this->can_edit ) {
-				$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'ctct' ) . '</a>';
-			}
-			if ( $this->isView() && $this->can_add ) {
-				$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'ctct' ), $this->getTitle( 'single' ) ) . '</a>';
-			}
-
-			echo '<h2 class="ctct-page-name">' . implode( ' &raquo; ', $breadcrumb ) . $button . '</h2>';
+			echo '<h2 class="ctct-page-name">' . $this->get_page_heading() . '</h2>';
 
 			$this->print_errors();
 
@@ -306,5 +346,46 @@ abstract class CTCT_Admin_Page {
 			?>
 		</div>
 	<?php
+	}
+
+	/**
+	 * Generate the content inside the .ctct-page-name page heading (breadcrumbs and button)
+	 * @since 3.2
+	 * @return string HTML output for breadcrumbs and button
+	 */
+	private function get_page_heading() {
+
+		$breadcrumb = array();
+		$nested = $this->isNested();
+
+		if ( ! $this->isView() ) {
+			$remove_args = array( 'view', 'edit', 'add' );
+			if( $nested ) { $remove_args[] = $nested; }
+
+			$breadcrumb[] = '<a href="' . esc_url( remove_query_arg( $remove_args ) ) . '">' . $this->getNavTitle() . '</a>';
+		}
+
+		if ( $this->isEdit() || $this->isNested() ) {
+			if( $this->isEdit() ) {
+				$add_args = array( 'view' => $_GET['edit'] );
+				$remove_args = array( 'edit' );
+			} else {
+				$add_args = array();
+				$remove_args = array( $nested );
+			}
+			$breadcrumb[] = '<a href="' . esc_url( add_query_arg( $add_args, remove_query_arg( $remove_args ) ) ) . '">' . $this->getTitle( 'single' ) . '</a>';
+		}
+
+		$breadcrumb[] = $this->getTitle();
+
+		$button = '';
+		if ( $this->isSingle() && $this->can_edit ) {
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'edit' => $_GET['view'] ), remove_query_arg( 'view' ) ) ) . '" class="button clear edit-new-h2" title="edit">' . __( 'Edit', 'constant-contact-api' ) . '</a>';
+		}
+		if ( $this->isView() && $this->can_add ) {
+			$button = ' <a href="' . esc_url( add_query_arg( array( 'add' => 1 ), remove_query_arg( 'status' ) ) ) . '" class="button clear edit-new-h2" title="Add" id="ctct-add-new-item">' . sprintf( _x( 'Add %s', 'General button text for adding a new Contact or List, for example.', 'constant-contact-api' ), $this->getTitle( 'single' ) ) . '</a>';
+		}
+
+		return implode( ' &raquo; ', $breadcrumb ) . $button;
 	}
 }

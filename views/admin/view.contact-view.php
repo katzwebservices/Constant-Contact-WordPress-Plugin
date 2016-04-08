@@ -1,33 +1,36 @@
-<h2 class="fittext">
+<h2 class="ctct-page-name">
 <?php
     echo kws_has_avatar($Contact->get('email_address')) ? '<span style="float:left; margin-right:10px;">'.get_avatar($Contact->get('email_address'), 50, '404', $Contact->get('name')).'</span>' : '';
 ?>
     <?php echo $Contact->get('full_name'); ?>
 </h2>
+<?php
+
+    /**
+     * @global string|null $user_details If user exists in system, HTML link to their site profile in WordPress. Otherwise, `NULL`
+     * @see CTCT_Admin_Contacts::generate_user_details
+     * @since 3.2
+     */
+    echo $user_details;
+
+?>
 
 <div class="clear component-summary">
 <?php
-$i = 1;
+    /**
+     * @global string $summary_report HTML of opens/bounces/clicks/etc.
+     * @see CTCT_Admin_Contacts::generate_summary_report
+     * @since 3.2
+     */
+    echo $summary_report;
 
-// Create summary "Sheets"
-foreach($summary as $k => $v) {
-
-    // Spam Count may be null
-    if( is_null( $v ) ) { continue; }
-
-    echo '<dl class="'.$k.' summary-'.$i.'">
-            <dt>'.ucwords(str_replace('_', ' ', $k)).'</dt>
-            <dd>'.$v.'</dd>
-        </dl>';
-    $i++;
-}
 ?>
 </div>
 
-<table class="widefat clear fixed ctct_table" cellspacing="0">
+<table class="wp-list-table widefat fixed striped ctct_table" cellspacing="0">
     <thead>
-        <th scope="col" class="column-name"><?php _e('Name', 'ctct'); ?></th>
-        <th scope="col" class="column-title"><?php _e('Data', 'ctct'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Name', 'constant-contact-api'); ?></th>
+        <th scope="col" class="manage-column column-title"><?php _e('Data', 'constant-contact-api'); ?></th>
     </thead>
     <tbody>
         <?php
@@ -39,7 +42,7 @@ foreach($summary as $k => $v) {
         #if(!$Contact->is_editable($key)) { continue; }
 
         $html .= '<tr'.$alt.'>';
-        $html .= sprintf('<th scope="row" valign="top" class="column-name">%s</th>', $Contact->getLabel($key));
+        $html .= sprintf('<th scope="row" valign="top" class="manage-column column-title">%s</th>', $Contact->getLabel($key));
         $html .= '<td>';
 
         if(is_array($value)) {
@@ -54,11 +57,11 @@ foreach($summary as $k => $v) {
                     break;
                 case 'addresses':
                     if($personal = $Contact->get('personal_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'ctct'), $personal);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Personal Address', 'constant-contact-api'), $personal);
                     }
 
                     if($business = $Contact->get('business_address', true)) {
-                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'ctct'), $business);
+                        $html .= sprintf('<h3>%s</h3> <div>%s</div>', __('Business Address', 'constant-contact-api'), $business);
                     }
                     break;
                 case 'email_addresses':
@@ -81,6 +84,8 @@ foreach($summary as $k => $v) {
                     $html .= $Contact->get($key, true);
                     break;
             }
+        } else if( is_bool( $value ) ) {
+            $html .= $value ? esc_html__('Yes', 'constant-contact-api') : esc_html__('No', 'constant-contact-api');
         } else {
             $html .= sprintf('<span%s>%s</span></td>', ($Contact->is_editable($key) ? ' class="editable" data-name="'.$key.'"' : ' class="not-editable"'), $Contact->get($key));
         }

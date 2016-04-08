@@ -7,7 +7,13 @@
 use Ctct\ConstantContact;
 use Ctct\Util\Config;
 use Ctct\Components\Contacts\Contact;
-use Ctct\Services\ListService;
+use GuzzleHttp\Exception\ClientException;
+use Ctct\Components\EmailMarketing\Campaign;
+use Ctct\Components\EventSpot\EventSpot;
+use Ctct\Services\EventSpotService;
+use Ctct\Components\ResultSet;
+use Ctct\Exceptions\IllegalArgumentException;
+use Ctct\Exceptions\CtctException;
 
 final class KWSConstantContact extends ConstantContact {
 
@@ -15,12 +21,21 @@ final class KWSConstantContact extends ConstantContact {
 
 	static $instance;
 
-	private $cache_services = array(
-		'contacts' => 'contactService',
-		'campaigns' => 'emailMarketingService',
-		'activities' => 'activityService',
-		'lists' => 'listService'
-	);
+	/**
+	 * Handles interaction with Library management
+	 * @var EventSpotService
+	 */
+	public $eventService;
+
+	public function __construct($apiKey = null) {
+
+		if(empty($apiKey)) { $apiKey = CTCT_APIKEY; }
+
+		$this->eventService = new EventSpotService($apiKey);
+
+		parent::__construct($apiKey);
+
+	}
 
 	/**
 	 * Throw error on object clone
@@ -33,7 +48,7 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd', 'constant-contact-api' ), '1.6' );
 	}
 
 	/**
@@ -44,22 +59,9 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd' ), '1.6' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'edd', 'constant-contact-api' ), '1.6' );
 	}
 
-	public function __construct($apiKey = null) {
-
-		if(empty($apiKey)) { $apiKey = CTCT_APIKEY; }
-
-		parent::__construct($apiKey);
-
-		// Use our own REST client.
-		$this->setRestClient( new KWSRestClient() );
-		$this->setUrls();
-		$this->setHooks();
-
-		self::$instance = &$this;
-	}
 
 	/**
 	 * Get access to instance or create one
@@ -75,44 +77,6 @@ final class KWSConstantContact extends ConstantContact {
 	}
 
 	/**
-	 * Add actions to clear caches when appropriate.
-	 *
-	 * Clear the lists cache by running `do_action('ctct_flush_lists');`
-	 * Clear the contacts cache by running `do_action('ctct_flush_contacts');`
-	 * Clear the campaigns cache by running `do_action('ctct_flush_campaigns');`
-	 */
-	function setHooks() {
-		add_action('ctct_flush_lists', array(&$this, '_flushLists'));
-		add_action('ctct_flush_contacts', array(&$this, '_flushContacts'));
-		add_action('ctct_flush_campaigns', array(&$this, '_flushCampaigns'));
-	}
-
-	/**
-	 * Clear the lists cache
-	 */
-	function _flushLists() {
-		delete_transient('ctct_all_lists');
-	}
-	/**
-	 * Clear the contacts cache
-	 */
-	function _flushContacts() {
-		delete_transient('ctct_all_contacts');
-	}
-	/**
-	 * Clear the campaigns cache
-	 */
-	function _flushCampaigns() {
-		delete_transient('ctct_all_campaigns');
-	}
-
-	private function setUrls() {
-		foreach($this->cache_services as $key => $service) {
-			$this->{$service}->baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.'.$key);
-		}
-	}
-
-	/**
 	 * Check whether the plugin is configured with an active account.
 	 *
 	 * @uses  KWSConstantContact::getContactByEmail()
@@ -125,38 +89,212 @@ final class KWSConstantContact extends ConstantContact {
 			return get_site_option( 'ctct_configured' );
 		}
 
-		// Force caching feature to turn off.
-		$_GET['cache'] = true;
 		try {
 			$contacts = $this->getContactByEmail('asdasdasdasd@asdasdasdasdasdasdasdasd.com');
 			$this->configured = 1;
 			do_action('ctct_debug', 'isConfigured: getContactByEmail succeeded. Adding configured option.' );
 			update_site_option( 'ctct_configured', 1 );
-		} catch(Exception $e) {
+		} catch( CtctException $e ) {
 			$this->configured = 0;
 			do_action('ctct_debug', 'isConfigured: getContactByEmail failed. Deleting configured option.' );
 			delete_site_option( 'ctct_configured' );
 		}
-		// Turn caching back on.
-		unset($_GET['cache']);
 
 		return $this->configured;
 	}
 
 	/**
-	 * Allow subclasses to set the REST Client used by the services
-	 * @param RestClientInterface $restClient
-	 * @see BaseService::setRestClient()
+	 * Check whether connected account has EventSpot
+	 *
+	 * @since 4.0
+	 *
+	 * @param bool $force True: Force refresh; false: use cached check value
+	 *
+	 * @return bool True: has eventspot; false: nope
 	 */
-	function setRestClient($restClient) {
-	    $this->contactService->setRestClient($restClient);
-	    $this->emailMarketingService->setRestClient($restClient);
-	    $this->activityService->setRestClient($restClient);
-	    $this->campaignTrackingService->setRestClient($restClient);
-	    $this->contactTrackingService->setRestClient($restClient);
-	    $this->campaignScheduleService->setRestClient($restClient);
-	    $this->listService->setRestClient($restClient);
-	    $this->accountService->setRestClient($restClient);
+	public function hasEvents( $force = false ) {
+
+		$has_events = get_site_transient( 'ctct_eventspot' );
+
+		if( false === $has_events || $force ) {
+
+			$check_has_events = $this->getEvents( CTCT_ACCESS_TOKEN, array( 'limit' => 1 ) );
+
+			if ( is_a( $check_has_events, 'Exception' ) || empty( $check_has_events->results ) ) {
+				$has_events = false;
+			} else {
+				$has_events = true;
+			}
+
+			// Check again every month or so
+			set_site_transient( 'ctct_eventspot', intval( $has_events ), DAY_IN_SECONDS * 30 );
+		}
+
+		return $has_events;
+	}
+
+	function getContacts( $accessToken, Array $params = array() ) {
+		return $this->contactService->getContacts( $accessToken, $params );
+	}
+
+	function getContact( $accessToken, $contactId ) {
+		try {
+			return $this->contactService->getContact( $accessToken, $contactId );
+		} catch( Exception $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Update contact details for a specific contact
+	 * @param string $accessToken - Constant Contact OAuth2 access token
+	 * @param Contact $contact - Contact to be updated
+	 * @param boolean $actionByContact - true if the update is being made by the owner of the email address
+	 * @return Contact|CtctException
+	 * @throws CtctException
+	 */
+	public function updateContact( $accessToken, Contact $contact, $actionByContact = true ) {
+		try {
+			return $this->contactService->updateContact( $accessToken, $contact, $actionByContact );
+		} catch( Exception $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Get lists within an account
+	 * @param $accessToken - Constant Contact OAuth2 access token
+	 * @param array $params - associative array of query parameters and values to append to the request.
+	 *      Allowed parameters include:
+	 *      modified_since - ISO-8601 formatted timestamp.
+	 * @return \Ctct\Components\Contacts\ContactList[]|CtctException
+	 * @throws CtctException
+	 */
+	public function getLists( $accessToken, Array $params = array() ) {
+		try {
+			return $this->listService->getLists( $accessToken, $params );
+		} catch( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Get an individual contact list
+	 * @param $accessToken - Constant Contact OAuth2 access token
+	 * @param $listId - list id
+	 * @return \Ctct\Components\Contacts\ContactList|CtctException
+	 * @throws CtctException
+	 */
+	public function getList( $accessToken, $listId ) {
+
+		try {
+			$list = $this->listService->getList( $accessToken, $listId );
+			return $list;
+		} catch( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Update a Contact List
+	 * @param string $accessToken - Constant Contact OAuth2 access token
+	 * @param \Ctct\Components\Contacts\ContactList $list - ContactList to be updated
+	 * @return \Ctct\Components\Contacts\ContactList|CtctException
+	 */
+	public function updateList( $accessToken, $list ) {
+		try {
+			return $this->listService->updateList( $accessToken, $list );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Get a set of campaigns
+	 * @param string $accessToken - Constant Contact OAuth2 access token
+	 * @param array $params - associative array of query parameters and values to append to the request.
+	 *      Allowed parameters include:
+	 *      limit - Specifies the number of results displayed per page of output, from 1 - 500, default = 50.
+	 *      modified_since - ISO-8601 formatted timestamp.
+	 *      next - the next link returned from a previous paginated call. May only be used by itself.
+	 * @return ResultSet|CtctException
+	 * @throws CtctException
+	 */
+	public function getEmailCampaigns( $accessToken, Array $params = array() ) {
+		try {
+			return $this->emailMarketingService->getCampaigns( $accessToken, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Get campaign details for a specific campaign
+	 * @param string $accessToken - Constant Contact OAuth2 access token
+	 * @param int $campaignId - Valid campaign id
+	 * @return Campaign|CtctException
+	 */
+	public function getEmailCampaign( $accessToken, $campaignId ) {
+		try {
+			return $this->emailMarketingService->getCampaign( $accessToken, $campaignId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * @param string $accessToken
+	 * @param array $params
+	 *
+	 * @return ResultSet|CtctException
+	 */
+	public function getEvents( $accessToken, Array $params = array() ) {
+		try {
+			return $this->eventService->getEvents( $accessToken, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	public function getEvent( $accessToken, $eventId ) {
+		try {
+			return $this->eventService->getEvent( $accessToken, $eventId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	public function updateEvent( $accessToken, EventSpot $event ) {
+		try{
+			return $this->eventService->updateEvent( $accessToken, $event );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+
+	}
+
+	public function getEventRegistrant( $accessToken, $eventId, $registrantId ) {
+		try {
+			return $this->eventService->getRegistrant( $accessToken, $eventId, $registrantId );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	public function getEventRegistrants( $accessToken, $eventId, Array $params = array() ) {
+		$id = $eventId;
+		if( is_array( $eventId ) ) {
+			$id = $eventId['id'];
+			$params = $eventId;
+		}
+
+		unset( $params['id'] );
+
+		try {
+			return $this->eventService->getRegistrants( $accessToken, $id, $params );
+		} catch ( CtctException $e ) {
+			return $e;
+		}
 	}
 
 	/**
@@ -164,7 +302,7 @@ final class KWSConstantContact extends ConstantContact {
 	 * @param array|KWSContact $data Array of contact data or an existing KWSContact or Contact object.
 	 * @return  boolean|KWSContact Returns false if failed, otherwise returns a contact object.
 	 */
-	function addUpdateContact($data) {
+	public function addUpdateContact($data) {
 
 		$contact = new KWSContact($data);
 
@@ -185,7 +323,7 @@ final class KWSConstantContact extends ConstantContact {
 		            $action .= ' Succeeded';
 	            }
 
-			} catch(Exception $e) {
+			} catch( CtctException $e ) {
 				$returnContact = false;
 				$action .= ' Failed';
         		do_action('ctct_error', 'Creating Contact Exception', $e->getMessage() );
@@ -201,7 +339,7 @@ final class KWSConstantContact extends ConstantContact {
 
             		$action .= ' Failed';
             		do_action('ctct_error', 'The contact has opted out; cannot add or update.', $existingContact );
-            		$returnContact = new WP_Error('optout', __('You have opted out of our newsletters and cannot re-subscribe.') );
+            		$returnContact = new WP_Error('optout', __('You have opted out of our newsletters and cannot re-subscribe.', 'constant-contact-api') );
 
             	} else {
 
@@ -214,7 +352,7 @@ final class KWSConstantContact extends ConstantContact {
 					unset( $modifiedContact );
             	}
 
-        	} catch(Exception $e) {
+        	} catch( CtctException $e ) {
         		$returnContact = false;
         		$action .= ' Failed';
         		do_action('ctct_error', 'Updating Contact Exception', $e);
@@ -224,6 +362,58 @@ final class KWSConstantContact extends ConstantContact {
         do_action('ctct_activity', $action, $returnContact );
 
         return $returnContact;
+	}
+
+	/**
+	 * Convert a CtctException into a WP_Error 
+	 *
+	 * `error_message` key gets converted
+	 * From: "#/addresses/0/city: Value exceeds maximum length of 50."
+	 * To: "Address (City): Value exceeds maximum length of 50."
+	 *
+	 * @param CtctException $exception
+	 *
+	 * @return WP_Error|WP_Error[]
+	 */
+	public static function convertException( CtctException $exception ) {
+
+		$code = $exception->getCode();
+		$errors = $exception->getErrors();
+
+		ob_start();
+		$error_messages = wp_list_pluck( $errors, 'error_message' );
+		ob_clean();
+
+		/**
+		 * Format: Hash, field ID (eg: custom fields) or field group id (eg: addresses), sub-field index, sub-field ID
+		 * `#/custom_fields/2/value: Value exceeds maximum length of 50.`
+		 *
+		 * Format: Hash, field ID
+		 * `#/home_phone: Value exceeds maximum length of 50.`
+		 */
+		$regex = "/^#\/((?P<field>[a-z_]+)(?:\/?(?P<index>\d)?\/?(?P<subfield>[a-z_0-9]+))?)\:(?P<message>.+)?/ism";
+
+		$wp_errors = array();
+
+		foreach ( $error_messages as $key => $error_message ) {
+			$message_prefix = '';
+			$error_code = $code.$key;
+
+			preg_match( $regex, $error_message, $matches );
+
+			if ( ! empty( $matches['field'] ) ) {
+				$message_prefix .= ctct_get_label_from_field_id( $matches['field'] );
+			}
+			if ( ! empty( $matches['subfield'] ) ) {
+				$message_prefix .= sprintf( ' (%s)', ctct_get_label_from_field_id( $matches['subfield'] ) );
+			}
+			
+			$message = sprintf( '%s: %s', trim( $message_prefix ), trim( $matches['message'] ) );
+
+			$wp_errors[] = new WP_Error( $matches[1], $message );
+		}
+
+		return ( 1 === sizeof( $wp_errors ) ) ? $wp_errors[0] : $wp_errors;
 	}
 
 	/**
@@ -238,11 +428,6 @@ final class KWSConstantContact extends ConstantContact {
 	 */
 	public function addContact($accessToken, Contact $contact, $actionByVisitor = false)
 	{
-	    $params = array();
-	    if ($actionByVisitor == true) {
-	        $params['action_by'] = "ACTION_BY_VISITOR";
-	    }
-
 	    // If you have set an `id` or `status`, it
 	    // makes everything screwy.
 	    foreach(KWSContact::getReadOnly() as $key) {
@@ -250,10 +435,10 @@ final class KWSConstantContact extends ConstantContact {
 	    }
 
 		if( empty( $contact->lists ) ) {
-			return new WP_Error('nolists', __('A contact cannot be added without lists.') );
+			return new WP_Error('nolists', __('A contact cannot be added without lists.', 'constant-contact-api') );
 		}
 
-		return $this->contactService->addContact($accessToken, $contact, $params);
+		return $this->contactService->addContact($accessToken, $contact, $actionByVisitor);
 	}
 
 	/**
@@ -261,8 +446,8 @@ final class KWSConstantContact extends ConstantContact {
 	 * @uses KWSConstantContact::getAll()
 	 * @return array
 	 */
-	function getAllContacts() {
-		return $this->getAll('Contacts');
+	function getAllContacts( $params = null ) {
+		return $this->getAll('Contacts', $params );
 	}
 
 	/**
@@ -288,9 +473,10 @@ final class KWSConstantContact extends ConstantContact {
 	 * @uses KWSConstantContact::getAll()
 	 * @return array
 	 */
-	function getAllEmailCampaigns($status = NULL) {
-		$status = empty($status) ? array() : array('status' => $status);
-		return $this->getAll('EmailCampaigns', NULL, $status);
+	function getAllEmailCampaigns( $status = NULL ) {
+		$status = is_null( $status ) ? array() : array( 'status' => esc_attr( $status ) );
+		$campaigns = $this->getAll('EmailCampaigns', $status);
+		return $campaigns;
 	}
 
 	/**
@@ -298,72 +484,121 @@ final class KWSConstantContact extends ConstantContact {
 	 * @uses KWSConstantContact::getAll()
 	 * @return array
 	 */
-	function getAllEvents($status = NULL) {
-		$status = empty($status) ? array() : array('status' => $status);
-		return $this->getAll('EmailCampaigns', NULL, $status);
+	function getAllEventRegistrants($id = NULL) {
+		$params = empty($id) ? array() : array('id' => $id);
+		return $this->getAll('EventRegistrants', $params );
 	}
 
 
 	/**
 	 * Function to fetch multi-page results. Works for all component types.
-	 * @param  string $type         Component type name
-	 * @param  int|string $id_or_status Either the ID of the component or the status filter. Depends on the component. Example: `$id_or_status = 'sent';` for `EmailCampaigns` component. Example: `$id_or_status = 13;` for `ContactSends` component.
-	 * @param  string $param        Search filter. Sets the limit for requests.
-	 * @param  array  $results      Pass the previous results for recursive calls to the method.
+	 *
+	 * @param  string $type          Component type name
+	 * @param  array $passed_params Search filter. Sets the limit for requests.
+	 * @param  array  $results       Pass the previous results for recursive calls to the method.
+	 *
 	 * @return array               Results array with `id` as key to each key/value pair.
 	 */
-	function getAll($type = '', $id_or_status = NULL, $param = array(), &$results = array()) {
+	function getAll($type = '', $passed_params = array(), &$results = array()) {
 
-		add_filter('ctct_cache', function() { return 60 * 60 * 48; });
+		$params = $passed_params;
 
-		switch($type) {
-			case "Lists":
+		/** @var boolean $returns_array Does the object type return an array of results or a ResultSet? */
+		$returns_array = false;
+
+		if( empty( $params['next'] ) ) {
+
+			switch ( $type ) {
 				// Lists doesn't support limit param
-				$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, (array)$param);
-				break;
-			case "EmailCampaigns":
-			default:
-
+				case "Lists":
+					$max_limit = false;
+					$returns_array = true;
+					break;
 				// email campaigns have special 50 limit; others have 500
-				$max_limit = ($type === 'EmailCampaigns') ? 50 : 500;
+				case "EmailCampaigns":
+					$max_limit = 50;
+					break;
+				default:
+					$max_limit = 500;
+			}
 
+			/**
+			 * Only set the limit if next isn't defined
+			 */
+			if ( $max_limit ) {
+				$params['limit'] = $max_limit;
+			}
+		} else {
+			// If next is defined, get rid of all other parameters
+			$params = array( 'next' => $params['next'] );
 
-				if( is_null( $param ) ) {
-					$param = $max_limit;
-				}
-
-
-				if( !is_null( $id_or_status ) ) {
-
-					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $id_or_status, $param);
-
-				} else {
-
-					if( empty( $param ) ) {
-						$param = array( 'limit' => $max_limit );
-					}
-
-					$fetch = $this->{"get{$type}"}(CTCT_ACCESS_TOKEN, $param);
-				}
+			if( isset( $passed_params['id'] )  ) {
+				$params['id'] = $passed_params['id'];
+			}
 		}
 
-		// If this returns the results directly, not as an object.
-		if(is_array($fetch)) { return $fetch; }
+		$cache = true;
+		$type_lower = strtolower( $type );
+		$cache_key = substr( sprintf( 'ctct_%s_%s', $type_lower, sha1( implode( '', $params ) ) ), 0, 44 );
+		$cache_time = apply_filters('constant_contact_cache_age', 60 * 60 * 6, NULL, $params );
 
-		foreach($fetch->results as $r) { $results[$r->id] = $r;  }
+		if( constant_contact_refresh_cache( $type ) ) {
+			$cache = false;
+		}
 
-		// If there is a next link set and the next link
-		// is not the current page (no next link, actually),
-		// recursively call the function.
-		if(!empty($fetch->next) && $fetch->next != @$param['next']) {
-    		$this->getAll($type, $id_or_status, array('next' => $fetch->next), $results);
-    	}
+		$cache = apply_filters('ctct_cache', $cache );
 
-    	return $results;
+		$fetch = false;
+		if( ! $cache ) {
+			delete_transient( $cache_key );
+		} elseif( $cache && $cache_time ) {
+			$fetch = get_transient( $cache_key );
+		}
+
+		if( !$fetch ) {
+
+			try {
+				ob_start();
+				$fetch  = $this->{"get{$type}"}( CTCT_ACCESS_TOKEN, $params );
+				$errors = ob_get_clean();
+
+				echo $errors;
+
+				if ( $cache_time && ! $fetch instanceof Exception ) {
+					set_transient( $cache_key, $fetch, $cache_time );
+				}
+			} catch ( CtctException $e ) {
+				$fetch = $e;
+			}
+		}
+
+		if( $returns_array ) {
+
+			$results = $fetch;
+
+		} elseif( $fetch && ! $fetch instanceof Exception ) {
+
+			// Append the result to the existing results array
+			foreach ( $fetch->results as $r ) {
+				if( is_null( $r ) ) { continue; } // Something went wrong creating the object
+				$results[ $r->id ] = $r;
+			}
+
+			// If there is a next link set and the next link is not the current page (no next link, actually),
+			// recursively call the function.
+			if ( ! empty( $fetch->next ) && ( empty( $params['next'] ) || $fetch->next !== $params['next'] ) ) {
+				$params['next'] = $fetch->next;
+
+				$this->getAll( $type, $params, $results );
+			}
+		}
+
+		return $results;
 	}
 
 	/**
 	 * We override the default so we can pass arrays as well as strings.
+	 * @see Ctct\ConstantContact::determineParam
 	 * @param string $param
 	 * @return array
 	 */
@@ -374,23 +609,103 @@ final class KWSConstantContact extends ConstantContact {
 			$param = '?'.http_build_query( $param, '', '&' );
 		}
 
-		return parent::determineParam( $param);
+		/**
+		 * Below is just an alias of parent
+		 * @see Ctct\ConstantContact::determineParam
+		 */
+		$params = array();
+		if (substr($param, 0, 1) === '?') {
+			$param = substr($param, 1);
+			parse_str($param, $params);
+		} else {
+			$params['limit'] = $param;
+		}
+
+		return $params;
 	}
 
     /**
      * Get contacts with a specified email eaddress
      * @param string $email - contact email address to search for
      * @param string $null - placeholder for PHP 5.4 Strict standards to be compatible with the overridden getContactByEmail method
-     * @return KWSContact|boolean If contact, KWSContact object; if none, false
+     * @return KWSContact|false|CtctException If contact, KWSContact object; if none, false. If account is not configured, CtctException
      */
     public function getContactByEmail($email, $null = null ) {
-		$contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
 
-        if(!empty($contact->results)) {
-        	return new KWSContact($contact->results[0]);
-        }
-        return false;
+	    try {
+
+	        $contact = $this->contactService->getContacts(CTCT_ACCESS_TOKEN, array('email' => $email));
+
+		    if(!empty($contact->results)) {
+		        return new KWSContact($contact->results[0]);
+		    }
+
+		    return false;
+	    } catch ( CtctException $e ) {
+		    return $e;
+	    }
     }
 
+	/**
+	 * Get all contacts from an individual list
+	 * @param string $accessToken - Constant Contact OAuth2 access token
+	 * @param string $listId - {@link ContactList} id to retrieve contacts for
+	 * @param array $params - associative array of query parameters and values to append to the request.
+	 *      Allowed parameters include:
+	 *      limit - Specifies the number of results displayed per page of output, from 1 - 500, default = 50.
+	 *      modified_since - ISO-8601 formatted timestamp.
+	 *      next - the next link returned from a previous paginated call. May only be used by itself.
+	 *      email - full email address string to restrict results by
+	 *      status - a contact status to filter results by. Must be one of ACTIVE, OPTOUT, REMOVED, UNCONFIRMED.
+	 * @return ResultSet|CtctException
+	 */
+	public function getContactsFromList($accessToken, $list, $param = null)
+	{
 
+		/**
+		 * When using getAll, the `id` is passed in the second argument along with the `next` param
+		 * @see getAll()
+		 */
+		if( is_null( $param ) && is_array( $list ) && isset( $list['id'] ) ) {
+			$listId = $list['id'];
+			unset( $list['id'] );
+			$param = $list;
+		} else{
+			try {
+				$listId = $this->getArgumentId( $list, 'ContactList' );
+			} catch ( CtctException $e ) {
+				return $e;
+			}
+		}
+
+		$param = $this->determineParam($param);
+		try {
+			$contacts = $this->contactService->getContactsFromList( $accessToken, $listId, $param );
+			return $contacts;
+		} catch ( CtctException $e ) {
+			return $e;
+		}
+	}
+
+	/**
+	 * Get the id of object, or attempt to convert the argument to an int
+	 * @param mixed $item - object or a numeric value
+	 * @param string $className - class name to test the given object against
+	 * @throws Ctct\Exceptions\IllegalArgumentException - if the item is not an instance of the class name given, or cannot be
+	 * converted to a numeric value
+	 * @return int
+	 */
+	private function getArgumentId($item, $className)
+	{
+		$id = null;
+		if (is_numeric($item)) {
+			$id = $item;
+		} elseif (join('', array_slice(explode('\\', get_class($item)), -1)) == $className) {
+			$id = $item->id;
+		} else {
+			throw new IllegalArgumentException(sprintf(Config::get('errors.id_or_object'), $className));
+		}
+
+		return $id;
+	}
 }

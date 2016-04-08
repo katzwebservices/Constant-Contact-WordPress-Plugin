@@ -1,4 +1,5 @@
 <?php
+/** @define "CTCT_DIR_PATH" "../" */
 
 use Ctct\ConstantContact;
 use Ctct\Components\Contacts\Contact;
@@ -8,6 +9,7 @@ use Ctct\Components\Contacts\Note;
 use Ctct\Components\Contacts\ContactList;
 use Ctct\Components\Contacts\EmailAddress;
 use Ctct\Exceptions\CtctException;
+
 
 class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
@@ -24,21 +26,34 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		return $this->getTitle( 'views' );
 	}
 
-	protected function getTitle( $value = '' ) {
-		if ( empty( $value ) && $this->isEdit() || $value == 'edit' ) {
-			return "Edit Campaign";
-		}
-		if ( empty( $value ) && $this->isSingle() || $value == 'single' ) {
-			return sprintf( 'Campaign #%s', $_GET['view'] );
+	protected function getTitle( $type = '' ) {
+
+		$title = __( 'Campaigns', 'constant-contact-api' );
+
+		if ( empty( $type ) && $this->isEdit() || $type == 'edit' ) {
+			$title = __('Edit Campaign', 'constant-contact-api');
+		} elseif ( ( $this->isSingle() && empty( $type ) ) || $type === 'single' ) {
+
+			$id = intval( $_GET['view'] );
+			$emailCampaign = $this->cc->getEmailCampaign( CTCT_ACCESS_TOKEN, $id );
+
+			if( is_object( $emailCampaign ) && ! empty( $emailCampaign->name ) ) {
+				/** translators: %s is the campaign name, %d is the list ID */
+				$title = sprintf( __( 'Campaign: "%s"', 'constant-contact-api' ), esc_html( $emailCampaign->name ) );
+			} else {
+				/** translators: %d is the campaign ID */
+				$title = sprintf( __( 'Campaign #%s', 'constant-contact-api' ), $id );
+			}
 		}
 
-		return 'Campaigns';
+		return $title;
 	}
 
 	/**
 	 * @todo Implement adding campaigns. Needs better CTCT support.
 	 */
 	protected function add() {
+
 	}
 
 	protected function processForms() {
@@ -49,7 +64,7 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 		$id = intval( @$_GET['edit'] );
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a Campaign to edit', 'ctct' );
+			esc_html_e( 'You have not specified a Campaign to edit', 'constant-contact-api' );
 
 			return;
 		}
@@ -77,35 +92,40 @@ class CTCT_Admin_Campaigns extends CTCT_Admin_Page {
 
 	protected function single() {
 
-		$id = intval( @$_GET['view'] );
+		$id = isset( $_GET['view'] ) ? intval( $_GET['view'] ) : 0;
 
 		if ( ! isset( $id ) || empty( $id ) ) {
-			esc_html_e( 'You have not specified a Campaign to view', 'ctct' );
+			esc_html_e( 'You have not specified a Campaign to view', 'constant-contact-api' );
 
 			return;
 		}
 
 		$CC_Campaign = $this->cc->getEmailCampaign( CTCT_ACCESS_TOKEN, $id );
-		$Campaign    = new KWSCampaign( $CC_Campaign );
 
-		include( CTCT_DIR_PATH . 'views/admin/view.campaign-view.php' );
+		if( $CC_Campaign instanceof Exception ) {
+			$this->show_exception( $CC_Campaign );
+		} else {
+			$Campaign = new KWSCampaign( $CC_Campaign );
 
+			include( CTCT_DIR_PATH . 'views/admin/view.campaign-view.php' );
+		}
 	}
 
 	protected function view() {
 
 		$status = isset( $_GET['status'] ) ? $_GET['status'] : NULL;
 
-		add_filter( 'ctct_cachekey', function () {
-			return isset( $_GET['status'] ) ? false : 'ctct_all_campaigns';
-		} );
-
 		$Campaigns = $this->cc->getAllEmailCampaigns( $status );
+
+		if( $Campaigns instanceof CtctException ) {
+			$this->show_exception( $Campaigns );
+			return;
+		}
 
 		kws_print_subsub( 'status', array(
 			array( 'val' => '', 'text' => 'All' ),
-			array( 'val' => 'DRAFT', 'text' => 'Draft' ),
 			array( 'val' => 'RUNNING', 'text' => 'Running' ),
+			array( 'val' => 'DRAFT', 'text' => 'Draft' ),
 			array( 'val' => 'SCHEDULED', 'text' => 'Scheduled' ),
 			array( 'val' => 'SENT', 'text' => 'Sent' ),
 		) );

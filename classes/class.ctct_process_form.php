@@ -100,6 +100,11 @@ class CTCT_Process_Form {
 		// Create the contact
 		$KWSContact = new KWSContact( $this->data );
 
+		if( is_wp_error( $KWSContact ) ) {
+			$this->errors[] = $KWSContact;
+			return;
+		}
+
 		$this->checkRequired();
 
 		$this->validatePhone( $KWSContact );
@@ -226,10 +231,14 @@ class CTCT_Process_Form {
 	 */
 	function checkRequired() {
 
+		if( ! isset( $_POST['fields'] ) || ! is_array( $_POST['fields'] ) ) {
+			return;
+		}
+
 		foreach ( $_POST['fields'] as $key => $field ) {
 
 			if ( ! empty( $field['req'] ) && ( ! isset( $field['value'] ) || $field['value'] === '' ) ) {
-				$this->errors[] = new WP_Error( 'empty_field', sprintf( _x( 'The %s field is required.', 'Failed user form submission error', 'ctct' ), esc_html( $field['label'] ) ), $key );
+				$this->errors[] = new WP_Error( 'empty_field', sprintf( _x( 'The %s field is required.', 'Failed user form submission error', 'constant-contact-api' ), esc_html( $field['label'] ) ), $key );
 			}
 		}
 
@@ -312,7 +321,7 @@ class CTCT_Process_Form {
 
 				do_action( 'ctct_activity', 'Invalid phone number', $e->getMessage() );
 
-				$this->errors[] = new WP_Error( 'invalid_phone_number', __( 'Please enter a valid phone number.', 'ctct' ), $key );
+				$this->errors[] = new WP_Error( 'invalid_phone_number', __( 'Please enter a valid phone number.', 'constant-contact-api' ), $key );
 
 			}
 
@@ -407,7 +416,7 @@ class CTCT_Process_Form {
 	 *
 	 * @param  KWSContact $Contact Contact object
 	 *
-	 * @return WP_Error|boolean|void    If valid, return `true`, otherwise return a WP_Error object.
+	 * @return boolean|void    If valid, return `true`, otherwise return void and set $this->errors with WP_Error
 	 */
 	function validateEmail( KWSContact &$Contact ) {
 
@@ -423,15 +432,17 @@ class CTCT_Process_Form {
 
 		$is_valid = array();
 
+		$email = trim( $email );
+
 		// 1: Check if it's an email at all
 		if ( empty( $email ) ) {
 			do_action( 'ctct_activity', 'Empty email address', $email );
-			$this->errors[] = new WP_Error( 'empty_email', __( 'Please enter your email address.', 'ctct' ), 'email_address' );
+			$this->errors[] = new WP_Error( 'empty_email', __( 'Please enter your email address.', 'constant-contact-api' ), 'email_address' );
 
 			return;
 		} elseif ( ! is_email( $email ) ) {
 			do_action( 'ctct_activity', 'Invalid email address', $email );
-			$this->errors[] = new WP_Error( 'not_email', __( 'Invalid email address.', 'ctct' ), 'email_address' );
+			$this->errors[] = new WP_Error( 'not_email', __( 'Invalid email address.', 'constant-contact-api' ), 'email_address' );
 
 			return;
 		}
@@ -452,19 +463,32 @@ class CTCT_Process_Form {
 		if ( in_array( 'wangguard', $methods ) && function_exists( 'wangguard_verify_email' ) && wangguard_server_connectivity_ok() ) {
 			global $wangguard_api_host;
 
-			// If WangGuard isn't set up yet, set'er up!
-			if ( empty( $wangguard_api_host ) ) {
-				wangguard_init();
-			}
+			if( $api_key = get_site_option('wangguard_api_key') ) {
 
-			$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
+				ob_start();
 
-			if ( $return == 'checked' || $return == 'not-checked' ) {
-				do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
+				// If WangGuard isn't set up yet, set'er up!
+				if ( empty( $wangguard_api_host ) ) {
+					wangguard_init();
+				}
+
+				$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
+
+				// Errors
+				ob_get_clean();
+
+				if ( $return == 'checked' || $return == 'not-checked' ) {
+					do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
+				} elseif( 'error:100' === $return ) {
+					do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
+				} else {
+					do_action( 'ctct_activity', 'Wangguard email validation failed.', $email, $return );
+					$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'constant-contact-api' ), $email, $return );
+
+					return;
+				}
 			} else {
-				$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'ctct' ), $email, $return );
-
-				return;
+				do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
 			}
 		}
 
@@ -487,7 +511,7 @@ class CTCT_Process_Form {
 
 				do_action( 'ctct_activity', 'DataValidation validation failed.', $email, $Validate );
 
-				$message        = isset( $Validate->message ) ? $Validate->message : __( 'Not a valid email.', 'ctct' );
+				$message        = isset( $Validate->message ) ? $Validate->message : __( 'Not a valid email.', 'constant-contact-api' );
 				$this->errors[] = new WP_Error( 'datavalidation', $message, $email, $Validate );
 
 				return;
@@ -530,7 +554,7 @@ class CTCT_Process_Form {
 
 						do_action( 'ctct_activity', 'SMTP validation failed.', $email, $results );
 
-						$this->errors[] = new WP_Error( 'smtp', __( 'Email validation failed.', 'ctct' ), $email, $results );
+						$this->errors[] = new WP_Error( 'smtp', __( 'Email validation failed.', 'constant-contact-api' ), $email, $results );
 
 						return false;
 					}
@@ -576,7 +600,6 @@ class CTCT_Process_Form {
 		// Akismet not activated
 		if ( ! class_exists( 'Akismet' ) ) {
 			do_action( 'ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
-
 			return true;
 		}
 
@@ -615,15 +638,15 @@ class CTCT_Process_Form {
 		} else {
 			switch ( $check['akismet_result'] ) {
 				case 'true':
-					do_action( 'ctct_activity', __( 'Akismet caught this entry as spam' ), $check );
+					do_action( 'ctct_activity', __( 'Akismet caught this entry as spam', 'constant-contact-api' ), $check );
 
-					return new WP_Error( 'akismet', __( 'Your entry was flagged as spam.' ), $check );
+					return new WP_Error( 'akismet', __( 'Your entry was flagged as spam.', 'constant-contact-api' ), $check );
 					break;
 				case 'false':
-					do_action( 'ctct_activity', __( 'Akismet cleared this comment' ), $check );
+					do_action( 'ctct_activity', __( 'Akismet cleared this comment', 'constant-contact-api' ), $check );
 					break;
 				default:
-					do_action( 'ctct_error', sprintf( __( 'Akismet was unable to check this entry (response: %s), will automatically retry again later.' ), substr( $check['akismet_result'], 0, 50 ) ), $check );
+					do_action( 'ctct_error', sprintf( __( 'Akismet was unable to check this entry (response: %s), will automatically retry again later.', 'constant-contact-api' ), substr( $check['akismet_result'], 0, 50 ) ), $check );
 			}
 		}
 

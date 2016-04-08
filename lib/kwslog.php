@@ -44,6 +44,12 @@ class KWSLog {
 	private static $methods = array('error');
 
 	/**
+	 * @since 4.0
+	 * @var bool Does the WP_Logging class already exist? If so, maintain backward compatibility.
+	 */
+	private $existing_class = false;
+
+	/**
 	 * The current log type being shown on log page
 	 * @var string
 	 */
@@ -78,8 +84,10 @@ class KWSLog {
 	function __construct() {
 
 		// Load Pippin's logging class
-		if( !class_exists( 'WP_Logging') ) {
-			include_once CTCT_DIR_PATH.'vendor/pippinsplugins/WP-Logging/WP_Logging.php';
+		if ( ! class_exists( 'WP_Logging' ) ) {
+			include_once CTCT_DIR_PATH . 'vendor/zackkatz/WP-Logging/WP_Logging.php';
+		} else {
+			$this->existing_class = true;
 		}
 
 		$slug = sanitize_title( str_replace(array(ABSPATH, 'plugins/', 'wp-content/', 'mu-plugins/', '/lib'), '', __DIR__) );
@@ -91,6 +99,28 @@ class KWSLog {
 
 		self::$slug = $slug;
 
+		$this->add_hooks();
+
+		$this->schedule_pruning();
+	}
+
+	/**
+	 * @since 4.0
+	 */
+	function schedule_pruning() {
+
+		$scheduled = wp_next_scheduled( 'wp_logging_prune_routine' );
+
+		if ( $scheduled == false ){
+			wp_schedule_event( time(), 'hourly', 'wp_logging_prune_routine' );
+		}
+	}
+
+	/**
+	 * @since 4.0
+	 */
+	function add_hooks() {
+
 		add_action('ctct_debug', array(&$this, "debug"), 10, 3);
 		add_action('ctct_log', array(&$this, "debug"), 10, 3);
 		add_action('ctct_error', array(&$this, "error"), 10, 3);
@@ -101,11 +131,28 @@ class KWSLog {
 		add_action('admin_menu', array(&$this, 'log_menu'), 10000 );
 
 		add_filter( 'wp_logging_should_we_prune', '__return_true', 10 );
+		add_filter( 'wp_logging_prune_query_args', array( $this, 'wp_logging_query_args' ) );
 		add_filter( 'wp_log_types', array( $this, 'wp_logging_log_types'));
 
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 		add_action('admin_head', array(&$this, 'wp_head'));
 		add_action('wp_head', array(&$this, 'wp_head'));
+	}
+
+	/**
+	 * @param array $args Args passed to get_post()
+	 *
+	 * @return array Modified args
+	 */
+	function wp_logging_query_args( $args ) {
+
+		$args['posts_per_page'] = 200;
+
+		if( ! $this->existing_class ) {
+			$args['fields'] = 'ids';// Only get the Post IDs for a faster query
+		}
+
+		return $args;
 	}
 
 	function wp_logging_log_types( $types ) {
@@ -168,7 +215,7 @@ class KWSLog {
 	 * Add the admin menu to the Tools menu
 	 */
 	function log_menu() {
-		$menu_title = __('Activity Log', 'ctct');
+		$menu_title = __('Activity Log', 'constant-contact-api');
 		add_submenu_page( 'constant-contact-api', $menu_title, $menu_title, 'manage_options', 'constant-contact-log', array(&$this, 'log_page'));
 	}
 
@@ -184,11 +231,28 @@ class KWSLog {
 		}
 	}
 
-	function insert_log( $type = 'debug', $title = NULL, $message = NULL, $data = NULL ) {
+	/**
+	 * @param string $type Either `debug` or `error`
+	 * @param string $title Title of the log post
+	 * @param string $passed_message String content of the log
+	 * @param null $data
+	 *
+	 * @return      int The ID of the newly created log item
+	 */
+	function insert_log( $type = 'debug', $title = NULL, $passed_message = NULL, $passed_data = NULL ) {
 		global $wp_rewrite;
 
 		// If we're not logging for certain types, then do not insert log.
 		if( !in_array( $type, self::$methods) ) { return; }
+
+		$message = $passed_message;
+		$data = $passed_data;
+
+		if( is_a( $message, 'Ctct\Exceptions\CtctException' ) ) {
+			/** @var Ctct\Exceptions\CtctException $passed_message */
+			$data = $passed_message->getTraceAsString();
+			$message = new WP_Error( $passed_message->getCode(), $passed_message->getMessage(), $passed_message->getErrors() );
+		}
 
 		// This debug call is being called before a bunch of necessary stuff is loaded.
 		// We store it, then call it later.
@@ -198,8 +262,8 @@ class KWSLog {
 		}
 
 		$log_data = array(
-			'post_title'   => is_string( $title ) ? $title : NULL, // Just in case.
-			'post_content' => is_string( $message ) ? $message : NULL,
+			'post_title'   => is_string( $title ) ? $title : '', // Just in case.
+			'post_content' => is_string( $message ) ? $message : '',
 			'log_type'     => 'ctct_'.$type,
 		);
 
@@ -214,11 +278,18 @@ class KWSLog {
 		// Use instead of add(); so we get access to meta.
 		$debug_post_id = WP_Logging::insert_log( $log_data, $meta );
 
+		return $debug_post_id;
 	}
 
+	/**
+	 * @param null $title
+	 * @param null $message
+	 * @param null $data
+	 */
 	function debug( $title = NULL, $message = NULL, $data = NULL ) {
-
-		$this->insert_log( 'debug', $title, $message, $data );
+		if( ! defined('DOING_AJAX') || ! DOING_AJAX ) {
+			$this->insert_log( 'debug', $title, $message, $data );
+		}
 	}
 
 	function error( $title = NULL, $message = NULL, $data = NULL ) {
@@ -236,10 +307,10 @@ class KWSLog {
 	function print_navigation() {
 
 		$methods_text = array(
-			'activity' => __('Constant Contact Activity', 'ctct'),
-			'debug' => __('Debugging Logs', 'ctct'),
-			'error' => __('Errors or Exceptions', 'ctct'),
-			'log' => __('Notices', 'ctct'),
+			'activity' => __('Constant Contact Activity', 'constant-contact-api'),
+			'debug' => __('Debugging Logs', 'constant-contact-api'),
+			'error' => __('Errors or Exceptions', 'constant-contact-api'),
+			'log' => __('Notices', 'constant-contact-api'),
 		);
 
 		$navigation = array();
@@ -266,7 +337,7 @@ class KWSLog {
 
 		<?php
 
-			$translated = __( 'Page', 'ctct');
+			$translated = __( 'Page', 'constant-contact-api');
 
 			echo paginate_links( array(
 				'base' => esc_url_raw( add_query_arg( array( 'paged' => '%#%' ) ) ),
@@ -307,7 +378,7 @@ class KWSLog {
 	?>
 		<div class="wrap">
 
-			<h2><?php esc_html_e('Constant Contact Log', 'ctct'); ?></h2>
+			<h2><?php esc_html_e('Constant Contact Log', 'constant-contact-api'); ?></h2>
 
 			<?php
 
@@ -319,9 +390,9 @@ class KWSLog {
 			 <table class="ctct_table widefat">
 				<thead>
 				<tr>
-					<th class="title"><?php esc_html_e('Title', 'kwslog'); ?></th>
-					<th class="" style="width: 30%"><?php esc_html_e('Content', 'kwslog'); ?></th>
-					<th class="column column-post_date"><?php esc_html_e('Date', 'kwslog'); ?></th>
+					<th class="title"><?php esc_html_e('Title', 'kwslog', 'constant-contact-api'); ?></th>
+					<th class="" style="width: 30%"><?php esc_html_e('Content', 'kwslog', 'constant-contact-api'); ?></th>
+					<th class="column column-post_date"><?php esc_html_e('Date', 'kwslog', 'constant-contact-api'); ?></th>
 				</tr>
 				</thead>
 					<tbody>
@@ -365,7 +436,7 @@ class KWSLog {
 					?>
 					<tr>
 						<td colspan="3" style="text-align:center;">
-						<h4><?php esc_html_e('No activity has been logged.'); ?></h4>
+						<h4><?php esc_html_e('No activity has been logged.', 'constant-contact-api'); ?></h4>
 						</td>
 					</tr>
 					<?php
