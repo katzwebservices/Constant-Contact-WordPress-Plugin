@@ -100,6 +100,11 @@ class CTCT_Process_Form {
 		// Create the contact
 		$KWSContact = new KWSContact( $this->data );
 
+		if( is_wp_error( $KWSContact ) ) {
+			$this->errors[] = $KWSContact;
+			return;
+		}
+
 		$this->checkRequired();
 
 		$this->validatePhone( $KWSContact );
@@ -456,12 +461,17 @@ class CTCT_Process_Form {
 		if ( in_array( 'wangguard', $methods ) && function_exists( 'wangguard_verify_email' ) && wangguard_server_connectivity_ok() ) {
 			global $wangguard_api_host;
 
+			ob_start();
+
 			// If WangGuard isn't set up yet, set'er up!
 			if ( empty( $wangguard_api_host ) ) {
 				wangguard_init();
 			}
 
 			$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
+
+			// Errors
+			ob_get_clean();
 
 			if ( $return == 'checked' || $return == 'not-checked' ) {
 				do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
@@ -580,7 +590,6 @@ class CTCT_Process_Form {
 		// Akismet not activated
 		if ( ! class_exists( 'Akismet' ) ) {
 			do_action( 'ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
-
 			return true;
 		}
 

@@ -168,7 +168,7 @@ function kws_get_contacts_view_params() {
 		$params['status'] = esc_attr( $_GET['status'] );
 	}
 
-	$since = ! empty( $_GET['modified_since'] ) ? esc_attr( $_GET['modified_since'] ) : ( isset( $_GET['view'] ) ? false : '-1 month' );
+	$since = ! empty( $_GET['modified_since'] ) ? esc_attr( $_GET['modified_since'] ) : ( ( isset( $_GET['view'] ) || isset( $_GET['status'] ) ) ? false : '-1 month' );
 
 	if( $since && $since = strtotime( $since ) ) {
 		$params['modified_since'] = date( 'c', $since );
@@ -185,7 +185,7 @@ function kws_get_contacts_view_params() {
  */
 function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
 	$params = kws_get_contacts_view_params();
-	$modified_since = !empty( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( empty( $params ) ? '' : $default );
+	$modified_since = isset( $_GET['modified_since'] ) ? esc_attr( urldecode( $_GET['modified_since'] ) ) : ( empty( $params['modified_since'] ) ? '' : $default );
 	?>
 <form action="<?php echo admin_url('admin.php'); ?>" method="get">
 	<label for="ctct_modified_since" class="screen-reader-text"><?php echo esc_html( $label ); ?></label>
