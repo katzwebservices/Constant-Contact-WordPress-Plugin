@@ -14,6 +14,8 @@ Integrate Constant Contact into your website with this full-featured plugin.
 > __This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com).__  
 > *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
 
+**Requires PHP 5.5**
+
 #### Fully integrate Constant Contact with your WordPress website.
 
 The Constant Contact for WordPress plugin is the best email marketing plugin for WordPress: integrate your website seamlessly with your Constant Contact account.
@@ -74,6 +76,9 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+
+__This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
 
 * The Admin now looks great on mobile devices!
 * Constant Analytics has been removed. The authentication process changed significantly, so it was no longer working properly.
@@ -345,7 +350,26 @@ __Version 4.0 changes requirements for your server. If you upgrade and the upgra
 
 Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.5.
 
-Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available.
+Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available, and [earlier versions of PHP are no longer secure](http://php.net/supported-versions.php).
+
+Starting with Version 4.0, **the Constant Contact Plugin requires PHP Version 5.5 or higher**. Please contact your hosting provider support and ask them to upgrade your server.
+
+**We apologize for the inconvenience, but technical requirements changed.**The good news? Once you upgrade your PHP version, your site will be faster [and more secure](http://php.net/supported-versions.php).
+
+#### Here’s how to upgrade your PHP version for popular web hosts:
+
+-   [InMotion Hosting](http://www.inmotionhosting.com/support/website/php/how-to-change-the-php-version-your-account-uses)
+-   [HostGator](http://support.hostgator.com/articles/cpanel/php-configuration-plugin)
+-   [Bluehost](https://my.bluehost.com/cgi/help/447)
+-   [GoDaddy](https://www.godaddy.com/help/view-or-change-your-php-version-16090)
+-   [SiteGround](https://www.siteground.com/kb/how_to_have_different_php__mysql_versions/)
+-   Running a local installation? Here's how to change your PHP version using:
+    -   [MAMP](http://wphosting.tv/how-to-switch-between-several-php-versions-in-mamp-2-x/) (Mac)
+    -   [WAMP](https://john-dugan.com/upgrade-php-wamp/) (Windows)
+
+#### If you can’t upgrade your PHP version
+
+You can use [Constant Contact's Sign-up Form](http://support2.constantcontact.com/articles/SupportFAQ/5367) and add the code to a widget or a page. This will allow your visitors to sign up for your newsletters.
 
 = Do I need a Constant Contact account for this plugin? =
 

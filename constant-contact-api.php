@@ -25,6 +25,12 @@ final class WP_CTCT {
 	const version = '4.0';
 
 	/**
+	 * @var string The minimum version of PHP required for the plugin
+	 * @since 4.0
+	 */
+	const min_php_version = '5.5';
+
+	/**
 	 * @var KWSConstantContact
 	 */
 	public $cc = NULL;
@@ -64,7 +70,7 @@ final class WP_CTCT {
 			/**
 			 * If the server doesn't support PHP 5.4, sorry, but you're outta luck.
 			 */
-			if(version_compare(phpversion(), '5.4') <= 0) {
+			if(version_compare(phpversion(), WP_CTCT::min_php_version ) <= 0) {
 				include CTCT_DIR_PATH.'inc/incompatible.php';
 				return;
 			}
