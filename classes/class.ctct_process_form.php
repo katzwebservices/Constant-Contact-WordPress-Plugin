@@ -416,7 +416,7 @@ class CTCT_Process_Form {
 	 *
 	 * @param  KWSContact $Contact Contact object
 	 *
-	 * @return WP_Error|boolean|void    If valid, return `true`, otherwise return a WP_Error object.
+	 * @return boolean|void    If valid, return `true`, otherwise return void and set $this->errors with WP_Error
 	 */
 	function validateEmail( KWSContact &$Contact ) {
 
@@ -431,6 +431,8 @@ class CTCT_Process_Form {
 		$email = $Contact->get( 'email' );
 
 		$is_valid = array();
+
+		$email = trim( $email );
 
 		// 1: Check if it's an email at all
 		if ( empty( $email ) ) {
@@ -461,24 +463,32 @@ class CTCT_Process_Form {
 		if ( in_array( 'wangguard', $methods ) && function_exists( 'wangguard_verify_email' ) && wangguard_server_connectivity_ok() ) {
 			global $wangguard_api_host;
 
-			ob_start();
+			if( $api_key = get_site_option('wangguard_api_key') ) {
 
-			// If WangGuard isn't set up yet, set'er up!
-			if ( empty( $wangguard_api_host ) ) {
-				wangguard_init();
-			}
+				ob_start();
 
-			$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
+				// If WangGuard isn't set up yet, set'er up!
+				if ( empty( $wangguard_api_host ) ) {
+					wangguard_init();
+				}
 
-			// Errors
-			ob_get_clean();
+				$return = wangguard_verify_email( $email, wangguard_getRemoteIP(), wangguard_getRemoteProxyIP() );
 
-			if ( $return == 'checked' || $return == 'not-checked' ) {
-				do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
+				// Errors
+				ob_get_clean();
+
+				if ( $return == 'checked' || $return == 'not-checked' ) {
+					do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
+				} elseif( 'error:100' === $return ) {
+					do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
+				} else {
+					do_action( 'ctct_activity', 'Wangguard email validation failed.', $email, $return );
+					$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'constant-contact-api' ), $email, $return );
+
+					return;
+				}
 			} else {
-				$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'constant-contact-api' ), $email, $return );
-
-				return;
+				do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
 			}
 		}
 
