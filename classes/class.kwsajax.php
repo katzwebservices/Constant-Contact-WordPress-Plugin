@@ -82,7 +82,7 @@ class KWSAJAX {
 									$response['message'] = $fetch->getErrors();
 									$response['code'] = 400;
 								} else {
-									$CheckContact = new KWSContact( $ReturnedContact );
+									$CheckContact = new KWSContact( $KWSContact );
 
 									// The returned lists will include list STATUS, which we don't care about. We just want the same IDs
 									if ( 'lists' === $parent . $field ) {
