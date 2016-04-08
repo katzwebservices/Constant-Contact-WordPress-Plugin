@@ -209,6 +209,55 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	}
 
 	/**
+	 * Get the URL to the event registration page
+	 *
+	 * If there's a registration URL set in the event, use it. Otherwise, generate a link using the standard CTCT format.
+	 *
+	 * @param EventSpot $event
+	 * @param bool $mobile If true, return the mobile registration link. Otherwise, 'desktop' version.
+	 *
+	 * @return false|string False if $event->id isn't set. URL to the event registration page otherwise.
+	 */
+	public static function get_event_registration_url( $event, $mobile = false ) {
+
+		$return = false;
+
+		if( is_object( $event ) && isset( $event->id ) ){
+
+			// If set on the event level, use it.
+			if( ! empty( $event->registration_url ) ) {
+				$return = $event->registration_url;
+			} else {
+				// Otherwise, generate one
+				$format = $mobile ? 'm' : 'event';
+				$return = sprintf( 'http://events.constantcontact.com/register/%s?oeidk=%s', $format, $event->id );
+			}
+		}
+
+		return $return;
+	}
+
+	/**
+	 * Get the URL to download the event calendar ICS file
+	 *
+	 * @since 4.0
+	 * 
+	 * @param EventSpot $event
+	 *
+	 * @return false|string False if $event->id isn't set. URL to the event registration page otherwise.
+	 */
+	public static function get_event_calendar_url( $event ) {
+
+		$return = false;
+
+		if( is_object( $event ) && isset( $event->id ) ){
+			$return = sprintf( 'http://events.constantcontact.com/register/addtocalendar?oeidk=%s', $event->id );
+		}
+
+		return $return;
+	}
+
+	/**
 	 * Output events.
 	 *
 	 * Pass $args as an array with the following settings.

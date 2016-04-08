@@ -31,12 +31,9 @@
 				}
 			}
 
-			$link = $event->registration_url;
+			$is_mobile = ( ! empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile() );
 
-			// If on a mobile phone, use the mobile registration link
-			if(!empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile()) {
-				$link = str_replace('/register/event_reg?', '/register/m?', $link);
-			}
+			$link = CTCT_EventSpot::get_event_registration_url( $event, $is_mobile );
 
 			$linkTitle = apply_filters('cc_event_linktitle', sprintf( esc_attr__('View event details for "%s"', 'constant-contact-api'), $event->title));
 			if(!empty($linkTitle)) { $linkTitle = ' title="'.esc_html($linkTitle).'"'; }
@@ -68,14 +65,10 @@
 					<dd class="cc_event_enddate_dd">'.apply_filters('cc_event_date', apply_filters('cc_event_enddate', $event->end_date)).'</dd>
 					';
 				}
-				if(!empty($CTCT->settings['calendar'])) {
-
-					$link = str_replace('/register/event?', '/register/addtocalendar?', esc_url( $event->registration_url) );
+				if( ! empty($CTCT->settings['calendar']) && $calendar_link = CTCT_EventSpot::get_event_calendar_url( $event ) ) {
 					$linkTitle = apply_filters('cc_event_linktitle', sprintf( esc_html__('Add "%s" to your calendar', 'constant-contact-api'), $event->title));
 					if(!empty($linkTitle)) { $linkTitle = ' title="'.esc_attr($linkTitle).'"'; }
-					$calendarOut = '
-				<dd class="cc_event_calendar"><a'.$target.' href="'.$link.'"'.$linkTitle.'>'.esc_html__('Add to Calendar', 'constant-contact-api').'</a></dd>
-					';
+					$calendarOut = sprintf( '<dd class="cc_event_calendar"><a%s href="%s" %s>%s</a></dd>', $target, esc_url( $calendar_link ), $linkTitle, esc_html__('Add to Calendar', 'constant-contact-api') );
 				}
 				if(!empty($CTCT->settings['location'])) {
 					if(!empty($event->address)) {
