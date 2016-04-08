@@ -256,12 +256,22 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 		}
 
 		if( empty( $settings['id'] ) ) {
-			$params = array( 'limit' => absint( $settings['limit'] ) );
+
+			$events = KWSConstantContact::getInstance()->getAll( 'Events' );
+
 			if( $settings['onlyactive'] ) {
-				$params['status'] = 'ACTIVE';
+				$events = wp_list_filter( $events, array( 'status' => 'ACTIVE' ) );
+			} else {
+				$events = wp_list_filter( $events, array( 'status' => 'DRAFT' ), 'NOT' );
 			}
-			$settings['events'] = KWSConstantContact::getInstance()->getAll( 'Events', $params );
+
+			if( ! empty( $limit ) ) {
+				$events = array_splice( $events, 0, intval( $settings['limit'] ) );
+			}
+
+			$settings['events'] = $events;
 			$settings['class'] .= ' multiple_events';
+
 		} else {
 			$settings['class'] .= ' single_event';
 			$settings['events'] = array( KWSConstantContact::getInstance()->getEvent( CTCT_ACCESS_TOKEN, $settings['id'] ) );
