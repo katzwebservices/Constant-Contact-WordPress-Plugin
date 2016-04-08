@@ -194,10 +194,10 @@ function cc_form_meta_box_formfields($_form_object) {
 
 			$formfields = array(
 				ctct_make_formfield($_form_object, '', 'intro', '<i class="dashicons dashicons-clipboard"></i> '.__('Custom Text', 'constant-contact-api'), true, '', 'textarea'),
-				ctct_make_formfield($_form_object, '', 'email_address', __('Email Address', 'constant-contact-api'), true, 'example@tryme.com'),
+				ctct_make_formfield($_form_object, '', 'email_address', '', true, 'me@example.com', 'text', false ),
 				ctct_make_formfield($_form_object, '', 'first_name', __('First Name', 'constant-contact-api'), true),
 				ctct_make_formfield($_form_object, '', 'last_name', __('Last Name', 'constant-contact-api'), true),
-				ctct_make_formfield($_form_object, '', 'Go', __('Submit', 'constant-contact-api'), true, __('Subscribe', 'constant-contact-api'), 'submit'),
+				ctct_make_formfield($_form_object, '', 'Go', __('Submit', 'constant-contact-api'), true, __('Get Our Newsletter', 'constant-contact-api'), 'submit'),
 				ctct_make_formfield($_form_object, 'more', 'lists', __('Lists', 'constant-contact-api'), false, '', 'lists'),
 				ctct_make_formfield($_form_object, 'more', 'middle_name', __('Middle Name', 'constant-contact-api'), false),
 				ctct_make_formfield($_form_object, 'more', 'company_name', __('Company Name', 'constant-contact-api'), false),
@@ -246,7 +246,7 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 					<div class="tabs-panel tabs-panel-active clear" style="background-color:transparent;">
 						<ul class="categorychecklist">
 							<li><label for="backgroundtransparent" class="menu-item-title backgroundtype"><input type="radio" class="no-update menu-item-checkbox" name="backgroundtype" id="backgroundtransparent" <?php ctct_check_radio($form,'backgroundtype', 'transparent', true); ?> /> <span><?php esc_html_e('Transparent', 'constant-contact-api'); ?></span></label></li>
-							<li><label for="backgroundgradient" class="menu-item-title backgroundtype"><input type="radio" class="no-update menu-item-checkbox" name="backgroundtype" id="backgroundgradient" <?php ctct_check_radio($form,'backgroundtype', 'gradient', true); ?> /> <span><?php esc_html_e('Gradient', 'constant-contact-api'); ?></span></label></li>
+							<li><label for="backgroundgradient" class="menu-item-title backgroundtype"><input type="radio" class="no-update menu-item-checkbox" name="backgroundtype" id="backgroundgradient" <?php ctct_check_radio($form,'backgroundtype', 'gradient' ); ?> /> <span><?php esc_html_e('Gradient', 'constant-contact-api'); ?></span></label></li>
 							<li><label for="backgroundsolid" class="backgroundtype"><input type="radio" class="no-update menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'solid'); ?>  name="backgroundtype" id="backgroundsolid" /> <span><?php esc_html_e('Solid Color', 'constant-contact-api'); ?></span></label></li>
 							<li><label for="backgroundpattern" class="backgroundtype"><input type="radio" class="no-update menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'pattern'); ?> name="backgroundtype" id="backgroundpattern" /> <span><?php esc_html_e('Image Pattern', 'constant-contact-api'); ?></span></label></li>
 							<li><label for="backgroundurl" class="backgroundtype"><input type="radio" class="no-update menu-item-checkbox" <?php ctct_check_radio($form,'backgroundtype', 'url'); ?> name="backgroundtype" id="backgroundurl" /> <span><?php esc_html_e('URL (External Image)', 'constant-contact-api'); ?></span></label></li>
@@ -275,7 +275,7 @@ function cc_form_meta_box_backgroundoptions($post, $metabox=array()) {
 				</div>
 				<div class="form-item" id="bgurl">
 					<p class="link-to-original">For inspiration, check out <a href="http://www.colourlovers.com/patterns/most-loved/all-time/meta" rel="external">Colourlovers Patterns</a>.</p>
-					<p><label for="bgimage"><span class="howto">Background Image:</span>
+					<p><label for="bgimage"><span class="howto"><?php esc_html_e('Background Image:', 'constant-contact-api'); ?></span>
 					<input type="text" class="code widefat no-update" id="bgimage" name="bgimage" value="<?php ctct_input_value($form, 'bgimage', 'http://colourlovers.com.s3.amazonaws.com/images/patterns/90/90096.png'); ?>" />
 					</label></p>
 
@@ -338,7 +338,7 @@ function cc_form_meta_box_border($post, $metabox=array()) {
 
 			<span><?php esc_html_e('Border Width', 'constant-contact-api'); ?><tt><?php ctct_input_value($form, 'borderwidth', '4'); ?>px</tt></span>
 			<div class="block" id="borderwidth-slider"></div>
-			<input id="borderwidth" name="borderwidth" type="hidden" class="no-update" value="<?php ctct_input_value($form, 'borderwidth', '4'); ?>" />
+			<input id="borderwidth" name="borderwidth" type="hidden" class="no-update" value="<?php ctct_input_value($form, 'borderwidth', '0'); ?>" />
 		</label>
 	</div>
 

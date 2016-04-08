@@ -87,6 +87,7 @@ To install the plugin follow the steps below:
     - Location output includes Address 2 and Address 3, if set
     - Fixed: Added caching for if Constant Contact account has access to EventSpot
 * Form Designer:
+    - New simple default form design
     - Responsive design fits better to all screen sizes
     - Visual feedback when the form is being updated
     - MUCH improved speed when designing a form
