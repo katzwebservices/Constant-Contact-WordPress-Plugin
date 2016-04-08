@@ -214,11 +214,12 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	 * If there's a registration URL set in the event, use it. Otherwise, generate a link using the standard CTCT format.
 	 *
 	 * @param EventSpot $event
+	 * @param bool $registration Link directly to registration?
 	 * @param bool $mobile If true, return the mobile registration link. Otherwise, 'desktop' version.
 	 *
 	 * @return false|string False if $event->id isn't set. URL to the event registration page otherwise.
 	 */
-	public static function get_event_registration_url( $event, $mobile = false ) {
+	public static function get_event_registration_url( $event, $registration = false, $mobile = false ) {
 
 		$return = false;
 
@@ -228,9 +229,18 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			if( ! empty( $event->registration_url ) ) {
 				$return = $event->registration_url;
 			} else {
+
+				$event_id = $event->id;
+
+				// Link to the form anchor on the mobile page (no direct link to registration form)
+				if( $mobile && $registration ) {
+					$event_id .= '#command';
+				}
+
 				// Otherwise, generate one
-				$format = $mobile ? 'm' : 'event';
-				$return = sprintf( 'http://events.constantcontact.com/register/%s?oeidk=%s', $format, $event->id );
+				$format = $mobile ? 'm' : ( $registration ? 'eventReg' : 'event' );
+
+				$return = sprintf( 'http://events.constantcontact.com/register/%s?oeidk=%s', $format, $event_id );
 			}
 		}
 
@@ -295,6 +305,7 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 			'sidebar' => false,
 			'mobile' => true,
 			'class' => 'cc_event',
+			'directtoregistration' => false,
 			'no_events_text' => __('There are no active events.', 'constant-contact-api'),
 		), $args);
 

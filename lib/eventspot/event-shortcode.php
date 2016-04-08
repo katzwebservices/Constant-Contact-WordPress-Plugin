@@ -31,9 +31,10 @@
 				}
 			}
 
+			$registration = ! empty( $CTCT->settings['directtoregistration'] );
 			$is_mobile = ( ! empty($mobile) && function_exists('wp_is_mobile') && wp_is_mobile() );
-
-			$link = CTCT_EventSpot::get_event_registration_url( $event, $is_mobile );
+			
+			$link = CTCT_EventSpot::get_event_registration_url( $event, $registration, $is_mobile );
 
 			$linkTitle = apply_filters('cc_event_linktitle', sprintf( esc_attr__('View event details for "%s"', 'constant-contact-api'), $event->title));
 			if(!empty($linkTitle)) { $linkTitle = ' title="'.esc_html($linkTitle).'"'; }
@@ -47,7 +48,7 @@
 				if( !empty( $CTCT->settings['showtitle'] ) && !empty($event->title)) {
 					$titleOut = '<dt class="cc_event_title">';
 					if( $link ) {
-						$titleOut .= '<a' . $target . ' href="' . esc_url( $link ) . '"' . $linkTitle . '>' . esc_html( $event->title ) . '</a>';
+						$titleOut .= sprintf( '<a%s href="%s"%s>%s</a>', $target, esc_url( $link ), $linkTitle, esc_html( $event->title ) );
 					} else {
 						$titleOut .= esc_html($event->title);
 					}

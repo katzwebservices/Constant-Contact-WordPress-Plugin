@@ -85,6 +85,7 @@ To install the plugin follow the steps below:
     - Embedding single events using the shortcode with `onlyactive` enabled now shows a "The "{title}" event is no longer active." message.
     - Maps now link to Google Maps SSL
     - Location output includes Address 2 and Address 3, if set
+    - Fixed: `directtoregistration` shortcode setting wasn't working ("Link directly to registration page, rather than event homepage")
     - Fixed: Added caching for if Constant Contact account has access to EventSpot
 * Form Designer:
     - New simple default form design
