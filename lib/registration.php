@@ -49,6 +49,32 @@ class CTCT_Registration {
 	}
 
 	/**
+
+	/**
+	 * Has the user subscribed to our newsletter? Check the $_POST to find out.
+	 * @return bool
+	 */
+	function has_subscribed() {
+
+		$has_subscribed = false;
+
+		$post = $_POST;
+
+		if($this->method == 'checkbox' && !empty($post['ctct-subscribe'])) {
+			// subscribe or update the user to the lists admin have selected
+			$has_subscribed = true;
+			$post['lists'] = CTCT_Settings::get('registration_checkbox_lists');
+		} else {
+			if(!empty($post['lists']) && is_array($post['lists'])) {
+				// subscribe or update the user to the lists they have selected
+				$has_subscribed = true;
+			}
+		}
+
+		return $has_subscribed;
+	}
+
+	/**
 	 * Hook into 'register_post' action to manage subscription of new users during user registration
 	 *
 	 * @uses KWSConstantContact::addUpdateContact()
@@ -68,19 +94,7 @@ class CTCT_Registration {
 			return;
 		}
 
-		$has_subscribed = false;
-		$post = $_POST;
-
-		if($this->method == 'checkbox' && !empty($post['ctct-subscribe'])) {
-			// subscribe or update the user to the lists admin have selected
-			$has_subscribed = true;
-			$post['lists'] = CTCT_Settings::get('registration_checkbox_lists');
-		} else {
-			if(!empty($post['lists']) && is_array($post['lists'])) {
-				// subscribe or update the user to the lists they have selected
-				$has_subscribed = true;
-			}
-		}
+		$has_subscribed = $this->has_subscribed();
 
 		if($has_subscribed) {
 			do_action('ctct_log', sprintf('Processing Registration for %s', $email));
