@@ -40,7 +40,7 @@ __The Form Designer__ is a form generation and design tool. The Form Designer al
 * Show contact list selection on register page with ability to exclude certain lists
 * Automatically subscribe your user to one or more contact lists on the register page
 * Customize the register page signup box (and list selection) title and description
-* Add / edit users from your constant contact account
+* Add / edit users from your Constant Contact account
 * Add a signup widget to your sidebar or anywhere in your template
 
 #### Plugin Support
@@ -77,6 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+== 4.0 on April 8, 2016 =
 
 __This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
 
