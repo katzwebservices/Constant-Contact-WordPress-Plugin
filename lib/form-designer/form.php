@@ -65,7 +65,7 @@ class CTCT_Form_Designer_Output {
 
 		$data = stripslashes_deep( $data );
 
-		$data = json_decode( $data, true );
+		$data = is_array( $data ) ? $data : json_decode( $data, true );
 
 		$this->output_type = ( !empty( $data['output'] ) && $data['output'] === 'html' ) ? 'html' : 'json';
 
