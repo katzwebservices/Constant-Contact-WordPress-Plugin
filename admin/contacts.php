@@ -59,16 +59,21 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 
 	protected function processForms() {
 
+		$action = "Getting Contact By Email Address";
+
 		// check if the form was submitted
 		if ( isset( $_POST['email_addresses'] ) && ! empty( $_POST['email_addresses'] ) ) {
 
-			$action = "Getting Contact By Email Address";
 
 			try {
 
 				$data = $_POST;
 
 				$returnContact = $this->cc->addUpdateContact( $data );
+
+				if( $returnContact instanceof CtctException ) {
+					throw $returnContact;
+				}
 
 				// create a new contact if one does not exist
 				if ( $returnContact && ! is_wp_error( $returnContact ) ) {
@@ -82,14 +87,22 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 					), admin_url( 'admin.php' ) ) );
 
 					// update the existing contact if address already existed
-				} else {
-					$this->errors[] = $returnContact;
 				}
 
 				// catch any exceptions thrown during the process and print the errors to screen
 			} catch ( CtctException $ex ) {
-				r( $ex, true, $action . ' Exception' );
-				$this->errors = $ex;
+				
+				$exception = KWSConstantContact::convertException( $ex );
+
+				if( ! is_array( $exception ) ) {
+					$exception = array( $exception );
+				}
+				
+				// Could be WP_Error or array of WP_Errors
+				foreach ( $exception as $e ) {
+					$this->errors[] = $e;
+				}
+				do_action('ctct_error', $action.' Exception', $ex );
 			}
 		}
 	}
