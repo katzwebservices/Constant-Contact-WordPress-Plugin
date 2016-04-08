@@ -4,7 +4,7 @@ Donate link: http://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
 Tested up to: 4.5
-Stable tag: 4.0
+Stable tag: 4.0.1
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -77,7 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-== 4.0 on April 8, 2016 =
+== 4.0.1 on April 8, 2016 =
 
 __This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
 
@@ -104,6 +104,7 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
+* Removed: Phone number validation. The phone number validator library was silly big.
 * Tweak: Show list name in single List page
 * Tweak: Add "Status" column to Campaigns table
 * Tweak: Only "Active" users now shown by default in Contacts
