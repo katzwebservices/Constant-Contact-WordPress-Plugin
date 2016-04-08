@@ -44,6 +44,12 @@ class KWSLog {
 	private static $methods = array('error');
 
 	/**
+	 * @since 4.0
+	 * @var bool Does the WP_Logging class already exist? If so, maintain backward compatibility.
+	 */
+	private $existing_class = false;
+
+	/**
 	 * The current log type being shown on log page
 	 * @var string
 	 */
@@ -78,8 +84,10 @@ class KWSLog {
 	function __construct() {
 
 		// Load Pippin's logging class
-		if( !class_exists( 'WP_Logging') ) {
-			include_once CTCT_DIR_PATH.'vendor/pippinsplugins/WP-Logging/WP_Logging.php';
+		if ( ! class_exists( 'WP_Logging' ) ) {
+			include_once CTCT_DIR_PATH . 'vendor/zackkatz/WP-Logging/WP_Logging.php';
+		} else {
+			$this->existing_class = true;
 		}
 
 		$slug = sanitize_title( str_replace(array(ABSPATH, 'plugins/', 'wp-content/', 'mu-plugins/', '/lib'), '', __DIR__) );
@@ -91,6 +99,28 @@ class KWSLog {
 
 		self::$slug = $slug;
 
+		$this->add_hooks();
+
+		$this->schedule_pruning();
+	}
+
+	/**
+	 * @since 4.0
+	 */
+	function schedule_pruning() {
+
+		$scheduled = wp_next_scheduled( 'wp_logging_prune_routine' );
+
+		if ( $scheduled == false ){
+			wp_schedule_event( time(), 'hourly', 'wp_logging_prune_routine' );
+		}
+	}
+
+	/**
+	 * @since 4.0
+	 */
+	function add_hooks() {
+
 		add_action('ctct_debug', array(&$this, "debug"), 10, 3);
 		add_action('ctct_log', array(&$this, "debug"), 10, 3);
 		add_action('ctct_error', array(&$this, "error"), 10, 3);
@@ -101,11 +131,28 @@ class KWSLog {
 		add_action('admin_menu', array(&$this, 'log_menu'), 10000 );
 
 		add_filter( 'wp_logging_should_we_prune', '__return_true', 10 );
+		add_filter( 'wp_logging_prune_query_args', array( $this, 'wp_logging_query_args' ) );
 		add_filter( 'wp_log_types', array( $this, 'wp_logging_log_types'));
 
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 		add_action('admin_head', array(&$this, 'wp_head'));
 		add_action('wp_head', array(&$this, 'wp_head'));
+	}
+
+	/**
+	 * @param array $args Args passed to get_post()
+	 *
+	 * @return array Modified args
+	 */
+	function wp_logging_query_args( $args ) {
+
+		$args['posts_per_page'] = 200;
+
+		if( ! $this->existing_class ) {
+			$args['fields'] = 'ids';// Only get the Post IDs for a faster query
+		}
+
+		return $args;
 	}
 
 	function wp_logging_log_types( $types ) {

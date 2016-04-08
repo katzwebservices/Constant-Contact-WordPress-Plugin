@@ -561,12 +561,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zackkatz/WP-Logging.git",
-                "reference": "14d8d7ba20d9343bda2afbfb409365809a31f4c4"
+                "reference": "66ee155cdc2a38e6e6daeece6b134d0f0431e2e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zackkatz/WP-Logging/zipball/14d8d7ba20d9343bda2afbfb409365809a31f4c4",
-                "reference": "14d8d7ba20d9343bda2afbfb409365809a31f4c4",
+                "url": "https://api.github.com/repos/zackkatz/WP-Logging/zipball/66ee155cdc2a38e6e6daeece6b134d0f0431e2e3",
+                "reference": "66ee155cdc2a38e6e6daeece6b134d0f0431e2e3",
                 "shasum": ""
             },
             "require": {
@@ -592,7 +592,7 @@
             "support": {
                 "source": "https://github.com/zackkatz/WP-Logging/tree/patch-2"
             },
-            "time": "2016-04-08 03:54:15"
+            "time": "2016-04-08 04:24:14"
         }
     ],
     "packages-dev": [],
