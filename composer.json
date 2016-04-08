@@ -22,15 +22,27 @@
 		{
 			"type": "vcs",
 			"url": "https://github.com/zackkatz/WP-Logging"
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "10up/flexibility",
+				"version": "1.0.6",
+				"source": {
+					"url": "https://github.com/10up/flexibility",
+					"type": "git",
+					"reference": "master"
+				}
+			}
 		}
 	],
 	"require": {
 		"constantcontact/constantcontact": "dev-eventspot",
 		"zackkatz/wp-logging": "dev-patch-2",
 		"guzzlehttp/guzzle": "^6.1.1",
-		"giggsey/libphonenumber-for-php": "~7.0",
+		"10up/flexibility": "*",
 		"select2/select2": "dev-master",
-		"php": ">=5.4.0",
+		"php": ">=5.5.0",
 		"ext-curl": "*"
 	}
 }
