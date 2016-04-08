@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "76a74beecb109166cda790f72059f0bb",
-    "content-hash": "62788009441b2370a06e71b7492d6a94",
+    "hash": "e1a47dae9b54a4c477b79e144092d328",
+    "content-hash": "8c27891a72c77501a41db1e8f168f62c",
     "packages": [
         {
             "name": "constantcontact/constantcontact",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/katzwebservices/php-sdk.git",
-                "reference": "0e445d0598b510d2325b7d17dab4e3f8445047d8"
+                "reference": "416da881c637b639bdb4e958a92b10545df26b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/katzwebservices/php-sdk/zipball/0e445d0598b510d2325b7d17dab4e3f8445047d8",
-                "reference": "0e445d0598b510d2325b7d17dab4e3f8445047d8",
+                "url": "https://api.github.com/repos/katzwebservices/php-sdk/zipball/416da881c637b639bdb4e958a92b10545df26b0e",
+                "reference": "416da881c637b639bdb4e958a92b10545df26b0e",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
             "support": {
                 "source": "https://github.com/katzwebservices/php-sdk/tree/eventspot"
             },
-            "time": "2016-03-29 20:30:01"
+            "time": "2016-03-30 04:59:46"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -508,16 +508,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "dfecef47506179db2501430e732adbf3793099c8"
+                "reference": "e6f1f98bbd355d209a992bfff45e7edfbd4a0776"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/dfecef47506179db2501430e732adbf3793099c8",
-                "reference": "dfecef47506179db2501430e732adbf3793099c8",
+                "url": "https://api.github.com/repos/symfony/process/zipball/e6f1f98bbd355d209a992bfff45e7edfbd4a0776",
+                "reference": "e6f1f98bbd355d209a992bfff45e7edfbd4a0776",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,46 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
+            "time": "2016-03-30 10:41:14"
+        },
+        {
+            "name": "zackkatz/WP-Logging",
+            "version": "dev-patch-2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zackkatz/WP-Logging.git",
+                "reference": "14d8d7ba20d9343bda2afbfb409365809a31f4c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zackkatz/WP-Logging/zipball/14d8d7ba20d9343bda2afbfb409365809a31f4c4",
+                "reference": "14d8d7ba20d9343bda2afbfb409365809a31f4c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Pippin Williamson"
+                }
+            ],
+            "description": "A WordPress class that provides a general logging system.",
+            "homepage": "https://github.com/pippinsplugins/WP-Logging",
+            "keywords": [
+                "log",
+                "logger",
+                "logging",
+                "wordpress"
+            ],
+            "support": {
+                "source": "https://github.com/zackkatz/WP-Logging/tree/patch-2"
+            },
+            "time": "2016-04-08 03:54:15"
         }
     ],
     "packages-dev": [],
@@ -561,6 +600,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "constantcontact/constantcontact": 20,
+        "zackkatz/wp-logging": 20,
         "select2/select2": 20
     },
     "prefer-stable": false,
