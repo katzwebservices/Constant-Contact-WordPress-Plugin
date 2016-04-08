@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Constant Contact Plugin for WordPress 3.1.13\n"
+"Project-Id-Version: Constant Contact Plugin for WordPress 4.0\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?"
 "state=open\n"
@@ -66,39 +66,39 @@ msgstr ""
 msgid "Contacts"
 msgstr ""
 
-#: admin/contacts.php:96
+#: admin/contacts.php:113
 msgid "You have not specified a Contact to edit"
 msgstr ""
 
-#: admin/contacts.php:119
+#: admin/contacts.php:136
 msgid "You have not specified a Contact to view"
 msgstr ""
 
-#: admin/contacts.php:165
+#: admin/contacts.php:184
 msgid "View their profile"
 msgstr ""
 
-#: admin/contacts.php:170
+#: admin/contacts.php:189
 msgid "%s is a user on this site. %s."
 msgstr ""
 
-#: admin/contacts.php:199
+#: admin/contacts.php:218
 msgid "Recently Updated"
 msgstr ""
 
-#: admin/contacts.php:200
+#: admin/contacts.php:219
 msgid "Active"
 msgstr ""
 
-#: admin/contacts.php:201
+#: admin/contacts.php:220
 msgid "Unconfirmed"
 msgstr ""
 
-#: admin/contacts.php:202
+#: admin/contacts.php:221
 msgid "Opt-Out"
 msgstr ""
 
-#: admin/contacts.php:203
+#: admin/contacts.php:222
 msgid "Removed"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "You have not specified a List to view."
 msgstr ""
 
-#: admin/lists.php:100
+#: admin/lists.php:103
 msgid "Your account has no lists."
 msgstr ""
 
@@ -146,11 +146,11 @@ msgstr ""
 msgid "Users will not see this link or the Constant Contact logo."
 msgstr ""
 
-#: classes/class.ctct_admin.php:40
+#: classes/class.ctct_admin.php:41
 msgid "Constant Contact API"
 msgstr ""
 
-#: classes/class.ctct_admin.php:40 classes/class.ctct_admin_page.php:322
+#: classes/class.ctct_admin.php:41 classes/class.ctct_admin_page.php:331
 #: views/admin/view.php-compatibility-notice.php:2
 msgid "Constant Contact"
 msgstr ""
@@ -163,48 +163,57 @@ msgstr ""
 msgid "The request failed."
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:105
+#: classes/class.ctct_admin_page.php:103 classes/class.kwsajax.php:68
+#: classes/class.kwsajax.php:126
+msgid "Nothing changed."
+msgstr ""
+
+#: classes/class.ctct_admin_page.php:106
 msgid "Error {code}: {message}"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:375
+#: classes/class.ctct_admin_page.php:227
+msgid "There was an error displaying this content: %s"
+msgstr ""
+
+#: classes/class.ctct_admin_page.php:383
 msgid "Edit"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:319
+#: classes/class.ctct_process_form.php:324
 msgid "Please enter a valid phone number."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:433
+#: classes/class.ctct_process_form.php:440
 msgid "Please enter your email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:438
+#: classes/class.ctct_process_form.php:445
 msgid "Invalid email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:469
-#: classes/class.ctct_process_form.php:537
+#: classes/class.ctct_process_form.php:486
+#: classes/class.ctct_process_form.php:557
 msgid "Email validation failed."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:494
+#: classes/class.ctct_process_form.php:514
 msgid "Not a valid email."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:622
+#: classes/class.ctct_process_form.php:641
 msgid "Akismet caught this entry as spam"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:624
+#: classes/class.ctct_process_form.php:643
 msgid "Your entry was flagged as spam."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:627
+#: classes/class.ctct_process_form.php:646
 msgid "Akismet cleared this comment"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:630
+#: classes/class.ctct_process_form.php:649
 msgid ""
 "Akismet was unable to check this entry (response: %s), will automatically "
 "retry again later."
@@ -426,7 +435,7 @@ msgid "What lists will users be added to when signing up with the Comment Form?"
 msgstr ""
 
 #: classes/class.ctct_settings.php:373
-#: lib/form-designer/form-designer-functions.php:313
+#: lib/form-designer/form-designer-functions.php:309
 msgid "Subscribe Message"
 msgstr ""
 
@@ -550,41 +559,34 @@ msgstr ""
 msgid "There is no value defined."
 msgstr ""
 
-#: classes/class.kwsajax.php:69 classes/class.kwsajax.php:101
-msgid "Nothing changed."
+#: classes/class.kwsajax.php:75 classes/class.kwsajax.php:131
+msgid "This field cannot be updated."
 msgstr ""
 
-#: classes/class.kwsajax.php:74 classes/class.kwsajax.php:106
-msgid "This field is not updatable."
+#: classes/class.kwsajax.php:98
+msgid ""
+"The value you entered was not saved because it was rejected by Constant "
+"Contact. This can occur if the text entered is too long, or in a format "
+"different from what was expected."
 msgstr ""
 
-#: classes/class.kwsajax.php:78 classes/class.kwsajax.php:110
+#: classes/class.kwsajax.php:101 classes/class.kwsajax.php:140
 msgid "Successfully updated."
 msgstr ""
 
-#: classes/class.kwsajax.php:122
+#: classes/class.kwsajax.php:154
 msgid "There is no component defined."
 msgstr ""
 
-#: classes/class.kwscampaign.php:137 classes/class.kwscontact.php:445
-#: classes/class.kwscontactlist.php:91
-msgid "Address $1"
-msgstr ""
-
-#: classes/class.kwscampaign.php:138 classes/class.kwscontact.php:446
-#: classes/class.kwscontactlist.php:92
-msgid "Field $1"
-msgstr ""
-
-#: classes/class.kwscampaign.php:158
+#: classes/class.kwscampaign.php:144
 msgid "True"
 msgstr ""
 
-#: classes/class.kwscampaign.php:158
+#: classes/class.kwscampaign.php:144
 msgid "False"
 msgstr ""
 
-#: classes/class.kwscampaign.php:160
+#: classes/class.kwscampaign.php:146
 msgid "(Empty)"
 msgstr ""
 
@@ -593,39 +595,12 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: classes/class.kwsconstantcontact.php:267
+#: classes/class.kwsconstantcontact.php:342
 msgid "You have opted out of our newsletters and cannot re-subscribe."
 msgstr ""
 
-#: classes/class.kwsconstantcontact.php:316
+#: classes/class.kwsconstantcontact.php:438
 msgid "A contact cannot be added without lists."
-msgstr ""
-
-#: classes/class.kwscontact.php:428
-msgid "ID"
-msgstr ""
-
-#: classes/class.kwscontact.php:431
-#: lib/form-designer/form-designer-meta-boxes.php:90
-#: lib/form-designer/form-designer-meta-boxes.php:197
-#: views/admin/view.contacts-view.php:19
-msgid "Email Address"
-msgstr ""
-
-#: classes/class.kwscontact.php:434
-msgid "Address"
-msgstr ""
-
-#: classes/class.kwscontact.php:437
-#: lib/form-designer/form-designer-meta-boxes.php:111
-#: lib/form-designer/form-designer-meta-boxes.php:208
-msgid "Address Line 2"
-msgstr ""
-
-#: classes/class.kwscontact.php:440
-#: lib/form-designer/form-designer-meta-boxes.php:112
-#: lib/form-designer/form-designer-meta-boxes.php:209
-msgid "Address Line 3"
 msgstr ""
 
 #: classes/class.oauth-migration.php:54
@@ -642,39 +617,134 @@ msgstr ""
 msgid "Authorize the Plugin on ConstantContact.com"
 msgstr ""
 
-#: inc/functions.php:165
+#: inc/functions.php:193
 msgid "Date modified&hellip;"
 msgstr ""
 
-#: inc/functions.php:166
+#: inc/functions.php:194
 msgid "In the last day"
 msgstr ""
 
-#: inc/functions.php:167
+#: inc/functions.php:195
 msgid "In the last week"
 msgstr ""
 
-#: inc/functions.php:168
+#: inc/functions.php:196
 msgid "In the last month"
 msgstr ""
 
-#: inc/functions.php:169
+#: inc/functions.php:197
 msgid "In the last 3 months"
 msgstr ""
 
-#: inc/functions.php:170
+#: inc/functions.php:198
 msgid "In the last year"
 msgstr ""
 
-#: inc/functions.php:305
+#: inc/functions.php:203
+msgid "Filter"
+msgstr ""
+
+#: inc/functions.php:280
+msgid "ID"
+msgstr ""
+
+#: inc/functions.php:283 lib/form-designer/form-designer-meta-boxes.php:90
+#: views/admin/view.contacts-view.php:19
+msgid "Email Address"
+msgstr ""
+
+#: inc/functions.php:287
+msgid "Address"
+msgstr ""
+
+#: inc/functions.php:290 lib/form-designer/form-designer-meta-boxes.php:111
+#: lib/form-designer/form-designer-meta-boxes.php:208
+msgid "Address Line 2"
+msgstr ""
+
+#: inc/functions.php:293 lib/form-designer/form-designer-meta-boxes.php:112
+#: lib/form-designer/form-designer-meta-boxes.php:209
+msgid "Address Line 3"
+msgstr ""
+
+#: inc/functions.php:299
+msgid "Address $1"
+msgstr ""
+
+#: inc/functions.php:300
+msgid "Field $1"
+msgstr ""
+
+#: inc/functions.php:415
+msgid "No Payment Details"
+msgstr ""
+
+#: inc/functions.php:420
+msgid "Order ID"
+msgstr ""
+
+#: inc/functions.php:421
+msgid "Order Date"
+msgstr ""
+
+#: inc/functions.php:422 lib/eventspot/views/partials/event-registrants.php:13
+msgid "Payment Status"
+msgstr ""
+
+#: inc/functions.php:423
+msgid "Payment Type"
+msgstr ""
+
+#: inc/functions.php:426
+msgid "Event Cost"
+msgstr ""
+
+#: inc/functions.php:427
+msgid "Payment Details"
+msgstr ""
+
+#: inc/functions.php:428
+msgid "Fees"
+msgstr ""
+
+#: inc/functions.php:429
+msgid "Fee Name"
+msgstr ""
+
+#: inc/functions.php:430
+msgid "Registrant"
+msgstr ""
+
+#: inc/functions.php:431
+msgid "Quantity"
+msgstr ""
+
+#: inc/functions.php:432
+msgid "Amount"
+msgstr ""
+
+#: inc/functions.php:465
+msgid "%%%d off"
+msgstr ""
+
+#: inc/functions.php:466
+msgid "Discounts:"
+msgstr ""
+
+#: inc/functions.php:470
+msgid "Total:"
+msgstr ""
+
+#: inc/functions.php:523
 msgid "Next %d Results"
 msgstr ""
 
-#: inc/functions.php:310
+#: inc/functions.php:528
 msgid "View All Results"
 msgstr ""
 
-#: inc/functions.php:333
+#: inc/functions.php:551
 msgid "Error: %s"
 msgstr ""
 
@@ -732,11 +802,11 @@ msgid ""
 "Ambiguous"
 msgstr ""
 
-#: lib/eventspot/event-embed.php:40
+#: lib/eventspot/event-embed.php:38
 msgid "Add a EventSpot&trade; Event"
 msgstr ""
 
-#: lib/eventspot/event-embed.php:40
+#: lib/eventspot/event-embed.php:38
 msgid "Add Event"
 msgstr ""
 
@@ -745,18 +815,24 @@ msgid "%1$s at %2$s"
 msgstr ""
 
 #: lib/eventspot/event-shortcode.php:25
+msgid ""
+"Note: This is a draft event and is only visible because you are logged-in "
+"as an administrator."
+msgstr ""
+
+#: lib/eventspot/event-shortcode.php:28
 msgid "The event \"%s\" is no longer active."
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:37
+#: lib/eventspot/event-shortcode.php:39
 msgid "View event details for \"%s\""
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:61
+#: lib/eventspot/event-shortcode.php:63
 msgid "Start: "
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:63
+#: lib/eventspot/event-shortcode.php:65
 msgid "End: "
 msgstr ""
 
@@ -764,15 +840,15 @@ msgstr ""
 msgid "Add \"%s\" to your calendar"
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:73
+#: lib/eventspot/event-shortcode.php:72
 msgid "Add to Calendar"
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:91
+#: lib/eventspot/event-shortcode.php:86
 msgid "Map Location"
 msgstr ""
 
-#: lib/eventspot/event-shortcode.php:95
+#: lib/eventspot/event-shortcode.php:92
 msgid "Location: "
 msgstr ""
 
@@ -797,30 +873,30 @@ msgstr ""
 msgid "Event Registrant"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:249 lib/eventspot/widget-events.php:116
+#: lib/eventspot/eventspot.php:309 lib/eventspot/widget-events.php:116
 msgid "There are no active events."
 msgstr ""
 
-#: lib/eventspot/eventspot.php:291
+#: lib/eventspot/eventspot.php:361
 msgid "EventSpot"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:310
+#: lib/eventspot/eventspot.php:380
 msgid ""
 "The widget is hidden. Un-hide the widget by going to the top of the page, "
 "clicking \"Screen Options\", then checking the \"EventSpot\" checkbox. Once "
 "you have done that, refresh the page to view this widget."
 msgstr ""
 
-#: lib/eventspot/eventspot.php:322
+#: lib/eventspot/eventspot.php:392
 msgid "Active Events"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:325
+#: lib/eventspot/eventspot.php:395
 msgid "Draft Events"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:329
+#: lib/eventspot/eventspot.php:399
 msgid "View All Events"
 msgstr ""
 
@@ -950,10 +1026,6 @@ msgstr ""
 msgid "Guest Count"
 msgstr ""
 
-#: lib/eventspot/views/partials/event-registrants.php:13
-msgid "Payment Status"
-msgstr ""
-
 #: lib/eventspot/views/partials/event-registrants.php:14
 #: lib/eventspot/views/partials/event-registrants.php:32
 msgid "Details"
@@ -966,7 +1038,7 @@ msgstr ""
 msgid "Show more details"
 msgstr ""
 
-#: lib/eventspot/views/partials/event-registrants.php:29 lib/kwslog.php:348
+#: lib/eventspot/views/partials/event-registrants.php:29 lib/kwslog.php:395
 msgid "Date"
 msgstr ""
 
@@ -1039,6 +1111,10 @@ msgid ""
 "RSVP's, <a href=\"%s\">and more</a>"
 msgstr ""
 
+#: lib/eventspot/views/view.event-view.php:9
+msgid "View on ConstantContact.com"
+msgstr ""
+
 #: lib/eventspot/views/view.event-view.php:13
 msgid "Embed the event in a post or page using this shortcode:"
 msgstr ""
@@ -1052,7 +1128,7 @@ msgid "Event Not Found"
 msgstr ""
 
 #: lib/eventspot/views/view.event-view.php:30
-#: lib/eventspot/views/view.event-view.php:51
+#: lib/eventspot/views/view.event-view.php:53
 msgid "Return to Events"
 msgstr ""
 
@@ -1062,7 +1138,7 @@ msgstr ""
 
 #: lib/eventspot/views/view.event-view.php:38
 #: lib/eventspot/views/view.events-view.php:8
-#: lib/eventspot/views/view.events-view.php:49 lib/kwslog.php:346
+#: lib/eventspot/views/view.events-view.php:49 lib/kwslog.php:393
 msgid "Title"
 msgstr ""
 
@@ -1096,43 +1172,43 @@ msgstr ""
 msgid "Registration URL"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:47
+#: lib/eventspot/views/view.event-view.php:48
 msgid "Twitter Hashtag"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:48
+#: lib/eventspot/views/view.event-view.php:50
 msgid "Location"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:51
+#: lib/eventspot/views/view.event-view.php:53
 msgid "Refresh Event data now."
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:51
+#: lib/eventspot/views/view.event-view.php:53
 msgid "Refresh Event"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:73
+#: lib/eventspot/views/view.event-view.php:75
 msgid "%s Attending"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:75
+#: lib/eventspot/views/view.event-view.php:77
 msgid "No Registrations (so far!)"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:82
+#: lib/eventspot/views/view.event-view.php:84
 msgid "Registered"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:89
+#: lib/eventspot/views/view.event-view.php:91
 msgid "Refresh Registrants"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:94
+#: lib/eventspot/views/view.event-view.php:96
 msgid "Cancelled"
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:98
+#: lib/eventspot/views/view.event-view.php:100
 msgid "Refresh Cancelled"
 msgstr ""
 
@@ -1226,7 +1302,7 @@ msgstr ""
 
 #: lib/form-designer/form-designer-functions.php:99
 #: lib/form-designer/form-designer.php:438
-#: lib/form-designer/views/form-designer.php:105
+#: lib/form-designer/views/form-designer.php:111
 msgid "Enter form name here"
 msgstr ""
 
@@ -1238,51 +1314,51 @@ msgstr ""
 msgid "Form #%s"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:282
+#: lib/form-designer/form-designer-functions.php:278
 msgid "Label text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:283
+#: lib/form-designer/form-designer-functions.php:279
 msgid "Input placeholder text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:292
+#: lib/form-designer/form-designer-functions.php:288
 msgid "Button label"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:294
+#: lib/form-designer/form-designer-functions.php:290
 msgid "Button text"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:301
+#: lib/form-designer/form-designer-functions.php:297
 msgid "Headline"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:306
+#: lib/form-designer/form-designer-functions.php:302
 msgid "This is a Placeholder"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:307
+#: lib/form-designer/form-designer-functions.php:303
 msgid "This item will be replaced by the Custom Text entered above &uarr;"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:316
+#: lib/form-designer/form-designer-functions.php:312
 msgid "The lists will be placed where this item is."
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:345
+#: lib/form-designer/form-designer-functions.php:343
 msgid "Drag and drop to re-order fields."
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:362
+#: lib/form-designer/form-designer-functions.php:360
 msgid "Make label bold"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:365
+#: lib/form-designer/form-designer-functions.php:363
 msgid "Make label italic"
 msgstr ""
 
-#: lib/form-designer/form-designer-functions.php:372
+#: lib/form-designer/form-designer-functions.php:370
 msgid "Required"
 msgstr ""
 
@@ -1554,8 +1630,8 @@ msgstr ""
 msgid "Custom Text Placeholder"
 msgstr ""
 
-#: lib/form-designer/form-designer-meta-boxes.php:200 lib/simple-widget.php:74
-msgid "Subscribe"
+#: lib/form-designer/form-designer-meta-boxes.php:200
+msgid "Get Our Newsletter"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:210
@@ -1604,6 +1680,10 @@ msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:273
 msgid "Bottom Color:"
+msgstr ""
+
+#: lib/form-designer/form-designer-meta-boxes.php:278
+msgid "Background Image:"
 msgstr ""
 
 #: lib/form-designer/form-designer-meta-boxes.php:282
@@ -1899,7 +1979,7 @@ msgstr ""
 msgid "The <strong>%s</strong> form has been updated."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:387 lib/form-designer/form.php:216
+#: lib/form-designer/form-designer.php:387 lib/form-designer/form.php:222
 msgid "The %s field is required"
 msgstr ""
 
@@ -1931,11 +2011,11 @@ msgstr ""
 msgid "Padding & Align"
 msgstr ""
 
-#: lib/form-designer/form.php:344
+#: lib/form-designer/form.php:350
 msgid "Add me to these lists:"
 msgstr ""
 
-#: lib/form-designer/form.php:474
+#: lib/form-designer/form.php:482
 msgid "Success, you have been subscribed."
 msgstr ""
 
@@ -1984,30 +2064,34 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:103
+#: lib/form-designer/views/form-designer.php:91
+msgid "Form Preview"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:94
+msgid "Toggle Preview"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:94
+msgid "Form is being updated."
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:109
 msgid "Form Name"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:103
+#: lib/form-designer/views/form-designer.php:109
 msgid "Only for internal use - the outside world won't see this name."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:111
+#: lib/form-designer/views/form-designer.php:117
 #: lib/form-designer/views/form-designer.php:139
 msgid "Create Form"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:111
+#: lib/form-designer/views/form-designer.php:117
 #: lib/form-designer/views/form-designer.php:139
 msgid "Save Form"
-msgstr ""
-
-#: lib/form-designer/views/form-designer.php:123
-msgid "Form Preview"
-msgstr ""
-
-#: lib/form-designer/views/form-designer.php:126
-msgid "Toggle Preview"
 msgstr ""
 
 #: lib/form-designer/views/form-designer.php:134
@@ -2091,39 +2175,39 @@ msgid ""
 "success message inside widget)."
 msgstr ""
 
-#: lib/kwslog.php:171
+#: lib/kwslog.php:218
 msgid "Activity Log"
 msgstr ""
 
-#: lib/kwslog.php:263
+#: lib/kwslog.php:310
 msgid "Constant Contact Activity"
 msgstr ""
 
-#: lib/kwslog.php:264
+#: lib/kwslog.php:311
 msgid "Debugging Logs"
 msgstr ""
 
-#: lib/kwslog.php:265
+#: lib/kwslog.php:312
 msgid "Errors or Exceptions"
 msgstr ""
 
-#: lib/kwslog.php:266
+#: lib/kwslog.php:313
 msgid "Notices"
 msgstr ""
 
-#: lib/kwslog.php:293
+#: lib/kwslog.php:340
 msgid "Page"
 msgstr ""
 
-#: lib/kwslog.php:334
+#: lib/kwslog.php:381
 msgid "Constant Contact Log"
 msgstr ""
 
-#: lib/kwslog.php:347
+#: lib/kwslog.php:394
 msgid "Content"
 msgstr ""
 
-#: lib/kwslog.php:392
+#: lib/kwslog.php:439
 msgid "No activity has been logged."
 msgstr ""
 
@@ -2149,6 +2233,10 @@ msgstr ""
 
 #: lib/simple-widget.php:73
 msgid "Your email address"
+msgstr ""
+
+#: lib/simple-widget.php:74
+msgid "Subscribe"
 msgstr ""
 
 #: lib/simple-widget.php:93
@@ -2341,33 +2429,29 @@ msgstr ""
 msgid "Please upgrade your website's PHP Version"
 msgstr ""
 
-#: views/admin/view.php-compatibility-notice.php:4
+#: views/admin/view.php-compatibility-notice.php:5
 msgid ""
-"Starting with Version 3.2, <strong>the Contstant Contact Plugin requires "
-"PHP Version 5.4 or higher</strong>. Please contact your hosting provider "
+"Starting with Version 4.0, <strong>the Constant Contact Plugin requires PHP "
+"Version 5.4 or higher</strong>. Please contact your hosting provider "
 "support and ask them to upgrade your server."
 msgstr ""
 
-#: views/admin/view.php-compatibility-notice.php:5
-msgid "Can't upgrade? Want to go back?"
+#: views/admin/view.php-compatibility-notice.php:6
+msgid "We apologize for the inconvenience, but technical requirements changed."
 msgstr ""
 
 #: views/admin/view.php-compatibility-notice.php:6
-msgid "If you would like to revert to the previous version, do this:"
-msgstr ""
-
-#: views/admin/view.php-compatibility-notice.php:8
-msgid "Download Version 2.4.1"
-msgstr ""
-
-#: views/admin/view.php-compatibility-notice.php:12
 msgid ""
-"Delete this plugin (\"Constant Contact Plugin for WordPress\") by clicking "
-"the \"Delete\" link next to the plugin on the %sPlugins Page%s."
+"The good news? Once you upgrade your PHP version, your site will be faster "
+"%sand more secure%s."
 msgstr ""
 
-#: views/admin/view.php-compatibility-notice.php:13
-msgid "Upload the Version 2.4.1 file in Plugins > Add New > Upload"
+#: views/admin/view.php-compatibility-notice.php:7
+msgid "Here's how to upgrade your PHP version for popular web hosts:"
+msgstr ""
+
+#: views/admin/view.php-compatibility-notice.php:14
+msgid "Running a local installation?"
 msgstr ""
 
 #: views/admin/view.plugin-status.php:2
@@ -2381,11 +2465,11 @@ msgstr ""
 #: views/admin/view.plugin-status.php:13
 msgid ""
 "You are running a compatible PHP version (%s). This plugin requires version "
-"5.3.0 or higher."
+"5.4.0 or higher."
 msgstr ""
 
 #: views/admin/view.plugin-status.php:19
-msgid "The %s requires PHP 5.3 or above."
+msgid "The %s requires PHP 5.4 or above."
 msgstr ""
 
 #: views/admin/view.plugin-status.php:26
@@ -2464,17 +2548,21 @@ msgstr ""
 msgid "Delete All Plugin Settings"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:378
+#. Author URI of the plugin/theme
+msgid "https://katz.co"
+msgstr ""
+
+#: classes/class.ctct_admin_page.php:386
 msgctxt "General button text for adding a new Contact or List, for example."
 msgid "Add %s"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:236
+#: classes/class.ctct_process_form.php:241
 msgctxt "Failed user form submission error"
 msgid "The %s field is required."
 msgstr ""
 
-#: lib/eventspot/views/view.event-view.php:74
+#: lib/eventspot/views/view.event-view.php:76
 msgctxt "# attending: registrants registered, guests registered"
 msgid "%s: %s, %s"
 msgstr ""

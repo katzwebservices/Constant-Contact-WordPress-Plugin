@@ -6,7 +6,7 @@
 $shortcode = sprintf( '[eventspot id="%s" /]', $Event->id );
 ?>
 
-<h2 class="ctct-page-name alignleft"><?php echo esc_html( $Event->name ); ?><span class="block"><a class="button button-secondary" target="_blank" href="<?php printf( 'https://ui.constantcontact.com/rnavmap/evp/hub/details?id=%s', $Event->id ); ?>"><?php esc_html_e('View on ConstantContact.com'); ?></a></span></h2>
+<h2 class="ctct-page-name alignleft"><?php echo esc_html( $Event->name ); ?><span class="block"><a class="button button-secondary" target="_blank" href="<?php printf( 'https://ui.constantcontact.com/rnavmap/evp/hub/details?id=%s', $Event->id ); ?>"><?php esc_html_e('View on ConstantContact.com', 'constant-contact-api'); ?></a></span></h2>
 
 <div class="ctct-embed-shortcode">
 	<label>

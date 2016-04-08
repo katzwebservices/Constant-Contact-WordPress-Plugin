@@ -200,7 +200,7 @@ function kws_print_modified_since_filter( $label = '', $default = '-1 month' ){
 	<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
 	<?php if( isset( $_GET['view'] ) ) { ?><input type="hidden" name="view" value="<?php echo esc_attr( $_GET['view'] ); ?>" /><?php } ?>
 	<?php if( isset( $_GET['status'] ) ) { ?><input type="hidden" name="status" value="<?php echo esc_attr( $_GET['status'] ); ?>" /><?php } ?>
-	<input type="submit" class="button button-secondary button-small" value="<?php esc_attr_e('Filter'); ?>">
+	<input type="submit" class="button button-secondary button-small" value="<?php esc_attr_e('Filter', 'constant-contact-api'); ?>">
 </form>
 <?php
 }
@@ -277,10 +277,10 @@ function ctct_get_label_from_field_id( $field_id ) {
 
 	switch( $field_id ) {
 		case 'id':
-			return __('ID');
+			return __('ID', 'constant-contact-api');
 			break;
 		case 'email_addresses':
-			return __('Email Address');
+			return __('Email Address', 'constant-contact-api');
 			break;
 		case 'addresses':
 		case 'line1':
@@ -412,24 +412,24 @@ function ctct_display_component_item( $Component, $recursive ) {
 function ctct_display_payment_summary( $Component ) {
 
 	if( empty( $Component->order ) || 'NA' === $Component->payment_status ) {
-		esc_html_e( 'No Payment Details' );
+		esc_html_e( 'No Payment Details', 'constant-contact-api' );
 		return;
 	}
 
 	$output = '<dl class="ctct-component-section">
-		<dt>' . esc_html__( 'Order ID' ) . '</dt><dd>' . esc_html( $Component->order->order_id ) . '</dd>
-		<dt>' . esc_html__( 'Order Date' ) . '</dt><dd>' . esc_html( date_i18n( get_option( 'date_format' ), strtotime( $Component->order->order_date ) ) ) . '</dd>
-		<dt>' . esc_html__( 'Payment Status' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_status ) ) ) . '</dd>
-		<dt>' . esc_html__( 'Payment Type' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_type ) ) ) . '</dd>
+		<dt>' . esc_html__( 'Order ID', 'constant-contact-api' ) . '</dt><dd>' . esc_html( $Component->order->order_id ) . '</dd>
+		<dt>' . esc_html__( 'Order Date', 'constant-contact-api' ) . '</dt><dd>' . esc_html( date_i18n( get_option( 'date_format' ), strtotime( $Component->order->order_date ) ) ) . '</dd>
+		<dt>' . esc_html__( 'Payment Status', 'constant-contact-api' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_status ) ) ) . '</dd>
+		<dt>' . esc_html__( 'Payment Type', 'constant-contact-api' ) . '</dt><dd>' . esc_html( ucwords( strtolower( $Component->payment_type ) ) ) . '</dd>
 	</dl>';
 
-	$event_amount_string = esc_html__( 'Event Cost' );
-	$payment_details_string = esc_html__( 'Payment Details' );
-	$fees_string            = esc_html__( 'Fees' );
-	$fee_string            = esc_html__( 'Fee Name' );
-	$name_string            = esc_html__( 'Registrant' );
-	$quantity_string        = esc_html__( 'Quantity' );
-	$amount_string          = esc_html__( 'Amount' );
+	$event_amount_string = esc_html__( 'Event Cost', 'constant-contact-api' );
+	$payment_details_string = esc_html__( 'Payment Details', 'constant-contact-api' );
+	$fees_string            = esc_html__( 'Fees', 'constant-contact-api' );
+	$fee_string            = esc_html__( 'Fee Name', 'constant-contact-api' );
+	$name_string            = esc_html__( 'Registrant', 'constant-contact-api' );
+	$quantity_string        = esc_html__( 'Quantity', 'constant-contact-api' );
+	$amount_string          = esc_html__( 'Amount', 'constant-contact-api' );
 
 	$subtotal = 0;
 	$fees_output = "<table class='ctct_table widefat'><thead><tr><th>{$fee_string}</th><th>{$name_string}</th><th>{$quantity_string}</th><th>{$amount_string}</th></tr></thead><tbody>";
@@ -462,8 +462,8 @@ EOD;
 		$promocode_info         = $Component->promo_code->promo_code_info;
 		$total_discount         = number_format_i18n( $Component->promo_code->total_discount, 2 );
 		$discount_amount        = ( 'PERCENT' === $promocode_info->discount_type ) ? $promocode_info->discount_percent . '%' : $promocode_info->discount_amount;
-		$discount_amount_string = sprintf( __( '%%%d off' ), $discount_amount );
-		$discount_string        = __( 'Discounts:' );
+		$discount_amount_string = sprintf( __( '%%%d off', 'constant-contact-api' ), $discount_amount );
+		$discount_string        = __( 'Discounts:', 'constant-contact-api' );
 		$output .= "<tr><th scope='row'><strong>{$discount_string}</strong></th><td><code>{$promocode_info->code_name}</code> ({$discount_amount_string})</td><td colspan='2' style='text-align: right'>{$total_discount}</td></tr>";
 	}
 
