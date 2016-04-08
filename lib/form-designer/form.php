@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class CTCT_Form_Designer_Output {
 
 	private $debug = false;
-	private $valid_request = false;
+	private $valid_request = true;
 	private $data = array();
 	private $settings = array();
 	private $form;
