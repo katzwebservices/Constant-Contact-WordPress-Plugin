@@ -247,9 +247,6 @@ class KWSContact extends Contact {
 
 		$Contact = wp_parse_args( $contact_array, $defaults );
 
-		# r($contact_array);
-		# r($Contact);
-
 		foreach ( $Contact as $k => $v ) {
 
 			/** Only allow permitted data in the Contact array */

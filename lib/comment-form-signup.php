@@ -18,8 +18,7 @@ class CTCT_Comment_Form_Signup {
 	}
 
 	/**
-	 * Sends the email and (optionally) first name of the commenter to the
-	 * current MailChimp list.
+	 * Sends the email and (optionally) first name of the commenter to the current Constant Contact list.
 	 *
 	 * @since 1.0.0
 	 *
@@ -39,7 +38,7 @@ class CTCT_Comment_Form_Signup {
 
 		// Is the checkbox set? If so, add/update user
 		if (isset($data['ctct-subscribe']) && $data['ctct-subscribe'] === 'subscribe') {
-			$returnContact = WP_CTCT::getInstance()->cc->addUpdateContact($data);
+			WP_CTCT::getInstance()->cc->addUpdateContact($data);
 		}
 
 		return $posted_data;
@@ -87,6 +86,9 @@ class CTCT_Comment_Form_Signup {
 			$output .= '</p>';
 		}
 
+		/**
+		 * @filter `ctct_comment_form_checkbox_output` Modify the comment form checkbox output  
+		 */
 		echo apply_filters( 'ctct_comment_form_checkbox_output', $output );
 
 	}

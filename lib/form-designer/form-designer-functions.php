@@ -209,10 +209,6 @@ class CTCT_Form_Designer_Helper {
 
 
     static function check_default($form, $name, $id, $value) {
-        $inputValue = '';
-        if(isset($value)) {
-        $inputValue = $value;
-        }
         if(isset($form[$name]) && is_array($form[$name])) {
             $inputValue = isset($form[$name][$id]) ? $form[$name][$id] : $value;
         } elseif(isset($form[$name]) && !is_array($form[$name])){
