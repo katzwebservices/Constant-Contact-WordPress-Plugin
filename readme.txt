@@ -1,7 +1,7 @@
 === Constant Contact for WordPress ===
 Contributors: katzwebdesign, katzwebservices
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=zackkatz%40gmail%2ecom&item_name=Constant%20Contact%20API%20Plugin&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: mail, email, newsletter, Constant Contact, plugin, sidebar, widget, mailing list, API, email marketing, newsletters, form, forms, event, events, event marketing
+Donate link: http://wordpress.constantcontact.com
+Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
 Tested up to: 4.5
 Stable tag: 4.0
@@ -12,7 +12,7 @@ Integrate Constant Contact into your website with this full-featured plugin.
 == Description ==
 
 > __This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com).__  
-> *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing/index.jsp "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
+> *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
 
 #### Fully integrate Constant Contact with your WordPress website.
 
@@ -22,7 +22,7 @@ You can place a signup checkbox or list selection on your register page or use t
 
 ### Event Marketing
 
-The plugin features [Constant Contact Event Marketing](http://wordpress.constantcontact.com/event-marketing/index.jsp) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
+The plugin features [Constant Contact Event Marketing](http://wordpress.constantcontact.com/features/event-marketing) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
 
 ### Built-in Form Designer
 
