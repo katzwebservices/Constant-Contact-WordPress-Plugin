@@ -47,7 +47,7 @@
 			$startOut = '
 			<dl class="'.esc_attr( $class.$oddeven ).'">';
 
-				if(!empty($showtitle) && !empty($event->title)) {
+				if( !empty( $CTCT->settings['showtitle'] ) && !empty($event->title)) {
 					$titleOut = '<dt class="cc_event_title">';
 					if( $link ) {
 						$titleOut .= '<a' . $target . ' href="' . esc_url( $link ) . '"' . $linkTitle . '>' . esc_html( $event->title ) . '</a>';
