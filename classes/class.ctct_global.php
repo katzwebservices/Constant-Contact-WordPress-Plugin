@@ -28,6 +28,11 @@ final class CTCT_Global {
 	public static function flush_transients( $component_type = null ) {
 		global $wpdb;
 
+		// When triggered from `ctct_token_updated`, the passed parameter will be a token array
+		if ( is_array( $component_type ) ) {
+			return;
+		}
+
 		$transient_name = "transient_ctct";
 		$transient_timeout_name = "transient_timeout_ctct";
 
