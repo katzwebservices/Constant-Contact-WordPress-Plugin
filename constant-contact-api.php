@@ -115,11 +115,7 @@ final class WP_CTCT {
 
 		if( !class_exists( 'KWSOAuth2' ) ) {
 
-			#include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
 			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpot.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotService.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotList.php';
 			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
 
 			$this->oauth = new KWSOAuth2();

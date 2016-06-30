@@ -17,10 +17,6 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "https://github.com/katzwebservices/php-sdk"
-		},
-		{
-			"type": "vcs",
 			"url": "https://github.com/zackkatz/WP-Logging"
 		},
 		{
@@ -37,7 +33,7 @@
 		}
 	],
 	"require": {
-		"constantcontact/constantcontact": "dev-eventspot",
+		"constantcontact/constantcontact": "dev-development",
 		"zackkatz/wp-logging": "dev-patch-2",
 		"guzzlehttp/guzzle": "^6.1.1",
 		"10up/flexibility": "*",
