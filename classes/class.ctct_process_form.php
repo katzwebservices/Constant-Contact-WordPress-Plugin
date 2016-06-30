@@ -100,8 +100,9 @@ class CTCT_Process_Form {
 		// Create the contact
 		$KWSContact = new KWSContact( $this->data );
 
-		if( is_wp_error( $KWSContact ) ) {
+		if ( is_wp_error( $KWSContact ) ) {
 			$this->errors[] = $KWSContact;
+
 			return;
 		}
 
@@ -229,7 +230,7 @@ class CTCT_Process_Form {
 	 */
 	function checkRequired() {
 
-		if( ! isset( $_POST['cc-fields'] ) || ! is_array( $_POST['cc-fields'] ) ) {
+		if ( ! isset( $_POST['cc-fields'] ) || ! is_array( $_POST['cc-fields'] ) ) {
 			return;
 		}
 
@@ -296,12 +297,12 @@ class CTCT_Process_Form {
 
 		unset( $post['cc-fields']['lists'] );
 
-		$output= array();
+		$output = array();
 
 		foreach ( $post['cc-fields'] as $key => $value ) {
 			if ( isset( $value['value'] ) ) {
 				$output[ $key ] = esc_attr( $value['value'] );
-			} elseif( is_string( $value ) ) {
+			} elseif ( is_string( $value ) ) {
 				$output[ $key ] = esc_attr( $value );
 			}
 		}
@@ -374,7 +375,7 @@ class CTCT_Process_Form {
 		if ( in_array( 'wangguard', $methods ) && function_exists( 'wangguard_verify_email' ) && wangguard_server_connectivity_ok() ) {
 			global $wangguard_api_host;
 
-			if( $api_key = get_site_option('wangguard_api_key') ) {
+			if ( $api_key = get_site_option( 'wangguard_api_key' ) ) {
 
 				ob_start();
 
@@ -390,7 +391,7 @@ class CTCT_Process_Form {
 
 				if ( $return == 'checked' || $return == 'not-checked' ) {
 					do_action( 'ctct_activity', 'WangGuard validation passed.', $email, $return );
-				} elseif( 'error:100' === $return ) {
+				} elseif ( 'error:100' === $return ) {
 					do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
 				} else {
 					do_action( 'ctct_activity', 'Wangguard email validation failed.', $email, $return );
@@ -427,6 +428,7 @@ class CTCT_Process_Form {
 		// Akismet not activated
 		if ( ! class_exists( 'Akismet' ) ) {
 			do_action( 'ctct_activity', 'The Akismet class does not exist. Please upgrade to Version 3+ of Akismet.' );
+
 			return true;
 		}
 
