@@ -340,7 +340,7 @@ class CTCT_Process_Form {
 		}
 
 		if ( ! class_exists( 'SMTP_validateEmail' ) ) {
-			include_once( CTCT_DIR_PATH . 'lib/mail/smtp_validateEmail.class.php' );
+			include_once( CTCT_DIR_PATH . 'vendor/zytzagoo/smtp-validate-email/smtp-validate-email.php' );
 		}
 
 		$email = $Contact->get( 'email' );
@@ -440,32 +440,34 @@ class CTCT_Process_Form {
 		}
 
 		// 5: SMTP validation
-		if ( in_array( 'smtp', $methods ) && class_exists( 'SMTP_validateEmail' ) ) {
+		if ( in_array( 'smtp', $methods ) && class_exists( 'SMTP_Validate_Email' ) && function_exists( 'stream_socket_client' ) ) {
 
 			try {
 
-				$SMTP_Validator = new SMTP_validateEmail();
+				$SMTP_Validator = new SMTP_Validate_Email();
 
-				// Timeout after 1 second
-				$SMTP_Validator->max_conn_time = 1;
-				$SMTP_Validator->max_read_time = 1;
-				$SMTP_Validator->debug         = 0;
+				// Being unable to communicate with the remote MTA
+				$SMTP_Validator->no_comm_is_valid = apply_filters( 'constant_contact_smtp_no_comm_is_valid', true );
+				// Being unable to connect with the remote host
+				$SMTP_Validator->no_conn_is_valid = apply_filters( 'constant_contact_smtp_no_conn_is_valid', true );
 
-				// Prevent PHP notices about timeouts
+				// Prevent PHP notices, just in case
 				ob_start();
-				$results = $SMTP_Validator->validate( array( $email ), get_option( 'admin_email' ) );
-				ob_clean();
+				$results = $SMTP_Validator->validate( $email, get_option( 'admin_email' ) );
+				ob_get_clean();
 
 				if ( isset( $results[ $email ] ) ) {
 
 					// True = passed
-					if ( $results[ $email ] ) {
+					if ( ! empty( $results[ $email ] ) ) {
 
 						do_action( 'ctct_activity', 'SMTP validation passed.', $email, $results );
 
 						return true;
 
 					} else {
+
+						$results['debug'] = $SMTP_Validator->get_log();
 
 						do_action( 'ctct_activity', 'SMTP validation failed.', $email, $results );
 
@@ -477,7 +479,7 @@ class CTCT_Process_Form {
 
 				} else {
 
-					do_action( 'ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out?' );
+					do_action( 'ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out? See log:' . $validation_output );
 
 					return true;
 				}
@@ -488,6 +490,10 @@ class CTCT_Process_Form {
 
 				return;
 			}
+
+		} elseif ( ! function_exists( 'stream_socket_client' ) ) {
+
+			do_action( 'ctct_activity', 'Unable to perform SMTP validation; stream_socket_client() function not available' );
 
 		}
 
