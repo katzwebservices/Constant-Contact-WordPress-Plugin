@@ -131,7 +131,14 @@ class KWSContact extends Contact {
 		}
 
 		foreach ( $new_contact as $k => $v ) {
-			$existing_contact->{$k} = $v;
+			switch( $k ) {
+				// Don't ever remove lists; only add them.
+				case 'lists':
+					$existing_contact->{$k} = array_merge( $existing_contact->{$k}, $v );
+					break;
+				default:
+					$existing_contact->{$k} = $v;
+			}
 		}
 
 		return $existing_contact;

@@ -100,6 +100,7 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
     - MUCH improved speed when designing a form
     - No longer slows down when processing an update
     - Change background, border, padding settings live
+* Improved: Existing lists for a contact will be merged with the submitted form lists, not replaced
 * Fixed: Logs not being pruned. This could lead to thousands of log posts in the database, slowing down the site.
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
