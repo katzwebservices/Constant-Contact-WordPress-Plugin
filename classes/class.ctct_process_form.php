@@ -331,35 +331,31 @@ class CTCT_Process_Form {
 	 *
 	 * @param  KWSContact $Contact Contact object
 	 *
-	 * @return boolean|void    If valid, return `true`, otherwise return void and set $this->errors with WP_Error
+	 * @return boolean If valid, return `true`, otherwise return `false` and set $this->errors with WP_Error
 	 */
 	function validateEmail( KWSContact &$Contact ) {
 
-		if ( ! class_exists( 'DataValidation' ) ) {
-			include_once( CTCT_DIR_PATH . 'lib/class.datavalidation.php' );
-		}
-
-		if ( ! class_exists( 'SMTP_validateEmail' ) ) {
-			include_once( CTCT_DIR_PATH . 'vendor/zytzagoo/smtp-validate-email/smtp-validate-email.php' );
-		}
-
 		$email = $Contact->get( 'email' );
-
-		$is_valid = array();
 
 		$email = trim( $email );
 
 		// 1: Check if it's an email at all
 		if ( empty( $email ) ) {
+
 			do_action( 'ctct_activity', 'Empty email address', $email );
+
 			$this->errors[] = new WP_Error( 'empty_email', __( 'Please enter your email address.', 'constant-contact-api' ), 'email_address' );
 
-			return;
-		} elseif ( ! is_email( $email ) ) {
+			return false;
+		}
+
+		if ( ! is_email( $email ) ) {
+
 			do_action( 'ctct_activity', 'Invalid email address', $email );
+
 			$this->errors[] = new WP_Error( 'not_email', __( 'Invalid email address.', 'constant-contact-api' ), 'email_address' );
 
-			return;
+			return false;
 		}
 
 		$methods = (array) CTCT_Settings::get( 'spam_methods' );
@@ -370,7 +366,7 @@ class CTCT_Process_Form {
 			if ( is_wp_error( $akismetCheck ) ) {
 				$this->errors[] = $akismetCheck;
 
-				return;
+				return false;
 			}
 		}
 
@@ -400,101 +396,11 @@ class CTCT_Process_Form {
 					do_action( 'ctct_activity', 'Wangguard email validation failed.', $email, $return );
 					$this->errors[] = new WP_Error( 'wangguard', __( 'Email validation failed.', 'constant-contact-api' ), $email, $return );
 
-					return;
+					return false;
 				}
 			} else {
 				do_action( 'ctct_activity', 'WangGuard is not configured.', $email );
 			}
-		}
-
-		// 4: DataValidation.com validation
-		if ( in_array( 'datavalidation', $methods ) && class_exists( 'DataValidation' ) ) {
-
-			$Validate = new DataValidation( CTCT_Settings::get( 'datavalidation_api_key' ) );
-
-			$validation = $Validate->validate( $email );
-
-			$process_inconclusive = apply_filters( 'ctct_process_inconclusive_emails', true );
-
-			if ( is_wp_error( $validation ) ) {
-
-				do_action( 'ctct_activity', 'DataValidation.com error', 'The email was not processed because of the error: ' . $validation->get_error_message() );
-
-				return;
-
-			} elseif ( $validation === false || ( $validation === NULL && ! $process_inconclusive ) ) {
-
-				do_action( 'ctct_activity', 'DataValidation validation failed.', $email, $Validate );
-
-				$message        = isset( $Validate->message ) ? $Validate->message : __( 'Not a valid email.', 'constant-contact-api' );
-				$this->errors[] = new WP_Error( 'datavalidation', $message, $email, $Validate );
-
-				return;
-
-			}
-			if ( $validation === NULL ) {
-				do_action( 'ctct_activity', 'DataValidation validation inconclusive.', $email, $Validate );
-			} elseif ( $validation === true ) {
-				do_action( 'ctct_activity', 'DataValidation validation passed.', $email, $Validate );
-			}
-		}
-
-		// 5: SMTP validation
-		if ( in_array( 'smtp', $methods ) && class_exists( 'SMTP_Validate_Email' ) && function_exists( 'stream_socket_client' ) ) {
-
-			try {
-
-				$SMTP_Validator = new SMTP_Validate_Email();
-
-				// Being unable to communicate with the remote MTA
-				$SMTP_Validator->no_comm_is_valid = apply_filters( 'constant_contact_smtp_no_comm_is_valid', true );
-				// Being unable to connect with the remote host
-				$SMTP_Validator->no_conn_is_valid = apply_filters( 'constant_contact_smtp_no_conn_is_valid', true );
-
-				// Prevent PHP notices, just in case
-				ob_start();
-				$results = $SMTP_Validator->validate( $email, get_option( 'admin_email' ) );
-				ob_get_clean();
-
-				if ( isset( $results[ $email ] ) ) {
-
-					// True = passed
-					if ( ! empty( $results[ $email ] ) ) {
-
-						do_action( 'ctct_activity', 'SMTP validation passed.', $email, $results );
-
-						return true;
-
-					} else {
-
-						$results['debug'] = $SMTP_Validator->get_log();
-
-						do_action( 'ctct_activity', 'SMTP validation failed.', $email, $results );
-
-						$this->errors[] = new WP_Error( 'smtp', __( 'Email validation failed.', 'constant-contact-api' ), $email, $results );
-
-						return false;
-					}
-
-
-				} else {
-
-					do_action( 'ctct_activity', 'SMTP validation did not work', 'Returned empty results. Maybe it timed out? See log:' . $validation_output );
-
-					return true;
-				}
-
-			} catch ( Exception $e ) {
-
-				do_action( 'ctct_error', 'SMTP validation broke.', $e );
-
-				return;
-			}
-
-		} elseif ( ! function_exists( 'stream_socket_client' ) ) {
-
-			do_action( 'ctct_activity', 'Unable to perform SMTP validation; stream_socket_client() function not available' );
-
 		}
 
 		return true;

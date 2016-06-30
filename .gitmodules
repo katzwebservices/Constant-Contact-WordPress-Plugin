@@ -10,6 +10,3 @@
 [submodule "vendor/constantcontact/constantcontact"]
 	path = vendor/constantcontact/constantcontact
 	url = https://github.com/constantcontact/php-sdk
-[submodule "vendor/zytzagoo/smtp-validate-email"]
-	path = vendor/zytzagoo/smtp-validate-email
-	url = https://github.com/zytzagoo/smtp-validate-email

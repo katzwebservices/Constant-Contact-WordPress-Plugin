@@ -390,33 +390,11 @@ class CTCT_Settings extends CTCT_Admin_Page {
 				array(
 					'type' => 'checkboxes',
 					'id' => 'spam_methods',
-					'toggle' => 'spam_methods',
 					'options' => array(
-						'datavalidation' => __('Verify Email Addresses with <a href="http://katz.si/datavalidation" rel="external">DataValidation.com</a>', 'constant-contact-api').constant_contact_tip(__('DataValidation.com is the best way to verify that when users submit a form, the submitted email address is valid.', 'constant-contact-api'), false),
 						'akismet' => __('Akismet', 'constant-contact-api').self::get_plugin_status_message( 'akismet' ),
 						'wangguard' => __('WangGuard WordPress Plugin', 'constant-contact-api').self::get_plugin_status_message( 'wangguard' ),
-						'smtp' => __('Validate Email Addresses Via SMTP (<a href="http://katz.si/smtpvalidation" rel="external">See the project</a>)', 'constant-contact-api').constant_contact_tip(__('Uses server methods to verify emails: checks for a valid domain, then sends a request for a read receipt.', 'constant-contact-api'), false),
 					),
 					'desc' => __('What services do you want to use to prevent spam submissions of your forms?', 'constant-contact-api')
-				),
-				array(
-					'type' => 'heading',
-					'togglegroup' => 'spam_methods_datavalidation',
-					'desc' => __('DataValidation.com Settings', 'constant-contact-api'),
-				),
-				array(
-					'type' => 'text',
-					'togglegroup' => 'spam_methods_datavalidation',
-					'id' => 'datavalidation_api_key',
-					'desc' => __('DataValidation.com: API Key', 'constant-contact-api'),
-					'label' => sprintf( __('Enter your DataValidation.com API key. %sSign up for a key here%s.', 'constant-contact-api'), '<a href="https://developer.datavalidation.com" rel="external">', '</a>' )
-				),
-				array(
-					'type' => 'checkbox',
-					'togglegroup' => 'spam_methods_datavalidation',
-					'id' => 'datavalidation_prevent_ambiguous',
-					'desc' => __('DataValidation.com: Should "ambiguous" responses be blocked?', 'constant-contact-api'),
-					'label' => __('Ambiguous Responses basically mean that the email looks good, it has valid DNS, it has a valid MX record, it even has an email server, but for a myriad of reasons it does not accept any connections to it. Could be connection refused, could be the server is down, etc.', 'constant-contact-api')
 				),
 			),
 			'forms' => array(

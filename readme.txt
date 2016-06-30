@@ -112,6 +112,7 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
 * Tweak: Filtering Contacts by status now loads new request
 * Fixed: Delete caches when de-authenticating plugin
 * Tweak: Allow Draft events to be visible to administrators
+* Removed: SMTP and DataValidation.com anti-spam tests. We recommend using [MailGun Email Validator](https://wordpress.org/plugins/mailgun-email-validator/) plugin instead.
 
 __Developer Notes:__
 
