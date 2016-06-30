@@ -229,11 +229,11 @@ class CTCT_Process_Form {
 	 */
 	function checkRequired() {
 
-		if( ! isset( $_POST['fields'] ) || ! is_array( $_POST['fields'] ) ) {
+		if( ! isset( $_POST['cc-fields'] ) || ! is_array( $_POST['cc-fields'] ) ) {
 			return;
 		}
 
-		foreach ( $_POST['fields'] as $key => $field ) {
+		foreach ( $_POST['cc-fields'] as $key => $field ) {
 
 			if ( ! empty( $field['req'] ) && ( ! isset( $field['value'] ) || $field['value'] === '' ) ) {
 				$this->errors[] = new WP_Error( 'empty_field', sprintf( _x( 'The %s field is required.', 'Failed user form submission error', 'constant-contact-api' ), esc_html( $field['label'] ) ), $key );
@@ -285,7 +285,7 @@ class CTCT_Process_Form {
 
 		if ( is_admin() ) {
 
-			$post['fields'] = array(
+			$post['cc-fields'] = array(
 				'email_address' => isset( $post['email'] ) ? $post['email'] : NULL,
 				'first_name'    => isset( $post['first_name'] ) ? $post['first_name'] : NULL,
 				'last_name'     => isset( $post['last_name'] ) ? $post['last_name'] : NULL,
@@ -294,19 +294,21 @@ class CTCT_Process_Form {
 			unset( $post['email'] );
 		}
 
-		unset( $post['fields']['lists'] );
+		unset( $post['cc-fields']['lists'] );
 
-		foreach ( $post['fields'] as $key => $value ) {
+		$output= array();
+
+		foreach ( $post['cc-fields'] as $key => $value ) {
 			if ( isset( $value['value'] ) ) {
 				$output[ $key ] = esc_attr( $value['value'] );
-			} else {
+			} elseif( is_string( $value ) ) {
 				$output[ $key ] = esc_attr( $value );
 			}
 		}
 
 		// Make sure lists are IDs
-		if ( ! empty( $post['lists'] ) ) {
-			foreach ( $post['lists'] as $list ) {
+		if ( ! empty( $post['cc-lists'] ) ) {
+			foreach ( $post['cc-lists'] as $list ) {
 				if ( ! is_numeric( $list ) ) {
 					continue;
 				}

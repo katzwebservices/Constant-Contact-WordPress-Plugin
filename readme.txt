@@ -116,6 +116,7 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
 __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+* Fixed: Namespace the `$_POST` keys to avoid conflict with Ultimate Member plugin
 * Fixed: Prevent logs from being written during Form Designer AJAX
 * Fixed: Removed deprecated `wp_clone()` function
 * Fixed: `include` attribute wasn't respected in `KWSContactList::outputHTML()`
