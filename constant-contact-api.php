@@ -2,9 +2,9 @@
 /*
 Plugin Name: 		Constant Contact Plugin for WordPress
 Plugin URI: 		https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin
-Description: 		Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
+Description: 		Powerfully integrate <a href="https://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.
 Author: 			Katz Web Services, Inc.
-Version: 			4.0.1
+Version: 			4.0.2
 Author URI: 		https://katz.co
 Text Domain: 		constant-contact-api
 Domain Path: 		/languages
@@ -22,7 +22,7 @@ register_deactivation_hook( __FILE__, array( 'WP_CTCT', 'deactivate' ) );
 
 final class WP_CTCT {
 
-	const version = '4.0.1';
+	const version = '4.0.2';
 
 	/**
 	 * @var string The minimum version of PHP required for the plugin
@@ -47,36 +47,37 @@ final class WP_CTCT {
 	function __construct() {
 
 		// Allow users to override with their own keys in wp-config.php
-		if(!defined('CTCT_APIKEY')) {
-			define("CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t");
-			define("CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF");
+		if ( ! defined( 'CTCT_APIKEY' ) ) {
+			define( "CTCT_APIKEY", "hu2nnqvtd3gt82uwkr7z565t" );
+			define( "CTCT_APISECRET", "z39WYdrXu7tuEtaJcGPzN3dF" );
 		}
 
-		if(!defined('CTCT_DIR_PATH')) {
+		if ( ! defined( 'CTCT_DIR_PATH' ) ) {
 
-			define('CTCT_FILE', __FILE__);
+			define( 'CTCT_FILE', __FILE__ );
 
 			/** @define "CTCT_FILE_PATH" "./" */
-			define('CTCT_FILE_PATH', dirname(__FILE__) . '/');
+			define( 'CTCT_FILE_PATH', dirname( __FILE__ ) . '/' );
 
 			/** @define "CTCT_FILE_URL" "." */
-			define('CTCT_FILE_URL', plugin_dir_url(__FILE__));
+			define( 'CTCT_FILE_URL', plugin_dir_url( __FILE__ ) );
 
 			/** @define "CTCT_DIR_PATH" "." */
-			define('CTCT_DIR_PATH', plugin_dir_path(__FILE__));
+			define( 'CTCT_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 			load_plugin_textdomain( 'ctct', false, dirname( plugin_basename( CTCT_FILE ) ) . '/languages/' );
 
 			/**
 			 * If the server doesn't support PHP 5.4, sorry, but you're outta luck.
 			 */
-			if(version_compare(phpversion(), WP_CTCT::min_php_version ) <= 0) {
-				include CTCT_DIR_PATH.'inc/incompatible.php';
+			if ( version_compare( phpversion(), WP_CTCT::min_php_version ) <= 0 ) {
+				include CTCT_DIR_PATH . 'inc/incompatible.php';
+
 				return;
 			}
 
-			add_action('plugins_loaded', array(&$this, 'setup'), 1);
-			add_action('plugins_loaded', array(&$this, 'include_files'), 5);
+			add_action( 'plugins_loaded', array( &$this, 'setup' ), 1 );
+			add_action( 'plugins_loaded', array( &$this, 'include_files' ), 5 );
 
 		} else {
 			$this->setup();
@@ -94,13 +95,13 @@ final class WP_CTCT {
 		delete_option( 'ctct_token_response' );
 		delete_option( 'ctct_configured' );
 
-		if( !class_exists('CTCT_Global') ) {
-			include_once plugin_dir_path(__FILE__) . 'classes/class.ctct_global.php';
+		if ( ! class_exists( 'CTCT_Global' ) ) {
+			include_once plugin_dir_path( __FILE__ ) . 'classes/class.ctct_global.php';
 		}
 
 		// CTCT_Settings is only loaded for 5.3+
 		// If they don't have 5.3, they never had the transients in the first place.
-		if( class_exists('CTCT_Settings') ) {
+		if ( class_exists( 'CTCT_Settings' ) ) {
 			// Flush stored transient data
 			CTCT_Global::flush_transients();
 		}
@@ -109,38 +110,36 @@ final class WP_CTCT {
 
 	function setup() {
 
-		require_once CTCT_DIR_PATH.'vendor/autoload.php';
+		require_once CTCT_DIR_PATH . 'vendor/autoload.php';
 
-		include_once CTCT_DIR_PATH.'classes/class.ctct_global.php';
+		include_once CTCT_DIR_PATH . 'classes/class.ctct_global.php';
 
-		if( !class_exists( 'KWSOAuth2' ) ) {
+		if ( ! class_exists( 'KWSOAuth2' ) ) {
 
-			#include CTCT_DIR_PATH.'classes/class.kwsrestclient.php';
-			include CTCT_DIR_PATH.'classes/class.kwsoauth2.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpot.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotService.php';
-			#include CTCT_DIR_PATH . 'lib/eventspot/classes/EventSpotList.php';
-			include CTCT_DIR_PATH.'classes/class.kwsconstantcontact.php';
+			include CTCT_DIR_PATH . 'classes/class.kwsoauth2.php';
+			include CTCT_DIR_PATH . 'classes/class.kwsconstantcontact.php';
 
 			$this->oauth = new KWSOAuth2();
 
 			$token = $this->oauth->getToken();
 
-			define("CTCT_ACCESS_TOKEN", $token);
+			define( "CTCT_ACCESS_TOKEN", $token );
 
-			define("CTCT_USERNAME", $this->oauth->getToken('username'));
+			define( "CTCT_USERNAME", $this->oauth->getToken( 'username' ) );
 		}
 
-		if(is_null($this->oauth)) { $this->oauth = new KWSOAuth2(); }
+		if ( is_null( $this->oauth ) ) {
+			$this->oauth = new KWSOAuth2();
+		}
 
 		$this->cc = new KWSConstantContact();
 
-		include CTCT_DIR_PATH.'classes/class.oauth-migration.php';
+		include CTCT_DIR_PATH . 'classes/class.oauth-migration.php';
 	}
 
 	static function getInstance() {
 
-		if(empty(self::$instance)){
+		if ( empty( self::$instance ) ) {
 			self::$instance = new WP_CTCT;
 		}
 
@@ -150,45 +149,47 @@ final class WP_CTCT {
 	function include_files() {
 
 		/** Helpers */
-		include_once CTCT_DIR_PATH.'lib/cache-http.php';
-		include_once CTCT_DIR_PATH.'inc/functions.php';
+		include_once CTCT_DIR_PATH . 'lib/cache-http.php';
+		include_once CTCT_DIR_PATH . 'inc/functions.php';
 
 		// TODO: Flesh out the help tabs
-		include_once CTCT_DIR_PATH.'inc/help.php';
+		include_once CTCT_DIR_PATH . 'inc/help.php';
 
 		/** Classes */
-		include_once CTCT_DIR_PATH.'classes/class.ctct_process_form.php';
-		include_once CTCT_DIR_PATH.'classes/class.kwscontact.php';
-		include_once CTCT_DIR_PATH.'classes/class.kwscontactlist.php';
-		include_once CTCT_DIR_PATH.'classes/class.kwscampaign.php';
-		include_once CTCT_DIR_PATH.'classes/class.kwsajax.php';
-		include_once CTCT_DIR_PATH.'classes/class.ctct_admin_page.php';
-		include_once CTCT_DIR_PATH.'classes/class.ctct_settings.php';
-		include_once CTCT_DIR_PATH.'classes/class.ctct_admin.php';
+		include_once CTCT_DIR_PATH . 'classes/class.ctct_process_form.php';
+		include_once CTCT_DIR_PATH . 'classes/class.kwscontact.php';
+		include_once CTCT_DIR_PATH . 'classes/class.kwscontactlist.php';
+		include_once CTCT_DIR_PATH . 'classes/class.kwscampaign.php';
+		include_once CTCT_DIR_PATH . 'classes/class.kwsajax.php';
+		include_once CTCT_DIR_PATH . 'classes/class.ctct_admin_page.php';
+		include_once CTCT_DIR_PATH . 'classes/class.ctct_settings.php';
+		include_once CTCT_DIR_PATH . 'classes/class.ctct_admin.php';
 
-		include_once CTCT_DIR_PATH.'lib/kwslog.php';
+		include_once CTCT_DIR_PATH . 'lib/kwslog.php';
 
-		$this->log = new KWSLog('ctct', 'Constant Contact');
+		$this->log = new KWSLog( 'ctct', 'Constant Contact' );
 
 		/** Admin pages */
-		include_once CTCT_DIR_PATH.'admin/profile.php';
-		include_once CTCT_DIR_PATH.'admin/campaigns.php';
-		include_once CTCT_DIR_PATH.'admin/contacts.php';
-		include_once CTCT_DIR_PATH.'admin/lists.php';
+		include_once CTCT_DIR_PATH . 'admin/profile.php';
+		include_once CTCT_DIR_PATH . 'admin/campaigns.php';
+		include_once CTCT_DIR_PATH . 'admin/contacts.php';
+		include_once CTCT_DIR_PATH . 'admin/lists.php';
 
 		// If the plugin is not configured, don't do anything else.
-		if(!is_ctct_configured()) { return; }
+		if ( ! is_ctct_configured() ) {
+			return;
+		}
 
 		/** Modules */
-		include_once CTCT_DIR_PATH.'lib/registration.php';
-		include_once CTCT_DIR_PATH.'lib/comment-form-signup.php';
-		include_once CTCT_DIR_PATH.'lib/simple-widget.php';
+		include_once CTCT_DIR_PATH . 'lib/registration.php';
+		include_once CTCT_DIR_PATH . 'lib/comment-form-signup.php';
+		include_once CTCT_DIR_PATH . 'lib/simple-widget.php';
 
-		if( CTCT_Settings::get('eventspot') ) {
+		if ( CTCT_Settings::get( 'eventspot' ) ) {
 			include_once CTCT_DIR_PATH . 'lib/eventspot/eventspot.php';
 		}
 
-		include_once CTCT_DIR_PATH.'lib/form-designer/form-designer.php';
+		include_once CTCT_DIR_PATH . 'lib/form-designer/form-designer.php';
 	}
 }
 

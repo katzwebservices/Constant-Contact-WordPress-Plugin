@@ -37,6 +37,7 @@ class KWSContact extends Contact {
 
 	/**
 	 * The statuses that are supported for a Contact
+	 *
 	 * @var array
 	 */
 	public static $statii = array(
@@ -80,6 +81,7 @@ class KWSContact extends Contact {
 
 	/**
 	 * Get the array of read-only fields for a Contact
+	 *
 	 * @return array
 	 */
 	public static function getReadOnly() {
@@ -131,7 +133,14 @@ class KWSContact extends Contact {
 		}
 
 		foreach ( $new_contact as $k => $v ) {
-			$existing_contact->{$k} = $v;
+			switch ( $k ) {
+				// Don't ever remove lists; only add them.
+				case 'lists':
+					$existing_contact->{$k} = array_merge( $existing_contact->{$k}, $v );
+					break;
+				default:
+					$existing_contact->{$k} = $v;
+			}
 		}
 
 		return $existing_contact;
@@ -446,31 +455,31 @@ class KWSContact extends Contact {
 				break;
 
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
-				$key                        = strtolower( str_ireplace( 'personal_', '', $key ) );
+				$key = strtolower( str_ireplace( 'personal_', '', $key ) );
 
 				$address_key = 0;
-				foreach( $this->addresses as $index => $address ) {
-					if( 'PERSONAL' === $address->address_type ) {
+				foreach ( $this->addresses as $index => $address ) {
+					if ( 'PERSONAL' === $address->address_type ) {
 						$address_key = $index;
 					}
 				}
 
-				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
-				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]               = ! isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key}       = $value;
 				$this->addresses[ $address_key ]->address_type = 'PERSONAL';
 				break;
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
-				$key                        = strtolower( str_ireplace( 'business_', '', $key ) );
+				$key = strtolower( str_ireplace( 'business_', '', $key ) );
 
 				$address_key = 1;
-				foreach( $this->addresses as $index => $address ) {
-					if( 'BUSINESS' === $address->address_type ) {
+				foreach ( $this->addresses as $index => $address ) {
+					if ( 'BUSINESS' === $address->address_type ) {
 						$address_key = $index;
 					}
 				}
 
-				$this->addresses[ $address_key ] = !isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
-				$this->addresses[ $address_key ]->{$key} = $value;
+				$this->addresses[ $address_key ]               = ! isset( $this->addresses[ $address_key ] ) ? new stdClass() : $this->addresses[ $address_key ];
+				$this->addresses[ $address_key ]->{$key}       = $value;
 				$this->addresses[ $address_key ]->address_type = 'BUSINESS';
 				break;
 			case ( preg_match( '/^customfield([0-9]+)/ism', $key, $matches ) ? true : false ):
@@ -561,8 +570,8 @@ class KWSContact extends Contact {
 			case ( preg_match( '/^personal_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'personal_', '', $key ) );
 
-				foreach( $this->addresses as $address ) {
-					if( 'PERSONAL' === $address->address_type ) {
+				foreach ( $this->addresses as $address ) {
+					if ( 'PERSONAL' === $address->address_type ) {
 						return isset( $address->{$key} ) ? $address->{$key} : '';
 					}
 				}
@@ -571,8 +580,8 @@ class KWSContact extends Contact {
 			case ( preg_match( '/^business_/ism', $key ) ? true : false ):
 				$key = strtolower( str_ireplace( 'business_', '', $key ) );
 
-				foreach( $this->addresses as $address ) {
-					if( 'BUSINESS' === $address->address_type ) {
+				foreach ( $this->addresses as $address ) {
+					if ( 'BUSINESS' === $address->address_type ) {
 						return isset( $address->{$key} ) ? $address->{$key} : '';
 					}
 				}

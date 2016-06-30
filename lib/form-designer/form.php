@@ -199,8 +199,8 @@ class CTCT_Form_Designer_Output {
 
 		$val = isset( $field['val'] ) ? $field['val'] : '';
 		$placeholder = '';
-		if( !empty( $this->form['cc_request'] ) && isset($this->form['cc_request']['fields'][$field['id']]['value']) && $this->is_current_form() ) {
-			$val = esc_html( $this->form['cc_request']['fields'][$field['id']]['value'] );
+		if( !empty( $this->form['cc_request'] ) && isset($this->form['cc_request']['cc-fields'][$field['id']]['value']) && $this->is_current_form() ) {
+			$val = esc_html( $this->form['cc_request']['cc-fields'][$field['id']]['value'] );
 		} elseif( !empty( $field['val'] ) ) {
 			$placeholder = " placeholder='".esc_attr( $field['val'] )."'";
 		}
@@ -224,7 +224,7 @@ class CTCT_Form_Designer_Output {
 		}
 
 		// Field name attribute
-		$name_attribute = "fields[{$field['id']}]";
+		$name_attribute = "cc-fields[{$field['id']}]";
 
 		switch ( $field['t'] ) {
 
@@ -500,12 +500,13 @@ class CTCT_Form_Designer_Output {
 
 	        // If lists are submitted, use those.
 	        // Otherwise, consider all/no lists selected based on `$selected` setting.
-	        $selected = !empty($_POST['lists']) ? (array)$_POST['lists'] : (bool)$selected;
+	        $selected = !empty($_POST['cc-lists']) ? (array)$_POST['cc-lists'] : (bool)$selected;
 
 	        // Remove the cache for this whole joint
 	        $listsOutput = KWSContactList::outputHTML($lists, array(
 	            'fill' => true,
 	            'id_attr' => $unique_id.'-%%id%%',
+	            'name_attr' => 'cc-lists',
 	            'showhidden' => false,
 	            'checked' => $selected,
 	            'type' => $list_selection_format ? $list_selection_format : 'hidden',

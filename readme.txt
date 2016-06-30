@@ -3,8 +3,8 @@ Contributors: katzwebdesign, katzwebservices
 Donate link: http://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
-Tested up to: 4.5
-Stable tag: 4.0.1
+Tested up to: 4.5.2
+Stable tag: 4.0.2
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -77,7 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-== 4.0.1 on April 8, 2016 =
+== 4.0.2 on June 29, 2016 =
 
 __This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
 
@@ -100,21 +100,23 @@ __This is a major update that requires PHP 5.5 or higher__. This was needed in o
     - MUCH improved speed when designing a form
     - No longer slows down when processing an update
     - Change background, border, padding settings live
+* Improved: Existing lists for a contact will be merged with the submitted form lists, not replaced
 * Fixed: Logs not being pruned. This could lead to thousands of log posts in the database, slowing down the site.
 * Fixed: Fix fatal error when updating lists in User Profiles
 * Fixed: Improved Form Designer speed when `WP_DEBUG` is defined
 * Fixed: Admin pages now only process when they're supposed to
-* Removed: Phone number validation. The phone number validator library was silly big.
 * Tweak: Show list name in single List page
 * Tweak: Add "Status" column to Campaigns table
 * Tweak: Only "Active" users now shown by default in Contacts
 * Tweak: Filtering Contacts by status now loads new request
 * Fixed: Delete caches when de-authenticating plugin
 * Tweak: Allow Draft events to be visible to administrators
+* Removed: SMTP and DataValidation.com anti-spam tests. We recommend using [MailGun Email Validator](https://wordpress.org/plugins/mailgun-email-validator/) plugin instead.
 
 __Developer Notes:__
 
 * Fixed: The ``%%id_attr%%` placeholder wasn't getting replaced properly when generating list HTML in `KWSContactList`
+* Fixed: Namespace the `$_POST` keys to avoid conflict with Ultimate Member plugin
 * Fixed: Prevent logs from being written during Form Designer AJAX
 * Fixed: Removed deprecated `wp_clone()` function
 * Fixed: `include` attribute wasn't respected in `KWSContactList::outputHTML()`
@@ -123,7 +125,9 @@ __Developer Notes:__
 * Modified: Second parameter passed to `cc_event_map_link` is now a `\Ctct\Components\EventSpot\EventSpot` object
 * Modified: Removed third parameter passed to `cc_event_map_link`
 * Added: `ctct_oauth_uri_base` filter to use your own oAuth domain. See the filter inline docs for more information.
-* Updated: Phone number validation library
+* Removed: Phone number validation. The phone number validator library was silly big.
+
+Thank you to WordPress.org maintainers, who [updated the plugin submitting process](https://make.wordpress.org/systems/2016/03/14/removing-the-php-5-4-plugin-directory-linting-the/).
 
 = 3.1.12 on August 21 =
 * Fixed: Compatibility with WordPress 4.3

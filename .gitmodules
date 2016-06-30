@@ -1,3 +1,12 @@
-[submodule "vendor/pippinsplugins/WP-Logging"]
-	path = vendor/pippinsplugins/WP-Logging
-	url = https://github.com/pippinsplugins/WP-Logging
+[submodule "vendor/zackkatz/WP-Logging"]
+	path = vendor/zackkatz/WP-Logging
+	url = https://github.com/zackkatz/WP-Logging
+[submodule "vendor/10up/flexibility"]
+	path = vendor/10up/flexibility
+	url = https://github.com/10up/flexibility
+[submodule "vendor/select2/select2"]
+	path = vendor/select2/select2
+	url = https://github.com/select2/select2
+[submodule "vendor/constantcontact/constantcontact"]
+	path = vendor/constantcontact/constantcontact
+	url = https://github.com/constantcontact/php-sdk

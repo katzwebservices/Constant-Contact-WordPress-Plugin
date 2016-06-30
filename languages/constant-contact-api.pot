@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Constant Contact Plugin for WordPress 4.0\n"
+"Project-Id-Version: Constant Contact Plugin for WordPress 4.0.2\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?"
 "state=open\n"
@@ -13,7 +13,7 @@ msgstr ""
 "PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Katz Web Services, Inc. <support@katz.co>\n"
 "Language-Team: Katz Web Services, Inc. <support@katz.co>\n"
-"X-Generator: grunt-wp-i18n 0.5.3\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
 "X-Poedit-KeywordsList: "
 "__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
 "attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
@@ -180,40 +180,31 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:324
-msgid "Please enter a valid phone number."
-msgstr ""
-
-#: classes/class.ctct_process_form.php:440
+#: classes/class.ctct_process_form.php:347
 msgid "Please enter your email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:445
+#: classes/class.ctct_process_form.php:356
 msgid "Invalid email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:486
-#: classes/class.ctct_process_form.php:557
+#: classes/class.ctct_process_form.php:397
 msgid "Email validation failed."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:514
-msgid "Not a valid email."
-msgstr ""
-
-#: classes/class.ctct_process_form.php:641
+#: classes/class.ctct_process_form.php:468
 msgid "Akismet caught this entry as spam"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:643
+#: classes/class.ctct_process_form.php:470
 msgid "Your entry was flagged as spam."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:646
+#: classes/class.ctct_process_form.php:473
 msgid "Akismet cleared this comment"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:649
+#: classes/class.ctct_process_form.php:476
 msgid ""
 "Akismet was unable to check this entry (response: %s), will automatically "
 "retry again later."
@@ -365,7 +356,7 @@ msgstr ""
 msgid "Before the Opt-in"
 msgstr ""
 
-#: classes/class.ctct_settings.php:305 classes/class.ctct_settings.php:428
+#: classes/class.ctct_settings.php:305 classes/class.ctct_settings.php:406
 msgid "After the Opt-in"
 msgstr ""
 
@@ -451,99 +442,51 @@ msgstr ""
 msgid "Add a CSS 'clear' to the checkbox?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:395
-msgid ""
-"Verify Email Addresses with <a href=\"http://katz.si/datavalidation\" "
-"rel=\"external\">DataValidation.com</a>"
-msgstr ""
-
-#: classes/class.ctct_settings.php:395
-msgid ""
-"DataValidation.com is the best way to verify that when users submit a form, "
-"the submitted email address is valid."
-msgstr ""
-
-#: classes/class.ctct_settings.php:396
+#: classes/class.ctct_settings.php:394
 msgid "Akismet"
 msgstr ""
 
-#: classes/class.ctct_settings.php:397
+#: classes/class.ctct_settings.php:395
 msgid "WangGuard WordPress Plugin"
 msgstr ""
 
-#: classes/class.ctct_settings.php:398
-msgid ""
-"Validate Email Addresses Via SMTP (<a "
-"href=\"http://katz.si/smtpvalidation\" rel=\"external\">See the project</a>)"
-msgstr ""
-
-#: classes/class.ctct_settings.php:398
-msgid ""
-"Uses server methods to verify emails: checks for a valid domain, then sends "
-"a request for a read receipt."
-msgstr ""
-
-#: classes/class.ctct_settings.php:400
+#: classes/class.ctct_settings.php:397
 msgid "What services do you want to use to prevent spam submissions of your forms?"
 msgstr ""
 
 #: classes/class.ctct_settings.php:405
-msgid "DataValidation.com Settings"
-msgstr ""
-
-#: classes/class.ctct_settings.php:411
-msgid "DataValidation.com: API Key"
-msgstr ""
-
-#: classes/class.ctct_settings.php:412
-msgid "Enter your DataValidation.com API key. %sSign up for a key here%s."
-msgstr ""
-
-#: classes/class.ctct_settings.php:418
-msgid "DataValidation.com: Should \"ambiguous\" responses be blocked?"
-msgstr ""
-
-#: classes/class.ctct_settings.php:419
-msgid ""
-"Ambiguous Responses basically mean that the email looks good, it has valid "
-"DNS, it has a valid MX record, it even has an email server, but for a "
-"myriad of reasons it does not accept any connections to it. Could be "
-"connection refused, could be the server is down, etc."
-msgstr ""
-
-#: classes/class.ctct_settings.php:427
 msgid "<a href=\"http://www.formstack.com/r/31575458\">Formstack</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:430
+#: classes/class.ctct_settings.php:408
 msgid "Forms"
 msgstr ""
 
-#: classes/class.ctct_settings.php:475
+#: classes/class.ctct_settings.php:453
 msgid "Receive our Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:476
+#: classes/class.ctct_settings.php:454
 msgid "Subscribe to the Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:477
+#: classes/class.ctct_settings.php:455
 msgid "Select a List&hellip;"
 msgstr ""
 
-#: classes/class.ctct_settings.php:480
+#: classes/class.ctct_settings.php:458
 msgid "Subscribe me to your mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:481
+#: classes/class.ctct_settings.php:459
 msgid "You are currently subscribed to our mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:482
+#: classes/class.ctct_settings.php:460
 msgid "You are the administrator - no need to subscribe you to the mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:725
+#: classes/class.ctct_settings.php:703
 msgid "Save Settings"
 msgstr ""
 
@@ -758,48 +701,6 @@ msgstr ""
 
 #: inc/help.php:32
 msgid "Constant Contact: Settings > Spam Prevention"
-msgstr ""
-
-#: lib/class.datavalidation.php:118
-msgid "Invalid email address"
-msgstr ""
-
-#: lib/class.datavalidation.php:119
-msgid "Invalid email address host name"
-msgstr ""
-
-#: lib/class.datavalidation.php:120
-msgid "Invalid email server for this domain"
-msgstr ""
-
-#: lib/class.datavalidation.php:121
-msgid "Invalid email address local part"
-msgstr ""
-
-#: lib/class.datavalidation.php:122
-msgid "Email address length exceeded"
-msgstr ""
-
-#: lib/class.datavalidation.php:123
-msgid "Email address not found"
-msgstr ""
-
-#: lib/class.datavalidation.php:124
-msgid "Email address could not be verified"
-msgstr ""
-
-#: lib/class.datavalidation.php:125
-msgid "Email address found"
-msgstr ""
-
-#: lib/class.datavalidation.php:126
-msgid "Domain accepts all recipients &ndash; Accepts All"
-msgstr ""
-
-#: lib/class.datavalidation.php:127
-msgid ""
-"Domain has an email server but there is no connection to it &ndash; "
-"Ambiguous"
 msgstr ""
 
 #: lib/eventspot/event-embed.php:38
@@ -2432,8 +2333,8 @@ msgstr ""
 #: views/admin/view.php-compatibility-notice.php:5
 msgid ""
 "Starting with Version 4.0, <strong>the Constant Contact Plugin requires PHP "
-"Version 5.4 or higher</strong>. Please contact your hosting provider "
-"support and ask them to upgrade your server."
+"Version %s or higher</strong>. Please contact your hosting provider support "
+"and ask them to upgrade your server."
 msgstr ""
 
 #: views/admin/view.php-compatibility-notice.php:6
@@ -2451,7 +2352,9 @@ msgid "Here's how to upgrade your PHP version for popular web hosts:"
 msgstr ""
 
 #: views/admin/view.php-compatibility-notice.php:14
-msgid "Running a local installation?"
+msgid ""
+"Running a local installation? Here's how to change your PHP version using "
+"%s and %s"
 msgstr ""
 
 #: views/admin/view.plugin-status.php:2
@@ -2465,11 +2368,11 @@ msgstr ""
 #: views/admin/view.plugin-status.php:13
 msgid ""
 "You are running a compatible PHP version (%s). This plugin requires version "
-"5.4.0 or higher."
+"%s or higher."
 msgstr ""
 
 #: views/admin/view.plugin-status.php:19
-msgid "The %s requires PHP 5.4 or above."
+msgid "The %s requires PHP %s or above."
 msgstr ""
 
 #: views/admin/view.plugin-status.php:26
@@ -2548,16 +2451,12 @@ msgstr ""
 msgid "Delete All Plugin Settings"
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "https://katz.co"
-msgstr ""
-
 #: classes/class.ctct_admin_page.php:386
 msgctxt "General button text for adding a new Contact or List, for example."
 msgid "Add %s"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:241
+#: classes/class.ctct_process_form.php:239
 msgctxt "Failed user form submission error"
 msgid "The %s field is required."
 msgstr ""

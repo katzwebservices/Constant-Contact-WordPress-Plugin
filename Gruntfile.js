@@ -117,10 +117,10 @@ module.exports = function(grunt) {
 						var translation,
 							excluded_meta = [
 								'Constant Contact Plugin for WordPress',
-								'Powerfully integrate <a href="http://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.',
+								'Powerfully integrate <a href="https://katz.si/6e" target="_blank">Constant Contact</a> into your WordPress website.',
 								'https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin',
 								'Katz Web Services, Inc.',
-								'http://katz.co',
+								'https://katz.co',
 							    'constant-contact-api',
 							    '/languages',
 							    'GPLv2 or later',
