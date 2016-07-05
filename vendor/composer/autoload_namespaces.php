@@ -7,6 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Ctct' => array($vendorDir . '/constantcontact/constantcontact/src'),
-    'ComponentInstaller' => array($vendorDir . '/robloach/component-installer/src'),
-    'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
 );
