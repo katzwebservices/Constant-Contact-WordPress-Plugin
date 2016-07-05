@@ -73,7 +73,6 @@ abstract class CTCT_Admin_Page {
 		wp_enqueue_style( 'dashicons' ); // For the plugin status checkboxes
 		wp_enqueue_style( 'alertify-core' );
 		wp_enqueue_style( 'alertify-default' );
-		wp_enqueue_style( 'select2' );
 	}
 
 	public function print_scripts() {
@@ -115,19 +114,15 @@ abstract class CTCT_Admin_Page {
 		wp_register_style( 'ctct-admin', CTCT_FILE_URL . 'css/admin/ctct-admin.css', array( 'thickbox' ) );
 		wp_register_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
 		wp_register_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
-		wp_register_style( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/css/select2.min.css' );
-
 		wp_register_script( 'flexibility', CTCT_FILE_URL . 'vendor/10up/flexibility/dist/flexibility.js' );
 		wp_register_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
 		wp_register_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
-		wp_register_script( 'select2', CTCT_FILE_URL . 'vendor/select2/select2/dist/js/select2.min.js', array( 'jquery' ) );
 
 		wp_register_script( 'ctct-admin-page', CTCT_FILE_URL . 'js/admin/cc-page.js', array(
 			'jquery',
 			'jquery-effects-highlight',
 			'jquery-ui-tooltip',
 			'jquery-ui-tabs',
-			'select2',
 			'thickbox'
 		) );
 

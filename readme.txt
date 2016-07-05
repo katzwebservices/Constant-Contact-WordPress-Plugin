@@ -77,6 +77,7 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
+* Removed: Unused Select2 library, fixing an administration Javascript error
 == 4.0.2 on June 29, 2016 =
 
 __This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.

@@ -4,9 +4,6 @@
 [submodule "vendor/10up/flexibility"]
 	path = vendor/10up/flexibility
 	url = https://github.com/10up/flexibility
-[submodule "vendor/select2/select2"]
-	path = vendor/select2/select2
-	url = https://github.com/select2/select2
 [submodule "vendor/constantcontact/constantcontact"]
 	path = vendor/constantcontact/constantcontact
 	url = https://github.com/constantcontact/php-sdk
