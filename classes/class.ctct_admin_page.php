@@ -114,7 +114,7 @@ abstract class CTCT_Admin_Page {
 		wp_register_style( 'ctct-admin', CTCT_FILE_URL . 'css/admin/ctct-admin.css', array( 'thickbox' ) );
 		wp_register_style( 'alertify-core', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.core.css' );
 		wp_register_style( 'alertify-default', CTCT_FILE_URL . 'js/alertify.js/themes/alertify.default.css' );
-		wp_register_script( 'flexibility', CTCT_FILE_URL . 'vendor/10up/flexibility/dist/flexibility.js' );
+		wp_register_script( 'flexibility', CTCT_FILE_URL . 'vendor/10up/flexibility/flexibility.js' );
 		wp_register_script( 'alertify', CTCT_FILE_URL . 'js/alertify.js/lib/alertify.min.js', array( 'jquery' ) );
 		wp_register_script( 'jquery-cookie', CTCT_FILE_URL . 'js/admin/jquery.cookie.js', array( 'jquery' ) );
 
