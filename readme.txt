@@ -78,6 +78,8 @@ To install the plugin follow the steps below:
 == Changelog ==
 
 * Removed: Unused Select2 library, fixing an administration Javascript error
+* Removed: Unused Select2 library, fixing an administration JavaScript error
+* Fixed: Update admin JavaScript minification
 * Updated: Plugin libraries
 
 == 4.0.2 on June 29, 2016 =
