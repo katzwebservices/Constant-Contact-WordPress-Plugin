@@ -340,7 +340,7 @@ class CTCT_Form_Designer_Helper {
             <li class="'.$class.'"'.$hide.'>
                 <dl class="menu-item-bar">
                     <dt class="menu-item-handle">
-                        <span class="item-title">'.esc_html( $value ).' <i class="dashicons dashicons-sort" title="'.esc_attr__('Drag and drop to re-order fields.', 'constant-contact-api').'"></i></span>
+                        <span class="item-title">'. $value .' <i class="dashicons dashicons-sort" title="'.esc_attr__('Drag and drop to re-order fields.', 'constant-contact-api').'"></i></span>
                         <span class="item-controls">
                             <span class="item-type"></span>
                             <input type="checkbox" name="'.$name.'[n]" id="'.$id.'" value="'.$name.'" '.$checked.' class="checkbox hide-if-js" rel="'.$type.'" />
