@@ -367,6 +367,7 @@ Thank you to WordPress.org maintainers, who [updated the plugin submitting proce
 == Frequently Asked Questions ==
 
 = The plugin Requires PHP 5.5 =
+
 __Version 4.0 changes requirements for your server. If you upgrade and the upgrade doesn't work for you, you can downgrade to the previous version of the plugin.__
 
 Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.5.
@@ -404,7 +405,7 @@ Constant Contact is a great email marketing company -- their rates are determine
 
 There is shortcode support for the Form Designer forms: `[constantcontactapi]` with the following options:
 
-```
+<pre>
 'formid' => 0, // REQUIRED
 'before' => null,
 'after' => null,
@@ -416,7 +417,7 @@ There is shortcode support for the Form Designer forms: `[constantcontactapi]` w
 'show_list_selection' => false,
 'list_selection_title' => 'Add me to these lists:',
 'list_selection_format' => 'checkbox'
-```
+</pre>
 
 So to add a form, you would add the following in your content: `[constantcontactapi formid="3"]`
 
@@ -424,7 +425,7 @@ So to add a form, you would add the following in your content: `[constantcontact
 
 To show event details, you can use the `[eventspot]` shortcode with the following options:
 
-```
+<pre>
 'id' => null, // Show a specific event; enter Event ID (found on the Events page) to use
 'limit' => 3, // Number of events to show by default
 'showdescription' => true, // Show event Description
@@ -435,7 +436,7 @@ To show event details, you can use the `[eventspot]` shortcode with the followin
 'directtoregistration' => false, // Link directly to registration page, rather than event homepage
 'newwindow' => false, // Open event links in a new window
 'style' => true // Use plugin styles. Disable if you want to use your own styles (CSS)
-```
+</pre>
 
 __Sample Event Shortcodes__
 
@@ -449,7 +450,7 @@ If you want to change some code in the widget, you can use the WordPress `add_fi
 
 You can add code to your theme's `functions.php` file that will modify the widget output. Here's an example:
 
-```
+<pre>
 function my_example_function($widget) {
 	// The $widget variable is the output of the widget
 	// This will replace 'this word' with 'that word' in the widget output.
@@ -458,13 +459,13 @@ function my_example_function($widget) {
 	return $widget;
 }
 add_filter('constant_contact_form', 'my_example_function');
-```
+</pre>
 
 You can modify the widget output by hooking into any of the filters below in a similar manner.
 
 To modify the Events widget output, start with the following code, again in your theme's `functions.php` file:
 
-```
+<pre>
 add_filter('cc_event_output_single', 'cc_event_output_single', 1, 2);
 
 function cc_event_output_single($output, $pieces = array('start'=> '','title'=>'','description'=>'','date'=>'','calendar'=>'','location' => '', 'end'=>'')) {
@@ -473,7 +474,7 @@ function cc_event_output_single($output, $pieces = array('start'=> '','title'=>'
 	// want the pieces to display
 	return $pieces['start'].'<dt>Description</dt>'.$pieces['description'].$pieces['date'].$pieces['end'];
 }
-```
+</pre>
 
 __Some example filters:__
 
