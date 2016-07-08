@@ -219,7 +219,10 @@ abstract class CTCT_Admin_Page {
 	 * @param \Ctct\Exceptions\CtctException $e
 	 */
 	protected function show_exception( $e ) {
-		echo '<div class="error inline"><h3>' . sprintf( esc_html__( 'There was an error displaying this content: %s', 'constant-contact-api' ), $e->getMessage() ) . '</h3></div>';
+
+		$error = KWSConstantContact::convertException( $e );
+
+		kws_print_notices( array( $error ), 'error inline', true, esc_html__( 'There was an error displaying this content:', 'constant-contact-api' ) );
 	}
 
 	public function help_tabs( $tabs ) {

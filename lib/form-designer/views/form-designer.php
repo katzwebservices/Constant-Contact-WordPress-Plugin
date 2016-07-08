@@ -1,5 +1,3 @@
-<a class="alignright button button-danger confirm" data-confirm="<?php _e('Delete all form Data? All forms and their settings will be deleted. This cannot be undone. Continue?', 'constant-contact-api'); ?>" data-confirm-again="<?php _e('Are you certain? Forms will be PERMANENTLY DELETED. You will have to re-create all your forms. Continue?', 'constant-contact-api'); ?>" href="<?php echo wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete_all&amp;form=all'), 'delete-all' ); ?>" id="delete_all_forms"><?php _e('Delete All Forms', 'constant-contact-api'); ?></a>
-
 <?php
 
 	// TODO: Add Gravity Forms Notice
@@ -25,6 +23,7 @@
 	</div>
 <div class="nav-menus-php">
 	<div class="manage-menus">
+		<a class="alignright button button-danger confirm" data-confirm="<?php _e('Delete all form Data? All forms and their settings will be deleted. This cannot be undone. Continue?', 'constant-contact-api'); ?>" data-confirm-again="<?php _e('Are you certain? Forms will be PERMANENTLY DELETED. You will have to re-create all your forms. Continue?', 'constant-contact-api'); ?>" href="<?php echo wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete_all&amp;form=all'), 'delete-all' ); ?>" id="delete_all_forms"><?php _e('Delete All Forms', 'constant-contact-api'); ?></a>
 		<form method="get" action="<?php echo admin_url('admin.php'); ?>">
 			<input type="hidden" name="action" value="edit" />
 			<input type="hidden" name="page" value="constant-contact-forms" />
@@ -104,12 +103,12 @@
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="cc-form-id" id="cc-form-id" value="<?php echo (int)$cc_form_selected_id; ?>" />
 
-						<div class="major-publishing-actions">
-							<label class="menu-name-label howto open-label" for="menu-name">
+						<div class="major-publishing-actions wp-clearfix">
+							<label class="menu-name-label" for="form-name">
 								<span><?php esc_html_e('Form Name', 'constant-contact-api'); constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), true ); ?></span>
 
 								<?php $title = esc_attr__('Enter form name here', 'constant-contact-api'); ?>
-								<input name="form-name" id="menu-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
+								<input name="form-name" id="form-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
 
 
 							</label>
@@ -128,7 +127,7 @@
 					</div><!-- /#post-body -->
 
 					<div id="nav-menu-footer">
-						<div class="major-publishing-actions">
+						<div class="major-publishing-actions wp-clearfix">
 							<span class="delete-action">
 								<?php if ( $cc_form_selected_id != -1 ) {  ?>
 								<a class="submitdelete deletion menu-delete" href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete&amp;form=' . $cc_form_selected_id), 'delete-cc_form-' . $cc_form_selected_id ) ); ?>"  onclick="return confirm('<?php _e('Are you sure you want to delete this form? It will be deleted permanently.', 'constant-contact-api'); ?>');"><?php _e('Delete Form', 'constant-contact-api'); ?></a>

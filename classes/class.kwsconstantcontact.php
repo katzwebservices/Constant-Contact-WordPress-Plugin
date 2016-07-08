@@ -102,7 +102,7 @@ final class KWSConstantContact extends ConstantContact {
 			update_site_option( 'ctct_configured', 1 );
 		} catch ( CtctException $e ) {
 			$this->configured = 0;
-			do_action( 'ctct_debug', 'isConfigured: getContactByEmail failed. Deleting configured option.' );
+			do_action( 'ctct_error', 'isConfigured: getContactByEmail failed. Deleting configured option.' );
 			delete_site_option( 'ctct_configured' );
 		}
 
@@ -147,6 +147,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->contactService->getContact( $accessToken, $contactId );
 		} catch ( Exception $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -165,6 +166,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->contactService->updateContact( $accessToken, $contact, $actionByContact );
 		} catch ( Exception $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -184,6 +186,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->listService->getLists( $accessToken, $params );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -204,6 +207,7 @@ final class KWSConstantContact extends ConstantContact {
 
 			return $list;
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -220,6 +224,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->listService->updateList( $accessToken, $list );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -241,6 +246,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->emailMarketingService->getCampaigns( $accessToken, $params );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -257,6 +263,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->emailMarketingService->getCampaign( $accessToken, $campaignId );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -271,6 +278,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->eventService->getEvents( $accessToken, $params );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -279,6 +287,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->eventService->getEvent( $accessToken, $eventId );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -287,6 +296,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->eventService->updateEvent( $accessToken, $event );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 
@@ -296,6 +306,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->eventService->getRegistrant( $accessToken, $eventId, $registrantId );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -312,6 +323,7 @@ final class KWSConstantContact extends ConstantContact {
 		try {
 			return $this->eventService->getRegistrants( $accessToken, $id, $params );
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -422,16 +434,27 @@ final class KWSConstantContact extends ConstantContact {
 
 			preg_match( $regex, $error_message, $matches );
 
-			if ( ! empty( $matches['field'] ) ) {
-				$message_prefix .= ctct_get_label_from_field_id( $matches['field'] );
+			// CRUD error related to a user-generated request
+			if( ! empty( $matches ) ) {
+				if ( ! empty( $matches['field'] ) ) {
+					$message_prefix .= ctct_get_label_from_field_id( $matches['field'] );
+				}
+				if ( ! empty( $matches['subfield'] ) ) {
+					$message_prefix .= sprintf( ' (%s)', ctct_get_label_from_field_id( $matches['subfield'] ) );
+				}
+				$message = $matches['message'];
+				$wp_error_code = $matches[1];
 			}
-			if ( ! empty( $matches['subfield'] ) ) {
-				$message_prefix .= sprintf( ' (%s)', ctct_get_label_from_field_id( $matches['subfield'] ) );
+			// A service error
+			else {
+				$message_prefix = $code;
+				$message = $error_message;
+				$wp_error_code = $code;
 			}
 
-			$message = sprintf( '%s: %s', trim( $message_prefix ), trim( $matches['message'] ) );
+			$message = sprintf( '%s: %s', trim( $message_prefix ), trim( $message ) );
 
-			$wp_errors[] = new WP_Error( $matches[1], $message );
+			$wp_errors[] = new WP_Error( $wp_error_code, $message );
 		}
 
 		return ( 1 === sizeof( $wp_errors ) ) ? $wp_errors[0] : $wp_errors;
@@ -525,7 +548,7 @@ final class KWSConstantContact extends ConstantContact {
 	 * @param  array $passed_params Search filter. Sets the limit for requests.
 	 * @param  array $results Pass the previous results for recursive calls to the method.
 	 *
-	 * @return array               Results array with `id` as key to each key/value pair.
+	 * @return array|CtctException   Results array with `id` as key to each key/value pair. If error, returns CtctException
 	 */
 	function getAll( $type = '', $passed_params = array(), &$results = array() ) {
 
@@ -590,13 +613,19 @@ final class KWSConstantContact extends ConstantContact {
 				$fetch  = $this->{"get{$type}"}( CTCT_ACCESS_TOKEN, $params );
 				$errors = ob_get_clean();
 
+				if( $fetch instanceof CtctException ) {
+					throw $fetch;
+				}
+
 				echo $errors;
 
 				if ( $cache_time && ! $fetch instanceof Exception ) {
 					set_transient( $cache_key, $fetch, $cache_time );
 				}
 			} catch ( CtctException $e ) {
-				$fetch = $e;
+				delete_transient( $cache_key );
+				do_action( 'ctct_error', 'Exception when getting all ' . $type, $e );
+				return $e;
 			}
 		}
 
@@ -678,6 +707,7 @@ final class KWSConstantContact extends ConstantContact {
 
 			return false;
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}
@@ -712,6 +742,7 @@ final class KWSConstantContact extends ConstantContact {
 			try {
 				$listId = $this->getArgumentId( $list, 'ContactList' );
 			} catch ( CtctException $e ) {
+				do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 				return $e;
 			}
 		}
@@ -722,6 +753,7 @@ final class KWSConstantContact extends ConstantContact {
 
 			return $contacts;
 		} catch ( CtctException $e ) {
+			do_action( 'ctct_error', __METHOD__ . ': Exception', $e );
 			return $e;
 		}
 	}

@@ -5,6 +5,7 @@
  */
 
 use \Ctct\Components\EventSpot\EventSpot;
+use \Ctct\Exceptions\CtctException;
 
 define('EVENTSPOT_FILE_PATH', dirname(__FILE__) . '/');
 define('EVENTSPOT_FILE_URL', plugin_dir_url(__FILE__));
@@ -93,8 +94,11 @@ class CTCT_EventSpot extends CTCT_Admin_Page {
 	function view() {
 
 		$events = $this->cc->getAll( 'Events' );
-
-		if(empty($events) || !is_array($events)) {
+		
+		if( $events instanceof CtctException ) {
+			$this->show_exception( $events );
+			return;
+		} elseif(empty($events) || !is_array($events)) {
 			include( EVENTSPOT_FILE_PATH . '/views/promo.php' );
 		} else {
 

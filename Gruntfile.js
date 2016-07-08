@@ -44,12 +44,21 @@ module.exports = function(grunt) {
 			options: {
 				mangle: false
 			},
-			main: {
+			admin: {
 				files: [{
 					expand: true,
 					cwd: 'js/admin',
-					src: ['*.js','!*.min.js'],
+					src: ['cc-page.js'],
 					dest: 'js/admin',
+					ext: '.min.js'
+				}]
+			},
+			form_designer: {
+				files: [{
+					expand: true,
+					cwd: 'lib/form-designer/js',
+					src: ['cc-code.js'],
+					dest: 'lib/form-designer/js',
 					ext: '.min.js'
 				}]
 			}
@@ -57,8 +66,8 @@ module.exports = function(grunt) {
 
 		watch: {
 			scripts: {
-				files: ['js/*.js','!js/*.min.js'],
-				tasks: ['uglify:main','jshint']
+				files: ['js/*.js','!js/*.min.js','lib/form-designer/js/*.js','!lib/form-designer/js/*.min.js'],
+				tasks: ['uglify','jshint']
 			},
 			less: {
 				files: ['css/admin/less/*.less', 'lib/*/css/less/*.less'],

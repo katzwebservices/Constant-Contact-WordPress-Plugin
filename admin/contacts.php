@@ -214,6 +214,15 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 	protected function view() {
 
 
+		$params = kws_get_contacts_view_params();
+
+		$Contacts = $this->cc->getAllContacts( $params );
+
+		if( $Contacts instanceof CtctException ) {
+			$this->show_exception( $Contacts );
+			return;
+		}
+		
 		kws_print_subsub( 'status', array(
 			array( 'val' => '', 'text' => __('Recently Updated', 'constant-contact-api') ),
 			array( 'val' => 'ACTIVE', 'text' => __('Active', 'constant-contact-api') ),
@@ -221,10 +230,6 @@ class CTCT_Admin_Contacts extends CTCT_Admin_Page {
 			array( 'val' => 'OPTOUT', 'text' => __('Opt-Out', 'constant-contact-api') ),
 			array( 'val' => 'REMOVED', 'text' => __('Removed', 'constant-contact-api') ),
 		) );
-
-		$params = kws_get_contacts_view_params();
-
-		$Contacts = $this->cc->getAllContacts( $params );
 
 		/** @var Contact[] $Contacts Get them in chronological order */
 		$Contacts = array_reverse( $Contacts, true );

@@ -65,10 +65,15 @@ class CTCT_Form_Designer_Output {
 
 		if( empty( $data ) ) {
 
-			$data = $this->debug ? $_REQUEST : file_get_contents( 'php://input' );
-
+			if( $this->debug ) {
+				$data = $_REQUEST;
+			} elseif( isset( $_POST['data'] ) ) {
+				$data = $_POST['data'];
+			} else {
+				$data = file_get_contents( 'php://input' );
+			}
 		}
-
+		
 		$data = stripslashes_deep( $data );
 
 		$data = is_array( $data ) ? $data : json_decode( $data, true );

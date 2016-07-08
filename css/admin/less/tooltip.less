@@ -1,22 +1,36 @@
+// Base
+@ctct_help_base: 10px;
+
+// How big should the ? circle be. Default: 15px + 2px border
+@ctct_help_size: 1.5 * @ctct_help_base;
+
 .ctct_help {
   display: inline-block!important;
-  font-family: 'Open Sans', 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif;
-  font-size: 10px;
-  line-height: 17px;
-  font-weight: bold;
+  box-sizing: content-box;
   float: none!important;
-  margin-top: 1px;
-  margin-left: 7px;
-  -webkit-border-radius: 13px;
-  border-radius: 13px;
+  padding: 0;
+  margin: 0 ( @ctct_help_size / 2 );
+  width: @ctct_help_size;
+  height: @ctct_help_size;
+  line-height: @ctct_help_size;
+
+  // Native fonts! https://make.wordpress.org/core/2016/07/07/native-fonts-in-4-6/
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: @ctct_help_base;
+  font-style: normal;
+  font-weight: bold;
+
   z-index: 26;
   background-color: #aaa;
   cursor: help;
   color: white;
-  width: 17px;
-  text-indent: -1px;
+
+  text-indent: 0;
   text-align: center;
-  padding: 0!important;
+
+  border: 1px solid #cccccc;;
+  -webkit-border-radius: 1.3 * @ctct_help_base;
+  border-radius: 1.3 * @ctct_help_base;
 }
 
 .ui-tooltip {
