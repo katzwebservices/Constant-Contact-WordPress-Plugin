@@ -79,6 +79,7 @@ To install the plugin follow the steps below:
 
 = 4.0.4 on July 8, 2016 =
 * Fixed: Form Designer interface style issues
+* Fixed: Error notices not printing properly
 
 = 4.0.3 on July 5, 2016 =
 

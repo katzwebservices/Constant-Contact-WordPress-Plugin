@@ -544,7 +544,7 @@ function kws_print_notices( $notices = array(), $class = 'updated', $echo = true
 
 	$output = '<div class="' . esc_attr( $class ) . '">';
 
-	foreach ( (array)$this->notices as $key => $notice ) {
+	foreach ( (array)$notices as $key => $notice ) {
 
 		if( is_wp_error( $notice ) ) {
 
