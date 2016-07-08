@@ -77,7 +77,10 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-== 4.0.3 on July 5, 2016 =
+= 4.0.4 on July 8, 2016 =
+* Fixed: Form Designer "Delete All Forms" button not looking good
+
+= 4.0.3 on July 5, 2016 =
 
 * Removed: Unused Select2 library, fixing an administration JavaScript error
 * Fixed: Update admin JavaScript minification

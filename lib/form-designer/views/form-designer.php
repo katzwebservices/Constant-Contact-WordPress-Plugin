@@ -1,5 +1,3 @@
-<a class="alignright button button-danger confirm" data-confirm="<?php _e('Delete all form Data? All forms and their settings will be deleted. This cannot be undone. Continue?', 'constant-contact-api'); ?>" data-confirm-again="<?php _e('Are you certain? Forms will be PERMANENTLY DELETED. You will have to re-create all your forms. Continue?', 'constant-contact-api'); ?>" href="<?php echo wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete_all&amp;form=all'), 'delete-all' ); ?>" id="delete_all_forms"><?php _e('Delete All Forms', 'constant-contact-api'); ?></a>
-
 <?php
 
 	// TODO: Add Gravity Forms Notice
@@ -25,6 +23,7 @@
 	</div>
 <div class="nav-menus-php">
 	<div class="manage-menus">
+		<a class="alignright button button-danger confirm" data-confirm="<?php _e('Delete all form Data? All forms and their settings will be deleted. This cannot be undone. Continue?', 'constant-contact-api'); ?>" data-confirm-again="<?php _e('Are you certain? Forms will be PERMANENTLY DELETED. You will have to re-create all your forms. Continue?', 'constant-contact-api'); ?>" href="<?php echo wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete_all&amp;form=all'), 'delete-all' ); ?>" id="delete_all_forms"><?php _e('Delete All Forms', 'constant-contact-api'); ?></a>
 		<form method="get" action="<?php echo admin_url('admin.php'); ?>">
 			<input type="hidden" name="action" value="edit" />
 			<input type="hidden" name="page" value="constant-contact-forms" />
