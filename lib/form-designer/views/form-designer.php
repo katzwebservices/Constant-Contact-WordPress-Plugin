@@ -103,12 +103,12 @@
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="cc-form-id" id="cc-form-id" value="<?php echo (int)$cc_form_selected_id; ?>" />
 
-							<label class="menu-name-label howto open-label" for="menu-name">
 						<div class="major-publishing-actions wp-clearfix">
+							<label class="menu-name-label" for="form-name">
 								<span><?php esc_html_e('Form Name', 'constant-contact-api'); constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), true ); ?></span>
 
 								<?php $title = esc_attr__('Enter form name here', 'constant-contact-api'); ?>
-								<input name="form-name" id="menu-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
+								<input name="form-name" id="form-name" type="text" class="widefat text menu-name regular-text menu-item-textbox <?php if ( $cc_form_selected_id == -1 ) {  ?> input-with-default-title<?php } ?>" title="<?php echo $title ?>" value="<?php echo isset( $form['form-name'] ) ? esc_attr( $form['form-name']  ) : ''; ?>" />
 
 
 							</label>
