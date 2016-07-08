@@ -84,6 +84,7 @@ To install the plugin follow the steps below:
 * Fixed: Form Designer interface style issues
 * Fixed: Error notices not printing properly
 * Modified: `getAll()` methods `getAllLists()` `getAllContacts()` now returns `Ctct\Exceptions\CtctException` on error
+* Updated: Minified scripts
 
 = 4.0.3 on July 5, 2016 =
 
