@@ -80,6 +80,7 @@ To install the plugin follow the steps below:
 = 4.1 on July 8, 2016 =
 * Updated: Improved error handling to show helpful messages
 * Added: Additional error logging
+* Fixed: Form Designer preview not showing for some server configurations
 * Fixed: Form Designer interface style issues
 * Fixed: Error notices not printing properly
 * Modified: `getAll()` methods `getAllLists()` `getAllContacts()` now returns `Ctct\Exceptions\CtctException` on error
