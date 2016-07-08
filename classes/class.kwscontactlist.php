@@ -170,7 +170,7 @@ class KWSContactList extends ContactList {
 					$multiple = ' multiple="multiple"';
 				}
 
-				$before      = '<select name="%%name_attr%%"' . $multiple . ' class="select2 ctct-lists">';
+				$before      = '<select name="%%name_attr%%"' . $multiple . ' class="ctct-lists">';
 				$before_item = '<option value="%%id%%">';
 				$after_item  = '</option>';
 				$after       = '</select>';

@@ -37,7 +37,6 @@
 		"zackkatz/wp-logging": "dev-patch-2",
 		"guzzlehttp/guzzle": "^6.1.1",
 		"10up/flexibility": "*",
-		"select2/select2": "dev-master",
 		"php": ">=5.5.0",
 		"ext-curl": "*"
 	}

@@ -4,7 +4,7 @@ Donate link: http://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
 Tested up to: 4.5.2
-Stable tag: 4.0.2
+Stable tag: 4.0.3
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -76,6 +76,12 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+== 4.0.3 on July 5, 2016 =
+
+* Removed: Unused Select2 library, fixing an administration JavaScript error
+* Fixed: Update admin JavaScript minification
+* Updated: Plugin libraries
 
 == 4.0.2 on June 29, 2016 =
 

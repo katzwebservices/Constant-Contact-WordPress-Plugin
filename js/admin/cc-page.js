@@ -111,8 +111,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	$(".select2").select2();
-
 	$('#constant-contact_page_constant-contact-forms').ready(function() {
 		ctct_pointers();
 	});
