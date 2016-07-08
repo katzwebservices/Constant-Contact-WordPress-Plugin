@@ -103,8 +103,8 @@
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="cc-form-id" id="cc-form-id" value="<?php echo (int)$cc_form_selected_id; ?>" />
 
-						<div class="major-publishing-actions">
 							<label class="menu-name-label howto open-label" for="menu-name">
+						<div class="major-publishing-actions wp-clearfix">
 								<span><?php esc_html_e('Form Name', 'constant-contact-api'); constant_contact_tip(__('Only for internal use - the outside world won\'t see this name.', 'constant-contact-api'), true ); ?></span>
 
 								<?php $title = esc_attr__('Enter form name here', 'constant-contact-api'); ?>
@@ -127,7 +127,7 @@
 					</div><!-- /#post-body -->
 
 					<div id="nav-menu-footer">
-						<div class="major-publishing-actions">
+						<div class="major-publishing-actions wp-clearfix">
 							<span class="delete-action">
 								<?php if ( $cc_form_selected_id != -1 ) {  ?>
 								<a class="submitdelete deletion menu-delete" href="<?php echo esc_url( wp_nonce_url( admin_url('admin.php?page=constant-contact-forms&action=delete&amp;form=' . $cc_form_selected_id), 'delete-cc_form-' . $cc_form_selected_id ) ); ?>"  onclick="return confirm('<?php _e('Are you sure you want to delete this form? It will be deleted permanently.', 'constant-contact-api'); ?>');"><?php _e('Delete Form', 'constant-contact-api'); ?></a>
