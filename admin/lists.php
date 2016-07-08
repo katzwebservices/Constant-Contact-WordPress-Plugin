@@ -1,11 +1,4 @@
 <?php
-use Ctct\ConstantContact;
-use Ctct\Components\Contacts\Contact;
-use Ctct\Components\Contacts\Address;
-use Ctct\Components\Contacts\CustomField;
-use Ctct\Components\Contacts\Note;
-use Ctct\Components\Contacts\ContactList;
-use Ctct\Components\Contacts\EmailAddress;
 use Ctct\Exceptions\CtctException;
 
 
@@ -99,12 +92,15 @@ class CTCT_Admin_Lists extends CTCT_Admin_Page {
 
 		$Lists = $this->cc->getAllLists();
 
+		if( $Lists instanceof CtctException ) {
+			$this->show_exception( $Lists );
+			return;
+		}
+
 		if ( empty( $Lists ) ) {
 			esc_html_e( 'Your account has no lists.', 'constant-contact-api' );
 		} else {
-
 			include( CTCT_DIR_PATH . 'views/admin/view.lists-view.php' );
-
 		}
 	}
 }

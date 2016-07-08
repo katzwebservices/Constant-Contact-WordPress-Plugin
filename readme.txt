@@ -4,7 +4,7 @@ Donate link: http://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
 Tested up to: 4.5.2
-Stable tag: 4.0.3
+Stable tag: 4.1
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
@@ -77,9 +77,12 @@ To install the plugin follow the steps below:
 
 == Changelog ==
 
-= 4.0.4 on July 8, 2016 =
+= 4.1 on July 8, 2016 =
+* Updated: Improved error handling to show helpful messages
+* Added: Additional error logging
 * Fixed: Form Designer interface style issues
 * Fixed: Error notices not printing properly
+* Modified: `getAll()` methods `getAllLists()` `getAllContacts()` now returns `Ctct\Exceptions\CtctException` on error
 
 = 4.0.3 on July 5, 2016 =
 
@@ -87,7 +90,7 @@ To install the plugin follow the steps below:
 * Fixed: Update admin JavaScript minification
 * Updated: Plugin libraries
 
-== 4.0.2 on June 29, 2016 =
+= 4.0.2 on June 29, 2016 =
 
 __This is a major update that requires PHP 5.5 or higher__. This was needed in order to use the latest Constant Contact code.
 

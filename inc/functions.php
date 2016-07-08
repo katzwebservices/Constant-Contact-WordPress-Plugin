@@ -534,13 +534,17 @@ function kws_paginate_results( \Ctct\Components\ResultSet $resultSet, $limit = 5
 
 /**
  * Print an array of notices
+ *
+ * @since 4.0.3 Added $title parameter
+ *
  * @param WP_Error[]|array $notices
  * @param string $class
  * @param bool $echo
+ * @param string $title If passed, used as the title of the error. Otherwise, taken from the error itself.
  *
  * @return string
  */
-function kws_print_notices( $notices = array(), $class = 'updated', $echo = true ) {
+function kws_print_notices( $notices = array(), $class = 'updated', $echo = true, $title = '' ) {
 
 	$output = '<div class="' . esc_attr( $class ) . '">';
 
@@ -548,7 +552,13 @@ function kws_print_notices( $notices = array(), $class = 'updated', $echo = true
 
 		if( is_wp_error( $notice ) ) {
 
-			$output .= '<h3>'.esc_html( sprintf( __('Error: %s', 'constant-contact-api'), $notice->get_error_code() ) ).'</h3>';
+			if( empty( $title ) ) {
+				$title = sprintf( __('Error: %s', 'constant-contact-api'), $notice->get_error_code() );
+			} else {
+				$title = sprintf( $title, $notice->get_error_code() );
+			}
+
+			$output .= '<h3>'.esc_html( $title ).'</h3>';
 
 			$output .= wpautop( esc_html( $notice->get_error_message() ) );
 
