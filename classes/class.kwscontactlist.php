@@ -148,7 +148,7 @@ class KWSContactList extends ContactList {
 
 		// There should always be at least one list.
 		if ( empty( $items ) || $items instanceof \Ctct\Exceptions\CtctException ) {
-			return sprintf( __('There was an error fetching lists. Please <a href="%s">refresh your lists</a> and try again.'), esc_url( admin_url( 'admin.php?page=constant-contact-lists&refresh=lists' ) ) );
+			return sprintf( __('There was an error fetching lists. Please <a href="%s">refresh your lists</a> and try again.', 'constant-contact-api'), esc_url( admin_url( 'admin.php?page=constant-contact-lists&refresh=lists' ) ) );
 		}
 
 		$before = $before_item = $after_item = $after = $format = $id_attr = '';
