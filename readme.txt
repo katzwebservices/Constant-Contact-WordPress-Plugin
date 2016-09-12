@@ -3,8 +3,8 @@ Contributors: katzwebdesign, katzwebservices
 Donate link: https://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
-Tested up to: 4.5.2
-Stable tag: 4.1
+Tested up to: 4.6.1
+Stable tag: 4.1.1
 License: GPLv2 or later
 
 Integrate Constant Contact into your website with this full-featured plugin.
