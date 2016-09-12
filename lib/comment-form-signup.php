@@ -60,7 +60,7 @@ class CTCT_Comment_Form_Signup {
 	 * @since 1.0.0
 	 *
 	 * @todo  Add checks as to whether someone's already subscribed. The logic's there, just not the check.
-	 * @return null Return early if in the admin or the email list hasn't been set
+	 * @return void Return early if in the admin or the email list hasn't been set
 	 */
 	public function comment_form() {
 
