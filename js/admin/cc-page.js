@@ -152,8 +152,6 @@ jQuery(document).ready(function($) {
 
 			ctct_set_referrer();
 
-			$('.constant-contact-api-toggle[rel]').trigger('ctct_ready');
-
 			return false;
 		},
 		cookie: { expires: 1 }
@@ -288,9 +286,11 @@ jQuery(document).ready(function($) {
      });
 
 
+	$( document ).on( 'ready', function (e ) {
+		$('.constant-contact-api-toggle[rel][type=radio]').filter(':checked').trigger('ctct_ready');
+	} );
+
 	$('.constant-contact-api-toggle[rel]').on('click ready ctct_ready save', function(e) {
-		CTCTToggleVisibility($(this), e);
-	}).each(function(e) {
 		CTCTToggleVisibility($(this), e);
 	});
 
