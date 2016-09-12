@@ -300,44 +300,51 @@ jQuery(document).ready(function($) {
 
 		if($that.attr('rel') && $that.attr('rel') !== '') {
 
-			var rel = $that.attr('rel');
-			var type = $that.parents('.form-table').length ? 'tr' : 'div.ctct_setting';
-			var checked = $that.is(':checked');
-			var visible = $that.is(':visible');
-			var $row = $('.toggle_'+rel);
+			var rel = $that.attr( 'rel' );
+			var type = $that.parents( '.form-table' ).length ? 'tr' : 'div.ctct_setting';
+			var checked = $that.is( ':checked' );
+			var visible = $that.is( ':visible' );
+			var $row = $( '.toggle_' + rel );
 
-			if((checked && visible) || (checked && $that.parents('.widget').length > 0)) {
+			if ( (checked && visible) || (checked && $that.parents( '.widget' ).length > 0) ) {
 
-				if($that.attr('type') === 'radio') {
+				if ( $that.attr( 'type' ) === 'radio' ) {
 					// Process all the radio options in the same <tr>
-					$('.constant-contact-api-toggle', $that.parents(type)).each(function() {
-						var $thisrel = $('.toggle_'+$(this).attr('rel'));
-						var $thisrelparents = $thisrel.parents(type).removeClass('ctct-closed');
-						if($(this).attr('rel') !== 'false') {
-							$thisrel.not('.toggle_'+rel).parents(type).hide().addClass('ctct-closed');
+					$( '.constant-contact-api-toggle', $that.parents( type ) ).each( function () {
+						var $thisrel = $( '.toggle_' + $( this ).attr( 'rel' ) );
+						var $thisrelparents = $thisrel.parents( type ).removeClass( 'ctct-closed' );
+						if ( $( this ).attr( 'rel' ) !== 'false' ) {
+							$thisrel.not( '.toggle_' + rel ).parents( type ).hide().addClass( 'ctct-closed' );
 						}
-						$thisrelparents.not('.ctct-closed').CTCTShow(speed);
-					});
+						$thisrelparents.not( '.ctct-closed' ).CTCTShow( speed );
+					} );
 				} else {
-					$that.attr('rel', false);
-					$row.each(function() {
-						var $thisrow = $(this); var show = true;
+					$that.attr( 'rel', false );
+					$row.each( function () {
+						var $thisrow = $( this );
+						var show = true;
 						// If the input is in multiple togglegroups, deal with that.
-						var matches = $(this).attr('class').match(/(toggle_.*?\b)+/gi);
-						if(matches && !$('body').hasClass('widgets-php')) {
-							$.each(matches, function(k, v) {
-								var $input = $('input[rel='+v.replace('toggle_', '')+']');
-								if($input.length > 0 && !$input.attr('checked')) { show = false; }
-							});
+						var matches = $( this ).attr( 'class' ).match( /(toggle_.*?\b)+/gi );
+						if ( matches && !$( 'body' ).hasClass( 'widgets-php' ) ) {
+							$.each( matches, function ( k, v ) {
+								var $input = $( 'input[rel=' + v.replace( 'toggle_', '' ) + ']' );
+								if ( $input.length > 0 && !$input.attr( 'checked' ) ) {
+									show = false;
+								}
+							} );
 						}
-						if(show === true) { $(this).parents(type).CTCTShow(speed); }
-					});
+						if ( show === true ) {
+							$( this ).parents( type ).CTCTShow( speed );
+						}
+					} );
 				}
 			} else {
-				$row.each(function() { $(this).parents(type).CTCTHide(speed); });
+				$row.each( function () {
+					$( this ).parents( type ).CTCTHide( speed );
+				} );
 			}
 
-			$that.attr('rel', rel);
+			$that.attr( 'rel', rel );
 		}
 	}
 
