@@ -1,6 +1,6 @@
 === Constant Contact for WordPress ===
 Contributors: katzwebdesign, katzwebservices
-Donate link: http://wordpress.constantcontact.com
+Donate link: https://wordpress.constantcontact.com
 Tags: Constant Contact, Newsletter, Email Marketing, Mailing List, Newsletter, Events, Event Marketing
 Requires at least: 3.3
 Tested up to: 4.5.2
@@ -11,8 +11,8 @@ Integrate Constant Contact into your website with this full-featured plugin.
 
 == Description ==
 
-> __This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com).__  
-> *Don't have an account?* Constant Contact offers a [free 60 day trial](http://wordpress.constantcontact.com/email-marketing "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
+> __This plugin requires a [Constant Contact account](https://wordpress.constantcontact.com).__
+> *Don't have an account?* Constant Contact offers a [free 60 day trial](https://wordpress.constantcontact.com/email-marketing "Sign up for a free Constant Contact trial"), so sign up and give this plugin a whirl!
 
 **Requires PHP 5.5**
 
@@ -24,7 +24,7 @@ You can place a signup checkbox or list selection on your register page or use t
 
 ### Event Marketing
 
-The plugin features [Constant Contact Event Marketing](http://wordpress.constantcontact.com/features/event-marketing) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
+The plugin features [Constant Contact Event Marketing](https://wordpress.constantcontact.com/features/event-marketing) functionality by allowing you to track events, registration, and registrants using the plugin. Simply navigate to Constant Contact > Events. Manage your events from inside WordPress!
 
 ### Built-in Form Designer
 
@@ -44,7 +44,7 @@ __The Form Designer__ is a form generation and design tool. The Form Designer al
 * Add a signup widget to your sidebar or anywhere in your template
 
 #### Plugin Support
-To obtain support please use this link to the [WordPress forums](http://wordpress.org/tags/constant-contact-api).
+To obtain support please use this link to the [WordPress forums](https://wordpress.org/tags/constant-contact-api).
 
 #### If you like the plugin...
 If you use the plugin and find it useful please make sure to come back and vote so other users know it works.
@@ -76,6 +76,12 @@ To install the plugin follow the steps below:
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 == Changelog ==
+
+= 4.1.1 on September 12, 2016 =
+* Fixed: Fatal error when "Comment Form Signup" setting is enabled but the "Lists for Comment Form" are not defined, and a new comment is submitted
+* Fixed: Conflict with other plugin AJAX configurations in Admin
+* Fixed: Don't load plugin Javascript on all Admin pages
+* Fixed: Hidden plugin settings not visible without re-selecting parent options
 
 = 4.1 on July 8, 2016 =
 * Updated: Improved error handling to show helpful messages
@@ -372,11 +378,11 @@ __Version 4.0 changes requirements for your server. If you upgrade and the upgra
 
 Why? Because [Constant Contact's official code](https://github.com/constantcontact/php-sdk) requires PHP 5.5.
 
-Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available, and [earlier versions of PHP are no longer secure](http://php.net/supported-versions.php).
+Ask your host about upgrading your server to 5.5. If they say no, chances are you should find a new host; 5.5 has long been available, and [earlier versions of PHP are no longer secure](https://secure.php.net/supported-versions.php).
 
 Starting with Version 4.0, **the Constant Contact Plugin requires PHP Version 5.5 or higher**. Please contact your hosting provider support and ask them to upgrade your server.
 
-**We apologize for the inconvenience, but technical requirements changed.**The good news? Once you upgrade your PHP version, your site will be faster [and more secure](http://php.net/supported-versions.php).
+**We apologize for the inconvenience, but technical requirements changed.**The good news? Once you upgrade your PHP version, your site will be faster [and more secure](https://secure.php.net/supported-versions.php).
 
 #### Here’s how to upgrade your PHP version for popular web hosts:
 
@@ -395,9 +401,9 @@ You can use [Constant Contact's Sign-up Form](http://support2.constantcontact.co
 
 = Do I need a Constant Contact account for this plugin? =
 
-This plugin requires a [Constant Contact account](http://wordpress.constantcontact.com/index.jsp).
+This plugin requires a [Constant Contact account](https://wordpress.constantcontact.com/account-home).
 
-Constant Contact is a great email marketing company -- their rates are determined by the number of contacts in your list, not how many emails you send. This means you can send unlimited emails per month for one fixed rate! [Give it a test run](http://wordpress.constantcontact.com/features/signup.jsp).
+Constant Contact is a great email marketing company -- their rates are determined by the number of contacts in your list, not how many emails you send. This means you can send unlimited emails per month for one fixed rate! [Give it a test run](https://wordpress.constantcontact.com/signup.jsp).
 
 = Is there shortcode support? =
 
@@ -499,7 +505,7 @@ __Some example filters:__
 10. To edit the form, return the the Form Designer page (from Step 3) and click on the form tab with the name of the form you would like to edit. Edit the form, then click Update Form. The form will show as updated on your website.
 
 = What is the plugin license? =
-Good news, this plugin is free for everyone! The plugin is [licensed under the GPL](http://www.gnu.org/licenses/gpl-2.0.txt "View the GPL License").
+Good news, this plugin is free for everyone! The plugin is [licensed under the GPL](https://www.gnu.org/licenses/gpl-2.0.txt "View the GPL License").
 
 = How do I test Akismet spam filtering? =
 
