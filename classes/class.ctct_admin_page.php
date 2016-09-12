@@ -79,7 +79,7 @@ abstract class CTCT_Admin_Page {
 		global $plugin_page;
 
 		// If the current page isn't the page being requested, we don't print those scripts
-		if ( empty( $_GET['page'] ) || isset( $this->key ) && $this->key !== $_GET['page'] ) {
+		if ( empty( $_GET['page'] ) || ! isset( $this->key ) || isset( $this->key ) && $this->key !== $_GET['page'] ) {
 			return;
 		}
 
