@@ -67,7 +67,8 @@ class CTCT_Comment_Form_Signup {
 		/** Don't do anything if we are in the admin */
 		if ( is_admin() )
 			return;
-		$checked = $status = '';
+
+		$status = '';
 		$clear = CTCT_Settings::get('comment_form_clear') ? 'style="clear: both;"' : '';
 
 		if ( current_user_can( 'administrator' ) && !isset($_GET['debug_comment_form'])) {
@@ -81,8 +82,7 @@ class CTCT_Comment_Form_Signup {
 		}
 		else {
 			$output = '<p class="ctct-subscribe" ' . $clear . '>';
-
-				$output .= sprintf('<label for="ctct-comment-subscribe"><input type="checkbox" name="ctct-subscribe" id="ctct-comment-subscribe" value="subscribe" style="width: auto;" %s /> %s</label>', $checked, CTCT_Settings::get('comment_form_check_text'));
+				$output .= sprintf('<label for="ctct-comment-subscribe"><input type="checkbox" name="ctct-subscribe" id="ctct-comment-subscribe" value="subscribe" style="width: auto;" %s /> %s</label>', checked( true, CTCT_Settings::get('comment_form_default'), false ), CTCT_Settings::get('comment_form_check_text'));
 			$output .= '</p>';
 		}
 
