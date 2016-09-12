@@ -168,14 +168,6 @@ jQuery(document).ready(function($) {
 		}
 	}
 
-	// setup common ajax setting
-	$.ajaxSetup({
-		url: ajaxurl,
-		type: 'POST',
-		async: false,
-		timeout: 500
-	});
-
 	$('.inline-edit-update').on('click submit', function() {
 		$(this).parent('span').addClass('submitting-in-progress');
 	});
@@ -231,6 +223,7 @@ jQuery(document).ready(function($) {
 		var result = $.Deferred();
 
 		$.ajax({
+			url: ajaxurl,
 			method: 'POST',
 			async: true,
 			isLocal: true,
