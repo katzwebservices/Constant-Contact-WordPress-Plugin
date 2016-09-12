@@ -387,8 +387,9 @@ class KWSContact extends Contact {
 			}
 		}
 
-		if ( isset( $Contact['lists'] ) ) {
+		if ( ! empty( $Contact['lists'] ) ) {
 			$Contact['lists'] = (array) $Contact['lists'];
+			$Contact['lists'] = array_filter( $Contact['lists'] );
 			foreach ( $Contact['lists'] as &$contact_list ) {
 				if ( is_numeric( $contact_list ) ) {
 					$contact_list = array( 'id' => (string) $contact_list );

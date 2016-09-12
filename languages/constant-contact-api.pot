@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Constant Contact Plugin for WordPress 4.0.2\n"
+"Project-Id-Version: Constant Contact Plugin for WordPress 4.1.1\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/katzwebservices/Constant-Contact-WordPress-Plugin/issues?"
 "state=open\n"
@@ -82,54 +82,54 @@ msgstr ""
 msgid "%s is a user on this site. %s."
 msgstr ""
 
-#: admin/contacts.php:218
+#: admin/contacts.php:227
 msgid "Recently Updated"
 msgstr ""
 
-#: admin/contacts.php:219
+#: admin/contacts.php:228
 msgid "Active"
 msgstr ""
 
-#: admin/contacts.php:220
+#: admin/contacts.php:229
 msgid "Unconfirmed"
 msgstr ""
 
-#: admin/contacts.php:221
+#: admin/contacts.php:230
 msgid "Opt-Out"
 msgstr ""
 
-#: admin/contacts.php:222
+#: admin/contacts.php:231
 msgid "Removed"
 msgstr ""
 
-#: admin/lists.php:25 admin/lists.php:45
+#: admin/lists.php:18 admin/lists.php:38
 #: lib/form-designer/form-designer-meta-boxes.php:46
 #: lib/form-designer/form-designer-meta-boxes.php:97
 #: lib/form-designer/form-designer-meta-boxes.php:201
 msgid "Lists"
 msgstr ""
 
-#: admin/lists.php:31
+#: admin/lists.php:24
 msgid "Edit Lists"
 msgstr ""
 
-#: admin/lists.php:39
+#: admin/lists.php:32
 msgid "Contacts from List: \"%s\" (#%d)"
 msgstr ""
 
-#: admin/lists.php:42
+#: admin/lists.php:35
 msgid "Contacts from List #%d"
 msgstr ""
 
-#: admin/lists.php:63
+#: admin/lists.php:56
 msgid "You have not specified a List to edit"
 msgstr ""
 
-#: admin/lists.php:84
+#: admin/lists.php:77
 msgid "You have not specified a List to view."
 msgstr ""
 
-#: admin/lists.php:103
+#: admin/lists.php:101
 msgid "Your account has no lists."
 msgstr ""
 
@@ -150,343 +150,357 @@ msgstr ""
 msgid "Constant Contact API"
 msgstr ""
 
-#: classes/class.ctct_admin.php:41 classes/class.ctct_admin_page.php:331
+#: classes/class.ctct_admin.php:41 classes/class.ctct_admin_page.php:329
 #: views/admin/view.php-compatibility-notice.php:2
 msgid "Constant Contact"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:101
+#: classes/class.ctct_admin_page.php:100
 msgid "Click to Edit"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:102
+#: classes/class.ctct_admin_page.php:101
 msgid "The request failed."
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:103 classes/class.kwsajax.php:68
+#: classes/class.ctct_admin_page.php:102 classes/class.kwsajax.php:68
 #: classes/class.kwsajax.php:126
 msgid "Nothing changed."
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:106
+#: classes/class.ctct_admin_page.php:105
 msgid "Error {code}: {message}"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:227
-msgid "There was an error displaying this content: %s"
+#: classes/class.ctct_admin_page.php:225
+msgid "There was an error displaying this content:"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:383
+#: classes/class.ctct_admin_page.php:381
 msgid "Edit"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:347
+#: classes/class.ctct_oauth_migration.php:54
+msgid "The Constant Contact plugin isn't connected."
+msgstr ""
+
+#: classes/class.ctct_oauth_migration.php:55
+msgid ""
+"Please log in to Constant Contact using the button below and your site will "
+"be connected."
+msgstr ""
+
+#: classes/class.ctct_oauth_migration.php:56
+msgid "Authorize the Plugin on ConstantContact.com"
+msgstr ""
+
+#: classes/class.ctct_process_form.php:348
 msgid "Please enter your email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:356
+#: classes/class.ctct_process_form.php:357
 msgid "Invalid email address."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:397
+#: classes/class.ctct_process_form.php:398
 msgid "Email validation failed."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:468
+#: classes/class.ctct_process_form.php:470
 msgid "Akismet caught this entry as spam"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:470
+#: classes/class.ctct_process_form.php:472
 msgid "Your entry was flagged as spam."
 msgstr ""
 
-#: classes/class.ctct_process_form.php:473
+#: classes/class.ctct_process_form.php:475
 msgid "Akismet cleared this comment"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:476
+#: classes/class.ctct_process_form.php:478
 msgid ""
 "Akismet was unable to check this entry (response: %s), will automatically "
 "retry again later."
 msgstr ""
 
-#: classes/class.ctct_settings.php:131
+#: classes/class.ctct_settings.php:154
 msgid "(Installed and active)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:135
+#: classes/class.ctct_settings.php:158
 msgid "Install %s"
 msgstr ""
 
-#: classes/class.ctct_settings.php:139
+#: classes/class.ctct_settings.php:162
 msgid "Activate %s"
 msgstr ""
 
-#: classes/class.ctct_settings.php:141
+#: classes/class.ctct_settings.php:164
 msgid "(%s - Installed, but inactive)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:217
+#: classes/class.ctct_settings.php:255
 msgid "Setup"
 msgstr ""
 
-#: classes/class.ctct_settings.php:222
+#: classes/class.ctct_settings.php:260
 msgid "Registration Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:222 classes/class.ctct_settings.php:224
+#: classes/class.ctct_settings.php:260 classes/class.ctct_settings.php:262
 msgid "Configure how users sign up."
 msgstr ""
 
-#: classes/class.ctct_settings.php:224 classes/class.ctct_settings.php:338
+#: classes/class.ctct_settings.php:262 classes/class.ctct_settings.php:376
 msgid "Comment Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:225
+#: classes/class.ctct_settings.php:263
 msgid "Spam Prevention"
 msgstr ""
 
-#: classes/class.ctct_settings.php:225
+#: classes/class.ctct_settings.php:263
 msgid "How do you want to prevent spam?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:236
+#: classes/class.ctct_settings.php:274
 msgid "Enable EventSpot Integration"
 msgstr ""
 
-#: classes/class.ctct_settings.php:237
+#: classes/class.ctct_settings.php:275
 msgid "Enable integration with Constant Contact Events (EventSpot)?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:243
+#: classes/class.ctct_settings.php:281
 msgid "Log Constant Contact Activity"
 msgstr ""
 
-#: classes/class.ctct_settings.php:244
+#: classes/class.ctct_settings.php:282
 msgid "Log Errors & Exceptions"
 msgstr ""
 
-#: classes/class.ctct_settings.php:245
+#: classes/class.ctct_settings.php:283
 msgid "Detailed Debugging Logs (Do not leave enabled! Server-intensive.)"
 msgstr ""
 
-#: classes/class.ctct_settings.php:247
+#: classes/class.ctct_settings.php:285
 msgid "Activity Logs"
 msgstr ""
 
-#: classes/class.ctct_settings.php:248
+#: classes/class.ctct_settings.php:286
 msgid ""
 "Log different activity from the plugin, including form submissions and the "
 "results (\"Constant Contact Activity\")."
 msgstr ""
 
-#: classes/class.ctct_settings.php:254
+#: classes/class.ctct_settings.php:292
 msgid "WordPress Registration Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:255
+#: classes/class.ctct_settings.php:293
 msgid ""
 "Add signup options to WordPress' <a href=\"%s\" "
 "rel=\"external\">registration form.</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:261
+#: classes/class.ctct_settings.php:299
 msgid "Disabled"
 msgstr ""
 
-#: classes/class.ctct_settings.php:262
+#: classes/class.ctct_settings.php:300
 msgid ""
 "Single Checkbox - show users a checkbox which, if ticked, will "
 "automatically subscribe them to the lists you select below in the \"Active "
 "Contact Lists\" section."
 msgstr ""
 
-#: classes/class.ctct_settings.php:263
+#: classes/class.ctct_settings.php:301
 msgid ""
 "List of Checkboxes - show a bullet list with the name of the list and a "
 "checkbox option for them to sign up"
 msgstr ""
 
-#: classes/class.ctct_settings.php:264
+#: classes/class.ctct_settings.php:302
 msgid "Dropdown List"
 msgstr ""
 
-#: classes/class.ctct_settings.php:267
+#: classes/class.ctct_settings.php:305
 msgid "User Subscription Method"
 msgstr ""
 
-#: classes/class.ctct_settings.php:273
+#: classes/class.ctct_settings.php:311
 msgid "Opt-in users by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:274
+#: classes/class.ctct_settings.php:312
 msgid ""
 "Should the opt-in checkbox(es) be checked by default? If using the \"List "
 "Selection\" method, should lists be pre-selected by default."
 msgstr ""
 
-#: classes/class.ctct_settings.php:280
+#: classes/class.ctct_settings.php:318
 msgid "Lists for Registration"
 msgstr ""
 
-#: classes/class.ctct_settings.php:281
+#: classes/class.ctct_settings.php:319
 msgid ""
 "<strong>Checkbox:</strong> What lists will users be added to when checking "
 "the opt-in box?<br />Others: What lists will users be presented with?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:290
+#: classes/class.ctct_settings.php:328
 msgid ""
 "When users sign up for your newsletter while registering for a WordPress "
 "account, they will be added to the following lists."
 msgstr ""
 
-#: classes/class.ctct_settings.php:296
+#: classes/class.ctct_settings.php:334
 msgid "Signup Description"
 msgstr ""
 
-#: classes/class.ctct_settings.php:297
+#: classes/class.ctct_settings.php:335
 msgid ""
 "Signup form description text displayed on the registration screen and user "
 "profile setting, if enabled. HTML is allowed. Paragraphs will be added "
 "automatically like in posts."
 msgstr ""
 
-#: classes/class.ctct_settings.php:304
+#: classes/class.ctct_settings.php:342
 msgid "Before the Opt-in"
 msgstr ""
 
-#: classes/class.ctct_settings.php:305 classes/class.ctct_settings.php:406
+#: classes/class.ctct_settings.php:343 classes/class.ctct_settings.php:444
 msgid "After the Opt-in"
 msgstr ""
 
-#: classes/class.ctct_settings.php:307
+#: classes/class.ctct_settings.php:345
 msgid "Signup Description Position"
 msgstr ""
 
-#: classes/class.ctct_settings.php:313
+#: classes/class.ctct_settings.php:351
 msgid "Signup Title"
 msgstr ""
 
-#: classes/class.ctct_settings.php:314
+#: classes/class.ctct_settings.php:352
 msgid ""
 "Title for the signup form displayed on the registration screen and user "
 "profile settings if enabled."
 msgstr ""
 
-#: classes/class.ctct_settings.php:320
+#: classes/class.ctct_settings.php:358
 msgid "Default Option Text"
 msgstr ""
 
-#: classes/class.ctct_settings.php:321
+#: classes/class.ctct_settings.php:359
 msgid ""
 "If \"Opt-in users by default\" (below) is not checked, this will be the "
 "default option in the dropdown menu. Leave blank to not show this option."
 msgstr ""
 
-#: classes/class.ctct_settings.php:325
+#: classes/class.ctct_settings.php:363
 msgid "Profile Page"
 msgstr ""
 
-#: classes/class.ctct_settings.php:330
+#: classes/class.ctct_settings.php:368
 msgid "Allow users to modify their subscription on their WordPress profile page"
 msgstr ""
 
-#: classes/class.ctct_settings.php:331
+#: classes/class.ctct_settings.php:369
 msgid "Show Form on Profile Page?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:332
+#: classes/class.ctct_settings.php:370
 msgid "Do you want users to be able to update their subscriptions inside WordPress?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:343
+#: classes/class.ctct_settings.php:381
 msgid "Add a checkbox for subscribing to a newsletter below a comment form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:345
+#: classes/class.ctct_settings.php:383
 msgid "Comment Form Signup"
 msgstr ""
 
-#: classes/class.ctct_settings.php:351
+#: classes/class.ctct_settings.php:389
 #: lib/form-designer/form-designer-meta-boxes.php:61
 msgid "Checked by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:352
+#: classes/class.ctct_settings.php:390
 msgid "Should the checkbox be checked by default?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:358
+#: classes/class.ctct_settings.php:396
 msgid "Lists for Comment Form"
 msgstr ""
 
-#: classes/class.ctct_settings.php:359
+#: classes/class.ctct_settings.php:397
 msgid "What lists will users be added to when signing up with the Comment Form?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:373
+#: classes/class.ctct_settings.php:411
 #: lib/form-designer/form-designer-functions.php:309
 msgid "Subscribe Message"
 msgstr ""
 
-#: classes/class.ctct_settings.php:379
+#: classes/class.ctct_settings.php:417
 msgid "Already Subscribed Message"
 msgstr ""
 
-#: classes/class.ctct_settings.php:385
+#: classes/class.ctct_settings.php:423
 msgid "Uncheck if this causes layout issues"
 msgstr ""
 
-#: classes/class.ctct_settings.php:386
+#: classes/class.ctct_settings.php:424
 msgid "Add a CSS 'clear' to the checkbox?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:394
+#: classes/class.ctct_settings.php:432
 msgid "Akismet"
 msgstr ""
 
-#: classes/class.ctct_settings.php:395
+#: classes/class.ctct_settings.php:433
 msgid "WangGuard WordPress Plugin"
 msgstr ""
 
-#: classes/class.ctct_settings.php:397
+#: classes/class.ctct_settings.php:435
 msgid "What services do you want to use to prevent spam submissions of your forms?"
 msgstr ""
 
-#: classes/class.ctct_settings.php:405
+#: classes/class.ctct_settings.php:443
 msgid "<a href=\"http://www.formstack.com/r/31575458\">Formstack</a>"
 msgstr ""
 
-#: classes/class.ctct_settings.php:408
+#: classes/class.ctct_settings.php:446
 msgid "Forms"
 msgstr ""
 
-#: classes/class.ctct_settings.php:453
+#: classes/class.ctct_settings.php:497
 msgid "Receive our Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:454
+#: classes/class.ctct_settings.php:498
 msgid "Subscribe to the Newsletter"
 msgstr ""
 
-#: classes/class.ctct_settings.php:455
+#: classes/class.ctct_settings.php:499
 msgid "Select a List&hellip;"
 msgstr ""
 
-#: classes/class.ctct_settings.php:458
+#: classes/class.ctct_settings.php:502
 msgid "Subscribe me to your mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:459
+#: classes/class.ctct_settings.php:503
 msgid "You are currently subscribed to our mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:460
+#: classes/class.ctct_settings.php:504
 msgid "You are the administrator - no need to subscribe you to the mailing list"
 msgstr ""
 
-#: classes/class.ctct_settings.php:703
+#: classes/class.ctct_settings.php:777
 msgid "Save Settings"
 msgstr ""
 
@@ -533,31 +547,23 @@ msgstr ""
 msgid "(Empty)"
 msgstr ""
 
-#: classes/class.kwsconstantcontact.php:51
-#: classes/class.kwsconstantcontact.php:62
+#: classes/class.kwsconstantcontact.php:54
+#: classes/class.kwsconstantcontact.php:65
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: classes/class.kwsconstantcontact.php:342
+#: classes/class.kwsconstantcontact.php:375
 msgid "You have opted out of our newsletters and cannot re-subscribe."
 msgstr ""
 
-#: classes/class.kwsconstantcontact.php:438
+#: classes/class.kwsconstantcontact.php:482
 msgid "A contact cannot be added without lists."
 msgstr ""
 
-#: classes/class.oauth-migration.php:54
-msgid "The Constant Contact plugin isn't connected."
-msgstr ""
-
-#: classes/class.oauth-migration.php:55
+#: classes/class.kwscontactlist.php:151
 msgid ""
-"Please log in to Constant Contact using the button below and your site will "
-"be connected."
-msgstr ""
-
-#: classes/class.oauth-migration.php:56
-msgid "Authorize the Plugin on ConstantContact.com"
+"There was an error fetching lists. Please <a href=\"%s\">refresh your "
+"lists</a> and try again."
 msgstr ""
 
 #: inc/functions.php:193
@@ -687,7 +693,7 @@ msgstr ""
 msgid "View All Results"
 msgstr ""
 
-#: inc/functions.php:551
+#: inc/functions.php:556
 msgid "Error: %s"
 msgstr ""
 
@@ -753,51 +759,51 @@ msgstr ""
 msgid "Location: "
 msgstr ""
 
-#: lib/eventspot/eventspot.php:48 lib/eventspot/eventspot.php:116
-#: lib/eventspot/eventspot.php:172
+#: lib/eventspot/eventspot.php:49 lib/eventspot/eventspot.php:120
+#: lib/eventspot/eventspot.php:176
 msgid "Events"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:175
+#: lib/eventspot/eventspot.php:179
 msgid "Edit Event"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:185
+#: lib/eventspot/eventspot.php:189
 msgid "Event: \"%s\""
 msgstr ""
 
-#: lib/eventspot/eventspot.php:188
+#: lib/eventspot/eventspot.php:192
 msgid "Event #%s"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:193
+#: lib/eventspot/eventspot.php:197
 msgid "Event Registrant"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:309 lib/eventspot/widget-events.php:116
+#: lib/eventspot/eventspot.php:313 lib/eventspot/widget-events.php:116
 msgid "There are no active events."
 msgstr ""
 
-#: lib/eventspot/eventspot.php:361
+#: lib/eventspot/eventspot.php:365
 msgid "EventSpot"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:380
+#: lib/eventspot/eventspot.php:384
 msgid ""
 "The widget is hidden. Un-hide the widget by going to the top of the page, "
 "clicking \"Screen Options\", then checking the \"EventSpot\" checkbox. Once "
 "you have done that, refresh the page to view this widget."
 msgstr ""
 
-#: lib/eventspot/eventspot.php:392
+#: lib/eventspot/eventspot.php:396
 msgid "Active Events"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:395
+#: lib/eventspot/eventspot.php:399
 msgid "Draft Events"
 msgstr ""
 
-#: lib/eventspot/eventspot.php:399
+#: lib/eventspot/eventspot.php:403
 msgid "View All Events"
 msgstr ""
 
@@ -1203,7 +1209,7 @@ msgstr ""
 
 #: lib/form-designer/form-designer-functions.php:99
 #: lib/form-designer/form-designer.php:438
-#: lib/form-designer/views/form-designer.php:111
+#: lib/form-designer/views/form-designer.php:110
 msgid "Enter form name here"
 msgstr ""
 
@@ -1880,7 +1886,7 @@ msgstr ""
 msgid "The <strong>%s</strong> form has been updated."
 msgstr ""
 
-#: lib/form-designer/form-designer.php:387 lib/form-designer/form.php:222
+#: lib/form-designer/form-designer.php:387 lib/form-designer/form.php:227
 msgid "The %s field is required"
 msgstr ""
 
@@ -1912,35 +1918,19 @@ msgstr ""
 msgid "Padding & Align"
 msgstr ""
 
-#: lib/form-designer/form.php:350
+#: lib/form-designer/form.php:355
 msgid "Add me to these lists:"
 msgstr ""
 
-#: lib/form-designer/form.php:482
+#: lib/form-designer/form.php:487
 msgid "Success, you have been subscribed."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:1
-msgid ""
-"Delete all form Data? All forms and their settings will be deleted. This "
-"cannot be undone. Continue?"
-msgstr ""
-
-#: lib/form-designer/views/form-designer.php:1
-msgid ""
-"Are you certain? Forms will be PERMANENTLY DELETED. You will have to "
-"re-create all your forms. Continue?"
-msgstr ""
-
-#: lib/form-designer/views/form-designer.php:1
-msgid "Delete All Forms"
-msgstr ""
-
-#: lib/form-designer/views/form-designer.php:21
+#: lib/form-designer/views/form-designer.php:19
 msgid "This form creator requires Javascript."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:22
+#: lib/form-designer/views/form-designer.php:20
 msgid ""
 "The form designer uses a lot of Javascript to put together the sweet "
 "looking forms that it does, so please <a "
@@ -1949,57 +1939,73 @@ msgid ""
 "make some forms together!"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:31
+#: lib/form-designer/views/form-designer.php:26
+msgid ""
+"Delete all form Data? All forms and their settings will be deleted. This "
+"cannot be undone. Continue?"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:26
+msgid ""
+"Are you certain? Forms will be PERMANENTLY DELETED. You will have to "
+"re-create all your forms. Continue?"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:26
+msgid "Delete All Forms"
+msgstr ""
+
+#: lib/form-designer/views/form-designer.php:30
 msgid "Select a form to edit:"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:34
+#: lib/form-designer/views/form-designer.php:33
 msgid "Select A Form"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:39
+#: lib/form-designer/views/form-designer.php:38
 msgid "Form #%d"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:48
+#: lib/form-designer/views/form-designer.php:47
 msgid "Select"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:91
+#: lib/form-designer/views/form-designer.php:90
 msgid "Form Preview"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:94
+#: lib/form-designer/views/form-designer.php:93
 msgid "Toggle Preview"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:94
+#: lib/form-designer/views/form-designer.php:93
 msgid "Form is being updated."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:109
+#: lib/form-designer/views/form-designer.php:108
 msgid "Form Name"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:109
+#: lib/form-designer/views/form-designer.php:108
 msgid "Only for internal use - the outside world won't see this name."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:117
-#: lib/form-designer/views/form-designer.php:139
+#: lib/form-designer/views/form-designer.php:116
+#: lib/form-designer/views/form-designer.php:138
 msgid "Create Form"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:117
-#: lib/form-designer/views/form-designer.php:139
+#: lib/form-designer/views/form-designer.php:116
+#: lib/form-designer/views/form-designer.php:138
 msgid "Save Form"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:134
+#: lib/form-designer/views/form-designer.php:133
 msgid "Are you sure you want to delete this form? It will be deleted permanently."
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:134
+#: lib/form-designer/views/form-designer.php:133
 msgid "Delete Form"
 msgstr ""
 
@@ -2451,12 +2457,12 @@ msgstr ""
 msgid "Delete All Plugin Settings"
 msgstr ""
 
-#: classes/class.ctct_admin_page.php:386
+#: classes/class.ctct_admin_page.php:384
 msgctxt "General button text for adding a new Contact or List, for example."
 msgid "Add %s"
 msgstr ""
 
-#: classes/class.ctct_process_form.php:239
+#: classes/class.ctct_process_form.php:240
 msgctxt "Failed user form submission error"
 msgid "The %s field is required."
 msgstr ""
@@ -2471,7 +2477,7 @@ msgctxt "Default form name when none is provided."
 msgid "Form #%d"
 msgstr ""
 
-#: lib/form-designer/views/form-designer.php:60
+#: lib/form-designer/views/form-designer.php:59
 msgctxt "The strings are HTML link tags for a link to create a new form."
 msgid "or %screate a new form%s."
 msgstr ""
